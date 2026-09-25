@@ -3,7 +3,7 @@
 # Everything else is managed from the editor at /admin — no need to touch this file again.
 backend:
   name: github
-  repo: LordAsh001.github.io
+  repo: LordAsh001/LordAsh001.github.io
   branch: main
   commit_messages:
     update: Update {{slug}} via editor
