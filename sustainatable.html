@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>The SustainaTable: the 17 elements of the 2030 Agenda</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+--bg:#F5F7F6;--panel:#FFFFFF;--ink:#1D2524;--ink2:#4A5654;--ink3:#7A8584;--line:#D5DCDA;--keybg:#E9EEEC;
+--pe-f:#FAECE7;--pe-b:#993C1D;--pe-x:#712B13;--pl-f:#E1F5EE;--pl-b:#0F6E56;--pl-x:#085041;--pr-f:#FAEEDA;--pr-b:#854F0B;--pr-x:#633806;--pc-f:#E6F1FB;--pc-b:#185FA5;--pc-x:#0C447C;--pa-f:#EEEDFE;--pa-b:#534AB7;--pa-x:#3C3489;
+--disp:"Bricolage Grotesque","Avenir Next","Segoe UI",system-ui,sans-serif;--body:"Source Sans 3","Segoe UI",system-ui,-apple-system,sans-serif}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*,*::before,*::after{box-sizing:inherit}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#141A19;--panel:#1C2322;--ink:#E8EEEC;--ink2:#B4BFBC;--ink3:#86918F;--line:#33403E;--keybg:#202827;
+--pe-f:#4A1B0C;--pe-b:#F0997B;--pe-x:#FAECE7;--pl-f:#04342C;--pl-b:#5DCAA5;--pl-x:#E1F5EE;--pr-f:#412402;--pr-b:#EF9F27;--pr-x:#FAEEDA;--pc-f:#042C53;--pc-b:#85B7EB;--pc-x:#E6F1FB;--pa-f:#26215C;--pa-b:#AFA9EC;--pa-x:#EEEDFE}}
+:root[data-theme="dark"]{--bg:#141A19;--panel:#1C2322;--ink:#E8EEEC;--ink2:#B4BFBC;--ink3:#86918F;--line:#33403E;--keybg:#202827;
+--pe-f:#4A1B0C;--pe-b:#F0997B;--pe-x:#FAECE7;--pl-f:#04342C;--pl-b:#5DCAA5;--pl-x:#E1F5EE;--pr-f:#412402;--pr-b:#EF9F27;--pr-x:#FAEEDA;--pc-f:#042C53;--pc-b:#85B7EB;--pc-x:#E6F1FB;--pa-f:#26215C;--pa-b:#AFA9EC;--pa-x:#EEEDFE}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.55}
+main{max-width:1120px;margin:0 auto;padding:28px 20px 40px}
+.pe{--f:var(--pe-f);--b:var(--pe-b);--x:var(--pe-x)}.pl{--f:var(--pl-f);--b:var(--pl-b);--x:var(--pl-x)}.pr{--f:var(--pr-f);--b:var(--pr-b);--x:var(--pr-x)}.pc{--f:var(--pc-f);--b:var(--pc-b);--x:var(--pc-x)}.pa{--f:var(--pa-f);--b:var(--pa-b);--x:var(--pa-x)}
+.table{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:10px}
+.el{aspect-ratio:1/1;background:var(--f);color:var(--x);border:1.5px solid var(--b);border-radius:8px;padding:8px 10px;display:flex;flex-direction:column;justify-content:space-between;text-align:left;font:inherit;cursor:pointer;transition:transform .15s ease,opacity .2s ease;min-width:0}
+.el:hover{transform:translateY(-2px)}
+.el:focus-visible,button:focus-visible{outline:3px solid var(--ink);outline-offset:2px}
+.el .no{font-family:var(--disp);font-weight:500;font-size:15px;line-height:1}
+.el .sy{font-family:var(--disp);font-weight:700;font-size:clamp(22px,4.2vw,46px);line-height:1;letter-spacing:-.02em}
+.el .nm{font-size:13.5px;line-height:1.2;font-weight:600}
+.el.dim{opacity:.18}
+.key{grid-column:2/6;grid-row:1/4;background:var(--keybg);border-radius:14px;padding:clamp(14px,3vw,34px);display:flex;flex-direction:column;justify-content:center;min-width:0}
+.key h1{font-family:var(--disp);font-weight:700;font-size:clamp(26px,5.6vw,62px);line-height:.95;letter-spacing:-.03em;margin:0}
+.key p{margin:.6em 0 0;color:var(--ink2);max-width:46ch}
+.key .sub{font-family:var(--disp);font-weight:500;font-size:clamp(14px,2vw,21px);color:var(--ink);margin-top:.4em}
+.fams{display:flex;flex-wrap:wrap;gap:8px;margin:22px 0 0}
+.fam{font:inherit;font-size:15px;font-weight:600;padding:6px 14px;border-radius:999px;background:var(--f);color:var(--x);border:1.5px solid var(--b);cursor:pointer}
+.fam.off{opacity:.35}
+.fams .lbl{align-self:center;color:var(--ink3);font-size:15px;margin-right:4px}
+@media (min-width:641px){.mhint{display:none}}
+footer{margin-top:36px;padding-top:18px;border-top:1px solid var(--line);color:var(--ink2);font-size:14.5px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px}
+footer p{margin:0}footer strong{color:var(--ink)}
+@media (max-width:640px){main{padding:18px 12px 32px}.table{gap:5px}.el{padding:4px 5px;border-radius:6px}.el .nm{display:none}.el .no{font-size:11px}.el .sy{text-align:center;margin-bottom:auto;margin-top:auto}.key{border-radius:10px}.key p.hint{display:none}.key p{font-size:14px}}
+/* dialog */
+dialog{border:0;padding:0;background:var(--panel);color:var(--ink);border-radius:18px;width:min(760px,calc(100% - 24px));max-height:calc(100% - 32px);box-shadow:0 24px 60px rgba(0,0,0,.28)}
+dialog::backdrop{background:rgba(10,18,17,.55)}
+dialog[open]{animation:pop .22s ease}
+@keyframes pop{from{transform:scale(.96);opacity:0}to{transform:none;opacity:1}}
+@media (prefers-reduced-motion:reduce){dialog[open]{animation:none}.el{transition:none}}
+.dh{display:flex;gap:18px;align-items:flex-start;padding:24px 24px 18px;border-bottom:1px solid var(--line);position:sticky;top:0;background:var(--panel);z-index:1}
+.big{width:104px;flex:none;aspect-ratio:1/1.08;cursor:default}
+.big .sy{font-size:44px}.big .nm{display:none}
+.dh h2{font-family:var(--disp);font-weight:700;font-size:clamp(22px,4vw,32px);line-height:1.08;letter-spacing:-.02em;margin:2px 0 6px}
+.dh .fm{font-size:15px;color:var(--ink2);margin:0}
+.x{margin-left:auto;flex:none;font:inherit;font-size:22px;line-height:1;width:40px;height:40px;border-radius:50%;border:1px solid var(--line);background:transparent;color:var(--ink);cursor:pointer}
+.db{padding:6px 24px 8px}
+.db h3{font-family:var(--disp);font-weight:700;font-size:18px;margin:22px 0 6px}
+.db p{margin:0;color:var(--ink2);max-width:68ch}
+.aim{font-size:19px;color:var(--ink)!important;line-height:1.45}
+.tg{list-style:none;margin:0;padding:0}
+.tg li{display:grid;grid-template-columns:52px 1fr;gap:10px;padding:9px 0;border-top:1px solid var(--line);color:var(--ink2)}
+.tg li:first-child{border-top:0}
+.tg b{font-family:var(--disp);color:var(--ink);font-weight:700}
+.links{display:flex;flex-wrap:wrap;gap:8px}
+.mini{font:inherit;display:flex;align-items:center;gap:8px;padding:5px 12px 5px 5px;border-radius:8px;background:var(--f);color:var(--x);border:1.5px solid var(--b);cursor:pointer;font-size:14.5px;font-weight:600}
+.mini span{font-family:var(--disp);font-weight:700;background:var(--panel);color:var(--x);border-radius:5px;padding:2px 6px;font-size:14px}
+.df{display:flex;justify-content:space-between;gap:10px;padding:18px 24px 22px;border-top:1px solid var(--line);margin-top:22px}
+.nav{font:inherit;font-weight:600;font-size:15px;padding:9px 16px;border-radius:10px;border:1px solid var(--line);background:var(--bg);color:var(--ink);cursor:pointer}
+.note{font-size:13.5px;color:var(--ink3);margin-top:14px!important}
+@media (max-width:640px){.dh{padding:18px 16px 14px;gap:12px}.big{width:72px}.big .sy{font-size:30px}.db{padding:4px 16px 8px}.df{padding:14px 16px 18px}.aim{font-size:17px}}
+.el{position:relative}
+.badge{position:absolute;top:6px;right:6px;min-width:24px;height:24px;padding:0 6px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-family:var(--disp);font-weight:700;font-size:15px;line-height:1;background:var(--ink);color:var(--bg)}
+.badge.tr{background:var(--bg);color:var(--ink);border:2px dashed var(--ink)}
+.badge.both{background:linear-gradient(135deg,var(--ink) 50%,var(--bg) 50%);color:transparent;border:2px solid var(--ink)}
+.badge.dot{width:16px;min-width:16px;height:16px;padding:0;border-radius:50%;background:var(--x)}
+.badge.ring{width:16px;min-width:16px;height:16px;padding:0;border-radius:50%;background:transparent;border:2.5px solid var(--x)}
+.el.sel{outline:3px solid var(--ink);outline-offset:2px}
+.modes{display:inline-flex;gap:4px;padding:4px;border-radius:12px;background:var(--keybg);margin:0 0 16px;flex-wrap:wrap}
+.modes button{font:inherit;font-size:15px;font-weight:600;padding:8px 14px;border-radius:9px;border:0;background:transparent;color:var(--ink2);cursor:pointer}
+.modes button[aria-selected="true"]{background:var(--panel);color:var(--ink);box-shadow:0 1px 3px rgba(0,0,0,.12)}
+#below{margin-top:16px}
+.cpanel{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:18px 20px}
+.cpanel h2{font-family:var(--disp);font-size:22px;margin:0 0 4px;letter-spacing:-.01em}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:12px}
+.rl{list-style:none;margin:0;padding:0}
+.rl li{padding:9px 0;border-top:1px solid var(--line);display:flex;flex-direction:column;gap:5px;align-items:flex-start;color:var(--ink2);font-size:15.5px}
+.rl li:first-child{border-top:0}
+.rl .mini{flex:none}
+.sym{display:inline-flex;width:22px;height:22px;border-radius:11px;align-items:center;justify-content:center;font-family:var(--disp);font-weight:700;font-size:14px;margin-right:6px;vertical-align:-4px}
+.sym.p{background:var(--ink);color:var(--bg)}.sym.m{border:2px dashed var(--ink);color:var(--ink)}
+.none{color:var(--ink3);font-size:15px;margin:6px 0 0}
+.lgd{display:flex;flex-wrap:wrap;gap:18px;color:var(--ink2);font-size:15px;align-items:center}
+.lgd i{display:inline-block;width:14px;height:14px;border-radius:50%;margin-right:6px;vertical-align:-2px;font-style:normal}
+.about{margin-top:40px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px 40px}
+.about h2{font-family:var(--disp);font-size:20px;margin:0 0 6px;letter-spacing:-.01em}
+.about p,.about li{color:var(--ink2);font-size:15.5px;margin:0 0 8px;max-width:68ch}
+.about ol{margin:0;padding-left:20px}
+.about a,.db a{color:var(--ink)}
+.cite{background:var(--keybg);border-radius:10px;padding:12px 14px;font-size:15px;color:var(--ink)}
+.copy{font:inherit;font-size:14px;font-weight:600;margin-top:8px;padding:6px 12px;border-radius:8px;border:1px solid var(--line);background:var(--panel);color:var(--ink);cursor:pointer}
+.lens{background:var(--f);border:1.5px solid var(--b);color:var(--x);border-radius:10px;padding:12px 14px}
+.lens p{color:var(--x)!important}
+.lens b{font-family:var(--disp)}
+@media (max-width:760px){.modes{display:flex}.modes button{font-size:14px;padding:7px 9px;flex:1 1 auto}.cols,.about{grid-template-columns:1fr}.badge{top:2px;right:2px;min-width:16px;height:16px;font-size:11px;padding:0 3px}.badge.dot,.badge.ring{width:10px;min-width:10px;height:10px}.cpanel{padding:14px}}
+</style>
+</head>
+<body>
+<main>
+<div class="modes" role="tablist" aria-label="View">
+<button role="tab" data-m="goals" aria-selected="true">Goals</button>
+<button role="tab" data-m="conn" aria-selected="false">Connections</button>
+<button role="tab" data-m="lens" aria-selected="false">Engineering lens</button>
+</div>
+<div class="table" id="table"><section class="key" id="key" aria-live="polite"></section></div>
+<div id="below"></div>
+<div class="fams" id="fams"><span class="lbl">Highlight a family:</span></div>
+
+<section class="about" aria-label="About this resource">
+<div>
+<h2>About</h2>
+<p>The SustainaTable presents the 17 UN Sustainable Development Goals as a periodic table. Each goal is an element, grouped into the five families of the 2030 Agenda: People, Planet, Prosperity, Peace and Partnership. It is designed as a free entry point for students, educators and the public, sitting between the official goal icons and expert, data-heavy tools.</p>
+<h2>How the connections were chosen</h2>
+<p>Each synergy (+) and trade-off (−) is a qualitative, goal-level judgement informed by published work on SDG interactions, particularly the seven-point interaction scale of Nilsson, Griggs and Visbeck (2016), the International Council for Science guide to SDG interactions (2017) and the systematic analysis of Pradhan et al. (2017). Links describe typical relationships. Whether a link acts as a synergy or a trade-off can change with location, scale and policy design.</p>
+<h2>The engineering lens</h2>
+<p>This view shows how wastewater engineering and resource recovery relate to each goal. Direct means the field contributes to the goal's targets; indirect means it supports them through other goals. It follows the view of wastewater as a resource set out in the UN World Water Development Report 2017.</p>
+</div>
+<div>
+<h2>Limitations</h2>
+<p>Only three or four of each goal's targets are shown; all 169 are on the UN website. Goal aims and targets are paraphrased. Connections are not quantified and have not been peer reviewed. For quantified, target-level interlinkages with country data, use the <a href="https://sdginterlinkages.iges.jp/visualisationtool.html" target="_blank" rel="noopener">IGES SDG Interlinkages Analysis &amp; Visualisation Tool</a>. The periodic-table format has been used before in sustainability, notably by Anastas and Zimmerman (2019) for green chemistry, which maps values and tools rather than the SDGs.</p>
+<h2>References</h2>
+<ol>
+<li>Anastas, P. T. &amp; Zimmerman, J. B. (2019). The periodic table of the elements of green and sustainable chemistry. <em>Green Chemistry</em>, 21(24), 6545–6566.</li>
+<li>ICSU (2017). <em>A Guide to SDG Interactions: From Science to Implementation</em>. International Council for Science, Paris.</li>
+<li>Nilsson, M., Griggs, D. &amp; Visbeck, M. (2016). Map the interactions between Sustainable Development Goals. <em>Nature</em>, 534, 320–322.</li>
+<li>Pradhan, P., Costa, L., Rybski, D., Lucht, W. &amp; Kropp, J. P. (2017). A systematic study of Sustainable Development Goal (SDG) interactions. <em>Earth's Future</em>, 5(11), 1169–1179.</li>
+<li>United Nations (2015). <em>Transforming our world: the 2030 Agenda for Sustainable Development</em> (A/RES/70/1).</li>
+<li>WWAP (2017). <em>The United Nations World Water Development Report 2017. Wastewater: The Untapped Resource</em>. UNESCO, Paris.</li>
+</ol>
+<h2>How to cite</h2>
+<div class="cite" id="cite">Amool, S. H. (2026). <em>The SustainaTable: The 17 elements of the 2030 Agenda</em> (Version 1.1) [Interactive teaching resource].</div>
+<button class="copy" id="copy">Copy citation</button>
+</div>
+</section>
+
+<footer>
+<div>
+<p><strong>Designed by Shagbaor Hycent Amool</strong></p>
+<p>PhD Student, Environmental Engineering, University of Northern British Columbia</p>
+<p>Founder, Via Scholaris (youtube.com/@viascholaris)</p>
+</div>
+<div style="max-width:420px">
+<p>© 2026 Shagbaor Hycent Amool. Version 1.1, September 2026.</p>
+<p>Element symbols are illustrative and are not official UN designations.</p>
+</div>
+</footer>
+</main>
+<dialog id="dlg" aria-labelledby="dt"></dialog>
+<script>
+const G=[
+{n:1,s:"Np",t:"No poverty",f:"pe",c:[1,1],aim:"End poverty in all its forms everywhere.",why:"Poverty is more than a lack of income. It shows up as limited access to food, health care, education, safe housing and a voice in decisions. Because it touches every other goal, progress on poverty tends to unlock progress elsewhere, and setbacks elsewhere often push people back into it.",tg:[["1.1","Eradicate extreme poverty for all people everywhere."],["1.3","Build social protection systems that cover the poor and vulnerable."],["1.5","Strengthen the resilience of the poor to climate extremes and economic, social and environmental shocks."]],ln:[2,3,4,8,10,13],act:"Support fair-wage employers, and back local programmes that build savings, skills and social safety nets."},
+{n:2,s:"Zh",t:"Zero hunger",f:"pe",c:[1,2],aim:"End hunger, achieve food security and improved nutrition, and promote sustainable agriculture.",why:"The world produces enough food, yet many people still go hungry or lack a nutritious diet. The causes include poverty, conflict, climate shocks and food loss. Agriculture is also a major user of land and water, so how we grow food shapes both human health and the planet.",tg:[["2.1","End hunger and ensure year-round access to safe, nutritious and sufficient food."],["2.2","End all forms of malnutrition, including stunting and wasting in children."],["2.4","Ensure sustainable food production and resilient agricultural practices."]],ln:[1,3,6,12,13,15],act:"Cut food waste at home, buy seasonal and local where you can, and support smallholder farmers."},
+{n:3,s:"Gh",t:"Good health and well-being",f:"pe",c:[1,3],aim:"Ensure healthy lives and promote well-being for all at all ages.",why:"Health lets people learn, work and care for others. The goal covers maternal and child health, infectious and non-communicable diseases, mental health and access to care. Pollution, unsafe water and poverty remain leading drivers of preventable illness.",tg:[["3.1","Reduce the global maternal mortality ratio."],["3.3","End the epidemics of AIDS, tuberculosis, malaria and neglected tropical diseases."],["3.8","Achieve universal health coverage, including access to quality essential services and medicines."],["3.9","Substantially reduce deaths and illnesses from hazardous chemicals and air, water and soil pollution."]],ln:[1,2,5,6,11],act:"Keep vaccinations up to date, look after your mental health, and advocate for clean air and water in your community."},
+{n:4,s:"Qe",t:"Quality education",f:"pe",c:[1,4],aim:"Ensure inclusive and equitable quality education and promote lifelong learning opportunities for all.",why:"Education is one of the strongest routes out of poverty and a foundation for healthier, fairer societies. The goal is about learning, not just enrolment: skills for work, digital literacy, and the knowledge needed to live sustainably.",tg:[["4.1","Ensure all girls and boys complete free, equitable and quality primary and secondary education."],["4.3","Ensure equal access to affordable technical, vocational and tertiary education."],["4.7","Ensure all learners acquire the knowledge and skills needed to promote sustainable development."]],ln:[1,5,8,10,16],act:"Share what you know through mentoring, tutoring or open learning, and support access to education for girls and marginalised groups."},
+{n:5,s:"Ge",t:"Gender equality",f:"pe",c:[1,5],aim:"Achieve gender equality and empower all women and girls.",why:"Gender inequality limits the potential of half the world's population. It appears in unequal pay, unpaid care work, violence, early marriage and under-representation in leadership. Closing these gaps strengthens economies, families and institutions.",tg:[["5.2","Eliminate all forms of violence against women and girls in public and private spheres."],["5.5","Ensure women's full participation and equal opportunities for leadership at all levels of decision-making."],["5.b","Enhance the use of enabling technology to promote the empowerment of women."]],ln:[1,3,4,8,10,16],act:"Challenge bias where you see it, share unpaid care work fairly, and support women's leadership in your workplace or field."},
+{n:6,s:"Cw",t:"Clean water and sanitation",f:"pl",c:[6,1],aim:"Ensure availability and sustainable management of water and sanitation for all.",why:"Safe water and sanitation underpin health, food production, energy and industry. Growing demand, pollution and climate change are straining supplies. Treating wastewater well, and recovering water, energy and materials from it, turns a pollution problem into a resource.",tg:[["6.1","Achieve universal and equitable access to safe and affordable drinking water."],["6.3","Improve water quality by reducing pollution, halving untreated wastewater and increasing recycling and safe reuse."],["6.4","Substantially increase water-use efficiency across all sectors."]],ln:[2,3,7,9,12,14],act:"Use water carefully, keep fats, chemicals and plastics out of drains, and support investment in wastewater treatment and reuse."},
+{n:7,s:"Ae",t:"Affordable and clean energy",f:"pr",c:[2,4],aim:"Ensure access to affordable, reliable, sustainable and modern energy for all.",why:"Energy powers homes, hospitals, schools and industry, yet many people still lack reliable electricity or clean cooking fuels. Energy is also the largest source of greenhouse gas emissions, so expanding access and cutting emissions have to happen together.",tg:[["7.1","Ensure universal access to affordable, reliable and modern energy services."],["7.2","Increase substantially the share of renewable energy in the global energy mix."],["7.3","Double the global rate of improvement in energy efficiency."]],ln:[1,3,9,11,13],act:"Improve efficiency at home and work, and support renewable and off-grid solutions in communities that lack power."},
+{n:8,s:"Dw",t:"Decent work and economic growth",f:"pr",c:[3,4],aim:"Promote sustained, inclusive and sustainable economic growth, full and productive employment and decent work for all.",why:"Growth only reduces poverty when it creates secure, fairly paid and safe jobs. The goal also asks economies to grow without degrading the environment, by using resources more efficiently and ending forced and child labour.",tg:[["8.2","Achieve higher productivity through diversification, technological upgrading and innovation."],["8.4","Improve resource efficiency and decouple economic growth from environmental degradation."],["8.5","Achieve full and productive employment and decent work for all, with equal pay for work of equal value."]],ln:[1,4,5,9,10,12],act:"Support businesses with fair labour practices, and help others build skills for green and decent jobs."},
+{n:9,s:"Ii",t:"Industry, innovation and infrastructure",f:"pr",c:[4,4],aim:"Build resilient infrastructure, promote inclusive and sustainable industrialization and foster innovation.",why:"Roads, power, water systems and digital networks connect people to markets and services. Cleaner industrial processes and research turn waste streams into valuable products and make supply chains more resilient.",tg:[["9.1","Develop quality, reliable, sustainable and resilient infrastructure."],["9.4","Upgrade infrastructure and retrofit industries to make them sustainable, with greater use of clean technologies."],["9.5","Enhance scientific research and upgrade the technological capabilities of industrial sectors."]],ln:[6,7,8,11,12,17],act:"Back research and local innovation, and favour products designed for durability, repair and recovery."},
+{n:10,s:"Ri",t:"Reduced inequalities",f:"pr",c:[2,5],aim:"Reduce inequality within and among countries.",why:"Wide gaps in income, opportunity and representation weaken social cohesion and slow development. The goal covers inequality based on income, age, sex, disability, race, ethnicity, origin, religion and economic status, and between richer and poorer countries.",tg:[["10.1","Progressively achieve and sustain income growth of the bottom 40 per cent above the national average."],["10.2","Empower and promote the social, economic and political inclusion of all."],["10.7","Facilitate orderly, safe, regular and responsible migration and mobility of people."]],ln:[1,4,5,8,16,17],act:"Make spaces you lead accessible and inclusive, and amplify voices that are usually left out."},
+{n:11,s:"Sc",t:"Sustainable cities and communities",f:"pr",c:[3,5],aim:"Make cities and human settlements inclusive, safe, resilient and sustainable.",why:"More than half of humanity lives in cities, and the share is rising. Cities concentrate opportunity but also pollution, waste, congestion and housing pressure. Well-planned cities can cut emissions and improve quality of life at the same time.",tg:[["11.1","Ensure access for all to adequate, safe and affordable housing and basic services."],["11.2","Provide access to safe, affordable, accessible and sustainable transport systems."],["11.6","Reduce the environmental impact of cities, with attention to air quality and waste management."]],ln:[3,6,7,9,12,13],act:"Walk, cycle or use public transport, sort your waste properly, and take part in local planning consultations."},
+{n:12,s:"Rc",t:"Responsible consumption and production",f:"pl",c:[6,2],aim:"Ensure sustainable consumption and production patterns.",why:"Economies extract far more materials than the planet can regenerate, and much of it ends as waste. This goal promotes doing more with less: designing out waste, recovering value from by-products and wastewater, and changing how we buy and use things.",tg:[["12.3","Halve per capita global food waste and reduce food losses along supply chains."],["12.5","Substantially reduce waste generation through prevention, reduction, recycling and reuse."],["12.6","Encourage companies to adopt sustainable practices and report on their sustainability."]],ln:[2,6,8,9,13,14],act:"Buy less and choose durable goods, repair and reuse, and support companies that report honestly on their impacts."},
+{n:13,s:"Ca",t:"Climate action",f:"pl",c:[6,3],aim:"Take urgent action to combat climate change and its impacts.",why:"Climate change is already bringing more intense heat, floods, droughts and storms, and it hits the poorest hardest. The goal pairs cutting emissions with helping communities adapt, and links closely to the Paris Agreement.",tg:[["13.1","Strengthen resilience and adaptive capacity to climate-related hazards and natural disasters."],["13.2","Integrate climate change measures into national policies, strategies and planning."],["13.3","Improve education, awareness and capacity on climate mitigation, adaptation and early warning."]],ln:[1,2,7,11,14,15],act:"Cut your own emissions where you can, and push for climate action in your workplace, institution and government."},
+{n:14,s:"Lw",t:"Life below water",f:"pl",c:[6,4],aim:"Conserve and sustainably use the oceans, seas and marine resources for sustainable development.",why:"Oceans regulate the climate, absorb carbon and feed billions of people. They face overfishing, plastic and nutrient pollution, and acidification. Much marine pollution starts on land, including poorly treated wastewater.",tg:[["14.1","Prevent and significantly reduce marine pollution, especially from land-based activities."],["14.3","Minimize and address the impacts of ocean acidification."],["14.5","Conserve at least 10 per cent of coastal and marine areas."]],ln:[2,6,12,13,15],act:"Avoid single-use plastics, choose sustainably sourced seafood, and support better wastewater treatment."},
+{n:15,s:"Ll",t:"Life on land",f:"pl",c:[6,5],aim:"Protect, restore and promote sustainable use of terrestrial ecosystems, sustainably manage forests, combat desertification, halt land degradation and halt biodiversity loss.",why:"Forests, soils and wildlife provide food, clean water, medicines and climate regulation. Land conversion, degradation and invasive species are driving rapid biodiversity loss. Protecting and restoring ecosystems is among the most cost-effective climate solutions.",tg:[["15.1","Ensure the conservation, restoration and sustainable use of terrestrial and inland freshwater ecosystems."],["15.2","Promote sustainable management of all types of forests and halt deforestation."],["15.5","Take urgent action to halt the loss of biodiversity and protect threatened species."]],ln:[2,6,12,13,14],act:"Plant native species, support conservation and restoration work, and choose products that don't drive deforestation."},
+{n:16,s:"Pj",t:"Peace, justice and strong institutions",f:"pc",c:[5,4],aim:"Promote peaceful and inclusive societies, provide access to justice for all and build effective, accountable and inclusive institutions.",why:"Conflict, insecurity and corruption undo development gains quickly. Fair laws, transparent institutions and access to justice give people the stability and trust they need to invest in their futures.",tg:[["16.1","Significantly reduce all forms of violence and related death rates everywhere."],["16.5","Substantially reduce corruption and bribery in all their forms."],["16.7","Ensure responsive, inclusive, participatory and representative decision-making."]],ln:[4,5,10,17],act:"Vote and take part in civic life, report corruption, and support organisations that widen access to justice."},
+{n:17,s:"Pg",t:"Partnerships for the goals",f:"pa",c:[5,5],aim:"Strengthen the means of implementation and revitalize the global partnership for sustainable development.",why:"No government, company or community can deliver the goals alone. This goal covers finance, technology, capacity building, trade and data, and the partnerships between governments, businesses, researchers and civil society that make the other sixteen possible.",tg:[["17.6","Enhance international cooperation on and access to science, technology and innovation, and knowledge sharing."],["17.9","Enhance support for effective and targeted capacity-building in developing countries."],["17.17","Encourage effective public, public-private and civil society partnerships."]],ln:[4,9,10,16],act:"Collaborate across disciplines and borders, share data and knowledge openly, and connect people who can solve problems together."}];
+const X={
+1:{nt:7,syn:[[2,"Higher incomes let households afford nutritious food, and food security protects income."],[3,"Illness and medical costs push families into poverty; poverty raises disease risk."],[4,"Education raises earning potential, while poverty keeps children out of school."],[8,"Decent, secure jobs are the main route out of poverty."]],tr:[[13,"Some climate policies, such as fuel or carbon taxes, can raise living costs for poor households unless they are paired with compensation."]],eng:["Indirect","Affordable, decentralised water and sanitation services cut household health costs, and resource recovery can create local income from fertiliser, energy or bio-based products."]},
+2:{nt:8,syn:[[1,"Food security and income reinforce each other."],[3,"Good nutrition underpins health, especially in early childhood."],[12,"Cutting food loss and waste increases the food available without using more land."]],tr:[[6,"Expanding irrigation raises water withdrawals, and fertiliser runoff can pollute water sources."],[15,"Clearing land for crops and grazing drives habitat and biodiversity loss."]],eng:["Direct","Nitrogen and phosphorus recovered from wastewater can return to farms as fertiliser, and properly treated wastewater can safely supplement irrigation."]},
+3:{nt:13,syn:[[6,"Safe water and sanitation prevent diarrhoeal and other water-related diseases."],[1,"Better health protects income and productivity."],[11,"Cleaner air and safer transport in cities reduce illness and injury."],[5,"Access to reproductive health care supports women's autonomy and wellbeing."]],tr:[[9,"Industrial expansion without pollution controls damages health through air, water and soil pollution."]],eng:["Direct","Wastewater treatment is a frontline public health measure, and wastewater surveillance can give early warning of disease outbreaks."]},
+4:{nt:10,syn:[[1,"Education is one of the strongest routes out of poverty."],[5,"Educating girls is a powerful lever for gender equality."],[8,"Skills matched to labour markets improve employment prospects."],[13,"Climate education builds awareness and adaptive capacity (target 13.3)."]],tr:[],eng:["Indirect","Trained engineers, operators and technicians are needed to design and run treatment and recovery systems, and research facilities double as teaching resources."]},
+5:{nt:9,syn:[[4,"Girls' education and gender equality reinforce each other."],[6,"Women and girls carry most water-collection work; safe, private sanitation supports health, safety and school attendance."],[8,"Equal pay and participation expand the workforce and household income."],[16,"Inclusive institutions give women a voice in decisions."]],tr:[],eng:["Indirect","Safe, private sanitation, including facilities for menstrual hygiene, directly affects women's and girls' health, safety and schooling."]},
+6:{nt:8,syn:[[3,"Clean water and sanitation prevent disease."],[14,"Treating wastewater keeps nutrients and pollutants out of rivers and seas."],[12,"Water reuse and resource recovery turn waste into resources."],[15,"Protecting wetlands and catchments safeguards water quality."]],tr:[[7,"Advanced treatment and desalination are energy-intensive, and hydropower can alter river flows."],[2,"Irrigated farming competes with drinking water supply for limited water."]],eng:["Direct","The core goal for wastewater engineering. Target 6.3 calls for halving untreated wastewater and increasing safe recycling and reuse. Compact, lower-energy processes such as aerobic granular sludge help make that achievable."]},
+7:{nt:5,syn:[[13,"Renewables and efficiency are the main levers for cutting emissions."],[3,"Clean cooking fuels and electricity reduce household air pollution."],[9,"Reliable power enables industry and infrastructure."],[4,"Electricity supports lighting and digital learning in schools."]],tr:[[15,"Large-scale bioenergy and hydropower can displace ecosystems."],[2,"Energy crops can compete with food crops for land."]],eng:["Direct","Wastewater holds chemical energy. Anaerobic digestion yields biogas, and energy-efficient treatment processes cut a plant's power demand."]},
+8:{nt:12,syn:[[1,"Decent jobs lift people out of poverty."],[4,"A skilled workforce raises productivity."],[9,"Innovation and infrastructure create productive employment."],[5,"Women's full participation expands the economy."]],tr:[[13,"Growth based on fossil fuels raises emissions unless it is decoupled (target 8.4)."],[12,"Higher output can increase resource use and waste."]],eng:["Indirect","Water and resource-recovery sectors create skilled green jobs in design, operation and bio-based manufacturing."]},
+9:{nt:8,syn:[[8,"Infrastructure and industry generate jobs and income."],[7,"Clean energy powers low-carbon industry."],[12,"Cleaner production and industrial symbiosis turn by-products into inputs."],[17,"Research partnerships and technology transfer drive innovation."]],tr:[[13,"Industrialisation raises emissions unless it runs on clean energy."],[3,"Industrial pollution harms health where controls are weak."]],eng:["Direct","Industrial wastewater, for example from food and beverage processing, can become a feedstock for high-value products such as biopolymers, supporting target 9.4 on clean technologies."]},
+10:{nt:10,syn:[[1,"Reducing inequality accelerates poverty reduction."],[5,"Gender equality is a core part of reducing inequality."],[16,"Inclusive institutions reduce discrimination."],[4,"Equal access to education narrows income gaps."]],tr:[[8,"Growth that is concentrated among top earners can widen inequality."]],eng:["Indirect","Affordable, decentralised water and sanitation technologies can reach underserved rural and informal communities."]},
+11:{nt:10,syn:[[3,"Clean air, safe housing and green space improve health."],[6,"Urban water, sewer and drainage systems protect health and water bodies."],[7,"Efficient buildings and transport cut urban energy demand."],[13,"Compact, transit-oriented cities lower emissions."]],tr:[[15,"Urban sprawl converts farmland and habitats."],[10,"Urban renewal can raise housing costs and displace low-income residents."]],eng:["Direct","Cities concentrate wastewater, making them natural sites for centralised resource recovery, water reuse and nutrient capture."]},
+12:{nt:11,syn:[[2,"Less food waste improves food security."],[6,"Reuse and recovery reduce pressure on freshwater."],[13,"Using fewer materials and less energy cuts emissions."],[14,"Less plastic waste means less marine litter."]],tr:[[8,"Reducing consumption can slow short-term growth in some sectors."]],eng:["Direct","Resource recovery is at the heart of this goal. Treating wastewater as a source of water, energy, nutrients and materials is the circular economy in practice (target 12.5)."]},
+13:{nt:5,syn:[[7,"Clean energy is the largest lever for cutting emissions."],[15,"Forests and soils store carbon, so protecting them is climate action."],[14,"Limiting warming protects oceans from heat and acidification."],[11,"Resilient cities reduce climate risk for most of the world's population."]],tr:[[1,"Poorly designed carbon pricing can burden low-income households."],[2,"Land used for bioenergy or tree planting may compete with food production."]],eng:["Direct","Treatment plants emit methane and nitrous oxide and consume energy. Low-energy processes and biogas recovery reduce their footprint."]},
+14:{nt:10,syn:[[6,"Better wastewater treatment cuts coastal pollution."],[12,"Less plastic and chemical waste protects marine life."],[13,"Climate action limits ocean warming and acidification."],[2,"Healthy fish stocks sustain food supplies for coastal communities."]],tr:[[2,"Overfishing for short-term food and income depletes fish stocks."],[8,"Coastal development and shipping can degrade marine habitats."]],eng:["Direct","Removing nitrogen and phosphorus from wastewater prevents coastal eutrophication and dead zones (target 14.1)."]},
+15:{nt:12,syn:[[13,"Healthy ecosystems store carbon and buffer climate impacts."],[6,"Forests and wetlands regulate water flow and quality."],[14,"Healthy catchments reduce sediment and nutrient loads reaching the sea."],[1,"Many rural livelihoods depend on healthy land."]],tr:[[2,"Agricultural expansion is a leading driver of habitat loss."],[7,"Bioenergy and hydropower projects can displace ecosystems."],[11,"Urban growth converts natural land."]],eng:["Indirect","Treated biosolids can help restore degraded soils when contaminants are controlled, and better treatment protects freshwater habitats."]},
+16:{nt:12,syn:[[10,"Fair institutions reduce discrimination and exclusion."],[5,"Inclusive decision-making strengthens women's participation."],[17,"Trustworthy institutions attract partnerships and finance."],[1,"Conflict and weak governance deepen poverty."]],tr:[],eng:["Indirect","Transparent regulation, monitoring and enforcement of discharge standards decide whether treatment actually happens."]},
+17:{nt:19,syn:[[9,"Technology transfer and research cooperation drive innovation."],[4,"Capacity building strengthens education and skills."],[16,"Effective institutions make partnerships work."],[6,"Finance and data partnerships fund water infrastructure."]],tr:[],eng:["Indirect","Industry–university partnerships supply real wastewater, test sites and funding, and help turn laboratory findings into practice."]}};
+G.forEach(g=>Object.assign(g,X[g.n]));
+const FAM={pe:"People",pl:"Planet",pr:"Prosperity",pc:"Peace",pa:"Partnership"};
+const $=id=>document.getElementById(id);
+const table=$("table"),fams=$("fams"),dlg=$("dlg"),key=$("key"),below=$("below");
+let fam=null,cur=null,mode="goals",csel=null;const els=[];
+const mini=(i,fn)=>{const h=G[i-1];return `<button class="mini ${h.f}" onclick="${fn}(${i})"><span>${h.s}</span>${h.n}. ${h.t}</button>`};
+G.forEach(g=>{const b=document.createElement("button");b.className="el "+g.f;b.style.gridColumn=g.c[0];b.style.gridRow=g.c[1];
+b.setAttribute("aria-label","SDG "+g.n+": "+g.t);
+b.innerHTML=`<span class="no">${g.n}</span><span class="sy">${g.s}</span><span class="nm">${g.t}</span>`;
+b.onclick=()=>{if(mode==="conn")selConn(g.n);else showGoal(g.n)};table.appendChild(b);els.push(b)});
+Object.entries(FAM).forEach(([k,v])=>{const b=document.createElement("button");b.className="fam "+k;b.textContent=v+" ("+G.filter(g=>g.f===k).length+")";b.setAttribute("aria-pressed","false");
+b.onclick=()=>{fam=fam===k?null:k;paint();[...fams.querySelectorAll(".fam")].forEach(x=>{const on=x.classList.contains(fam);x.classList.toggle("off",!!fam&&!on);x.setAttribute("aria-pressed",String(!!fam&&on))})};fams.appendChild(b)});
+document.querySelectorAll(".modes button").forEach(b=>b.onclick=()=>{mode=b.dataset.m;document.querySelectorAll(".modes button").forEach(x=>x.setAttribute("aria-selected",String(x===b)));csel=null;render()});
+function paint(){els.forEach((e,i)=>{const g=G[i];e.querySelector(".badge")?.remove();e.classList.remove("sel");let dim=!!fam&&g.f!==fam;
+if(mode==="conn"&&csel){const s=G[csel-1];const inS=s.syn.some(x=>x[0]===g.n),inT=s.tr.some(x=>x[0]===g.n);
+if(g.n===csel)e.classList.add("sel");else if(inS||inT){const bd=document.createElement("span");bd.className="badge"+(inS&&inT?" both":inT?" tr":"");bd.textContent=inS&&inT?"±":inT?"−":"+";bd.setAttribute("aria-hidden","true");e.appendChild(bd)}else dim=true}
+if(mode==="lens"){const bd=document.createElement("span");bd.className="badge "+(g.eng[0]==="Direct"?"dot":"ring");bd.setAttribute("aria-hidden","true");e.appendChild(bd)}
+e.classList.toggle("dim",dim)})}
+function render(){
+if(mode==="goals"){key.innerHTML=`<h1>The SustainaTable</h1><p class="sub">The 17 elements of the 2030 Agenda</p><p class="hint">Each UN Sustainable Development Goal is an element, grouped into five families. Select an element to read what the goal means, its key targets, its synergies and trade-offs, and its links to engineering.</p>`;
+below.innerHTML=`<p class="mhint" style="margin:0;color:var(--ink2);font-size:15px">Tap any element to explore its goal.</p>`}
+if(mode==="conn"){key.innerHTML=`<h1 style="font-size:clamp(24px,4.6vw,50px)">Connections</h1><p class="sub">No goal stands alone</p><p class="hint">Select a goal to see which goals it tends to reinforce (+) and where it can pull against them (−). Goals marked ± can do both.</p>`;
+if(!csel)below.innerHTML=`<p style="margin:0;color:var(--ink2);font-size:15px"><span class="sym p">+</span>synergy &nbsp; <span class="sym m">−</span>trade-off &nbsp; Select a goal to begin.</p>`;else{const g=G[csel-1];
+below.innerHTML=`<div class="cpanel"><h2>SDG ${g.n}: ${g.t}</h2><p style="margin:0;color:var(--ink2);font-size:15px">${g.syn.length} synergies, ${g.tr.length} trade-off${g.tr.length===1?"":"s"}</p>
+<div class="cols"><div><h3 style="font-family:var(--disp);font-size:17px;margin:0 0 4px"><span class="sym p">+</span>Synergies</h3><ul class="rl">${g.syn.map(x=>`<li>${mini(x[0],"selConn")}<span>${x[1]}</span></li>`).join("")}</ul></div>
+<div><h3 style="font-family:var(--disp);font-size:17px;margin:0 0 4px"><span class="sym m">−</span>Trade-offs</h3>${g.tr.length?`<ul class="rl">${g.tr.map(x=>`<li>${mini(x[0],"selConn")}<span>${x[1]}</span></li>`).join("")}</ul>`:`<p class="none">No strong trade-offs are commonly reported at goal level.</p>`}</div></div>
+<button class="nav" style="margin-top:14px" onclick="showGoal(${g.n})">Open full profile of SDG ${g.n}</button></div>`}}
+if(mode==="lens"){const d=G.filter(g=>g.eng[0]==="Direct").length;key.innerHTML=`<h1 style="font-size:clamp(24px,4.6vw,50px)">Engineering lens</h1><p class="sub">Wastewater as a resource</p><p class="hint">How wastewater engineering and resource recovery touch each goal: ${d} goals directly, ${17-d} indirectly. Select a goal for details.</p>`;
+below.innerHTML=`<div class="lgd"><span><i style="background:var(--ink)"></i>Direct contribution</span><span><i style="border:2.5px solid var(--ink)"></i>Indirect contribution</span></div>`}
+paint()}
+function selConn(n){csel=csel===n&&mode==="conn"?null:n;if(mode!=="conn"){mode="conn";document.querySelectorAll(".modes button").forEach(x=>x.setAttribute("aria-selected",String(x.dataset.m==="conn")))}if(dlg.open)dlg.close();render();if(csel&&window.innerWidth<761)below.scrollIntoView({behavior:"smooth",block:"start"})}
+function showGoal(n){cur=n;const g=G[n-1];const pv=G[(n+15)%17],nx=G[n%17];
+dlg.innerHTML=`
+<div class="dh"><div class="el big ${g.f}" aria-hidden="true"><span class="no">${g.n}</span><span class="sy">${g.s}</span></div>
+<div><h2 id="dt">${g.t}</h2><p class="fm">SDG ${g.n}, ${FAM[g.f]} family</p></div>
+<button class="x" aria-label="Close" onclick="dlg.close()">×</button></div>
+<div class="db">
+<h3>The aim</h3><p class="aim">${g.aim}</p>
+<h3>Why it matters</h3><p>${g.why}</p>
+<h3>Selected targets <span style="font-weight:500;color:var(--ink3);font-size:15px">(${g.tg.length} of ${g.nt})</span></h3><ul class="tg">${g.tg.map(t=>`<li><b>${t[0]}</b><span>${t[1]}</span></li>`).join("")}</ul>
+<p style="font-size:15px;margin-top:6px"><a href="https://sdgs.un.org/goals/goal${g.n}" target="_blank" rel="noopener">See all ${g.nt} targets and indicators on the UN website</a></p>
+<h3><span class="sym p">+</span>Synergies</h3><ul class="rl">${g.syn.map(x=>`<li>${mini(x[0],"showGoal")}<span>${x[1]}</span></li>`).join("")}</ul>
+<h3><span class="sym m">−</span>Trade-offs</h3>${g.tr.length?`<ul class="rl">${g.tr.map(x=>`<li>${mini(x[0],"showGoal")}<span>${x[1]}</span></li>`).join("")}</ul>`:`<p class="none">No strong trade-offs are commonly reported at goal level.</p>`}
+<h3>Engineering lens</h3><div class="lens ${g.f}"><p><b>${g.eng[0]} contribution.</b> ${g.eng[1]}</p></div>
+<h3>What you can do</h3><p>${g.act}</p>
+<p class="note">Synergies and trade-offs are qualitative, literature-informed judgements and can vary by context. See "How the connections were chosen" below the table.</p>
+</div>
+<div class="df"><button class="nav" onclick="showGoal(${pv.n})">‹ ${pv.n}. ${pv.s}</button><button class="nav" onclick="selConn(${g.n})">View connections</button><button class="nav" onclick="showGoal(${nx.n})">${nx.n}. ${nx.s} ›</button></div>`;
+if(!dlg.open)dlg.showModal();dlg.scrollTop=0;dlg.querySelector(".x").focus()}
+dlg.addEventListener("click",e=>{if(e.target===dlg)dlg.close()});
+document.addEventListener("keydown",e=>{if(!dlg.open)return;if(e.key==="ArrowRight")showGoal(cur%17+1);if(e.key==="ArrowLeft")showGoal((cur+15)%17+1)});
+$("copy").onclick=async()=>{const t=$("cite").innerText+" "+location.href;try{await navigator.clipboard.writeText(t);$("copy").textContent="Citation copied"}catch(e){$("copy").textContent="Select the text above to copy"}};
+render();
+</script>
+</body>
+</html>
