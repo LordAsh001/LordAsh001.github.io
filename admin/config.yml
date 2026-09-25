@@ -3,13 +3,13 @@
 # Everything else is managed from the editor at /admin — no need to touch this file again.
 backend:
   name: github
-  repo: YOUR-GITHUB-USERNAME/YOUR-GITHUB-USERNAME.github.io
+  repo: LordAsh001.github.io
   branch: main
   commit_messages:
     update: Update {{slug}} via editor
 media_folder: images
 public_folder: /images
-site_url: https://YOUR-GITHUB-USERNAME.github.io
+site_url: https://lordash001.github.io
 collections:
 - name: website
   label: Website
