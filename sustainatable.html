@@ -20,6 +20,9 @@ html{scroll-padding-top:env(safe-area-inset-top,0px)}
 --pe-f:#4A1B0C;--pe-b:#F0997B;--pe-x:#FAECE7;--pl-f:#04342C;--pl-b:#5DCAA5;--pl-x:#E1F5EE;--pr-f:#412402;--pr-b:#EF9F27;--pr-x:#FAEEDA;--pc-f:#042C53;--pc-b:#85B7EB;--pc-x:#E6F1FB;--pa-f:#26215C;--pa-b:#AFA9EC;--pa-x:#EEEDFE}
 body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.55}
 main{max-width:1120px;margin:0 auto;padding:28px 20px 40px}
+.site-nav{display:flex;justify-content:flex-end;margin-bottom:16px}
+.site-nav a{display:inline-flex;align-items:center;gap:6px;padding:8px 14px;border:1px solid var(--line);border-radius:999px;background:var(--panel);color:var(--ink);font-weight:600;text-decoration:none}
+.site-nav a:hover{border-color:var(--ink);background:var(--keybg)}
 .pe{--f:var(--pe-f);--b:var(--pe-b);--x:var(--pe-x)}.pl{--f:var(--pl-f);--b:var(--pl-b);--x:var(--pl-x)}.pr{--f:var(--pr-f);--b:var(--pr-b);--x:var(--pr-x)}.pc{--f:var(--pc-f);--b:var(--pc-b);--x:var(--pc-x)}.pa{--f:var(--pa-f);--b:var(--pa-b);--x:var(--pa-x)}
 .table{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:10px}
 .el{aspect-ratio:1/1;background:var(--f);color:var(--x);border:1.5px solid var(--b);border-radius:8px;padding:8px 10px;display:flex;flex-direction:column;justify-content:space-between;text-align:left;font:inherit;cursor:pointer;transition:transform .15s ease,opacity .2s ease;min-width:0}
@@ -106,6 +109,9 @@ dialog[open]{animation:pop .22s ease}
 </head>
 <body>
 <main>
+<nav class="site-nav" aria-label="Website navigation">
+<a href="https://lordash001.github.io/">← Back to main website</a>
+</nav>
 <div class="modes" role="tablist" aria-label="View">
 <button role="tab" data-m="goals" aria-selected="true">Goals</button>
 <button role="tab" data-m="conn" aria-selected="false">Connections</button>
