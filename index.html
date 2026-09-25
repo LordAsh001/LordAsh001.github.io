@@ -100,6 +100,10 @@ p{margin:0}
 .btn[aria-pressed="false"] .dot{background:var(--ochre)}
 figcaption{margin-top:12px;font-size:13.5px;color:var(--muted);line-height:1.5}
 figcaption b{color:var(--ink);font-weight:600}
+.sustainatable{margin-top:28px;padding-top:20px;border-top:1px solid var(--rule)}
+.sustainatable h3{font-family:var(--serif);font-size:24px;font-weight:400;line-height:1.2;margin:0 0 6px}
+.sustainatable p{font-size:14px;color:var(--muted);margin:0 0 12px}
+.sustainatable iframe{display:block;width:100%;height:760px;border:1px solid var(--rule);border-radius:4px;background:var(--card)}
 
 /* Sections */
 .sec{border-top:1px solid var(--rule);padding-block:clamp(48px,7vw,96px);display:grid;grid-template-columns:220px minmax(0,1fr);gap:clamp(20px,4vw,64px)}
@@ -609,7 +613,8 @@ window.initSim=function(){
       h+='<figure class="fig rise d2"><div class="fig-frame" id="fig1"><canvas id="sludge" role="img" aria-label="Animated simulation: small loose flocs drift through water and cluster into dense granules. Turning aeration off lets the granules settle quickly while the flocs linger."></canvas>'+
         '<div class="fig-hud mono"><span id="hud-mode">Aerated</span><span id="hud-count">granules 0 · flocs 0</span></div>'+
         '<div class="fig-ctrl"><button class="btn" type="button" id="aerate" aria-pressed="true"><span class="dot" aria-hidden="true"></span><span id="aerate-lbl">Stop aeration</span></button><button class="btn ghost" type="button" id="reseed">Reset</button></div></div>'+
-        (fig.caption?'<figcaption>'+inline(fig.caption)+'</figcaption>':'')+'</figure>';
+        (fig.caption?'<figcaption>'+inline(fig.caption)+'</figcaption>':'')+
+        '<div class="sustainatable"><h3>The SustainaTable</h3><p>Explore the 17 Sustainable Development Goals through an interactive engineering and resource-recovery lens.</p><iframe src="sustainatable.html" title="The SustainaTable: the 17 elements of the 2030 Agenda" loading="lazy"></iframe></div></figure>';
     }
     h+='</section>';
 
