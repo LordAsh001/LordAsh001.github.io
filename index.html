@@ -101,9 +101,21 @@ p{margin:0}
 figcaption{margin-top:12px;font-size:13.5px;color:var(--muted);line-height:1.5}
 figcaption b{color:var(--ink);font-weight:600}
 .sustainatable{margin-top:28px;padding-top:20px;border-top:1px solid var(--rule)}
+.sustainatable-head{display:flex;align-items:center;justify-content:space-between;gap:16px}
 .sustainatable h3{font-family:var(--serif);font-size:24px;font-weight:400;line-height:1.2;margin:0 0 6px}
 .sustainatable p{font-size:14px;color:var(--muted);margin:0 0 12px}
+.sustainatable-toggle{font:500 13px var(--sans);white-space:nowrap;border:1px solid var(--rule);border-radius:999px;background:var(--card);color:var(--ink);padding:7px 12px;cursor:pointer}
+.sustainatable-toggle:hover{border-color:var(--accent)}
 .sustainatable iframe{display:block;width:100%;height:760px;border:1px solid var(--rule);border-radius:4px;background:var(--card)}
+.sustainatable.is-expanded{position:fixed;inset:0;z-index:100;background:var(--paper);padding:18px var(--gutter);margin:0;overflow:auto}
+.sustainatable.is-expanded iframe{height:calc(100vh - 112px);min-height:520px}
+body.has-expanded-table{overflow:hidden}
+@media (max-width:640px){
+  .sustainatable-head{align-items:flex-start}
+  .sustainatable-toggle{font-size:12px;padding:6px 9px}
+  .sustainatable.is-expanded{padding:12px}
+  .sustainatable.is-expanded iframe{height:calc(100vh - 82px);min-height:420px}
+}
 
 /* Sections */
 .sec{border-top:1px solid var(--rule);padding-block:clamp(48px,7vw,96px);display:grid;grid-template-columns:220px minmax(0,1fr);gap:clamp(20px,4vw,64px)}
@@ -614,7 +626,7 @@ window.initSim=function(){
         '<div class="fig-hud mono"><span id="hud-mode">Aerated</span><span id="hud-count">granules 0 · flocs 0</span></div>'+
         '<div class="fig-ctrl"><button class="btn" type="button" id="aerate" aria-pressed="true"><span class="dot" aria-hidden="true"></span><span id="aerate-lbl">Stop aeration</span></button><button class="btn ghost" type="button" id="reseed">Reset</button></div></div>'+
         (fig.caption?'<figcaption>'+inline(fig.caption)+'</figcaption>':'')+
-        '<div class="sustainatable"><h3>The SustainaTable</h3><p>Explore the 17 Sustainable Development Goals through an interactive engineering and resource-recovery lens.</p><iframe src="sustainatable.html" title="The SustainaTable: the 17 elements of the 2030 Agenda" loading="lazy"></iframe></div></figure>';
+        '<div class="sustainatable" id="sustainatable"><div class="sustainatable-head"><h3>The SustainaTable</h3><button class="sustainatable-toggle" type="button" aria-expanded="false">Expand to full screen</button></div><p>Explore the 17 Sustainable Development Goals through an interactive engineering and resource-recovery lens.</p><iframe src="sustainatable.html" title="The SustainaTable: the 17 elements of the 2030 Agenda" loading="lazy"></iframe></div></figure>';
     }
     h+='</section>';
 
@@ -671,6 +683,32 @@ window.initSim=function(){
         if(navigator.clipboard){navigator.clipboard.writeText(cb.dataset.copy).then(done,function(){cb.textContent='Select & copy';});}
       });
     });
+    var table=document.getElementById('sustainatable');
+    var toggle=table && table.querySelector('.sustainatable-toggle');
+    if(toggle){
+      var expanded=false;
+      function setExpanded(next){
+        expanded=next;
+        table.classList.toggle('is-expanded',expanded);
+        document.body.classList.toggle('has-expanded-table',expanded);
+        toggle.setAttribute('aria-expanded',String(expanded));
+        toggle.textContent=expanded?'Return to page':'Expand to full screen';
+      }
+      toggle.addEventListener('click',function(){
+        if(!expanded){
+          if(table.requestFullscreen){
+            table.requestFullscreen().catch(function(){setExpanded(true);});
+          }
+          setExpanded(true);
+        }else{
+          if(document.fullscreenElement && document.exitFullscreen) document.exitFullscreen().catch(function(){});
+          setExpanded(false);
+        }
+      });
+      document.addEventListener('fullscreenchange',function(){
+        if(!document.fullscreenElement && expanded) setExpanded(false);
+      });
+    }
   }
 
   function fail(){
