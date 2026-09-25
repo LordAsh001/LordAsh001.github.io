@@ -1,0 +1,571 @@
+{
+  "site": {
+    "title": "Shagbaor Hycent Amool",
+    "wordmark": "S. H. Amool",
+    "description": "Environmental engineer and PhD student at UNBC, recovering curdlan from aerobic granular sludge.",
+    "last_revised": "September 2026",
+    "footer": "© 2026 Shagbaor Hycent Amool"
+  },
+  "hero": {
+    "kicker": [
+      "Environmental engineer",
+      "PhD student, UNBC",
+      "Prince George, BC"
+    ],
+    "headline": "Turning wastewater into *materials* worth keeping.",
+    "name": "Shagbaor Hycent Amool",
+    "photo": "",
+    "affiliations": [
+      "Environmental Engineering, University of Northern British Columbia",
+      "Founder, Via Scholaris"
+    ],
+    "email": "amool@unbc.ca",
+    "abstract": "I study how the microbes that clean industrial wastewater can also make something valuable. My PhD looks at recovering **curdlan**, a useful biopolymer, from **aerobic granular sludge**. Before this I designed farm machinery in Nigeria, lectured in engineering, earned an MSc with Distinction in Edinburgh, and started programmes that have reached thousands of students.",
+    "keywords": [
+      "aerobic granular sludge",
+      "curdlan",
+      "resource recovery",
+      "circular economy",
+      "net zero",
+      "climate-smart agriculture"
+    ],
+    "reader": {
+      "show": true,
+      "intro": "Choose who you are and I'll point you to the sections that matter most. Or just scroll: it reads like a short paper.",
+      "paths": [
+        {
+          "label": "Researcher",
+          "sections": [
+            "research",
+            "recognition",
+            "contact"
+          ],
+          "note": "Start with [Research](#research) and Fig. 2, then the prizes in [Recognition](#recognition). For collaboration or lab visits, [write to me](mailto:amool@unbc.ca)."
+        },
+        {
+          "label": "Partner or funder",
+          "sections": [
+            "work",
+            "path",
+            "contact"
+          ],
+          "note": "Start with [Work](#work): programmes I've designed, funded and delivered. Then see [how to reach me](#contact)."
+        },
+        {
+          "label": "Student",
+          "sections": [
+            "work",
+            "teaching",
+            "writing"
+          ],
+          "note": "Start with Via Scholaris in [Work](#work) and the [Teaching](#teaching) section. The full webinar library is [on YouTube](https://www.youtube.com/@viascholaris)."
+        },
+        {
+          "label": "Institution",
+          "sections": [
+            "teaching",
+            "path",
+            "recognition"
+          ],
+          "note": "Start with [Teaching](#teaching) and my [Path](#path), then the toolkit in [Recognition](#recognition)."
+        }
+      ]
+    },
+    "figure": {
+      "show": true,
+      "caption": "**Fig. 1** Loose flocs cluster into dense granules. Stop the aeration and watch the granules settle first, the property that makes aerobic granular sludge so compact. Move your cursor through the tank to stir it."
+    }
+  },
+  "sections": [
+    {
+      "type": "research",
+      "id": "research",
+      "nav_label": "Research",
+      "show": true,
+      "numbered": true,
+      "heading": "Research",
+      "subtitle": "PhD, Environmental Engineering, UNBC · from September 2026",
+      "lede": "Wastewater treatment is usually a cost. I want to know if part of it can become a *product*.",
+      "body": "Aerobic granular sludge is a compact, fast-settling form of the microbial communities that treat wastewater. Those microbes wrap themselves in a sticky matrix of extracellular polymeric substances (EPS). Some of that matrix may be curdlan, a β-1,3-glucan used as a gelling agent in food and studied for medical and materials uses.\n\nMy doctoral research asks whether curdlan can be recovered from sludge grown on industrial wastewater. If it can, a treatment plant could turn a disposal problem into a material.",
+      "steps_caption": "**Fig. 2** The research pathway, from wastewater to a recoverable biopolymer.",
+      "steps": [
+        {
+          "title": "Industrial wastewater",
+          "text": "Rich in organic carbon that microbes can feed on.",
+          "icon": "water",
+          "highlight": false,
+          "note": ""
+        },
+        {
+          "title": "Aerobic granular sludge",
+          "text": "Microbes grow as dense granules that settle in minutes.",
+          "icon": "granules",
+          "highlight": false,
+          "note": ""
+        },
+        {
+          "title": "EPS matrix",
+          "text": "The polymer \"glue\" the granules build around themselves.",
+          "icon": "matrix",
+          "highlight": false,
+          "note": ""
+        },
+        {
+          "title": "Extract, identify, measure",
+          "text": "Show that what's recovered really is curdlan, and how much.",
+          "icon": "lab",
+          "highlight": false,
+          "note": ""
+        },
+        {
+          "title": "Curdlan",
+          "text": "A recovered biopolymer with uses in food, medicine and materials.",
+          "icon": "polymer",
+          "highlight": true,
+          "note": "(1→3)-β-D-glucan"
+        }
+      ],
+      "cards": [
+        {
+          "label": "MSc dissertation · 2025",
+          "title": "Electrocatalytic wastewater treatment with carbon utilisation",
+          "text": "Research Centre for Carbon Solutions, Heriot-Watt University. Linked cleaner water to capturing value from carbon.",
+          "tag": "Distinction",
+          "tag_style": "plain",
+          "hidden": false
+        },
+        {
+          "label": "Conference poster · 2026",
+          "title": "Electrochemical industrial symbiosis",
+          "text": "A poster on using wastewater treatment and carbon utilisation together, presented at the ECR Net Zero Conference (Supergen).",
+          "tag": "Delegates' Prize",
+          "tag_style": "prize",
+          "hidden": false
+        },
+        {
+          "label": "BEng dissertation · 2019",
+          "title": "A motorised hand-held rice harvester",
+          "text": "Designed and built for smallholder farmers. University of Agriculture Makurdi (now called Joseph Sarwuan Tarka University Makurdi).",
+          "tag": "First Class",
+          "tag_style": "plain",
+          "hidden": false
+        }
+      ]
+    },
+    {
+      "type": "timeline",
+      "id": "path",
+      "nav_label": "Path",
+      "show": true,
+      "numbered": true,
+      "heading": "Path",
+      "subtitle": "From Nigerian farms and mills to Edinburgh, and now northern British Columbia. The common thread: waste is a resource in the wrong place.",
+      "entries": [
+        {
+          "years": "2026 →",
+          "place": "Prince George, BC",
+          "title": "PhD student, Environmental Engineering · UNBC",
+          "text": "Researching curdlan recovery from aerobic granular sludge grown on industrial wastewater.",
+          "current": true,
+          "hidden": false
+        },
+        {
+          "years": "2026 →",
+          "place": "Makurdi & Edinburgh · hybrid",
+          "title": "Strategy & Partnership Lead, BCEI · Secretary, Belonging in Action CIC",
+          "text": "Helping build systems to record, verify and digitise forest assets at state level. Running programmes, impact reporting and funding bids for a community interest company.",
+          "current": false,
+          "hidden": false
+        },
+        {
+          "years": "2024–25",
+          "place": "Edinburgh, Scotland",
+          "title": "MSc Global Sustainability Engineering, Distinction · Heriot-Watt University",
+          "text": "PTDF overseas scholar. Vice President of the Nigerians & Friends Society (200+ students supported), Student Member of Parliament, and social media coordinator for the NetZero Society.",
+          "current": false,
+          "hidden": false
+        },
+        {
+          "years": "2024 →",
+          "place": "Online",
+          "title": "Founded Via Scholaris",
+          "text": "Turned live webinars into a free learning library for students heading into postgraduate study.",
+          "current": false,
+          "hidden": false
+        },
+        {
+          "years": "2022 →",
+          "place": "Wannune, Benue State",
+          "title": "Lecturer I · Federal Polytechnic Wannune",
+          "text": "Teaching agricultural technology, sustainable design and engineering materials. Currently on study leave.",
+          "current": false,
+          "hidden": false
+        },
+        {
+          "years": "2021–26",
+          "place": "Makurdi, Benue State",
+          "title": "Farm Machinery Engineer, later Agribusiness Director · Fatherland Agric Co.",
+          "text": "Led two climate-smart farming programmes: *Sweats to Watts* and *Seeds to Profit*.",
+          "current": false,
+          "hidden": false
+        },
+        {
+          "years": "2019–20",
+          "place": "Calabar, Cross River",
+          "title": "Assistant Mill (Production) Supervisor · Real Plantation Ltd",
+          "text": "Ran daily milling operations and quality control, and reported production daily, weekly and yearly.",
+          "current": false,
+          "hidden": false
+        },
+        {
+          "years": "2016–17",
+          "place": "Ilorin, Kwara",
+          "title": "Intern · National Centre for Agricultural Mechanization",
+          "text": "Managed automatic weather station data, scheduled surface, sprinkler and drip irrigation, and tested farm machines.",
+          "current": false,
+          "hidden": false
+        },
+        {
+          "years": "2013–19",
+          "place": "Makurdi, Benue State",
+          "title": "BEng Agricultural & Environmental Engineering, First Class · University of Agriculture Makurdi (now called Joseph Sarwuan Tarka University Makurdi)",
+          "text": "",
+          "current": false,
+          "hidden": false
+        }
+      ]
+    },
+    {
+      "type": "projects",
+      "id": "work",
+      "nav_label": "Work",
+      "show": true,
+      "numbered": true,
+      "heading": "Work",
+      "subtitle": "Ventures and programmes I've started, funded or led, in education, community and circular agriculture.",
+      "items": [
+        {
+          "name": "Via Scholaris",
+          "meta": "Founder & Programme Lead · 2024 →",
+          "status": "active",
+          "role": "",
+          "size": "wide",
+          "text": "Free scholarship guidance, postgraduate preparation and career programmes. Live webinars become a lasting video library for students who can't attend live.\n\nSpeakers from **Bloomberg**, **Arup UK**, **ENODA** and **OCU Group**, among others.",
+          "bullets": [],
+          "stats": [
+            {
+              "value": "89",
+              "label": "videos in the library"
+            },
+            {
+              "value": "1,000+",
+              "label": "subscribers"
+            },
+            {
+              "value": "6,900",
+              "label": "views on the most-watched resource"
+            }
+          ],
+          "link_label": "Watch on YouTube",
+          "link_url": "https://www.youtube.com/@viascholaris",
+          "hidden": false
+        },
+        {
+          "name": "Belonging in Action CIC",
+          "meta": "Edinburgh · 2026 →",
+          "status": "active",
+          "role": "Secretary, formerly Strategy & Programmes Lead",
+          "size": "half",
+          "text": "A community interest company for education, inclusion and entrepreneurship among international students and immigrant communities. I run registration, feedback and impact reporting, write funding bids, and coordinate universities, businesses and volunteers.",
+          "bullets": [
+            "113 participants at the launch",
+            "Business workshops on growing in the UK's digital economy",
+            "Outdoor community days around Edinburgh"
+          ],
+          "stats": [],
+          "link_label": "",
+          "link_url": "",
+          "hidden": false
+        },
+        {
+          "name": "ERGE Platform",
+          "meta": "Scotland · 2026",
+          "status": "closed",
+          "role": "Co-founder",
+          "size": "half",
+          "text": "A circular-economy marketplace that connected farmers with processors, feed makers and bioenergy operators, so downgraded produce could be sold instead of wasted. Wound down in August 2026.",
+          "bullets": [
+            "£4,500 in competitive pre-seed funding",
+            "First Prize, Industry-Led Innovation Sprint 2026",
+            "Second Place, Startup Factory Scotland 2026"
+          ],
+          "stats": [],
+          "link_label": "",
+          "link_url": "",
+          "hidden": false
+        },
+        {
+          "name": "Biolink Conservation & Environmental Initiative",
+          "meta": "Makurdi · 2026 →",
+          "status": "none",
+          "role": "",
+          "size": "third",
+          "text": "Practical, data-led conservation. Building partnerships and helping digitise forest assets so decisions rest on reliable data.",
+          "bullets": [],
+          "stats": [],
+          "link_label": "",
+          "link_url": "",
+          "hidden": false
+        },
+        {
+          "name": "Sweats to Watts",
+          "meta": "Benue · 2025–26",
+          "status": "none",
+          "role": "",
+          "size": "third",
+          "text": "Mechanisation for rice, soybean and guinea-corn farmers, replacing manual labour with machines. With Fatherland Agric Co.",
+          "bullets": [],
+          "stats": [],
+          "link_label": "",
+          "link_url": "",
+          "hidden": false
+        },
+        {
+          "name": "Seeds to Profit",
+          "meta": "Benue · 2025–26",
+          "status": "none",
+          "role": "",
+          "size": "third",
+          "text": "Getting improved, more resilient seed varieties to farmers so harvests can stand up to a changing climate. With Fatherland Agric Co.",
+          "bullets": [],
+          "stats": [],
+          "link_label": "",
+          "link_url": "",
+          "hidden": false
+        }
+      ]
+    },
+    {
+      "type": "columns",
+      "id": "teaching",
+      "nav_label": "Teaching",
+      "show": true,
+      "numbered": true,
+      "heading": "Teaching & talks",
+      "subtitle": "Making technical ideas clear to people who don't work with them every day.",
+      "lede": "A good lecture and a good grant proposal do the same job: they make a hard idea *easy to act on*.",
+      "columns": [
+        {
+          "label": "Lecturer I · Federal Polytechnic Wannune · 2022 →",
+          "title": "In the classroom",
+          "chips": [
+            "Agricultural Technology",
+            "Sustainable Design",
+            "Engineering Materials"
+          ],
+          "text": "I also supervise student projects from start to finish: defining the problem, doing the research and analysis, and presenting the results. I'm open to guest lectures and remote teaching.",
+          "quotes": []
+        },
+        {
+          "label": "Mentoring & public talks",
+          "title": "Beyond it",
+          "chips": [],
+          "text": "",
+          "quotes": [
+            {
+              "title": "Local Climate Challenges & Circular Economy Awareness",
+              "text": "Mentor session, Women Ascension One Million Leadership fellowship. Compared how African and Asian countries approach the circular economy.",
+              "hidden": false
+            },
+            {
+              "title": "Beyond Word-of-Mouth",
+              "text": "Business workshop, Belonging in Action CIC, Edinburgh, August 2026. On growing a business in the UK's digital economy.",
+              "hidden": false
+            },
+            {
+              "title": "Career Pathway webinars",
+              "text": "Via Scholaris series, bringing practitioners to students online.",
+              "hidden": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "table",
+      "id": "recognition",
+      "nav_label": "Recognition",
+      "show": true,
+      "numbered": true,
+      "heading": "Recognition",
+      "subtitle": "Prizes, nominations, and the toolkit behind them.",
+      "caption": "**Table 1** Awards and honours",
+      "col_year": "Year",
+      "col_item": "Honour",
+      "col_detail": "Awarded by / for",
+      "col_badge": "Type",
+      "rows": [
+        {
+          "year": "2026",
+          "item": "Delegates' Prize",
+          "detail": "ECR Net Zero Conference (Supergen), for a poster on electrochemical industrial symbiosis",
+          "badge": "Prize",
+          "highlight": true,
+          "hidden": false
+        },
+        {
+          "year": "2026",
+          "item": "First Prize",
+          "detail": "Industry-Led Innovation Sprint, for ERGE Platform",
+          "badge": "Prize",
+          "highlight": true,
+          "hidden": false
+        },
+        {
+          "year": "2026",
+          "item": "Second Place",
+          "detail": "Startup Factory Scotland, for ERGE Platform",
+          "badge": "Prize",
+          "highlight": true,
+          "hidden": false
+        },
+        {
+          "year": "2026",
+          "item": "Scottish Borders Campus Champion Award",
+          "detail": "Heriot-Watt University",
+          "badge": "Nominee",
+          "highlight": false,
+          "hidden": false
+        },
+        {
+          "year": "2025",
+          "item": "Principal's Award for Outstanding Contribution to the Student Community",
+          "detail": "Heriot-Watt University",
+          "badge": "Nominee",
+          "highlight": false,
+          "hidden": false
+        },
+        {
+          "year": "2025",
+          "item": "MSc with Distinction",
+          "detail": "Global Sustainability Engineering, Heriot-Watt University",
+          "badge": "Degree",
+          "highlight": false,
+          "hidden": false
+        },
+        {
+          "year": "2023",
+          "item": "PTDF Overseas Scholarship",
+          "detail": "Petroleum Technology Development Fund, Nigeria (UK MSc)",
+          "badge": "Scholarship",
+          "highlight": true,
+          "hidden": false
+        },
+        {
+          "year": "2019",
+          "item": "BEng, First Class Honours",
+          "detail": "Agricultural & Environmental Engineering, University of Agriculture Makurdi (now called Joseph Sarwuan Tarka University Makurdi)",
+          "badge": "Degree",
+          "highlight": false,
+          "hidden": false
+        }
+      ],
+      "groups": [
+        {
+          "title": "Sustainability analysis",
+          "items": [
+            "Life cycle assessment (LCA)",
+            "Environmental impact assessment (EIA)",
+            "Net zero & carbon utilisation",
+            "Circular economy",
+            "Climate-smart agriculture"
+          ]
+        },
+        {
+          "title": "Data & reporting",
+          "items": [
+            "Data collection & verification",
+            "Environmental data management",
+            "Performance & impact reporting",
+            "Programme design & evaluation",
+            "Machine performance testing"
+          ]
+        },
+        {
+          "title": "Communication",
+          "items": [
+            "Grant & proposal writing",
+            "Research posters",
+            "Plain-language summaries",
+            "Webinars, video & social media",
+            "Government, academic & community partnerships"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "links",
+      "id": "writing",
+      "nav_label": "Writing",
+      "show": true,
+      "numbered": true,
+      "heading": "Writing",
+      "subtitle": "Essays on education, migration and building a life and career in a new country.",
+      "items": [
+        {
+          "label": "Medium · 2026",
+          "title": "PTDF has given us the education. Should it also give us a fair chance to build the experience?",
+          "text": "An argument for brain circulation rather than brain drain, and for better ways to measure the return on publicly funded study abroad.",
+          "url": "https://www.linkedin.com/in/shagbaor/recent-activity/all/",
+          "hidden": false
+        },
+        {
+          "label": "LinkedIn · 2026",
+          "title": "Don't just live in the UK. Learn how the UK works.",
+          "text": "Why volunteering is one of the fastest ways for newcomers to understand a society and build social capital.",
+          "url": "https://www.linkedin.com/in/shagbaor/recent-activity/all/",
+          "hidden": false
+        },
+        {
+          "label": "LinkedIn · 2026",
+          "title": "Every experience doesn't have to fit the career ladder",
+          "text": "What a front-desk job taught an engineer about people, pressure and professionalism.",
+          "url": "https://www.linkedin.com/in/shagbaor/recent-activity/all/",
+          "hidden": false
+        }
+      ]
+    }
+  ],
+  "contact": {
+    "show": true,
+    "nav_label": "Contact",
+    "eyebrow": "Correspondence",
+    "heading": "Let's make something useful out of what others throw away.",
+    "columns": [
+      {
+        "title": "Open to",
+        "items": [
+          "Research collaborations on biopolymers and resource recovery",
+          "Lab visits and international placements",
+          "Guest lectures and remote teaching",
+          "Talks on the circular economy and student success"
+        ]
+      },
+      {
+        "title": "Reach me",
+        "items": [
+          "[amool@unbc.ca](mailto:amool@unbc.ca)",
+          "[LinkedIn · /in/shagbaor](https://www.linkedin.com/in/shagbaor/)",
+          "[YouTube · @viascholaris](https://www.youtube.com/@viascholaris)"
+        ]
+      },
+      {
+        "title": "Based in",
+        "items": [
+          "Prince George, British Columbia",
+          "Working with partners in Canada, the UK and Nigeria"
+        ]
+      }
+    ]
+  }
+}

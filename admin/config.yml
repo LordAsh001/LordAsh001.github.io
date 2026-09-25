@@ -1,0 +1,656 @@
+# Website editor settings.
+# ONE-TIME SETUP: replace YOUR-GITHUB-USERNAME (3 places below) with your GitHub username.
+# Everything else is managed from the editor at /admin — no need to touch this file again.
+backend:
+  name: github
+  repo: YOUR-GITHUB-USERNAME/YOUR-GITHUB-USERNAME.github.io
+  branch: main
+  commit_messages:
+    update: Update {{slug}} via editor
+media_folder: images
+public_folder: /images
+site_url: https://YOUR-GITHUB-USERNAME.github.io
+collections:
+- name: website
+  label: Website
+  editor:
+    preview: false
+  files:
+  - name: content
+    label: Website content
+    file: content.json
+    fields:
+    - name: site
+      label: Site settings
+      widget: object
+      collapsed: true
+      fields:
+      - name: title
+        label: Site name (browser tab)
+        widget: string
+      - name: wordmark
+        label: Short name in the top bar
+        widget: string
+      - name: description
+        label: One-line description for search engines
+        widget: text
+      - name: last_revised
+        label: Last revised (shown in footer)
+        widget: string
+        required: false
+      - name: footer
+        label: Footer text
+        widget: string
+        required: false
+    - name: hero
+      label: Top of page
+      widget: object
+      collapsed: true
+      fields:
+      - name: kicker
+        label: Small labels above the headline
+        widget: list
+        required: false
+        field:
+          name: label
+          label: Label
+          widget: string
+      - name: headline
+        label: Headline
+        widget: string
+        hint: Wrap a word in asterisks, like `*materials*`, to colour it green.
+      - name: name
+        label: Your name
+        widget: string
+      - name: photo
+        label: Portrait photo
+        widget: image
+        required: false
+        hint: Optional. A square photo works best.
+      - name: affiliations
+        label: Affiliations (numbered after your name)
+        widget: list
+        required: false
+        field:
+          name: affiliation
+          label: Affiliation
+          widget: string
+      - name: email
+        label: Contact email
+        widget: string
+        required: false
+      - name: abstract
+        label: Abstract
+        widget: text
+        required: false
+        hint: 'Formatting: `**bold**`, `*italic*`, `[link text](https://…)`. Leave a blank line between paragraphs.'
+      - name: keywords
+        label: Keywords
+        widget: list
+        required: false
+        field:
+          name: keyword
+          label: Keyword
+          widget: string
+      - name: reader
+        label: '"Reading as" guide'
+        widget: object
+        collapsed: true
+        fields:
+        - name: show
+          label: Show the guide
+          widget: boolean
+          default: true
+        - name: intro
+          label: Default message
+          widget: text
+          required: false
+          hint: 'Formatting: `**bold**`, `*italic*`, `[link text](https://…)`. Leave a blank line between paragraphs.'
+        - name: paths
+          label: Visitor types
+          widget: list
+          required: false
+          collapsed: true
+          summary: '{{label}}'
+          fields:
+          - name: label
+            label: Button label
+            widget: string
+          - name: sections
+            label: Sections to highlight (link IDs, e.g. research)
+            widget: list
+            required: false
+            field:
+              name: id
+              label: Id
+              widget: string
+          - name: note
+            label: Message shown when chosen
+            widget: text
+            required: false
+            hint: 'Formatting: `**bold**`, `*italic*`, `[link text](https://…)`. Leave a blank line between paragraphs.'
+      - name: figure
+        label: Animated figure (Fig. 1)
+        widget: object
+        collapsed: true
+        fields:
+        - name: show
+          label: Show the animation
+          widget: boolean
+          default: true
+        - name: caption
+          label: Caption
+          widget: text
+          required: false
+          hint: 'Formatting: `**bold**`, `*italic*`, `[link text](https://…)`. Leave a blank line between paragraphs.'
+    - name: sections
+      label: Sections
+      widget: list
+      collapsed: true
+      types:
+      - name: research
+        label: Research feature (text, diagram, cards)
+        summary: '{{heading}}'
+        fields:
+        - &id002
+          name: heading
+          label: Section heading
+          widget: string
+        - &id003
+          name: nav_label
+          label: Menu label
+          widget: string
+          required: false
+          hint: Short name shown in the top menu.
+        - &id004
+          name: id
+          label: Link ID
+          widget: string
+          required: false
+          hint: 'Used in links such as #research. Lowercase letters and dashes only. Leave blank to create one from the heading.'
+        - &id005
+          name: show
+          label: Show this section on the website
+          widget: boolean
+          default: true
+        - &id006
+          name: numbered
+          label: Number this section (§1, §2 …)
+          widget: boolean
+          default: true
+        - &id007
+          name: subtitle
+          label: Short description (left column)
+          widget: text
+          required: false
+          hint: 'Formatting: `**bold**`, `*italic*`, `[link text](https://…)`. Leave a blank line between paragraphs.'
+        - name: lede
+          label: Large opening sentence
+          widget: text
+          required: false
+          hint: 'Formatting: `**bold**`, `*italic*`, `[link text](https://…)`. Leave a blank line between paragraphs.'
+        - name: body
+          label: Main text
+          widget: text
+          required: false
+          hint: 'Formatting: `**bold**`, `*italic*`, `[link text](https://…)`. Leave a blank line between paragraphs.'
+        - name: steps
+          label: Diagram steps (Fig. 2)
+          widget: list
+          required: false
+          collapsed: true
+          summary: '{{title}}'
+          fields:
+          - name: title
+            label: Step title
+            widget: string
+          - name: text
+            label: Step description
+            widget: text
+            required: false
+            hint: 'Formatting: `**bold**`, `*italic*`, `[link text](https://…)`. Leave a blank line between paragraphs.'
+          - name: icon
+            label: Icon
+            widget: select
+            options:
+            - water
+            - granules
+            - matrix
+            - lab
+            - polymer
+            - none
+            default: none
+          - name: highlight
+            label: Highlight this step
+            widget: boolean
+            default: false
+          - name: note
+            label: Small note under the step
+            widget: string
+            required: false
+          - &id001
+            name: hidden
+            label: Hide this item
+            widget: boolean
+            hint: 'Keeps it saved but off the page. Note: hidden items are still readable in the public content file.'
+            default: false
+          hint: Drag to reorder. Remove all steps to hide the diagram.
+        - name: steps_caption
+          label: Diagram caption
+          widget: text
+          required: false
+          hint: 'Formatting: `**bold**`, `*italic*`, `[link text](https://…)`. Leave a blank line between paragraphs.'
+        - name: cards
+          label: Cards under the diagram
+          widget: list
+          required: false
+          collapsed: true
+          summary: '{{title}}'
+          fields:
+          - name: label
+            label: Small label (e.g. MSc dissertation · 2025)
+            widget: string
+            required: false
+          - name: title
+            label: Title
+            widget: string
+          - name: text
+            label: Description
+            widget: text
+            required: false
+            hint: 'Formatting: `**bold**`, `*italic*`, `[link text](https://…)`. Leave a blank line between paragraphs.'
+          - name: tag
+            label: Tag (e.g. Distinction)
+            widget: string
+            required: false
+          - name: tag_style
+            label: Tag colour
+            widget: select
+            options:
+            - label: Plain
+              value: plain
+            - label: Prize (gold)
+              value: prize
+            default: plain
+          - *id001
+      - name: timeline
+        label: Timeline
+        summary: '{{heading}}'
+        fields:
+        - *id002
+        - *id003
+        - *id004
+        - *id005
+        - *id006
+        - *id007
+        - name: lede
+          label: Large opening sentence
+          widget: text
+          required: false
+          hint: 'Formatting: `**bold**`, `*italic*`, `[link text](https://…)`. Leave a blank line between paragraphs.'
+        - name: entries
+          label: Timeline entries
+          widget: list
+          required: false
+          collapsed: true
+          summary: '{{years}} · {{title}}'
+          fields:
+          - name: years
+            label: Years (e.g. 2024–25 or 2026 →)
+            widget: string
+          - name: place
+            label: Place
+            widget: string
+            required: false
+          - name: title
+            label: Role or milestone
+            widget: string
+          - name: text
+            label: Details
+            widget: text
+            required: false
+            hint: 'Formatting: `**bold**`, `*italic*`, `[link text](https://…)`. Leave a blank line between paragraphs.'
+          - name: current
+            label: Mark as current (green dot)
+            widget: boolean
+            default: false
+          - *id001
+          hint: Newest first. Drag to reorder.
+      - name: projects
+        label: Projects & ventures (cards)
+        summary: '{{heading}}'
+        fields:
+        - *id002
+        - *id003
+        - *id004
+        - *id005
+        - *id006
+        - *id007
+        - name: lede
+          label: Large opening sentence
+          widget: text
+          required: false
+          hint: 'Formatting: `**bold**`, `*italic*`, `[link text](https://…)`. Leave a blank line between paragraphs.'
+        - name: items
+          label: Cards
+          widget: list
+          required: false
+          collapsed: true
+          summary: '{{name}}'
+          fields:
+          - name: name
+            label: Name
+            widget: string
+          - name: meta
+            label: Small line on top (role · years)
+            widget: string
+            required: false
+          - name: status
+            label: Status badge
+            widget: select
+            options:
+            - label: None
+              value: none
+            - label: Active
+              value: active
+            - label: Closed
+              value: closed
+            default: none
+          - name: role
+            label: Role
+            widget: string
+            required: false
+          - name: text
+            label: Description
+            widget: text
+            required: false
+            hint: 'Formatting: `**bold**`, `*italic*`, `[link text](https://…)`. Leave a blank line between paragraphs.'
+          - name: bullets
+            label: Bullet points
+            widget: list
+            required: false
+            field:
+              name: point
+              label: Point
+              widget: string
+          - name: stats
+            label: Big numbers
+            widget: list
+            required: false
+            collapsed: true
+            summary: '{{value}} {{label}}'
+            fields:
+            - name: value
+              label: Number (e.g. 1,000+)
+              widget: string
+            - name: label
+              label: What it counts
+              widget: string
+          - name: link_label
+            label: Button text
+            widget: string
+            required: false
+          - name: link_url
+            label: Button link
+            widget: string
+            required: false
+          - name: size
+            label: Card width
+            widget: select
+            hint: Use two half cards or three third cards per row.
+            options:
+            - label: Full width
+              value: wide
+            - label: Half width
+              value: half
+            - label: One third
+              value: third
+            default: half
+          - *id001
+      - name: columns
+        label: Columns (teaching, talks)
+        summary: '{{heading}}'
+        fields:
+        - *id002
+        - *id003
+        - *id004
+        - *id005
+        - *id006
+        - *id007
+        - name: lede
+          label: Large opening sentence
+          widget: text
+          required: false
+          hint: 'Formatting: `**bold**`, `*italic*`, `[link text](https://…)`. Leave a blank line between paragraphs.'
+        - name: columns
+          label: Columns
+          widget: list
+          required: false
+          collapsed: true
+          summary: '{{title}}'
+          fields:
+          - name: label
+            label: Small label
+            widget: string
+            required: false
+          - name: title
+            label: Column title
+            widget: string
+            required: false
+          - name: chips
+            label: Pills (e.g. course names)
+            widget: list
+            required: false
+            field:
+              name: pill
+              label: Pill
+              widget: string
+          - name: text
+            label: Text
+            widget: text
+            required: false
+            hint: 'Formatting: `**bold**`, `*italic*`, `[link text](https://…)`. Leave a blank line between paragraphs.'
+          - name: quotes
+            label: Talks or highlights
+            widget: list
+            required: false
+            collapsed: true
+            summary: '{{title}}'
+            fields:
+            - name: title
+              label: Title
+              widget: string
+            - name: text
+              label: Details
+              widget: text
+              required: false
+              hint: 'Formatting: `**bold**`, `*italic*`, `[link text](https://…)`. Leave a blank line between paragraphs.'
+            - *id001
+          hint: Up to three columns.
+      - name: table
+        label: Table + skill lists
+        summary: '{{heading}}'
+        fields:
+        - *id002
+        - *id003
+        - *id004
+        - *id005
+        - *id006
+        - *id007
+        - name: lede
+          label: Large opening sentence
+          widget: text
+          required: false
+          hint: 'Formatting: `**bold**`, `*italic*`, `[link text](https://…)`. Leave a blank line between paragraphs.'
+        - name: caption
+          label: Table caption
+          widget: text
+          required: false
+          hint: 'Formatting: `**bold**`, `*italic*`, `[link text](https://…)`. Leave a blank line between paragraphs.'
+        - name: col_year
+          label: Column 1 heading
+          widget: string
+          required: false
+          default: Year
+        - name: col_item
+          label: Column 2 heading
+          widget: string
+          required: false
+          default: Honour
+        - name: col_detail
+          label: Column 3 heading
+          widget: string
+          required: false
+          default: Details
+        - name: col_badge
+          label: Column 4 heading
+          widget: string
+          required: false
+          default: Type
+        - name: rows
+          label: Table rows
+          widget: list
+          required: false
+          collapsed: true
+          summary: '{{year}} · {{item}}'
+          fields:
+          - name: year
+            label: Year
+            widget: string
+          - name: item
+            label: Name
+            widget: string
+          - name: detail
+            label: Details
+            widget: text
+            required: false
+            hint: 'Formatting: `**bold**`, `*italic*`, `[link text](https://…)`. Leave a blank line between paragraphs.'
+          - name: badge
+            label: Badge (e.g. Prize)
+            widget: string
+            required: false
+          - name: highlight
+            label: Gold badge
+            widget: boolean
+            default: false
+          - *id001
+        - name: groups
+          label: Skill lists under the table
+          widget: list
+          required: false
+          collapsed: true
+          summary: '{{title}}'
+          fields:
+          - name: title
+            label: List title
+            widget: string
+          - name: items
+            label: Items
+            widget: list
+            required: false
+            field:
+              name: item
+              label: Item
+              widget: string
+          hint: Remove all to hide.
+      - name: links
+        label: List of links (writing, media)
+        summary: '{{heading}}'
+        fields:
+        - *id002
+        - *id003
+        - *id004
+        - *id005
+        - *id006
+        - *id007
+        - name: lede
+          label: Large opening sentence
+          widget: text
+          required: false
+          hint: 'Formatting: `**bold**`, `*italic*`, `[link text](https://…)`. Leave a blank line between paragraphs.'
+        - name: items
+          label: Links
+          widget: list
+          required: false
+          collapsed: true
+          summary: '{{title}}'
+          fields:
+          - name: label
+            label: Small label (e.g. Medium · 2026)
+            widget: string
+            required: false
+          - name: title
+            label: Title
+            widget: string
+          - name: text
+            label: Short description
+            widget: text
+            required: false
+            hint: 'Formatting: `**bold**`, `*italic*`, `[link text](https://…)`. Leave a blank line between paragraphs.'
+          - name: url
+            label: Link
+            widget: string
+            required: false
+          - *id001
+      - name: text
+        label: Plain text section
+        summary: '{{heading}}'
+        fields:
+        - *id002
+        - *id003
+        - *id004
+        - *id005
+        - *id006
+        - *id007
+        - name: lede
+          label: Large opening sentence
+          widget: text
+          required: false
+          hint: 'Formatting: `**bold**`, `*italic*`, `[link text](https://…)`. Leave a blank line between paragraphs.'
+        - name: body
+          label: Text
+          widget: text
+          required: false
+          hint: 'Formatting: `**bold**`, `*italic*`, `[link text](https://…)`. Leave a blank line between paragraphs.'
+      hint: Add, remove, hide or drag sections to reorder them. Each section type has its own layout.
+    - name: contact
+      label: Contact block
+      widget: object
+      collapsed: true
+      fields:
+      - name: show
+        label: Show the contact block
+        widget: boolean
+        default: true
+      - name: nav_label
+        label: Menu label
+        widget: string
+        required: false
+        default: Contact
+      - name: eyebrow
+        label: Small label
+        widget: string
+        required: false
+      - name: heading
+        label: Heading
+        widget: string
+        hint: Your email is added after it automatically.
+      - name: columns
+        label: Columns
+        widget: list
+        required: false
+        collapsed: true
+        summary: '{{title}}'
+        fields:
+        - name: title
+          label: Column title
+          widget: string
+        - name: items
+          label: Lines
+          widget: list
+          required: false
+          field:
+            name: line
+            label: Line
+            widget: string
+            hint: 'Links: `[text](https://…)` or `[me@site.com](mailto:me@site.com)`'
