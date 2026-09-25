@@ -255,7 +255,7 @@ footer{border-top:1px solid var(--rule);padding-block:22px 40px;color:var(--mute
 .hero.nofig{grid-template-columns:minmax(0,1fr)}
 .who{margin-top:28px;display:flex;align-items:center;gap:16px}
 .who .byline{margin-top:0}
-.portrait{width:72px;height:72px;border-radius:50%;object-fit:cover;border:1px solid var(--rule);flex:0 0 auto}
+.portrait{width:128px;height:128px;border-radius:50%;object-fit:cover;border:1px solid var(--rule);flex:0 0 auto}
 .abstract p+p{margin-top:12px}
 .md p+p,.md ul+p,.md p+ul{margin-top:12px}
 .md ul{margin:0;padding-left:18px}
@@ -267,6 +267,9 @@ footer{border-top:1px solid var(--rule);padding-block:22px 40px;color:var(--mute
 .proj.wide > div:first-child{display:flex;flex-direction:column;gap:12px}
 .proj.wide .meta{justify-content:flex-start;gap:18px}
 .stat b{font-size:clamp(26px,2.6vw,38px);overflow-wrap:anywhere}
+@media (max-width:640px){
+  .portrait{width:96px;height:96px}
+}
 </style>
 </head>
 <body>
