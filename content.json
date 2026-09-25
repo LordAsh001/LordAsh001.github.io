@@ -14,7 +14,7 @@
     ],
     "headline": "Turning wastewater into *materials* worth keeping.",
     "name": "Shagbaor Hycent Amool",
-    "photo": "",
+    "photo": "/images/Ash.jpg",
     "affiliations": [
       "Environmental Engineering, University of Northern British Columbia",
       "Founder, Via Scholaris"
@@ -79,52 +79,57 @@
   "sections": [
     {
       "type": "research",
-      "id": "research",
+      "heading": "Research",
       "nav_label": "Research",
+      "id": "research",
       "show": true,
       "numbered": true,
-      "heading": "Research",
       "subtitle": "PhD, Environmental Engineering, UNBC · from September 2026",
       "lede": "Wastewater treatment is usually a cost. I want to know if part of it can become a *product*.",
       "body": "Aerobic granular sludge is a compact, fast-settling form of the microbial communities that treat wastewater. Those microbes wrap themselves in a sticky matrix of extracellular polymeric substances (EPS). Some of that matrix may be curdlan, a β-1,3-glucan used as a gelling agent in food and studied for medical and materials uses.\n\nMy doctoral research asks whether curdlan can be recovered from sludge grown on industrial wastewater. If it can, a treatment plant could turn a disposal problem into a material.",
-      "steps_caption": "**Fig. 2** The research pathway, from wastewater to a recoverable biopolymer.",
       "steps": [
         {
           "title": "Industrial wastewater",
           "text": "Rich in organic carbon that microbes can feed on.",
           "icon": "water",
           "highlight": false,
-          "note": ""
+          "note": "",
+          "hidden": false
         },
         {
           "title": "Aerobic granular sludge",
           "text": "Microbes grow as dense granules that settle in minutes.",
           "icon": "granules",
           "highlight": false,
-          "note": ""
+          "note": "",
+          "hidden": false
         },
         {
           "title": "EPS matrix",
           "text": "The polymer \"glue\" the granules build around themselves.",
           "icon": "matrix",
           "highlight": false,
-          "note": ""
+          "note": "",
+          "hidden": false
         },
         {
           "title": "Extract, identify, measure",
           "text": "Show that what's recovered really is curdlan, and how much.",
           "icon": "lab",
           "highlight": false,
-          "note": ""
+          "note": "",
+          "hidden": false
         },
         {
           "title": "Curdlan",
           "text": "A recovered biopolymer with uses in food, medicine and materials.",
           "icon": "polymer",
           "highlight": true,
-          "note": "(1→3)-β-D-glucan"
+          "note": "(1→3)-β-D-glucan",
+          "hidden": false
         }
       ],
+      "steps_caption": "**Fig. 2** The research pathway, from wastewater to a recoverable biopolymer.",
       "cards": [
         {
           "label": "MSc dissertation · 2025",
@@ -154,12 +159,13 @@
     },
     {
       "type": "timeline",
-      "id": "path",
+      "heading": "Path",
       "nav_label": "Path",
+      "id": "path",
       "show": true,
       "numbered": true,
-      "heading": "Path",
       "subtitle": "From Nigerian farms and mills to Edinburgh, and now northern British Columbia. The common thread: waste is a resource in the wrong place.",
+      "lede": "",
       "entries": [
         {
           "years": "2026 →",
@@ -237,19 +243,19 @@
     },
     {
       "type": "projects",
-      "id": "work",
+      "heading": "Work",
       "nav_label": "Work",
+      "id": "work",
       "show": true,
       "numbered": true,
-      "heading": "Work",
       "subtitle": "Ventures and programmes I've started, funded or led, in education, community and circular agriculture.",
+      "lede": "",
       "items": [
         {
           "name": "Via Scholaris",
           "meta": "Founder & Programme Lead · 2024 →",
           "status": "active",
           "role": "",
-          "size": "wide",
           "text": "Free scholarship guidance, postgraduate preparation and career programmes. Live webinars become a lasting video library for students who can't attend live.\n\nSpeakers from **Bloomberg**, **Arup UK**, **ENODA** and **OCU Group**, among others.",
           "bullets": [],
           "stats": [
@@ -268,6 +274,7 @@
           ],
           "link_label": "Watch on YouTube",
           "link_url": "https://www.youtube.com/@viascholaris",
+          "size": "wide",
           "hidden": false
         },
         {
@@ -275,7 +282,6 @@
           "meta": "Edinburgh · 2026 →",
           "status": "active",
           "role": "Secretary, formerly Strategy & Programmes Lead",
-          "size": "half",
           "text": "A community interest company for education, inclusion and entrepreneurship among international students and immigrant communities. I run registration, feedback and impact reporting, write funding bids, and coordinate universities, businesses and volunteers.",
           "bullets": [
             "113 participants at the launch",
@@ -285,6 +291,7 @@
           "stats": [],
           "link_label": "",
           "link_url": "",
+          "size": "half",
           "hidden": false
         },
         {
@@ -292,7 +299,6 @@
           "meta": "Scotland · 2026",
           "status": "closed",
           "role": "Co-founder",
-          "size": "half",
           "text": "A circular-economy marketplace that connected farmers with processors, feed makers and bioenergy operators, so downgraded produce could be sold instead of wasted. Wound down in August 2026.",
           "bullets": [
             "£4,500 in competitive pre-seed funding",
@@ -302,6 +308,7 @@
           "stats": [],
           "link_label": "",
           "link_url": "",
+          "size": "half",
           "hidden": false
         },
         {
@@ -309,12 +316,12 @@
           "meta": "Makurdi · 2026 →",
           "status": "none",
           "role": "",
-          "size": "third",
           "text": "Practical, data-led conservation. Building partnerships and helping digitise forest assets so decisions rest on reliable data.",
           "bullets": [],
           "stats": [],
           "link_label": "",
           "link_url": "",
+          "size": "third",
           "hidden": false
         },
         {
@@ -322,12 +329,12 @@
           "meta": "Benue · 2025–26",
           "status": "none",
           "role": "",
-          "size": "third",
           "text": "Mechanisation for rice, soybean and guinea-corn farmers, replacing manual labour with machines. With Fatherland Agric Co.",
           "bullets": [],
           "stats": [],
           "link_label": "",
           "link_url": "",
+          "size": "third",
           "hidden": false
         },
         {
@@ -335,23 +342,23 @@
           "meta": "Benue · 2025–26",
           "status": "none",
           "role": "",
-          "size": "third",
           "text": "Getting improved, more resilient seed varieties to farmers so harvests can stand up to a changing climate. With Fatherland Agric Co.",
           "bullets": [],
           "stats": [],
           "link_label": "",
           "link_url": "",
+          "size": "third",
           "hidden": false
         }
       ]
     },
     {
       "type": "columns",
-      "id": "teaching",
+      "heading": "Teaching & talks",
       "nav_label": "Teaching",
+      "id": "teaching",
       "show": true,
       "numbered": true,
-      "heading": "Teaching & talks",
       "subtitle": "Making technical ideas clear to people who don't work with them every day.",
       "lede": "A good lecture and a good grant proposal do the same job: they make a hard idea *easy to act on*.",
       "columns": [
@@ -393,12 +400,13 @@
     },
     {
       "type": "table",
-      "id": "recognition",
+      "heading": "Recognition",
       "nav_label": "Recognition",
+      "id": "recognition",
       "show": true,
       "numbered": true,
-      "heading": "Recognition",
       "subtitle": "Prizes, nominations, and the toolkit behind them.",
+      "lede": "",
       "caption": "**Table 1** Awards and honours",
       "col_year": "Year",
       "col_item": "Honour",
@@ -505,33 +513,34 @@
     },
     {
       "type": "links",
-      "id": "writing",
+      "heading": "Writing",
       "nav_label": "Writing",
+      "id": "writing",
       "show": true,
       "numbered": true,
-      "heading": "Writing",
       "subtitle": "Essays on education, migration and building a life and career in a new country.",
+      "lede": "",
       "items": [
         {
+          "text": "An argument for brain circulation rather than brain drain, and for better ways to measure the return on publicly funded study abroad.",
+          "hidden": false,
           "label": "Medium · 2026",
           "title": "PTDF has given us the education. Should it also give us a fair chance to build the experience?",
-          "text": "An argument for brain circulation rather than brain drain, and for better ways to measure the return on publicly funded study abroad.",
-          "url": "https://www.linkedin.com/in/shagbaor/recent-activity/all/",
-          "hidden": false
+          "url": "https://www.linkedin.com/in/shagbaor/recent-activity/all/"
         },
         {
+          "text": "Why volunteering is one of the fastest ways for newcomers to understand a society and build social capital.",
+          "hidden": false,
           "label": "LinkedIn · 2026",
           "title": "Don't just live in the UK. Learn how the UK works.",
-          "text": "Why volunteering is one of the fastest ways for newcomers to understand a society and build social capital.",
-          "url": "https://www.linkedin.com/in/shagbaor/recent-activity/all/",
-          "hidden": false
+          "url": "https://www.linkedin.com/in/shagbaor/recent-activity/all/"
         },
         {
+          "text": "What a front-desk job taught an engineer about people, pressure and professionalism.",
+          "hidden": false,
           "label": "LinkedIn · 2026",
           "title": "Every experience doesn't have to fit the career ladder",
-          "text": "What a front-desk job taught an engineer about people, pressure and professionalism.",
-          "url": "https://www.linkedin.com/in/shagbaor/recent-activity/all/",
-          "hidden": false
+          "url": "https://www.linkedin.com/in/shagbaor/recent-activity/all/"
         }
       ]
     }
