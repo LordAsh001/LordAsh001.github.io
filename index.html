@@ -222,6 +222,9 @@ td.k{white-space:nowrap}
 .kind.win{background:color-mix(in srgb,var(--ochre) 18%,transparent);color:var(--ochre)}
 
 .toolkit{margin-top:36px;display:grid;grid-template-columns:repeat(var(--n,3),minmax(0,1fr));gap:28px}
+.toolkit-cap{margin:36px 0 0;font-size:13.5px;color:var(--muted);scroll-margin-top:90px}
+.toolkit-cap b,.toolkit-cap strong{color:var(--ink)}
+.toolkit.has-cap{margin-top:18px}
 .toolkit h3{font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);font-weight:500}
 .toolkit ul{list-style:none;padding:0;margin:10px 0 0;display:grid;gap:6px;font-size:15px}
 .toolkit li{padding-bottom:6px;border-bottom:1px dotted var(--rule)}
@@ -606,7 +609,8 @@ window.initSim=function(){
     }
     var groups=arr(s.groups).filter(function(g){return g && arr(g.items).length;});
     if(groups.length){
-      h+='<div class="toolkit" style="--n:'+Math.min(groups.length,3)+'">'+groups.map(function(g){
+      if(s.groups_caption) h+='<p class="toolkit-cap" id="toolkit">'+inline(s.groups_caption)+'</p>';
+      h+='<div class="toolkit'+(s.groups_caption?' has-cap':'')+'" style="--n:'+Math.min(groups.length,3)+'">'+groups.map(function(g){
         return '<div><h3>'+esc(g.title)+'</h3><ul>'+arr(g.items).map(function(i){return '<li>'+inline(i)+'</li>';}).join('')+'</ul></div>';
       }).join('')+'</div>';
     }

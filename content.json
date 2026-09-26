@@ -70,7 +70,7 @@
             "path",
             "recognition"
           ],
-          "note": "Start with [Teaching](#teaching) and my [Path](#path), then the toolkit in [Recognition](#recognition)."
+          "note": "Start with [Teaching](#teaching) and my [Path](#path), then the [skills toolkit](#toolkit) under Recognition."
         }
       ]
     },
@@ -533,6 +533,7 @@
           "hidden": false
         }
       ],
+      "groups_caption": "**Toolkit** Skills and methods behind the work.",
       "groups": [
         {
           "title": "Sustainability analysis",
