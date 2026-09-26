@@ -33,6 +33,9 @@ simple form-based editor at **/admin**. You never need to touch the code.
    - **Add a new section** with *Sections → Add Sections*. Pick a layout:
      research feature, timeline, project cards, columns, table, links or plain text.
    - **Add a photo** under *Top of page → Portrait photo*.
+   - **Add or replace your CV** under *Top of page → CV (PDF)*. Upload a PDF and, optionally, fill in
+     *CV last updated*. A **Download CV** button then appears under your name and in Contact.
+     Clear the field to hide it again.
 4. Click **Save**. The site updates within a minute or two.
 
 Text formatting in the editor: `**bold**`, `*italic*`, `[link text](https://…)`.
