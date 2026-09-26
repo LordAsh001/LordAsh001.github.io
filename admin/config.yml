@@ -549,6 +549,11 @@ collections:
             widget: boolean
             default: false
           - *id001
+        - name: groups_caption
+          label: Heading above the skill lists
+          widget: string
+          required: false
+          hint: 'Optional, e.g. "**Toolkit** Skills and methods behind the work". Link to it from anywhere with #toolkit.'
         - name: groups
           label: Skill lists under the table
           widget: list
