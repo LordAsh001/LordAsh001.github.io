@@ -1182,7 +1182,7 @@ function initSources(){
   $('#citeTool').innerHTML = toolCitation(false);
   $('#copyCiteTool').onclick = () => copyText(toolCitation(true), 'Citation');
   $('#aboutTxt').innerHTML = `An open teaching and research tool for industrial symbiosis by ${esc(CONFIG.authorFull)}, ${esc(CONFIG.affiliation)}. ${WASTES.length} waste streams, ${CASES.length} cases and ${BIB.length} sources. Works offline once loaded, and saves your work in this browser only.`;
-  $('#footLinks').innerHTML = CONFIG.repoUrl ? `<a href="${esc(CONFIG.repoUrl)}" target="_blank" rel="noopener">Source code on GitHub ↗</a>` : '';
+  $('#footLinks').innerHTML = '<a href="/#work">← Shagbaor Hycent Amool\u2019s website</a> · <a href="/sustainatable.html">The SustainaTable</a>' + (CONFIG.repoUrl ? ` · <a href="${esc(CONFIG.repoUrl)}" target="_blank" rel="noopener">Source code on GitHub ↗</a>` : '');
 }
 
 /* =================== router =================== */
