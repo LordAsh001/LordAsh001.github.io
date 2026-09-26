@@ -1,8 +1,8 @@
 {
   "site": {
-    "title": "Shagbaor Hycent Amool",
+    "title": "Shagbaor Hycent Amool · Environmental Engineer, PhD student at UNBC",
     "wordmark": "S. H. Amool",
-    "description": "Environmental engineer and PhD student at UNBC, recovering curdlan from aerobic granular sludge.",
+    "description": "Environmental engineer and PhD student at the University of Northern British Columbia (UNBC), researching curdlan recovery from aerobic granular sludge treating industrial wastewater.",
     "last_revised": "September 2026",
     "footer": "© 2026 Shagbaor Hycent Amool"
   },
@@ -37,10 +37,11 @@
           "label": "Researcher",
           "sections": [
             "research",
+            "publications",
             "recognition",
             "contact"
           ],
-          "note": "Start with [Research](#research) and Fig. 2, then the prizes in [Recognition](#recognition). For collaboration or lab visits, [write to me](mailto:amool@unbc.ca)."
+          "note": "Start with [Research](#research) and Fig. 2, then [Publications](#publications) and the prizes in [Recognition](#recognition). For collaboration or lab visits, [write to me](mailto:amool@unbc.ca)."
         },
         {
           "label": "Investor",
@@ -86,7 +87,7 @@
       "numbered": true,
       "subtitle": "PhD, Environmental Engineering, UNBC · from September 2026",
       "lede": "Wastewater treatment is usually a cost. I want to know if part of it can become a *product*.",
-      "body": "Aerobic granular sludge is a compact, fast-settling form of the microbial communities that treat wastewater. Those microbes wrap themselves in a sticky matrix of extracellular polymeric substances (EPS). Some of that matrix may be curdlan, a β-1,3-glucan used as a gelling agent in food and studied for medical and materials uses.\n\nMy doctoral research asks whether curdlan can be recovered from sludge grown on industrial wastewater. If it can, a treatment plant could turn a disposal problem into a material.\n\nMy academic publications and research record are available on [ORCID](https://orcid.org/my-orcid?orcid=0000-0001-8460-6744).\n\n**Explore my interactive resource,** [The SustainaTable: the 17 elements of the 2030 Agenda](https://lordash001.github.io/sustainatable.html).",
+      "body": "Aerobic granular sludge is a compact, fast-settling form of the microbial communities that treat wastewater. Those microbes wrap themselves in a sticky matrix of extracellular polymeric substances (EPS). Some of that matrix may be curdlan, a β-1,3-glucan used as a gelling agent in food and studied for medical and materials uses.\n\nMy doctoral research asks whether curdlan can be recovered from sludge grown on industrial wastewater. If it can, a treatment plant could turn a disposal problem into a material.\n\nMy academic publications and research record are available on [ORCID](https://orcid.org/0000-0001-8460-6744).",
       "steps": [
         {
           "title": "Industrial wastewater",
@@ -158,6 +159,32 @@
       ]
     },
     {
+      "type": "links",
+      "heading": "Publications",
+      "nav_label": "Publications",
+      "id": "publications",
+      "show": true,
+      "numbered": true,
+      "subtitle": "Publicly available work. Full record on ORCID.",
+      "lede": "",
+      "items": [
+        {
+          "label": "Preprint · SSRN · 2026",
+          "title": "Integration of advanced electrocatalytic wastewater treatment with carbon utilisation",
+          "text": "**Amool, S. H.**, Tan, J. Z. Y., & Andresen, J. · doi:10.2139/ssrn.6717086",
+          "url": "https://doi.org/10.2139/ssrn.6717086",
+          "hidden": false
+        },
+        {
+          "label": "Full record",
+          "title": "All publications, posters and conference papers on ORCID",
+          "text": "ORCID iD 0000-0001-8460-6744",
+          "url": "https://orcid.org/0000-0001-8460-6744",
+          "hidden": false
+        }
+      ]
+    },
+    {
       "type": "timeline",
       "heading": "Path",
       "nav_label": "Path",
@@ -200,10 +227,10 @@
           "hidden": false
         },
         {
-          "years": "2022 → 2026",
+          "years": "2022–26",
           "place": "Wannune, Benue State, Nigeria",
           "title": "Lecturer I · Federal Polytechnic Wannune",
-          "text": "Thought agricultural technology, sustainable design and engineering materials. Worked in the research office and an assistant to the Rector.",
+          "text": "Taught agricultural technology, sustainable design and engineering materials. Worked in the research office and as an assistant to the Rector.",
           "current": false,
           "hidden": false
         },
@@ -256,7 +283,7 @@
           "meta": "2026",
           "status": "active",
           "role": "Interactive tool",
-          "text": "Design eco-industrial parks, compare by-product exchanges, and explore evidence-based industrial symbiosis data..",
+          "text": "Design eco-industrial parks, compare by-product exchanges, and explore evidence-based industrial symbiosis data.",
           "bullets": [],
           "stats": [],
           "link_label": "Open tool",
@@ -576,6 +603,8 @@
         "title": "Reach me",
         "items": [
           "[amool@unbc.ca](mailto:amool@unbc.ca)",
+          "[ORCID · 0000-0001-8460-6744](https://orcid.org/0000-0001-8460-6744)",
+          "[ResearchGate · Shagbaor-Amool](https://www.researchgate.net/profile/Shagbaor-Amool)",
           "[LinkedIn · /in/shagbaor](https://www.linkedin.com/in/shagbaor/)",
           "[YouTube · @viascholaris](https://www.youtube.com/@viascholaris)"
         ]
