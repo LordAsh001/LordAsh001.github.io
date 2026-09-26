@@ -1,1 +1,294 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Symbiosis Workbench</title>
+<meta name="description" content="Evidence-based industrial symbiosis tool: design an eco-industrial park with sourced emission factors, search 129 cited industrial waste streams keyed to the EU List of Waste, and explore 19 documented case studies.">
+<meta name="author" content="Shagbaor Hycent Amool">
+<meta name="theme-color" content="#FFFFFF">
+<meta name="color-scheme" content="light dark">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Symbiosis Workbench">
+<meta property="og:description" content="Evidence-based industrial symbiosis tool: design an eco-industrial park with sourced emission factors, search 129 cited industrial waste streams keyed to the EU List of Waste, and explore 19 documented case studies.">
+<meta property="og:image" content="og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="icon" href="icon-192.png" sizes="192x192" type="image/png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..125,400..800&family=IBM+Plex+Mono:wght@400;500;600&family=Public+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap">
+<link rel="stylesheet" href="app.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebApplication", "name": "Symbiosis Workbench", "applicationCategory": "EducationalApplication", "operatingSystem": "Any", "description": "Evidence-based industrial symbiosis tool: design an eco-industrial park with sourced emission factors, search 129 cited industrial waste streams keyed to the EU List of Waste, and explore 19 documented case studies.", "author": {"@type": "Person", "name": "Shagbaor Hycent Amool", "affiliation": "University of Northern British Columbia"}, "offers": {"@type": "Offer", "price": "0"}}</script>
+</head>
+<body>
+<noscript><p style="padding:16px">Symbiosis Workbench needs JavaScript to run.</p></noscript>
+<a class="skip" href="#main">Skip to content</a>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M16.5 16.5L21 21"/></symbol>
+  <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></symbol>
+  <symbol id="i-moon" viewBox="0 0 24 24"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></symbol>
+  <symbol id="i-auto" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></symbol>
+  <symbol id="i-bookmark" viewBox="0 0 24 24"><path d="M6 3h12v18l-6-4-6 4z"/></symbol>
+  <symbol id="i-help" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.3a2.5 2.5 0 1 1 3.4 2.3c-.7.3-.9.9-.9 1.6"/><path d="M12 16.6v.4"/></symbol>
+  <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+  <symbol id="i-minus" viewBox="0 0 24 24"><path d="M5 12h14"/></symbol>
+  <symbol id="i-fit" viewBox="0 0 24 24"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></symbol>
+  <symbol id="i-undo" viewBox="0 0 24 24"><path d="M9 14L4 9l5-5"/><path d="M4 9h11a5 5 0 0 1 0 10h-3"/></symbol>
+  <symbol id="i-redo" viewBox="0 0 24 24"><path d="M15 14l5-5-5-5"/><path d="M20 9H9a5 5 0 0 0 0 10h3"/></symbol>
+  <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></symbol>
+  <symbol id="i-link" viewBox="0 0 24 24"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1"/><path d="M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/></symbol>
+  <symbol id="i-left" viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></symbol>
+  <symbol id="i-right" viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></symbol>
+  <symbol id="i-up" viewBox="0 0 24 24"><path d="M6 15l6-6 6 6"/></symbol>
+  <symbol id="i-net" viewBox="0 0 24 24"><circle cx="6" cy="6" r="2.5"/><circle cx="18" cy="6" r="2.5"/><circle cx="12" cy="18" r="2.5"/><path d="M8.5 6h7M16.8 8.2l-3.6 7.6M7.2 8.2l3.6 7.6"/></symbol>
+  <symbol id="i-list" viewBox="0 0 24 24"><path d="M9 6h12M9 12h12M9 18h12"/><circle cx="4.5" cy="6" r="1"/><circle cx="4.5" cy="12" r="1"/><circle cx="4.5" cy="18" r="1"/></symbol>
+  <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></symbol>
+  <symbol id="i-book" viewBox="0 0 24 24"><path d="M4 19.5V5a2 2 0 0 1 2-2h14v15H6a2 2 0 0 0-2 2 2 2 0 0 0 2 2h14"/></symbol>
+  <symbol id="i-quote" viewBox="0 0 24 24"><path d="M4 4h4v16H4zM10 4h4v16h-4z"/><path d="M16.5 5.2l3.9 1-3.6 14-3.9-1z"/></symbol>
+  <symbol id="i-cmd" viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="12" rx="2"/><path d="M7 10h.01M11 10h.01M15 10h.01M7 14h10"/></symbol>
+  <symbol id="i-play" viewBox="0 0 24 24"><path d="M7 4l12 8-12 8z"/></symbol>
+  <symbol id="i-image" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="10" r="2"/><path d="M21 16l-5-5-9 9"/></symbol>
+  <symbol id="i-copy" viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V5a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h3"/></symbol>
+  <symbol id="i-print" viewBox="0 0 24 24"><path d="M6 9V3h12v6M6 18H4v-7h16v7h-2M8 14h8v7H8z"/></symbol>
+</svg>
 
+<header class="top" id="top">
+  <div class="wrap">
+    <a class="brand" href="#/builder" style="text-decoration:none;color:inherit" aria-label="Symbiosis Workbench home">
+      <svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><circle cx="7" cy="8" r="4.5" fill="none" style="stroke:var(--energy)" stroke-width="2"/><circle cx="23" cy="8" r="4.5" fill="none" style="stroke:var(--water)" stroke-width="2"/><circle cx="15" cy="23" r="4.5" fill="none" style="stroke:var(--bio)" stroke-width="2"/><path d="M11.5 8h7M20.5 12l-3.5 7M9.5 12l3.5 7" style="stroke:var(--ink)" stroke-width="1.6" fill="none"/></svg>
+      <div><b>Symbiosis Workbench</b><small id="brandSub">INDUSTRIAL SYMBIOSIS · EVIDENCE-BASED</small></div>
+    </a>
+    <nav class="tabs" role="tablist" aria-label="Sections">
+      <button role="tab" id="t-builder" aria-controls="tab-builder" aria-selected="true" data-tab="builder"><svg class="ico"><use href="#i-net"/></svg>Park builder</button>
+      <button role="tab" id="t-catalogue" aria-controls="tab-catalogue" aria-selected="false" data-tab="catalogue"><svg class="ico"><use href="#i-list"/></svg>Catalogue</button>
+      <button role="tab" id="t-cases" aria-controls="tab-cases" aria-selected="false" data-tab="cases"><svg class="ico"><use href="#i-pin"/></svg>Cases</button>
+      <button role="tab" id="t-learn" aria-controls="tab-learn" aria-selected="false" data-tab="learn"><svg class="ico"><use href="#i-book"/></svg>Learn</button>
+      <button role="tab" id="t-sources" aria-controls="tab-sources" aria-selected="false" data-tab="sources"><svg class="ico"><use href="#i-quote"/></svg>Sources</button>
+    </nav>
+    <div class="hdr-tools">
+      <button class="search-btn" type="button" id="openPalette" aria-label="Search everything (Ctrl+K)"><svg class="ico"><use href="#i-search"/></svg><span>Search everything…</span><kbd id="kbdHint">Ctrl K</kbd></button>
+      <button class="icon-btn" type="button" id="savedBtn" aria-label="Saved items and history"><svg class="ico"><use href="#i-bookmark"/></svg><span class="badge-n" id="savedCount" hidden>0</span></button>
+      <button class="icon-btn" type="button" id="themeBtn" aria-label="Theme: system"><svg class="ico"><use href="#i-auto"/></svg></button>
+      <button class="icon-btn" type="button" id="helpBtn" aria-label="Keyboard shortcuts and help"><svg class="ico"><use href="#i-help"/></svg></button>
+    </div>
+  </div>
+  <div class="progress" id="progress"></div>
+</header>
+
+<main class="wrap" id="main" tabindex="-1">
+<div class="welcome" id="welcome" hidden>
+  <div class="grow"><b>Welcome.</b> Design an eco-industrial park, search 129 cited waste streams, and explore 19 real cases. Press <kbd>Ctrl</kbd> <kbd>K</kbd> to search anything, or <kbd>?</kbd> for shortcuts.</div>
+  <button class="btn primary" type="button" id="startTour"><svg class="ico"><use href="#i-play"/></svg>Take the 1-minute tour</button>
+  <button class="icon-btn" type="button" id="closeWelcome" aria-label="Dismiss"><svg class="ico"><use href="#i-x"/></svg></button>
+</div>
+
+<!-- ============ BUILDER ============ -->
+<section id="tab-builder" role="tabpanel" aria-labelledby="t-builder">
+  <div class="tab-intro">
+    <div>
+      <h2 tabindex="-1">Design an eco-industrial park</h2>
+      <p>Place facilities, connect by-product, energy and water flows, and see the value and carbon balance respond. Emission factors come from EPA, IPCC, worldsteel and peer-reviewed LCA work; values without a credible source are flagged as illustrative.</p>
+    </div>
+    <div class="io-row">
+      <label class="field" for="exampleSel">Load site
+        <select id="exampleSel">
+          <option value="riverside">Riverside Eco-Park (fictional)</option>
+          <option value="brewery">Brewery-anchored bio-cluster (fictional)</option>
+          <option value="kalundborg">Kalundborg-inspired layout (simplified)</option>
+          <option value="blank">Blank site</option>
+        </select>
+      </label>
+    </div>
+  </div>
+  <div class="builder">
+    <aside class="panel palette" aria-label="Facilities">
+      <div class="grp"><h4>Add a facility</h4><div class="fac-list" id="facList"></div></div>
+      <div class="grp">
+        <h4>Quick actions</h4>
+        <button class="btn primary" id="autoBtn" type="button">Auto-connect best matches</button>
+        <button class="btn" id="clearLinksBtn" type="button">Remove all exchanges</button>
+      </div>
+      <p class="note">Drag facilities to move them. Drag empty ground to pan, scroll or pinch to zoom. <kbd>Ctrl</kbd> <kbd>Z</kbd> undoes.</p>
+    </aside>
+    <div class="stage">
+      <div class="kpis" id="kpis"></div>
+      <div class="site" id="siteBox">
+        <div class="site-bar">
+          <span id="siteName" class="mono"></span>
+          <div class="legend">
+            <span class="c-energy"><i class="dot"></i>Energy</span>
+            <span class="c-water"><i class="dot"></i>Water</span>
+            <span class="c-material"><i class="dot"></i>Minerals &amp; materials</span>
+            <span class="c-bio"><i class="dot"></i>Biomass &amp; organics</span>
+            <span class="c-gas"><i class="dot"></i>Gases</span>
+          </div>
+        </div>
+        <div class="canvas-tools" role="toolbar" aria-label="Canvas tools">
+          <button class="icon-btn" type="button" id="zIn" aria-label="Zoom in (+)"><svg class="ico"><use href="#i-plus"/></svg></button>
+          <button class="icon-btn" type="button" id="zOut" aria-label="Zoom out (−)"><svg class="ico"><use href="#i-minus"/></svg></button>
+          <button class="icon-btn" type="button" id="zFit" aria-label="Fit to view (F)"><svg class="ico"><use href="#i-fit"/></svg></button>
+          <hr>
+          <button class="icon-btn" type="button" id="undoBtn" aria-label="Undo (Ctrl+Z)"><svg class="ico"><use href="#i-undo"/></svg></button>
+          <button class="icon-btn" type="button" id="redoBtn" aria-label="Redo (Ctrl+Shift+Z)"><svg class="ico"><use href="#i-redo"/></svg></button>
+          <hr>
+          <button class="icon-btn" type="button" id="pngBtn" aria-label="Download diagram as PNG"><svg class="ico"><use href="#i-image"/></svg></button>
+        </div>
+        <div class="svgwrap"><svg id="park" viewBox="0 0 1000 600" role="img" aria-label="Park layout with facilities and exchange flows"></svg></div>
+        <div class="site-foot">
+          <span>Line width ∝ net value · dotted = beyond the cited practical range · dashes move in the flow direction</span>
+          <span class="zoom-note" id="scaleNote"></span>
+        </div>
+      </div>
+    </div>
+    <aside class="panel inspector" id="inspector" aria-label="Inspector" aria-live="polite"></aside>
+  </div>
+
+  <details class="panel assump" id="assump">
+    <summary>Assumptions &amp; evidence <span>Every factor, its source, and what is still illustrative · export results</span></summary>
+    <div class="assump-body">
+      <div class="callout"><b>How to read this table.</b> <span class="src-chip ok">sourced</span> values come from the cited reference (the basis shows any arithmetic). <span class="src-chip ill">illustrative</span> values have no credible generic source: prices for heat, steam, water and most residues are local and should come from quotes or site data. CO₂e factors are avoided-burden credits against the stated counterfactual; results change with that choice (Mattila et al., 2012<span class="cite" data-c="mattila2012"></span>).</div>
+      <div class="globals" id="globals"></div>
+      <div class="scroll-x"><table id="factorTable"></table></div>
+      <div>
+        <h4 style="margin-bottom:6px">Export &amp; import</h4>
+        <div class="io-row" style="margin-bottom:8px">
+          <button class="btn" type="button" id="dlCsv"><svg class="ico"><use href="#i-download"/></svg>Exchanges (CSV)</button>
+          <button class="btn" type="button" id="dlJson"><svg class="ico"><use href="#i-download"/></svg>Site (JSON)</button>
+          <button class="btn" type="button" id="dlSvg"><svg class="ico"><use href="#i-image"/></svg>Diagram (SVG)</button>
+          <button class="btn" type="button" id="copyCsv"><svg class="ico"><use href="#i-copy"/></svg>Copy CSV</button>
+          <label class="btn" for="fileIn" style="cursor:pointer"><svg class="ico"><use href="#i-plus"/></svg>Open site file…</label><input id="fileIn" type="file" accept=".json,application/json" hidden>
+          <button class="btn" type="button" id="loadJson">Load JSON from box</button>
+          <button class="btn danger" type="button" id="resetFactors">Reset factors</button>
+        </div>
+        <textarea id="jsonBox" aria-label="Site JSON" placeholder="Paste a site JSON here and press “Load JSON from box”, or open a saved .json file."></textarea>
+      </div>
+    </div>
+  </details>
+</section>
+
+<!-- ============ CATALOGUE ============ -->
+<section id="tab-catalogue" role="tabpanel" aria-labelledby="t-catalogue" hidden>
+  <div class="tab-intro">
+    <div>
+      <h2 tabindex="-1">Industrial waste &amp; by-product catalogue</h2>
+      <p id="catIntro"></p>
+    </div>
+  </div>
+  <div class="mm">
+    <aside class="panel mm-side">
+      <div class="filters">
+        <input id="mmSearch" type="search" placeholder="Search name, code, use… ( / )" aria-label="Search catalogue" autocomplete="off">
+        <div class="cat-chips" id="mmCats"></div>
+        <div class="fgrid">
+          <label class="field" for="fSector">Source sector<select id="fSector"></select></label>
+          <label class="field" for="fRecv">Receiving sector<select id="fRecv"></select></label>
+          <label class="field" for="fTrl">Route maturity<select id="fTrl"></select></label>
+          <label class="field" for="fHaz">Hazard status<select id="fHaz"></select></label>
+        </div>
+        <label class="field" for="fEwc">List of Waste chapter<select id="fEwc"></select></label>
+        <div class="active-filters" id="mmActive"></div>
+        <div class="sort-row"><span class="count" id="mmCount"></span>
+          <label class="note" for="mmSort">Sort <select id="mmSort"><option value="az">A–Z</option><option value="routes">Most routes</option><option value="code">By waste code</option><option value="saved">Saved first</option></select></label></div>
+      </div>
+      <div class="mm-list" id="mmList" role="listbox" aria-label="Waste streams" tabindex="0"></div>
+    </aside>
+    <div class="panel mm-detail" id="mmDetail" tabindex="-1"></div>
+  </div>
+</section>
+
+<!-- ============ CASES ============ -->
+<section id="tab-cases" role="tabpanel" aria-labelledby="t-cases" hidden>
+  <div class="tab-intro">
+    <div>
+      <h2 tabindex="-1">Case atlas</h2>
+      <p id="caseIntro"></p>
+    </div>
+  </div>
+  <div class="cases">
+    <aside class="panel" style="display:flex;flex-direction:column">
+      <div class="case-filter">
+        <label class="field" for="cfModel" style="flex:1 1 120px">Development model<select id="cfModel"></select></label>
+        <label class="field" for="cfRegion" style="flex:1 1 120px">Region<select id="cfRegion"></select></label>
+      </div>
+      <div class="case-list" id="caseList" role="listbox" aria-label="Cases" tabindex="0"></div>
+    </aside>
+    <div class="panel case-detail" id="caseDetail" tabindex="-1"></div>
+  </div>
+  <div class="panel" style="margin-top:14px;padding:14px">
+    <h3 style="margin-bottom:8px">Side-by-side</h3>
+    <div class="scroll-x"><table class="cmp" id="caseCmp"></table></div>
+  </div>
+</section>
+
+<!-- ============ LEARN ============ -->
+<section id="tab-learn" role="tabpanel" aria-labelledby="t-learn" hidden>
+  <div class="tab-intro">
+    <div>
+      <h2 tabindex="-1">Concepts &amp; self-check</h2>
+      <p>The core theory of industrial symbiosis with citations to the original papers, then twelve questions to test it.</p>
+    </div>
+  </div>
+  <div class="learn">
+    <article class="panel lesson" id="lesson"></article>
+    <aside class="panel quiz" id="quiz" aria-live="polite"></aside>
+  </div>
+</section>
+
+<!-- ============ SOURCES ============ -->
+<section id="tab-sources" role="tabpanel" aria-labelledby="t-sources" hidden>
+  <div class="tab-intro">
+    <div>
+      <h2 tabindex="-1">Sources &amp; data</h2>
+      <p>The full reference list with links back to where each source is used, public repositories for waste and symbiosis data, and how the evidence was assembled.</p>
+    </div>
+  </div>
+  <div class="src-grid">
+    <div class="panel" style="padding:16px;display:flex;flex-direction:column;gap:10px">
+      <div style="display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;align-items:flex-end">
+        <h3 id="bibTitle">References</h3>
+        <div class="bib-tools">
+          <input id="bibSearch" type="search" placeholder="Search author, title, journal…" aria-label="Search references" style="padding:6px 9px;border:1px solid var(--line);border-radius:6px;background:var(--panel);min-width:0;flex:0 1 240px">
+          <select id="bibType" aria-label="Reference type"><option value="">All types</option><option value="article">Journal articles</option><option value="report">Reports</option><option value="web">Web pages</option><option value="other">Books &amp; other</option></select>
+          <button class="btn small" type="button" id="dlBib"><svg class="ico"><use href="#i-download"/></svg>BibTeX</button>
+          <button class="btn small" type="button" id="dlRis"><svg class="ico"><use href="#i-download"/></svg>RIS</button>
+        </div>
+      </div>
+      <div class="bib"><ol id="bibList"></ol></div>
+    </div>
+    <div class="src-side">
+      <div class="panel prose" style="padding:16px" id="method"></div>
+      <div class="panel" style="padding:16px;display:flex;flex-direction:column;gap:10px">
+        <h3>Public data repositories &amp; tools</h3>
+        <div class="repo-grid" id="repoGrid" style="grid-template-columns:1fr"></div>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <div><h4>About</h4><p id="aboutTxt"></p></div>
+    <div><h4>Cite this tool</h4><div class="citebox" id="citeTool"></div><button class="btn small" type="button" id="copyCiteTool" style="margin-top:6px"><svg class="ico"><use href="#i-copy"/></svg>Copy citation</button></div>
+    <div><h4>Navigate</h4><p><kbd>Ctrl</kbd> <kbd>K</kbd> search · <kbd>1</kbd>–<kbd>5</kbd> sections · <kbd>J</kbd>/<kbd>K</kbd> next/previous · <kbd>S</kbd> save · <kbd>?</kbd> all shortcuts</p><p style="margin-top:6px" id="footLinks"></p></div>
+  </div>
+</footer>
+
+<nav class="bnav" aria-label="Sections">
+  <button type="button" data-tab="builder"><svg class="ico"><use href="#i-net"/></svg>Builder</button>
+  <button type="button" data-tab="catalogue"><svg class="ico"><use href="#i-list"/></svg>Catalogue</button>
+  <button type="button" data-tab="cases"><svg class="ico"><use href="#i-pin"/></svg>Cases</button>
+  <button type="button" data-tab="learn"><svg class="ico"><use href="#i-book"/></svg>Learn</button>
+  <button type="button" data-tab="sources"><svg class="ico"><use href="#i-quote"/></svg>Sources</button>
+</nav>
+<button class="backtop" type="button" id="backTop" aria-label="Back to top" hidden><svg class="ico"><use href="#i-up"/></svg></button>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<div class="pop" id="pop" hidden role="dialog" aria-label="Reference"></div>
+<div id="layer"></div>
+
+<script src="data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
