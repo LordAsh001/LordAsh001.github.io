@@ -12,7 +12,7 @@
 --bg:#F5F7F6;--panel:#FFFFFF;--ink:#1D2524;--ink2:#4A5654;--ink3:#7A8584;--line:#D5DCDA;--keybg:#E9EEEC;
 --pe-f:#FAECE7;--pe-b:#993C1D;--pe-x:#712B13;--pl-f:#E1F5EE;--pl-b:#0F6E56;--pl-x:#085041;--pr-f:#FAEEDA;--pr-b:#854F0B;--pr-x:#633806;--pc-f:#E6F1FB;--pc-b:#185FA5;--pc-x:#0C447C;--pa-f:#EEEDFE;--pa-b:#534AB7;--pa-x:#3C3489;
 --disp:"Bricolage Grotesque","Avenir Next","Segoe UI",system-ui,sans-serif;--body:"Source Sans 3","Segoe UI",system-ui,-apple-system,sans-serif}
-html{scroll-padding-top:env(safe-area-inset-top,0px)}
+html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 44px)}
 *,*::before,*::after{box-sizing:inherit}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#141A19;--panel:#1C2322;--ink:#E8EEEC;--ink2:#B4BFBC;--ink3:#86918F;--line:#33403E;--keybg:#202827;
 --pe-f:#4A1B0C;--pe-b:#F0997B;--pe-x:#FAECE7;--pl-f:#04342C;--pl-b:#5DCAA5;--pl-x:#E1F5EE;--pr-f:#412402;--pr-b:#EF9F27;--pr-x:#FAEEDA;--pc-f:#042C53;--pc-b:#85B7EB;--pc-x:#E6F1FB;--pa-f:#26215C;--pa-b:#AFA9EC;--pa-x:#EEEDFE}}
@@ -105,13 +105,32 @@ dialog[open]{animation:pop .22s ease}
 .lens p{color:var(--x)!important}
 .lens b{font-family:var(--disp)}
 @media (max-width:760px){.modes{display:flex}.modes button{font-size:14px;padding:7px 9px;flex:1 1 auto}.cols,.about{grid-template-columns:1fr}.badge{top:2px;right:2px;min-width:16px;height:16px;font-size:11px;padding:0 3px}.badge.dot,.badge.ring{width:10px;min-width:10px;height:10px}.cpanel{padding:14px}}
+
+/* site bar: shared link back to the main website */
+.sitebar{font:500 13px/1.2 var(--sb-font,system-ui,-apple-system,"Segoe UI",sans-serif);background:var(--sb-bg);border-bottom:1px solid var(--sb-line);color:var(--sb-ink)}
+.sitebar-in{max-width:var(--sb-max,1400px);margin:0 auto;padding:0 var(--sb-pad,16px);height:36px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.sitebar a{color:inherit;text-decoration:none;border-radius:6px}
+.sitebar a:focus-visible{outline:2px solid currentColor;outline-offset:2px}
+.sb-home{display:inline-flex;align-items:center;gap:6px;padding:6px 8px 6px 4px;margin-left:-4px;white-space:nowrap}
+.sb-home:hover{background:var(--sb-hover)}
+.sb-home svg{transition:transform .15s}
+.sb-home:hover svg{transform:translateX(-2px)}
+.sb-more{display:inline-flex;align-items:center;gap:8px;min-width:0;color:var(--sb-muted)}
+.sb-more a{color:var(--sb-ink);text-decoration:underline;text-underline-offset:3px;text-decoration-color:var(--sb-line);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;padding:6px 0}
+.sb-more a:hover{text-decoration-color:currentColor}
+@media (max-width:560px){.sb-hide,.sb-lbl{display:none}}
+@media print{.sitebar{display:none}}
+.sitebar{position:sticky;top:0;z-index:50;--sb-max:1120px;--sb-pad:20px;--sb-bg:color-mix(in srgb,var(--bg) 88%,transparent);--sb-line:var(--line);--sb-ink:var(--ink);--sb-muted:var(--ink3);--sb-hover:var(--keybg);--sb-font:var(--body);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
 </style>
 </head>
 <body>
-<main>
-<nav class="site-nav" aria-label="Website navigation">
-<a href="https://lordash001.github.io/">← Back to main website</a>
+<nav class="sitebar" aria-label="Website">
+  <div class="sitebar-in">
+    <a class="sb-home" href="/#work" title="Back to Shagbaor Hycent Amool's website"><svg aria-hidden="true" width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10 3 5 8l5 5"/></svg><span><span class="sb-hide">Back to </span>Shagbaor Hycent Amool</span></a>
+    <span class="sb-more"><span class="sb-lbl">Also try</span><a href="/symbiosis/">Symbiosis Workbench</a></span>
+  </div>
 </nav>
+<main>
 <div class="modes" role="tablist" aria-label="View">
 <button role="tab" data-m="goals" aria-selected="true">Goals</button>
 <button role="tab" data-m="conn" aria-selected="false">Connections</button>
@@ -249,7 +268,11 @@ dlg.innerHTML=`
 if(!dlg.open)dlg.showModal();dlg.scrollTop=0;dlg.querySelector(".x").focus()}
 dlg.addEventListener("click",e=>{if(e.target===dlg)dlg.close()});
 document.addEventListener("keydown",e=>{if(!dlg.open)return;if(e.key==="ArrowRight")showGoal(cur%17+1);if(e.key==="ArrowLeft")showGoal((cur+15)%17+1)});
-$("copy").onclick=async()=>{const t=$("cite").innerText+" "+location.href;try{await navigator.clipboard.writeText(t);$("copy").textContent="Citation copied"}catch(e){$("copy").textContent="Select the text above to copy"}};
+$("copy").onclick=async()=>{const t=$("cite").innerText+" "+location.href.split("#")[0];try{await navigator.clipboard.writeText(t);$("copy").textContent="Citation copied"}catch(e){$("copy").textContent="Select the text above to copy"}};
+/* remember the chosen view in the address (#connections, #lens) so links, reloads and the Back button return to it */
+(function(){var H={goals:"",conn:"connections",lens:"lens"};function setM(m){if(!(m in H))return;mode=m;document.querySelectorAll(".modes button").forEach(function(x){x.setAttribute("aria-selected",String(x.dataset.m===m))})}
+var r=location.hash.slice(1);Object.keys(H).forEach(function(k){if(H[k]&&H[k]===r)setM(k)});
+document.querySelectorAll(".modes button").forEach(function(b){b.addEventListener("click",function(){try{history.replaceState(null,"",H[b.dataset.m]?"#"+H[b.dataset.m]:location.pathname+location.search)}catch(e){}})});})();
 render();
 </script>
 </body>
