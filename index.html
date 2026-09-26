@@ -625,8 +625,7 @@ window.initSim=function(){
       h+='<figure class="fig rise d2"><div class="fig-frame" id="fig1"><canvas id="sludge" role="img" aria-label="Animated simulation: small loose flocs drift through water and cluster into dense granules. Turning aeration off lets the granules settle quickly while the flocs linger."></canvas>'+
         '<div class="fig-hud mono"><span id="hud-mode">Aerated</span><span id="hud-count">granules 0 · flocs 0</span></div>'+
         '<div class="fig-ctrl"><button class="btn" type="button" id="aerate" aria-pressed="true"><span class="dot" aria-hidden="true"></span><span id="aerate-lbl">Stop aeration</span></button><button class="btn ghost" type="button" id="reseed">Reset</button></div></div>'+
-        (fig.caption?'<figcaption>'+inline(fig.caption)+'</figcaption>':'')+
-        '<div class="sustainatable" id="sustainatable"><div class="sustainatable-head"><h3>The SustainaTable</h3><button class="sustainatable-toggle" type="button" aria-expanded="false">Expand to full screen</button></div><p>Explore the 17 Sustainable Development Goals through an interactive engineering and resource-recovery lens.</p><iframe src="sustainatable.html" title="The SustainaTable: the 17 elements of the 2030 Agenda" loading="lazy"></iframe></div></figure>';
+        (fig.caption?'<figcaption>'+inline(fig.caption)+'</figcaption>':'')+'</figure>';
     }
     h+='</section>';
 

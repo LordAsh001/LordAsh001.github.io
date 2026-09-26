@@ -265,6 +265,19 @@
           "hidden": false
         },
         {
+          "name": "The SustainaTable",
+          "meta": "2026",
+          "status": "active",
+          "role": "Interactive tool",
+          "text": "Explore the 17 Sustainable Development Goals as a periodic table, through an engineering and resource-recovery lens.",
+          "bullets": [],
+          "stats": [],
+          "link_label": "Open tool",
+          "link_url": "/sustainatable.html",
+          "size": "wide",
+          "hidden": false
+        },
+        {
           "name": "Via Scholaris",
           "meta": "Founder & Programme Lead · 2024 →",
           "status": "active",
