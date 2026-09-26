@@ -349,6 +349,19 @@
           "link_url": "",
           "size": "third",
           "hidden": false
+        },
+        {
+          "name": "Symbiosis Workbench",
+          "meta": "2026",
+          "status": "active",
+          "role": "Interactive tool",
+          "text": "Design eco-industrial parks, compare by-product exchanges, and explore evidence-based industrial symbiosis data.",
+          "bullets": [],
+          "stats": [],
+          "link_label": "Open tool",
+          "link_url": "/symbiosis/",
+          "size": "wide",
+          "hidden": false
         }
       ]
     },
