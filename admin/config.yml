@@ -79,6 +79,21 @@ collections:
         label: Contact email
         widget: string
         required: false
+      - name: cv
+        label: CV (PDF)
+        widget: file
+        required: false
+        media_folder: /documents
+        public_folder: /documents
+        media_library:
+          config:
+            multiple: false
+        hint: Optional. Upload your CV as a PDF. A "Download CV" button appears at the top of the page and in Contact. Leave empty to hide it.
+      - name: cv_updated
+        label: CV last updated
+        widget: string
+        required: false
+        hint: Optional, e.g. "September 2026". Shown next to the Download CV button.
       - name: abstract
         label: Abstract
         widget: text
