@@ -1,0 +1,527 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Laureate Lab</title>
+<meta name="description" content="Gamified scholarship preparation platform: a live atlas of global and Nigerian scholarships with deadline countdowns, an eligibility matcher, an Essay Dojo with colour-coded feedback as you type, interview practice, reverse deadline planner and application tracker.">
+<meta name="author" content="Shagbaor Hycent Amool">
+<meta name="color-scheme" content="light dark">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Laureate Lab">
+<meta property="og:description" content="Gamified scholarship preparation platform: a live atlas of global and Nigerian scholarships with deadline countdowns, an eligibility matcher, an Essay Dojo with colour-coded feedback as you type, interview practice, reverse deadline planner and application tracker.">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebApplication", "name": "Laureate Lab", "applicationCategory": "EducationalApplication", "operatingSystem": "Any", "description": "Gamified scholarship preparation platform: a live atlas of global and Nigerian scholarships with deadline countdowns, an eligibility matcher, an Essay Dojo with colour-coded feedback as you type, interview practice, reverse deadline planner and application tracker.", "author": {"@type": "Person", "name": "Shagbaor Hycent Amool", "affiliation": "University of Northern British Columbia"}, "offers": {"@type": "Offer", "price": "0"}}</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  --paper:#F2F3F7; --surface:#FFFFFF; --surface2:#E8EAF1; --ink:#14213D; --ink2:#4A5573; --line:#D5D9E4;
+  --accent:#7A1F3D; --accent-ink:#FFFFFF; --teal:#0F766E; --gold:#B7862B;
+  --good:#1E8E4E; --good-bg:#DDF3E5; --ok:#2B6CB0; --ok-bg:#DFEBFA; --warn:#B7700A; --warn-bg:#FCEFD5; --bad:#C23535; --bad-bg:#F9DEDE;
+  --shadow:0 1px 2px rgba(20,33,61,.06),0 6px 20px rgba(20,33,61,.06);
+  --f-display:"Bricolage Grotesque","Segoe UI",system-ui,sans-serif; --f-body:"IBM Plex Sans","Segoe UI",system-ui,sans-serif; --f-mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  color-scheme:dark; --paper:#0E1424; --surface:#161E33; --surface2:#1F2942; --ink:#E7EAF3; --ink2:#A3ADC7; --line:#2C3754;
+  --accent:#E0708F; --accent-ink:#1A0B12; --teal:#3BC2B4; --gold:#E2B559;
+  --good:#5BD08C; --good-bg:#15372A; --ok:#7FB2EE; --ok-bg:#172C47; --warn:#F0B64E; --warn-bg:#3A2B10; --bad:#F07C7C; --bad-bg:#3F1A1D;
+  --shadow:0 1px 2px rgba(0,0,0,.3),0 6px 20px rgba(0,0,0,.25);}}
+:root[data-theme="dark"]{
+  color-scheme:dark; --paper:#0E1424; --surface:#161E33; --surface2:#1F2942; --ink:#E7EAF3; --ink2:#A3ADC7; --line:#2C3754;
+  --accent:#E0708F; --accent-ink:#1A0B12; --teal:#3BC2B4; --gold:#E2B559;
+  --good:#5BD08C; --good-bg:#15372A; --ok:#7FB2EE; --ok-bg:#172C47; --warn:#F0B64E; --warn-bg:#3A2B10; --bad:#F07C7C; --bad-bg:#3F1A1D;
+  --shadow:0 1px 2px rgba(0,0,0,.3),0 6px 20px rgba(0,0,0,.25);}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{background:var(--paper);color:var(--ink);font:15px/1.55 var(--f-body);margin:0}
+h1,h2,h3,h4{font-family:var(--f-display);line-height:1.15;margin:0;text-wrap:balance;letter-spacing:-.01em}
+h2{font-size:clamp(1.5rem,3vw,2rem);font-weight:800}
+h3{font-size:1.15rem;font-weight:700}
+p{margin:0}
+a{color:var(--accent)}
+button,input,select,textarea{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--teal);outline-offset:2px}
+.wrap{max-width:1180px;margin:0 auto;padding-inline:16px}
+.mono{font-family:var(--f-mono);font-variant-numeric:tabular-nums}
+.eyebrow{font:500 11px/1 var(--f-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--ink2)}
+.muted{color:var(--ink2)}
+.small{font-size:13px}
+
+/* header */
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:color-mix(in srgb,var(--paper) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.topbar{display:flex;align-items:center;gap:16px;padding-block:10px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:10px;font:800 20px/1 var(--f-display);letter-spacing:-.02em}
+.seal{width:30px;height:30px;border-radius:50%;background:var(--accent);color:var(--accent-ink);display:grid;place-items:center;font:700 13px var(--f-display);box-shadow:inset 0 0 0 3px color-mix(in srgb,var(--accent-ink) 35%,transparent)}
+.passport{margin-left:auto;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.lvl{display:flex;flex-direction:column;gap:4px;min-width:180px}
+.lvl-row{display:flex;justify-content:space-between;gap:8px;font-size:12px}
+.xpbar{height:8px;border-radius:99px;background:var(--surface2);overflow:hidden}
+.xpbar i{display:block;height:100%;background:linear-gradient(90deg,var(--gold),color-mix(in srgb,var(--gold) 60%,var(--accent)));width:0;transition:width .6s}
+.chip{display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border-radius:99px;border:1px solid var(--line);background:var(--surface);font-size:12px;white-space:nowrap}
+.tabs{display:flex;gap:4px;overflow-x:auto;padding-bottom:8px;scrollbar-width:none}
+.tabs::-webkit-scrollbar{display:none}
+.tab{border:0;background:none;padding:8px 12px;border-radius:8px;cursor:pointer;color:var(--ink2);font-weight:500;white-space:nowrap}
+.tab:hover{background:var(--surface2);color:var(--ink)}
+.tab[aria-selected="true"]{background:var(--ink);color:var(--paper)}
+
+main{padding-block:24px 64px}
+section.view{display:none;flex-direction:column;gap:20px}
+section.view.on{display:flex}
+.head{display:flex;flex-direction:column;gap:6px;max-width:70ch}
+
+.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px;box-shadow:var(--shadow)}
+.grid{display:grid;gap:14px}
+.g2{grid-template-columns:repeat(auto-fit,minmax(320px,1fr))}
+.g3{grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+.g4{grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
+.row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.stack{display:flex;flex-direction:column;gap:10px}
+.btn{border:1px solid var(--line);background:var(--surface);padding:8px 14px;border-radius:9px;cursor:pointer;font-weight:500;display:inline-flex;align-items:center;gap:6px}
+.btn:hover{border-color:var(--ink2)}
+.btn.primary{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+.btn.primary:hover{filter:brightness(1.08)}
+.btn.teal{background:var(--teal);color:#fff;border-color:var(--teal)}
+.btn.sm{padding:5px 10px;font-size:13px}
+.btn:disabled{opacity:.5;cursor:not-allowed}
+input[type=text],input[type=number],input[type=date],select,textarea{background:var(--surface);border:1px solid var(--line);border-radius:9px;padding:8px 10px;width:100%}
+textarea{resize:vertical;line-height:1.6}
+label.f{display:flex;flex-direction:column;gap:4px;font-size:13px;color:var(--ink2);flex:1;min-width:140px}
+
+/* hero */
+.hero{display:grid;grid-template-columns:1.3fr 1fr;gap:18px;align-items:stretch}
+@media(max-width:820px){.hero{grid-template-columns:1fr}}
+.hero-main{background:var(--ink);color:var(--paper);border-radius:18px;padding:28px;display:flex;flex-direction:column;gap:14px;position:relative;overflow:hidden}
+.hero-main h1{font-size:clamp(2rem,5vw,3.2rem);font-weight:800;max-width:14ch}
+.hero-main p{color:color-mix(in srgb,var(--paper) 78%,transparent);max-width:52ch}
+.hero-main .btn{background:transparent;color:var(--paper);border-color:color-mix(in srgb,var(--paper) 35%,transparent)}
+.hero-main .btn.primary{background:var(--gold);color:#1a1405;border-color:var(--gold)}
+.hero-stamp{position:absolute;right:-30px;top:-30px;width:190px;height:190px;border-radius:50%;border:3px dashed color-mix(in srgb,var(--gold) 55%,transparent);display:grid;place-items:center;transform:rotate(-14deg);font:800 14px/1.1 var(--f-display);color:color-mix(in srgb,var(--gold) 70%,transparent);text-align:center;letter-spacing:.1em;pointer-events:none}
+.stat{display:flex;flex-direction:column;gap:2px}
+.stat b{font:800 28px/1 var(--f-display)}
+.dl-list{display:flex;flex-direction:column;gap:8px}
+.dl{display:grid;grid-template-columns:64px 1fr auto;gap:10px;align-items:center;padding:8px 0;border-bottom:1px dashed var(--line)}
+.dl:last-child{border-bottom:0}
+.tminus{font:600 13px var(--f-mono);text-align:center;padding:6px 4px;border-radius:8px;background:var(--surface2)}
+.tminus.hot{background:var(--bad-bg);color:var(--bad)}
+.tminus.warm{background:var(--warn-bg);color:var(--warn)}
+.stamps{display:flex;flex-wrap:wrap;gap:10px}
+.stamp{width:78px;height:78px;border-radius:50%;display:grid;place-items:center;text-align:center;font:700 10px/1.1 var(--f-display);letter-spacing:.06em;text-transform:uppercase;border:2px dashed var(--line);color:var(--ink2);padding:8px;transform:rotate(var(--r,-6deg))}
+.stamp.got{border-color:var(--accent);color:var(--accent);border-style:double;border-width:4px;background:color-mix(in srgb,var(--accent) 6%,transparent)}
+
+/* atlas */
+.filters{display:flex;flex-wrap:wrap;gap:10px;align-items:flex-end}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:9px;overflow:hidden;background:var(--surface)}
+.seg button{border:0;background:none;padding:7px 12px;cursor:pointer;font-size:13px}
+.seg button[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
+.pass{display:grid;grid-template-columns:1fr 118px;background:var(--surface);border:1px solid var(--line);border-radius:14px;overflow:hidden;box-shadow:var(--shadow)}
+.pass-main{padding:16px;display:flex;flex-direction:column;gap:8px;min-width:0}
+.pass-stub{border-left:2px dashed var(--line);padding:14px 10px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;text-align:center;background:var(--surface2)}
+.pass-stub b{font:800 26px/1 var(--f-display)}
+.pill{display:inline-flex;align-items:center;gap:5px;font:500 11px/1 var(--f-mono);letter-spacing:.04em;padding:4px 8px;border-radius:99px;text-transform:uppercase}
+.p-open{background:var(--good-bg);color:var(--good)}
+.p-soon{background:var(--bad-bg);color:var(--bad)}
+.p-up{background:var(--ok-bg);color:var(--ok)}
+.p-closed{background:var(--surface2);color:var(--ink2)}
+.p-typ{background:var(--warn-bg);color:var(--warn)}
+.p-conf{background:var(--good-bg);color:var(--good)}
+.kv{display:grid;grid-template-columns:78px 1fr;gap:4px 10px;font-size:13px}
+.kv dt{color:var(--ink2)} .kv dd{margin:0}
+@media(max-width:480px){.pass{grid-template-columns:1fr}.pass-stub{border-left:0;border-top:2px dashed var(--line);flex-direction:row;justify-content:space-between}}
+
+/* dojo */
+.dojo{display:grid;grid-template-columns:260px 1fr;gap:16px}
+@media(max-width:900px){.dojo{grid-template-columns:1fr}}
+.moves{display:flex;flex-direction:column;gap:6px}
+.move{display:flex;gap:10px;align-items:flex-start;padding:9px 10px;border-radius:10px;border:1px solid var(--line);background:var(--surface);cursor:pointer;text-align:left}
+.move .dot{width:14px;height:14px;border-radius:50%;border:2px solid var(--line);flex:none;margin-top:3px}
+.move.done .dot{background:var(--good);border-color:var(--good)}
+.move.active{border-color:var(--teal);box-shadow:0 0 0 2px color-mix(in srgb,var(--teal) 25%,transparent)}
+.editor-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:1000px){.editor-grid{grid-template-columns:1fr}}
+.mirror{min-height:260px;padding:12px 14px;border:1px solid var(--line);border-radius:10px;background:var(--surface);line-height:1.8;white-space:pre-wrap;overflow-wrap:anywhere}
+.s{border-radius:4px;padding:1px 2px;cursor:help;transition:background .2s}
+.s-good{background:var(--good-bg);box-shadow:inset 0 -2px 0 var(--good)}
+.s-ok{background:var(--ok-bg);box-shadow:inset 0 -2px 0 var(--ok)}
+.s-warn{background:var(--warn-bg);box-shadow:inset 0 -2px 0 var(--warn)}
+.s-bad{background:var(--bad-bg);box-shadow:inset 0 -2px 0 var(--bad)}
+mark.cl{background:none;color:var(--bad);text-decoration:underline wavy var(--bad);text-underline-offset:3px}
+mark.sv{background:none;color:var(--good);font-weight:600}
+.legend{display:flex;flex-wrap:wrap;gap:12px;font-size:12px}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.sw{width:12px;height:12px;border-radius:3px;display:inline-block}
+.meters{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px}
+.meter{display:flex;flex-direction:column;gap:5px}
+.meter .bar{height:7px;border-radius:99px;background:var(--surface2);overflow:hidden}
+.meter .bar i{display:block;height:100%;width:0;transition:width .4s,background .4s}
+.meter-top{display:flex;justify-content:space-between;font-size:12px}
+.tip{position:fixed;z-index:50;max-width:280px;background:var(--ink);color:var(--paper);padding:8px 10px;border-radius:8px;font-size:12.5px;pointer-events:none;box-shadow:var(--shadow)}
+.ex{display:grid;grid-template-columns:1fr 1fr;gap:8px;font-size:13px}
+.ex div{padding:8px 10px;border-radius:8px}
+.ex .w{background:var(--bad-bg)} .ex .g{background:var(--good-bg)}
+@media(max-width:560px){.ex{grid-template-columns:1fr}}
+.ai-out{white-space:pre-wrap;font-size:14px}
+.fix{border-left:3px solid var(--warn);padding:6px 10px;background:var(--surface2);border-radius:0 8px 8px 0}
+.scorebig{font:800 44px/1 var(--f-display)}
+
+/* arcade */
+.arena{min-height:170px;display:flex;flex-direction:column;justify-content:center;gap:14px}
+.gsent{font:600 clamp(1.05rem,2.4vw,1.35rem)/1.4 var(--f-display)}
+.timer{height:6px;background:var(--surface2);border-radius:99px;overflow:hidden}
+.timer i{display:block;height:100%;background:var(--teal);width:100%}
+.flash-good{animation:fg .5s}.flash-bad{animation:fb .5s}
+@keyframes fg{0%{box-shadow:0 0 0 0 var(--good)}100%{box-shadow:0 0 0 14px transparent}}
+@keyframes fb{0%{box-shadow:0 0 0 0 var(--bad)}100%{box-shadow:0 0 0 14px transparent}}
+.order-item{display:flex;gap:10px;align-items:center;padding:10px;border:1px solid var(--line);border-radius:10px;background:var(--surface)}
+.order-item.sel{border-color:var(--teal);background:color-mix(in srgb,var(--teal) 8%,var(--surface))}
+.order-item.right{border-color:var(--good);background:var(--good-bg)}
+.order-item.wrong{border-color:var(--bad);background:var(--bad-bg)}
+.order-item .n{font:600 12px var(--f-mono);color:var(--ink2);width:18px}
+
+/* kanban */
+.kanban{display:grid;grid-template-columns:repeat(5,minmax(200px,1fr));gap:10px;overflow-x:auto;padding-bottom:6px}
+.col{background:var(--surface2);border-radius:12px;padding:10px;display:flex;flex-direction:column;gap:8px;min-height:160px}
+.col h4{font-size:13px;display:flex;justify-content:space-between}
+.kcard{background:var(--surface);border:1px solid var(--line);border-radius:9px;padding:9px;font-size:13px;display:flex;flex-direction:column;gap:6px}
+.kcard .row{gap:4px}
+
+.list-check{display:flex;flex-direction:column;gap:6px}
+.list-check label{display:flex;gap:8px;align-items:flex-start;font-size:14px}
+.plan-row{display:grid;grid-template-columns:110px 1fr;gap:10px;padding:7px 0;border-bottom:1px dashed var(--line);font-size:14px}
+.plan-row.past{opacity:.5;text-decoration:line-through}
+.plan-row.today{background:var(--warn-bg);border-radius:6px;padding-inline:6px}
+pre.out{white-space:pre-wrap;background:var(--surface2);padding:12px;border-radius:10px;font:13px/1.55 var(--f-mono);margin:0;max-height:360px;overflow:auto}
+.toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--ink);color:var(--paper);padding:10px 16px;border-radius:10px;z-index:60;font-size:14px;box-shadow:var(--shadow);transition:opacity .3s}
+.pathcard ol{margin:6px 0 0;padding-left:18px;font-size:13.5px;color:var(--ink2)}
+.divider{height:1px;background:var(--line)}
+.risk{height:12px;border-radius:99px;background:linear-gradient(90deg,var(--good),var(--warn),var(--bad));position:relative}
+.risk i{position:absolute;top:-4px;width:4px;height:20px;background:var(--ink);border-radius:2px;transition:left .3s}
+.hidden-ai{display:none}
+details summary{cursor:pointer;font-weight:600}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+
+
+<header class="top">
+  <div class="wrap">
+    <div class="topbar">
+      <div class="brand"><span class="seal">LL</span>Laureate Lab</div>
+      <div class="passport">
+        <div class="lvl">
+          <div class="lvl-row"><span id="lvlName">Level 1 · Applicant</span><span class="mono" id="xpTxt">0 XP</span></div>
+          <div class="xpbar"><i id="xpBar"></i></div>
+        </div>
+        <span class="chip" title="Days in a row you practised"><span><span id="streak">0</span>-day streak</span></span>
+        <span class="chip"><span id="stampCount">0</span> stamps</span>
+      </div>
+    </div>
+    <nav class="tabs" role="tablist" id="tabs">
+      <button class="tab" role="tab" data-v="home">Passport</button>
+      <button class="tab" role="tab" data-v="atlas">Scholarship Atlas</button>
+      <button class="tab" role="tab" data-v="match">Matcher</button>
+      <button class="tab" role="tab" data-v="dojo">Essay Dojo</button>
+      <button class="tab" role="tab" data-v="arcade">Arcade</button>
+      <button class="tab" role="tab" data-v="interview">Interview Room</button>
+      <button class="tab" role="tab" data-v="pathways">Funding Routes</button>
+      <button class="tab" role="tab" data-v="tools">Toolkit</button>
+      <button class="tab" role="tab" data-v="tracker">Tracker</button>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+
+<!-- HOME -->
+<section class="view" id="v-home">
+  <div class="hero">
+    <div class="hero-main">
+      <div class="hero-stamp">FUNDED<br>·<br>2027</div>
+      <span class="eyebrow" style="color:color-mix(in srgb,var(--paper) 60%,transparent)">Scholarship training ground · cycle 2026–27</span>
+      <h1>Practise every part of getting funded.</h1>
+      <p>Find live deadlines, write each essay type with colour-coded feedback as you type, rehearse interviews against a timer, and plan every document backwards from the deadline. Every practice session earns XP and passport stamps.</p>
+      <div class="row">
+        <button class="btn primary" data-go="dojo">Start writing in the Dojo</button>
+        <button class="btn" data-go="match">Find scholarships I can win</button>
+      </div>
+    </div>
+    <div class="card stack">
+      <div class="row" style="justify-content:space-between"><h3>Closing next</h3><span class="eyebrow">T-minus days</span></div>
+      <div class="dl-list" id="homeDeadlines"></div>
+      <button class="btn sm" data-go="atlas">Open the full atlas</button>
+    </div>
+  </div>
+  <div class="grid g4">
+    <div class="card stat"><span class="eyebrow">Open now</span><b class="mono" id="stOpen">0</b><span class="small muted">scholarships accepting applications</span></div>
+    <div class="card stat"><span class="eyebrow">In your tracker</span><b class="mono" id="stTrack">0</b><span class="small muted">applications in progress</span></div>
+    <div class="card stat"><span class="eyebrow">Words drafted</span><b class="mono" id="stWords">0</b><span class="small muted">across Dojo drafts</span></div>
+    <div class="card stat"><span class="eyebrow">Readiness</span><b class="mono" id="stReady">0%</b><span class="small muted">from your prep checklist</span></div>
+  </div>
+  <div class="grid g2">
+    <div class="card stack">
+      <h3>Passport stamps</h3>
+      <p class="small muted">Earn each stamp by completing a real preparation step.</p>
+      <div class="stamps" id="stamps"></div>
+    </div>
+    <div class="card stack">
+      <h3>Readiness checklist</h3>
+      <p class="small muted">The documents most scholarships ask for. Tick what you already have.</p>
+      <div class="list-check" id="readyList"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ATLAS -->
+<section class="view" id="v-atlas">
+  <div class="head"><span class="eyebrow">Last checked <span id="checked"></span></span><h2>Scholarship Atlas</h2>
+  <p class="muted">Global awards open to international students, plus national, corporate and state awards for Nigerians. Green "confirmed" dates were published for the 2027 cycle. Amber "typical" dates follow past cycles — confirm on the official page before you plan around them.</p></div>
+  <div class="card filters">
+    <label class="f" style="flex:2;min-width:200px">Search<input type="text" id="aQ" placeholder="Name, country, field, e.g. Germany, oil & gas, women"></label>
+    <label class="f">Level<select id="aLevel"><option value="">Any level</option><option>Undergraduate</option><option>Masters</option><option>PhD</option></select></label>
+    <label class="f">Region<select id="aRegion"><option value="">All regions</option><option>Nigeria</option><option>Europe</option><option>Americas</option><option>Asia</option><option>Africa</option><option>Online</option><option>Global</option></select></label>
+    <div class="stack" style="gap:4px"><span class="small muted">Status</span>
+      <div class="seg" id="aStatus"><button aria-pressed="true" data-s="">All</button><button data-s="open" aria-pressed="false">Open</button><button data-s="up" aria-pressed="false">Upcoming</button><button data-s="closed" aria-pressed="false">Closed</button></div></div>
+    <label class="f" style="flex:0 0 auto;min-width:0"><span>Sort</span><select id="aSort"><option value="dl">Soonest deadline</option><option value="az">A–Z</option></select></label>
+  </div>
+  <p class="small muted" id="aCount"></p>
+  <div class="grid g2" id="atlasList"></div>
+</section>
+
+<!-- MATCHER -->
+<section class="view" id="v-match">
+  <div class="head"><h2>Eligibility matcher</h2><p class="muted">Enter your profile. Each scholarship is scored against level, nationality, degree class, age and work-experience rules, so you can spend effort where you qualify.</p></div>
+  <div class="card">
+    <form id="matchForm" class="filters">
+      <label class="f">Citizenship<select id="mNat"><option value="ng">Nigerian</option><option value="other">Other developing country</option></select></label>
+      <label class="f">Applying for<select id="mLevel"><option>Masters</option><option>PhD</option><option>Undergraduate</option></select></label>
+      <label class="f">Degree class<select id="mClass"><option value="1">First Class / Distinction</option><option value="2" selected>Second Class Upper (2:1)</option><option value="3">Second Class Lower (2:2)</option><option value="4">Third / Pass</option></select></label>
+      <label class="f">Age<input type="number" id="mAge" value="27" min="15" max="70"></label>
+      <label class="f">Work experience (years)<input type="number" id="mWork" value="3" min="0" max="40" step="0.5"></label>
+      <label class="f">Field keywords<input type="text" id="mField" placeholder="e.g. oil & gas, women, development"></label>
+      <button class="btn primary" type="submit">Match me</button>
+    </form>
+  </div>
+  <div class="stack" id="matchOut"></div>
+</section>
+
+<!-- DOJO -->
+<section class="view" id="v-dojo">
+  <div class="head"><h2>Essay Dojo</h2><p class="muted">Pick an essay type and write. Each sentence is colour-coded as you type, and each required section (a "move") lights up when the Dojo detects it. Hover or tap a highlighted sentence to see why it got that colour.</p></div>
+  <div class="card row" style="justify-content:space-between">
+    <div class="row">
+      <label class="f" style="min-width:230px">Essay type<select id="eType"></select></label>
+      <div class="stack" style="gap:4px"><span class="small muted">Mode</span>
+        <div class="seg" id="eMode"><button data-m="free" aria-pressed="true">Free write</button><button data-m="guided" aria-pressed="false">Guided build</button></div></div>
+    </div>
+    <div class="small muted" id="eFor"></div>
+  </div>
+  <div class="dojo">
+    <aside class="stack">
+      <div class="card stack">
+        <div class="row" style="justify-content:space-between"><h3 id="eFrame">Moves</h3><span class="mono small" id="eMovesCount">0/0</span></div>
+        <div class="moves" id="eMoves"></div>
+      </div>
+      <div class="card stack">
+        <h4>Colour key</h4>
+        <div class="legend" style="flex-direction:column;gap:6px">
+          <span><i class="sw" style="background:var(--good)"></i>Strong: specific, evidenced, active</span>
+          <span><i class="sw" style="background:var(--ok)"></i>Sound: clear but could be sharper</span>
+          <span><i class="sw" style="background:var(--warn)"></i>Vague: generic, hedged or long</span>
+          <span><i class="sw" style="background:var(--bad)"></i>Weak: cliché, filler or no substance</span>
+        </div>
+      </div>
+    </aside>
+    <div class="stack">
+      <div class="card stack" id="guidedBox" hidden>
+        <div class="row" style="justify-content:space-between"><span class="eyebrow" id="gStep">Move 1 of 5</span><span class="pill p-up" id="gStatus">Keep going</span></div>
+        <h3 id="gLabel"></h3>
+        <p class="muted" id="gTip"></p>
+        <div class="ex"><div class="w"><b>Weak</b><br><span id="gWeak"></span></div><div class="g"><b>Strong</b><br><span id="gStrong"></span></div></div>
+        <textarea id="gInput" rows="4" placeholder="Write this move in 1–3 sentences…"></textarea>
+        <div class="mirror" id="gMirror" style="min-height:60px"></div>
+        <div class="row"><button class="btn primary" id="gNext" disabled>Lock in &amp; next move</button><button class="btn sm" id="gBack">Previous</button><span class="small muted" id="gHint"></span></div>
+      </div>
+      <div class="card stack">
+        <div class="meters" id="eMeters"></div>
+        <div class="editor-grid">
+          <div class="stack"><div class="row" style="justify-content:space-between"><span class="eyebrow">Your draft</span><span class="mono small" id="eWc">0 / 500 words</span></div>
+            <textarea id="eText" rows="16" placeholder="Start typing your essay…"></textarea>
+            <div class="row"><button class="btn sm" id="eSample">Load weak sample</button><button class="btn sm" id="eClear">Clear</button><button class="btn sm" id="eCopy">Copy text</button></div>
+          </div>
+          <div class="stack"><div class="row" style="justify-content:space-between"><span class="eyebrow">Live colour review</span><span class="mono small" id="eScore">Score 0</span></div>
+            <div class="mirror" id="eMirror"></div></div>
+        </div>
+      </div>
+      <div class="card stack" id="aiCard">
+        <div class="row" style="justify-content:space-between"><h3>AI essay coach</h3><span class="pill p-up" id="aiState">Checking…</span></div>
+        <p class="small muted" id="aiNote">Sends your draft to Claude for a rubric review: scores per move, the three weakest sentences, and a rewrite for each. Uses your own Claude account.</p>
+        <div class="row"><button class="btn teal" id="aiRun" disabled>Review my draft</button><button class="btn sm" id="aiStop" hidden>Stop</button></div>
+        <div id="aiOut" class="stack"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ARCADE -->
+<section class="view" id="v-arcade">
+  <div class="head"><h2>Arcade</h2><p class="muted">Short games that train the instincts behind strong essays. Each one feeds your XP.</p></div>
+  <div class="grid g2">
+    <div class="card stack" id="gClich">
+      <div class="row" style="justify-content:space-between"><h3>Cliché Buster</h3><span class="mono small" id="cbScore">Score 0 · streak 0</span></div>
+      <p class="small muted">Decide in 6 seconds: would this sentence help or hurt a scholarship essay?</p>
+      <div class="arena">
+        <div class="timer"><i id="cbTimer"></i></div>
+        <p class="gsent" id="cbSent">Press start.</p>
+        <p class="small muted" id="cbWhy"></p>
+      </div>
+      <div class="row"><button class="btn primary" id="cbStart">Start round</button><button class="btn" id="cbStrong" disabled>Strong</button><button class="btn" id="cbWeak" disabled>Weak</button></div>
+    </div>
+    <div class="card stack">
+      <div class="row" style="justify-content:space-between"><h3 id="osTitle">Structure Sort</h3><span class="mono small" id="osMsg"></span></div>
+      <p class="small muted">Tap two paragraphs to swap them. Put the essay in STAR order, then check.</p>
+      <div class="stack" id="osList"></div>
+      <div class="row"><button class="btn primary" id="osCheck">Check order</button><button class="btn sm" id="osShuffle">Shuffle</button></div>
+    </div>
+    <div class="card stack">
+      <div class="row" style="justify-content:space-between"><h3>Rewrite Arena</h3><span class="mono small" id="raIdx">1/5</span></div>
+      <p class="small muted">Turn the weak sentence green. The meter scores your rewrite live.</p>
+      <div class="fix" id="raWeak"></div>
+      <p class="small muted" id="raHint"></p>
+      <textarea id="raIn" rows="3" placeholder="Your stronger version…"></textarea>
+      <div class="mirror" id="raMirror" style="min-height:50px"></div>
+      <div class="row"><button class="btn primary" id="raNext" disabled>Next sentence</button><span class="small" id="raStatus"></span></div>
+    </div>
+    <div class="card stack">
+      <div class="row" style="justify-content:space-between"><h3>Word Budget Sprint</h3><span class="mono small" id="wbCount"></span></div>
+      <p class="small muted">Cut this 68-word paragraph to 40 words or fewer without losing the facts marked in bold.</p>
+      <div class="fix small">In the year of 2023, I was basically the only engineer who was working at a cooperative of <b>40 farmers</b> in Benue State, and I noticed that a very large amount of our tomatoes, around <b>30%</b>, were actually rotting before they could reach the market, which was a really big problem for all of us. So I <b>designed a solar dryer</b>.</div>
+      <textarea id="wbIn" rows="4"></textarea>
+      <p class="small" id="wbStatus"></p>
+    </div>
+  </div>
+</section>
+
+<!-- INTERVIEW -->
+<section class="view" id="v-interview">
+  <div class="head"><h2>Interview Room</h2><p class="muted">Draw a question, answer against the clock, and see whether your answer follows STAR. With the AI panel on, a Claude interviewer asks a follow-up and scores you.</p></div>
+  <div class="grid g2">
+    <div class="card stack">
+      <div class="row">
+        <label class="f">Panel<select id="ivSet"></select></label>
+        <label class="f" style="flex:0 0 120px;min-width:0">Time limit<select id="ivTime"><option value="90">1:30</option><option value="120" selected>2:00</option><option value="180">3:00</option></select></label>
+      </div>
+      <div class="card" style="background:var(--surface2);box-shadow:none"><span class="eyebrow">Question</span><p class="gsent" id="ivQ" style="margin-top:6px">Press "Draw question".</p></div>
+      <div class="row"><button class="btn primary" id="ivDraw">Draw question</button><span class="mono" id="ivClock" style="font-size:22px">2:00</span></div>
+      <textarea id="ivA" rows="8" placeholder="Type your spoken answer as you would say it…"></textarea>
+      <div class="row"><button class="btn" id="ivDone">Finish answer</button><button class="btn teal" id="ivAI" disabled>Ask AI interviewer</button></div>
+    </div>
+    <div class="card stack">
+      <h3>Your answer review</h3>
+      <div class="meters" id="ivMeters"></div>
+      <div class="list-check" id="ivStar"></div>
+      <div class="divider"></div>
+      <div id="ivAIOut" class="ai-out small muted">Finish an answer to see feedback.</div>
+    </div>
+  </div>
+</section>
+
+<!-- PATHWAYS -->
+<section class="view" id="v-pathways">
+  <div class="head"><h2>Funding routes</h2><p class="muted">Scholarships are one of twelve ways to pay for study abroad. Tick a step when you've done it — each step earns XP.</p></div>
+  <div class="grid g3" id="pathList"></div>
+</section>
+
+<!-- TOOLS -->
+<section class="view" id="v-tools">
+  <div class="head"><h2>Toolkit</h2><p class="muted">Planning and writing tools applicants usually hunt for across a dozen sites.</p></div>
+  <div class="grid g2">
+    <div class="card stack">
+      <h3>Reverse deadline planner</h3>
+      <p class="small muted">Pick a scholarship or a date. The planner schedules every task backwards from the deadline.</p>
+      <div class="row"><label class="f">Scholarship<select id="rpSch"></select></label><label class="f">Deadline<input type="date" id="rpDate"></label></div>
+      <div id="rpOut"></div>
+      <button class="btn sm" id="rpAdd">Add to tracker</button>
+    </div>
+    <div class="card stack">
+      <h3>Grade converter</h3>
+      <p class="small muted">Approximate equivalents. Each university makes its own call, so quote your original CGPA too.</p>
+      <div class="row"><label class="f">Scale<select id="gcScale"><option value="5">Nigerian university (5.0)</option><option value="4">Polytechnic HND / 4.0 scale</option></select></label><label class="f">CGPA<input type="number" id="gcVal" value="4.21" step="0.01" min="0" max="5"></label></div>
+      <div class="grid g3" id="gcOut"></div>
+    </div>
+    <div class="card stack">
+      <h3>Professor cold-email builder</h3>
+      <p class="small muted">For funded PhDs and research master's. Keep it under 180 words.</p>
+      <div class="row"><label class="f">Professor surname<input type="text" id="ceProf" value="Lin"></label><label class="f">Their paper / project<input type="text" id="cePaper" value="your 2024 work on alginate-like exopolymers"></label></div>
+      <div class="row"><label class="f">Your background (one line)<input type="text" id="ceMe" value="MSc Global Sustainability Engineering (Distinction), Heriot-Watt"></label></div>
+      <div class="row"><label class="f">Your research idea<input type="text" id="ceIdea" value="recovering curdlan from granular sludge fed brewery wastewater"></label><label class="f">Start term<input type="text" id="ceTerm" value="September 2027"></label></div>
+      <pre class="out" id="ceOut"></pre>
+      <button class="btn sm" data-copy="ceOut">Copy email</button>
+    </div>
+    <div class="card stack">
+      <h3>Referee request builder</h3>
+      <p class="small muted">Ask 6 weeks ahead and give your referee a brag sheet.</p>
+      <div class="row"><label class="f">Referee name<input type="text" id="rfName" value="Dr Okafor"></label><label class="f">Scholarship<input type="text" id="rfSch" value="Chevening"></label><label class="f">Their deadline<input type="text" id="rfDl" value="1 October"></label></div>
+      <div class="row"><label class="f">3 things they can speak to<input type="text" id="rfPts" value="my final-year project, leading the lab team, teaching support"></label></div>
+      <pre class="out" id="rfOut"></pre>
+      <button class="btn sm" data-copy="rfOut">Copy email</button>
+    </div>
+    <div class="card stack">
+      <h3>Funding gap calculator</h3>
+      <p class="small muted">Add yearly costs and funding sources to see what remains.</p>
+      <div class="grid g2" style="gap:10px">
+        <div class="stack" id="fgCost"></div>
+        <div class="stack" id="fgFund"></div>
+      </div>
+      <div class="row" style="justify-content:space-between"><span>Gap per year</span><b class="mono" id="fgGap" style="font-size:22px"></b></div>
+      <div class="xpbar"><i id="fgBar" style="background:var(--good)"></i></div>
+    </div>
+    <div class="card stack">
+      <h3>Scam check</h3>
+      <p class="small muted">Tick anything true about the offer you're looking at.</p>
+      <div class="list-check" id="scList"></div>
+      <div class="risk"><i id="scPin" style="left:0"></i></div>
+      <p class="small" id="scMsg"></p>
+    </div>
+    <div class="card stack">
+      <h3>Focus timer</h3>
+      <p class="small muted">25-minute writing sprints. Each finished sprint earns 20 XP.</p>
+      <div class="scorebig mono" id="pmClock">25:00</div>
+      <div class="row"><button class="btn primary" id="pmStart">Start sprint</button><button class="btn sm" id="pmReset">Reset</button><span class="small muted" id="pmDone"></span></div>
+    </div>
+    <div class="card stack">
+      <h3>Word limit trimmer</h3>
+      <p class="small muted">Paste any text to count words and characters, and find the words to cut.</p>
+      <textarea id="wtIn" rows="5" placeholder="Paste text…"></textarea>
+      <div class="row small mono" id="wtOut"></div>
+      <div class="small" id="wtCut"></div>
+    </div>
+  </div>
+</section>
+
+<!-- TRACKER -->
+<section class="view" id="v-tracker">
+  <div class="head"><h2>Application tracker</h2><p class="muted">Move each application through the pipeline. Saved in this browser only.</p></div>
+  <div class="card row">
+    <label class="f" style="flex:2">Add from atlas<select id="tkSel"></select></label>
+    <button class="btn primary" id="tkAdd">Add</button>
+    <button class="btn sm" id="tkExport" hidden>Download as CSV</button>
+  </div>
+  <div class="kanban" id="kanban"></div>
+</section>
+
+</main>
+
+<footer class="wrap" style="padding-block:24px 40px;border-top:1px solid var(--line);display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between;font-size:13px;color:var(--ink2)">
+  <span>Laureate Lab · built by <a href="/">Shagbaor Hycent Amool</a> · scholarship dates last checked 27 Sep 2026 — always confirm on official pages.</span>
+  <a href="/">← Back to main website</a>
+</footer>
+<div class="tip" id="tip" hidden></div>
+<div class="toast" id="toast" hidden></div>
+<script src="data.js"></script>
+<script src="app.js"></script>
+
+</body>
+</html>
