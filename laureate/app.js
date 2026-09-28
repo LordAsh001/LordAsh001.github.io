@@ -9,6 +9,7 @@ const dayKey = (d = new Date()) => d.toISOString().slice(0, 10);
 const parseD = (s) => { const [y, m, d] = s.split("-").map(Number); return new Date(y, m - 1, d); };
 const daysTo = (s) => Math.round((parseD(s) - TODAY) / 864e5);
 const fmtD = (d) => d.toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" });
+const T = (n, t) => { try { if (window.SiteTrack) window.SiteTrack(n, t); } catch (e) {} };
 const wc = (t) => (t.trim().match(/\S+/g) || []).length;
 
 /* ---------------- state ---------------- */
@@ -60,6 +61,7 @@ function renderPassport() {
 
 /* ---------------- tabs ---------------- */
 function go(v) {
+  T("section/" + v, "Opened section: " + v);
   $$(".view").forEach((s) => s.classList.toggle("on", s.id === "v-" + v));
   $$(".tab").forEach((t) => t.setAttribute("aria-selected", t.dataset.v === v));
   try { history.replaceState(null, "", "#" + v); } catch (e) {}
@@ -145,7 +147,7 @@ $("#matchForm").addEventListener("submit", (e) => {
     const col = r.sc >= 70 ? "var(--good)" : r.sc >= 45 ? "var(--warn)" : "var(--bad)";
     return passCard(r.s, `<div class="stack" style="gap:4px"><div class="meter-top"><span><b>Fit ${r.sc}</b></span><span class="small muted">${r.ok.join(" · ")}</span></div><div class="xpbar"><i style="width:${r.sc}%;background:${col}"></i></div>${r.why.length ? `<span class="small" style="color:var(--bad)">${esc(r.why.join(" · "))}</span>` : ""}</div>`);
   }).join("");
-  addXP(5);
+  addXP(5); T("matcher-run", "Ran the eligibility matcher");
 });
 
 /* ---------------- analysis engine ---------------- */
@@ -236,6 +238,7 @@ function runDojo() {
   a.done.forEach((d, j) => { if (d && !st.moves[cur].includes(j)) { st.moves[cur].push(j); addXP(15, `move unlocked: ${E.moves[j].label}`); } });
   if (a.done.every(Boolean)) stamp("moves");
   if (a.words >= 150) stamp("draft");
+  if (a.words >= 100) T("essay-drafted/" + cur, "Drafted 100+ words: " + E.name);
   if (a.total >= 75 && a.words >= 120) stamp("green");
   st.drafts[cur] = t; save();
   $("#stWords").textContent = Object.values(st.drafts).reduce((x, y) => x + wc(y || ""), 0);
@@ -271,7 +274,7 @@ $("#gBack").addEventListener("click", () => { if (gi > 0) { gi--; renderGuided()
 $("#gNext").addEventListener("click", () => {
   const E = ESSAYS[cur]; addXP(20, `${E.moves[gi].label} locked in`);
   $("#eText").value = gParts.filter((x) => x.trim()).join("\n\n");
-  if (gi < E.moves.length - 1) { gi++; renderGuided(); } else { stamp("guided"); addXP(50, "essay assembled"); $$("#eMode button")[0].click(); }
+  if (gi < E.moves.length - 1) { gi++; renderGuided(); } else { stamp("guided"); T("guided-build-finished", "Finished a guided essay build"); addXP(50, "essay assembled"); $$("#eMode button")[0].click(); }
   runDojo();
 });
 
@@ -304,7 +307,7 @@ ESSAY:
     const mv = (r.moves || []).map((m) => `<div class="meter"><div class="meter-top"><span>${esc(m.label)}</span><span class="mono">${+m.score || 0}/10</span></div><div class="bar"><i style="width:${(+m.score || 0) * 10}%;background:${barCol((+m.score || 0) * 10)}"></i></div><span class="small muted">${esc(m.comment || "")}</span></div>`).join("");
     const fx = (r.fixes || []).map((f) => `<div class="fix stack" style="gap:4px"><span class="small"><b>“${esc(f.quote)}”</b></span><span class="small" style="color:var(--warn)">${esc(f.issue)}</span><span class="small" style="color:var(--good)">→ ${esc(f.rewrite)}</span></div>`).join("");
     $("#aiOut").innerHTML = `<div class="row"><span class="scorebig mono" style="color:${barCol(+r.overall || 0)}">${+r.overall || 0}</span><p>${esc(r.verdict || "")}</p></div><div class="meters">${mv}</div><h4>Three fixes</h4>${fx}<p><b>Next step:</b> ${esc(r.next || "")}</p>`;
-    addXP(25, "AI panel review");
+    addXP(25, "AI panel review"); T("ai-review", "Got an AI essay review");
   } catch (e) { if (e && e.code !== "cancelled") $("#aiOut").innerHTML = `<p class="small" style="color:var(--bad)">${errCopy(e && e.code)}</p>`; else $("#aiOut").innerHTML = ""; if (e && (e.code === "not_granted" || e.code === "sampling_disabled")) { $("#aiRun").disabled = true; } }
   finally { if (!(sample === null)) $("#aiRun").disabled = false; $("#aiStop").hidden = true; }
 });
@@ -326,7 +329,7 @@ function cbAnswer(v) {
   $("#cbWhy").innerHTML = `<b style="color:${ok ? "var(--good)" : "var(--bad)"}">${v === null ? "Time's up" : ok ? "Correct" : "Not quite"}</b> — ${strong ? "Strong" : "Weak"}: ${esc(why)}`;
   $("#cbScore").textContent = `Score ${cb.score} · streak ${cb.streak}`; cb.i++; setTimeout(cbNext, 1700);
 }
-function cbEnd() { $("#cbStrong").disabled = $("#cbWeak").disabled = true; $("#cbStart").disabled = false; const pct = Math.round((cb.right / cb.list.length) * 100); $("#cbSent").textContent = `Round over: ${cb.right}/${cb.list.length} correct (${pct}%).`; addXP(Math.round(cb.score / 4), "Cliché Buster"); if (pct >= 80) stamp("cliche"); }
+function cbEnd() { T("game/cliche-buster", "Played Cliché Buster"); $("#cbStrong").disabled = $("#cbWeak").disabled = true; $("#cbStart").disabled = false; const pct = Math.round((cb.right / cb.list.length) * 100); $("#cbSent").textContent = `Round over: ${cb.right}/${cb.list.length} correct (${pct}%).`; addXP(Math.round(cb.score / 4), "Cliché Buster"); if (pct >= 80) stamp("cliche"); }
 $("#cbStart").addEventListener("click", () => { cb = { i: 0, score: 0, streak: 0, right: 0, list: shuffle(window.LL_GAME_SENTENCES).slice(0, 10), timer: null, live: false }; $("#cbStart").disabled = true; $("#cbStrong").disabled = $("#cbWeak").disabled = false; $("#cbScore").textContent = "Score 0 · streak 0"; cbNext(); });
 $("#cbStrong").addEventListener("click", () => cbAnswer(true));
 $("#cbWeak").addEventListener("click", () => cbAnswer(false));
@@ -338,7 +341,7 @@ function osRender(check) {
 }
 function osShuffle() { do osOrder = shuffle([0, 1, 2, 3, 4]); while (osOrder.every((p, j) => p === j)); osSel = null; $("#osMsg").textContent = ""; osRender(); }
 $("#osList").addEventListener("click", (e) => { const b = e.target.closest("[data-oi]"); if (!b) return; const j = +b.dataset.oi; if (osSel === null) osSel = j; else { [osOrder[osSel], osOrder[j]] = [osOrder[j], osOrder[osSel]]; osSel = null; } osRender(); });
-$("#osCheck").addEventListener("click", () => { const n = osOrder.filter((p, j) => p === j).length; osRender(true); $("#osMsg").textContent = `${n}/5 in place`; if (n === 5) { addXP(40, "Structure solved"); stamp("architect"); } });
+$("#osCheck").addEventListener("click", () => { const n = osOrder.filter((p, j) => p === j).length; osRender(true); $("#osMsg").textContent = `${n}/5 in place`; if (n === 5) { T("game/structure-sort", "Solved Structure Sort"); addXP(40, "Structure solved"); stamp("architect"); } });
 $("#osShuffle").addEventListener("click", osShuffle);
 
 let ra = 0; const RW = window.LL_REWRITES;
@@ -348,14 +351,14 @@ $("#raIn").addEventListener("input", () => {
   const ok = a.sents.length && a.sents.every((s) => s.cls === "good" || s.cls === "ok") && a.sents.some((s) => s.cls === "good");
   $("#raNext").disabled = !ok; $("#raStatus").innerHTML = ok ? `<span style="color:var(--good)">Green — lock it in.</span>` : `<span class="muted">Aim for a green sentence.</span>`;
 });
-$("#raNext").addEventListener("click", () => { addXP(15, "sentence rewritten"); ra++; if (ra >= RW.length) { stamp("rewriter"); ra = 0; toast("All five rewritten. Round reset."); } raLoad(); });
+$("#raNext").addEventListener("click", () => { T("game/rewrite-arena", "Rewrote a sentence"); addXP(15, "sentence rewritten"); ra++; if (ra >= RW.length) { stamp("rewriter"); ra = 0; toast("All five rewritten. Round reset."); } raLoad(); });
 
 $("#wbIn").value = "In the year of 2023, I was basically the only engineer who was working at a cooperative of 40 farmers in Benue State, and I noticed that a very large amount of our tomatoes, around 30%, were actually rotting before they could reach the market, which was a really big problem for all of us. So I designed a solar dryer.";
 function wbCheck() {
   const t = $("#wbIn").value, n = wc(t), facts = [/\b40\b/.test(t), /30\s?%/.test(t), /solar/i.test(t) && /dryer|drier/i.test(t)];
   $("#wbCount").textContent = `${n} words`; $("#wbCount").style.color = n <= 40 ? "var(--good)" : "var(--bad)";
   const miss = ["40 farmers", "30%", "solar dryer"].filter((f, j) => !facts[j]);
-  if (n <= 40 && !miss.length) { $("#wbStatus").innerHTML = `<b style="color:var(--good)">Budget met with every fact kept.</b>`; if (!st.stamps.budget) { addXP(30, "Word Budget Sprint"); stamp("budget"); } }
+  if (n <= 40 && !miss.length) { $("#wbStatus").innerHTML = `<b style="color:var(--good)">Budget met with every fact kept.</b>`; T("game/word-budget", "Won Word Budget Sprint"); if (!st.stamps.budget) { addXP(30, "Word Budget Sprint"); stamp("budget"); } }
   else $("#wbStatus").textContent = (n > 40 ? `Cut ${n - 40} more words. ` : "") + (miss.length ? "Missing: " + miss.join(", ") : "");
 }
 $("#wbIn").addEventListener("input", wbCheck);
@@ -378,13 +381,14 @@ function ivFinish() {
   const target = +$("#ivTime").value * 2.2; // ~130 wpm spoken
   $("#ivMeters").innerHTML = meterHTML({ Structure: Math.round((star.filter(([, re]) => re.test(t)).length / 5) * 100), Specificity: a.meters.Specificity, Originality: a.meters.Originality, Depth: Math.min(100, Math.round((w / target) * 100)) });
   $("#ivAIOut").textContent = `${w} words in ${clock(secs)}. Spoken at ~130 words a minute that's ${clock(Math.round((w / 130) * 60))}. ${sample ? "Ask the AI interviewer for a follow-up." : ""}`;
-  st.iv++; save(); addXP(20, "interview answer"); if (st.iv >= 3) stamp("interview");
+  st.iv++; save(); T("interview-answer", "Finished an interview answer"); addXP(20, "interview answer"); if (st.iv >= 3) stamp("interview");
 }
 $("#ivDone").addEventListener("click", ivFinish);
 $("#ivAI").addEventListener("click", async () => {
   const t = $("#ivA").value.trim(); if (!sample || !ivQ || wc(t) < 10) return;
   $("#ivAI").disabled = true; $("#ivAIOut").textContent = "Thinking…";
   try {
+    T("ai-interviewer", "Asked the AI interviewer");
     await sample(`You are a ${$("#ivSet").value} scholarship interview panellist. Question asked: "${ivQ}". Candidate's answer: """${t.slice(0, 5000)}"""
 Reply in plain text, under 150 words, with three labelled lines:
 Score: X/10 and one-sentence reason.
@@ -412,7 +416,7 @@ function renderPlan() {
   $("#rpOut").innerHTML = PLAN.map(([o, t]) => { const d = new Date(dl); d.setDate(d.getDate() + o); const diff = Math.round((d - TODAY) / 864e5); return `<div class="plan-row ${diff < 0 ? "past" : diff <= 3 && diff >= 0 ? "today" : ""}"><span class="mono small">${fmtD(d)}</span><span>${esc(t)}${diff < 0 ? " <span class='small'>(overdue)</span>" : ""}</span></div>`; }).join("");
 }
 $("#rpSch").addEventListener("change", renderPlan); $("#rpDate").addEventListener("input", () => { $("#rpSch").value = ""; renderPlan(); });
-$("#rpAdd").addEventListener("click", () => { const id = $("#rpSch").value; if (id) trackAdd(id); else trackAdd(null, "Custom application", $("#rpDate").value); stamp("planner"); go("tracker"); });
+$("#rpAdd").addEventListener("click", () => { T("planner-used", "Sent a deadline plan to the tracker"); const id = $("#rpSch").value; if (id) trackAdd(id); else trackAdd(null, "Custom application", $("#rpDate").value); stamp("planner"); go("tracker"); });
 
 function renderGrade() {
   const sc = +$("#gcScale").value, v = +$("#gcVal").value; let cls, uk, us;
@@ -454,6 +458,7 @@ With thanks,
 }
 ["ceProf", "cePaper", "ceMe", "ceIdea", "ceTerm", "rfName", "rfSch", "rfDl", "rfPts"].forEach((i) => $("#" + i).addEventListener("input", renderEmails));
 function copyText(t) { if (navigator.clipboard) navigator.clipboard.writeText(t).then(() => toast("Copied"), () => toast("Copy blocked — select the text instead")); else toast("Select the text to copy"); }
+document.addEventListener("click", (e) => { const o = e.target.closest(".pass a[href]"); if (o) T("official-link", "Opened an official scholarship page"); });
 document.addEventListener("click", (e) => { const c = e.target.closest("[data-copy]"); if (c) copyText($("#" + c.dataset.copy).textContent); });
 
 const FG = { cost: [["Tuition", 18000], ["Living costs", 14000], ["Visa, health surcharge", 2500], ["Flights & settling in", 1800]], fund: [["Scholarship", 20000], ["Savings", 3000], ["Family / sponsor", 2000], ["Loan", 0]] };
@@ -468,7 +473,7 @@ function renderScam() { const s = $$("#scList input").filter((c) => c.checked).r
 $("#scList").addEventListener("change", renderScam);
 
 let pmT = null, pmLeft = 1500;
-$("#pmStart").addEventListener("click", () => { if (pmT) { clearInterval(pmT); pmT = null; $("#pmStart").textContent = "Resume"; return; } $("#pmStart").textContent = "Pause"; pmT = setInterval(() => { pmLeft--; $("#pmClock").textContent = clock(pmLeft); if (pmLeft <= 0) { clearInterval(pmT); pmT = null; pmLeft = 1500; $("#pmStart").textContent = "Start sprint"; st.pomos++; addXP(20, "focus sprint done"); stamp("focus"); $("#pmDone").textContent = `${st.pomos} sprints finished`; } }, 1000); });
+$("#pmStart").addEventListener("click", () => { if (pmT) { clearInterval(pmT); pmT = null; $("#pmStart").textContent = "Resume"; return; } $("#pmStart").textContent = "Pause"; pmT = setInterval(() => { pmLeft--; $("#pmClock").textContent = clock(pmLeft); if (pmLeft <= 0) { clearInterval(pmT); pmT = null; pmLeft = 1500; $("#pmStart").textContent = "Start sprint"; st.pomos++; T("focus-sprint", "Finished a focus sprint"); addXP(20, "focus sprint done"); stamp("focus"); $("#pmDone").textContent = `${st.pomos} sprints finished`; } }, 1000); });
 $("#pmReset").addEventListener("click", () => { clearInterval(pmT); pmT = null; pmLeft = 1500; $("#pmClock").textContent = "25:00"; $("#pmStart").textContent = "Start sprint"; });
 
 $("#wtIn").addEventListener("input", () => { const t = $("#wtIn").value; const f = (t.match(fillRe) || []).map((x) => x.toLowerCase()), c = t.match(clRe) || []; const cnt = {}; f.forEach((x) => (cnt[x] = (cnt[x] || 0) + 1)); $("#wtOut").innerHTML = `<span>${wc(t)} words</span><span>${t.length} characters</span><span>${t.replace(/\s/g, "").length} without spaces</span>`; $("#wtCut").innerHTML = f.length || c.length ? `Cut first: ${Object.entries(cnt).map(([k, v]) => `<b>${esc(k)}</b> ×${v}`).join(", ")}${c.length ? ` · clichés: ${c.map((x) => `<b style="color:var(--bad)">${esc(x)}</b>`).join(", ")}` : ""}` : ""; });
@@ -479,7 +484,7 @@ function trackAdd(id, name, dl) {
   if (id && st.tracker.some((t) => t.id === id)) { toast("Already in your tracker"); return; }
   const s = id ? DATA.find((x) => x.id === id) : null;
   st.tracker.push({ id: id || "c" + Date.now(), name: s ? s.name : name, deadline: s ? s.deadline : dl || null, stage: 0 });
-  save(); addXP(10, "added to tracker"); if (st.tracker.length >= 3) stamp("tracker"); renderTracker();
+  save(); T("tracker-add", "Added an application to the tracker"); addXP(10, "added to tracker"); if (st.tracker.length >= 3) stamp("tracker"); renderTracker();
 }
 function renderTracker() {
   $("#tkSel").innerHTML = DATA.filter((s) => !st.tracker.some((t) => t.id === s.id)).map((s) => `<option value="${s.id}">${esc(s.name)}</option>`).join("");

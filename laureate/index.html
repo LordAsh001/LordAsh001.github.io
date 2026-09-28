@@ -202,16 +202,40 @@ pre.out{white-space:pre-wrap;background:var(--surface2);padding:12px;border-radi
 details summary{cursor:pointer;font-weight:600}
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 </style>
+<style id="sitebar">
+/* site bar: shared link back to the main website */
+.sitebar{font:500 13px/1.2 var(--sb-font,system-ui,-apple-system,"Segoe UI",sans-serif);background:var(--sb-bg);border-bottom:1px solid var(--sb-line);color:var(--sb-ink)}
+.sitebar-in{max-width:var(--sb-max,1400px);margin:0 auto;padding:0 var(--sb-pad,16px);height:36px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.sitebar a{color:inherit;text-decoration:none;border-radius:6px}
+.sitebar a:focus-visible{outline:2px solid currentColor;outline-offset:2px}
+.sb-home{display:inline-flex;align-items:center;gap:6px;padding:6px 8px 6px 4px;margin-left:-4px;white-space:nowrap}
+.sb-home:hover{background:var(--sb-hover)}
+.sb-home svg{transition:transform .15s}
+.sb-home:hover svg{transform:translateX(-2px)}
+.sb-more{display:inline-flex;align-items:center;gap:8px;min-width:0;color:var(--sb-muted)}
+.sb-more a{color:var(--sb-ink);text-decoration:underline;text-underline-offset:3px;text-decoration-color:var(--sb-line);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;padding:6px 0}
+.sb-more a:hover{text-decoration-color:currentColor}
+@media (max-width:560px){.sb-hide,.sb-lbl{display:none}}
+@media print{.sitebar{display:none}}
+.sitebar{--sb-max:none;--sb-pad:clamp(16px,3vw,56px);--sb-bg:var(--paper);--sb-line:var(--line);--sb-ink:var(--ink);--sb-muted:var(--ink2);--sb-hover:var(--surface2);--sb-font:var(--f-body)}
+</style>
 <style id="fullscreen-layout">
 /* Full-screen layout: use the whole viewport width; writing areas grow with screen height */
 .wrap{max-width:none;padding-inline:clamp(16px,3vw,56px)}
 @media (min-width:1000px) and (min-height:700px){#eText,#eMirror{min-height:calc(100vh - 480px)}}
 @media (min-width:1600px){.dojo{grid-template-columns:320px 1fr}}
 </style>
+<script src="/assets/traction.js" defer></script>
 </head>
 <body>
 
 
+<nav class="sitebar" aria-label="Website">
+  <div class="sitebar-in">
+    <a class="sb-home" href="/#work" title="Back to Shagbaor Hycent Amool's website"><svg aria-hidden="true" width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10 3 5 8l5 5"/></svg><span><span class="sb-hide">Back to </span>Shagbaor Hycent Amool</span></a>
+    <span class="sb-more"><span class="sb-lbl">Also try</span><a href="/sustainatable.html">The SustainaTable</a><a href="/symbiosis/">Symbiosis Workbench</a></span>
+  </div>
+</nav>
 <header class="top">
   <div class="wrap">
     <div class="topbar">
