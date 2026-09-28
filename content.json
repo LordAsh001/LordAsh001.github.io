@@ -307,6 +307,19 @@
           "hidden": false
         },
         {
+          "name": "Laureate Lab",
+          "meta": "2026",
+          "status": "active",
+          "role": "Interactive tool",
+          "text": "Prepare for scholarships by doing: a live atlas of global and Nigerian awards with deadline countdowns, an Essay Dojo that colour-codes every sentence as you write, interview practice and planning tools.",
+          "bullets": [],
+          "stats": [],
+          "link_label": "Open tool",
+          "link_url": "/laureate/",
+          "size": "wide",
+          "hidden": false
+        },
+        {
           "name": "Via Scholaris",
           "meta": "Founder & Programme Lead · 2024 →",
           "status": "active",
