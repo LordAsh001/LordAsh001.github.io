@@ -122,6 +122,21 @@ dialog[open]{animation:pop .22s ease}
 @media print{.sitebar{display:none}}
 .sitebar{position:sticky;top:0;z-index:50;--sb-max:1120px;--sb-pad:20px;--sb-bg:color-mix(in srgb,var(--bg) 88%,transparent);--sb-line:var(--line);--sb-ink:var(--ink);--sb-muted:var(--ink3);--sb-hover:var(--keybg);--sb-font:var(--body);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
 </style>
+<style id="fullscreen-layout">
+/* Full-screen layout: use the whole viewport width, and fit the periodic table to the screen height on desktops */
+main{max-width:none;padding-inline:clamp(16px,3vw,56px)}
+.sitebar{--sb-max:none;--sb-pad:clamp(16px,3vw,56px)}
+@media (min-width:900px) and (min-height:620px){
+  .table{grid-auto-rows:minmax(112px,calc((100vh - 210px) / 5));grid-auto-rows:minmax(112px,calc((100dvh - 210px) / 5))}
+  .el{aspect-ratio:auto}
+  .el .sy{font-size:clamp(28px,min(4.2vw,7vh),96px)}
+  .el .nm{font-size:clamp(13.5px,min(1vw,1.9vh),19px)}
+  .el .no{font-size:clamp(15px,min(1vw,1.9vh),20px)}
+  .key h1{font-size:clamp(26px,min(5.6vw,9vh),120px)}
+  .key .sub{font-size:clamp(14px,min(2vw,3vh),30px)}
+  .key p{font-size:clamp(17px,min(1.1vw,2vh),22px);max-width:60ch}
+}
+</style>
 </head>
 <body>
 <nav class="sitebar" aria-label="Website">
