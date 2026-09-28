@@ -7,8 +7,8 @@
    Leave a value empty ("") to switch that feature off. */
 (function () {
   "use strict";
-  var GOATCOUNTER_CODE = "";
-  var TALLY_FORM_ID = "";
+  var GOATCOUNTER_CODE = "shagbaor";
+  var TALLY_FORM_ID = "zxlV4Z";
   var PRIVACY_URL = "/privacy.html";
 
   var path = location.pathname;
@@ -92,7 +92,7 @@
     if (!dlg) {
       dlg = document.createElement("dialog"); dlg.className = "tr-dlg"; dlg.setAttribute("aria-label", "Join the community");
       var src = "https://tally.so/embed/" + encodeURIComponent(TALLY_FORM_ID) + "?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1&tool=" + TOOL;
-      dlg.innerHTML = '<div class="tr-hd"><div><h2>Join the community</h2><p>Tell us who you are so we can keep improving these free tools, share updates, and show funders who they help. Every field except name and email is optional.</p></div><button type="button" class="tr-x" aria-label="Close">×</button></div>' +
+      dlg.innerHTML = '<div class="tr-hd"><div><h2>Join the community</h2><p>Tell us who you are so we can keep improving these free tools and show funders who they help. It takes under a minute.</p></div><button type="button" class="tr-x" aria-label="Close">×</button></div>' +
         '<iframe title="Join the community form" loading="lazy" src="' + src + '"></iframe>' +
         '<div class="tr-ft">Your answers are stored with Tally and used only as described in the <a href="' + PRIVACY_URL + '" target="_blank" rel="noopener">privacy notice</a>.</div>';
       document.body.appendChild(dlg);
