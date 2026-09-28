@@ -202,6 +202,12 @@ pre.out{white-space:pre-wrap;background:var(--surface2);padding:12px;border-radi
 details summary{cursor:pointer;font-weight:600}
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 </style>
+<style id="fullscreen-layout">
+/* Full-screen layout: use the whole viewport width; writing areas grow with screen height */
+.wrap{max-width:none;padding-inline:clamp(16px,3vw,56px)}
+@media (min-width:1000px) and (min-height:700px){#eText,#eMirror{min-height:calc(100vh - 480px)}}
+@media (min-width:1600px){.dojo{grid-template-columns:320px 1fr}}
+</style>
 </head>
 <body>
 
