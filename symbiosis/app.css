@@ -491,3 +491,9 @@ mark{background:color-mix(in srgb,var(--warn) 28%,transparent);color:inherit;bor
 .sitebar{position:sticky;top:env(safe-area-inset-top,0px);z-index:21}
 .top{top:calc(env(safe-area-inset-top,0px) + 37px)}
 @media (max-width:480px){html{scroll-padding-top:48px}}
+
+/* Full-screen layout: use the whole viewport width and let tall panels grow with the screen */
+.wrap{max-width:none;padding-inline:clamp(16px,2.5vw,48px)}
+.sitebar{--sb-max:none;--sb-pad:clamp(16px,2.5vw,48px)}
+@media (min-width:1600px){.builder{grid-template-columns:270px minmax(0,1fr) 380px}.mm{grid-template-columns:380px minmax(0,1fr)}.cases{grid-template-columns:320px minmax(0,1fr)}.learn{grid-template-columns:minmax(0,1fr) 460px}.src-grid{grid-template-columns:minmax(0,1fr) 440px}}
+@media (min-width:821px){.mm-list{max-height:max(560px,calc(100vh - 260px))}.case-list{max-height:max(760px,calc(100vh - 200px))}}
