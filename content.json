@@ -320,6 +320,19 @@
           "hidden": false
         },
         {
+          "name": "Citadel",
+          "meta": "2026",
+          "status": "active",
+          "role": "Interactive tool",
+          "text": "Learn to cite by doing: nine game levels from plagiarism basics to an integrity audit, a paraphrase lab, a reference library that imports and exports BibTeX and RIS, and a writing desk that flags unsupported claims.",
+          "bullets": [],
+          "stats": [],
+          "link_label": "Open tool",
+          "link_url": "/citadel.html",
+          "size": "wide",
+          "hidden": false
+        },
+        {
           "name": "Via Scholaris",
           "meta": "Founder & Programme Lead · 2024 →",
           "status": "active",
