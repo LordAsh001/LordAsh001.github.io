@@ -171,18 +171,18 @@
       "lede": "",
       "items": [
         {
+          "text": "**Amool, S. H.**, Tan, J. Z. Y., & Andresen, J. · doi:10.2139/ssrn.6717086",
+          "hidden": false,
           "label": "Preprint · SSRN · 2026",
           "title": "Integration of advanced electrocatalytic wastewater treatment with carbon utilisation",
-          "text": "**Amool, S. H.**, Tan, J. Z. Y., & Andresen, J. · doi:10.2139/ssrn.6717086",
-          "url": "https://doi.org/10.2139/ssrn.6717086",
-          "hidden": false
+          "url": "https://doi.org/10.2139/ssrn.6717086"
         },
         {
+          "text": "ORCID iD 0000-0001-8460-6744",
+          "hidden": false,
           "label": "Full record",
           "title": "All publications, posters and conference papers on ORCID",
-          "text": "ORCID iD 0000-0001-8460-6744",
-          "url": "https://orcid.org/0000-0001-8460-6744",
-          "hidden": false
+          "url": "https://orcid.org/0000-0001-8460-6744"
         }
       ]
     },
@@ -290,7 +290,7 @@
           "stats": [],
           "link_label": "Open tool",
           "link_url": "/symbiosis/",
-          "size": "wide",
+          "size": "half",
           "hidden": false
         },
         {
@@ -303,7 +303,7 @@
           "stats": [],
           "link_label": "Open tool",
           "link_url": "/sustainatable.html",
-          "size": "wide",
+          "size": "half",
           "hidden": false
         },
         {
@@ -316,7 +316,7 @@
           "stats": [],
           "link_label": "Open tool",
           "link_url": "/laureate/",
-          "size": "wide",
+          "size": "half",
           "hidden": false
         },
         {
@@ -329,7 +329,7 @@
           "stats": [],
           "link_label": "Open tool",
           "link_url": "/citadel.html",
-          "size": "wide",
+          "size": "half",
           "hidden": false
         },
         {
