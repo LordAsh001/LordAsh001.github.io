@@ -211,3 +211,54 @@ window.LL_PATHWAYS = [
   {t:"Competitions & prizes",d:"Essay contests, hackathons, pitch competitions pay fees and build your CV.",steps:["Enter 1 per semester","Reuse winning work in scholarship essays"]},
   {t:"Crowdfunding, diaspora & alumni",d:"Alumni associations, church/community funds, GoFundMe for the final gap.",steps:["Write a 150-word impact story","Share a budget breakdown for trust","Give updates to donors"]}
 ];
+
+/* ---------- v2 additions (29 Sep 2026): fields of study, per-award requirements ---------- */
+window.LL_FIELDS = ["Engineering & technology", "Natural sciences", "Health & medicine", "Agriculture & environment", "Business & economics", "Social sciences & development", "Law & policy", "Energy, oil & gas", "Education", "Arts & humanities"];
+(function () {
+  const F = window.LL_FIELDS, byId = {};
+  window.LL_SCHOLARSHIPS.forEach((s) => (byId[s.id] = s));
+  const DEV = ["Agriculture & environment", "Social sciences & development", "Engineering & technology", "Health & medicine", "Business & economics", "Education", "Law & policy"];
+  const STEM = ["Engineering & technology", "Natural sciences"];
+  const fields = {
+    "daad-epos": DEV, jjwbgsp: DEV,
+    kth: STEM, delft: STEM, eth: STEM.concat(["Agriculture & environment"]),
+    ptdf: ["Engineering & technology", "Natural sciences", "Energy, oil & gas", "Business & economics", "Law & policy"],
+    nlng: ["Engineering & technology", "Natural sciences", "Health & medicine", "Business & economics"],
+    total: ["Engineering & technology", "Natural sciences", "Energy, oil & gas", "Business & economics"],
+    agbami: ["Engineering & technology", "Health & medicine"],
+    mtn: ["Engineering & technology", "Natural sciences", "Health & medicine"],
+    shell: ["Engineering & technology", "Natural sciences", "Energy, oil & gas", "Business & economics"],
+    seplat: ["Engineering & technology", "Natural sciences", "Energy, oil & gas", "Business & economics", "Health & medicine"],
+    tetfund: F.slice(), nelfund: F.slice()
+  };
+  window.LL_SCHOLARSHIPS.forEach((s) => { s.fields = fields[s.id] || null; /* null = open to any field */ });
+
+  /* Requirements: src "official" = read from the funder's page on 29 Sep 2026; "typical" = common for this award, confirm */
+  const R = {
+    chevening: { src: "official", items: ["Undergraduate degree that qualifies you for a UK master's, completed at least 2 years before the deadline", "At least 2 years' work experience after your degree (2,800 hours)", "Apply to 3 different eligible UK master's courses", "Unconditional offer from one of the 3 courses by the deadline on the Chevening timeline", "Commit to return home for at least 2 years after the award", "4 essays: leadership, networking, why these UK courses, career plan (check word limits in the form)", "2 references (requested after you apply)", "English is assessed by your universities, not by Chevening"] },
+    "csc-masters": { src: "official", items: ["First degree at 2:1 or above, or a 2:2 plus a relevant postgraduate qualification", "Apply through your national nominating body first (Nigeria: Federal Scholarship Board); it sets its own earlier deadline", "Valid passport or national ID", "Complete transcripts (certified English translation if needed)", "At least 2 references: signed PDF on letterhead or official email; one from your employer if employed", "Development impact statement (4 parts: the issue, skills you'll apply, expected outcomes with timeframe, how you'll measure them)", "Personal statement, leadership and voluntary activities summary, study plan", "No IELTS required by the CSC (your university may still require one)"] },
+    "csc-phd": { src: "typical", items: ["Apply through your national nominating body first", "Research proposal (Dojo: Research proposal)", "Supporting statement from a UK supervisor usually expected", "At least 2 references", "Transcripts and certificates"] },
+    gates: { src: "official", items: ["Apply to a full-time Cambridge postgraduate course and tick Gates Cambridge in the same application", "Gates statement: 4 answers — Q1 & Q2 ≈200 words (1,400 characters), Q3 & Q4 ≈300 words (2,100 characters)", "3 references: 2 academic (for admission) + 1 Gates Cambridge reference on the scholarship criteria", "PhD applicants: research proposal with the course application"] },
+    knight: { src: "official", items: ["Bachelor's degree earned in January 2020 or later (2018 or later with military service)", "Separate application to a full-time Stanford graduate programme starting the same year", "Résumé, transcripts and test scores as your Stanford programme requires", "Short answers, essay and recommendations (see the Knight-Hennessy application for counts)", "Video statement if invited"] },
+    ptdf: { src: "official", items: ["MSc: 2:1, or 2:2 with relevant industry experience · PhD: at least 2:2 plus a good master's", "NYSC discharge certificate", "First degree certificate or statement of result", "WAEC/NECO/GCE results with PINs", "Local government identification letter", "Recent passport photograph", "Professional association membership evidence", "MSc: statement of purpose, max 500 words", "PhD: oil & gas research proposal, max 5 pages", "Online screening test if shortlisted"] },
+    schwarzman: { src: "official", items: ["Age 18–28 on 1 August of the enrolment year", "Bachelor's degree by the start of the programme", "Leadership record"] },
+    "rhodes-wa": { src: "typical", items: ["Age limits apply — see the Information for Candidates document", "Personal statement and academic statement", "Several referees (check the document for the number)", "Must meet Oxford course entry requirements"] }
+  };
+  window.LL_SCHOLARSHIPS.forEach((s) => {
+    const own = R[s.id];
+    const derived = [];
+    if (s.ageMax) derived.push(`Age limit: around ${s.ageMax} or younger (check exact date rule)`);
+    if (s.workHrs) derived.push(`Work experience: about ${s.workHrs.toLocaleString()} hours (${Math.round(s.workHrs / 1800 * 10) / 10}+ years full-time)`);
+    if (s.minClass) derived.push(["", "Usually expects a First Class or equivalent", "Usually expects a 2:1 or equivalent", "Usually expects a 2:2 or better"][s.minClass]);
+    const typical = s.levels.includes("Undergraduate") && !s.levels.includes("Masters")
+      ? ["Secondary-school results (WAEC/NECO) or current transcripts", "Admission letter / matriculation number where required", "Passport photograph and valid ID"]
+      : ["Passport valid at least 12 months beyond your start date (check the host country's visa rule)", "Transcripts and degree certificate", "2-page CV", "English test if the university asks — commonly IELTS 6.5 overall with no band below 6.0, or TOEFL/PTE/Duolingo equivalent", "2–3 referees"];
+    s.req = own ? { src: own.src, items: own.items } : { src: "typical", items: derived.concat(typical) };
+  });
+  byId.chevening.elig = "Undergraduate degree that qualifies you for a UK master's, 2,800+ hours work experience, 3 UK course choices, return home for 2 years";
+  delete byId.chevening.minClass;
+  byId["csc-masters"].elig = "2:1 (or 2:2 plus a relevant postgraduate qualification); apply via your national nominating body (Nigeria: Federal Scholarship Board) and the CSC portal";
+
+  const models = ["In 2023 I installed solar dryers for 12 women farmers in Makurdi, cutting diesel use by 40%.", "As president of the NSE student chapter, I led 35 volunteers to run a STEM fair for 600 pupils.", "Cranfield's MSc Energy Systems teaches the grid-modelling skills my Kaduna mini-grid projects lack.", "The pilot cut tomato losses from 30% to 9% and added ₦2.1m to 40 farmers' income in one season.", "Within two years of returning I will lead the off-grid unit at the Rural Electrification Agency in Abuja."];
+  window.LL_REWRITES.forEach((r, i) => (r.model = models[i]));
+})();

@@ -199,6 +199,36 @@ pre.out{white-space:pre-wrap;background:var(--surface2);padding:12px;border-radi
 .risk{height:12px;border-radius:99px;background:linear-gradient(90deg,var(--good),var(--warn),var(--bad));position:relative}
 .risk i{position:absolute;top:-4px;width:4px;height:20px;background:var(--ink);border-radius:2px;transition:left .3s}
 .hidden-ai{display:none}
+.chip-btn{cursor:pointer;font:inherit;color:inherit}
+.chip-btn:hover{border-color:var(--ink2)}
+.stat-link{cursor:pointer;text-align:left;font:inherit;color:inherit}
+.stat-link:hover{border-color:var(--ink2)}
+.atlas-layout{display:grid;grid-template-columns:250px minmax(0,1fr);gap:16px;align-items:start}
+@media(max-width:860px){.atlas-layout{grid-template-columns:1fr}}
+.field-box{position:sticky;top:120px}
+@media(max-width:860px){.field-box{position:static}}
+.field-list{display:flex;flex-direction:column;gap:6px}
+#atlasList{grid-template-columns:repeat(auto-fill,minmax(min(100%,400px),1fr))}
+.field-list label{display:flex;gap:8px;align-items:flex-start;font-size:14px;cursor:pointer}
+.field-list .n{margin-left:auto;font:12px var(--f-mono);color:var(--ink2)}
+details.req{border-top:1px dashed var(--line);padding-top:8px}
+details.req summary{font-size:13px}
+details.req .list-check{margin-top:8px}
+details.req label{font-size:13px}
+.btn.on{background:var(--good-bg);border-color:var(--good);color:var(--good)}
+.notice{display:flex;flex-wrap:wrap;gap:10px;align-items:center;padding:10px 12px;border-radius:10px;background:var(--ok-bg);color:var(--ink);font-size:13.5px}
+.notice.warn{background:var(--warn-bg)}
+.notice.bad{background:var(--bad-bg)}
+.checks{display:flex;flex-wrap:wrap;gap:6px}
+.checks span{font:500 12px var(--f-mono);padding:4px 8px;border-radius:99px;background:var(--surface2);color:var(--ink2)}
+.checks span.y{background:var(--good-bg);color:var(--good)}
+.how ol{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:6px;font-size:14px;color:var(--ink2)}
+.how b{color:var(--ink)}
+.story{display:flex;flex-direction:column;gap:10px}
+.story-top{display:flex;gap:12px;align-items:center}
+.story-top img,.story-top .ph{width:56px;height:56px;border-radius:50%;object-fit:cover;flex:none;background:var(--surface2);display:grid;place-items:center;font:700 18px var(--f-display);color:var(--ink2)}
+.story blockquote{margin:0;font-size:14.5px;color:var(--ink2);white-space:pre-line}
+.empty{padding:28px;text-align:center;border:2px dashed var(--line);border-radius:14px;color:var(--ink2)}
 details summary{cursor:pointer;font-weight:600}
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 </style>
@@ -247,6 +277,7 @@ details summary{cursor:pointer;font-weight:600}
         </div>
         <span class="chip" title="Days in a row you practised"><span><span id="streak">0</span>-day streak</span></span>
         <span class="chip"><span id="stampCount">0</span> stamps</span>
+        <button type="button" class="chip chip-btn" data-go="tracker" title="Open your application tracker"><span id="trackCount">0</span> tracked →</button>
       </div>
     </div>
     <nav class="tabs" role="tablist" id="tabs">
@@ -257,6 +288,7 @@ details summary{cursor:pointer;font-weight:600}
       <button class="tab" role="tab" data-v="arcade">Arcade</button>
       <button class="tab" role="tab" data-v="interview">Interview Room</button>
       <button class="tab" role="tab" data-v="pathways">Funding Routes</button>
+      <button class="tab" role="tab" data-v="stories">Scholar Stories</button>
       <button class="tab" role="tab" data-v="tools">Toolkit</button>
       <button class="tab" role="tab" data-v="tracker">Tracker</button>
     </nav>
@@ -286,7 +318,7 @@ details summary{cursor:pointer;font-weight:600}
   </div>
   <div class="grid g4">
     <div class="card stat"><span class="eyebrow">Open now</span><b class="mono" id="stOpen">0</b><span class="small muted">scholarships accepting applications</span></div>
-    <div class="card stat"><span class="eyebrow">In your tracker</span><b class="mono" id="stTrack">0</b><span class="small muted">applications in progress</span></div>
+    <button type="button" class="card stat stat-link" data-go="tracker"><span class="eyebrow">In your tracker</span><b class="mono" id="stTrack">0</b><span class="small muted">applications in progress · open tracker →</span></button>
     <div class="card stat"><span class="eyebrow">Words drafted</span><b class="mono" id="stWords">0</b><span class="small muted">across Dojo drafts</span></div>
     <div class="card stat"><span class="eyebrow">Readiness</span><b class="mono" id="stReady">0%</b><span class="small muted">from your prep checklist</span></div>
   </div>
@@ -316,8 +348,18 @@ details summary{cursor:pointer;font-weight:600}
       <div class="seg" id="aStatus"><button aria-pressed="true" data-s="">All</button><button data-s="open" aria-pressed="false">Open</button><button data-s="up" aria-pressed="false">Upcoming</button><button data-s="closed" aria-pressed="false">Closed</button></div></div>
     <label class="f" style="flex:0 0 auto;min-width:0"><span>Sort</span><select id="aSort"><option value="dl">Soonest deadline</option><option value="az">A–Z</option></select></label>
   </div>
-  <p class="small muted" id="aCount"></p>
-  <div class="grid g2" id="atlasList"></div>
+  <div class="atlas-layout">
+    <aside class="card stack field-box" aria-labelledby="fieldTitle">
+      <div class="row" style="justify-content:space-between"><h3 id="fieldTitle">Field of study</h3><button type="button" class="btn sm" id="fClear">Clear</button></div>
+      <div class="field-list" id="fieldList"></div>
+      <div class="divider"></div>
+      <label class="small" style="display:flex;gap:8px;align-items:flex-start"><input type="checkbox" id="fAny" checked> Include awards open to any field</label>
+    </aside>
+    <div class="stack">
+      <p class="small muted" id="aCount"></p>
+      <div class="grid g2" id="atlasList"></div>
+    </div>
+  </div>
 </section>
 
 <!-- MATCHER -->
@@ -348,6 +390,16 @@ details summary{cursor:pointer;font-weight:600}
     </div>
     <div class="small muted" id="eFor"></div>
   </div>
+  <details class="card how" id="howBox" open>
+    <summary>How the Dojo reads your writing</summary>
+    <ol style="margin-top:10px">
+      <li><b>It is a style and structure coach, not a grammar checker.</b> It flags vague, clichéd or evidence-free sentences, and a few mechanical slips (missing capitals, repeated words, stray spaces). Run a spell-check as well before you submit.</li>
+      <li><b>Colours rate each sentence.</b> Green = specific and evidenced (numbers, names, action verbs); blue = sound; amber = vague, hedged or long; red = cliché or no substance. Hover or tap any sentence to see exactly why.</li>
+      <li><b>Moves are the sections panels expect.</b> Each lights up in the left column when the Dojo detects it. Guided build walks you through them one at a time.</li>
+      <li><b>Meters sum it up.</b> Specificity (evidence), Structure (moves covered), Clarity (length, passive voice, filler), Originality (clichés), Length (against the usual word limit).</li>
+      <li><b>You do the rewriting.</b> Nothing is changed for you — edit your draft until sentences turn green. Write in your own words: funders check for copied and AI-generated essays.</li>
+    </ol>
+  </details>
   <div class="dojo">
     <aside class="stack">
       <div class="card stack">
@@ -363,6 +415,14 @@ details summary{cursor:pointer;font-weight:600}
           <span><i class="sw" style="background:var(--bad)"></i>Weak: cliché, filler or no substance</span>
         </div>
       </div>
+      <div class="card stack" id="privBox">
+        <h4>Your data in the Dojo</h4>
+        <p class="small muted">Your drafts never leave this device. Nothing you type is sent anywhere unless you press “Review my draft”, which sends that draft to Claude (only on claude.ai). Usage counts on the website are anonymous and never include your text.</p>
+        <label class="small" style="display:flex;gap:8px;align-items:flex-start"><input type="checkbox" id="pRemember" checked> Remember my drafts on this device</label>
+        <p class="small muted">Untick to keep nothing: drafts clear when you switch essay type or close the page. Turn it off on shared or public computers.</p>
+        <div class="row"><button type="button" class="btn sm" id="pDelete">Delete all my Laureate data</button></div>
+        <div class="notice bad" id="pConfirm" hidden><span>This erases drafts, XP, stamps, checklists and your tracker on this device. It cannot be undone.</span><button type="button" class="btn sm" id="pYes">Delete everything</button><button type="button" class="btn sm" id="pNo">Cancel</button></div>
+      </div>
     </aside>
     <div class="stack">
       <div class="card stack" id="guidedBox" hidden>
@@ -377,9 +437,11 @@ details summary{cursor:pointer;font-weight:600}
       <div class="card stack">
         <div class="meters" id="eMeters"></div>
         <div class="editor-grid">
-          <div class="stack"><div class="row" style="justify-content:space-between"><span class="eyebrow">Your draft</span><span class="mono small" id="eWc">0 / 500 words</span></div>
+          <div class="stack"><div class="notice" id="eRestored" hidden><span id="eRestoredTxt">Restored your saved draft.</span><button type="button" class="btn sm" id="eFresh">Start fresh</button><button type="button" class="btn sm" id="eKeep">Keep editing</button></div>
+            <div class="notice warn" id="ePII" hidden></div>
+            <div class="row" style="justify-content:space-between"><span class="eyebrow">Your draft</span><span class="mono small" id="eWc">0 / 500 words</span></div>
             <textarea id="eText" rows="16" placeholder="Start typing your essay…"></textarea>
-            <div class="row"><button class="btn sm" id="eSample">Load weak sample</button><button class="btn sm" id="eClear">Clear</button><button class="btn sm" id="eCopy">Copy text</button></div>
+            <div class="row"><button class="btn sm" id="eSample">Load weak sample</button><button class="btn sm" id="eClear">Clear</button><button class="btn sm" id="eCopy">Copy text</button><button class="btn sm" id="ePdf">Save as PDF</button><button class="btn sm" id="eTxt">Save as .txt</button></div>
           </div>
           <div class="stack"><div class="row" style="justify-content:space-between"><span class="eyebrow">Live colour review</span><span class="mono small" id="eScore">Score 0</span></div>
             <div class="mirror" id="eMirror"></div></div>
@@ -417,12 +479,14 @@ details summary{cursor:pointer;font-weight:600}
     </div>
     <div class="card stack">
       <div class="row" style="justify-content:space-between"><h3>Rewrite Arena</h3><span class="mono small" id="raIdx">1/5</span></div>
-      <p class="small muted">Turn the weak sentence green. The meter scores your rewrite live.</p>
+      <p class="small muted">You rewrite the weak sentence in the box. Your version turns green when it is specific: an action you took, a number, and a named place or organisation — with no clichés.</p>
       <div class="fix" id="raWeak"></div>
       <p class="small muted" id="raHint"></p>
       <textarea id="raIn" rows="3" placeholder="Your stronger version…"></textarea>
+      <div class="checks" id="raChecks"></div>
       <div class="mirror" id="raMirror" style="min-height:50px"></div>
-      <div class="row"><button class="btn primary" id="raNext" disabled>Next sentence</button><span class="small" id="raStatus"></span></div>
+      <div class="fix small" id="raModel" hidden></div>
+      <div class="row"><button class="btn primary" id="raNext" disabled>Next sentence</button><button class="btn sm" id="raShow">Show an example</button><span class="small" id="raStatus"></span></div>
     </div>
     <div class="card stack">
       <div class="row" style="justify-content:space-between"><h3>Word Budget Sprint</h3><span class="mono small" id="wbCount"></span></div>
@@ -462,6 +526,17 @@ details summary{cursor:pointer;font-weight:600}
 <section class="view" id="v-pathways">
   <div class="head"><h2>Funding routes</h2><p class="muted">Scholarships are one of twelve ways to pay for study abroad. Tick a step when you've done it — each step earns XP.</p></div>
   <div class="grid g3" id="pathList"></div>
+</section>
+
+<!-- STORIES -->
+<section class="view" id="v-stories">
+  <div class="head"><h2>Scholar Stories</h2><p class="muted">Scholars who won an award share how they did it. If a scholar has agreed to be contacted, you can reach out to ask about their application. Every story is checked before it is published.</p></div>
+  <div class="card row" style="justify-content:space-between">
+    <label class="f" style="max-width:340px">Scholarship<select id="stFilter"><option value="">All scholarships</option></select></label>
+    <div class="row"><a class="btn primary" id="stShare" href="#" target="_blank" rel="noopener">Share your story</a></div>
+  </div>
+  <div class="grid g3" id="stList"></div>
+  <p class="small muted">Be kind and specific when you reach out, and never pay anyone who promises a “guaranteed” scholarship.</p>
 </section>
 
 <!-- TOOLS -->
@@ -550,6 +625,7 @@ details summary{cursor:pointer;font-weight:600}
 </footer>
 <div class="tip" id="tip" hidden></div>
 <div class="toast" id="toast" hidden></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <script src="data.js"></script>
 <script src="app.js"></script>
 
