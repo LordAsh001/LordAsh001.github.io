@@ -293,6 +293,10 @@ const shuffle=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(M
 const strip=h=>{const d=document.createElement('div');d.innerHTML=h;return d.textContent};
 function toast(m,ms){const t=$('#toast');t.textContent=m;t.classList.add('show');clearTimeout(toast._t);toast._t=setTimeout(()=>t.classList.remove('show'),ms||2600)}
 const view=$('#view');
+/* in-page dialogs (browser pop-ups are blocked in some viewers) */
+function askConfirm(title,msg,okLabel,onOk){const d=$('#dlg');d.innerHTML=`<h3>${esc(title)}</h3><p>${esc(msg)}</p><div class="row" style="justify-content:flex-end;margin-top:1rem"><button class="btn ghost" id="acNo">Cancel</button><button class="btn primary" id="acYes">${esc(okLabel)}</button></div>`;if(!d.open)d.showModal();$('#acNo').onclick=()=>d.close();$('#acYes').onclick=()=>{d.close();onOk()};$('#acNo').focus()}
+function askText(title,label,okLabel,onOk){const d=$('#dlg');d.innerHTML=`<h3>${esc(title)}</h3><label for="atIn">${esc(label)}</label><input type="text" id="atIn"><div class="row" style="justify-content:flex-end;margin-top:1rem"><button class="btn ghost" id="atNo">Cancel</button><button class="btn primary" id="atYes">${esc(okLabel)}</button></div>`;if(!d.open)d.showModal();const go=()=>{const v=$('#atIn').value.trim();if(!v){$('#atIn').focus();return}d.close();onOk(v)};$('#atNo').onclick=()=>d.close();$('#atYes').onclick=go;$('#atIn').onkeydown=e=>{if(e.key==='Enter'){e.preventDefault();go()}};$('#atIn').focus()}
+
 
 /* ============ storage (private to each learner's browser) ============ */
 const KEY='citadel-v1';
@@ -993,7 +997,7 @@ function renderLib(){
    <h2>Synthesis matrix</h2><div class="panel" id="matrix"></div>`;
   $('#lq').oninput=e=>{libFilter.q=e.target.value;drawList()};$('#lc').onchange=e=>{libFilter.col=e.target.value;drawList()};$('#ls').onchange=e=>{libFilter.st=e.target.value;drawList()};
   $('#bs').onchange=e=>{S.libStyle=e.target.value;save();drawBib()};
-  $('#newCol').onclick=()=>{const n=prompt('Name the new collection');if(n&&n.trim()&&!S.cols.includes(n.trim())){S.cols.push(n.trim());save();libFilter.col=n.trim();renderLib()}};
+  $('#newCol').onclick=()=>askText('New collection','Collection name','Create',n=>{if(S.cols.includes(n)){toast('You already have a collection called '+n);return}S.cols.push(n);save();libFilter.col=n;renderLib()});
   $('#addRef').onclick=()=>{const r=newRef();S.lib.push(r);selId=r.id;save();drawList();drawDetail();$('#f_authors')?.focus()};
   $('#imp').onclick=importDialog;$('#exp').onclick=exportDialog;
   $('#copyBib').onclick=async()=>{const list=filtered();if(!list.length){toast('No references to copy');return}const html=bibHTML(list,S.libStyle);const ok=await copyText(strip(html.replace(/<\/p>/g,'</p>\n')),html);toast(ok?'Bibliography copied':'Copy failed')};
@@ -1049,7 +1053,7 @@ function drawDetail(){const det=$('#det'),r=S.lib.find(x=>x.id===selId);
     if(f==='key'){const v=el.value.replace(/[^\w-]/g,'');if(v&&!S.lib.some(x=>x.key===v&&x.id!==r.id))r.key=v;else return}else r[f]=el.value;
     save();if(f==='type'){drawDetail();drawList();return}drawPrev();clearTimeout(drawDetail._t);drawDetail._t=setTimeout(()=>{drawList()},500)})
     ;if(el.tagName!=='SELECT')el.addEventListener('change',()=>{const H2=health(r);const h=$('.health',det);if(h)h.innerHTML=H2.length?H2.map(x=>`<li>${x}</li>`).join(''):'<li class="okk">Everything a style needs is here.</li>'})});
-  $('#delRef').onclick=()=>{if(confirm('Delete this reference?')){S.lib=S.lib.filter(x=>x.id!==r.id);selId=null;save();drawList();drawDetail()}};
+  $('#delRef').onclick=()=>askConfirm('Delete this reference?',`“${r.title||'Untitled'}” will be removed from your library. This cannot be undone.`,'Delete',()=>{S.lib=S.lib.filter(x=>x.id!==r.id);selId=null;save();drawList();drawDetail();toast('Reference deleted')});
   $('#toWrite').onclick=()=>{S.doc=(S.doc?S.doc.replace(/\s*$/,' '):'')+`[@${r.key}]`;save();go('write')};
   checkLibBadges()}
 function importDialog(){const d=$('#dlg');d.innerHTML=`<h3>Import references</h3><p class="notes">Export from Zotero, Mendeley or EndNote as BibTeX (.bib) or RIS (.ris), then paste the text or choose the file. Duplicates are flagged, not deleted.</p>
@@ -1129,7 +1133,7 @@ function renderWrite(){S.snaps=S.snaps||[];
   $('#wst').onchange=e=>{S.style=e.target.value;save();draw()};$('#wq').oninput=drawSrc;
   $('#snapB').onclick=()=>{const t=$('#wd').value;if(!t.trim()){toast('Write something first');return}if(S.snaps[0]&&S.snaps[0].text===t){toast('No changes since the last snapshot');return}S.snaps.unshift({t:Date.now(),text:t});S.snaps=S.snaps.slice(0,20);save();toast('Snapshot saved');renderWrite()};
   $('#snapSel').onchange=e=>{const i=e.target.value;if(i==='')return;const x=S.snaps[+i];const d=$('#dlg');d.innerHTML=`<h3>Snapshot from ${new Date(x.t).toLocaleString()}</h3><p class="notes">${words(x.text).length} words. Snapshots show how your writing developed, which can help if your process is ever questioned.</p><div class="src" style="white-space:pre-wrap;max-height:50vh;overflow:auto">${esc(x.text)}</div><div class="row" style="justify-content:flex-end;margin-top:.8rem"><button class="btn ghost" id="sc">Close</button><button class="btn" id="sr">Restore this version</button></div>`;d.showModal();
-    $('#sc').onclick=()=>{d.close();e.target.value=''};$('#sr').onclick=()=>{if(confirm('Replace your current draft with this snapshot? Save a snapshot of the current draft first if you want to keep it.')){S.doc=x.text;save();d.close();renderWrite()}}};
+    $('#sc').onclick=()=>{d.close();e.target.value=''};$('#sr').onclick=()=>{e.target.value='';askConfirm('Restore this snapshot?','It will replace your current draft. Save a snapshot of the current draft first if you want to keep it.','Restore',()=>{S.doc=x.text;save();renderWrite();toast('Snapshot restored')})}};
   $('#wcopy').onclick=async()=>{const R2=draw();const html=R2.html+(R2.bib?`<h3>${LISTNAME[S.style]}</h3>${R2.bib}`:'');const plain=strip(html.replace(/<\/p>/g,'</p>\n\n').replace(/<\/h3>/g,'</h3>\n\n'));toast(await copyText(plain,html)?'Copied with formatting':'Copy failed')};
   $('#wsave').onclick=()=>{const R2=draw();saveFile('draft-'+S.style+'.txt',strip((R2.html+(R2.bib?`<h3>${LISTNAME[S.style]}</h3>${R2.bib}`:'')).replace(/<\/p>/g,'</p>\n\n').replace(/<\/h3>/g,'</h3>\n\n')))};
   $('#wcheck').onclick=()=>submissionCheck(draw());
@@ -1539,7 +1543,7 @@ function renderGuide(){
   $('#gRest').onclick=()=>{const d=$('#dlg');d.innerHTML=`<h3>Restore a backup</h3><p class="notes">This replaces your current progress and library.</p><input type="file" id="rf" accept=".json,.txt"><label for="rt">Or paste the backup text</label><textarea id="rt"></textarea><div class="row" style="justify-content:flex-end;margin-top:.8rem"><button class="btn ghost" id="rc">Cancel</button><button class="btn primary" id="rg">Restore</button></div>`;d.showModal();
     $('#rf').onchange=e=>{const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{$('#rt').value=r.result};r.readAsText(f)};$('#rc').onclick=()=>d.close();
     $('#rg').onclick=()=>{try{const o=JSON.parse($('#rt').value);if(typeof o!=='object'||!('xp' in o))throw 0;S=Object.assign(JSON.parse(JSON.stringify(DEF)),o);save();d.close();renderHeader();toast('Backup restored');go('path')}catch(e){toast('That is not a Citadel backup.')}}};
-  $('#gReset').onclick=()=>{if(confirm('Reset XP, stars, badges and mistakes? Your library and draft are kept.')){Object.assign(S,{xp:0,levels:{},solved:{},badges:[],mistakes:{},placedIds:[],calib:{n:0,cert:0,certRight:0},streak:{count:0,last:null},daily:{date:'',xp:0},sprintBest:0,reviewed:0,paraDone:{}});save();renderHeader();toast('Progress reset')}}}
+  $('#gReset').onclick=()=>askConfirm('Reset game progress?','Your XP, stars, badges and mistake deck will be cleared. Your library and draft are kept.','Reset',()=>{Object.assign(S,{xp:0,levels:{},solved:{},badges:[],mistakes:{},placedIds:[],calib:{n:0,cert:0,certRight:0},streak:{count:0,last:null},daily:{date:'',xp:0},sprintBest:0,reviewed:0,paraDone:{}});save();renderHeader();toast('Progress reset')})}
 
 /* ============ boot ============ */
 renderHeader();go('path');if(!S.seenTour)setTimeout(()=>showTour(0),400);
