@@ -674,3 +674,69 @@ collections:
             label: Line
             widget: string
             hint: 'Links: `[text](https://…)` or `[me@site.com](mailto:me@site.com)`'
+  - name: stories
+    label: Laureate Lab · Scholar stories
+    file: laureate/stories.json
+    fields:
+    - name: stories
+      label: Stories
+      label_singular: story
+      widget: list
+      required: false
+      collapsed: true
+      summary: '{{name}} · {{scholarship}} {{year}}'
+      hint: Publish a story only after the scholar has agreed in writing (for example, ticked the consent box on the story form).
+      fields:
+      - name: name
+        label: Scholar's name (as they want it shown)
+        widget: string
+      - name: scholarship
+        label: Scholarship won
+        widget: string
+        hint: Use the same spelling each time (e.g. Chevening Scholarship) so the filter groups stories together.
+      - name: year
+        label: Year awarded
+        widget: string
+        required: false
+      - name: university
+        label: University
+        widget: string
+        required: false
+      - name: course
+        label: Course
+        widget: string
+        required: false
+      - name: home_country
+        label: Home country
+        widget: string
+        required: false
+      - name: photo
+        label: Photo (optional, with permission)
+        widget: image
+        required: false
+      - name: story
+        label: Their story
+        widget: text
+      - name: tips
+        label: Top tips
+        widget: list
+        required: false
+        field:
+          name: tip
+          label: Tip
+          widget: string
+      - name: contact_url
+        label: Public contact link (optional)
+        widget: string
+        required: false
+        hint: Only a link the scholar chose to share, such as their LinkedIn profile. Never publish a phone number or personal email.
+      - name: consent
+        label: The scholar agreed to publish this story
+        widget: boolean
+        default: false
+        hint: The story stays hidden until this is on.
+      - name: hidden
+        label: Hide this story
+        widget: boolean
+        default: false
+        required: false
