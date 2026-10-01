@@ -281,6 +281,19 @@
       "lede": "",
       "items": [
         {
+          "name": "EIA Studio",
+          "meta": "2026",
+          "status": "active",
+          "role": "Interactive tool",
+          "text": "Learn or carry out an Environmental Impact Assessment step by step, with 51 documented case studies from 40 countries and 34 national and international legal frameworks.",
+          "bullets": [],
+          "stats": [],
+          "link_label": "Open tool",
+          "link_url": "/eia-studio/",
+          "size": "half",
+          "hidden": false
+        },
+        {
           "name": "Symbiosis Workbench",
           "meta": "2026",
           "status": "active",
