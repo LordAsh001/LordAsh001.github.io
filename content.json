@@ -281,6 +281,19 @@
       "lede": "",
       "items": [
         {
+          "name": "Techno-Economic Studio",
+          "meta": "2026",
+          "status": "active",
+          "role": "Interactive tool",
+          "text": "Carry out a techno-economic assessment step by step, from capital and operating cost to cash flow, NPV, IRR and minimum selling price, with 30 rebuilt published case studies, presets for 197 countries and 7,768 published TEAs to benchmark against.",
+          "bullets": [],
+          "stats": [],
+          "link_label": "Open tool",
+          "link_url": "/tea-studio/",
+          "size": "half",
+          "hidden": false
+        },
+        {
           "name": "EIA Studio",
           "meta": "2026",
           "status": "active",
