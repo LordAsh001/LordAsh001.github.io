@@ -3,7 +3,7 @@
     "title": "Shagbaor Hycent Amool · Environmental Engineer, PhD student at UNBC",
     "wordmark": "S. H. Amool",
     "description": "Environmental engineer and PhD student at the University of Northern British Columbia (UNBC), researching curdlan recovery from aerobic granular sludge treating industrial wastewater.",
-    "last_revised": "September 2026",
+    "last_revised": "October 2026",
     "footer": "© 2026 Shagbaor Hycent Amool"
   },
   "hero": {
@@ -22,7 +22,10 @@
     "email": "amool@unbc.ca",
     "cv": "",
     "cv_updated": "",
+    "video": "",
+    "video_label": "Watch a 1-minute welcome",
     "abstract": "I study how the microbes that clean industrial wastewater can also make something valuable. My PhD looks at recovering **curdlan**, a useful biopolymer, from **aerobic granular sludge**. Before this I designed farm machinery in Nigeria, lectured in engineering, earned an MSc with Distinction in Edinburgh, and started programmes that have reached thousands of students.",
+    "abstract_fr": "J'étudie comment les microbes qui épurent les eaux usées industrielles peuvent aussi produire quelque chose de précieux. Mon doctorat porte sur la récupération du **curdlan**, un biopolymère utile, à partir de **boues granulaires aérobies**. Auparavant, j'ai conçu des machines agricoles au Nigeria, enseigné l'ingénierie, obtenu une maîtrise avec distinction à Édimbourg et lancé des programmes qui ont touché des milliers d'étudiants.",
     "keywords": [
       "aerobic granular sludge",
       "curdlan",
@@ -40,10 +43,11 @@
           "sections": [
             "research",
             "publications",
+            "resources",
             "recognition",
             "contact"
           ],
-          "note": "Start with [Research](#research) and Fig. 2, then [Publications](#publications) and the prizes in [Recognition](#recognition). For collaboration or lab visits, [write to me](mailto:amool@unbc.ca)."
+          "note": "Start with [Research](#research) and Fig. 2, then [Publications](#publications) (each with a plain-language summary) and the prizes in [Recognition](#recognition). For collaboration or lab visits, [write to me](mailto:amool@unbc.ca)."
         },
         {
           "label": "Investor",
@@ -57,20 +61,22 @@
         {
           "label": "Student",
           "sections": [
+            "resources",
             "work",
             "teaching",
             "writing"
           ],
-          "note": "Start with Via Scholaris in [Work](#work) and the [Teaching](#teaching) section. The full webinar library is [on YouTube](https://www.youtube.com/@viascholaris)."
+          "note": "Start with the free tools in [Open resources](#resources): filter them by \"Student\". Then Via Scholaris in [Work](#work) and [Teaching](#teaching). The full webinar library is [on YouTube](https://www.youtube.com/@viascholaris)."
         },
         {
           "label": "Institution",
           "sections": [
             "teaching",
+            "resources",
             "path",
             "recognition"
           ],
-          "note": "Start with [Teaching](#teaching) and my [Path](#path), then the [skills toolkit](#toolkit) under Recognition."
+          "note": "Start with [Teaching](#teaching) and the classroom-ready tools in [Open resources](#resources), then my [Path](#path) and the [skills toolkit](#toolkit) under Recognition. Organising an event? The [speaker kit](#kit) has bios ready to copy."
         }
       ]
     },
@@ -135,12 +141,31 @@
       "steps_caption": "**Fig. 2** The research pathway, from wastewater to a recoverable biopolymer.",
       "cards": [
         {
+          "label": "PhD research · 2026 →",
+          "title": "Curdlan recovery from aerobic granular sludge",
+          "text": "Bio-innovative Water and Wastewater Biorefinery Lab, School of Engineering, UNBC.",
+          "tag": "",
+          "tag_style": "plain",
+          "status": "ongoing",
+          "sdgs": [
+            6,
+            9,
+            12
+          ],
+          "hidden": false
+        },
+        {
           "label": "MSc dissertation · 2025",
           "title": "Electrocatalytic wastewater treatment with carbon utilisation",
           "text": "Research Centre for Carbon Solutions, Heriot-Watt University. Linked cleaner water to capturing value from carbon.",
           "tag": "Distinction",
           "tag_style": "plain",
-          "hidden": false
+          "hidden": false,
+          "status": "completed",
+          "sdgs": [
+            6,
+            13
+          ]
         },
         {
           "label": "Conference poster · 2026",
@@ -148,7 +173,12 @@
           "text": "A poster on using wastewater treatment and carbon utilisation together, presented at the ECR Net Zero Conference (Supergen).",
           "tag": "Delegates' Prize",
           "tag_style": "prize",
-          "hidden": false
+          "hidden": false,
+          "status": "completed",
+          "sdgs": [
+            9,
+            13
+          ]
         },
         {
           "label": "BEng dissertation · 2019",
@@ -156,8 +186,18 @@
           "text": "Designed and built for smallholder farmers. University of Agriculture Makurdi (now called Joseph Sarwuan Tarka University Makurdi).",
           "tag": "First Class",
           "tag_style": "plain",
-          "hidden": false
+          "hidden": false,
+          "status": "completed",
+          "sdgs": [
+            2,
+            8
+          ]
         }
+      ],
+      "questions_title": "Research questions",
+      "questions": [
+        "Can curdlan be recovered from aerobic granular sludge grown on industrial wastewater?",
+        "Which extraction methods recover it, and how can we show that what is recovered really is curdlan, and how much of it there is?"
       ]
     },
     {
@@ -167,22 +207,397 @@
       "id": "publications",
       "show": true,
       "numbered": true,
-      "subtitle": "Publicly available work. Full record on ORCID.",
+      "subtitle": "Publicly available work, each with a plain-language summary. Full record on ORCID.",
       "lede": "",
       "items": [
         {
-          "text": "**Amool, S. H.**, Tan, J. Z. Y., & Andresen, J. · doi:10.2139/ssrn.6717086",
+          "text": "doi:10.2139/ssrn.6717086",
           "hidden": false,
           "label": "Preprint · SSRN · 2026",
           "title": "Integration of advanced electrocatalytic wastewater treatment with carbon utilisation",
-          "url": "https://doi.org/10.2139/ssrn.6717086"
+          "url": "https://doi.org/10.2139/ssrn.6717086",
+          "authors": "**Amool, S. H.**, Tan, J. Z. Y., & Andresen, J.",
+          "plain": "Cleaning industrial wastewater and dealing with carbon are usually treated as two separate problems. This preprint explores how electrocatalytic treatment, which uses electricity and a catalyst to break down pollutants, could be combined with carbon utilisation in one integrated system.",
+          "takeaway": "cleaner water and capturing value from carbon can be designed together.",
+          "link_label": "Read on SSRN",
+          "extra_url": "",
+          "extra_label": "",
+          "cite": "Amool, S. H., Tan, J. Z. Y., & Andresen, J. (2026). Integration of advanced electrocatalytic wastewater treatment with carbon utilisation [Preprint]. SSRN. https://doi.org/10.2139/ssrn.6717086"
         },
         {
           "text": "ORCID iD 0000-0001-8460-6744",
           "hidden": false,
           "label": "Full record",
           "title": "All publications, posters and conference papers on ORCID",
-          "url": "https://orcid.org/0000-0001-8460-6744"
+          "url": "https://orcid.org/0000-0001-8460-6744",
+          "link_label": "Open ORCID"
+        }
+      ]
+    },
+    {
+      "type": "resources",
+      "heading": "Open resources",
+      "nav_label": "Resources",
+      "id": "resources",
+      "show": true,
+      "numbered": true,
+      "subtitle": "Free, browser-based tools I build for students, educators and practitioners. No sign-up needed.",
+      "lede": "Learning sticks when you *do* the thing, so I turn methods into tools you can try.",
+      "body": "",
+      "items": [
+        {
+          "name": "Techno-Economic Studio",
+          "kind": "Interactive tool · free",
+          "url": "/tea-studio/",
+          "link_label": "Open tool",
+          "audience": [
+            "Students",
+            "Researchers",
+            "Practitioners"
+          ],
+          "level": "Intermediate",
+          "text": "Carry out a techno-economic assessment step by step, from capital and operating cost to cash flow, NPV, IRR and minimum selling price, with 30 rebuilt published case studies, presets for 197 countries and 7,768 published TEAs to benchmark against.",
+          "numbers": [
+            {
+              "value": "30",
+              "label": "rebuilt case studies"
+            },
+            {
+              "value": "197",
+              "label": "country presets"
+            },
+            {
+              "value": "7,768",
+              "label": "published TEAs to benchmark"
+            }
+          ],
+          "classroom": "walk a class through costing a process plant and reading NPV and IRR.",
+          "sdgs": [
+            7,
+            9,
+            12
+          ],
+          "hidden": false
+        },
+        {
+          "name": "EIA Studio",
+          "kind": "Interactive tool · free",
+          "url": "/eia-studio/",
+          "link_label": "Open tool",
+          "audience": [
+            "Students",
+            "Educators",
+            "Practitioners"
+          ],
+          "level": "Beginner → advanced",
+          "text": "Learn or carry out an Environmental Impact Assessment step by step, with 51 documented case studies from 40 countries and 34 national and international legal frameworks.",
+          "numbers": [
+            {
+              "value": "51",
+              "label": "case studies"
+            },
+            {
+              "value": "40",
+              "label": "countries"
+            },
+            {
+              "value": "34",
+              "label": "legal frameworks"
+            }
+          ],
+          "classroom": "compare how different countries' laws handle the same project.",
+          "sdgs": [
+            6,
+            11,
+            15
+          ],
+          "hidden": false
+        },
+        {
+          "name": "Symbiosis Workbench",
+          "kind": "Interactive tool · free",
+          "url": "/symbiosis/",
+          "link_label": "Open tool",
+          "audience": [
+            "Students",
+            "Educators",
+            "Researchers"
+          ],
+          "level": "Intermediate",
+          "text": "Design eco-industrial parks, compare by-product exchanges, and explore evidence-based industrial symbiosis data.",
+          "numbers": [],
+          "classroom": "have teams design an eco-industrial park and trade by-products.",
+          "sdgs": [
+            9,
+            12
+          ],
+          "hidden": false
+        },
+        {
+          "name": "The SustainaTable",
+          "kind": "Interactive tool · free",
+          "url": "/sustainatable.html",
+          "link_label": "Open tool",
+          "audience": [
+            "Students",
+            "Educators"
+          ],
+          "level": "All levels",
+          "text": "Explore the 17 Sustainable Development Goals as a periodic table, through an engineering and resource-recovery lens.",
+          "numbers": [
+            {
+              "value": "17",
+              "label": "goals, one table"
+            }
+          ],
+          "classroom": "open a lesson by asking students to find where their discipline fits.",
+          "sdgs": [
+            4,
+            17
+          ],
+          "hidden": false
+        },
+        {
+          "name": "Laureate Lab",
+          "kind": "Interactive tool · free",
+          "url": "/laureate/",
+          "link_label": "Open tool",
+          "audience": [
+            "Students"
+          ],
+          "level": "All levels",
+          "text": "Prepare for scholarships by doing: a live atlas of global and Nigerian awards with deadline countdowns, an Essay Dojo that colour-codes every sentence as you write, interview practice and planning tools.",
+          "numbers": [],
+          "classroom": "",
+          "sdgs": [
+            4,
+            10
+          ],
+          "hidden": false
+        },
+        {
+          "name": "Citadel",
+          "kind": "Interactive tool · free",
+          "url": "/citadel.html",
+          "link_label": "Open tool",
+          "audience": [
+            "Students",
+            "Educators"
+          ],
+          "level": "Beginner",
+          "text": "Learn to cite by doing: 13 game levels, from how scholarly writing works to an integrity audit, with confidence ratings, language support, a paraphrase lab, a reference library that imports and exports BibTeX and RIS, and a writing desk that flags unsupported claims.",
+          "numbers": [
+            {
+              "value": "13",
+              "label": "game levels"
+            }
+          ],
+          "classroom": "set a level as homework before the first written assignment.",
+          "sdgs": [
+            4,
+            16
+          ],
+          "hidden": false
+        }
+      ],
+      "note": "Using one of these in a course or workshop? I'd love to hear how it went: [amool@unbc.ca](mailto:amool@unbc.ca). Free to use for teaching and learning."
+    },
+    {
+      "type": "projects",
+      "heading": "Work",
+      "nav_label": "Work",
+      "id": "work",
+      "show": true,
+      "numbered": true,
+      "subtitle": "Ventures and programmes I've started, funded or led, in education, community and circular agriculture.",
+      "lede": "",
+      "items": [
+        {
+          "name": "Via Scholaris",
+          "meta": "Founder & Programme Lead · 2024 →",
+          "status": "active",
+          "role": "",
+          "text": "Free scholarship guidance, postgraduate preparation and career programmes. Live webinars become a lasting video library for students who can't attend live.\n\nSpeakers from **Bloomberg**, **Arup UK**, **ENODA** and **OCU Group**, among others.",
+          "bullets": [],
+          "stats": [
+            {
+              "value": "89",
+              "label": "videos in the library"
+            },
+            {
+              "value": "1,000+",
+              "label": "subscribers"
+            },
+            {
+              "value": "6,900",
+              "label": "views on the most-watched resource"
+            }
+          ],
+          "link_label": "Watch on YouTube",
+          "link_url": "https://www.youtube.com/@viascholaris",
+          "size": "wide",
+          "hidden": false,
+          "sdgs": [
+            4,
+            10
+          ]
+        },
+        {
+          "name": "Belonging in Action CIC",
+          "meta": "Edinburgh · 2026 →",
+          "status": "active",
+          "role": "Secretary, formerly Strategy & Programmes Lead",
+          "text": "A community interest company for education, inclusion and entrepreneurship among international students and immigrant communities. I run registration, feedback and impact reporting, write funding bids, and coordinate universities, businesses and volunteers.",
+          "bullets": [
+            "113 participants at the launch",
+            "Business workshops on growing in the UK's digital economy",
+            "Outdoor community days around Edinburgh"
+          ],
+          "stats": [],
+          "link_label": "",
+          "link_url": "",
+          "size": "half",
+          "hidden": false,
+          "sdgs": [
+            4,
+            8,
+            10
+          ]
+        },
+        {
+          "name": "ERGE Platform",
+          "meta": "Scotland · 2026",
+          "status": "closed",
+          "role": "Co-founder",
+          "text": "A circular-economy marketplace that connected farmers with processors, feed makers and bioenergy operators, so downgraded produce could be sold instead of wasted. Wound down in August 2026.",
+          "bullets": [
+            "£4,500 in competitive pre-seed funding",
+            "First Prize, Industry-Led Innovation Sprint 2026",
+            "Second Place, Startup Factory Scotland 2026"
+          ],
+          "stats": [],
+          "link_label": "",
+          "link_url": "",
+          "size": "half",
+          "hidden": false,
+          "sdgs": [
+            2,
+            12
+          ]
+        },
+        {
+          "name": "Biolink Conservation & Environmental Initiative",
+          "meta": "Makurdi · 2026 →",
+          "status": "none",
+          "role": "",
+          "text": "Practical, data-led conservation. Building partnerships and helping digitise forest assets so decisions rest on reliable data.",
+          "bullets": [],
+          "stats": [],
+          "link_label": "",
+          "link_url": "",
+          "size": "third",
+          "hidden": false,
+          "sdgs": [
+            13,
+            15
+          ]
+        },
+        {
+          "name": "Sweats to Watts",
+          "meta": "Benue · 2025–26",
+          "status": "none",
+          "role": "",
+          "text": "Mechanisation for rice, soybean and guinea-corn farmers, replacing manual labour with machines. With Fatherland Agric Co.",
+          "bullets": [],
+          "stats": [],
+          "link_label": "",
+          "link_url": "",
+          "size": "third",
+          "hidden": false,
+          "sdgs": [
+            2,
+            8
+          ]
+        },
+        {
+          "name": "Seeds to Profit",
+          "meta": "Benue · 2025–26",
+          "status": "none",
+          "role": "",
+          "text": "Getting improved, more resilient seed varieties to farmers so harvests can stand up to a changing climate. With Fatherland Agric Co.",
+          "bullets": [],
+          "stats": [],
+          "link_label": "",
+          "link_url": "",
+          "size": "third",
+          "hidden": false,
+          "sdgs": [
+            2,
+            13
+          ]
+        }
+      ]
+    },
+    {
+      "type": "columns",
+      "heading": "Teaching & talks",
+      "nav_label": "Teaching",
+      "id": "teaching",
+      "show": true,
+      "numbered": true,
+      "subtitle": "Making technical ideas clear to people who don't work with them every day.",
+      "lede": "A good lecture and a good grant proposal do the same job: they make a hard idea *easy to act on*.",
+      "columns": [
+        {
+          "label": "Lecturer I · Federal Polytechnic Wannune · 2022 →",
+          "title": "In the classroom",
+          "chips": [
+            "Agricultural Technology",
+            "Sustainable Design",
+            "Engineering Materials"
+          ],
+          "text": "I also supervise student projects from start to finish: defining the problem, doing the research and analysis, and presenting the results. I'm open to guest lectures and remote teaching.",
+          "quotes": []
+        },
+        {
+          "label": "Mentoring & public talks",
+          "title": "Beyond it",
+          "chips": [],
+          "text": "",
+          "quotes": [
+            {
+              "title": "From Waste to Worth · Building Green Communities",
+              "date": "1–2 October 2026",
+              "text": "Mentor and Lead Facilitator for a two-part global webinar series, Women Ascension. Circular economy and green innovation, then environmental leadership and sustainable livelihoods.",
+              "url": "",
+              "photo": "",
+              "hidden": false
+            },
+            {
+              "title": "Local Climate Challenges & Circular Economy Awareness",
+              "text": "Mentor session, Women Ascension One Million Leadership fellowship. Compared how African and Asian countries approach the circular economy.",
+              "hidden": false,
+              "date": "",
+              "url": "",
+              "photo": ""
+            },
+            {
+              "title": "Beyond Word-of-Mouth",
+              "text": "Business workshop, Belonging in Action CIC, Edinburgh. On growing a business in the UK's digital economy.",
+              "hidden": false,
+              "date": "August 2026",
+              "url": "",
+              "photo": ""
+            },
+            {
+              "title": "Career Pathway webinars",
+              "text": "Via Scholaris series, bringing practitioners to students online.",
+              "hidden": false,
+              "date": "",
+              "url": "https://www.youtube.com/@viascholaris",
+              "photo": ""
+            }
+          ]
         }
       ]
     },
@@ -267,241 +682,6 @@
           "text": "",
           "current": false,
           "hidden": false
-        }
-      ]
-    },
-    {
-      "type": "projects",
-      "heading": "Work",
-      "nav_label": "Work",
-      "id": "work",
-      "show": true,
-      "numbered": true,
-      "subtitle": "Ventures and programmes I've started, funded or led, in education, community and circular agriculture.",
-      "lede": "",
-      "items": [
-        {
-          "name": "Techno-Economic Studio",
-          "meta": "2026",
-          "status": "active",
-          "role": "Interactive tool",
-          "text": "Carry out a techno-economic assessment step by step, from capital and operating cost to cash flow, NPV, IRR and minimum selling price, with 30 rebuilt published case studies, presets for 197 countries and 7,768 published TEAs to benchmark against.",
-          "bullets": [],
-          "stats": [],
-          "link_label": "Open tool",
-          "link_url": "/tea-studio/",
-          "size": "half",
-          "hidden": false
-        },
-        {
-          "name": "EIA Studio",
-          "meta": "2026",
-          "status": "active",
-          "role": "Interactive tool",
-          "text": "Learn or carry out an Environmental Impact Assessment step by step, with 51 documented case studies from 40 countries and 34 national and international legal frameworks.",
-          "bullets": [],
-          "stats": [],
-          "link_label": "Open tool",
-          "link_url": "/eia-studio/",
-          "size": "half",
-          "hidden": false
-        },
-        {
-          "name": "Symbiosis Workbench",
-          "meta": "2026",
-          "status": "active",
-          "role": "Interactive tool",
-          "text": "Design eco-industrial parks, compare by-product exchanges, and explore evidence-based industrial symbiosis data.",
-          "bullets": [],
-          "stats": [],
-          "link_label": "Open tool",
-          "link_url": "/symbiosis/",
-          "size": "half",
-          "hidden": false
-        },
-        {
-          "name": "The SustainaTable",
-          "meta": "2026",
-          "status": "active",
-          "role": "Interactive tool",
-          "text": "Explore the 17 Sustainable Development Goals as a periodic table, through an engineering and resource-recovery lens.",
-          "bullets": [],
-          "stats": [],
-          "link_label": "Open tool",
-          "link_url": "/sustainatable.html",
-          "size": "half",
-          "hidden": false
-        },
-        {
-          "name": "Laureate Lab",
-          "meta": "2026",
-          "status": "active",
-          "role": "Interactive tool",
-          "text": "Prepare for scholarships by doing: a live atlas of global and Nigerian awards with deadline countdowns, an Essay Dojo that colour-codes every sentence as you write, interview practice and planning tools.",
-          "bullets": [],
-          "stats": [],
-          "link_label": "Open tool",
-          "link_url": "/laureate/",
-          "size": "half",
-          "hidden": false
-        },
-        {
-          "name": "Citadel",
-          "meta": "2026",
-          "status": "active",
-          "role": "Interactive tool",
-          "text": "Learn to cite by doing: 13 game levels, from how scholarly writing works to an integrity audit, with confidence ratings, language support, a paraphrase lab, a reference library that imports and exports BibTeX and RIS, and a writing desk that flags unsupported claims.",
-          "bullets": [],
-          "stats": [],
-          "link_label": "Open tool",
-          "link_url": "/citadel.html",
-          "size": "half",
-          "hidden": false
-        },
-        {
-          "name": "Via Scholaris",
-          "meta": "Founder & Programme Lead · 2024 →",
-          "status": "active",
-          "role": "",
-          "text": "Free scholarship guidance, postgraduate preparation and career programmes. Live webinars become a lasting video library for students who can't attend live.\n\nSpeakers from **Bloomberg**, **Arup UK**, **ENODA** and **OCU Group**, among others.",
-          "bullets": [],
-          "stats": [
-            {
-              "value": "89",
-              "label": "videos in the library"
-            },
-            {
-              "value": "1,000+",
-              "label": "subscribers"
-            },
-            {
-              "value": "6,900",
-              "label": "views on the most-watched resource"
-            }
-          ],
-          "link_label": "Watch on YouTube",
-          "link_url": "https://www.youtube.com/@viascholaris",
-          "size": "wide",
-          "hidden": false
-        },
-        {
-          "name": "Belonging in Action CIC",
-          "meta": "Edinburgh · 2026 →",
-          "status": "active",
-          "role": "Secretary, formerly Strategy & Programmes Lead",
-          "text": "A community interest company for education, inclusion and entrepreneurship among international students and immigrant communities. I run registration, feedback and impact reporting, write funding bids, and coordinate universities, businesses and volunteers.",
-          "bullets": [
-            "113 participants at the launch",
-            "Business workshops on growing in the UK's digital economy",
-            "Outdoor community days around Edinburgh"
-          ],
-          "stats": [],
-          "link_label": "",
-          "link_url": "",
-          "size": "half",
-          "hidden": false
-        },
-        {
-          "name": "ERGE Platform",
-          "meta": "Scotland · 2026",
-          "status": "closed",
-          "role": "Co-founder",
-          "text": "A circular-economy marketplace that connected farmers with processors, feed makers and bioenergy operators, so downgraded produce could be sold instead of wasted. Wound down in August 2026.",
-          "bullets": [
-            "£4,500 in competitive pre-seed funding",
-            "First Prize, Industry-Led Innovation Sprint 2026",
-            "Second Place, Startup Factory Scotland 2026"
-          ],
-          "stats": [],
-          "link_label": "",
-          "link_url": "",
-          "size": "half",
-          "hidden": false
-        },
-        {
-          "name": "Biolink Conservation & Environmental Initiative",
-          "meta": "Makurdi · 2026 →",
-          "status": "none",
-          "role": "",
-          "text": "Practical, data-led conservation. Building partnerships and helping digitise forest assets so decisions rest on reliable data.",
-          "bullets": [],
-          "stats": [],
-          "link_label": "",
-          "link_url": "",
-          "size": "third",
-          "hidden": false
-        },
-        {
-          "name": "Sweats to Watts",
-          "meta": "Benue · 2025–26",
-          "status": "none",
-          "role": "",
-          "text": "Mechanisation for rice, soybean and guinea-corn farmers, replacing manual labour with machines. With Fatherland Agric Co.",
-          "bullets": [],
-          "stats": [],
-          "link_label": "",
-          "link_url": "",
-          "size": "third",
-          "hidden": false
-        },
-        {
-          "name": "Seeds to Profit",
-          "meta": "Benue · 2025–26",
-          "status": "none",
-          "role": "",
-          "text": "Getting improved, more resilient seed varieties to farmers so harvests can stand up to a changing climate. With Fatherland Agric Co.",
-          "bullets": [],
-          "stats": [],
-          "link_label": "",
-          "link_url": "",
-          "size": "third",
-          "hidden": false
-        }
-      ]
-    },
-    {
-      "type": "columns",
-      "heading": "Teaching & talks",
-      "nav_label": "Teaching",
-      "id": "teaching",
-      "show": true,
-      "numbered": true,
-      "subtitle": "Making technical ideas clear to people who don't work with them every day.",
-      "lede": "A good lecture and a good grant proposal do the same job: they make a hard idea *easy to act on*.",
-      "columns": [
-        {
-          "label": "Lecturer I · Federal Polytechnic Wannune · 2022 →",
-          "title": "In the classroom",
-          "chips": [
-            "Agricultural Technology",
-            "Sustainable Design",
-            "Engineering Materials"
-          ],
-          "text": "I also supervise student projects from start to finish: defining the problem, doing the research and analysis, and presenting the results. I'm open to guest lectures and remote teaching.",
-          "quotes": []
-        },
-        {
-          "label": "Mentoring & public talks",
-          "title": "Beyond it",
-          "chips": [],
-          "text": "",
-          "quotes": [
-            {
-              "title": "Local Climate Challenges & Circular Economy Awareness",
-              "text": "Mentor session, Women Ascension One Million Leadership fellowship. Compared how African and Asian countries approach the circular economy.",
-              "hidden": false
-            },
-            {
-              "title": "Beyond Word-of-Mouth",
-              "text": "Business workshop, Belonging in Action CIC, Edinburgh, August 2026. On growing a business in the UK's digital economy.",
-              "hidden": false
-            },
-            {
-              "title": "Career Pathway webinars",
-              "text": "Via Scholaris series, bringing practitioners to students online.",
-              "hidden": false
-            }
-          ]
         }
       ]
     },
@@ -620,6 +800,17 @@
       ]
     },
     {
+      "type": "testimonials",
+      "heading": "Kind words",
+      "nav_label": "Kind words",
+      "id": "kind-words",
+      "show": false,
+      "numbered": true,
+      "subtitle": "What students, colleagues and partners say about working with me.",
+      "lede": "",
+      "items": []
+    },
+    {
       "type": "links",
       "heading": "Writing",
       "nav_label": "Writing",
@@ -670,6 +861,108 @@
           "Prince George, British Columbia",
           "Working with partners in Canada, the UK and Nigeria"
         ]
+      }
+    ],
+    "kit": {
+      "show": true,
+      "title": "Speaker & press kit",
+      "intro": "Introducing me at an event or in an article? Use one of these bios and the headshot. No need to ask.",
+      "headshot": "/images/Ash.jpg",
+      "bios": [
+        {
+          "label": "Short · 50 words",
+          "text": "Shagbaor Hycent Amool is an environmental engineer and PhD student in Environmental Engineering at the University of Northern British Columbia (UNBC), where he researches recovering curdlan, a useful biopolymer, from aerobic granular sludge that treats industrial wastewater. He holds an MSc with Distinction from Heriot-Watt University and founded the learning platform Via Scholaris."
+        },
+        {
+          "label": "Medium · 100 words",
+          "text": "Shagbaor Hycent Amool is an environmental engineer and PhD student in Environmental Engineering at the University of Northern British Columbia (UNBC). His research asks whether aerobic granular sludge treating industrial wastewater can yield curdlan, a biopolymer used in food, medicine and materials.\n\nHe holds an MSc in Global Sustainability Engineering with Distinction from Heriot-Watt University, where he was a PTDF overseas scholar, and a first-class BEng in Agricultural and Environmental Engineering from the University of Agriculture Makurdi (now called Joseph Sarwuan Tarka University Makurdi). A Lecturer I at Federal Polytechnic Wannune, he founded Via Scholaris and builds free interactive tools for sustainability education."
+        },
+        {
+          "label": "Long · 170 words",
+          "text": "Shagbaor Hycent Amool is an environmental engineer and PhD student in Environmental Engineering at the University of Northern British Columbia (UNBC) in Prince George, Canada. His doctoral research asks whether aerobic granular sludge treating industrial wastewater can yield curdlan, a biopolymer used in food, medicine and materials, turning a treatment cost into a recoverable product.\n\nHis path runs from farm machinery and palm oil milling in Nigeria to lecturing at Federal Polytechnic Wannune, an MSc in Global Sustainability Engineering with Distinction from Heriot-Watt University as a PTDF overseas scholar, and a first-class BEng from the University of Agriculture Makurdi (now called Joseph Sarwuan Tarka University Makurdi). In 2026 he won the Delegates' Prize at the ECR Net Zero Conference (Supergen), and his circular-economy venture ERGE Platform took First Prize at the Industry-Led Innovation Sprint.\n\nHe founded Via Scholaris, a free learning library for students heading into postgraduate study, and builds open interactive tools for techno-economic analysis, environmental impact assessment, industrial symbiosis and the Sustainable Development Goals."
+        }
+      ]
+    }
+  },
+  "glance": {
+    "show": true,
+    "news_title": "Latest",
+    "max_news": 5,
+    "news": [
+      {
+        "date": "Oct 2026",
+        "iso": "2026-10-02",
+        "text": "Led Women Ascension's two-part global mentorship webinars, *From Waste to Worth* and *Building Green Communities*.",
+        "url": "",
+        "hidden": false
+      },
+      {
+        "date": "Oct 2026",
+        "iso": "2026-10-01",
+        "text": "Launched two free assessment tools: [Techno-Economic Studio](/tea-studio/) and [EIA Studio](/eia-studio/).",
+        "url": "",
+        "hidden": false
+      },
+      {
+        "date": "Sep 2026",
+        "iso": "2026-09-30",
+        "text": "Launched [Citadel](/citadel.html), a 13-level game that teaches citation and academic integrity.",
+        "url": "",
+        "hidden": false
+      },
+      {
+        "date": "Sep 2026",
+        "iso": "2026-09-27",
+        "text": "Launched [Laureate Lab](/laureate/) for scholarship preparation.",
+        "url": "",
+        "hidden": false
+      },
+      {
+        "date": "Sep 2026",
+        "iso": "2026-09-01",
+        "text": "Started my PhD in Environmental Engineering at UNBC, Prince George.",
+        "url": "",
+        "hidden": false
+      },
+      {
+        "date": "Aug 2026",
+        "iso": "2026-08-15",
+        "text": "Gave the *Beyond Word-of-Mouth* business workshop for Belonging in Action CIC, Edinburgh.",
+        "url": "",
+        "hidden": false
+      }
+    ],
+    "metrics_title": "By the numbers",
+    "metrics": [
+      {
+        "value": "6",
+        "label": "free interactive tools for learning and research",
+        "hidden": false
+      },
+      {
+        "value": "89",
+        "label": "videos in the Via Scholaris library",
+        "hidden": false
+      },
+      {
+        "value": "1,000+",
+        "label": "Via Scholaris subscribers",
+        "hidden": false
+      },
+      {
+        "value": "3",
+        "label": "competitive prizes in 2026",
+        "hidden": false
+      },
+      {
+        "value": "£4,500",
+        "label": "pre-seed funding won (ERGE Platform)",
+        "hidden": false
+      },
+      {
+        "value": "3",
+        "label": "countries worked in: Nigeria, UK, Canada",
+        "hidden": false
       }
     ]
   }

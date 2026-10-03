@@ -53,3 +53,17 @@ Leave a blank line between paragraphs.
 - **Previewing on your computer.** Double-clicking `index.html` shows a
   "needs a web server" note. That's expected: the site loads `content.json`,
   which browsers only allow over the web. Check changes on the live site instead.
+
+## New in October 2026
+
+- **Latest news & numbers** (*Latest news & numbers* in the editor): add a news item whenever something happens. Items with an exact date get a "New" tag for three weeks.
+- **Open resources**: your tools, with audience filters, key numbers, a "In class" tip and SDG badges. Add new tools here, not under Work.
+- **Publications**: each item can have a plain-language summary, a one-line takeaway and a "Copy citation" button.
+- **Research**: research questions, plus Ongoing / Completed / Planned status on each card.
+- **SDG badges**: add goal numbers (1–17) to research cards, projects and resources.
+- **French abstract**: fill *Abstract in French* to show an EN/FR switch.
+- **Welcome video**: paste a YouTube link under *Top of page → Welcome video*.
+- **Talks**: each talk can have a date, a link and an event photo.
+- **Kind words**: a testimonials section, switched off until you add real quotes (ask colleagues, students or event hosts for permission first).
+- **Speaker & press kit** (under Contact): short, medium and long bios with copy buttons, and a headshot download.
+- **Light/dark switch** in the top bar.
