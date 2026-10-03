@@ -94,11 +94,26 @@ collections:
         widget: string
         required: false
         hint: Optional, e.g. "September 2026". Shown next to the Download CV button.
+      - name: video
+        label: Welcome video (YouTube link)
+        widget: string
+        hint: Optional. Paste a YouTube link to a short welcome video. A "Watch" button appears under your name. It only loads when clicked.
+        required: false
+      - name: video_label
+        label: Welcome video button text
+        widget: string
+        default: Watch a 1-minute welcome
+        required: false
       - name: abstract
         label: Abstract
         widget: text
         required: false
         hint: 'Formatting: `**bold**`, `*italic*`, `[link text](https://…)`. Leave a blank line between paragraphs.'
+      - name: abstract_fr
+        label: Abstract in French (Résumé)
+        widget: text
+        required: false
+        hint: 'Optional. Adds an EN/FR switch to the abstract. Formatting: `**bold**`, `*italic*`, `[link text](https://…)`. Leave a blank line between paragraphs.'
       - name: keywords
         label: Keywords
         widget: list
@@ -158,6 +173,75 @@ collections:
           widget: text
           required: false
           hint: 'Formatting: `**bold**`, `*italic*`, `[link text](https://…)`. Leave a blank line between paragraphs.'
+    - name: glance
+      label: Latest news & numbers (band under the top)
+      widget: object
+      collapsed: true
+      fields:
+      - name: show
+        label: Show this band
+        widget: boolean
+        default: true
+      - name: news_title
+        label: News heading
+        widget: string
+        default: Latest
+        required: false
+      - name: max_news
+        label: How many news items to show
+        widget: number
+        value_type: int
+        default: 5
+        required: false
+      - name: news
+        label: News items (newest first)
+        widget: list
+        required: false
+        collapsed: true
+        summary: '{{date}} · {{text}}'
+        fields:
+        - name: date
+          label: Date shown (e.g. Oct 2026)
+          widget: string
+        - name: iso
+          label: Exact date (YYYY-MM-DD)
+          widget: string
+          hint: Used to show a "New" tag for 3 weeks.
+          required: false
+        - name: text
+          label: What happened
+          widget: text
+          required: false
+          hint: 'Formatting: `**bold**`, `*italic*`, `[link text](https://…)`. Leave a blank line between paragraphs.'
+        - name: url
+          label: Link (optional)
+          widget: string
+          required: false
+        - &id001
+          name: hidden
+          label: Hide this item
+          widget: boolean
+          hint: 'Keeps it saved but off the page. Note: hidden items are still readable in the public content file.'
+          default: false
+      - name: metrics_title
+        label: Numbers heading
+        widget: string
+        default: By the numbers
+        required: false
+      - name: metrics
+        label: Numbers
+        widget: list
+        required: false
+        collapsed: true
+        summary: '{{value}} {{label}}'
+        fields:
+        - name: value
+          label: Number (e.g. 1,000+)
+          widget: string
+        - name: label
+          label: What it counts
+          widget: string
+        - *id001
     - name: sections
       label: Sections
       widget: list
@@ -243,18 +327,26 @@ collections:
             label: Small note under the step
             widget: string
             required: false
-          - &id001
-            name: hidden
-            label: Hide this item
-            widget: boolean
-            hint: 'Keeps it saved but off the page. Note: hidden items are still readable in the public content file.'
-            default: false
+          - *id001
           hint: Drag to reorder. Remove all steps to hide the diagram.
         - name: steps_caption
           label: Diagram caption
           widget: text
           required: false
           hint: 'Formatting: `**bold**`, `*italic*`, `[link text](https://…)`. Leave a blank line between paragraphs.'
+        - name: questions_title
+          label: Research questions heading
+          widget: string
+          default: Research questions
+          required: false
+        - name: questions
+          label: Research questions
+          widget: list
+          required: false
+          field:
+            name: q
+            label: Question
+            widget: string
         - name: cards
           label: Cards under the diagram
           widget: list
@@ -262,6 +354,19 @@ collections:
           collapsed: true
           summary: '{{title}}'
           fields:
+          - name: status
+            label: Status
+            widget: select
+            default: none
+            options:
+            - label: None
+              value: none
+            - label: Ongoing (green)
+              value: ongoing
+            - label: Completed
+              value: completed
+            - label: Planned (gold)
+              value: planned
           - name: label
             label: Small label (e.g. MSc dissertation · 2025)
             widget: string
@@ -287,6 +392,18 @@ collections:
             - label: Prize (gold)
               value: prize
             default: plain
+          - name: sdgs
+            label: UN Sustainable Development Goals (numbers 1–17)
+            widget: list
+            required: false
+            field:
+              name: goal
+              label: Goal number
+              widget: number
+              value_type: int
+              min: 1
+              max: 17
+            hint: Coloured SDG badges appear on the card. Leave empty to hide.
           - *id001
       - name: timeline
         label: Timeline
@@ -421,6 +538,18 @@ collections:
             - label: One third
               value: third
             default: half
+          - name: sdgs
+            label: UN Sustainable Development Goals (numbers 1–17)
+            widget: list
+            required: false
+            field:
+              name: goal
+              label: Goal number
+              widget: number
+              value_type: int
+              min: 1
+              max: 17
+            hint: Coloured SDG badges appear on the card. Leave empty to hide.
           - *id001
       - name: columns
         label: Columns (teaching, talks)
@@ -480,6 +609,22 @@ collections:
               widget: text
               required: false
               hint: 'Formatting: `**bold**`, `*italic*`, `[link text](https://…)`. Leave a blank line between paragraphs.'
+            - name: date
+              label: Date (e.g. August 2026)
+              widget: string
+              required: false
+            - name: url
+              label: Link (recording, slides, event page)
+              widget: string
+              required: false
+            - name: photo
+              label: Event photo
+              widget: image
+              required: false
+            - name: photo_alt
+              label: Photo description (for screen readers)
+              widget: string
+              required: false
             - *id001
           hint: Up to three columns.
       - name: table
@@ -611,6 +756,38 @@ collections:
             label: Link
             widget: string
             required: false
+          - name: authors
+            label: Authors (publications)
+            widget: string
+            hint: e.g. **Amool, S. H.**, Tan, J. Z. Y., & Andresen, J.
+            required: false
+          - name: plain
+            label: Plain-language summary
+            widget: text
+            required: false
+            hint: 'Optional. 2–3 sentences anyone can follow. Formatting: `**bold**`, `*italic*`, `[link text](https://…)`. Leave a blank line between paragraphs.'
+          - name: takeaway
+            label: One-line takeaway
+            widget: string
+            required: false
+          - name: cite
+            label: Citation to copy
+            widget: text
+            required: false
+            hint: Optional. Adds a "Copy citation" button. Plain text, e.g. APA.
+          - name: link_label
+            label: Main link button text
+            widget: string
+            default: Read
+            required: false
+          - name: extra_url
+            label: Extra link (code, data, news story…)
+            widget: string
+            required: false
+          - name: extra_label
+            label: Extra link button text
+            widget: string
+            required: false
           - *id001
       - name: text
         label: Plain text section
@@ -632,6 +809,139 @@ collections:
           widget: text
           required: false
           hint: 'Formatting: `**bold**`, `*italic*`, `[link text](https://…)`. Leave a blank line between paragraphs.'
+      - name: resources
+        label: Open resources (tool cards with audience filter)
+        summary: '{{heading}}'
+        fields:
+        - *id002
+        - *id003
+        - *id004
+        - *id005
+        - *id006
+        - *id007
+        - name: lede
+          label: Large opening sentence
+          widget: text
+          required: false
+          hint: 'Formatting: `**bold**`, `*italic*`, `[link text](https://…)`. Leave a blank line between paragraphs.'
+        - name: body
+          label: Intro text
+          widget: text
+          required: false
+          hint: 'Formatting: `**bold**`, `*italic*`, `[link text](https://…)`. Leave a blank line between paragraphs.'
+        - name: items
+          label: Resources
+          widget: list
+          required: false
+          collapsed: true
+          summary: '{{name}}'
+          fields:
+          - name: name
+            label: Name
+            widget: string
+          - name: kind
+            label: Small label
+            widget: string
+            default: Interactive tool · free
+            required: false
+          - name: url
+            label: Link
+            widget: string
+          - name: link_label
+            label: Button text
+            widget: string
+            default: Open tool
+            required: false
+          - name: audience
+            label: Who it is for (also used as filters)
+            widget: list
+            required: false
+            field:
+              name: a
+              label: Audience
+              widget: string
+            hint: e.g. Students, Educators, Researchers, Practitioners
+          - name: level
+            label: Level (e.g. Beginner)
+            widget: string
+            required: false
+          - name: text
+            label: Description
+            widget: text
+            required: false
+            hint: 'Formatting: `**bold**`, `*italic*`, `[link text](https://…)`. Leave a blank line between paragraphs.'
+          - name: numbers
+            label: Key numbers
+            widget: list
+            required: false
+            fields:
+            - name: value
+              label: Number
+              widget: string
+            - name: label
+              label: Label
+              widget: string
+          - name: classroom
+            label: How to use it in class (one line)
+            widget: string
+            required: false
+          - name: sdgs
+            label: UN Sustainable Development Goals (numbers 1–17)
+            widget: list
+            required: false
+            field:
+              name: goal
+              label: Goal number
+              widget: number
+              value_type: int
+              min: 1
+              max: 17
+            hint: Coloured SDG badges appear on the card. Leave empty to hide.
+          - *id001
+        - name: note
+          label: Note under the cards
+          widget: text
+          required: false
+          hint: 'Formatting: `**bold**`, `*italic*`, `[link text](https://…)`. Leave a blank line between paragraphs.'
+      - name: testimonials
+        label: Kind words (testimonials)
+        summary: '{{heading}}'
+        fields:
+        - *id002
+        - *id003
+        - *id004
+        - *id005
+        - *id006
+        - *id007
+        - name: lede
+          label: Large opening sentence
+          widget: text
+          required: false
+          hint: 'Formatting: `**bold**`, `*italic*`, `[link text](https://…)`. Leave a blank line between paragraphs.'
+        - name: items
+          label: Quotes
+          widget: list
+          required: false
+          collapsed: true
+          summary: '{{name}}'
+          fields:
+          - name: quote
+            label: Quote
+            widget: text
+            required: false
+            hint: 'Formatting: `**bold**`, `*italic*`, `[link text](https://…)`. Leave a blank line between paragraphs.'
+          - name: name
+            label: Name
+            widget: string
+          - name: role
+            label: Role and organisation
+            widget: string
+            required: false
+          - name: photo
+            label: Photo
+            widget: image
+            required: false
+          - *id001
       hint: Add, remove, hide or drag sections to reorder them. Each section type has its own layout.
     - name: contact
       label: Contact block
@@ -674,6 +984,44 @@ collections:
             label: Line
             widget: string
             hint: 'Links: `[text](https://…)` or `[me@site.com](mailto:me@site.com)`'
+      - name: kit
+        label: Speaker & press kit
+        widget: object
+        collapsed: true
+        fields:
+        - name: show
+          label: Show the kit
+          widget: boolean
+          default: true
+        - name: title
+          label: Heading
+          widget: string
+          default: Speaker & press kit
+          required: false
+        - name: intro
+          label: Intro line
+          widget: text
+          required: false
+          hint: 'Formatting: `**bold**`, `*italic*`, `[link text](https://…)`. Leave a blank line between paragraphs.'
+        - name: headshot
+          label: Headshot
+          widget: image
+          required: false
+        - name: bios
+          label: Bios
+          widget: list
+          required: false
+          collapsed: true
+          summary: '{{label}}'
+          fields:
+          - name: label
+            label: Tab label (e.g. Short · 50 words)
+            widget: string
+          - name: text
+            label: Bio text
+            widget: text
+            required: false
+            hint: 'Formatting: `**bold**`, `*italic*`, `[link text](https://…)`. Leave a blank line between paragraphs.'
   - name: stories
     label: Laureate Lab · Scholar stories
     file: laureate/stories.json
