@@ -208,7 +208,7 @@
       "show": true,
       "numbered": true,
       "subtitle": "Publicly available work, each with a plain-language summary. Full record on ORCID.",
-      "lede": "",
+      "lede": "Papers and tools I have published, each with a plain-language summary of what it says.",
       "items": [
         {
           "text": "doi:10.2139/ssrn.6717086",
@@ -424,7 +424,7 @@
       "show": true,
       "numbered": true,
       "subtitle": "Ventures and programmes I've started, funded or led, in education, community and circular agriculture.",
-      "lede": "",
+      "lede": "What I have built outside the lab: a free learning platform, community programmes and farming ventures.",
       "items": [
         {
           "name": "Via Scholaris",
@@ -623,7 +623,7 @@
       "show": true,
       "numbered": true,
       "subtitle": "From Nigerian farms and mills to Edinburgh, and now northern British Columbia. The common thread: waste is a resource in the wrong place.",
-      "lede": "",
+      "lede": "Where I have studied and worked, newest first, from farms and mills in Nigeria to a PhD in Canada.",
       "entries": [
         {
           "years": "2026 →",
@@ -707,7 +707,7 @@
       "show": true,
       "numbered": true,
       "subtitle": "Prizes, nominations, and the toolkit behind them.",
-      "lede": "",
+      "lede": "Prizes and scholarships I have won or been nominated for, and the skills behind them.",
       "caption": "**Table 1** Awards and honours",
       "col_year": "Year",
       "col_item": "Honour",
@@ -821,7 +821,7 @@
       "show": false,
       "numbered": true,
       "subtitle": "What students, colleagues and partners say about working with me.",
-      "lede": "",
+      "lede": "What people say after working with me, in their own words.",
       "items": []
     },
     {
@@ -832,7 +832,7 @@
       "show": true,
       "numbered": true,
       "subtitle": "Essays on education, migration and building a life and career in a new country.",
-      "lede": "",
+      "lede": "Essays for a general audience, mostly about study, migration and starting again in a new country.",
       "items": [
         {
           "text": "An argument for brain circulation rather than brain drain, and for better ways to measure the return on publicly funded study abroad.",
