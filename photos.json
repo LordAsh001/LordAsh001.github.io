@@ -1,0 +1,19 @@
+{
+  "work": {
+    "title": "ERGE Platform: the two prizes",
+    "items": [
+      {
+        "src": "/images/erge-innovation-sprint-2026.jpg",
+        "alt": "Nine people standing in front of a screen showing the ERGE Platform pitch slide at the Industry-Led Innovation Sprint 2026.",
+        "caption": "First Prize at the Industry-Led Innovation Sprint 2026, for the ERGE Platform pitch — a £1,500 award.",
+        "hidden": false
+      },
+      {
+        "src": "/images/startup-factory-scotland-2026.jpg",
+        "alt": "Seven people holding an oversized cheque that reads Startup Factory Scotland 2026, Second Place Winners, three thousand pounds.",
+        "caption": "Second Place at the Startup Factory Scotland National Final, March 2026 — a £3,000 award for the ERGE Platform.",
+        "hidden": false
+      }
+    ]
+  }
+}
