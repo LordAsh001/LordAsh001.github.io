@@ -1,4 +1,16 @@
 {
+  "research": {
+    "title": "Delegates' Prize, ECR Net Zero Conference 2026",
+    "items": [
+      {
+        "src": "/images/ecr-net-zero-delegates-prize-2026.jpg",
+        "alt": "Shagbaor on stage holding up a prize envelope in front of a screen reading Winners!",
+        "caption": "Delegates' Prize at the ECR Net Zero Conference 2026, Birmingham, 9–10 March 2026 — for the poster *Electrochemical Industrial Symbiosis: Turning Carbon and Wastewater into Shared Value*.",
+        "ratio": "3/4",
+        "hidden": false
+      }
+    ]
+  },
   "work": {
     "title": "ERGE Platform: the two prizes",
     "items": [

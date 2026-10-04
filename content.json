@@ -168,9 +168,9 @@
           ]
         },
         {
-          "label": "Conference poster · 2026",
-          "title": "Electrochemical industrial symbiosis",
-          "text": "A poster on using wastewater treatment and carbon utilisation together, presented at the ECR Net Zero Conference (Supergen).",
+          "label": "Conference poster · March 2026",
+          "title": "Electrochemical Industrial Symbiosis: Turning Carbon and Wastewater into Shared Value",
+          "text": "Presented at the ECR Net Zero Conference 2026 (Supergen), Birmingham, 9–10 March. On treating wastewater and using carbon as one shared system rather than two separate problems.",
           "tag": "Delegates' Prize",
           "tag_style": "prize",
           "hidden": false,
@@ -745,7 +745,7 @@
         {
           "year": "2026",
           "item": "Delegates' Prize",
-          "detail": "ECR Net Zero Conference (Supergen), for a poster on electrochemical industrial symbiosis",
+          "detail": "ECR Net Zero Conference 2026 (Supergen), Birmingham — for the poster “Electrochemical Industrial Symbiosis: Turning Carbon and Wastewater into Shared Value”",
           "badge": "Prize",
           "highlight": true,
           "hidden": false
