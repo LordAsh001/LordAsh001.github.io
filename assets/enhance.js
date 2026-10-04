@@ -194,13 +194,14 @@
             fig.className = "shot";
             var img = document.createElement("img");
             img.src = p.src;
+            if (p.ratio) img.style.aspectRatio = p.ratio;
             img.alt = p.alt || p.caption || "";
             img.loading = "lazy";
             img.decoding = "async";
             fig.appendChild(img);
             if (p.caption) {
               var cap = document.createElement("figcaption");
-              cap.innerHTML = esc(p.caption);
+              cap.innerHTML = inline(p.caption);
               fig.appendChild(cap);
             }
             fig.tabIndex = 0;
@@ -235,7 +236,7 @@
     }
     var img = shotBox.querySelector("img");
     img.src = p.src; img.alt = p.alt || p.caption || "";
-    shotBox.querySelector("p").innerHTML = esc(p.caption || "");
+    shotBox.querySelector("p").innerHTML = inline(p.caption || "");
     shotBox.classList.add("on");
     document.documentElement.style.overflow = "hidden";
     shotBox.querySelector(".shot-x").focus();
