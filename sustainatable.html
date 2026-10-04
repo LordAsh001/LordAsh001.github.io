@@ -178,7 +178,7 @@ main{max-width:none;padding-inline:clamp(16px,3vw,56px)}
 <li>WWAP (2017). <em>The United Nations World Water Development Report 2017. Wastewater: The Untapped Resource</em>. UNESCO, Paris.</li>
 </ol>
 <h2>How to cite</h2>
-<div class="cite" id="cite">Amool, S. H. (2026). <em>The SustainaTable: The 17 elements of the 2030 Agenda</em> (Version 1.1) [Interactive teaching resource].</div>
+<div class="cite" id="cite">Amool, S. H. (2026). <em>The SustainaTable: The 17 elements of the 2030 Agenda</em> (Version 1.1) [Interactive teaching resource]. Zenodo. <a href="https://doi.org/10.5281/zenodo.22957644" target="_blank" rel="noopener">https://doi.org/10.5281/zenodo.22957644</a></div>
 <button class="copy" id="copy">Copy citation</button>
 </div>
 </section>
@@ -191,6 +191,7 @@ main{max-width:none;padding-inline:clamp(16px,3vw,56px)}
 </div>
 <div style="max-width:420px">
 <p>© 2026 Shagbaor Hycent Amool. Version 1.1, September 2026.</p>
+<p>DOI: <a href="https://doi.org/10.5281/zenodo.22957644" target="_blank" rel="noopener" style="color:inherit">10.5281/zenodo.22957644</a></p>
 <p>Element symbols are illustrative and are not official UN designations.</p>
 </div>
 </footer>
@@ -284,7 +285,7 @@ dlg.innerHTML=`
 if(!dlg.open)dlg.showModal();dlg.scrollTop=0;dlg.querySelector(".x").focus()}
 dlg.addEventListener("click",e=>{if(e.target===dlg)dlg.close()});
 document.addEventListener("keydown",e=>{if(!dlg.open)return;if(e.key==="ArrowRight")showGoal(cur%17+1);if(e.key==="ArrowLeft")showGoal((cur+15)%17+1)});
-$("copy").onclick=async()=>{const t=$("cite").innerText+" "+location.href.split("#")[0];try{await navigator.clipboard.writeText(t);$("copy").textContent="Citation copied"}catch(e){$("copy").textContent="Select the text above to copy"}};
+$("copy").onclick=async()=>{const t=$("cite").innerText;try{await navigator.clipboard.writeText(t);$("copy").textContent="Citation copied"}catch(e){$("copy").textContent="Select the text above to copy"}};
 /* remember the chosen view in the address (#connections, #lens) so links, reloads and the Back button return to it */
 (function(){var H={goals:"",conn:"connections",lens:"lens"};function setM(m){if(!(m in H))return;mode=m;document.querySelectorAll(".modes button").forEach(function(x){x.setAttribute("aria-selected",String(x.dataset.m===m))})}
 var r=location.hash.slice(1);Object.keys(H).forEach(function(k){if(H[k]&&H[k]===r)setM(k)});
