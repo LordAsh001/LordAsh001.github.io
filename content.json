@@ -207,7 +207,7 @@
       "id": "publications",
       "show": true,
       "numbered": true,
-      "subtitle": "Publicly available work, each with a plain-language summary. Full record on ORCID.",
+      "subtitle": "Publicly available work, each with a plain-language summary and a citation you can copy. Full record on ORCID.",
       "lede": "Papers and tools I have published, each with a plain-language summary of what it says.",
       "items": [
         {
@@ -237,6 +237,34 @@
           "extra_url": "/sustainatable.html",
           "extra_label": "Open the tool",
           "cite": "Amool, S. H. (2026). The SustainaTable: The 17 elements of the 2030 Agenda (Version 1.0.0) [Software]. Zenodo. https://doi.org/10.5281/zenodo.22957644"
+        },
+        {
+          "text": "doi:10.2139/ssrn.7488653",
+          "hidden": false,
+          "label": "Preprint · SSRN · 2026",
+          "title": "A fractional-order reduced model for predicting long-term thermal recovery from depleted hydrocarbon reservoirs",
+          "url": "https://doi.org/10.2139/ssrn.7488653",
+          "authors": "Mzough, O. M., Nyityo, A. I., Ijir, A., Lumun, T. C., Achimba, O., Terwase, A. I., Guusu, M. J., Barakur, C. A., Shiaondo, T. L., **Amool, S. H.**, Ikyo, B., John, I. A., & Abi, D. I.",
+          "plain": "Oil and gas reservoirs that have stopped producing still hold heat underground. This preprint builds a simplified mathematical model of how that heat behaves over the long run, which is the kind of modelling needed before anyone can judge whether an old field is worth using for geothermal energy.",
+          "takeaway": "my part in this one: the literature review, and reviewing the manuscript.",
+          "link_label": "Read on SSRN",
+          "extra_url": "",
+          "extra_label": "",
+          "cite": "Mzough, O. M., Nyityo, A. I., Ijir, A., Lumun, T. C., Achimba, O., Terwase, A. I., Guusu, M. J., Barakur, C. A., Shiaondo, T. L., Amool, S. H., Ikyo, B., John, I. A., & Abi, D. I. (2026). A fractional-order reduced model for predicting long-term thermal recovery from depleted hydrocarbon reservoirs [Preprint]. SSRN. https://doi.org/10.2139/ssrn.7488653"
+        },
+        {
+          "text": "doi:10.61841/rmh2fm43",
+          "hidden": false,
+          "label": "Journal article · 2025",
+          "title": "Energy Consumption Patterns and Conservation Opportunities in Nigerian Universities: Case Study of an Energy Audit of Benue State University, Makurdi",
+          "url": "https://doi.org/10.61841/rmh2fm43",
+          "authors": "Lumun, T. C., Ikyo, B., **Amool, S. H.**, Shiaondo, T. L., Barakur, C. A., Guusu, M. J., Nyityo, A. I., Achimba, O., Ijir, A., Terwase, A. I., & Oranderen, M. M.",
+          "plain": "An energy audit of a Nigerian university campus: where the electricity actually goes, and where it could be used more carefully. An audit like this is the groundwork a campus needs before it can set an energy or carbon target it can meet.",
+          "takeaway": "my part in this one: the literature review, and reviewing the manuscript.",
+          "link_label": "Read the article",
+          "extra_url": "",
+          "extra_label": "",
+          "cite": "Lumun, T. C., Ikyo, B., Amool, S. H., Shiaondo, T. L., Barakur, C. A., Guusu, M. J., Nyityo, A. I., Achimba, O., Ijir, A., Terwase, A. I., & Oranderen, M. M. (2025). Energy Consumption Patterns and Conservation Opportunities in Nigerian Universities: Case Study of an Energy Audit of Benue State University, Makurdi. Journal of Advance Research in Food, Agriculture and Environmental Science, 11(1), 43–67. https://doi.org/10.61841/rmh2fm43"
         },
         {
           "text": "ORCID iD 0000-0001-8460-6744",
