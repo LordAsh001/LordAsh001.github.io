@@ -5,6 +5,8 @@
       underline and a plain-language explanation on hover, tap or keyboard focus.
       Edit, add or remove terms in the TERMS list below.
    2. Back to top — a small button that appears once the reader has scrolled.
+   3. Photo strips — photos listed in /photos.json are added to the sections they
+      belong to, with captions, lazy loading and click-to-enlarge.
 
    Nothing here changes the words of the site: that stays in content.json. */
 (function () {
@@ -161,6 +163,90 @@
     show();
   }
 
+
+  /* ---------- 3. photo strips ---------- */
+  /* Photos live in /photos.json so they can be added without touching this file:
+     { "work": { "title": "optional heading", "items": [ { "src": "/images/x.jpg", "alt": "...", "caption": "..." } ] } }
+     The key is the section's link ID (work, research, teaching, path, recognition …). */
+  function photoStrips() {
+    fetch("/photos.json", { cache: "no-cache" })
+      .then(function (r) { return r.ok ? r.json() : null; })
+      .then(function (data) {
+        if (!data) return;
+        Object.keys(data).forEach(function (id) {
+          var sec = document.getElementById(id);
+          var group = data[id] || {};
+          var items = (group.items || []).filter(function (p) { return p && p.src && !p.hidden; });
+          if (!sec || !items.length) return;
+          var host = sec.children[1] || sec;   /* the section's body column */
+          var wrap = document.createElement("div");
+          wrap.className = "shots" + (items.length === 1 ? " one" : "");
+          if (group.title) {
+            var h = document.createElement("p");
+            h.className = "shots-title mono";
+            h.textContent = group.title;
+            wrap.appendChild(h);
+          }
+          var grid = document.createElement("div");
+          grid.className = "shots-grid";
+          items.forEach(function (p, i) {
+            var fig = document.createElement("figure");
+            fig.className = "shot";
+            var img = document.createElement("img");
+            img.src = p.src;
+            img.alt = p.alt || p.caption || "";
+            img.loading = "lazy";
+            img.decoding = "async";
+            fig.appendChild(img);
+            if (p.caption) {
+              var cap = document.createElement("figcaption");
+              cap.innerHTML = esc(p.caption);
+              fig.appendChild(cap);
+            }
+            fig.tabIndex = 0;
+            fig.setAttribute("role", "button");
+            fig.setAttribute("aria-label", "Enlarge photo: " + (p.alt || p.caption || "photo"));
+            fig.addEventListener("click", function () { openShot(p); });
+            fig.addEventListener("keydown", function (e) {
+              if (e.key === "Enter" || e.key === " ") { e.preventDefault(); openShot(p); }
+            });
+            grid.appendChild(fig);
+          });
+          wrap.appendChild(grid);
+          host.appendChild(wrap);
+        });
+      })
+      .catch(function () { /* no photos file yet: nothing to do */ });
+  }
+
+  var shotBox;
+  function openShot(p) {
+    if (!shotBox) {
+      shotBox = document.createElement("div");
+      shotBox.className = "shot-box";
+      shotBox.setAttribute("role", "dialog");
+      shotBox.setAttribute("aria-modal", "true");
+      shotBox.innerHTML = '<button type="button" class="shot-x" aria-label="Close">\u00d7</button><img alt=""><p></p>';
+      document.body.appendChild(shotBox);
+      shotBox.addEventListener("click", function (e) {
+        if (e.target === shotBox || e.target.classList.contains("shot-x")) closeShot();
+      });
+      document.addEventListener("keydown", function (e) { if (e.key === "Escape") closeShot(); });
+    }
+    var img = shotBox.querySelector("img");
+    img.src = p.src; img.alt = p.alt || p.caption || "";
+    shotBox.querySelector("p").innerHTML = esc(p.caption || "");
+    shotBox.classList.add("on");
+    document.documentElement.style.overflow = "hidden";
+    shotBox.querySelector(".shot-x").focus();
+    if (window.SiteTrack) window.SiteTrack("photo-opened", "Enlarged a photo", true);
+  }
+  function closeShot() {
+    if (!shotBox) return;
+    shotBox.classList.remove("on");
+    document.documentElement.style.overflow = "";
+  }
+
   /* ---------- styles ---------- */
   var CSS =
     ".gloss{border-bottom:1px dotted color-mix(in srgb,var(--accent,#1D6A5A) 70%,transparent);cursor:help;background:none;padding:0}" +
@@ -170,6 +256,22 @@
       "font:15px/1.5 var(--sans,system-ui);box-shadow:0 10px 30px rgba(0,0,0,.14);max-width:min(320px,calc(100vw - 24px))}" +
     ".gloss-tip b{display:block;font:600 13px/1.3 var(--sans,system-ui);margin-bottom:4px}" +
     ".gloss-tip-note{display:block;margin-top:8px;font-family:var(--mono,ui-monospace);font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted,#5B635D)}" +
+    ".shots{margin-top:40px}" +
+    ".shots-title{color:var(--muted,#5B635D);text-transform:uppercase;margin:0 0 12px}" +
+    ".shots-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px}" +
+    ".shots.one .shots-grid{grid-template-columns:minmax(0,620px)}" +
+    ".shot{margin:0;cursor:zoom-in}" +
+    ".shot img{display:block;width:100%;aspect-ratio:4/3;object-fit:cover;border:1px solid var(--rule,#CAC9B8);border-radius:3px;background:var(--card,#F6F5EE)}" +
+    ".shot figcaption{margin-top:8px;font-size:13.5px;line-height:1.5;color:var(--muted,#5B635D)}" +
+    ".shot:hover img{border-color:var(--accent,#1D6A5A)}" +
+    ".shot:focus-visible{outline:2px solid var(--accent,#1D6A5A);outline-offset:4px;border-radius:4px}" +
+    ".shot-box{position:fixed;inset:0;z-index:200;display:none;place-items:center;gap:14px;padding:24px;background:rgba(10,18,17,.82);backdrop-filter:blur(3px)}" +
+    ".shot-box.on{display:grid}" +
+    ".shot-box img{max-width:min(1100px,92vw);max-height:76vh;object-fit:contain;border-radius:4px;background:#000}" +
+    ".shot-box p{max-width:min(760px,92vw);color:#F4F3EC;font:15px/1.55 var(--sans,system-ui);text-align:center;margin:0}" +
+    ".shot-x{position:absolute;top:14px;right:16px;width:40px;height:40px;border-radius:50%;border:1px solid rgba(255,255,255,.35);background:rgba(0,0,0,.35);color:#fff;font-size:22px;line-height:1;cursor:pointer}" +
+    ".shot-x:hover{border-color:#fff}" +
+    "@media print{.shot-box{display:none!important}.shot{break-inside:avoid}}" +
     ".to-top{position:fixed;right:max(16px,env(safe-area-inset-right,0px));bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:90;" +
       "display:inline-flex;align-items:center;gap:6px;padding:9px 14px;border-radius:999px;border:1px solid var(--rule,#CAC9B8);" +
       "background:var(--card,#F6F5EE);color:var(--ink,#17201C);font:500 13px var(--sans,system-ui);cursor:pointer;" +
@@ -196,6 +298,7 @@
     markTerms(main);
     wireGlossary();
     backToTop();
+    photoStrips();
   }
 
   function whenReady() {
