@@ -157,7 +157,7 @@
         {
           "label": "MSc dissertation · 2025",
           "title": "Electrocatalytic wastewater treatment with carbon utilisation",
-          "text": "Research Centre for Carbon Solutions, Heriot-Watt University. Linked cleaner water to capturing value from carbon.",
+          "text": "Research Centre for Carbon Solutions, Heriot-Watt University. A palladium-based electrocatalytic system that breaks down NDEA, a carcinogenic contaminant in post-combustion carbon-capture wastewater, while using CO₂ at the same time: 78.9% degradation against 39.2% by conventional methods.",
           "tag": "Distinction",
           "tag_style": "plain",
           "hidden": false,
@@ -177,6 +177,19 @@
           "status": "completed",
           "sdgs": [
             9,
+            13
+          ]
+        },
+        {
+          "label": "Conference poster · June 2025",
+          "title": "Integrated Electrocatalytic Wastewater Treatment and Carbon Utilisation Using Pd-Based Nanocatalysts",
+          "text": "Presented at the IDRIC Annual Conference 2025, London. With Dr Jeannie Ziang Yie Tan and Prof. John Andresen, Research Centre for Carbon Solutions.",
+          "tag": "",
+          "tag_style": "plain",
+          "hidden": false,
+          "status": "completed",
+          "sdgs": [
+            6,
             13
           ]
         },

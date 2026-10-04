@@ -1,11 +1,25 @@
 {
   "research": {
-    "title": "Delegates' Prize, ECR Net Zero Conference 2026",
+    "title": "In the lab and at conferences",
     "items": [
       {
         "src": "/images/ecr-net-zero-delegates-prize-2026.jpg",
         "alt": "Shagbaor on stage holding up a prize envelope in front of a screen reading Winners!",
         "caption": "Delegates' Prize at the ECR Net Zero Conference 2026, Birmingham, 9–10 March 2026 — for the poster *Electrochemical Industrial Symbiosis: Turning Carbon and Wastewater into Shared Value*.",
+        "ratio": "3/4",
+        "hidden": false
+      },
+      {
+        "src": "/images/idric-2025-poster.jpg",
+        "alt": "Shagbaor standing beside his conference poster, titled Integrated Electrocatalytic Wastewater Treatment and Carbon Utilisation Using Pd-Based Nanocatalysts.",
+        "caption": "Presenting at the IDRIC Annual Conference, London, June 2025 — can we clean water and use up carbon in the same step?",
+        "ratio": "3/4",
+        "hidden": false
+      },
+      {
+        "src": "/images/rccs-lab-with-supervisor.jpg",
+        "alt": "Shagbaor and Dr Jeannie Tan in white lab coats beside electrochemical equipment in a laboratory.",
+        "caption": "In the Research Centre for Carbon Solutions lab at Heriot-Watt University with my MSc supervisor, **Dr Jeannie Tan**, who taught me science from the roots up.",
         "ratio": "3/4",
         "hidden": false
       }
