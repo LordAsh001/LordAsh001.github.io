@@ -41,6 +41,19 @@
   var SKIP_CLASS = ["gloss", "no-gloss", "keywords", "nav", "sdgs", "aud", "subjects", "kit-text", "tag", "kind", "chip"];
 
   function esc(s) { return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;"); }
+  /* light formatting for captions: **bold**, *italic*, [text](url) */
+  function fmt(t) {
+    var out = esc(t);
+    out = out.replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, function (_, txt, u) {
+      u = String(u).replace(/&amp;/g, "&");
+      if (!/^(https?:|mailto:|\/|#)/i.test(u)) return txt;
+      return '<a href="' + esc(u) + '"' + (/^https?:/i.test(u) ? ' target="_blank" rel="noopener"' : '') + '>' + txt + "</a>";
+    });
+    out = out.replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>");
+    out = out.replace(/(^|[^*])\*([^*\s][^*]*)\*/g, "$1<em>$2</em>");
+    return out;
+  }
+
   function rx(term) {
     return new RegExp("(^|[^\\w-])(" + term.replace(/[.*+?^${}()|[\]\\]/g, "\\$&") + ")(?![\\w-])", term.length <= 4 ? "" : "i");
   }
@@ -201,7 +214,7 @@
             fig.appendChild(img);
             if (p.caption) {
               var cap = document.createElement("figcaption");
-              cap.innerHTML = inline(p.caption);
+              cap.innerHTML = fmt(p.caption);
               fig.appendChild(cap);
             }
             fig.tabIndex = 0;
@@ -236,7 +249,7 @@
     }
     var img = shotBox.querySelector("img");
     img.src = p.src; img.alt = p.alt || p.caption || "";
-    shotBox.querySelector("p").innerHTML = inline(p.caption || "");
+    shotBox.querySelector("p").innerHTML = fmt(p.caption || "");
     shotBox.classList.add("on");
     document.documentElement.style.overflow = "hidden";
     shotBox.querySelector(".shot-x").focus();
