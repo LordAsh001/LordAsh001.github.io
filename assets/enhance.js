@@ -1,0 +1,214 @@
+/* Enhance: reader aids that sit on top of the rendered page.
+   Loaded by assets/traction.js, so index.html does not need to change.
+
+   1. Glossary — the first time a technical term appears, it gets a dotted
+      underline and a plain-language explanation on hover, tap or keyboard focus.
+      Edit, add or remove terms in the TERMS list below.
+   2. Back to top — a small button that appears once the reader has scrolled.
+
+   Nothing here changes the words of the site: that stays in content.json. */
+(function () {
+  "use strict";
+
+  /* ---------- 1. glossary ---------- */
+  /* term: [what it matches, the plain explanation]. Keep explanations to one or two short sentences. */
+  var TERMS = [
+    ["aerobic granular sludge", "Wastewater-treating microbes that grow as dense, sand-like grains instead of loose flakes. The grains sink quickly, so the treatment tank can be much smaller."],
+    ["granular sludge", "Wastewater-treating microbes that grow as dense, sand-like grains instead of loose flakes."],
+    ["curdlan", "A gel-forming sugar made by bacteria (a β-1,3-glucan). It is used as a thickener and gelling agent in food, and is being studied for medical and materials uses."],
+    ["biopolymer", "A large, useful molecule made by living things — starch, cellulose and curdlan are all biopolymers."],
+    ["extracellular polymeric substances", "The sticky mix of sugars and proteins that microbes build around themselves. It is what holds a granule together."],
+    ["EPS", "Extracellular polymeric substances: the sticky mix of sugars and proteins microbes build around themselves, which holds a granule together."],
+    ["flocs", "Loose, fluffy clumps of microbes in wastewater. They settle slowly, which is why granules are so useful."],
+    ["aeration", "Blowing air through the tank. It feeds the microbes oxygen and keeps everything mixed."],
+    ["circular economy", "Keeping materials in use — repairing, reusing and recovering them — instead of making, using and throwing away."],
+    ["resource recovery", "Getting something useful back out of a waste stream instead of paying to dispose of it."],
+    ["industrial symbiosis", "An arrangement where one factory's waste, heat or by-product becomes the raw material for another."],
+    ["net zero", "Cutting greenhouse gas emissions as far as possible, then balancing what is left by removing the same amount from the air."],
+    ["life cycle assessment", "A method for adding up the environmental effects of a product across its whole life, from raw material to disposal."],
+    ["environmental impact assessment", "A formal study of how a planned project would affect people and the environment, usually required before it can be approved."],
+    ["techno-economic assessment", "A study of whether a technology can pay for itself: what it costs to build and run, and what it brings in."],
+    ["climate-smart agriculture", "Farming that raises yields while coping with a changing climate and cutting emissions where it can."],
+    ["preprint", "A research paper shared publicly before peer review is finished."],
+    ["peer review", "Checking by independent experts in the same field before a paper is published."],
+    ["eco-industrial park", "An industrial estate designed so that businesses share energy, water and by-products with each other."]
+  ];
+  var MAX_PER_TERM = 2;        /* mark at most this many occurrences of each term */
+  var SKIP = /^(A|SCRIPT|STYLE|CANVAS|BUTTON|CODE|H1|H2|TIME|TEXTAREA|INPUT|SELECT|OPTION|SVG|ABBR)$/;
+  /* places where a dotted underline would just be noise */
+  var SKIP_CLASS = ["gloss", "no-gloss", "keywords", "nav", "sdgs", "aud", "subjects", "kit-text", "tag", "kind", "chip"];
+
+  function esc(s) { return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;"); }
+  function rx(term) {
+    return new RegExp("(^|[^\\w-])(" + term.replace(/[.*+?^${}()|[\]\\]/g, "\\$&") + ")(?![\\w-])", term.length <= 4 ? "" : "i");
+  }
+
+  function markTerms(root) {
+    var counts = {};
+    var walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, {
+      acceptNode: function (n) {
+        if (!n.nodeValue || n.nodeValue.length < 3) return NodeFilter.FILTER_REJECT;
+        for (var p = n.parentNode; p && p !== root; p = p.parentNode) {
+          if (p.nodeType === 1 && SKIP.test(p.tagName)) return NodeFilter.FILTER_REJECT;
+          if (p.nodeType === 1) {
+            for (var c = 0; c < SKIP_CLASS.length; c++) if (p.classList.contains(SKIP_CLASS[c])) return NodeFilter.FILTER_REJECT;
+          }
+        }
+        return NodeFilter.FILTER_ACCEPT;
+      }
+    });
+    var nodes = [], n;
+    while ((n = walker.nextNode())) nodes.push(n);
+
+    nodes.forEach(function (node) {
+      for (var i = 0; i < TERMS.length; i++) {
+        var term = TERMS[i][0], def = TERMS[i][1];
+        if ((counts[term] || 0) >= MAX_PER_TERM) continue;
+        var m = rx(term).exec(node.nodeValue);
+        if (!m) continue;
+        var start = m.index + m[1].length;
+        var after = node.splitText(start);
+        after.splitText(m[2].length);
+        var mark = document.createElement("span");
+        mark.className = "gloss";
+        mark.setAttribute("tabindex", "0");
+        mark.setAttribute("role", "button");
+        mark.setAttribute("aria-label", m[2] + ": " + def);
+        mark.dataset.def = def;
+        mark.dataset.term = m[2];
+        mark.textContent = after.nodeValue;
+        after.parentNode.replaceChild(mark, after);
+        counts[term] = (counts[term] || 0) + 1;
+        return; /* one mark per text node keeps the page calm */
+      }
+    });
+    return counts;
+  }
+
+  var tip, tipFor;
+  function hideTip() {
+    if (tip) { tip.hidden = true; }
+    if (tipFor) { tipFor.setAttribute("aria-expanded", "false"); tipFor = null; }
+  }
+  function showTip(el) {
+    if (!tip) {
+      tip = document.createElement("div");
+      tip.className = "gloss-tip";
+      tip.setAttribute("role", "tooltip");
+      tip.hidden = true;
+      document.body.appendChild(tip);
+    }
+    tip.innerHTML = '<b>' + esc(el.dataset.term) + '</b>' + esc(el.dataset.def) +
+      '<span class="gloss-tip-note">Plain-language note</span>';
+    tip.hidden = false;
+    var r = el.getBoundingClientRect();
+    var w = Math.min(320, window.innerWidth - 24);
+    tip.style.width = w + "px";
+    var left = Math.min(Math.max(12, r.left + window.scrollX - 8), window.scrollX + window.innerWidth - w - 12);
+    var th = tip.offsetHeight;
+    var above = r.top > th + 16;
+    tip.style.left = left + "px";
+    tip.style.top = (above ? r.top + window.scrollY - th - 10 : r.bottom + window.scrollY + 10) + "px";
+    el.setAttribute("aria-expanded", "true");
+    tipFor = el;
+    if (window.SiteTrack) window.SiteTrack("glossary-opened", "Opened a plain-language note", true);
+  }
+
+  function wireGlossary() {
+    document.addEventListener("pointerover", function (e) {
+      var g = e.target.closest && e.target.closest(".gloss");
+      if (g && g !== tipFor) showTip(g);
+    });
+    document.addEventListener("pointerout", function (e) {
+      var g = e.target.closest && e.target.closest(".gloss");
+      if (g && g === tipFor && !(e.relatedTarget && e.relatedTarget.closest && e.relatedTarget.closest(".gloss-tip"))) hideTip();
+    });
+    document.addEventListener("click", function (e) {
+      var g = e.target.closest && e.target.closest(".gloss");
+      if (g) { e.preventDefault(); g === tipFor ? hideTip() : showTip(g); return; }
+      if (!(e.target.closest && e.target.closest(".gloss-tip"))) hideTip();
+    });
+    document.addEventListener("focusin", function (e) {
+      var g = e.target.closest && e.target.closest(".gloss");
+      if (g) showTip(g); else if (!(e.target.closest && e.target.closest(".gloss-tip"))) hideTip();
+    });
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape") hideTip();
+      if ((e.key === "Enter" || e.key === " ") && document.activeElement && document.activeElement.classList.contains("gloss")) {
+        e.preventDefault(); document.activeElement === tipFor ? hideTip() : showTip(document.activeElement);
+      }
+    });
+    window.addEventListener("scroll", hideTip, { passive: true });
+    window.addEventListener("resize", hideTip);
+  }
+
+  /* ---------- 2. back to top ---------- */
+  function backToTop() {
+    var b = document.createElement("button");
+    b.type = "button";
+    b.className = "to-top";
+    b.setAttribute("aria-label", "Back to top");
+    b.innerHTML = '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M8 13V3.5M3.5 8 8 3.4 12.5 8"/></svg><span>Top</span>';
+    b.addEventListener("click", function () {
+      var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      window.scrollTo({ top: 0, behavior: reduce ? "auto" : "smooth" });
+      var skip = document.querySelector(".mark");
+      if (skip) skip.focus({ preventScroll: true });
+    });
+    document.body.appendChild(b);
+    var show = function () { b.classList.toggle("on", window.scrollY > 700); };
+    window.addEventListener("scroll", show, { passive: true });
+    show();
+  }
+
+  /* ---------- styles ---------- */
+  var CSS =
+    ".gloss{border-bottom:1px dotted color-mix(in srgb,var(--accent,#1D6A5A) 70%,transparent);cursor:help;background:none;padding:0}" +
+    ".gloss:hover{border-bottom-style:solid;color:var(--accent,#1D6A5A)}" +
+    ".gloss:focus-visible{outline:2px solid var(--accent,#1D6A5A);outline-offset:2px;border-radius:2px}" +
+    ".gloss-tip{position:absolute;z-index:120;background:var(--card,#F6F5EE);color:var(--ink,#17201C);border:1px solid var(--rule,#CAC9B8);border-radius:6px;padding:12px 14px;" +
+      "font:15px/1.5 var(--sans,system-ui);box-shadow:0 10px 30px rgba(0,0,0,.14);max-width:min(320px,calc(100vw - 24px))}" +
+    ".gloss-tip b{display:block;font:600 13px/1.3 var(--sans,system-ui);margin-bottom:4px}" +
+    ".gloss-tip-note{display:block;margin-top:8px;font-family:var(--mono,ui-monospace);font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted,#5B635D)}" +
+    ".to-top{position:fixed;right:max(16px,env(safe-area-inset-right,0px));bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:90;" +
+      "display:inline-flex;align-items:center;gap:6px;padding:9px 14px;border-radius:999px;border:1px solid var(--rule,#CAC9B8);" +
+      "background:var(--card,#F6F5EE);color:var(--ink,#17201C);font:500 13px var(--sans,system-ui);cursor:pointer;" +
+      "box-shadow:0 6px 20px rgba(0,0,0,.12);opacity:0;transform:translateY(8px);pointer-events:none;transition:opacity .2s,transform .2s,border-color .15s}" +
+    ".to-top.on{opacity:1;transform:none;pointer-events:auto}" +
+    ".to-top:hover{border-color:var(--accent,#1D6A5A);color:var(--accent,#1D6A5A)}" +
+    ".to-top svg{width:14px;height:14px}" +
+    "@media (max-width:560px){.to-top span{display:none}.to-top{padding:11px}}" +
+    "@media (prefers-reduced-motion:reduce){.to-top{transition:none}}" +
+    "@media print{.to-top,.gloss-tip{display:none!important}.gloss{border-bottom:0}}";
+
+  function addStyles() {
+    var st = document.createElement("style");
+    st.id = "enhance-css";
+    st.textContent = CSS;
+    document.head.appendChild(st);
+  }
+
+  /* ---------- start once the page has rendered its sections ---------- */
+  function run() {
+    var main = document.getElementById("top");
+    if (!main) return;
+    addStyles();
+    markTerms(main);
+    wireGlossary();
+    backToTop();
+  }
+
+  function whenReady() {
+    var main = document.getElementById("top");
+    if (main && main.querySelector("section")) { run(); return; }
+    var mo = new MutationObserver(function () {
+      var m = document.getElementById("top");
+      if (m && m.querySelector("section")) { mo.disconnect(); run(); }
+    });
+    mo.observe(document.documentElement, { childList: true, subtree: true });
+    setTimeout(function () { mo.disconnect(); }, 15000);
+  }
+
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", whenReady);
+  else whenReady();
+})();
