@@ -1,56 +1,106 @@
 {
   "research": {
-    "title": "In the lab and at conferences",
     "items": [
       {
         "src": "/images/rccs-lab-with-supervisor.jpg",
         "alt": "Shagbaor and Dr Jeannie Tan in white lab coats beside electrochemical equipment in a laboratory.",
-        "caption": "In the Research Centre for Carbon Solutions lab at Heriot-Watt University with my MSc supervisor, **Dr Jeannie Tan**, who taught me science from the roots up.",
-        "ratio": "3/4",
+        "caption": "Where the step outside my comfort zone happened: the Research Centre for Carbon Solutions lab at Heriot-Watt University, with my MSc supervisor, **Dr Jeannie Tan**.",
+        "anchor": "body",
+        "focus": "50% 32%",
         "hidden": false
       },
       {
         "src": "/images/electrocatalytic-rig.jpg",
         "alt": "Laboratory bench with a syringe pump, tubing, valves and an electrochemical cell connected by red and black leads.",
-        "caption": "The experimental rig for the MSc work: syringe pumps feeding an electrochemical cell, where the contaminant is broken down and CO₂ is put to use.",
-        "hidden": false
-      },
-      {
-        "src": "/images/idric-2025-poster.jpg",
-        "alt": "Shagbaor standing beside his conference poster, titled Integrated Electrocatalytic Wastewater Treatment and Carbon Utilisation Using Pd-Based Nanocatalysts.",
-        "caption": "Presenting at the IDRIC Annual Conference, London, June 2025 — can we clean water and use up carbon in the same step?",
-        "ratio": "3/4",
+        "caption": "The rig: syringe pumps feeding the electrochemical cell.",
+        "anchor": "Electrocatalytic wastewater treatment with carbon utilisation",
         "hidden": false
       },
       {
         "src": "/images/ecr-net-zero-delegates-prize-2026.jpg",
         "alt": "Shagbaor on stage holding up a prize envelope in front of a screen reading Winners!",
-        "caption": "Delegates' Prize at the ECR Net Zero Conference 2026, Birmingham, 9–10 March 2026 — for the poster *Electrochemical Industrial Symbiosis: Turning Carbon and Wastewater into Shared Value*.",
-        "ratio": "3/4",
+        "caption": "Collecting the Delegates' Prize, Birmingham, March 2026.",
+        "anchor": "Electrochemical Industrial Symbiosis",
+        "focus": "50% 26%",
+        "hidden": false
+      },
+      {
+        "src": "/images/idric-2025-poster.jpg",
+        "alt": "Shagbaor standing beside his conference poster on electrocatalytic wastewater treatment and carbon utilisation.",
+        "caption": "At the poster, IDRIC Annual Conference, London, June 2025.",
+        "anchor": "Integrated Electrocatalytic Wastewater Treatment",
+        "focus": "50% 38%",
         "hidden": false
       },
       {
         "src": "/images/rice-harvester-field-test.jpg",
         "alt": "A person cutting standing rice with a motorised hand-held harvester in a rice field.",
-        "caption": "Field-testing the motorised hand-held rice harvester from my BEng project — the first machine I designed for the people who would use it.",
-        "ratio": "16/9",
+        "caption": "The harvester under test in the field — the first machine I designed for the people who would use it.",
+        "anchor": "A motorised hand-held rice harvester",
         "hidden": false
       }
     ]
   },
   "work": {
-    "title": "ERGE Platform: the two prizes",
     "items": [
       {
         "src": "/images/erge-innovation-sprint-2026.jpg",
         "alt": "Nine people standing in front of a screen showing the ERGE Platform pitch slide at the Industry-Led Innovation Sprint 2026.",
-        "caption": "First Prize at the Industry-Led Innovation Sprint 2026, for the ERGE Platform pitch — a £1,500 award.",
+        "caption": "First Prize, Industry-Led Innovation Sprint 2026.",
+        "anchor": "ERGE Platform",
         "hidden": false
       },
       {
         "src": "/images/startup-factory-scotland-2026.jpg",
         "alt": "Seven people holding an oversized cheque that reads Startup Factory Scotland 2026, Second Place Winners, three thousand pounds.",
-        "caption": "Second Place at the Startup Factory Scotland National Final, March 2026 — a £3,000 award for the ERGE Platform.",
+        "caption": "Second Place, Startup Factory Scotland National Final, March 2026.",
+        "anchor": "ERGE Platform",
+        "hidden": false
+      }
+    ]
+  },
+  "resources": {
+    "items": [
+      {
+        "src": "/images/tool-tea-studio.jpg",
+        "alt": "Screenshot of the Techno-Economic Studio: a guided start screen showing how capital cost, revenue and operating cost add up to a net present value.",
+        "caption": "",
+        "anchor": "Techno-Economic Studio",
+        "hidden": false
+      },
+      {
+        "src": "/images/tool-eia-studio.jpg",
+        "alt": "Screenshot of EIA Studio showing the ten steps of an environmental impact assessment and the legal frameworks it covers.",
+        "caption": "",
+        "anchor": "EIA Studio",
+        "hidden": false
+      },
+      {
+        "src": "/images/tool-symbiosis.jpg",
+        "alt": "Screenshot of the Symbiosis Workbench case atlas, open on the Kalundborg industrial symbiosis in Denmark.",
+        "caption": "",
+        "anchor": "Symbiosis Workbench",
+        "hidden": false
+      },
+      {
+        "src": "/images/tool-sustainatable.jpg",
+        "alt": "Screenshot of The SustainaTable: the 17 Sustainable Development Goals laid out as a periodic table.",
+        "caption": "",
+        "anchor": "SustainaTable",
+        "hidden": false
+      },
+      {
+        "src": "/images/tool-laureate.jpg",
+        "alt": "Screenshot of Laureate Lab showing scholarship deadlines counting down and practice tools for applicants.",
+        "caption": "",
+        "anchor": "Laureate Lab",
+        "hidden": false
+      },
+      {
+        "src": "/images/tool-citadel.jpg",
+        "alt": "Screenshot of Citadel, a game that teaches citation, showing the learning path and the first levels.",
+        "caption": "",
+        "anchor": "Citadel",
         "hidden": false
       }
     ]
