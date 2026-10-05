@@ -646,16 +646,27 @@
           "name": "Belonging in Action CIC",
           "meta": "Edinburgh · 2026 →",
           "status": "active",
-          "role": "Secretary, formerly Strategy & Programmes Lead",
-          "text": "A community interest company for education, inclusion and entrepreneurship among international students and immigrant communities. I run registration, feedback and impact reporting, write funding bids, and coordinate universities, businesses and volunteers.",
+          "role": "Company Secretary & Educational Lead",
+          "text": "A community interest company for education, inclusion and enterprise among international students, graduates and immigrant communities in Scotland. Its working principle is that belonging goes beyond presence: people should be able to connect, participate and contribute.\n\nI look after the company's statutory compliance, governance and administration, and lead its educational work — registration, feedback and impact reporting, funding bids, and coordination between universities, businesses and volunteers.",
           "bullets": [
-            "113 participants at the launch",
-            "Business workshops on growing in the UK's digital economy",
-            "Outdoor community days around Edinburgh"
+            "Ten programmes delivered since March 2026, across scholarships and research, careers and employability, enterprise, integration and wellbeing",
+            "**Research Pathway:** securing a fully funded PhD in the UK, July 2026",
+            "**Pathways to Opportunity:** careers and sponsorship in the UK, April 2026; graduate roles and the care sector later in the year",
+            "**Business Connect Forum** and *Beyond Word-of-Mouth*, a workshop on growing a business past referrals",
+            "City days that double as orientation: Edinburgh, Arthur's Seat and Cramond"
           ],
-          "stats": [],
-          "link_label": "",
-          "link_url": "",
+          "stats": [
+            {
+              "value": "10",
+              "label": "programmes delivered in 2026"
+            },
+            {
+              "value": "37",
+              "label": "businesses in the BIA directory"
+            }
+          ],
+          "link_label": "See the BIA team",
+          "link_url": "https://www.biacommunity.org/about",
           "size": "half",
           "sdgs": [
             4,
@@ -757,13 +768,32 @@
             "Engineering Materials"
           ],
           "text": "I also supervised student projects from start to finish: defining the problem, doing the research and analysis, and presenting the results. I'm open to guest lectures and remote teaching.",
-          "quotes": []
+          "quotes": [
+            {
+              "title": "AGT 101 Agricultural Technology",
+              "date": "Pre-ND · about 60 students · 2023",
+              "text": "A cohort of sixty taken through the principles of farm tractorisation and mechanisation.",
+              "url": "",
+              "photo": "",
+              "photo_alt": "",
+              "hidden": false
+            },
+            {
+              "title": "Design, Construction and Performance Evaluation of a Temperature-Controlled Solar-Powered Fruit Dehydrator",
+              "date": "Final-year project supervised · 2025",
+              "text": "Supervised from defining the problem through to building the machine and testing how well it performed.",
+              "url": "",
+              "photo": "",
+              "photo_alt": "",
+              "hidden": false
+            }
+          ]
         },
         {
           "label": "Mentoring & public talks",
           "title": "Beyond it",
           "chips": [],
-          "text": "",
+          "text": "I am listed among the mentors and speakers at [Women Ascension](https://womenascension.org/mentors-speakers/), a global mentorship network for women in leadership.",
           "quotes": [
             {
               "title": "Sustainable Waste Management, Circular Economy & Green Innovations",
@@ -835,8 +865,8 @@
         {
           "years": "2026 →",
           "place": "Makurdi (Nigeria) & Edinburgh (UK) · hybrid",
-          "title": "Strategy & Partnership Lead, BCEI · Secretary, Belonging in Action CIC",
-          "text": "Helping build systems to record, verify and digitise forest assets at state level. Running programmes, impact reporting and funding bids for a community interest company.",
+          "title": "Strategy & Partnership Lead, BCEI · Company Secretary & Educational Lead, Belonging in Action CIC",
+          "text": "Helping build systems to record, verify and digitise forest assets at state level. Governance, compliance and educational programmes for a community interest company.",
           "current": false,
           "hidden": false
         },
