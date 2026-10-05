@@ -20,12 +20,12 @@
       "Founder, Via Scholaris"
     ],
     "email": "amool@unbc.ca",
-    "cv": "",
-    "cv_updated": "",
+    "cv": "/documents/Shagbaor_Amool_CV_Academic.pdf",
+    "cv_updated": "October 2026",
     "video": "",
     "video_label": "Watch a 1-minute welcome",
-    "abstract": "I study how the microbes that clean industrial wastewater can also make something valuable. My PhD looks at recovering **curdlan**, a useful biopolymer, from **aerobic granular sludge**. Before this I designed farm machinery in Nigeria, lectured in engineering, earned an MSc with Distinction in Edinburgh, and started programmes that have reached thousands of students.\n\n*Away from the lab:* I watch a lot of film — action, epic, science fiction — read non-fiction and history, and like organising events that bring people together. I trained with a theatre troupe in Nigeria once; I still can't sing, and photography is next on my list. On a hard week the rule is simple: show up every day and do your best.",
-    "abstract_fr": "J'étudie comment les microbes qui épurent les eaux usées industrielles peuvent aussi produire quelque chose de précieux. Mon doctorat porte sur la récupération du **curdlan**, un biopolymère utile, à partir de **boues granulaires aérobies**. Auparavant, j'ai conçu des machines agricoles au Nigeria, enseigné l'ingénierie, obtenu une maîtrise avec distinction à Édimbourg et lancé des programmes qui ont touché des milliers d'étudiants.\n\n*Hors du laboratoire :* je regarde beaucoup de films — action, épopée, science-fiction —, je lis des essais et de l'histoire, et j'aime organiser des événements qui rassemblent les gens. J'ai suivi une formation théâtrale auprès d'une troupe au Nigeria ; je ne sais toujours pas chanter, et la photographie est la prochaine sur ma liste. Les semaines difficiles, la règle est simple : se présenter chaque jour et faire de son mieux.",
+    "abstract": "I study how the microbes that clean industrial wastewater can also make something valuable. My PhD looks at recovering **curdlan**, a useful biopolymer, from **aerobic granular sludge**. Before this I designed farm machinery in Nigeria, lectured in engineering, earned an MSc with Distinction in Edinburgh, and started programmes that have reached thousands of students.\n\n*Away from the lab:* I watch a lot of films mostly action, epic, and science fiction; read non-fiction and history, and like organising events that bring people together. I trained with a theatre troupe in Nigeria once; I still can't sing, and photography is next on my list. On a hard week the rule is simple: show up every day and do your best.",
+    "abstract_fr": "J'étudie comment les microbes qui épurent les eaux usées industrielles peuvent aussi produire quelque chose de précieux. Mon doctorat porte sur la récupération du **curdlan**, un biopolymère utile, à partir de **boues granulaires aérobies**. Auparavant, j'ai conçu des machines agricoles au Nigeria, enseigné l'ingénierie, obtenu une maîtrise avec distinction à Édimbourg et lancé des programmes qui ont touché des milliers d'étudiants.\n\n*Hors du laboratoire :* je regarde beaucoup de films, surtout action, épopée et science-fiction ; je lis des essais et de l'histoire, et j'aime organiser des événements qui rassemblent les gens. J'ai suivi une formation théâtrale auprès d'une troupe au Nigeria ; je ne sais toujours pas chanter, et la photographie est la prochaine sur ma liste. Les semaines difficiles, la règle est simple : se présenter chaque jour et faire de son mieux.",
     "keywords": [
       "aerobic granular sludge",
       "curdlan",
@@ -220,7 +220,7 @@
       "id": "publications",
       "show": true,
       "numbered": true,
-      "subtitle": "Publicly available work, each with a plain-language summary and a citation you can copy. Full record on ORCID.",
+      "subtitle": "Publicly available work, each with a plain-language summary and a citation you can copy. Full record on ORCID and ResearchGate.",
       "lede": "Papers and tools I have published, each with a plain-language summary of what it says.",
       "items": [
         {
@@ -266,6 +266,20 @@
           "cite": "Mzough, O. M., Nyityo, A. I., Ijir, A., Lumun, T. C., Achimba, O., Terwase, A. I., Guusu, M. J., Barakur, C. A., Shiaondo, T. L., Amool, S. H., Ikyo, B., John, I. A., & Abi, D. I. (2026). A fractional-order reduced model for predicting long-term thermal recovery from depleted hydrocarbon reservoirs [Preprint]. SSRN. https://doi.org/10.2139/ssrn.7488653"
         },
         {
+          "text": "Nigerian Institution of Agricultural Engineers",
+          "hidden": false,
+          "label": "Conference paper · 2026",
+          "title": "Trending Climate Smart Renewable Energy Technologies in Nigeria: Research Report",
+          "url": "https://www.researchgate.net/publication/403799708_TRENDING_CLIMATE_SMART_RENEWABLE_ENERGY_TECHNOLOGIES_IN_NIGERIA_RESEARCH_REPORT",
+          "authors": "**Amool, S. H.**",
+          "plain": "A review of the renewable energy technologies being taken up in Nigeria under climate-smart approaches, and where they fit in farming and rural life.",
+          "takeaway": "",
+          "link_label": "View on ResearchGate",
+          "extra_url": "",
+          "extra_label": "",
+          "cite": "Amool, S. H. (2026). Trending climate smart renewable energy technologies in Nigeria: Research report [Conference paper]. Nigerian Institution of Agricultural Engineers."
+        },
+        {
           "text": "doi:10.61841/rmh2fm43",
           "hidden": false,
           "label": "Journal article · 2025",
@@ -278,6 +292,48 @@
           "extra_url": "",
           "extra_label": "",
           "cite": "Lumun, T. C., Ikyo, B., Amool, S. H., Shiaondo, T. L., Barakur, C. A., Guusu, M. J., Nyityo, A. I., Achimba, O., Ijir, A., Terwase, A. I., & Oranderen, M. M. (2025). Energy Consumption Patterns and Conservation Opportunities in Nigerian Universities: Case Study of an Energy Audit of Benue State University, Makurdi. Journal of Advance Research in Food, Agriculture and Environmental Science, 11(1), 43–67. https://doi.org/10.61841/rmh2fm43"
+        },
+        {
+          "text": "ISTRO Nigeria Chapter symposium",
+          "hidden": false,
+          "label": "Conference paper · 2023",
+          "title": "Trending Mulching Technologies and Benefits in Soil and Water Conservation: A Discourse for Adoption in Nigeria",
+          "url": "https://www.researchgate.net/publication/375083780_TRENDING_MULCHING_TECHNOLOGIES_AND_BENEFITS_IN_SOIL_AND_WATER_CONSERVATION_A_DISCOURSE_FOR_ADOPTION_IN_NIGERIA",
+          "authors": "**Amool, S. H.**, & Donald, A.",
+          "plain": "Covering bare soil with crop residue or plastic keeps water in the ground and soil in place. This paper reviews the methods in use and argues for wider adoption by Nigerian farmers.",
+          "takeaway": "",
+          "link_label": "View on ResearchGate",
+          "extra_url": "",
+          "extra_label": "",
+          "cite": "Amool, S. H., & Donald, A. (2023). Trending mulching technologies and benefits in soil and water conservation: A discourse for adoption in Nigeria [Conference paper]. ISTRO Nigeria Chapter symposium."
+        },
+        {
+          "text": "ISTRO Nigeria Chapter symposium",
+          "hidden": false,
+          "label": "Conference paper · 2023",
+          "title": "X-Raying the Impact of Tillage Practices on Properties of Soils in Nigeria",
+          "url": "https://www.researchgate.net/publication/375083941_X-RAYING_THE_IMPACT_OF_TILLAGE_PRACTICES_ON_PROPERTIES_OF_SOILS_IN_NIGERIA",
+          "authors": "**Amool, S. H.**, & Donald, A.",
+          "plain": "How different ways of working the land — ploughing, harrowing, leaving the soil untilled — change the soil itself, reviewed for Nigerian conditions.",
+          "takeaway": "",
+          "link_label": "View on ResearchGate",
+          "extra_url": "",
+          "extra_label": "",
+          "cite": "Amool, S. H., & Donald, A. (2023). X-raying the impact of tillage practices on properties of soils in Nigeria [Conference paper]. ISTRO Nigeria Chapter symposium."
+        },
+        {
+          "text": "Nigerian Institution of Engineers",
+          "hidden": false,
+          "label": "Conference paper · 2019",
+          "title": "Development of a Motorised Hand-held Rice Harvester",
+          "url": "https://www.researchgate.net/publication/403799789_Development_of_a_Motorised_Hand-held_Rice_Harvester",
+          "authors": "Kaankuka, T. K., Egbe-Okpenge, I. S., & **Amool, S. H.**",
+          "plain": "The machine behind my BEng project: a hand-held harvester built so a smallholder can cut rice without bending over a sickle all day.",
+          "takeaway": "",
+          "link_label": "View on ResearchGate",
+          "extra_url": "",
+          "extra_label": "",
+          "cite": "Kaankuka, T. K., Egbe-Okpenge, I. S., & Amool, S. H. (2019). Development of a motorised hand-held rice harvester [Conference paper]. Nigerian Institution of Engineers."
         },
         {
           "text": "ORCID iD 0000-0001-8460-6744",
