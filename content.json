@@ -28,6 +28,7 @@
     "abstract_fr": "J'étudie comment les microbes qui épurent les eaux usées industrielles peuvent aussi produire quelque chose de précieux. Mon doctorat porte sur la récupération du **curdlan**, un biopolymère utile, à partir de **boues granulaires aérobies**. Auparavant, j'ai conçu des machines agricoles au Nigeria, enseigné l'ingénierie, obtenu une maîtrise avec distinction à Édimbourg et lancé des programmes qui ont touché des milliers d'étudiants.\n\n*Hors du laboratoire :* je regarde beaucoup de films, surtout action, épopée et science-fiction ; je lis des essais et de l'histoire, et j'aime organiser des événements qui rassemblent les gens. J'ai suivi une formation théâtrale auprès d'une troupe au Nigeria ; je ne sais toujours pas chanter, et la photographie est la prochaine sur ma liste. Les semaines difficiles, la règle est simple : se présenter chaque jour et faire de son mieux.",
     "keywords": [
       "aerobic granular sludge",
+      "brewery wastewater",
       "curdlan",
       "resource recovery",
       "circular economy",
@@ -95,10 +96,10 @@
       "numbered": true,
       "subtitle": "PhD, Environmental Engineering, UNBC · from September 2026",
       "lede": "Wastewater treatment is usually a cost. I want to know if part of it can become a *product*.",
-      "body": "Coming from a background in agricultural and environmental engineering, my \"lab\" had always been the open field — ploughs, plants, and the stories of farmers. Joining the Research Centre for Carbon Solutions to build an electrochemical system for wastewater treatment meant stepping a long way outside my comfort zone. I learned science from the roots up there, and it is why I now ask whether treatment plants can make something instead of only destroying it.\n\nAerobic granular sludge is a compact, fast-settling form of the microbial communities that treat wastewater. Those microbes wrap themselves in a sticky matrix of extracellular polymeric substances (EPS). Some of that matrix may be curdlan, a β-1,3-glucan used as a gelling agent in food and studied for medical and materials uses.\n\nMy doctoral research asks whether curdlan can be recovered from sludge grown on industrial wastewater. If it can, a treatment plant could turn a disposal problem into a material.\n\nMy academic publications and research record are available on [ORCID](https://orcid.org/0000-0001-8460-6744).",
+      "body": "Coming from a background in agricultural and environmental engineering, my \"lab\" had always been the open field — ploughs, plants, and the stories of farmers. Joining the Research Centre for Carbon Solutions to build an electrochemical system for wastewater treatment meant stepping a long way outside my comfort zone. I learned science from the roots up there, and it is why I now ask whether treatment plants can make something instead of only destroying it.\n\nAerobic granular sludge is a compact, fast-settling form of the microbial communities that treat wastewater. Those microbes wrap themselves in a sticky matrix of extracellular polymeric substances (EPS). Some of that matrix may be curdlan, a β-1,3-glucan used as a gelling agent in food and studied for medical and materials uses.\n\nMy doctoral research asks whether curdlan can be recovered from sludge grown on brewery wastewater. If it can, a treatment plant could turn a disposal problem into a material.\n\nMy academic publications and research record are available on [ORCID](https://orcid.org/0000-0001-8460-6744).",
       "steps": [
         {
-          "title": "Industrial wastewater",
+          "title": "Brewery wastewater",
           "text": "Rich in organic carbon that microbes can feed on.",
           "icon": "water",
           "highlight": false,
@@ -143,7 +144,7 @@
         {
           "label": "PhD research · 2026 →",
           "title": "Curdlan recovery from aerobic granular sludge",
-          "text": "Bio-innovative Water and Wastewater Biorefinery Lab, School of Engineering, UNBC.",
+          "text": "Bio-innovative Water and Wastewater Biorefinery Lab, School of Engineering, UNBC. The feedstock is brewery wastewater.",
           "tag": "",
           "tag_style": "plain",
           "status": "ongoing",
@@ -209,7 +210,7 @@
       ],
       "questions_title": "Research questions",
       "questions": [
-        "Can curdlan be recovered from aerobic granular sludge grown on industrial wastewater?",
+        "Can curdlan be recovered from aerobic granular sludge grown on brewery wastewater?",
         "Which extraction methods recover it, and how can we show that what is recovered really is curdlan, and how much of it there is?"
       ]
     },
@@ -734,7 +735,7 @@
           "years": "2026 →",
           "place": "Prince George, BC, Canada",
           "title": "PhD student, Environmental Engineering · UNBC",
-          "text": "Researching curdlan recovery from aerobic granular sludge grown on industrial wastewater.",
+          "text": "Researching curdlan recovery from aerobic granular sludge grown on brewery wastewater.",
           "current": true,
           "hidden": false
         },
@@ -990,15 +991,15 @@
       "bios": [
         {
           "label": "Short · 50 words",
-          "text": "Shagbaor Hycent Amool is an environmental engineer and PhD student in Environmental Engineering at the University of Northern British Columbia (UNBC), where he researches recovering curdlan, a useful biopolymer, from aerobic granular sludge that treats industrial wastewater. He holds an MSc with Distinction from Heriot-Watt University and founded the learning platform Via Scholaris."
+          "text": "Shagbaor Hycent Amool is an environmental engineer and PhD student in Environmental Engineering at the University of Northern British Columbia (UNBC), where he researches recovering curdlan, a useful biopolymer, from aerobic granular sludge that treats brewery wastewater. He holds an MSc with Distinction from Heriot-Watt University and founded the learning platform Via Scholaris."
         },
         {
           "label": "Medium · 100 words",
-          "text": "Shagbaor Hycent Amool is an environmental engineer and PhD student in Environmental Engineering at the University of Northern British Columbia (UNBC). His research asks whether aerobic granular sludge treating industrial wastewater can yield curdlan, a biopolymer used in food, medicine and materials.\n\nHe holds an MSc in Global Sustainability Engineering with Distinction from Heriot-Watt University, where he was a PTDF overseas scholar, and a first-class BEng in Agricultural and Environmental Engineering from the University of Agriculture Makurdi (now called Joseph Sarwuan Tarka University Makurdi). A Lecturer I at Federal Polytechnic Wannune, he founded Via Scholaris and builds free interactive tools for sustainability education."
+          "text": "Shagbaor Hycent Amool is an environmental engineer and PhD student in Environmental Engineering at the University of Northern British Columbia (UNBC). His research asks whether aerobic granular sludge treating brewery wastewater can yield curdlan, a biopolymer used in food, medicine and materials.\n\nHe holds an MSc in Global Sustainability Engineering with Distinction from Heriot-Watt University, where he was a PTDF overseas scholar, and a first-class BEng in Agricultural and Environmental Engineering from the University of Agriculture Makurdi (now called Joseph Sarwuan Tarka University Makurdi). A Lecturer I at Federal Polytechnic Wannune, he founded Via Scholaris and builds free interactive tools for sustainability education."
         },
         {
           "label": "Long · 170 words",
-          "text": "Shagbaor Hycent Amool is an environmental engineer and PhD student in Environmental Engineering at the University of Northern British Columbia (UNBC) in Prince George, Canada. His doctoral research asks whether aerobic granular sludge treating industrial wastewater can yield curdlan, a biopolymer used in food, medicine and materials, turning a treatment cost into a recoverable product.\n\nHis path runs from farm machinery and palm oil milling in Nigeria to lecturing at Federal Polytechnic Wannune, an MSc in Global Sustainability Engineering with Distinction from Heriot-Watt University as a PTDF overseas scholar, and a first-class BEng from the University of Agriculture Makurdi (now called Joseph Sarwuan Tarka University Makurdi). In 2026 he won the Delegates' Prize at the ECR Net Zero Conference (Supergen), and his circular-economy venture ERGE Platform took First Prize at the Industry-Led Innovation Sprint.\n\nHe founded Via Scholaris, a free learning library for students heading into postgraduate study, and builds open interactive tools for techno-economic analysis, environmental impact assessment, industrial symbiosis and the Sustainable Development Goals."
+          "text": "Shagbaor Hycent Amool is an environmental engineer and PhD student in Environmental Engineering at the University of Northern British Columbia (UNBC) in Prince George, Canada. His doctoral research asks whether aerobic granular sludge treating brewery wastewater can yield curdlan, a biopolymer used in food, medicine and materials, turning a treatment cost into a recoverable product.\n\nHis path runs from farm machinery and palm oil milling in Nigeria to lecturing at Federal Polytechnic Wannune, an MSc in Global Sustainability Engineering with Distinction from Heriot-Watt University as a PTDF overseas scholar, and a first-class BEng from the University of Agriculture Makurdi (now called Joseph Sarwuan Tarka University Makurdi). In 2026 he won the Delegates' Prize at the ECR Net Zero Conference (Supergen), and his circular-economy venture ERGE Platform took First Prize at the Industry-Led Innovation Sprint.\n\nHe founded Via Scholaris, a free learning library for students heading into postgraduate study, and builds open interactive tools for techno-economic analysis, environmental impact assessment, industrial symbiosis and the Sustainable Development Goals."
         }
       ]
     }
