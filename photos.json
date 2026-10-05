@@ -3,10 +3,16 @@
     "title": "In the lab and at conferences",
     "items": [
       {
-        "src": "/images/ecr-net-zero-delegates-prize-2026.jpg",
-        "alt": "Shagbaor on stage holding up a prize envelope in front of a screen reading Winners!",
-        "caption": "Delegates' Prize at the ECR Net Zero Conference 2026, Birmingham, 9–10 March 2026 — for the poster *Electrochemical Industrial Symbiosis: Turning Carbon and Wastewater into Shared Value*.",
+        "src": "/images/rccs-lab-with-supervisor.jpg",
+        "alt": "Shagbaor and Dr Jeannie Tan in white lab coats beside electrochemical equipment in a laboratory.",
+        "caption": "In the Research Centre for Carbon Solutions lab at Heriot-Watt University with my MSc supervisor, **Dr Jeannie Tan**, who taught me science from the roots up.",
         "ratio": "3/4",
+        "hidden": false
+      },
+      {
+        "src": "/images/electrocatalytic-rig.jpg",
+        "alt": "Laboratory bench with a syringe pump, tubing, valves and an electrochemical cell connected by red and black leads.",
+        "caption": "The experimental rig for the MSc work: syringe pumps feeding an electrochemical cell, where the contaminant is broken down and CO₂ is put to use.",
         "hidden": false
       },
       {
@@ -17,10 +23,17 @@
         "hidden": false
       },
       {
-        "src": "/images/rccs-lab-with-supervisor.jpg",
-        "alt": "Shagbaor and Dr Jeannie Tan in white lab coats beside electrochemical equipment in a laboratory.",
-        "caption": "In the Research Centre for Carbon Solutions lab at Heriot-Watt University with my MSc supervisor, **Dr Jeannie Tan**, who taught me science from the roots up.",
+        "src": "/images/ecr-net-zero-delegates-prize-2026.jpg",
+        "alt": "Shagbaor on stage holding up a prize envelope in front of a screen reading Winners!",
+        "caption": "Delegates' Prize at the ECR Net Zero Conference 2026, Birmingham, 9–10 March 2026 — for the poster *Electrochemical Industrial Symbiosis: Turning Carbon and Wastewater into Shared Value*.",
         "ratio": "3/4",
+        "hidden": false
+      },
+      {
+        "src": "/images/rice-harvester-field-test.jpg",
+        "alt": "A person cutting standing rice with a motorised hand-held harvester in a rice field.",
+        "caption": "Field-testing the motorised hand-held rice harvester from my BEng project — the first machine I designed for the people who would use it.",
+        "ratio": "16/9",
         "hidden": false
       }
     ]
