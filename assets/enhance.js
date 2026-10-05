@@ -389,6 +389,14 @@
     ".gloss-tip b{display:block;font:600 13px/1.3 var(--sans,system-ui);margin-bottom:4px}" +
     ".gloss-tip-note{display:block;margin-top:8px;font-family:var(--mono,ui-monospace);font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted,#5B635D)}" +
     ".yt-note{margin-top:10px;font-size:13.5px;color:var(--muted,#5B635D)}" +
+    /* Number tiles: on a phone three columns squeeze a figure like 57,106 into a
+       68px tile and the last digit is clipped. Fold to two columns instead, and let
+       an odd last tile run the full width so there is no empty cell. */
+    ".stats .stat,.metrics .stat{min-width:0}" +
+    ".stats .stat>b,.metrics .stat>b{display:block;font-size:clamp(18px,4.8vw,24px);letter-spacing:-.01em}" +
+    "@media (min-width:720px){.stats .stat>b,.metrics .stat>b{font-size:24px}}" +
+    "@media (max-width:560px){.stats{grid-template-columns:repeat(2,minmax(0,1fr))}" +
+      ".stats .stat:last-child:nth-child(odd){grid-column:1/-1}}" +
     ".yt-note .mono{font-family:var(--mono,ui-monospace);font-size:10.5px;letter-spacing:.05em;text-transform:uppercase;color:var(--accent,#1D6A5A);margin-right:6px}" +
     ".stat.live b{transition:color .3s}" +
     ".shots{margin-top:28px}" +
