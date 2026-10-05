@@ -51,6 +51,20 @@
   "work": {
     "items": [
       {
+        "src": "/images/bia-scottish-parliament-2026.jpg",
+        "alt": "A group of about a dozen people standing together in the debating chamber of the Scottish Parliament, wearing visitor passes.",
+        "caption": "At the Scottish Parliament with the Belonging in Action community, 2026.",
+        "anchor": "Belonging in Action CIC",
+        "hidden": false
+      },
+      {
+        "src": "/images/bia-business-connect-2026.jpg",
+        "alt": "A large group of people gathered for a photograph at an evening business networking event.",
+        "caption": "The BIA Business Connect Forum, 2026.",
+        "anchor": "Belonging in Action CIC",
+        "hidden": false
+      },
+      {
         "src": "/images/erge-innovation-sprint-2026.jpg",
         "alt": "Nine people standing in front of a screen showing the ERGE Platform pitch slide at the Industry-Led Innovation Sprint 2026.",
         "caption": "First Prize, Industry-Led Innovation Sprint 2026.",
