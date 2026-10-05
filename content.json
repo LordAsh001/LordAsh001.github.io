@@ -559,13 +559,24 @@
           "meta": "Edinburgh · 2026 →",
           "status": "active",
           "role": "Secretary, formerly Strategy & Programmes Lead",
-          "text": "A community interest company for education, inclusion and entrepreneurship among international students and immigrant communities. I run registration, feedback and impact reporting, write funding bids, and coordinate universities, businesses and volunteers.",
+          "text": "A community interest company for education, inclusion and enterprise among international students, graduates and immigrant communities in Scotland. Its working principle is that belonging goes beyond presence: people should be able to connect, participate and contribute.\n\nI run registration, feedback and impact reporting, write funding bids, and coordinate universities, businesses and volunteers.",
           "bullets": [
-            "113 participants at the launch",
-            "Business workshops on growing in the UK's digital economy",
-            "Outdoor community days around Edinburgh"
+            "Ten programmes delivered since March 2026, across scholarships and research, careers and employability, enterprise, integration and wellbeing",
+            "**Research Pathway:** securing a fully funded PhD in the UK, July 2026",
+            "**Pathways to Opportunity:** careers and sponsorship in the UK, April 2026; graduate roles and the care sector later in the year",
+            "**Business Connect Forum** and *Beyond Word-of-Mouth*, a workshop on growing a business past referrals",
+            "City days that double as orientation: Edinburgh, Arthur's Seat and Cramond"
           ],
-          "stats": [],
+          "stats": [
+            {
+              "value": "10",
+              "label": "programmes delivered in 2026"
+            },
+            {
+              "value": "37",
+              "label": "businesses in the BIA directory"
+            }
+          ],
           "link_label": "",
           "link_url": "",
           "size": "half",
