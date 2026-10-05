@@ -7,6 +7,8 @@
    2. Back to top — a small button that appears once the reader has scrolled.
    3. Photo strips — photos listed in /photos.json are added to the sections they
       belong to, with captions, lazy loading and click-to-enlarge.
+   4. Live YouTube numbers — if /youtube.json exists, the Via Scholaris video and
+      subscriber counts are replaced with the current ones from the channel.
 
    Nothing here changes the words of the site: that stays in content.json. */
 (function () {
@@ -310,6 +312,66 @@
     document.documentElement.style.overflow = "";
   }
 
+
+  /* ---------- 4. live numbers from YouTube ---------- */
+  /* /youtube.json is refreshed once a day by .github/workflows/youtube.yml.
+     If the file is missing, the numbers written in content.json stay as they are. */
+  function youtubeNumbers() {
+    fetch("/youtube.json", { cache: "no-cache" })
+      .then(function (r) { return r.ok ? r.json() : null; })
+      .then(function (d) { if (d && d.channel) applyYouTube(d); })
+      .catch(function () { /* no file yet */ });
+  }
+
+  function nfmt(n) {
+    n = Number(n) || 0;
+    return n.toLocaleString("en-GB");
+  }
+
+  function setStat(tile, value) {
+    var b = tile.querySelector("b");
+    if (b && b.textContent.trim() !== value) {
+      b.textContent = value;
+      tile.classList.add("live");
+    }
+  }
+
+  function applyYouTube(d) {
+    var ch = d.channel;
+    var card = null;
+    var heads = document.querySelectorAll("#work h3");
+    for (var i = 0; i < heads.length; i++) {
+      if (/via scholaris/i.test(heads[i].textContent)) { card = heads[i].closest(".proj"); break; }
+    }
+
+    /* the three stat tiles on the Via Scholaris card */
+    if (card) {
+      card.querySelectorAll(".stat").forEach(function (tile) {
+        var label = (tile.querySelector("span") || {}).textContent || "";
+        if (/video/i.test(label)) setStat(tile, nfmt(ch.videos));
+        else if (/subscriber/i.test(label)) setStat(tile, nfmt(ch.subscribers));
+        else if (/view/i.test(label) && /librar|channel|total/i.test(label)) setStat(tile, nfmt(ch.views));
+      });
+
+      /* a line saying where the numbers came from, and what went up most recently */
+      var note = document.createElement("p");
+      note.className = "yt-note";
+      var latest = (d.latest || [])[0];
+      note.innerHTML = '<span class="mono">Live from YouTube · ' + esc(d.updated || "") + "</span>" +
+        (latest ? ' Latest: <a href="' + esc(latest.url) + '" target="_blank" rel="noopener">' + esc(latest.title) + "</a>" : "");
+      var stats = card.querySelector(".stats");
+      if (stats && stats.parentNode) stats.parentNode.insertBefore(note, stats.nextSibling);
+      else card.appendChild(note);
+    }
+
+    /* the same numbers in the "By the numbers" band at the top */
+    document.querySelectorAll(".metrics .stat").forEach(function (tile) {
+      var label = (tile.querySelector("span") || {}).textContent || "";
+      if (/via scholaris/i.test(label) && /video/i.test(label)) setStat(tile, nfmt(ch.videos));
+      else if (/via scholaris/i.test(label) && /subscriber/i.test(label)) setStat(tile, nfmt(ch.subscribers));
+    });
+  }
+
   /* ---------- styles ---------- */
   var CSS =
     ".gloss{border-bottom:1px dotted color-mix(in srgb,var(--accent,#1D6A5A) 70%,transparent);cursor:help;background:none;padding:0}" +
@@ -319,6 +381,9 @@
       "font:15px/1.5 var(--sans,system-ui);box-shadow:0 10px 30px rgba(0,0,0,.14);max-width:min(320px,calc(100vw - 24px))}" +
     ".gloss-tip b{display:block;font:600 13px/1.3 var(--sans,system-ui);margin-bottom:4px}" +
     ".gloss-tip-note{display:block;margin-top:8px;font-family:var(--mono,ui-monospace);font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted,#5B635D)}" +
+    ".yt-note{margin-top:10px;font-size:13.5px;color:var(--muted,#5B635D)}" +
+    ".yt-note .mono{font-family:var(--mono,ui-monospace);font-size:10.5px;letter-spacing:.05em;text-transform:uppercase;color:var(--accent,#1D6A5A);margin-right:6px}" +
+    ".stat.live b{transition:color .3s}" +
     ".shots{margin-top:28px}" +
     ".shots.in-card{margin-top:auto;padding-top:14px}" +
     ".shots.beside-text{margin-top:32px;max-width:760px}" +
@@ -366,6 +431,7 @@
     wireGlossary();
     backToTop();
     photoStrips();
+    youtubeNumbers();
   }
 
   function whenReady() {
