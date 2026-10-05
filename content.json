@@ -577,8 +577,8 @@
               "label": "businesses in the BIA directory"
             }
           ],
-          "link_label": "",
-          "link_url": "",
+          "link_label": "See the BIA team",
+          "link_url": "https://www.biacommunity.org/about",
           "size": "half",
           "hidden": false,
           "sdgs": [
@@ -686,7 +686,7 @@
           "label": "Mentoring & public talks",
           "title": "Beyond it",
           "chips": [],
-          "text": "",
+          "text": "I am listed among the mentors and speakers at [Women Ascension](https://womenascension.org/mentors-speakers/), a global mentorship network for women in leadership.",
           "quotes": [
             {
               "title": "Sustainable Waste Management, Circular Economy & Green Innovations",
