@@ -621,11 +621,19 @@
           "text": "",
           "quotes": [
             {
-              "title": "From Waste to Worth · Building Green Communities",
-              "date": "1–2 October 2026",
-              "text": "Mentor and Lead Facilitator for a two-part global webinar series, Women Ascension. Circular economy and green innovation, then environmental leadership and sustainable livelihoods.",
-              "url": "",
-              "photo": "",
+              "title": "Sustainable Waste Management, Circular Economy & Green Innovations",
+              "date": "1 October 2026",
+              "text": "Women Ascension Global Mentorship, webinar 1 of 2. Mentor and Lead Facilitator. Watch the recording.",
+              "url": "https://www.youtube.com/live/lk2gwaBD1d0",
+              "photo": "/images/women-ascension-webinar-1-2026.jpg",
+              "hidden": false
+            },
+            {
+              "title": "Environmental Leadership, Entrepreneurship & Sustainable Livelihoods",
+              "date": "2 October 2026",
+              "text": "Women Ascension Global Mentorship, webinar 2 of 2. Mentor and Lead Facilitator. Watch the recording.",
+              "url": "https://www.youtube.com/live/7NtasEWN4Ds",
+              "photo": "/images/women-ascension-webinar-2-2026.jpg",
               "hidden": false
             },
             {
