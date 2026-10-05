@@ -177,60 +177,109 @@
   }
 
 
-  /* ---------- 3. photo strips ---------- */
-  /* Photos live in /photos.json so they can be added without touching this file:
-     { "work": { "title": "optional heading", "items": [ { "src": "/images/x.jpg", "alt": "...", "caption": "..." } ] } }
-     The key is the section's link ID (work, research, teaching, path, recognition …). */
+  /* ---------- 3. photos, placed next to what they show ---------- */
+  /* Photos live in /photos.json, so they can be added without touching this file:
+     { "research": { "items": [
+         { "src": "/images/x.jpg", "alt": "...", "caption": "...",
+           "anchor": "A motorised hand-held rice harvester",   // text from the card it belongs beside
+           "focus": "50% 30%",                                  // which part of the photo to keep when cropped
+           "ratio": "4/3" } ] } }
+     The key is the section's link ID (research, work, resources, teaching …).
+     anchor: part of a card's title puts the photo inside that card; "body" puts it after the
+     section's opening text; leaving it out puts it at the end of the section.
+     Every photo is cropped to the same shape so rows stay even — set "focus" if a crop cuts
+     off the wrong part, or "ratio" for a photo that deserves its own shape. */
   function photoStrips() {
     fetch("/photos.json", { cache: "no-cache" })
       .then(function (r) { return r.ok ? r.json() : null; })
-      .then(function (data) {
-        if (!data) return;
-        Object.keys(data).forEach(function (id) {
-          var sec = document.getElementById(id);
-          var group = data[id] || {};
-          var items = (group.items || []).filter(function (p) { return p && p.src && !p.hidden; });
-          if (!sec || !items.length) return;
-          var host = sec.children[1] || sec;   /* the section's body column */
-          var wrap = document.createElement("div");
-          wrap.className = "shots" + (items.length === 1 ? " one" : "");
-          if (group.title) {
-            var h = document.createElement("p");
-            h.className = "shots-title mono";
-            h.textContent = group.title;
-            wrap.appendChild(h);
-          }
-          var grid = document.createElement("div");
-          grid.className = "shots-grid";
-          items.forEach(function (p, i) {
-            var fig = document.createElement("figure");
-            fig.className = "shot";
-            var img = document.createElement("img");
-            img.src = p.src;
-            if (p.ratio) img.style.aspectRatio = p.ratio;
-            img.alt = p.alt || p.caption || "";
-            img.loading = "lazy";
-            img.decoding = "async";
-            fig.appendChild(img);
-            if (p.caption) {
-              var cap = document.createElement("figcaption");
-              cap.innerHTML = fmt(p.caption);
-              fig.appendChild(cap);
-            }
-            fig.tabIndex = 0;
-            fig.setAttribute("role", "button");
-            fig.setAttribute("aria-label", "Enlarge photo: " + (p.alt || p.caption || "photo"));
-            fig.addEventListener("click", function () { openShot(p); });
-            fig.addEventListener("keydown", function (e) {
-              if (e.key === "Enter" || e.key === " ") { e.preventDefault(); openShot(p); }
-            });
-            grid.appendChild(fig);
-          });
-          wrap.appendChild(grid);
-          host.appendChild(wrap);
-        });
-      })
+      .then(function (data) { if (data) placePhotos(data); })
       .catch(function () { /* no photos file yet: nothing to do */ });
+  }
+
+  function figureFor(p) {
+    var fig = document.createElement("figure");
+    fig.className = "shot";
+    var img = document.createElement("img");
+    img.src = p.src;
+    img.style.aspectRatio = p.ratio || "4 / 3";
+    if (p.focus) img.style.objectPosition = p.focus;
+    img.alt = p.alt || p.caption || "";
+    img.loading = "lazy";
+    img.decoding = "async";
+    fig.appendChild(img);
+    if (p.caption) {
+      var cap = document.createElement("figcaption");
+      cap.innerHTML = fmt(p.caption);
+      fig.appendChild(cap);
+    }
+    fig.tabIndex = 0;
+    fig.setAttribute("role", "button");
+    fig.setAttribute("aria-label", "Enlarge photo: " + (p.alt || p.caption || "photo"));
+    fig.addEventListener("click", function () { openShot(p); });
+    fig.addEventListener("keydown", function (e) {
+      if (e.key === "Enter" || e.key === " ") { e.preventDefault(); openShot(p); }
+    });
+    return fig;
+  }
+
+  /* find the card inside a section whose heading contains the anchor text */
+  function cardFor(sec, anchor) {
+    var want = String(anchor).toLowerCase();
+    var heads = sec.querySelectorAll("h3");
+    for (var i = 0; i < heads.length; i++) {
+      if (heads[i].textContent.toLowerCase().indexOf(want) > -1) {
+        return heads[i].closest("article, .proj, .res-card, .quote") || heads[i].parentNode;
+      }
+    }
+    return null;
+  }
+
+  function placePhotos(data) {
+    Object.keys(data).forEach(function (id) {
+      var sec = document.getElementById(id);
+      var group = data[id] || {};
+      var items = (group.items || []).filter(function (p) { return p && p.src && !p.hidden; });
+      if (!sec || !items.length) return;
+      var body = sec.children[1] || sec;
+
+      /* keep photos that name the same anchor together */
+      var groups = {}, order = [];
+      items.forEach(function (p) {
+        var key = p.anchor || "";
+        if (!groups[key]) { groups[key] = []; order.push(key); }
+        groups[key].push(p);
+      });
+
+      order.forEach(function (key) {
+        var list = groups[key];
+        var wrap = document.createElement("div");
+        wrap.className = "shots" + (list.length === 1 ? " one" : "");
+        var grid = document.createElement("div");
+        grid.className = "shots-grid";
+        list.forEach(function (p) { grid.appendChild(figureFor(p)); });
+        wrap.appendChild(grid);
+
+        var card = key && key !== "body" && key !== "end" ? cardFor(sec, key) : null;
+        if (card) {
+          wrap.classList.add("in-card");
+          var foot = card.querySelector(".res-foot");           /* tool cards keep their link last */
+          if (foot) card.insertBefore(wrap, foot); else card.appendChild(wrap);
+          return;
+        }
+        if (key === "body") {
+          var prose = sec.querySelector(".prose, .lede");
+          wrap.classList.add("beside-text");
+          if (prose && prose.parentNode) { prose.parentNode.insertBefore(wrap, prose.nextSibling); return; }
+        }
+        if (group.title) {
+          var h = document.createElement("p");
+          h.className = "shots-title mono";
+          h.textContent = group.title;
+          wrap.insertBefore(h, grid);
+        }
+        body.appendChild(wrap);
+      });
+    });
   }
 
   var shotBox;
@@ -270,12 +319,16 @@
       "font:15px/1.5 var(--sans,system-ui);box-shadow:0 10px 30px rgba(0,0,0,.14);max-width:min(320px,calc(100vw - 24px))}" +
     ".gloss-tip b{display:block;font:600 13px/1.3 var(--sans,system-ui);margin-bottom:4px}" +
     ".gloss-tip-note{display:block;margin-top:8px;font-family:var(--mono,ui-monospace);font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted,#5B635D)}" +
-    ".shots{margin-top:40px}" +
+    ".shots{margin-top:28px}" +
+    ".shots.in-card{margin-top:auto;padding-top:14px}" +
+    ".shots.beside-text{margin-top:32px;max-width:760px}" +
+    ".shots.in-card .shot figcaption{font-size:12.5px}" +
     ".shots-title{color:var(--muted,#5B635D);text-transform:uppercase;margin:0 0 12px}" +
-    ".shots-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px}" +
-    ".shots.one .shots-grid{grid-template-columns:minmax(0,620px)}" +
+    ".shots-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:18px;align-items:start}" +
+    ".shots.one .shots-grid{grid-template-columns:minmax(0,1fr)}" +
+    ".shots.beside-text.one .shots-grid{grid-template-columns:minmax(0,620px)}" +
     ".shot{margin:0;cursor:zoom-in}" +
-    ".shot img{display:block;width:100%;aspect-ratio:4/3;object-fit:cover;border:1px solid var(--rule,#CAC9B8);border-radius:3px;background:var(--card,#F6F5EE)}" +
+    ".shot img{display:block;width:100%;aspect-ratio:4/3;object-fit:cover;object-position:50% 50%;border:1px solid var(--rule,#CAC9B8);border-radius:3px;background:var(--card,#F6F5EE)}" +
     ".shot figcaption{margin-top:8px;font-size:13.5px;line-height:1.5;color:var(--muted,#5B635D)}" +
     ".shot:hover img{border-color:var(--accent,#1D6A5A)}" +
     ".shot:focus-visible{outline:2px solid var(--accent,#1D6A5A);outline-offset:4px;border-radius:4px}" +
