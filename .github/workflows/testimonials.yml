@@ -1,0 +1,42 @@
+# Copies approved testimonials from the Google Form responses sheet onto the website.
+#
+# Two gates, both of which must pass before anything appears publicly:
+#   1. the person ticked "Yes" to "May I publish this on my website?";
+#   2. you typed "yes" in the "Publish?" column of the sheet.
+# Email addresses are never copied. Runs once a day, and on demand from the
+# Actions tab ("Run workflow").
+#
+# To use a different sheet, change TESTIMONIALS_CSV below (File -> Share ->
+# Publish to web -> Comma-separated values). Leave it empty to switch this off.
+name: Refresh testimonials
+
+on:
+  schedule:
+    - cron: "41 6 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Read the responses sheet
+        env:
+          TESTIMONIALS_CSV: "https://docs.google.com/spreadsheets/d/e/2PACX-1vQIxjIxJ5EKhzuHveFb5S9madnbX2QeouLnvY1ULp0GdxIDcLApgFgZLhxaGLH6s6uAGCIKHKgr0uxk/pub?output=csv"
+        run: python3 .github/scripts/testimonials.py
+
+      - name: Commit if anything changed
+        run: |
+          if [ -z "$(git status --porcelain content.json)" ]; then
+            echo "Nothing to commit."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add content.json
+          git commit -m "Refresh testimonials from the form"
+          git push
