@@ -12,7 +12,13 @@ var TALLY_FORM_ID = "zxlV4Z";
 var PRIVACY_URL = "/privacy.html";
 
 var path = location.pathname;
-var TOOL = /\/symbiosis\//.test(path) ? "symbiosis" : /sustainatable/.test(path) ? "sustainatable" : /\/laureate\//.test(path) ? "laureate" : "website";
+var TOOL = /\/symbiosis\//.test(path) ? "symbiosis"
+  : /sustainatable/.test(path) ? "sustainatable"
+  : /\/laureate\//.test(path) ? "laureate"
+  : /\/tea-studio\//.test(path) ? "tea-studio"
+  : /\/eia-studio\//.test(path) ? "eia-studio"
+  : /citadel/.test(path) ? "citadel"
+  : "website";
 
 /* ---------- analytics (GoatCounter: no cookies, no personal data) ---------- */
 var queue = [], sent = {};
@@ -42,6 +48,11 @@ if (TOOL === "website") {
 var en = document.createElement("script");
 en.src = "/assets/enhance.js"; en.defer = true;
 document.head.appendChild(en);
+} else {
+/* every tool gets the same bar: back to the website, and across to the others */
+var tb = document.createElement("script");
+tb.src = "/assets/toolbar.js"; tb.defer = true;
+document.head.appendChild(tb);
 }
 
 /* per-tool actions, counted without touching each tool's own code */
