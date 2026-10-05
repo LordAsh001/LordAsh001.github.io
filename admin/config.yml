@@ -9,7 +9,7 @@ backend:
     update: Update {{slug}} via editor
 media_folder: images
 public_folder: /images
-site_url: https://lordash001.github.io
+site_url: https://shagbaor.com
 collections:
 - name: website
   label: Website
