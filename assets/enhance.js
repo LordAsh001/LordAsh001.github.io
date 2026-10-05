@@ -323,6 +323,13 @@
       .catch(function () { /* no file yet */ });
   }
 
+  function prettyDate(iso) {
+    var m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(String(iso || ""));
+    if (!m) return iso || "";
+    var months = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+    return Number(m[3]) + " " + months[Number(m[2]) - 1] + " " + m[1];
+  }
+
   function nfmt(n) {
     n = Number(n) || 0;
     return n.toLocaleString("en-GB");
@@ -357,7 +364,7 @@
       var note = document.createElement("p");
       note.className = "yt-note";
       var latest = (d.latest || [])[0];
-      note.innerHTML = '<span class="mono">Live from YouTube · ' + esc(d.updated || "") + "</span>" +
+      note.innerHTML = '<span class="mono">Live from YouTube · ' + esc(prettyDate(d.updated)) + "</span>" +
         (latest ? ' Latest: <a href="' + esc(latest.url) + '" target="_blank" rel="noopener">' + esc(latest.title) + "</a>" : "");
       var stats = card.querySelector(".stats");
       if (stats && stats.parentNode) stats.parentNode.insertBefore(note, stats.nextSibling);
