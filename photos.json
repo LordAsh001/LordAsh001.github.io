@@ -2,6 +2,13 @@
   "research": {
     "items": [
       {
+        "src": "/images/unbc-ags-reactors.jpg",
+        "alt": "Tall column reactors filled with brown granular sludge, with tubing and sampling taps, on a laboratory bench.",
+        "caption": "My setup at the Bio-innovative Water and Wastewater Biorefinery Lab, School of Engineering, UNBC: the column reactors where the granules grow.",
+        "anchor": "Curdlan recovery from aerobic granular sludge",
+        "hidden": false
+      },
+      {
         "src": "/images/rccs-lab-with-supervisor.jpg",
         "alt": "Shagbaor and Dr Jeannie Tan in white lab coats beside electrochemical equipment in a laboratory.",
         "caption": "Where the step outside my comfort zone happened: the Research Centre for Carbon Solutions lab at Heriot-Watt University, with my MSc supervisor, **Dr Jeannie Tan**.",
