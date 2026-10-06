@@ -994,10 +994,18 @@ function lessonHtml(){
 <p>${tp('Redefinition without proximity')}</p>
 <p>Chertow also groups opportunities into three kinds: by-product reuse, utility and infrastructure sharing, and joint provision of services${cite('chertow2000')}.</p></section>
 
-<section><h4>3 · Test</h4><h3>The 3-2 heuristic</h3>
+<section><h4>3 · Vocabulary</h4><h3>The words this tool uses, and why</h3>
+<p>Industrial symbiosis sits inside the circular economy, but the two fields do not always use the same word for the same thing. This tool follows the Ellen MacArthur Foundation for circular-economy terms and European waste law for legal ones. Where the two disagree, the legal term wins, because that is the one that decides whether an exchange is allowed at all.</p>
+<p>The Foundation sets out three principles for a circular economy: eliminate waste and pollution, circulate products and materials at their highest value, and regenerate nature. Industrial symbiosis is one way of doing the second. An exchange moves a residue from a plant that has finished with it to one that can still get value from it, and the better exchange is the one that holds that value highest, not simply the one that finds somewhere for the material to go.</p>
+<p>The Foundation also separates two cycles. The <b>technical cycle</b> covers materials that are not consumed in use and can be kept in circulation by reuse, repair, refurbishment, remanufacturing and recycling: metals, minerals, polymers, construction materials. The <b>biological cycle</b> covers materials that can safely return to the land, through composting, anaerobic digestion and similar routes.</p>
+<p>The catalogue here tags every stream by category, and those categories do not map onto the two cycles exactly. Material and gas streams sit in the technical cycle and bio streams in the biological cycle, but <b>water</b> and <b>energy</b> belong to neither: they are flows rather than materials held in a loop, and they are a large share of what industrial symbiosis actually trades. Kalundborg began with steam and cooling water, not with a product.</p>
+<p>Two words are used here in their strict legal sense rather than their everyday one. A <b>by-product</b> is not merely a useful residue, and <b>waste</b> is a legal status rather than a judgement about whether something is useful. Section 7 sets out both tests.</p>
+<p>House spellings: reuse rather than re-use, by-product hyphenated, and recycling kept distinct from energy recovery, which the waste hierarchy ranks separately.</p></section>
+
+<section><h4>4 · Test</h4><h3>The 3-2 heuristic</h3>
 <p>${tp('The 3-2 heuristic')} The park builder applies this test to your design.</p></section>
 
-<section><h4>4 · Scale</h4><h3>Five types of exchange${cite('chertow2000')}</h3>
+<section><h4>5 · Scale</h4><h3>Five types of exchange${cite('chertow2000')}</h3>
 <div class="types">
 <div class="type"><b>TYPE 1</b>Through waste exchanges: one-off trades via brokers or markets.</div>
 <div class="type"><b>TYPE 2</b>Within a facility, firm or organisation.</div>
@@ -1006,7 +1014,7 @@ function lessonHtml(){
 <div class="type"><b>TYPE 5</b>Among firms organised virtually across a broader region.</div>
 </div><p class="note">The Case atlas tags each case with its type.</p></section>
 
-<section><h4>5 · Development</h4><h3>How networks form</h3>
+<section><h4>6 · Development</h4><h3>How networks form</h3>
 <div class="stages">
 <div class="stage-card"><b>Sprouting</b>Individual, self-interested exchanges.</div>
 <div class="stage-card"><b>Uncovering</b>Actors recognise the network and its collective value.</div>
@@ -1015,12 +1023,12 @@ function lessonHtml(){
 <p>${tp('Three-stage model of IS development')}</p>
 <p>The Case atlas groups cases as self-organised (Kalundborg, Kwinana), planned by government (Ulsan, TEDA, Kitakyushu), facilitated by a broker (NISP, WISP) or corporate-led (Guitang, British Sugar Wissington). ${tp('Comparing IS dynamics across cases')}</p></section>
 
-<section><h4>6 · Regulation</h4><h3>Is it waste or a by-product?</h3>
+<section><h4>7 · Regulation</h4><h3>Is it waste or a by-product?</h3>
 <p>The legal status of a residue decides which permits an exchange needs. ${tp('Classifying waste streams (EU List of Waste)')}</p>
 <p>${tp('By-product vs waste (WFD Art. 5)')}</p>
 <p>${tp('End-of-waste (WFD Art. 6)')}</p></section>
 
-<section><h4>7 · Barriers</h4><h3>What gets in the way</h3>
+<section><h4>8 · Barriers</h4><h3>What gets in the way</h3>
 <div class="barriers">
 <div><b>Distance</b>Low-value streams stop paying off quickly. For excess heat, about 10 km is the realistic connection distance${cite('manz2021')}.</div>
 <div><b>Business case</b>At Kalundborg, firms’ motivation was tied more to overall operational performance than to the value of the by-products themselves${cite('jacobsen2006')}.</div>
@@ -1030,7 +1038,7 @@ function lessonHtml(){
 <div><b>Quality &amp; reliability</b>Each entry in the waste catalogue lists the specific conditions receivers set, with sources.</div>
 </div></section>
 
-<section><h4>8 · Measurement</h4><h3>Judging performance fairly</h3>
+<section><h4>9 · Measurement</h4><h3>Judging performance fairly</h3>
 <ul class="cited">
 <li>${tp('LCA of IS: system boundaries and allocation')}</li>
 <li>${tp('Indicators for eco-industrial parks')}</li>
@@ -1075,8 +1083,8 @@ function renderQuiz(){
       <button class="btn primary" type="button" id="qNext">${qi === QUIZ.length - 1 ? 'See score' : 'Next question'}</button>` : ''}`;
 }
 
-const LEARN_IDS = ['origins','definition','test','types','development','regulation','barriers','measurement','reading'];
-const LEARN_TITLES = ['Origins','Definition','3-2 test','Five types','Development','Regulation','Barriers','Measurement','Further reading'];
+const LEARN_IDS = ['origins','definition','vocabulary','test','types','development','regulation','barriers','measurement','reading'];
+const LEARN_TITLES = ['Origins','Definition','Vocabulary','3-2 test','Five types','Development','Regulation','Barriers','Measurement','Further reading'];
 let learnObs = null;
 function initLearn(){
   $('#lesson').innerHTML = `<nav class="toc" id="toc" aria-label="Lesson sections">${LEARN_TITLES.map((t,i) => `<a data-sec="${LEARN_IDS[i]}" href="#/learn/${LEARN_IDS[i]}">${t}</a>`).join('')}</nav>` + lessonHtml();
