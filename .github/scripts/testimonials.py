@@ -57,11 +57,19 @@ def fetch(url):
 
 
 def rows_from_csv(text):
-    out = []
+    """Return (approved items, fingerprints of every quote in the sheet).
+
+    The second set is what lets you UN-approve someone: anything whose quote is in
+    the sheet is the sheet's to decide, so clearing its Publish? cell takes it off
+    the website on the next run. Quotes written by hand in the editor are not in
+    the sheet, so they are left alone.
+    """
+    out, seen_all = [], set()
     for row in csv.DictReader(io.StringIO(text)):
         quote = tidy(column(row, "What would you like to say?", "quote", "testimonial"))
         if not quote:
             continue
+        seen_all.add(fingerprint(quote))
 
         approved = column(row, "Publish?", "publish", "approved").lower().strip(" .!")
         if approved not in YES:
@@ -86,7 +94,7 @@ def rows_from_csv(text):
             item["photo"] = photo
 
         out.append(item)
-    return out
+    return out, seen_all
 
 
 def main():
@@ -107,16 +115,18 @@ def main():
         return 1
 
     try:
-        fresh = rows_from_csv(fetch(CSV_URL))
+        fresh, from_sheet = rows_from_csv(fetch(CSV_URL))
     except Exception as e:                      # a bad sheet must never break the site
         print("Could not read the responses sheet:", e)
         return 0
 
     print("Approved rows in the sheet:", len(fresh))
 
-    # Keep anything you wrote by hand in the editor; add the approved form answers after it.
-    seen = {fingerprint(i["quote"]) for i in fresh}
-    kept = [i for i in section.get("items") or [] if fingerprint(i.get("quote", "")) not in seen]
+    # Anything that came from the form is the sheet's to decide, so clearing a
+    # Publish? cell removes it here too. Quotes written by hand in the editor
+    # are not in the sheet at all, so they survive untouched.
+    kept = [i for i in section.get("items") or []
+            if fingerprint(i.get("quote", "")) not in from_sheet]
     items = kept + fresh
 
     section["items"] = items
