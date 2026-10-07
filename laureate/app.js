@@ -839,6 +839,317 @@ function gCalendar() {
 }
 renderGuidePick();
 
+/* ---------------- v4: live openings, page watcher, compare, funding types, winners library, CV Studio ---------------- */
+const getJSON = (f) => fetch(f, { cache: "no-cache" }).then((r) => (r.ok ? r.json() : null)).catch(() => null);
+const FUND = { full: "Fully funded", partial: "Partial", grant: "Grant / bursary", loan: "Loan", staff: "Staff training" };
+const FUNDMAP = { kth: "partial", radboud: "partial", eiffel: "partial", uopeople: "partial", aauw: "partial", eth: "full", delft: "full", "ubc-isp": "full",
+  nlng: "grant", agbami: "grant", shell: "grant", seplat: "grant", mtn: "grant", ovia: "grant", nbplc: "grant", state: "grant", nelfund: "loan", tetfund: "staff", "fsb-bea": "full" };
+DATA.forEach((s) => (s.fund = FUNDMAP[s.id] || "full"));
+const V4 = { live: null, watch: null, vids: null, winners: null, cv: null };
+st.lastVisit = st.lastVisit || null; const prevVisit = st.lastVisit; st.lastVisit = dayKey(); save();
+st.cmp = st.cmp || []; st.cvDoc = st.cvDoc || null;
+
+/* --- live feed --- */
+function liveHTML(list, max) {
+  return list.slice(0, max).map((i) => {
+    const s = (i.ids || []).map((id) => DATA.find((x) => x.id === id)).filter(Boolean);
+    const fresh = prevVisit && i.seen > prevVisit;
+    return `<div class="live-item"><time>${esc(fmtD(parseD(i.date)).replace(/ \d{4}$/, ""))}</time><div><a href="${esc(okURL(i.link))}" target="_blank" rel="noopener nofollow">${esc(i.title)} ↗</a>${fresh ? `<span class="nw">NEW</span>` : ""}<small>${esc(i.source)}${i.official ? " · official" : ""}${s.length ? ` · ${s.map((x) => `<button type="button" class="btn sm" style="padding:1px 7px;font-size:11.5px" data-gstart="${x.id}">Guide: ${esc(x.name.split(" (")[0])}</button>`).join(" ")}` : ""}</small></div></div>`;
+  }).join("") || `<p class="small muted">Nothing new matches.</p>`;
+}
+function renderLive() {
+  const L = V4.live; if (!L || !(L.items || []).length) return;
+  const items = L.items;
+  const newN = prevVisit ? items.filter((i) => i.seen > prevVisit).length : 0;
+  $("#homeLive").hidden = false; $("#homeLiveList").innerHTML = liveHTML(items, 8);
+  $("#liveUpd").textContent = "Updated " + fmtD(parseD(L.updated));
+  if (newN) { $("#liveNew").hidden = false; $("#liveNew").textContent = newN + " new since your last visit"; }
+  const off = $("#liveOfficial").checked, mine = $("#liveMine").checked, tracked = st.tracker.map((t) => t.id);
+  const list = items.filter((i) => (!off || i.official) && (!mine || (i.ids || []).some((id) => tracked.includes(id))));
+  $("#atlasLive").hidden = false; $("#atlasLiveCount").textContent = `${items.length} posts in the last ~10 weeks${newN ? ` · ${newN} new since your last visit` : ""}`;
+  $("#atlasLiveList").innerHTML = liveHTML(list, 40);
+}
+["liveOfficial", "liveMine"].forEach((id) => $("#" + id).addEventListener("change", renderLive));
+
+/* --- watcher pill + compare + funding on atlas cards --- */
+function watchPill(s) {
+  const p = V4.watch && V4.watch.pages && V4.watch.pages[s.id]; if (!p || !p.ok) return "";
+  const out = [];
+  if (p.signal === "open" && status(s).k !== "open") out.push(`<span class="pill p-open" title="${esc(p.evidence || "")}">Official page says applications are open · auto-check ${esc(fmtD(parseD(p.since || p.checked)))}</span>`);
+  else if (p.changed && daysTo(p.changed) >= -14) out.push(`<span class="pill p-watch" title="The official page changed. Check it for new dates or rules.">Official page updated ${esc(fmtD(parseD(p.changed)))}</span>`);
+  return out.join("");
+}
+const _passCard = passCard;
+passCard = function (s, extra = "") {
+  const add = `<div class="row" style="gap:6px"><span class="pill p-fund">${FUND[s.fund]}</span>${watchPill(s)}<label class="cmp-chk"><input type="checkbox" data-cmp="${s.id}" ${st.cmp.includes(s.id) ? "checked" : ""}> Compare</label></div>`;
+  return _passCard(s, add + extra);
+};
+const _renderAtlas = renderAtlas;
+renderAtlas = function () {
+  const f = $("#aFund").value;
+  if (!f) return _renderAtlas();
+  const keep = DATA.slice(); DATA.length = 0; keep.filter((s) => s.fund === f).forEach((s) => DATA.push(s));
+  try { _renderAtlas(); } finally { DATA.length = 0; keep.forEach((s) => DATA.push(s)); }
+};
+$("#aFund").addEventListener("input", () => renderAtlas());
+/* the original filters were bound to the old function: re-apply the funding filter after them */
+["aQ", "aLevel", "aRegion", "aSort", "fAny"].forEach((id) => $("#" + id).addEventListener("input", () => { if ($("#aFund").value) renderAtlas(); }));
+$("#fieldList").addEventListener("change", () => { if ($("#aFund").value) renderAtlas(); });
+$$("#aStatus button").forEach((b) => b.addEventListener("click", () => { if ($("#aFund").value) renderAtlas(); }));
+function cmpSync() { const n = st.cmp.length; $("#cmpBar").hidden = !n || !$("#v-atlas").classList.contains("on"); $("#cmpTxt").textContent = n === 1 ? "1 selected — pick up to 2 more" : `${n} selected`; }
+document.addEventListener("change", (e) => {
+  const c = e.target.closest("[data-cmp]"); if (!c) return;
+  const id = c.dataset.cmp;
+  if (c.checked) { if (st.cmp.length >= 3) { c.checked = false; toast("Compare up to 3 at a time"); return; } st.cmp.push(id); } else st.cmp = st.cmp.filter((x) => x !== id);
+  save(); cmpSync();
+});
+$("#cmpClear").addEventListener("click", () => { st.cmp = []; save(); cmpSync(); $$("[data-cmp]").forEach((c) => (c.checked = false)); });
+$("#cmpClose").addEventListener("click", () => $("#cmpDlg").close());
+$("#cmpGo").addEventListener("click", () => {
+  const L = st.cmp.map((id) => DATA.find((s) => s.id === id)).filter(Boolean);
+  const row = (h, f) => `<tr><th>${h}</th>${L.map((s) => `<td>${f(s)}</td>`).join("")}</tr>`;
+  $("#cmpTable").innerHTML = `<table><tr><th></th>${L.map((s) => `<td><b>${esc(s.name)}</b></td>`).join("")}</tr>
+    ${row("Status", (s) => `<span class="pill ${status(s).cls}">${status(s).label}</span>`)}
+    ${row("Deadline", (s) => (s.deadline ? `${fmtD(parseD(s.deadline))}${daysTo(s.deadline) >= 0 ? ` · T-${daysTo(s.deadline)}` : ""}` : "Varies") + `<div class="small muted">${esc(s.window)}</div>`)}
+    ${row("Funding type", (s) => FUND[s.fund])}${row("Covers", (s) => esc(s.funding))}${row("Host", (s) => esc(s.host))}${row("Level", (s) => s.levels.join(", "))}
+    ${row("Eligibility", (s) => esc(s.elig))}${row("Essays", (s) => (s.essays || []).map((k) => (ESSAYS[k] ? ESSAYS[k].name : k)).join(", ") || "None listed")}
+    ${row("Documents", (s) => (s.req ? s.req.items.length + " to prepare" : "—"))}
+    ${row("", (s) => `<div class="row"><button type="button" class="btn sm primary" data-gstart="${s.id}">Guide me</button><a class="btn sm" href="${esc(s.url)}" target="_blank" rel="noopener">Official ↗</a></div>`)}</table>`;
+  $("#cmpDlg").showModal(); T("compare", "Compared scholarships");
+});
+document.addEventListener("click", (e) => { if (e.target.closest("#cmpDlg [data-gstart]")) $("#cmpDlg").close(); });
+
+/* --- tracker: all deadlines to calendar --- */
+(function () {
+  const host = $("#tkAdd") && $("#tkAdd").parentElement; if (!host) return;
+  host.insertAdjacentHTML("beforeend", `<button type="button" class="btn sm" id="tkIcs">Add all deadlines to my calendar</button>`);
+  $("#tkIcs").addEventListener("click", () => {
+    const ics = (d) => d.getFullYear() + String(d.getMonth() + 1).padStart(2, "0") + String(d.getDate()).padStart(2, "0");
+    const ev = st.tracker.filter((t) => t.deadline && daysTo(t.deadline) >= 0).flatMap((t) => {
+      const d = parseD(t.deadline), e2 = new Date(d); e2.setDate(e2.getDate() + 1); const w = new Date(d); w.setDate(w.getDate() - 7); const w2 = new Date(w); w2.setDate(w2.getDate() + 1);
+      return [["BEGIN:VEVENT", "UID:" + t.id + "-dl@shagbaor.com/laureate", "DTSTAMP:" + ics(new Date()) + "T000000Z", "DTSTART;VALUE=DATE:" + ics(d), "DTEND;VALUE=DATE:" + ics(e2), "SUMMARY:DEADLINE: " + t.name, "END:VEVENT"].join("\r\n"),
+        ["BEGIN:VEVENT", "UID:" + t.id + "-wk@shagbaor.com/laureate", "DTSTAMP:" + ics(new Date()) + "T000000Z", "DTSTART;VALUE=DATE:" + ics(w), "DTEND;VALUE=DATE:" + ics(w2), "SUMMARY:One week left: " + t.name, "END:VEVENT"].join("\r\n")];
+    });
+    if (!ev.length) { toast("No upcoming deadlines in your tracker"); return; }
+    saveFile("scholarship-deadlines.ics", ["BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//Laureate Lab//EN"].concat(ev, ["END:VCALENDAR"]).join("\r\n"), "text/calendar");
+    T("tracker-ics", "Exported tracker deadlines"); addXP(10, "deadlines added to calendar");
+  });
+})();
+
+/* --- guide extras: news, auto-found recent videos, Via Scholaris library, winning examples --- */
+const VS = window.LL_VIASCHOLARIS || [];
+const _renderGuide = renderGuide;
+renderGuide = function () {
+  _renderGuide();
+  const s = G.s; if (!s) return;
+  const side = $("#gRun .g-side"); if (!side) return;
+  const news = V4.live ? (V4.live.items || []).filter((i) => (i.ids || []).includes(s.id)).slice(0, 4) : [];
+  if (news.length) side.insertAdjacentHTML("afterbegin", `<div class="card stack" style="padding:12px"><h3 style="font-size:1rem">In the news</h3><div class="live-list">${liveHTML(news, 4)}</div></div>`);
+  const auto = V4.vids && V4.vids.items && V4.vids.items[s.id] || [];
+  const have = new Set((G.data.videos || []).map((v) => v.u));
+  const fresh = auto.filter((v) => !have.has("https://www.youtube.com/watch?v=" + v.id)).map((v) => ({ t: v.t, u: "https://www.youtube.com/watch?v=" + v.id, by: v.by, why: "Posted " + fmtD(parseD(v.date)), kind: "video" }));
+  if (fresh.length) { const box = side.querySelector(".vids"); const html = `<div class="small muted" style="margin-top:4px">New this month (found automatically)</div>` + fresh.map(vidHTML).join(""); if (box) box.insertAdjacentHTML("afterbegin", html); }
+  if (VS.length) {
+    const pick = VS.filter((v) => !have.has("https://www.youtube.com/watch?v=" + v.id)).slice(0, 5);
+    side.insertAdjacentHTML("beforeend", `<div class="card stack" style="padding:12px"><h3 style="font-size:1rem">From the Via Scholaris library</h3><div class="vids">${pick.map((v) => vidHTML({ t: v.t, u: "https://www.youtube.com/watch?v=" + v.id, by: "Via Scholaris", why: v.why, kind: "video" })).join("")}</div><a class="small" href="https://www.youtube.com/@viascholaris" target="_blank" rel="noopener">All Via Scholaris videos ↗</a></div>`);
+  }
+  // long video lists: keep the first 6 visible
+  const vb = side.querySelector(".card .vids"); if (vb) { const all = [...vb.children].filter((n) => n.classList.contains("vid")); if (all.length > 7) { const more = document.createElement("details"); more.innerHTML = `<summary class="small" style="cursor:pointer;margin-top:6px">Show ${all.length - 6} more videos</summary>`; all.slice(6).forEach((n) => more.appendChild(n)); vb.appendChild(more); } }
+  // winning examples on writing steps
+  const m = $("#gMain .g-essay"); const x = G.i >= 0 && G.data.steps[G.i];
+  if (m && x && x.essay) { m.insertAdjacentHTML("beforeend", `<button type="button" class="btn sm" data-winsee="${esc(s.id)}|${esc(x.essay)}">See how winners wrote this</button>`); }
+};
+document.addEventListener("click", (e) => {
+  const w = e.target.closest("[data-winsee]"); if (!w) return;
+  const [sid, type] = w.dataset.winsee.split("|");
+  $("#eType").value = type; loadType(); go("dojo");
+  loadWinners().then(() => { const has = V4.winners.items.some((i) => i.scholarship_id === sid); $("#winSch").value = has ? sid : ""; $("#winType").checked = !has || V4.winners.items.some((i) => i.scholarship_id === sid && i.type === type); $("#winBox").open = true; renderWinners(); $("#winBox").scrollIntoView({ behavior: "smooth" }); });
+});
+
+/* --- Learn from winners (Essay Dojo) --- */
+function loadWinners() { return V4.winners ? Promise.resolve(V4.winners) : getJSON("winners.json").then((d) => { V4.winners = d || { items: [], criteria: {} }; const ids = [...new Set(V4.winners.items.map((i) => i.scholarship_id))]; $("#winSch").innerHTML = `<option value="">All scholarships</option>` + ids.map((id) => { const s = DATA.find((x) => x.id === id); return `<option value="${esc(id)}">${esc(s ? s.name : id === "general" ? "General / other" : id)}</option>`; }).join(""); return V4.winners; }); }
+function renderWinners() {
+  if (!V4.winners) return;
+  const type = $("#eType").value, sch = $("#winSch").value, only = $("#winType").checked;
+  let L = V4.winners.items.filter((i) => (!sch || i.scholarship_id === sch) && (!only || i.type === type));
+  if (!L.length && only) L = V4.winners.items.filter((i) => !sch || i.scholarship_id === sch);
+  $("#winCount").textContent = `· ${V4.winners.items.length} analysed winners · ${L.length} shown`;
+  const crit = V4.winners.criteria || {};
+  $("#winList").innerHTML = L.map((i) => {
+    const c = crit[i.scholarship_id];
+    return `<article class="win"><div class="row" style="justify-content:space-between;gap:6px"><span class="kind ${i.kind === "essay" ? "essay" : ""}">${i.kind === "essay" ? "Published essay" : "Winner's breakdown"}</span><span class="meta">${esc([i.award, i.year, i.country].filter(Boolean).join(" · "))}</span></div>
+      <h4>${esc(i.title)}</h4><span class="meta">By ${esc(i.author)} · ${esc((ESSAYS[i.type] || {}).name || i.type)}${i.words ? " · length: " + esc(i.words) : ""}</span>
+      ${i.quote ? `<q>${esc(i.quote)}</q>` : ""}
+      <a class="btn sm" style="align-self:flex-start" href="${esc(okURL(i.url))}" target="_blank" rel="noopener">Read it on the author's page ↗</a>
+      <details open><summary>Which criteria it hits</summary><ul>${(i.criteria || []).map((x) => `<li><b>${esc(x.c)}:</b> ${esc(x.how)}</li>`).join("")}</ul>${c ? `<p class="small muted" style="margin-top:4px"><a href="${esc(okURL(c.url))}" target="_blank" rel="noopener">Official criteria ↗</a></p>` : ""}</details>
+      <details><summary>How it is built</summary><ol>${(i.structure || []).map((x) => `<li><b>${esc(x.move)}:</b> ${esc(x.what)}</li>`).join("")}</ol></details>
+      <details><summary>Techniques to notice</summary><ul>${(i.techniques || []).map((x) => `<li>${esc(x)}</li>`).join("")}</ul></details>
+      <details><summary>What could be stronger</summary><ul>${(i.weaknesses || []).map((x) => `<li>${esc(x)}</li>`).join("")}</ul></details>
+      <details open><summary>Steal these moves</summary><ul>${(i.borrow || []).map((x) => `<li>${esc(x)}</li>`).join("")}</ul></details>
+      ${i.exercise ? `<button type="button" class="btn sm primary" data-winex="${esc(i.id)}">Try the exercise in my draft</button>` : ""}</article>`;
+  }).join("") || `<p class="small muted">No analysed winners for this yet. Try "All scholarships".</p>`;
+}
+["winSch", "winType"].forEach((id) => $("#" + id).addEventListener("change", renderWinners));
+document.addEventListener("click", (e) => {
+  const b = e.target.closest("[data-winex]"); if (!b) return;
+  const i = V4.winners.items.find((x) => x.id === b.dataset.winex); if (!i) return;
+  const t = $("#winTask"); t.hidden = false;
+  t.innerHTML = `<span><b>Your exercise (from ${esc(i.author)}'s ${esc(i.award)} essay):</b> ${esc(i.exercise)} Write it in your own words in the draft box below.</span><button type="button" class="btn sm" id="winTaskX">Done</button>`;
+  $("#eText").focus(); $("#eText").scrollIntoView({ behavior: "smooth", block: "center" }); T("winner-exercise", "Started a winner exercise"); addXP(5, "learning from winners");
+});
+document.addEventListener("click", (e) => { if (e.target.closest("#winTaskX")) $("#winTask").hidden = true; });
+const _loadType = loadType;
+loadType = function () { _loadType(); if (V4.winners) renderWinners(); };
+$("#eType").addEventListener("change", () => { if (V4.winners) renderWinners(); });
+$$(".tab").forEach((t) => t.addEventListener("click", () => { if (t.dataset.v === "dojo") loadWinners().then(renderWinners); if (t.dataset.v === "cv") cvInit(); }));
+document.addEventListener("click", (e) => { const g = e.target.closest("[data-go]"); if (g && g.dataset.go === "dojo") loadWinners().then(renderWinners); if (g && g.dataset.go === "cv") cvInit(); });
+
+/* --- CV Studio --- */
+const CV_SECTIONS = ["Education", "Professional experience", "Research & publications", "Leadership & volunteering", "Awards & scholarships", "Skills", "Languages", "Professional memberships", "Referees"];
+const VERB_RX = () => new RegExp("^(" + ((V4.cv && V4.cv.verbs) || window.LL_STRONGVERBS).map((v) => v.toLowerCase().replace(/[^a-z-]/g, "")).filter(Boolean).join("|") + ")\\b", "i");
+let cvSampleIdx = 0;
+function cvBlank() { return { name: "", contact: "", profile: "", style: "uk", sections: [{ h: "Education", entries: [{ title: "", org: "", place: "", dates: "", bullets: "" }] }, { h: "Professional experience", entries: [{ title: "", org: "", place: "", dates: "", bullets: "" }] }, { h: "Awards & scholarships", entries: [] }, { h: "Skills", entries: [] }, { h: "Referees", entries: [] }] }; }
+function cvInit() {
+  if (V4.cv) return;
+  getJSON("cv.json").then((d) => {
+    V4.cv = d || {}; const c = V4.cv;
+    const ids = [...new Set((c.rules || []).flatMap((r) => r.scholarship_ids || []))];
+    $("#cvSch").innerHTML = `<option value="">General advice</option>` + ids.map((id) => { const s = DATA.find((x) => x.id === id); return s ? `<option value="${id}">${esc(s.name)}</option>` : ""; }).join("");
+    $("#cvTemplates").innerHTML = (c.templates || []).filter((t) => okURL(t.url)).map((t) => `<a href="${esc(t.url)}" target="_blank" rel="noopener"><span class="k official">${/latex|overleaf/i.test(t.format + t.name) ? "LaTeX" : /online/i.test(t.format) ? "Online" : /word|docx/i.test(t.format) ? "Word" : "PDF"}</span><span><b>${esc(t.name)}</b> · ${esc(t.by)}<br><span class="small muted">${esc(t.good_for)}</span></span></a>`).join("");
+    $("#cvSamples").innerHTML = (c.samples || []).map((s, i) => `<button type="button" data-cvs="${i}" aria-pressed="${i === 0}">${esc(["Chevening / Commonwealth", "Erasmus (Europass)", "PhD (academic)", "Undergraduate"][i] || "Sample " + (i + 1))}</button>`).join("");
+    $("#cvRewrites").innerHTML = (c.rewrites || []).map((r) => `<div class="ex"><div class="w"><b>Weak</b><br>${esc(r.weak)}</div><div class="g"><b>Strong</b><br>${esc(r.strong)}<div class="small muted" style="margin-top:4px">${esc(r.why)}</div></div></div>`).join("");
+    $("#cvPatterns").innerHTML = (c.metric_patterns || []).map((p) => `<li>${esc(p)}</li>`).join("");
+    $("#cvVerbs").textContent = (c.verbs || []).join(" · ");
+    $("#cvAddSel").innerHTML = CV_SECTIONS.map((h) => `<option>${h}</option>`).join("");
+    if (!st.cvDoc) st.cvDoc = cvBlank();
+    cvRules(); cvShowSample(); cvForm(); cvPreview();
+  });
+}
+function cvRules() {
+  const c = V4.cv, id = $("#cvSch").value, a = c.advice || {};
+  const rules = (c.rules || []).filter((r) => id && (r.scholarship_ids || []).includes(id));
+  $("#cvRules").innerHTML = (rules.length ? `<div class="g-box g-tipbox"><h4 class="eyebrow">Rules for this scholarship</h4><ul>${rules.map((r) => `<li>${esc(r.rule)} <a href="${esc(okURL(r.url))}" target="_blank" rel="noopener">source ↗</a></li>`).join("")}</ul></div>` : "")
+    + `<details ${rules.length ? "" : "open"}><summary><b>Section order that works</b></summary><ol class="small" style="padding-left:18px">${(a.order || []).map((x) => `<li>${esc(x)}</li>`).join("")}</ol></details>
+    <div class="g-two"><div class="g-box g-tipbox"><h4 class="eyebrow">Do</h4><ul>${(a.do || []).map((x) => `<li>${esc(x)}</li>`).join("")}</ul></div><div class="g-box avoid"><h4 class="eyebrow">Don't</h4><ul>${(a.dont || []).map((x) => `<li>${esc(x)}</li>`).join("")}</ul></div></div>
+    ${(a.nigeria || []).length ? `<details><summary><b>For Nigerian applicants</b></summary><ul class="small" style="padding-left:18px">${a.nigeria.map((x) => `<li>${esc(x)}</li>`).join("")}</ul></details>` : ""}`;
+}
+$("#cvSch").addEventListener("change", cvRules);
+function cvPaper(doc, notes) {
+  const entry = (e) => { const bl = Array.isArray(e.bullets) ? e.bullets : String(e.bullets || "").split("\n").map((x) => x.replace(/^[-•*]\s*/, "").trim()).filter(Boolean); return `<div class="e">${e.dates ? `<span class="d">${esc(e.dates)}</span>` : ""}${e.title ? `<b>${esc(e.title)}</b>` : ""}${e.org || e.place ? `<div class="o">${esc([e.org, e.place].filter(Boolean).join(", "))}</div>` : ""}${bl.length ? `<ul>${bl.map((b) => `<li>${esc(b)}</li>`).join("")}</ul>` : ""}</div>`; };
+  return `<h1>${esc(doc.name || "Your Name")}</h1><div class="ct">${esc(doc.contact || "City, Country · email · phone")}</div>${doc.profile ? `<h2>Profile</h2><p>${esc(doc.profile)}</p>` : ""}`
+    + (doc.sections || []).filter((s) => s.entries && s.entries.length).map((s) => `<h2>${esc(s.h)}</h2>${notes && s.note ? `<div class="note">${esc(s.note)}</div>` : ""}${s.entries.map(entry).join("")}`).join("");
+}
+function cvShowSample() {
+  const s = (V4.cv.samples || [])[cvSampleIdx]; if (!s) return;
+  const doc = { name: "", contact: "", profile: "", sections: [] };
+  s.sections.forEach((sec) => {
+    if (/contact|personal information/i.test(sec.h)) { const e = sec.entries[0] || {}; doc.name = e.title; doc.contact = [e.place].concat(e.bullets || []).filter(Boolean).join(" · "); doc.contactNote = sec.note; return; }
+    if (/profile|summary|about me/i.test(sec.h) && sec.entries.length === 1 && !sec.entries[0].title) { doc.profile = (sec.entries[0].bullets || []).join(" "); doc.profileNote = sec.note; return; }
+    doc.sections.push(sec);
+  });
+  const notes = $("#cvNotes").checked;
+  $("#cvSample").innerHTML = `<p class="small" style="font-family:var(--f-body);color:#555;margin:0 0 10px"><b>${esc(s.title)}</b><br>${esc(s.persona)}</p>` + (notes && doc.contactNote ? `<div class="note">${esc(doc.contactNote)}</div>` : "") + cvPaper(doc, notes).replace("<h2>Profile</h2>", "<h2>Profile</h2>" + (notes && doc.profileNote ? `<div class="note">${esc(doc.profileNote)}</div>` : ""));
+  V4.sampleDoc = doc;
+}
+$("#cvSamples").addEventListener("click", (e) => { const b = e.target.closest("[data-cvs]"); if (!b) return; cvSampleIdx = +b.dataset.cvs; $$("#cvSamples button").forEach((x) => x.setAttribute("aria-pressed", x === b)); cvShowSample(); });
+$("#cvNotes").addEventListener("change", cvShowSample);
+$("#cvUseSample").addEventListener("click", () => {
+  if (!V4.sampleDoc) return;
+  if (st.cvDoc && st.cvDoc.name && !confirm("Replace your CV with this sample? Your current CV will be lost.")) return;
+  const d = V4.sampleDoc; st.cvDoc = { name: d.name, contact: d.contact, profile: d.profile, style: ["uk", "europass", "academic", "uk"][cvSampleIdx] || "uk", sections: d.sections.map((s) => ({ h: s.h, entries: s.entries.map((e) => ({ title: e.title || "", org: e.org || "", place: e.place || "", dates: e.dates || "", bullets: (e.bullets || []).join("\n") })) })) };
+  save(); cvForm(); cvPreview(); toast("Sample loaded: now make every line yours"); $("#cvName").scrollIntoView({ behavior: "smooth", block: "center" });
+});
+function cvForm() {
+  const d = st.cvDoc; $("#cvName").value = d.name || ""; $("#cvContact").value = d.contact || ""; $("#cvProfile").value = d.profile || ""; $("#cvStyle").value = d.style || "uk";
+  $("#cvSections").innerHTML = d.sections.map((s, si) => `<div class="cv-sec"><div class="row"><input type="text" value="${esc(s.h)}" data-cvh="${si}" aria-label="Section title"><button type="button" class="btn sm" data-cvup="${si}" title="Move up">↑</button><button type="button" class="btn sm" data-cvdel="${si}" title="Remove section">✕</button></div>
+    ${s.entries.map((e, ei) => `<div class="cv-ent"><input type="text" placeholder="Title (degree, role, award)" value="${esc(e.title)}" data-cve="${si}|${ei}|title"><input type="text" placeholder="Dates (e.g. 2021 – 2024)" value="${esc(e.dates)}" data-cve="${si}|${ei}|dates"><input type="text" placeholder="Organisation" value="${esc(e.org)}" data-cve="${si}|${ei}|org"><input type="text" placeholder="City, Country" value="${esc(e.place)}" data-cve="${si}|${ei}|place"><textarea rows="3" placeholder="One achievement per line: verb + what + number/result" data-cve="${si}|${ei}|bullets">${esc(e.bullets)}</textarea><button type="button" class="btn sm x" data-cvx="${si}|${ei}">Remove entry</button></div>`).join("")}
+    <button type="button" class="btn sm" data-cvnew="${si}" style="align-self:flex-start">+ Add entry</button></div>`).join("");
+}
+function cvPreview() {
+  const d = st.cvDoc; $("#cvPreview").innerHTML = cvPaper(d, false);
+  // live check
+  const rx = VERB_RX(); const bullets = d.sections.flatMap((s) => s.entries.flatMap((e) => String(e.bullets || "").split("\n").map((b) => b.replace(/^[-•*]\s*/, "").trim()).filter(Boolean)));
+  const strong = bullets.filter((b) => rx.test(b)), numbers = bullets.filter((b) => /\d/.test(b)), long = bullets.filter((b) => b.split(/\s+/).length > 32);
+  const words = (d.profile + " " + bullets.join(" ")).split(/\s+/).filter(Boolean).length, pages = Math.max(1, Math.round(words / 420 * 10) / 10);
+  const pii = /\b(married|single|religion|christian|muslim|date of birth|d\.o\.b|state of origin|genotype|blood group)\b/i.test(JSON.stringify(d));
+  const checks = [
+    [!!d.name && !!d.contact, "Name and contact line filled in"],
+    [d.profile && d.profile.split(/\s+/).length <= 70, "Profile is short (2–3 lines) and tied to your goal"],
+    [bullets.length >= 6, `${bullets.length} achievement bullets (aim for 6+)`],
+    [bullets.length && strong.length / bullets.length >= 0.7, `${strong.length}/${bullets.length} bullets start with an action verb`],
+    [bullets.length && numbers.length / bullets.length >= 0.5, `${numbers.length}/${bullets.length} bullets include a number or result`],
+    [!long.length, long.length ? `${long.length} bullet(s) are too long: keep under ~30 words` : "Bullets are concise"],
+    [pages <= 2.2, `About ${pages} page(s) of text (most funders expect 1–2)`],
+    [!(pii && d.style !== "europass"), pii ? "Remove personal details (marital status, religion, date of birth, state of origin) for UK/US-style CVs" : "No unnecessary personal details"],
+  ];
+  const score = Math.round((checks.filter((c) => c[0]).length / checks.length) * 100);
+  $("#cvScore").textContent = score + "/100";
+  $("#cvCheck").innerHTML = checks.map(([ok, t]) => `<div class="chk-row"><i style="background:${ok ? "var(--good)" : "var(--warn)"}"></i><span>${esc(t)}</span></div>`).join("")
+    + (bullets.length ? `<details><summary class="small" style="cursor:pointer">Bullet-by-bullet</summary>${bullets.map((b) => { const v = rx.test(b), n = /\d/.test(b); return `<div class="chk-row"><i style="background:${v && n ? "var(--good)" : v || n ? "var(--ok)" : "var(--bad)"}"></i><span>${esc(b)}${!v ? " <span class='muted'>· start with a strong verb</span>" : ""}${!n ? " <span class='muted'>· add a number or result</span>" : ""}</span></div>`; }).join("")}</details>` : "");
+}
+const cvSave = () => { save(); cvPreview(); };
+["cvName", "cvContact", "cvProfile"].forEach((id) => $("#" + id).addEventListener("input", (e) => { st.cvDoc[{ cvName: "name", cvContact: "contact", cvProfile: "profile" }[id]] = e.target.value; cvSave(); }));
+$("#cvStyle").addEventListener("change", (e) => { st.cvDoc.style = e.target.value; cvSave(); });
+$("#cvSections").addEventListener("input", (e) => {
+  const h = e.target.closest("[data-cvh]"), en = e.target.closest("[data-cve]");
+  if (h) st.cvDoc.sections[+h.dataset.cvh].h = h.value;
+  if (en) { const [si, ei, k] = en.dataset.cve.split("|"); st.cvDoc.sections[+si].entries[+ei][k] = en.value; }
+  cvSave();
+});
+$("#cvSections").addEventListener("click", (e) => {
+  const d = st.cvDoc, b = e.target.closest("button"); if (!b) return;
+  if (b.dataset.cvnew != null) d.sections[+b.dataset.cvnew].entries.push({ title: "", org: "", place: "", dates: "", bullets: "" });
+  else if (b.dataset.cvx) { const [si, ei] = b.dataset.cvx.split("|").map(Number); d.sections[si].entries.splice(ei, 1); }
+  else if (b.dataset.cvdel != null) d.sections.splice(+b.dataset.cvdel, 1);
+  else if (b.dataset.cvup != null) { const i = +b.dataset.cvup; if (i > 0) [d.sections[i - 1], d.sections[i]] = [d.sections[i], d.sections[i - 1]]; }
+  else return;
+  save(); cvForm(); cvPreview();
+});
+$("#cvAdd").addEventListener("click", () => { st.cvDoc.sections.push({ h: $("#cvAddSel").value, entries: [{ title: "", org: "", place: "", dates: "", bullets: "" }] }); save(); cvForm(); cvPreview(); });
+$("#cvReset").addEventListener("click", () => { if (!confirm("Clear your CV and start over?")) return; st.cvDoc = cvBlank(); save(); cvForm(); cvPreview(); });
+function cvText() {
+  const d = st.cvDoc, L = [d.name, d.contact, ""];
+  if (d.profile) L.push("PROFILE", d.profile, "");
+  d.sections.forEach((s) => { if (!s.entries.length) return; L.push(s.h.toUpperCase()); s.entries.forEach((e) => { L.push([e.title, e.dates].filter(Boolean).join(" — ")); if (e.org || e.place) L.push([e.org, e.place].filter(Boolean).join(", ")); String(e.bullets || "").split("\n").filter((x) => x.trim()).forEach((b) => L.push("• " + b.replace(/^[-•*]\s*/, ""))); }); L.push(""); });
+  return L.join("\n");
+}
+$("#cvCopy").addEventListener("click", () => copyText(cvText()));
+$("#cvPdf").addEventListener("click", async () => {
+  const J = window.jspdf && window.jspdf.jsPDF; if (!J) { toast("PDF tool didn't load — use Copy as text"); return; }
+  const d = st.cvDoc, pdf = new J({ unit: "pt", format: "a4" }), W = 595, M = 54; let y = 60;
+  const clean = (t) => String(t || "").replace(/[‘’]/g, "'").replace(/[“”]/g, '"').replace(/[–—]/g, "-").replace(/₦/g, "N").replace(/[^\x00-\xFF]/g, "");
+  const need = (h) => { if (y + h > 800) { pdf.addPage(); y = 56; } };
+  pdf.setFont("times", "bold"); pdf.setFontSize(18); pdf.text(clean(d.name || "Your Name"), M, y); y += 16;
+  pdf.setFont("times", "normal"); pdf.setFontSize(10); pdf.splitTextToSize(clean(d.contact), W - 2 * M).forEach((l) => { pdf.text(l, M, y); y += 12; });
+  const head = (h) => { need(30); y += 8; pdf.setFont("helvetica", "bold"); pdf.setFontSize(9.5); pdf.text(clean(h).toUpperCase(), M, y); y += 4; pdf.setDrawColor(150); pdf.line(M, y, W - M, y); y += 12; };
+  const para = (t, size = 10.5, font = "normal", indent = 0) => { pdf.setFont("times", font); pdf.setFontSize(size); pdf.splitTextToSize(clean(t), W - 2 * M - indent).forEach((l) => { need(13); pdf.text(l, M + indent, y); y += 13; }); };
+  if (d.profile) { head("Profile"); para(d.profile); }
+  d.sections.forEach((s) => {
+    if (!s.entries.length) return; head(s.h);
+    s.entries.forEach((e) => {
+      need(28);
+      if (e.title) { pdf.setFont("times", "bold"); pdf.setFontSize(11); pdf.text(clean(e.title).slice(0, 90), M, y); }
+      if (e.dates) { pdf.setFont("times", "normal"); pdf.setFontSize(10); pdf.text(clean(e.dates), W - M, y, { align: "right" }); }
+      if (e.title || e.dates) y += 13;
+      if (e.org || e.place) para([e.org, e.place].filter(Boolean).join(", "), 10.5, "italic");
+      String(e.bullets || "").split("\n").map((b) => b.replace(/^[-•*]\s*/, "").trim()).filter(Boolean).forEach((b) => { need(13); pdf.setFont("times", "normal"); pdf.text("•", M + 4, y); para(b, 10.5, "normal", 14); });
+      y += 4;
+    });
+  });
+  const out = pdf.output("blob"); const name = (clean(d.name).replace(/\s+/g, "_") || "my") + "_CV.pdf";
+  await saveFile(name, out, "application/pdf"); T("cv-pdf", "Downloaded a CV PDF"); addXP(20, "CV exported");
+});
+
+/* --- load the auto-refreshed data --- */
+Promise.all([getJSON("live.json"), getJSON("watch.json"), getJSON("videos.json")]).then(([l, w, v]) => {
+  V4.live = l; V4.watch = w; V4.vids = v;
+  renderLive(); renderAtlas(); if (G.data && !$("#gRun").hidden) renderGuide();
+});
+const _go = go; go = function (v, x) { _go(v, x); cmpSync(); };
+cmpSync();
+if ((location.hash || "") === "#dojo") loadWinners().then(renderWinners);
+if ((location.hash || "") === "#cv") cvInit();
+
 /* ---------------- boot ---------------- */
 renderFields(); renderHome(); renderAtlas(); renderReady(); renderPaths(); renderGrade(); renderEmails(); renderGap(); renderScam(); renderTracker(); osShuffle(); raLoad(); wbCheck();
 $("#eType").value = "leadership"; loadType(); renderPlan();

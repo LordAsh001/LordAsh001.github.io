@@ -1,0 +1,225 @@
+{
+ "note": "Pages the daily refresh watches. Edit a url here to watch a different page; leave it empty to skip.",
+ "pages": [
+  {
+   "id": "chevening",
+   "name": "Chevening Scholarships",
+   "url": "https://www.chevening.org/scholarship/nigeria/"
+  },
+  {
+   "id": "csc-masters",
+   "name": "Commonwealth Master's Scholarships",
+   "url": "https://cscuk.fcdo.gov.uk/scholarships/commonwealth-masters-scholarships/"
+  },
+  {
+   "id": "csc-phd",
+   "name": "Commonwealth PhD Scholarships",
+   "url": "https://cscuk.fcdo.gov.uk/scholarships/commonwealth-phd-scholarships/"
+  },
+  {
+   "id": "gates",
+   "name": "Gates Cambridge Scholarship",
+   "url": "https://www.gatescambridge.org/apply/timeline/"
+  },
+  {
+   "id": "knight",
+   "name": "Knight-Hennessy Scholars (Stanford)",
+   "url": "https://knight-hennessy.stanford.edu/admission/preparing-your-applications/application-deadlines"
+  },
+  {
+   "id": "clarendon",
+   "name": "Clarendon Fund (Oxford)",
+   "url": "https://www.ox.ac.uk/clarendon"
+  },
+  {
+   "id": "weidenfeld",
+   "name": "Oxford Weidenfeld & Hoffmann Scholarships",
+   "url": "https://www.weidenfeldhoffmann.org/"
+  },
+  {
+   "id": "rhodes-wa",
+   "name": "Rhodes Scholarship — West Africa",
+   "url": "https://www.rhodeshouse.ox.ac.uk/scholarships/applications/west-africa/"
+  },
+  {
+   "id": "schwarzman",
+   "name": "Schwarzman Scholars (Tsinghua)",
+   "url": "https://www.schwarzmanscholars.org/admissions/"
+  },
+  {
+   "id": "erasmus",
+   "name": "Erasmus Mundus Joint Masters",
+   "url": "https://www.eacea.ec.europa.eu/scholarships/erasmus-mundus-catalogue_en"
+  },
+  {
+   "id": "daad-epos",
+   "name": "DAAD EPOS Development-Related Courses",
+   "url": "https://www.daad.de/en/study-and-research-in-germany/scholarships/"
+  },
+  {
+   "id": "si",
+   "name": "Swedish Institute Scholarships for Global Professionals",
+   "url": "https://si.se/en/apply/scholarships/swedish-institute-scholarships-for-global-professionals/"
+  },
+  {
+   "id": "kth",
+   "name": "KTH Scholarship",
+   "url": "https://www.kth.se/en/studies/master/admission/scholarships"
+  },
+  {
+   "id": "delft",
+   "name": "Justus & Louise van Effen Excellence (TU Delft)",
+   "url": "https://www.tudelft.nl/en/education/practical-matters/scholarships"
+  },
+  {
+   "id": "radboud",
+   "name": "Radboud Scholarship Programme",
+   "url": "https://www.ru.nl/en/education/scholarships-and-grants"
+  },
+  {
+   "id": "eth",
+   "name": "ETH Zurich Excellence Masters (ESOP)",
+   "url": "https://ethz.ch/en/studies/financial/scholarships/excellencescholarship.html"
+  },
+  {
+   "id": "eiffel",
+   "name": "Eiffel Excellence Scholarship",
+   "url": "https://www.campusfrance.org/en/eiffel-scholarship-program-of-excellence"
+  },
+  {
+   "id": "ubc-isp",
+   "name": "UBC International Scholars Program",
+   "url": "https://you.ubc.ca/financial-planning/scholarships-awards-international-students/"
+  },
+  {
+   "id": "reach-oxford",
+   "name": "Reach Oxford Scholarship",
+   "url": "https://www.ox.ac.uk/admissions/undergraduate/fees-and-funding/oxford-support/reach-oxford-scholarship"
+  },
+  {
+   "id": "uopeople",
+   "name": "University of the People (tuition-free)",
+   "url": "https://www.uopeople.edu/"
+  },
+  {
+   "id": "fulbright",
+   "name": "Fulbright Foreign Student Program",
+   "url": "https://ng.usembassy.gov/the-fulbright-foreign-student-program/"
+  },
+  {
+   "id": "aauw",
+   "name": "AAUW International Fellowships (women)",
+   "url": "https://www.aauw.org/resources/programs/fellowships-grants/current-opportunities/international/"
+  },
+  {
+   "id": "mext",
+   "name": "MEXT Japanese Government Scholarship",
+   "url": "https://www.studyinjapan.go.jp/en/planning/scholarships/mext-scholarships/"
+  },
+  {
+   "id": "csc-china",
+   "name": "Chinese Government Scholarship (CSC)",
+   "url": "https://www.campuschina.org/"
+  },
+  {
+   "id": "gks",
+   "name": "Global Korea Scholarship (GKS)",
+   "url": "https://www.studyinkorea.go.kr/"
+  },
+  {
+   "id": "turkiye",
+   "name": "Türkiye Bursları",
+   "url": "https://www.turkiyeburslari.gov.tr/"
+  },
+  {
+   "id": "hungaricum",
+   "name": "Stipendium Hungaricum",
+   "url": "https://stipendiumhungaricum.hu/"
+  },
+  {
+   "id": "mastercard",
+   "name": "Mastercard Foundation Scholars Program",
+   "url": "https://mastercardfdn.org/en/what-we-do/our-programs/mastercard-foundation-scholars-program/"
+  },
+  {
+   "id": "mandela-rhodes",
+   "name": "Mandela Rhodes Scholarship",
+   "url": "https://www.mandelarhodes.org/scholarship/apply/"
+  },
+  {
+   "id": "jjwbgsp",
+   "name": "Joint Japan / World Bank Graduate Scholarship",
+   "url": "https://www.worldbank.org/en/programs/scholarships"
+  },
+  {
+   "id": "ptdf",
+   "name": "PTDF Overseas Postgraduate Scholarship",
+   "url": "https://ptdf.gov.ng/"
+  },
+  {
+   "id": "fsb-bea",
+   "name": "Federal Government BEA Scholarship",
+   "url": "https://education.gov.ng/federal-scholarships-board/"
+  },
+  {
+   "id": "nlng",
+   "name": "NLNG Undergraduate Scholarship",
+   "url": "https://www.nigerialng.com/csr/Pages/Scholarships.aspx"
+  },
+  {
+   "id": "total",
+   "name": "NNPC/TotalEnergies Scholarships",
+   "url": "https://csr-ngscholarship.totalenergies.com/"
+  },
+  {
+   "id": "agbami",
+   "name": "Agbami Medical & Engineering Scholarship",
+   "url": "https://www.chevron.com/worldwide/nigeria"
+  },
+  {
+   "id": "shell",
+   "name": "Shell / SNEPCo National University Scholarships",
+   "url": "https://www.shell.com.ng/sustainability/communities/education-programmes.html"
+  },
+  {
+   "id": "seplat",
+   "name": "Seplat JV National University Scholarship",
+   "url": "https://www.seplatenergy.com/news-insights/news/nnpcseplat-jv-national-undergraduate-scholarship/"
+  },
+  {
+   "id": "mtn",
+   "name": "MTN Foundation Science & Technology Scholarship",
+   "url": "https://www.mtn.ng/scholarships/"
+  },
+  {
+   "id": "ovia",
+   "name": "Jim Ovia Foundation Leaders Scholarship",
+   "url": "https://jimoviafoundation.org/faq/"
+  },
+  {
+   "id": "nbplc",
+   "name": "Nigerian Breweries – Felix Ohiwerei Education Trust",
+   "url": "https://www.nbplc.com/tag/education/"
+  },
+  {
+   "id": "nddc",
+   "name": "NDDC Foreign Postgraduate Scholarship",
+   "url": "https://www.nddc.gov.ng/"
+  },
+  {
+   "id": "tetfund",
+   "name": "TETFund AST&D (Academic Staff Training)",
+   "url": "https://tetfund.gov.ng/"
+  },
+  {
+   "id": "nelfund",
+   "name": "NELFUND Student Loan",
+   "url": "https://www.nelf.gov.ng/"
+  },
+  {
+   "id": "state",
+   "name": "State Government Scholarships (e.g. Lagos, Rivers, Akwa Ibom)",
+   "url": ""
+  }
+ ]
+}

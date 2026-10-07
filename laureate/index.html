@@ -204,6 +204,58 @@ label.f{display:flex;flex-direction:column;gap:4px;font-size:13px;color:var(--in
   .g-wrap{grid-template-columns:1fr}
 }
 
+
+/* ---------- v4: live feed, compare, winners, CV studio ---------- */
+.live-list{display:flex;flex-direction:column}
+.live-item{display:grid;grid-template-columns:78px minmax(0,1fr);gap:10px;padding:8px 0;border-bottom:1px dashed var(--line);font-size:14px;line-height:1.4}
+.live-item:last-child{border-bottom:0}
+.live-item time{font:600 12px var(--f-mono);color:var(--ink2)}
+.live-item a{color:var(--ink);text-decoration:none;font-weight:500}
+.live-item a:hover{color:var(--accent)}
+.live-item small{display:block;color:var(--ink2);font-size:12px;margin-top:2px}
+.live-item .nw{font:700 10px var(--f-mono);color:var(--good);letter-spacing:.06em;margin-left:6px}
+.pill.p-fund{background:color-mix(in srgb,var(--gold) 18%,transparent);color:var(--ink)}
+.pill.p-watch{background:var(--ok-bg);color:var(--ok)}
+.cmp-chk{display:inline-flex;gap:6px;align-items:center;font-size:12.5px;color:var(--ink2);cursor:pointer}
+.cmp-bar{position:fixed;left:50%;bottom:16px;transform:translateX(-50%);z-index:40;display:flex;gap:10px;align-items:center;background:var(--ink);color:var(--paper);padding:10px 14px;border-radius:12px;box-shadow:var(--shadow);max-width:calc(100% - 24px);flex-wrap:wrap}
+.cmp-bar .btn:not(.primary){background:transparent;color:var(--paper);border-color:color-mix(in srgb,var(--paper) 35%,transparent)}
+.cmp-dlg{border:1px solid var(--line);border-radius:14px;background:var(--surface);color:var(--ink);max-width:min(1100px,96vw);width:100%;padding:18px}
+.cmp-dlg::backdrop{background:rgba(10,14,25,.55)}
+.cmp-wrap{overflow-x:auto;margin-top:12px}
+.cmp-wrap table{border-collapse:collapse;width:100%;min-width:640px;font-size:14px}
+.cmp-wrap th,.cmp-wrap td{border-bottom:1px solid var(--line);padding:9px 10px;text-align:left;vertical-align:top}
+.cmp-wrap th{font:600 11px var(--f-mono);letter-spacing:.06em;text-transform:uppercase;color:var(--ink2);width:150px}
+.win-box summary{cursor:pointer}
+.win-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:12px;margin-top:12px}
+.win{border:1px solid var(--line);border-radius:12px;padding:12px 14px;background:var(--surface);display:flex;flex-direction:column;gap:8px}
+.win h4{font-size:15px;line-height:1.3}
+.win .meta{font-size:12px;color:var(--ink2)}
+.win details{font-size:13.5px}
+.win details summary{cursor:pointer;font-weight:600;font-size:13px}
+.win ul,.win ol{margin:6px 0 0;padding-left:18px;display:flex;flex-direction:column;gap:4px}
+.win q{font-style:italic;color:var(--ink2)}
+.kind{font:600 10px var(--f-mono);letter-spacing:.06em;text-transform:uppercase;padding:2px 6px;border-radius:4px;background:var(--surface2)}
+.kind.essay{background:var(--good-bg);color:var(--good)}
+.cv-build{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px;align-items:start}
+@media(max-width:900px){.cv-build{grid-template-columns:1fr}}
+.cv-sec{border:1px solid var(--line);border-radius:12px;padding:10px 12px;display:flex;flex-direction:column;gap:8px;background:var(--surface2)}
+.cv-sec .row input{flex:1}
+.cv-ent{border:1px dashed var(--line);border-radius:10px;padding:8px;display:grid;grid-template-columns:1fr 1fr;gap:6px;background:var(--surface)}
+.cv-ent textarea{grid-column:1/-1}
+.cv-ent .x{grid-column:1/-1;justify-self:end}
+.cv-paper{background:#fff;color:#111;border:1px solid var(--line);border-radius:8px;padding:24px 26px;font:13px/1.45 Georgia,"Times New Roman",serif;max-height:780px;overflow:auto}
+.cv-paper h1{font:700 20px/1.2 Georgia,serif;color:#111;margin:0}
+.cv-paper .ct{font-size:12px;color:#444;margin-top:3px}
+.cv-paper h2{font:700 12px/1 Arial,sans-serif;letter-spacing:.08em;text-transform:uppercase;color:#111;border-bottom:1px solid #999;padding-bottom:3px;margin:14px 0 6px}
+.cv-paper .e{margin-bottom:6px}
+.cv-paper .e b{font-weight:700}
+.cv-paper .e .d{float:right;color:#444;font-size:12px}
+.cv-paper .e .o{color:#333;font-style:italic}
+.cv-paper ul{margin:3px 0 0;padding-left:18px}
+.cv-paper .note{font:12.5px/1.45 var(--f-body);background:#FFF6DA;border-left:3px solid #B7862B;padding:6px 9px;margin:6px 0 10px;color:#3a2c00}
+.chk-row{display:flex;gap:8px;align-items:flex-start}
+.chk-row i{flex:0 0 10px;height:10px;border-radius:50%;margin-top:5px}
+
 /* atlas */
 .filters{display:flex;flex-wrap:wrap;gap:10px;align-items:flex-end}
 .seg{display:inline-flex;border:1px solid var(--line);border-radius:9px;overflow:hidden;background:var(--surface)}
@@ -379,6 +431,7 @@ details summary{cursor:pointer;font-weight:600}
       <button class="tab tab-guide" role="tab" data-v="guide">Guide me <span class="tab-new">step by step</span></button>
       <button class="tab" role="tab" data-v="match">Matcher</button>
       <button class="tab" role="tab" data-v="dojo">Essay Dojo</button>
+      <button class="tab" role="tab" data-v="cv">CV Studio</button>
       <button class="tab" role="tab" data-v="arcade">Arcade</button>
       <button class="tab" role="tab" data-v="interview">Interview Room</button>
       <button class="tab" role="tab" data-v="pathways">Funding Routes</button>
@@ -416,6 +469,12 @@ details summary{cursor:pointer;font-weight:600}
     <button type="button" class="card stat stat-link" data-go="tracker"><span class="eyebrow">In your tracker</span><b class="mono" id="stTrack">0</b><span class="small muted">applications in progress · open tracker →</span></button>
     <div class="card stat"><span class="eyebrow">Words drafted</span><b class="mono" id="stWords">0</b><span class="small muted">across Dojo drafts</span></div>
     <div class="card stat"><span class="eyebrow">Readiness</span><b class="mono" id="stReady">0%</b><span class="small muted">from your prep checklist</span></div>
+  </div>
+  <div class="card stack" id="homeLive" hidden>
+    <div class="row" style="justify-content:space-between"><h3>Just announced <span class="pill p-open" id="liveNew" hidden></span></h3><span class="small muted" id="liveUpd"></span></div>
+    <p class="small muted">New scholarship posts, collected automatically every morning from funders' own news and trusted opportunity sites. Always apply on the official page.</p>
+    <div class="live-list" id="homeLiveList"></div>
+    <button class="btn sm" data-go="atlas" style="align-self:flex-start">See all in the Atlas</button>
   </div>
   <div class="grid g2">
     <div class="card stack">
@@ -456,8 +515,15 @@ details summary{cursor:pointer;font-weight:600}
     <label class="f">Region<select id="aRegion"><option value="">All regions</option><option>Nigeria</option><option>Europe</option><option>Americas</option><option>Asia</option><option>Africa</option><option>Online</option><option>Global</option></select></label>
     <div class="stack" style="gap:4px"><span class="small muted">Status</span>
       <div class="seg" id="aStatus"><button aria-pressed="true" data-s="">All</button><button data-s="open" aria-pressed="false">Open</button><button data-s="up" aria-pressed="false">Upcoming</button><button data-s="closed" aria-pressed="false">Closed</button></div></div>
+    <label class="f" style="flex:0 0 auto;min-width:0"><span>Funding</span><select id="aFund"><option value="">Any funding</option><option value="full">Fully funded</option><option value="partial">Partial</option><option value="grant">Grant / bursary</option><option value="loan">Loan</option><option value="staff">Staff training</option></select></label>
     <label class="f" style="flex:0 0 auto;min-width:0"><span>Sort</span><select id="aSort"><option value="dl">Soonest deadline</option><option value="az">A–Z</option></select></label>
   </div>
+  <details class="card" id="atlasLive" hidden>
+    <summary><b>Just announced</b> <span class="small muted" id="atlasLiveCount"></span></summary>
+    <div class="row" style="margin:10px 0 6px"><label class="small" style="display:flex;gap:6px;align-items:center"><input type="checkbox" id="liveOfficial"> Official sources only</label><label class="small" style="display:flex;gap:6px;align-items:center"><input type="checkbox" id="liveMine"> Only awards in my tracker</label></div>
+    <div class="live-list" id="atlasLiveList"></div>
+    <p class="small muted" style="margin-top:8px">Collected automatically each morning from public feeds (Opportunities for Africans, Scholarship Region, Opportunity Desk and others) and official news (GOV.UK, the Commonwealth Scholarship Commission, EACEA, Nigeria's Ministry of Education). Titles and links only. Check every detail on the official page and never pay anyone to apply.</p>
+  </details>
   <div class="atlas-layout">
     <aside class="card stack field-box" aria-labelledby="fieldTitle">
       <div class="row" style="justify-content:space-between"><h3 id="fieldTitle">Field of study</h3><button type="button" class="btn sm" id="fClear">Clear</button></div>
@@ -471,6 +537,9 @@ details summary{cursor:pointer;font-weight:600}
     </div>
   </div>
 </section>
+
+<div class="cmp-bar" id="cmpBar" hidden><span id="cmpTxt"></span><button type="button" class="btn sm primary" id="cmpGo">Compare side by side</button><button type="button" class="btn sm" id="cmpClear">Clear</button></div>
+<dialog class="cmp-dlg" id="cmpDlg"><div class="row" style="justify-content:space-between"><h3>Compare scholarships</h3><button type="button" class="btn sm" id="cmpClose">Close</button></div><div id="cmpTable" class="cmp-wrap"></div></dialog>
 
 <!-- MATCHER -->
 <section class="view" id="v-match">
@@ -509,6 +578,13 @@ details summary{cursor:pointer;font-weight:600}
       <li><b>Meters sum it up.</b> Specificity (evidence), Structure (moves covered), Clarity (length, passive voice, filler), Originality (clichés), Length (against the usual word limit).</li>
       <li><b>You do the rewriting.</b> Nothing is changed for you — edit your draft until sentences turn green. Write in your own words: funders check for copied and AI-generated essays.</li>
     </ol>
+  </details>
+  <details class="card win-box" id="winBox" open>
+    <summary><b>Learn from winners</b> <span class="small muted" id="winCount"></span></summary>
+    <p class="small muted" style="margin-top:8px">Real essays and write-ups that scholarship winners published themselves, analysed against each funder's selection criteria. Read the original on the winner's own page, study how it is built, then use the exercise to write your own version from your own story. Never copy: funders screen for plagiarism and AI-written essays.</p>
+    <div class="row" style="margin-top:8px"><label class="f" style="max-width:260px">Scholarship<select id="winSch"><option value="">All scholarships</option></select></label><label class="small" style="display:flex;gap:6px;align-items:center;margin-top:16px"><input type="checkbox" id="winType" checked> Only this essay type</label></div>
+    <div class="win-list" id="winList"></div>
+    <div class="notice" id="winTask" hidden></div>
   </details>
   <div class="dojo">
     <aside class="stack">
@@ -647,6 +723,48 @@ details summary{cursor:pointer;font-weight:600}
   </div>
   <div class="grid g3" id="stList"></div>
   <p class="small muted">Be kind and specific when you reach out, and never pay anyone who promises a “guaranteed” scholarship.</p>
+</section>
+
+<!-- CV STUDIO -->
+<section class="view" id="v-cv">
+  <div class="head"><span class="eyebrow">CV Studio</span><h2>Build a CV that wins scholarships</h2><p class="muted">See what your funder actually asks for, study annotated sample CVs, use free official templates, and build your own CV here with live feedback on every bullet. Download it as a PDF when you're done. Your CV stays on this device.</p></div>
+  <div class="grid g2">
+    <div class="card stack">
+      <h3>What your funder wants</h3>
+      <label class="f">Scholarship<select id="cvSch"><option value="">General advice</option></select></label>
+      <div id="cvRules" class="stack"></div>
+    </div>
+    <div class="card stack">
+      <h3>Free official templates</h3>
+      <div class="g-links" id="cvTemplates"></div>
+    </div>
+  </div>
+  <div class="card stack">
+    <div class="row" style="justify-content:space-between"><h3>Annotated sample CVs</h3><div class="seg" id="cvSamples"></div></div>
+    <p class="small muted">Fictional people, realistic profiles. Turn on the notes to see why each section works and which selection criteria it serves.</p>
+    <label class="small" style="display:flex;gap:6px;align-items:center"><input type="checkbox" id="cvNotes" checked> Show the coach's notes</label>
+    <div id="cvSample" class="cv-paper"></div>
+    <div class="row"><button type="button" class="btn sm" id="cvUseSample">Use this sample as my starting point</button></div>
+  </div>
+  <div class="cv-build">
+    <div class="card stack">
+      <div class="row" style="justify-content:space-between"><h3>Your CV</h3><div class="row"><label class="f" style="min-width:150px">Style<select id="cvStyle"><option value="uk">UK / international (no photo)</option><option value="europass">Europass-style (Erasmus, DAAD)</option><option value="academic">Academic (PhD)</option></select></label></div></div>
+      <label class="f">Full name (as on your passport)<input type="text" id="cvName"></label>
+      <label class="f">Contact line<input type="text" id="cvContact" placeholder="City, Country · email · phone · LinkedIn/ORCID"></label>
+      <label class="f">Profile (2–3 lines, tied to your goal)<textarea id="cvProfile" rows="3"></textarea></label>
+      <div id="cvSections" class="stack"></div>
+      <div class="row"><select id="cvAddSel" style="max-width:220px"></select><button type="button" class="btn sm" id="cvAdd">Add section</button></div>
+      <div class="row"><button type="button" class="btn primary" id="cvPdf">Download PDF</button><button type="button" class="btn sm" id="cvCopy">Copy as text</button><button type="button" class="btn sm" id="cvReset">Start over</button></div>
+    </div>
+    <div class="stack">
+      <div class="card stack"><div class="row" style="justify-content:space-between"><h3>Live check</h3><span class="mono small" id="cvScore"></span></div><div id="cvCheck" class="stack small"></div></div>
+      <div class="card stack"><h3>Preview</h3><div id="cvPreview" class="cv-paper"></div></div>
+    </div>
+  </div>
+  <div class="grid g2">
+    <div class="card stack"><h3>Weak bullet → strong bullet</h3><div id="cvRewrites" class="stack small"></div></div>
+    <div class="card stack"><h3>Fill-in bullet patterns</h3><ul id="cvPatterns" class="small" style="margin:0;padding-left:18px"></ul><h3 style="margin-top:8px">Action verbs</h3><p id="cvVerbs" class="small muted"></p></div>
+  </div>
 </section>
 
 <!-- TOOLS -->

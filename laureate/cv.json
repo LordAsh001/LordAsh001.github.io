@@ -1,0 +1,284 @@
+{
+  "checked": "2026-10-07",
+  "rules": [
+    {"funder": "DAAD EPOS (Development-Related Postgraduate Courses)", "rule": "CV must be in reverse chronological order with no unexplained gaps, using the Europass template, with exact information on studies and practical experience. Documents go to the chosen university, not to DAAD. EPOS also needs proof of at least two years of relevant work experience (employment certificates).", "url": "https://www.daad.de/go/en/stipa50076777", "scholarship_ids": ["daad-epos"]},
+    {"funder": "DAAD EPOS (FAQ)", "rule": "Repeats the rule: Europass template, reverse chronological, no unexplained gaps. The CV is submitted to the university with the signed checklist, the DAAD application form, the motivation letter, employment letters, language certificates and degree certificates.", "url": "https://static.daad.de/media/daad_de/pdfs_nicht_barrierefrei/in-deutschland-studieren-forschen-lehren/epos_faq_en.pdf", "scholarship_ids": ["daad-epos"]},
+    {"funder": "DAAD EPOS course example: ENREM, TH Köln", "rule": "Europass format only, maximum 3 pages, dated (current) and signed, reverse chronological with no unexplained gaps. Dates must match every other document submitted. Do not attach certificates to the CV. Individual EPOS courses often add a signature, date or page limit, so read the course checklist.", "url": "https://th-koeln.de/mam/bilder/hochschule/fakultaeten/f12/required_documents_enrem_2025_final.pdf", "scholarship_ids": ["daad-epos"]},
+    {"funder": "DAAD EPOS course example: M.Sc. WASTE, Univ. Stuttgart (2026/27)", "rule": "CV should be in Europass format and carry a date of issue.", "url": "https://www.waste.uni-stuttgart.de/download/M.Sc.-WASTE-List-of-all-Required-Documents_DAAD_2026_27_BF.pdf", "scholarship_ids": ["daad-epos"]},
+    {"funder": "DAAD Research Grants (doctoral/research stays; DAAD North America checklist)", "rule": "Full CV in tabular form, maximum 3 pages. This is where the 'tabular CV' wording comes from. It applies to DAAD research grants, not EPOS. The Africa-region checklist could not be fetched (daad.de scholarship-database pages block automated access), so check the regional checklist.", "url": "https://www2.daad.de/bundles/daadadminlbh/uploads/live/5129.pdf", "scholarship_ids": []},
+    {"funder": "Erasmus Mundus Joint Masters (European Commission)", "rule": "Students apply directly to each consortium. Each programme sets its own entry requirements and documents, and the Commission prescribes no CV format. Applications typically open between October and January.", "url": "https://erasmus-plus.ec.europa.eu/opportunities/opportunities-for-individuals/students/erasmus-mundus-joint-masters", "scholarship_ids": ["erasmus"]},
+    {"funder": "Erasmus Mundus example: CLE (European Literary Cultures)", "rule": "Checklist asks for 'CV (CV Europass)'.", "url": "https://cle.unibo.it/uploads/uploadfiles/File%20da%20scaricare/CLE_Check-List_EN-2023.pdf", "scholarship_ids": ["erasmus"]},
+    {"funder": "Erasmus Mundus example: NEURASMUS", "rule": "Requires a Europass Curriculum Vitae and links to the template. Many EMJMs follow this pattern, so a Europass CV is the safe default for Erasmus Mundus.", "url": "https://www.neurasmus.u-bordeaux.fr/?p=372", "scholarship_ids": ["erasmus"]},
+    {"funder": "Chevening", "rule": "No CV or résumé upload. The online form has an Education history (up to 15 entries) and a Work history (up to 15 entries). The system multiplies weeks by hours per week to check the 2,800-hour requirement. Two reference letters are requested only from applicants who reach the interview stage.", "url": "https://www.chevening.org/resource-hub/guidance/online-application-system/", "scholarship_ids": ["chevening"]},
+    {"funder": "Chevening", "rule": "At least 2,800 hours (about 2 years) of work experience gained after the undergraduate degree. Full-time and part-time employment, voluntary work and paid or unpaid internships all count, up to 15 periods. Selectors also weigh the strength of the examples, not only the hours.", "url": "https://www.chevening.org/scholarships/who-can-apply/work-experience/", "scholarship_ids": ["chevening"]},
+    {"funder": "Chevening", "rule": "No proof of work experience is needed at application. The form asks for employer name, job title and dates. References are verified by the embassy or high commission if the applicant is shortlisted.", "url": "https://www.chevening.org/faqs/do-i-need-to-submit-proof-of-my-work-experience/", "scholarship_ids": ["chevening"]},
+    {"funder": "Chevening", "rule": "Accepted work experience types are full-time, part-time, voluntary work and paid or unpaid internships, all gained after graduating from undergraduate studies. National service (e.g. NYSC) is not named. It falls after graduation, so it is normally entered as an employment period with its real weekly hours. Confirm with Chevening if unsure.", "url": "https://www.chevening.org/faqs/what-types-of-work-experience-are-accepted/", "scholarship_ids": ["chevening"]},
+    {"funder": "Commonwealth Master's Scholarships (CSC UK)", "rule": "No separate CV is requested. The form has structured fields: all university qualifications, up to 10 publications and prizes, and employment history with an explanation of how it supports the UK programme. Three referees are named (minimum two references). Statements cover development impact, career plans, study plan and a personal statement.", "url": "https://cscuk.fcdo.gov.uk/scholarships/commonwealth-masters-scholarships/", "scholarship_ids": ["csc-masters"]},
+    {"funder": "Commonwealth PhD Scholarships for Least Developed Countries and Fragile States (CSC UK)", "rule": "Open to 17 countries including Nigeria. Ghana and Kenya are NOT eligible. The form fields mirror the master's form: up to 10 publications and prizes, and employment history with its relevance. There is no separate CV.", "url": "https://cscuk.fcdo.gov.uk/scholarships/commonwealth-phd-scholarships-for-least-developed-countries-and-vulnerable-states/", "scholarship_ids": ["csc-phd"]},
+    {"funder": "CSC UK advice for applicants", "rule": "Many successful applicants hold first-class or distinction degrees, and PhD applicants often have strong publication lists. Common mistakes: brief or weak references ('a five-line reference' is not enough), vague or overly technical writing, generic praise of institutions, and text copied from websites (treated as possible plagiarism).", "url": "https://cscuk.fcdo.gov.uk/advice-for-applicants/", "scholarship_ids": ["csc-masters", "csc-phd"]},
+    {"funder": "University of Oxford graduate admissions (Clarendon, Weidenfeld-Hoffmann, other Oxford funding)", "rule": "Most courses do NOT require a CV. Upload one only if the course page asks for it; unrequested CVs are removed. Where required, keep it to one or two pages ('a page is often enough' at master's level). Suggested sections: Education (with grades), Funding and awards, Publications, Academic or research experience, Other relevant experience, Public engagement.", "url": "https://www.ox.ac.uk/admissions/graduate/application-guide/supporting-documents/cv-resume", "scholarship_ids": ["clarendon", "weidenfeld"]},
+    {"funder": "Clarendon Fund", "rule": "No separate scholarship application. Applicants to Oxford graduate courses are considered automatically if they apply by the December or January deadline. Selection is on academic merit and potential.", "url": "https://www.ox.ac.uk/admissions/graduate/fees-and-funding/funding/clarendon", "scholarship_ids": ["clarendon"]},
+    {"funder": "University of Cambridge postgraduate admissions (Gates Cambridge route)", "rule": "A CV must be uploaded to the Applicant Portal. Cambridge gives no format or length rules. Gates Cambridge applicants nominate an additional referee.", "url": "https://www.postgraduate.study.cam.ac.uk/apply/how/supporting-documents", "scholarship_ids": ["gates"]},
+    {"funder": "Gates Cambridge", "rule": "Selection criteria: outstanding intellectual ability, reasons for choice of course, commitment to improving the lives of others, and leadership potential. The CV should give evidence for each, e.g. a service or leadership section with outcomes.", "url": "https://www.gatescambridge.org/programme/the-scholarship/", "scholarship_ids": ["gates"]},
+    {"funder": "Rhodes Scholarship for West Africa", "rule": "The CV is a form section and cannot be uploaded separately. It allows up to 5 entries in each of: professional/research experience; volunteering, community involvement and leadership; publications and presentations; awards, prizes and scholarships; skills, hobbies and extra-curricular activities. A head-and-shoulders colour photo (jpg) is required, but selectors do not see it until after final shortlisting. The personal statement is limited to 1,000 words.", "url": "https://www.rhodeshouse.ox.ac.uk/media2/sjypp0gf/west-africa-ifc-final.pdf", "scholarship_ids": ["rhodes-wa"]},
+    {"funder": "Knight-Hennessy Scholars (Stanford)", "rule": "Exactly one US Letter page, reverse chronological, covering experiences, interests and academic record. No photos or hyperlinks. Use a legible font size. No set format.", "url": "https://knight-hennessy.stanford.edu/admission/preparing-your-applications/resume", "scholarship_ids": ["knight"]},
+    {"funder": "Schwarzman Scholars", "rule": "Upload a résumé/CV of no more than 2 pages. It should show leadership experiences and accomplishments, professional experience, education and anything not already in the application.", "url": "https://www.schwarzmanscholars.org/admissions/application-instructions/", "scholarship_ids": ["schwarzman"]},
+    {"funder": "MEXT (Japanese Government) Research Students, embassy-recommended route (UAE embassy example)", "rule": "Use the prescribed official application form for that year; no free-form CV is requested. Photo: 4.5 x 3.5 cm, upper body, full face, no hat, taken within 6 months, name and nationality on the back. A separate 'Field of Study and Research Plan' sheet is required. Incomplete applications are not considered. The Nigerian embassy publishes its own call, so check it for local details.", "url": "https://www.uae.emb-japan.go.jp/itpr_en/mext2025.html", "scholarship_ids": ["mext"]},
+    {"funder": "Global Korea Scholarship (GKS-G 2026, graduate)", "rule": "Uses set forms: application form, personal statement, study plan, one recommendation on the official form (signed by the recommender and uploaded by the applicant), consent forms, health statement, degrees and transcripts, nationality proof, employment certificate if any. No free-form CV. Published works are optional extras.", "url": "https://www.mofa.go.kr/us-boston-en/brd/m_4558/view.do?seq=761392", "scholarship_ids": ["gks"]},
+    {"funder": "UBC International Scholars / undergraduate admission", "rule": "No CV. The Personal Profile asks for up to five activities (clubs, family responsibilities, arts, employment, athletics, volunteering, community service) and the applicant's responsibilities in each, in short answers of about 500 to 2,100 characters. UBC may contact the two references to verify activities. Advice: reflect on what you learned rather than listing, and be specific.", "url": "https://you.ubc.ca/applying-ubc/how-to-apply/personal-profile/", "scholarship_ids": ["ubc-isp"]},
+    {"funder": "Mastercard Foundation Scholars Program", "rule": "Applications go to partner universities or NGOs, not the Foundation. Each partner runs its own admissions and document requirements. The Foundation targets talented, service-oriented young people, including those from underrepresented backgrounds, so an activities/CV list should show service and leadership.", "url": "https://mastercardfdn.org/en/what-we-do/our-programs/mastercard-foundation-scholars-program/", "scholarship_ids": ["mastercard"]},
+    {"funder": "Germany (general convention, deutschland.de)", "rule": "CVs are usually laid out in a clear tabular format, most recent first. 'An application photo is not mandatory, but still widely used.' Europass is suggested for templates.", "url": "https://www.deutschland.de/en/topic/business/tips-on-applying-for-a-job-in-germany", "scholarship_ids": ["daad-epos"]},
+    {"funder": "UK convention (University of Manchester Careers)", "rule": "No photo on UK CVs. Leave out date of birth, gender, marital status and similar; name and contact details are enough. Two pages in reverse chronological order is the standard UK CV. Conventions differ by country, so check country guides.", "url": "https://www.careers.manchester.ac.uk/applicationsinterviews/cv/step1creatingyourcv/index.htm", "scholarship_ids": ["chevening", "csc-masters", "csc-phd", "gates", "clarendon", "weidenfeld", "reach-oxford"]},
+    {"funder": "UK convention (University of Oxford Careers Service)", "rule": "One or two pages (academic CVs may be longer). Exclude date of birth, age, marital status, children, religion, sex, racial background, disability, home address and basic IT skills. Give nationality only for right-to-work purposes. List referees only on academic CVs. Use 10 to 11 pt or larger, bullets, role on the left and dates on the right, and the CAR pattern (Context, Action, Result).", "url": "https://www.careers.ox.ac.uk/cvs", "scholarship_ids": ["chevening", "csc-masters", "clarendon", "weidenfeld", "gates"]},
+    {"funder": "US convention (Harvard Mignone Center for Career Success)", "rule": "Résumé sections: Education, Experience, Leadership & Activities, Skills & Interests. Bullets combine action verb, specific accomplishment and quantified result, with no pronouns. Do not include photos, personal demographic details or references.", "url": "https://careerservices.fas.harvard.edu/resources/create-a-strong-resume/", "scholarship_ids": ["knight", "fulbright", "aauw", "schwarzman"]},
+    {"funder": "US academic CV vs résumé (MIT CAPD)", "rule": "CVs are for academic, research and fellowship applications and give a full scholarly record: 2 to 4 pages early career. Résumés are 1 to 2 pages and focus on relevance. Keep a full master CV and tailor a shorter one for each application.", "url": "https://capd.mit.edu/resources/cvs/", "scholarship_ids": ["fulbright", "knight", "aauw", "gates"]},
+    {"funder": "Academic CV convention (Imperial College Careers)", "rule": "No fixed length for academic CVs. Publications are among the most important sections: peer-reviewed articles first, reverse chronological, cited as in a journal. Referees should usually include your supervisor and at least one other academic. Always tell referees beforehand.", "url": "https://www.imperial.ac.uk/media/imperial-college/administration-and-support-services/careers-service/public/resources/handouts/How-to-Write-an-Academic-CV.pdf", "scholarship_ids": ["csc-phd", "gates", "clarendon"]}
+  ],
+  "templates": [
+    {"name": "Europass CV editor", "by": "European Union (Europass)", "url": "https://europass.europa.eu/en/create-europass-cv", "format": "Online editor (free Europass profile needed), downloadable CV, 31 languages", "good_for": "Mandatory or default format for DAAD EPOS and most Erasmus Mundus programmes. Reverse chronological, CEFR language grid.", "free": true},
+    {"name": "Traditional CV example (graduate)", "by": "University of Oxford Careers Service", "url": "https://www.careers.ox.ac.uk/files/traditional-cv-examplepdf", "format": "PDF, 1 page", "good_for": "Clean UK-style layout without a photo or personal data. A good model for the CV used in Chevening-type university applications.", "free": true},
+    {"name": "Academic CV example", "by": "University of Oxford Careers Service", "url": "https://www.careers.ox.ac.uk/files/academic-cv-example-careers", "format": "PDF", "good_for": "Research-track layout: research experience, awards, teaching, publications, presentations, referees. Suits PhD applicants (Gates, Clarendon, CSC PhD).", "free": true},
+    {"name": "CVs and Applications for Undergraduates and Masters Students", "by": "University of Cambridge Careers Service", "url": "https://www.careers.cam.ac.uk/files/cambridgecvsandapplications.pdf", "format": "PDF guide with 6 annotated CVs", "good_for": "Shows how one candidate tailors the same CV to different targets. Annotations in the margins. Two-page rule, no photo, DOB or marital status.", "free": true},
+    {"name": "CVs and Cover Letters for PhDs and Postdocs", "by": "University of Cambridge Careers Service", "url": "https://www.careers.cam.ac.uk/files/phdpostdoccvbook.pdf", "format": "PDF guide with 7 annotated CVs", "good_for": "Academic CV structure, citing publications, choosing referees. For master's holders applying for funded PhDs.", "free": true},
+    {"name": "Short CV Guide", "by": "University of Cambridge Careers Service", "url": "https://www.careers.cam.ac.uk/sites/default/files/short_cv_guide_2023.pdf", "format": "PDF (short)", "good_for": "Quick checklist: tailoring, 2-page limit, 'Accomplished X as measured by Y by doing Z' bullet formula, common mistakes.", "free": true},
+    {"name": "Resume sample", "by": "Harvard College, Mignone Center for Career Success", "url": "https://cdn-careerservices.fas.harvard.edu/wp-content/uploads/sites/161/2026/07/resume-sample.pdf", "format": "PDF, 1 page", "good_for": "US one-page résumé model for Knight-Hennessy, Schwarzman and US applications. Includes tips sidebar.", "free": true},
+    {"name": "Bullet-point resume template", "by": "Harvard College, Mignone Center for Career Success", "url": "https://careerservices.fas.harvard.edu/resources/bullet-point-resume-template/", "format": "Word (.docx, incl. accessible version) and Google Docs", "good_for": "Editable starting point for a US-style résumé.", "free": true},
+    {"name": "Sample resumes and CVs", "by": "MIT Career Advising & Professional Development", "url": "https://capd.mit.edu/resources/sample-resumes/", "format": "PDF samples (first-year to PhD)", "good_for": "Résumés by level and field, including an environmental engineering master's sample.", "free": true},
+    {"name": "Master's resume sample (Environmental Engineering)", "by": "MIT CAPD", "url": "https://cdn.uconnectlabs.com/wp-content/uploads/sites/123/2025/05/MITCAPD-MastersI.pdf", "format": "PDF, 1 page", "good_for": "Engineers with work experience: quantified project bullets, certifications.", "free": true},
+    {"name": "Sample CVs from MIT Career Handbook", "by": "MIT CAPD", "url": "https://cdn.uconnectlabs.com/wp-content/uploads/sites/123/2021/07/Sample-CVs-from-MIT-Career-Handbook.pdf", "format": "PDF, 2 academic CVs", "good_for": "US academic CV conventions for PhD and postdoc level.", "free": true},
+    {"name": "How to Write an Academic CV", "by": "Imperial College London Careers Service", "url": "https://www.imperial.ac.uk/media/imperial-college/administration-and-support-services/careers-service/public/resources/handouts/How-to-Write-an-Academic-CV.pdf", "format": "PDF handout (guidance, no sample)", "good_for": "Which sections to include, how to order publications, referee etiquette.", "free": true},
+    {"name": "CVs for PhD Students and Researchers", "by": "UCL Careers", "url": "https://www.ucl.ac.uk/careers/sites/careers/files/cvs_for_phd_students_and_researchers.pdf", "format": "PDF leaflet (guidance)", "good_for": "Putting the most important material on the first two pages, presenting publications, referees and teaching.", "free": true},
+    {"name": "Example CVs (10 two-page CVs by sector)", "by": "University of Manchester Careers Service", "url": "https://www.careers.manchester.ac.uk/applicationsinterviews/cv/examplecvs/", "format": "PDF", "good_for": "Sector samples (engineering, sustainability, education, charity, sciences). UK two-page chronological style.", "free": true},
+    {"name": "Engineering CV example", "by": "University of Manchester Careers Service", "url": "https://www.careers.manchester.ac.uk/media/services/careersandemployabilitydivision/careersservice/cvexamples/Engineering-CV.pdf", "format": "PDF", "good_for": "Early-career engineers: positions of responsibility, volunteering with numbers.", "free": true},
+    {"name": "Overleaf CV and résumé template gallery", "by": "Overleaf", "url": "https://www.overleaf.com/gallery/tagged/cv", "format": "Online LaTeX (free account), PDF output", "good_for": "Researchers comfortable with LaTeX. Consistent typesetting of publication lists.", "free": true},
+    {"name": "Minimal Academic CV Template", "by": "Overleaf gallery (CC BY 4.0)", "url": "https://www.overleaf.com/latex/templates/minimal-academic-cv-template/dztfsxjnjvhy", "format": "Online LaTeX, PDF", "good_for": "Simple, conservative academic CV for PhD applications.", "free": true},
+    {"name": "AltaCV Template", "by": "Overleaf gallery (LPPL 1.3c, 'Top pick')", "url": "https://www.overleaf.com/latex/templates/altacv-template/trgqjpwnmtgv", "format": "Online LaTeX, PDF", "good_for": "Two-column modern layout with publication and referee examples. Use the plain academic layout for conservative panels.", "free": true}
+  ],
+  "advice": {
+    "order": [
+      "Contact header: full name as on passport/certificates, city and country, email, phone, optional LinkedIn/ORCID. No photo unless the funder or format asks for one (Europass and MEXT forms do; UK/US do not).",
+      "Optional 2-3 line profile tied to the target course and goal. No generic 'objective'.",
+      "Education, reverse chronological: degree, class or CGPA with scale, thesis title and grade, relevant modules, prizes.",
+      "Professional experience, reverse chronological: role, organisation, place, month-year dates, 2-5 achievement bullets.",
+      "Research and publications (PhD/academic CVs): peer-reviewed first, then under review, conferences, posters. Use full citations and bold your name.",
+      "Leadership, volunteering and community service, with outcomes.",
+      "Awards, scholarships and competitions, with selectivity (e.g. '1 of 12 from 400 applicants').",
+      "Skills: technical/software, languages (CEFR levels for Europe), certifications.",
+      "Professional memberships (COREN, NSE, IWA, etc.).",
+      "Referees: named on academic, Europass and Commonwealth-type CVs. Leave them off US résumés."
+    ],
+    "do": [
+      "Tailor every version to the funder's criteria: leadership and networking for Chevening; development impact for Commonwealth; intellectual ability, leadership and commitment to others for Gates (cscuk.fcdo.gov.uk, gatescambridge.org).",
+      "Write achievement bullets as action verb + task + measurable result (Oxford CAR, Harvard action-verb formula, Cambridge 'Accomplished X as measured by Y by doing Z').",
+      "Use numbers: people served, budget, percentage change, ranking, selectivity, time saved.",
+      "Keep to 2 pages for master's and job-style CVs. One page for Knight-Hennessy. Schwarzman max 2. DAAD tabular research CV max 3. ENREM-type EPOS courses max 3. Academic CVs may run longer, but put the strongest material on the first two pages (UCL).",
+      "Explain every gap of more than about 3 months (EPOS and ENREM require 'no unexplained gaps'), e.g. 'Awaiting NYSC mobilisation; completed online GIS certificate'.",
+      "Make dates and titles match your transcripts, employment letters and form entries exactly (ENREM requires this).",
+      "Date and sign the CV where the course asks (many EPOS courses).",
+      "Use a consistent date format: month and year for UK/US (e.g. 'Sep 2023 - Present'); Europass uses dd/mm/yyyy.",
+      "Give CGPA with its scale (e.g. 4.62/5.00, First Class) and, for Europe, explain the grading scale.",
+      "Keep a full 'master CV' and cut a tailored version for each application (MIT CAPD).",
+      "Tell referees before listing them, and pick people who can write detailed letters; CSC warns that short references score poorly.",
+      "Export to PDF, use a readable font of 10-11 pt or larger, and keep consistent bold, italics and spacing."
+    ],
+    "dont": [
+      "Don't add a photo, date of birth, marital status, religion, state of origin, gender or number of children to UK/US CVs (Oxford, Cambridge, Manchester, Harvard). Add a photo only when the funder or form requires it (MEXT form; Rhodes WA upload, hidden from selectors until after shortlisting).",
+      "Don't open with a long generic 'Career Objective' ('To obtain a challenging position in a reputable organisation...').",
+      "Don't send 4-5+ page CVs for master's scholarships, or pad with secondary-school results once you have a degree.",
+      "Don't use duty lists ('Responsible for...'), pronouns or passive voice.",
+      "Don't list basic IT skills ('Microsoft Word, Internet browsing') or generic hobbies ('reading, travelling, socialising') (Oxford Careers).",
+      "Don't upload a CV where none was requested (Oxford removes unrequested CVs) or paste it into form fields without adapting.",
+      "Don't copy text from websites or templates. CSC treats copied text as possible plagiarism.",
+      "Don't leave typos or inconsistent formatting. Have someone proofread.",
+      "Don't overstate: Chevening verifies references and UBC may contact referees to verify activities."
+    ],
+    "nigeria": [
+      "NYSC: list it as a real job, e.g. 'Graduate Engineer (NYSC), Ministry of Works, Makurdi | Nov 2022 - Oct 2023', with achievement bullets. Put the CDS project under Leadership/Volunteering with numbers. Chevening counts post-degree work, including voluntary work, so enter NYSC with honest weekly hours; it does not list NYSC by name.",
+      "Show the degree class and CGPA with its scale (e.g. 'First Class, CGPA 4.71/5.00'). Add class position only if verifiable.",
+      "Use the current university name with the certificate name in brackets if it changed (e.g. 'Joseph Sarwuan Tarka University, Makurdi (formerly University of Agriculture, Makurdi)').",
+      "Leave out state of origin, LGA, religion, marital status, date of birth and passport photo for UK/US applications. These are common on Nigerian CVs but marked as irrelevant by UK careers services. Europass optional fields (nationality, DOB) can be left blank.",
+      "Translate local acronyms on first use: SIWES (6-month industrial attachment), COREN, NSE, WAEC/NECO, UTME, CDS.",
+      "Put SIWES and IT placements under experience for fresh graduates, but don't count pre-graduation work toward Chevening's 2,800 hours.",
+      "For undergraduate awards (NLNG, Mastercard partners, UBC), list WAEC/NECO grades and UTME score, school leadership, competitions (olympiads, quiz, JETS), family responsibilities and part-time work.",
+      "Use a professional email (firstname.lastname@...) and an international phone format (+234 ...)."
+    ],
+    "sources": [
+      "https://www.careers.ox.ac.uk/cvs",
+      "https://www.careers.cam.ac.uk/files/cambridgecvsandapplications.pdf",
+      "https://www.careers.cam.ac.uk/sites/default/files/short_cv_guide_2023.pdf",
+      "https://www.careers.cam.ac.uk/files/phdpostdoccvbook.pdf",
+      "https://www.careers.manchester.ac.uk/applicationsinterviews/cv/step1creatingyourcv/index.htm",
+      "https://careerservices.fas.harvard.edu/resources/create-a-strong-resume/",
+      "https://capd.mit.edu/resources/cvs/",
+      "https://www.imperial.ac.uk/media/imperial-college/administration-and-support-services/careers-service/public/resources/handouts/How-to-Write-an-Academic-CV.pdf",
+      "https://www.ucl.ac.uk/careers/sites/careers/files/cvs_for_phd_students_and_researchers.pdf",
+      "https://careers.ed.ac.uk/cvs-and-applications/cvs-and-applications-for-further-study",
+      "https://cscuk.fcdo.gov.uk/advice-for-applicants/",
+      "https://www.chevening.org/scholarships/who-can-apply/work-experience/",
+      "https://www.chevening.org/faqs/what-types-of-work-experience-are-accepted/",
+      "https://www.daad.de/go/en/stipa50076777",
+      "https://th-koeln.de/mam/bilder/hochschule/fakultaeten/f12/required_documents_enrem_2025_final.pdf",
+      "https://you.ubc.ca/applying-ubc/how-to-apply/personal-profile/",
+      "https://www.gatescambridge.org/programme/the-scholarship/"
+    ]
+  },
+  "samples": [
+    {
+      "id": "uk-engineer-masters",
+      "title": "Water engineer, 3 years' experience, UK master's scholarship CV",
+      "persona": "Fictional composite: Adaeze N. Okonkwo, B.Eng Civil Engineering (Second Class Upper), 3 years in water supply engineering in Nigeria, applying for an MSc in Water and Environmental Management. Chevening and Commonwealth use online forms rather than CV uploads, so this 2-page UK CV is for university admission and is the source text for the form's work-history and publications/prizes fields. All names, organisations and figures are invented.",
+      "target": ["chevening", "csc-masters"],
+      "style": "uk",
+      "sections": [
+        {"h": "Contact", "entries": [{"title": "Adaeze N. Okonkwo", "org": "", "place": "Enugu, Nigeria", "dates": "", "bullets": ["adaeze.okonkwo@email.com | +234 803 000 0000 | linkedin.com/in/adaeze-okonkwo"]}], "note": "UK convention: name, city and contact only. No photo, date of birth, state of origin, religion or marital status (Oxford and Manchester careers guidance)."},
+        {"h": "Profile", "entries": [{"title": "", "org": "", "place": "", "dates": "", "bullets": ["COREN-registered civil engineer with 3 years delivering rural water schemes in South-East Nigeria; led teams of up to 14 and managed budgets up to N48m. Seeking an MSc in Water and Environmental Management to design climate-resilient supply systems for Nigerian small towns."]}], "note": "Two lines that state discipline, evidence of scale and the development goal. Ties to Commonwealth 'development impact' and Chevening 'career plan'. Avoids a generic objective."},
+        {"h": "Professional Experience", "entries": [
+          {"title": "Project Engineer", "org": "Greenbasin Water Engineering Ltd", "place": "Enugu", "dates": "Jan 2024 - Present", "bullets": ["Lead engineer on 6 solar-powered borehole schemes serving 21,000 residents in 4 LGAs; delivered all within budget (N48m total).", "Cut pump downtime from 9 to 3 days per month by introducing a WhatsApp fault-reporting line and a spare-parts log.", "Supervise and mentor 14 site staff and 2 graduate engineers; both graduates passed COREN registration in 2025.", "Presented water-quality results to the State RUWASSA board, leading to chlorination at 3 additional sites."]},
+          {"title": "Graduate Engineer", "org": "Greenbasin Water Engineering Ltd", "place": "Enugu", "dates": "Nov 2023 - Dec 2023", "bullets": ["Prepared bills of quantities for 2 pipeline extensions (3.2 km) using AutoCAD Civil 3D and Excel."]},
+          {"title": "Assistant Engineer (NYSC)", "org": "Ministry of Water Resources", "place": "Lafia, Nasarawa State", "dates": "Oct 2022 - Sep 2023", "bullets": ["Surveyed 37 community water points and built the ministry's first GIS inventory (QGIS), now used for annual budget planning.", "Organised hygiene sessions in 5 schools (1,100 pupils) as NYSC Community Development Service project."]}
+        ], "note": "Reverse chronological, role and organisation on the left, month-year dates on the right (Oxford layout). Every bullet carries a number, so the result can be checked. NYSC is framed as a real post-degree job, which counts toward Chevening's 2,800 hours. Pre-graduation SIWES is left out to save space."},
+        {"h": "Education", "entries": [
+          {"title": "B.Eng Civil Engineering - Second Class Upper (CGPA 4.21/5.00)", "org": "University of Nigeria, Nsukka", "place": "Nsukka", "dates": "2016 - 2021", "bullets": ["Final-year project: 'Performance of slow sand filters using local laterite media' (grade A); results shared with the department's water laboratory.", "SIWES industrial attachment (6 months) with a state water corporation, 2020."]}
+        ], "note": "With 3 years of work, experience comes before education. CGPA is shown with its scale so UK panels can read it. A water-related final-year project links the degree to the chosen MSc."},
+        {"h": "Leadership and Volunteering", "entries": [
+          {"title": "Coordinator, Clean Taps Initiative (volunteer)", "org": "Community-based organisation", "place": "Enugu", "dates": "Mar 2023 - Present", "bullets": ["Recruited 22 volunteers and raised N3.1m from local donors to repair 9 broken hand pumps, restoring water to about 4,000 people.", "Built a partnership with 2 LGA councils that now co-fund annual maintenance."]},
+          {"title": "Secretary, Nigerian Society of Engineers (Young Engineers Forum)", "org": "NSE Enugu Branch", "place": "Enugu", "dates": "2024 - Present", "bullets": ["Organised 4 technical seminars (average 120 attendees) and a mentoring scheme pairing 30 students with engineers."]}
+        ], "note": "Gives Chevening's leadership and networking criteria concrete evidence beyond the day job. Partnerships with councils show the relationship-building the essays will expand on."},
+        {"h": "Awards", "entries": [
+          {"title": "Best Graduating Student in Water Resources Option", "org": "Department of Civil Engineering", "place": "", "dates": "2021", "bullets": []},
+          {"title": "Young Water Professional Fellowship (1 of 15 selected from 400+ applicants)", "org": "Regional water association (fictional)", "place": "", "dates": "2024", "bullets": []}
+        ], "note": "Selectivity figures help panels judge the award. The same items go into the Commonwealth form's 'up to 10 publications and prizes'."},
+        {"h": "Skills and Certifications", "entries": [{"title": "", "org": "", "place": "", "dates": "", "bullets": ["Technical: EPANET, QGIS, AutoCAD Civil 3D, MS Project, Excel (pivot tables, Solver)", "Certifications: COREN registered engineer (2025); PMI Project Management Ready (2024)", "Languages: English (fluent; IELTS 7.5), Igbo (native), Hausa (conversational)"]}], "note": "Specific, testable tools. No 'Microsoft Word' filler. The IELTS score answers the language requirement before it is asked."},
+        {"h": "Referees", "entries": [{"title": "Available on request", "org": "", "place": "", "dates": "", "bullets": ["(Named in the Chevening/CSC forms: line manager at Greenbasin and final-year project supervisor.)"]}], "note": "UK job-style CVs usually leave referees out. Scholarship forms collect them separately. Choose referees who can write detailed letters; CSC warns that short references score poorly."}
+      ]
+    },
+    {
+      "id": "europass-fresh-graduate",
+      "title": "First Class fresh graduate, Europass CV for Erasmus Mundus",
+      "persona": "Fictional composite: Ibrahim T. Lawal, B.Sc Computer Science (First Class), NYSC completed, applying for an Erasmus Mundus master's in data science. Europass format as most EMJMs and DAAD EPOS require. He will reuse it for EPOS once he has the 2 years' work experience EPOS asks for. All names and organisations are invented.",
+      "target": ["erasmus", "daad-epos"],
+      "style": "europass",
+      "sections": [
+        {"h": "Personal information", "entries": [{"title": "Ibrahim T. Lawal", "org": "", "place": "Kaduna, Nigeria", "dates": "", "bullets": ["Email: ibrahim.lawal@email.com | Phone: (+234) 806 000 0000 | Nationality: Nigerian", "LinkedIn / GitHub: github.com/itlawal"]}], "note": "Europass layout. Nationality is relevant here because Erasmus Mundus scholarship rules depend on residence. DOB, gender and photo are optional in Europass and can be left out unless the programme asks for them."},
+        {"h": "About me", "entries": [{"title": "", "org": "", "place": "", "dates": "", "bullets": ["First Class computer science graduate who builds open-data tools for public health. Aims to apply machine learning to disease surveillance in West Africa."]}], "note": "Short Europass 'About me' aimed at the consortium's theme. Two lines, no clichés."},
+        {"h": "Work experience", "entries": [
+          {"title": "Data Analyst (NYSC)", "org": "State Primary Health Care Board", "place": "Kaduna, Nigeria", "dates": "15/03/2025 - 14/02/2026", "bullets": ["Automated monthly immunisation reports from 255 facilities with Python, cutting preparation time from 5 days to 4 hours.", "Built a dashboard (Power BI) that flagged 18 facilities with falling coverage; 12 improved within one quarter after targeted visits."]},
+          {"title": "Data Volunteer", "org": "Open-data civic group (fictional)", "place": "Remote", "dates": "01/03/2026 - Present", "bullets": ["Cleaned and published 6 public datasets on school enrolment, downloaded over 1,900 times."]},
+          {"title": "Industrial Trainee (SIWES)", "org": "Software start-up (fictional)", "place": "Abuja, Nigeria", "dates": "01/06/2023 - 30/11/2023", "bullets": ["Wrote 40+ unit tests and fixed 25 bugs in a Django inventory app used by 60 pharmacies."]}
+        ], "note": "Europass dd/mm/yyyy dates, reverse chronological. NYSC is presented as a data job with measurable results. The months between graduation (Oct 2024) and NYSC (Mar 2025) are explained in Education and training below, because EPOS and ENREM-type checklists reject 'unexplained gaps'."},
+        {"h": "Education and training", "entries": [
+          {"title": "B.Sc Computer Science - First Class Honours (CGPA 4.68/5.00; Nigerian 5-point scale, First Class = 4.50-5.00)", "org": "Ahmadu Bello University", "place": "Zaria, Nigeria", "dates": "2019 - 2024", "bullets": ["Thesis: 'Predicting malaria incidence from rainfall and clinic data with gradient boosting' (grade A).", "Relevant modules: Machine Learning, Database Systems, Statistics, Numerical Methods."]},
+          {"title": "Google Data Analytics Professional Certificate (online)", "org": "Coursera", "place": "Online", "dates": "11/2024 - 02/2025", "bullets": ["Completed while awaiting NYSC mobilisation, which explains the Nov 2024 - Mar 2025 period."]}
+        ], "note": "Grading scale is explained for European evaluators. The thesis matches the master's theme. The 'awaiting NYSC mobilisation' line closes a gap that EPOS and ENREM-type rules would flag."},
+        {"h": "Language skills", "entries": [{"title": "", "org": "", "place": "", "dates": "", "bullets": ["Mother tongue(s): Hausa", "English: C1 (IELTS Academic 7.5, 2025); medium of instruction for degree", "French: A2 (self-study, Alliance-type evening course)"]}], "note": "Europass uses CEFR levels. A test score plus medium-of-instruction evidence answers Erasmus Mundus language requirements."},
+        {"h": "Digital skills", "entries": [{"title": "", "org": "", "place": "", "dates": "", "bullets": ["Python (pandas, scikit-learn), SQL, R, Power BI, Git, Linux, LaTeX"]}], "note": "Tools only, grouped. These are hard skills an admissions panel can check against the transcript and GitHub."},
+        {"h": "Honours and awards", "entries": [
+          {"title": "Best Graduating Student, Department of Computer Science (1 of 142)", "org": "Ahmadu Bello University", "place": "", "dates": "2024", "bullets": []},
+          {"title": "Finalist, national university data hackathon (top 10 of 230 teams)", "org": "", "place": "", "dates": "2023", "bullets": []}
+        ], "note": "Ranking and cohort size make 'excellence', the core Erasmus Mundus criterion, measurable."},
+        {"h": "Volunteering and leadership", "entries": [
+          {"title": "President, Computer Science Students' Association", "org": "Ahmadu Bello University", "place": "Zaria", "dates": "2022 - 2023", "bullets": ["Launched peer tutoring for 300+ first-year students; course failure rate in Intro to Programming fell from 31% to 18%."]}
+        ], "note": "Leadership with an outcome. The international, multi-country cohort in EMJMs rewards collaboration."},
+        {"h": "Signature", "entries": [{"title": "Kaduna, 20/11/2026 - [signature]", "org": "", "place": "", "dates": "", "bullets": []}], "note": "Many DAAD EPOS courses (e.g. ENREM) require a current date and signature. Add it whenever the checklist asks; it does no harm for EMJMs that don't."}
+      ]
+    },
+    {
+      "id": "academic-phd-applicant",
+      "title": "Kenyan MSc holder with publications, academic CV for a funded PhD",
+      "persona": "Fictional composite: Wanjiru M. Kamau, MSc Environmental Health (Distinction), Kenya, applying for a PhD on urban sanitation. Targets Gates Cambridge and Oxford (Clarendon). Note: the Commonwealth PhD scheme for least developed countries and fragile states excludes Kenya and Ghana, but a Nigerian with the same profile could use this CV for csc-phd. All names, publications and journals are invented.",
+      "target": ["gates", "clarendon", "csc-phd"],
+      "style": "academic",
+      "sections": [
+        {"h": "Contact", "entries": [{"title": "Wanjiru M. Kamau", "org": "", "place": "Nairobi, Kenya", "dates": "", "bullets": ["wanjiru.kamau@email.com | +254 712 000 000 | ORCID 0000-0000-0000-0000"]}], "note": "An ORCID iD lets panels verify publications. No photo or personal data for UK applications."},
+        {"h": "Research Interests", "entries": [{"title": "", "org": "", "place": "", "dates": "", "bullets": ["Faecal sludge management in informal settlements; low-cost pathogen monitoring; sanitation policy evaluation."]}], "note": "One line that matches the proposed PhD and the intended supervisor's group. It gives evidence for 'reasons for choice of course' (Gates)."},
+        {"h": "Education", "entries": [
+          {"title": "MSc Environmental Health - Distinction (78%)", "org": "University of Nairobi", "place": "Nairobi, Kenya", "dates": "2022 - 2024", "bullets": ["Dissertation: 'Seasonal E. coli loads in shared-latrine sludge in two Nairobi settlements' (mark 82%, best in cohort).", "Full tuition scholarship (university merit award)."]},
+          {"title": "BSc Environmental Science - First Class Honours", "org": "Kenyatta University", "place": "Nairobi, Kenya", "dates": "2017 - 2021", "bullets": ["Ranked 2nd of 96."]}
+        ], "note": "Academic CVs lead with education (Imperial). Marks and rank give evidence for 'outstanding intellectual ability' and for CSC's emphasis on first-class or distinction records."},
+        {"h": "Research Experience", "entries": [
+          {"title": "Research Assistant", "org": "Urban sanitation research centre (fictional)", "place": "Nairobi", "dates": "Jan 2024 - Present", "bullets": ["Co-designed household survey (n = 1,240) and trained 12 enumerators; survey data now underpin 2 manuscripts.", "Ran 600+ membrane-filtration E. coli assays; introduced a QA protocol that lowered duplicate variance from 22% to 9%.", "Drafted the methods section of a funded grant proposal (USD 180,000, awarded 2025)."]},
+          {"title": "MSc Researcher", "org": "University of Nairobi", "place": "Nairobi", "dates": "2023 - 2024", "bullets": ["Sampled 84 latrines over two seasons; results shared with county public-health officers and used to reschedule emptying in the wet season."]}
+        ], "note": "Shows research independence and methods depth. The policy uptake in the last bullet gives evidence for 'commitment to improving the lives of others'."},
+        {"h": "Publications", "entries": [
+          {"title": "Peer-reviewed", "org": "", "place": "", "dates": "", "bullets": ["**Kamau, W.M.**, Otieno, P. and Mwangi, J. (2025) 'Seasonal variation of E. coli in shared-latrine faecal sludge in Nairobi', Journal of Urban Sanitation (fictional), 12(3), pp. 211-224.", "Njoroge, S., **Kamau, W.M.** and Otieno, P. (2024) 'Willingness to pay for container-based sanitation', African Water Policy Review (fictional), 8(1), pp. 45-60."]},
+          {"title": "Under review", "org": "", "place": "", "dates": "", "bullets": ["**Kamau, W.M.** et al. 'A low-cost field kit for pathogen screening in sludge', submitted to Environmental Monitoring Letters (fictional), 2026."]},
+          {"title": "Conference presentations", "org": "", "place": "", "dates": "", "bullets": ["**Kamau, W.M.** (2025) 'Wet-season risk in shared sanitation', oral presentation, regional water and sanitation conference, Kampala."]}
+        ], "note": "Full citations in reverse chronological order, peer-reviewed first, with the applicant's name in bold (Imperial, Cambridge). Under-review work is labelled honestly. These items feed the CSC form's 'up to 10 publications and prizes'."},
+        {"h": "Grants, Awards and Scholarships", "entries": [
+          {"title": "Young Researcher Travel Grant (USD 1,500)", "org": "International sanitation network (fictional)", "place": "", "dates": "2025", "bullets": []},
+          {"title": "Best Student Poster (1 of 60 posters)", "org": "National environmental health conference", "place": "", "dates": "2024", "bullets": []}
+        ], "note": "Funding won signals that the applicant is a safe investment for a scholarship panel."},
+        {"h": "Teaching and Mentoring", "entries": [
+          {"title": "Graduate Teaching Assistant, Environmental Microbiology lab", "org": "University of Nairobi", "place": "", "dates": "2023 - 2024", "bullets": ["Led weekly labs for 45 undergraduates; designed a biosafety quiz adopted by the department."]}
+        ], "note": "Teaching shows communication skills. Oxford and Imperial both list it as a standard academic CV section."},
+        {"h": "Leadership and Service", "entries": [
+          {"title": "Founder, Girls in WASH mentoring circle", "org": "Volunteer", "place": "Nairobi", "dates": "2022 - Present", "bullets": ["Mentored 38 female undergraduates. 11 have since started WASH internships or graduate study."]}
+        ], "note": "Gates weighs leadership potential and commitment to others as heavily as intellect. This section supplies that evidence with outcomes."},
+        {"h": "Skills", "entries": [{"title": "", "org": "", "place": "", "dates": "", "bullets": ["Lab: membrane filtration, qPCR basics, helminth egg counts", "Data: R (tidyverse, lme4), Stata, KoboToolbox, QGIS", "Languages: English (fluent), Kiswahili (native), Kikuyu (native)"]}], "note": "Grouped, specific and relevant to the proposed methods."},
+        {"h": "Referees", "entries": [
+          {"title": "Dr [Name], Senior Lecturer (MSc supervisor)", "org": "University of Nairobi", "place": "", "dates": "", "bullets": ["email@uonbi.example"]},
+          {"title": "Dr [Name], Principal Investigator (current line manager)", "org": "Research centre", "place": "", "dates": "", "bullets": ["email@example.org"]},
+          {"title": "Prof. [Name], co-author (third referee for Gates)", "org": "", "place": "", "dates": "", "bullets": ["email@example.ac.uk"]}
+        ], "note": "Academic CVs name referees, usually including the supervisor (Imperial, Cambridge). Gates applicants need an additional referee, so three are listed."}
+      ]
+    },
+    {
+      "id": "undergrad-school-leaver",
+      "title": "Secondary-school leaver, activities CV for undergraduate scholarships",
+      "persona": "Fictional composite: Chiamaka E. Udo, 17, from Port Harcourt, finished senior secondary school with strong WAEC results and is now a 100-level student. Applying for UBC International Scholars, Mastercard Foundation partner universities and the NLNG undergraduate scheme. A one-page activities CV used to fill UBC's 'up to five activities' profile, partner-university forms and interview packs. All names and organisations are invented.",
+      "target": ["ubc-isp", "mastercard", "nlng"],
+      "style": "undergrad",
+      "sections": [
+        {"h": "Contact", "entries": [{"title": "Chiamaka E. Udo", "org": "", "place": "Port Harcourt, Rivers State, Nigeria", "dates": "", "bullets": ["chiamaka.udo@email.com | +234 809 000 0000"]}], "note": "A professional email, not a nickname. No photo, religion or date of birth unless a form asks."},
+        {"h": "Education", "entries": [
+          {"title": "100-level, B.Sc Chemical Engineering", "org": "University of Port Harcourt", "place": "Port Harcourt", "dates": "2026 - Present", "bullets": ["First-semester GPA 4.80/5.00."]},
+          {"title": "Senior Secondary School Certificate", "org": "Government Girls' Secondary School (fictional)", "place": "Port Harcourt", "dates": "2020 - 2026", "bullets": ["WAEC 2026: A1 in 8 subjects incl. Mathematics, Physics, Chemistry, English.", "UTME 2026: 318/400 (top 1% nationally)."]}
+        ], "note": "At this level, school results are the main academic evidence. Exact grades and the UTME score let NLNG and partner universities check merit."},
+        {"h": "Leadership", "entries": [
+          {"title": "Senior Prefect (Head Girl)", "org": "Government Girls' Secondary School", "place": "", "dates": "2025 - 2026", "bullets": ["Led a 24-member prefect council for 1,600 students; introduced a student complaints box that resolved 70+ issues in one term."]},
+          {"title": "Founder, Science Club", "org": "Same school", "place": "", "dates": "2024 - 2026", "bullets": ["Grew membership from 12 to 85; ran a weekend lab-safety programme with 3 teachers."]}
+        ], "note": "Mastercard Foundation looks for leadership potential and UBC for responsibilities within activities. Each entry gives scale and an outcome."},
+        {"h": "Community Service", "entries": [
+          {"title": "Volunteer Tutor", "org": "Community learning centre", "place": "Port Harcourt", "dates": "2023 - Present", "bullets": ["Tutor 15 JSS students in mathematics each Saturday; 12 passed their BECE mathematics paper with credit or above."]},
+          {"title": "Clean-up Coordinator", "org": "Neighbourhood youth group", "place": "", "dates": "2025", "bullets": ["Organised 4 drainage clean-ups with 40 volunteers before the rainy season."]}
+        ], "note": "Service with numbers supports the Mastercard 'give back' ethos. UBC may contact referees to verify activities, so keep figures accurate."},
+        {"h": "Competitions and Awards", "entries": [
+          {"title": "State finalist (3rd place), national secondary-school mathematics olympiad", "org": "", "place": "", "dates": "2025", "bullets": []},
+          {"title": "JETS (Junior Engineers, Technicians and Scientists) state exhibition, 1st place: low-cost water filter project", "org": "", "place": "", "dates": "2024", "bullets": []}
+        ], "note": "Competitions show talent beyond grades. The water-filter project ties to the engineering course choice."},
+        {"h": "Work and Family Responsibilities", "entries": [
+          {"title": "Shop Assistant, family provisions shop", "org": "", "place": "Port Harcourt", "dates": "2022 - 2026 (weekends)", "bullets": ["Kept daily sales records in a notebook and later Excel; helped cut stock losses by restocking weekly instead of monthly.", "Cared for two younger siblings after school while parents worked."]}
+        ], "note": "UBC explicitly counts family responsibilities and employment as activities. For need-based awards this context explains limited time for clubs."},
+        {"h": "Skills and Interests", "entries": [{"title": "", "org": "", "place": "", "dates": "", "bullets": ["Excel (formulas, charts), basic Python (online course, 2025), Scratch", "Languages: English (fluent), Igbo (native)", "Interests: debate (school team, 2 inter-school trophies), sketching building designs"]}], "note": "Specific interests with evidence (trophies) rather than 'reading and travelling'. One page in total; don't pad at this stage."}
+      ]
+    }
+  ],
+  "rewrites": [
+    {"weak": "Responsible for supervising site workers.", "strong": "Supervised 14 site workers across 3 borehole projects, completing all handovers 2 weeks ahead of schedule.", "why": "Replaces a duty statement with an action verb, scale and a time-based result."},
+    {"weak": "Helped with data analysis for the health board.", "strong": "Automated monthly reports for 255 health facilities in Python, cutting preparation time from 5 days to 4 hours.", "why": "'Helped' hides your role. Naming the tool, the scope and a before-and-after result proves impact."},
+    {"weak": "Member of the Students' Association.", "strong": "As Welfare Secretary, negotiated a 20% hostel-fee instalment plan adopted for 1,200 students.", "why": "Membership alone shows nothing. A named role and an outcome show leadership."},
+    {"weak": "Did my NYSC at the Ministry of Works.", "strong": "Graduate Engineer (NYSC), Ministry of Works: inspected 12 road culverts and produced a repair priority list used in the 2024 budget.", "why": "Frames national service as real professional work with a deliverable someone used."},
+    {"weak": "Organised events for the society.", "strong": "Organised 4 technical seminars averaging 120 attendees and secured N450,000 in sponsorship.", "why": "Numbers show reach and resourcefulness. Sponsorship shows networking (a Chevening criterion)."},
+    {"weak": "Taught students in a secondary school.", "strong": "Taught physics to 3 SS2 classes (140 students); class pass rate in the WAEC mock rose from 54% to 79%.", "why": "Teaching becomes an outcome: a measurable change in learners' results."},
+    {"weak": "Good communication and teamwork skills.", "strong": "Presented water-quality findings to a 9-member state board, securing chlorination at 3 more sites.", "why": "Shows communication through evidence instead of a self-claim, which panels discount."},
+    {"weak": "Worked on a research project about malaria.", "strong": "Built a gradient-boosting model predicting district malaria incidence (R^2 = 0.81) from rainfall and clinic data.", "why": "Names the method and reports a result, which signals research ability for academic panels."},
+    {"weak": "Volunteered at an NGO.", "strong": "Recruited 22 volunteers and raised N3.1m to repair 9 hand pumps, restoring water access for about 4,000 people.", "why": "Shows initiative, resource mobilisation and community impact, the core of Commonwealth and Mastercard criteria."},
+    {"weak": "Assisted in writing a grant proposal.", "strong": "Drafted the methods section of a USD 180,000 grant proposal, funded in 2025.", "why": "Specifies your contribution, the amount and the successful outcome without overclaiming leadership."}
+  ],
+  "verbs": [
+    "Led", "Directed", "Coordinated", "Supervised", "Mentored", "Trained", "Founded", "Launched", "Initiated", "Established",
+    "Designed", "Engineered", "Built", "Developed", "Programmed", "Automated", "Modelled", "Prototyped", "Installed", "Commissioned",
+    "Analysed", "Evaluated", "Assessed", "Surveyed", "Measured", "Tested", "Investigated", "Mapped", "Quantified", "Validated",
+    "Increased", "Reduced", "Cut", "Improved", "Accelerated", "Streamlined", "Saved", "Expanded", "Doubled", "Restored",
+    "Negotiated", "Secured", "Raised", "Won", "Persuaded", "Partnered", "Advocated", "Mobilised", "Recruited", "Facilitated",
+    "Presented", "Published", "Authored", "Drafted", "Reported", "Taught", "Tutored", "Organised", "Delivered", "Implemented"
+  ],
+  "metric_patterns": [
+    "[Verb] [what] for [N people/sites/units], resulting in [X% / from A to B]",
+    "[Verb] [N]-member team / [N] volunteers to [deliver outcome] by [date or ahead of schedule]",
+    "Managed budget of [currency amount]; delivered [outcome] [on/under] budget",
+    "Selected as 1 of [N] from [M] applicants / ranked [k] of [N]",
+    "Cut [time/cost/error rate] from [A] to [B] by [method]",
+    "[Verb] [deliverable] adopted/used by [named stakeholder] for [purpose]"
+  ]
+}
