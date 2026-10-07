@@ -113,7 +113,7 @@ def refresh_feed():
             root = ET.fromstring(body)
             entries = root.findall(".//item") or root.findall(".//{http://www.w3.org/2005/Atom}entry")
             n = 0
-            for e in entries[:40]:
+            for e in entries[:(8 if "EACEA" in name else 40)]:
                 g = lambda tag: (e.findtext(tag) or e.findtext("{http://www.w3.org/2005/Atom}" + tag) or "")
                 title = clean(g("title"), 180)
                 link = g("link").strip()
@@ -166,8 +166,14 @@ def page_text(body):
     t = re.sub(r"(?is)<[^>]+>", " ", t); t = html.unescape(t)
     return re.sub(r"\s+", " ", t).strip()
 
+MONTHS = "january|february|march|april|may|june|july|august|september|october|november|december"
+UPCOMING = re.compile(r"(applications?|portal|call)[^.]{0,40}\b(will (re)?open|opens? (on|in|from)|open(s)? (on )?\d{1,2} (" + MONTHS + r")|open(s)? (in|from) (" + MONTHS + r"))", re.I)
+
 def signal(text):
     low = text.lower(); score = 0; ev = ""
+    up = UPCOMING.search(text)
+    if up:  # "applications open on 9 March 2027" describes a future round, not an open one
+        score -= 3; ev = text[max(0, up.start() - 60): up.end() + 100]
     for p in OPEN:
         for m in re.finditer(re.escape(p), low):
             win = low[max(0, m.start() - 160): m.end() + 160]
