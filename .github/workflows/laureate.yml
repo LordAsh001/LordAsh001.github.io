@@ -1,0 +1,40 @@
+# Keeps Laureate Lab fresh without anyone typing anything:
+#   - "Just announced" scholarship posts from public RSS feeds and official funder news
+#   - a polite daily check of each scholarship's official page (flags changes and openings)
+#   - recent YouTube videos per scholarship, once a week (uses the YT_API_KEY secret)
+# Runs every morning, and on demand from the Actions tab ("Run workflow").
+# To watch a different official page, edit laureate/watchlist.json.
+name: Refresh Laureate Lab
+
+on:
+  schedule:
+    - cron: "29 5 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Fetch feeds, check official pages, refresh videos
+        env:
+          YT_API_KEY: ${{ secrets.YT_API_KEY }}
+        run: python3 .github/scripts/laureate_refresh.py
+
+      - name: Commit if anything changed
+        run: |
+          if [ -z "$(git status --porcelain laureate/live.json laureate/watch.json laureate/videos.json)" ]; then
+            echo "Nothing to commit."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add laureate/live.json laureate/watch.json laureate/videos.json
+          git commit -m "Refresh Laureate Lab openings, page checks and videos"
+          git pull --rebase
+          git push
