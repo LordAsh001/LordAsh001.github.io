@@ -1,6 +1,60 @@
 {
  "updated": "2026-10-07",
- "sources": [],
+ "sources": [
+  {
+   "source": "Opportunities for Africans",
+   "ok": true,
+   "items": 10
+  },
+  {
+   "source": "Opportunity Desk",
+   "ok": true,
+   "items": 3
+  },
+  {
+   "source": "Opportunities Corners",
+   "ok": true,
+   "items": 6
+  },
+  {
+   "source": "Scholarship Region",
+   "ok": true,
+   "items": 7
+  },
+  {
+   "source": "Opportunities for Youth",
+   "ok": false,
+   "error": "HTTP Error 403: Forbidden"
+  },
+  {
+   "source": "Commonwealth Scholarship Commission",
+   "ok": true,
+   "items": 2
+  },
+  {
+   "source": "Erasmus Mundus catalogue (EACEA)",
+   "ok": true,
+   "items": 30
+  },
+  {
+   "source": "Schwarzman Scholars",
+   "ok": true,
+   "items": 3
+  },
+  {
+   "source": "Federal Ministry of Education, Nigeria",
+   "ok": true,
+   "items": 0
+  },
+  {
+   "source": "GOV.UK",
+   "ok": true
+  },
+  {
+   "source": "GOV.UK",
+   "ok": true
+  }
+ ],
  "items": [
   {
    "title": "Government of Alberta Graduate Excellence Scholarship (AGES) in Canada 2027 | How To Apply",
@@ -65,6 +119,66 @@
    "seen": "2026-10-07"
   },
   {
+   "title": "Stanford University Center for International Security and Cooperation Fellowship 2027-2028",
+   "link": "https://opportunitydesk.org/2026/10/07/stanford-cisac-fellowship-2027-2028/",
+   "date": "2026-10-07",
+   "source": "Opportunity Desk",
+   "official": false,
+   "ids": [],
+   "summary": "Deadline: December 2, 2026 Applications are open for the Stanford CISAC Fellowship 2027-2028. The Center for International Security and Cooperation (CISAC) at Stanford University serves as a forum fo…",
+   "seen": "2026-10-07"
+  },
+  {
+   "title": "Study in the USA: How to Find Scholarships and Turn Your American Dream into an Admission Offer",
+   "link": "https://opportunitydesk.org/2026/10/07/study-in-the-usa-how-to-find-scholarships-and-turn-your-american-dream-into-an-admission-offer/",
+   "date": "2026-10-07",
+   "source": "Opportunity Desk",
+   "official": false,
+   "ids": [],
+   "summary": "For many students, studying in the United States begins with a dream: learning in a new environment, gaining an internationally recognised qualification, and building connections that could shape the…",
+   "seen": "2026-10-07"
+  },
+  {
+   "title": "United Nations University Youth Summit 2026 in Malaysia (Fully Funded)",
+   "link": "https://opportunitiescorners.com/united-nations-university-youth-summit-2026-in-malaysia/",
+   "date": "2026-10-07",
+   "source": "Opportunities Corners",
+   "official": false,
+   "ids": [],
+   "summary": "Applications are open for the United Nations University Youth Summit 2026 in Malaysia, an international youth leadership and sustainability event taking place in Kuala Lumpur, Malaysia, from 19–22 No…",
+   "seen": "2026-10-07"
+  },
+  {
+   "title": "Leadership and Peace Summit Morocco 2027 (Fully Funded)",
+   "link": "https://opportunitiescorners.com/leadership-and-peace-summit-morocco-2027/",
+   "date": "2026-10-07",
+   "source": "Opportunities Corners",
+   "official": false,
+   "ids": [],
+   "summary": "Applications are open for the Leadership & Peace Summit Morocco 2027, an international summit bringing together emerging leaders, young professionals, students, changemakers, and peace advocates from…",
+   "seen": "2026-10-07"
+  },
+  {
+   "title": "Harvard Aspire Leaders Program 2026 (Fully Funded)",
+   "link": "https://opportunitiescorners.com/harvard-aspire-leaders-program/",
+   "date": "2026-10-07",
+   "source": "Opportunities Corners",
+   "official": false,
+   "ids": [],
+   "summary": "Applications are now open for the Harvard Aspire Leaders Program 2026, a 100% free global leadership development program for university students and recent graduates. The program features a 10-minute…",
+   "seen": "2026-10-07"
+  },
+  {
+   "title": "Silicon Valley Fellowship Program in USA 2026 | Fully Funded",
+   "link": "https://www.scholarshipregion.com/silicon-valley-fellowship/",
+   "date": "2026-10-07",
+   "source": "Scholarship Region",
+   "official": false,
+   "ids": [],
+   "summary": "The applications are now open for the Silicon Valley Fellowship 2026 in San Francisco, USA. Become a Silicon Valley insider in one week. The Silicon Valley Fellowship 2026 offers an immersive one-wee…",
+   "seen": "2026-10-07"
+  },
+  {
    "title": "The University of Global Health Equity (UGHE) Mastercard Foundation Scholars Program 2027 for African healthcare professionals (Fully Funded)",
    "link": "https://www.opportunitiesforafricans.com/the-university-of-global-health-equity-ughe-mastercard-foundation-scholars-program-2027/",
    "date": "2026-10-06",
@@ -77,6 +191,48 @@
    "seen": "2026-10-07"
   },
   {
+   "title": "Ernest May Fellowship in History and Policy 2027-2028 (stipend available)",
+   "link": "https://opportunitydesk.org/2026/10/06/ernest-may-fellowship-in-history-and-policy-2027-2028/",
+   "date": "2026-10-06",
+   "source": "Opportunity Desk",
+   "official": false,
+   "ids": [],
+   "summary": "Deadline: December 1, 2026 Applications for the Ernest May Fellowship in History and Policy 2027-2028 are now open. The Ernest May Fellowships honor Ernest May, Charles Warren Professor of American H…",
+   "seen": "2026-10-07"
+  },
+  {
+   "title": "Erasmus Mundus MESPOM Scholarship 2027/29 (Fully Funded)",
+   "link": "https://opportunitiescorners.com/erasmus-mundus-mespom-scholarship-2027/",
+   "date": "2026-10-06",
+   "source": "Opportunities Corners",
+   "official": false,
+   "ids": [
+    "erasmus"
+   ],
+   "summary": "Applications are now open for the Erasmus Mundus MESPOM Scholarship Program for the academic year 2027/29. MESPOM is an Erasmus Mundus Joint Master’s Degree program at four universities: Central Euro…",
+   "seen": "2026-10-07"
+  },
+  {
+   "title": "Global Youth Impact Summit Paris 2027 (Fully Funded)",
+   "link": "https://opportunitiescorners.com/global-youth-impact-summit-paris/",
+   "date": "2026-10-05",
+   "source": "Opportunities Corners",
+   "official": false,
+   "ids": [],
+   "summary": "Applications are open for the Global Youth Impact Summit Paris 2027, taking place in Paris, France, from 25–28 March 2027. The summit is a four-day international youth gathering focused on the UN Sus…",
+   "seen": "2026-10-07"
+  },
+  {
+   "title": "EPFL Life Sciences Summer Research Program 2027 in Switzerland (Fully Funded)",
+   "link": "https://opportunitiescorners.com/epfl-life-sciences-summer-research-program-2027/",
+   "date": "2026-10-05",
+   "source": "Opportunities Corners",
+   "official": false,
+   "ids": [],
+   "summary": "The applications are now open for the EPFL Life Sciences Summer Research Program 2027 in Lausanne, Switzerland. It is one of the best fully funded Summer internships in Switzerland. This program is o…",
+   "seen": "2026-10-07"
+  },
+  {
    "title": "The University of Rwanda Mastercard Foundation Undergraduate Scholars Program 2026/2027 for young Africans (Fully Funded)",
    "link": "https://www.opportunitiesforafricans.com/the-university-of-rwanda-mastercard-foundation-undergraduate-scholars-program-2026-2027/",
    "date": "2026-09-30",
@@ -86,6 +242,16 @@
     "mastercard"
    ],
    "summary": "",
+   "seen": "2026-10-07"
+  },
+  {
+   "title": "The Bank of Namibia Undergraduate Bursary 2027 for Namibian/SADC Students.",
+   "link": "https://www.opportunitiesforafricans.com/the-bank-of-namibia-undergraduate-bursary-2027-for-namibian-sadc-students/",
+   "date": "2026-09-30",
+   "source": "Opportunities for Africans",
+   "official": false,
+   "ids": [],
+   "summary": "Application Deadline: October 30, 2026 Applications are now open for the 2027 Bank of Namibia Undergraduate Bursary. As part of its commitment to capacity development and corporate social responsibil…",
    "seen": "2026-10-07"
   },
   {
@@ -121,6 +287,16 @@
    "official": false,
    "ids": [],
    "summary": "",
+   "seen": "2026-10-07"
+  },
+  {
+   "title": "The Government of Japan Exchange and Teaching Programme 2027 for young Leaders (Fully Funded to Japan)",
+   "link": "https://www.opportunitiesforafricans.com/the-government-of-japan-exchange-and-teaching-programme-2027/",
+   "date": "2026-09-11",
+   "source": "Opportunities for Africans",
+   "official": false,
+   "ids": [],
+   "summary": "Application Deadline: 16 October 2026 Applications are now open for the 2027 Government of Japan Exchange and Teaching Programme. The Japan Exchange and Teaching (JET) Programme is administered throu…",
    "seen": "2026-10-07"
   },
   {
@@ -170,6 +346,55 @@
    "seen": "2026-10-07"
   },
   {
+   "title": "UK names Canadian winners of prestigious Chevening Scholarship",
+   "link": "https://www.gov.uk/government/news/uk-names-canadian-winners-of-prestigious-chevening-scholarship",
+   "date": "2026-08-31",
+   "source": "GOV.UK",
+   "official": true,
+   "ids": [
+    "chevening"
+   ],
+   "summary": "The 2026 awards to provide four Canadians with fully-funded postgraduate study in the United Kingdom and access to Chevening's international leadership network.",
+   "seen": "2026-10-07"
+  },
+  {
+   "title": "20 Malaysian scholars awarded prestigious UK Chevening scholarships",
+   "link": "https://www.gov.uk/government/news/20-malaysian-scholars-awarded-prestigious-uk-chevening-scholarships",
+   "date": "2026-08-21",
+   "source": "GOV.UK",
+   "official": true,
+   "ids": [
+    "chevening"
+   ],
+   "summary": "The British High Commission hosted a pre-departure reception for 20 Malaysian scholars who will be heading to the UK to pursue their postgraduate studies under the prestigious Chevening scholarship.",
+   "seen": "2026-10-07"
+  },
+  {
+   "title": "Commonwealth Scholars from Small Island Developing States selected for 2026/27 Master’s Scholarships",
+   "link": "https://cscuk.fcdo.gov.uk/commonwealth-scholars-from-small-island-developing-states-selected-for-2026-27-masters-scholarships/",
+   "date": "2026-08-18",
+   "source": "Commonwealth Scholarship Commission",
+   "official": true,
+   "ids": [
+    "csc-masters"
+   ],
+   "summary": "The post Commonwealth Scholars from Small Island Developing States selected for 2026/27 Master’s Scholarships appeared first on Commonwealth Scholarship Commission in the UK .",
+   "seen": "2026-10-07"
+  },
+  {
+   "title": "33 Pakistani scholars prepare for UK study through Chevening and Commonwealth scholarships",
+   "link": "https://www.gov.uk/government/news/33-pakistani-scholars-prepare-for-uk-study-through-chevening-and-commonwealth-scholarships",
+   "date": "2026-08-13",
+   "source": "GOV.UK",
+   "official": true,
+   "ids": [
+    "chevening",
+    "csc-masters"
+   ],
+   "summary": "Scholars from across Pakistan will shortly travel to the UK on fully funded Chevening and Commonwealth scholarships to study at leading British universities.",
+   "seen": "2026-10-07"
+  },
+  {
    "title": "Applications now open for UK government's 2027-28 Chevening Scholarships",
    "link": "https://www.gov.uk/government/news/applications-now-open-for-uk-governments-2027-28-chevening-scholarships",
    "date": "2026-08-10",
@@ -179,6 +404,18 @@
     "chevening"
    ],
    "summary": "",
+   "seen": "2026-10-07"
+  },
+  {
+   "title": "Applications open for 2027 to 2028 Chevening Scholarships to study in the UK",
+   "link": "https://www.gov.uk/government/news/applications-open-for-2027-to-2028-chevening-scholarships-to-study-in-the-uk",
+   "date": "2026-08-04",
+   "source": "GOV.UK",
+   "official": true,
+   "ids": [
+    "chevening"
+   ],
+   "summary": "Indian students can apply for the UK government’s flagship international scholarships programme from 4 August to 6 October 2026.",
    "seen": "2026-10-07"
   }
  ]
