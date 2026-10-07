@@ -559,7 +559,7 @@
         },
         {
           "name": "Laureate Lab",
-          "text": "Prepare for scholarships by doing: a live atlas of global and Nigerian awards with deadline countdowns, an Essay Dojo that colour-codes every sentence as you write, interview practice and planning tools.",
+          "text": "Apply for a scholarship with a guide at your side: step-by-step walkthroughs for 44 global and Nigerian awards, from checking you qualify to the interview, each with dated steps, official links and videos. Plus a live deadline atlas, an Essay Dojo that colour-codes every sentence, and interview practice.",
           "link_label": "Open tool",
           "sdgs": [
             4,
@@ -572,8 +572,17 @@
             "Students"
           ],
           "level": "All levels",
-          "numbers": [],
-          "classroom": ""
+          "numbers": [
+            {
+              "value": "44",
+              "label": "step-by-step scholarship guides"
+            },
+            {
+              "value": "159",
+              "label": "checked how-to videos"
+            }
+          ],
+          "classroom": "walk a class through one scholarship guide before an application clinic."
         },
         {
           "name": "Citadel",
