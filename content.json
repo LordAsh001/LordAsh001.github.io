@@ -559,7 +559,7 @@
         },
         {
           "name": "Laureate Lab",
-          "text": "Apply for a scholarship with a guide at your side: step-by-step walkthroughs for 44 global and Nigerian awards, from checking you qualify to the interview, each with dated steps, official links and videos. Plus a live deadline atlas, an Essay Dojo that colour-codes every sentence, and interview practice.",
+          "text": "Apply for a scholarship with a guide at your side: step-by-step walkthroughs for 44 global and Nigerian awards, from checking you qualify to the interview, with dated plans, official links and videos. Learn from analysed winning essays in the Essay Dojo, build a competitive CV in CV Studio, and see new openings collected automatically every morning.",
           "link_label": "Open tool",
           "sdgs": [
             4,
@@ -578,8 +578,12 @@
               "label": "step-by-step scholarship guides"
             },
             {
-              "value": "159",
+              "value": "270",
               "label": "checked how-to videos"
+            },
+            {
+              "value": "28",
+              "label": "winning essays analysed"
             }
           ],
           "classroom": "walk a class through one scholarship guide before an application clinic."
