@@ -262,3 +262,40 @@ window.LL_FIELDS = ["Engineering & technology", "Natural sciences", "Health & me
   const models = ["In 2023 I installed solar dryers for 12 women farmers in Makurdi, cutting diesel use by 40%.", "As president of the NSE student chapter, I led 35 volunteers to run a STEM fair for 600 pupils.", "Cranfield's MSc Energy Systems teaches the grid-modelling skills my Kaduna mini-grid projects lack.", "The pilot cut tomato losses from 30% to 9% and added ₦2.1m to 40 farmers' income in one season.", "Within two years of returning I will lead the off-grid unit at the Rural Electrification Agency in Abuja."];
   window.LL_REWRITES.forEach((r, i) => (r.model = models[i]));
 })();
+
+/* ---------- v3 corrections (7 Oct 2026): checked against official pages while writing the step-by-step guides ---------- */
+(function () {
+  const by = {}; window.LL_SCHOLARSHIPS.forEach((s) => (by[s.id] = s));
+  const P = (id, o) => { if (by[id]) Object.assign(by[id], o); };
+  window.LL_CHECKED = "2026-10-07";
+  P("chevening", { window: "2027/28 round closed 6 Oct 2026 · next round usually opens early Aug 2027" });
+  P("knight", { window: "2027 cohort closed 6 Oct 2026 · 2028 cohort opens summer 2027" });
+  P("csc-masters", { elig: "First degree at 2:1 or above; Commonwealth citizen of an eligible country; apply via your national nominating body (Nigeria: Federal Scholarship Board) and the CSC portal" });
+  P("csc-phd", { conf: "confirmed", window: "Closes 20 Oct 2026, 16:00 UK time — national nominator deadline may be earlier", elig: "Citizen of one of 17 eligible countries (Nigeria included); 2:1, or 2:2 plus a relevant master's; research proposal with UK supervisor statement" });
+  P("fulbright", { levels: ["PhD"], deadline: "2027-06-01", window: "Call usually posted ~March; closes ~1 June 2027", elig: "PhD students already enrolled at a Nigerian university; non-degree visiting-researcher stay in the U.S.; TOEFL 90+", funding: "Stipend, airfare, health cover for a research stay" });
+  P("aauw", { deadline: "2026-09-17", conf: "confirmed", window: "2027–28 round ran 17 Aug – 17 Sep 2026 (closed) · next round expected Aug–Sep 2027", funding: "US$20,000 (master's) or US$25,000 (doctorate)", elig: "Women who are not U.S. citizens, studying STEM, GPA 3.5/4.0+, already admitted to a U.S. programme" });
+  P("mext", { deadline: "2027-06-08", window: "Nigeria: hard-copy application to the Embassy of Japan, Abuja · 2027 call closed 8 Jun 2026 · expect May–Jun 2027", elig: "Apply via the Embassy of Japan in Nigeria; age limits apply (research students: born on or after 2 Apr 1992 in the last round)" });
+  P("jjwbgsp", { deadline: "2027-02-26", conf: "confirmed", window: "Window 1: 18 Jan – 26 Feb 2027 · Window 2: 29 Mar – 21 May 2027 (noon EST)", elig: "3+ years' development-related work after first degree; unconditional admission to an eligible programme when you apply" });
+  P("mandela-rhodes", { deadline: "2026-04-14", window: "2027 round closed 14 Apr 2026 · 2028 round opens 9 Mar 2027" });
+  P("eth", { deadline: "2026-11-30", conf: "confirmed", window: "1–30 Nov 2026 with your master's application (closes 11:59 CET — submit by 28 Nov)", funding: "CHF 13,500/semester + tuition waiver" });
+  P("radboud", { funding: "Tuition reduced to about €2,771 (to be confirmed); living costs not covered", window: "31 Jan 2027 · file complete (incl. English test) by 14 Feb 2027" });
+  P("eiffel", { funding: "€1,200/month (master's), €2,100 (PhD), travel, insurance", elig: "Apply through a French host institution; master's applicants 29 or younger, PhD 35 or younger" });
+  P("ubc-isp", { window: "15 Nov 2026 for international applicants" });
+  P("fsb-bea", { conf: "closed", deadline: null, window: "No 2026/27 or 2027/28 round — new BEA awards suspended in May 2025 for five years", url: "https://education.gov.ng/federal-scholarships-board/" });
+  P("ptdf", { elig: "Nigerian; oil & gas-relevant fields; 2:1 (or 2:2 with industry experience) for MSc, 2:2 + good MSc for PhD; NYSC; zonal interview if shortlisted" });
+  P("nlng", { window: "Once a year, recently mid-Nov to mid-Dec · online proctored test", elig: "First-year students at federal or state universities; 5 O'Level credits in one sitting; UTME 200+; age 18–25", url: "https://www.nigerialng.com/csr/Pages/Scholarships.aspx" });
+  P("total", { url: "https://csr-ngscholarship.totalenergies.com/", window: "Master's in France: usually closes ~31 Jan · Undergraduate (NMSS): mid-year" });
+  P("agbami", { window: "No round confirmed since 2021/22 — watch for an official advert", url: "https://www.chevron.com/worldwide/nigeria" });
+  P("nddc", { levels: ["Masters"], window: "2026/27 round ran 23 Mar – 19 Apr 2026, then CBT + interview · expect ~Mar–Apr 2027", elig: "Indigenes of the nine Niger Delta states; First or 2:1; under 40; NYSC; overseas admission letter", url: "https://www.nddc.gov.ng/" });
+  P("tetfund", { elig: "Academic staff of TETFund-beneficiary public institutions; study at Nigerian universities (foreign awards suspended since 1 Jan 2025); bonded to return" });
+  P("nelfund", { elig: "Nigerian students in public tertiary institutions and approved vocational schools", funding: "Interest-free loan for fees, plus upkeep, repaid after NYSC/employment" });
+  P("nbplc", { window: "No open public application found for 2025–27", elig: "Awards so far by recognition, not open application — prepare alternatives", url: "https://www.nbplc.com/tag/education/" });
+  P("ovia", { essays: [], window: "Form opens for only a few days between Oct and Dec (26–28 Nov in 2025)", url: "https://jimoviafoundation.org/faq/" });
+  P("shell", { elig: "200-level students in public universities; CGPA 3.5+; computer-based test (NNPC/SNEPCo award)", url: "https://www.shell.com.ng/sustainability/communities/education-programmes.html" });
+  P("seplat", { url: "https://www.seplatenergy.com/news-insights/news/nnpcseplat-jv-national-undergraduate-scholarship/", window: "Short annual window (23 Feb – 13 Mar in 2026) · aptitude test" });
+  P("mtn", { url: "https://www.mtn.ng/scholarships/", window: "Annual, about April–May (2026 round closed 31 May)" });
+  P("delft", { funding: "Full tuition + contribution to living expenses", elig: "Excellent non-EU MSc applicant; 35 or younger on 1 Sep; Nigeria: 5-year bachelor's with First or 2:1" });
+  P("kth", { window: "Scholarship form 1 Dec 2026 – 15 Jan 2027 · results 1 Apr 2027", conf: "confirmed" });
+  /* the guided step-by-step walkthroughs live in /laureate/guides/<id>.json and load on demand */
+  window.LL_GUIDED = window.LL_SCHOLARSHIPS.map((s) => s.id);
+})();

@@ -26,6 +26,7 @@ const STAMPS = [
   ["green", "Green essay", "Score 75+ on any essay"],
   ["moves", "Full structure", "Cover every move of one essay type"],
   ["guided", "Guided build", "Finish a guided build"],
+  ["coach", "Hand-held", "Finish every step of a step-by-step scholarship guide"],
   ["cliche", "Cliché slayer", "Score 80% in Cliché Buster"],
   ["architect", "Architect", "Solve Structure Sort"],
   ["rewriter", "Rewriter", "Clear all 5 Rewrite Arena rounds"],
@@ -93,7 +94,7 @@ function reqHTML(s) {
   const got = s.req.items.filter((x, i) => st.reqs[s.id + "|" + i]).length;
   return `<details class="req"><summary>What to prepare · <span class="mono" data-reqcount="${s.id}">${got}/${s.req.items.length}</span> ready</summary>
     <div class="list-check">${s.req.items.map((x, i) => `<label><input type="checkbox" data-rq="${s.id}|${i}" ${st.reqs[s.id + "|" + i] ? "checked" : ""}> ${esc(x)}</label>`).join("")}</div>
-    <p class="small muted" style="margin-top:6px">${s.req.src === "official" ? "From the official page, checked 29 Sep 2026. Rules change each cycle — confirm before you apply." : "Typical for this award — confirm the exact rules on the official page."}</p></details>`;
+    <p class="small muted" style="margin-top:6px">${s.req.src === "official" ? "From the official page, checked 29 Sep 2026 (and again on 7 Oct 2026 for the step-by-step guides). Rules change each cycle — confirm before you apply." : "Typical for this award — confirm the exact rules on the official page."}</p></details>`;
 }
 document.addEventListener("change", (e) => {
   const c = e.target.closest("[data-rq]"); if (!c) return;
@@ -111,7 +112,7 @@ function passCard(s, extra = "") {
     <dl class="kv"><dt>Host</dt><dd>${esc(s.host)}</dd><dt>Level</dt><dd>${s.levels.join(", ")}</dd><dt>Window</dt><dd>${esc(s.window)}</dd><dt>Covers</dt><dd>${esc(s.funding)}</dd><dt>Eligibility</dt><dd>${esc(s.elig)}</dd></dl>
     ${extra}
     ${reqHTML(s)}
-    <div class="row"><a class="btn sm" href="${esc(s.url)}" target="_blank" rel="noopener">Official page ↗</a>
+    <div class="row"><button type="button" class="btn sm primary" data-gstart="${s.id}">Guide me step by step</button><a class="btn sm" href="${esc(s.url)}" target="_blank" rel="noopener">Official page ↗</a>
     ${tbtn(s.id)}
     ${s.essays && s.essays.length ? `<button class="btn sm" data-essay="${s.essays[0]}">Practise ${esc(ESSAYS[s.essays[0]].name.toLowerCase())}</button>` : ""}</div>
   </div><div class="pass-stub">${stub}</div></article>`;
@@ -623,11 +624,228 @@ fetch("stories.json", { cache: "no-cache" }).then((r) => (r.ok ? r.json() : { st
   renderStories();
 });
 
+/* ---------------- step-by-step guide (hand-holding mode) ---------------- */
+st.guide = Object.assign({ cur: null, step: {}, done: {}, acts: {}, checks: {}, elig: {}, started: {} }, st.guide || {});
+const G = { cache: {}, data: null, s: null, i: 0 };
+const PHASES = ["Decide", "Prepare", "Documents", "Write", "References", "Apply", "After you apply"];
+const okURL = (u) => /^https?:\/\//i.test(String(u || "")) ? String(u) : "";
+const ytEmbed = (u) => {
+  u = String(u || "");
+  const v = /[?&]v=([\w-]{11})/.exec(u) || /youtu\.be\/([\w-]{11})/.exec(u) || /\/shorts\/([\w-]{11})/.exec(u);
+  const l = /[?&]list=([\w-]+)/.exec(u);
+  if (v) return "https://www.youtube-nocookie.com/embed/" + v[1] + "?autoplay=1&rel=0" + (l ? "&list=" + l[1] : "");
+  if (l) return "https://www.youtube-nocookie.com/embed/videoseries?list=" + l[1] + "&autoplay=1&rel=0";
+  return "";
+};
+function gStatus(s) {
+  /* where the applicant stands: apply now, or prepare for the next round with projected dates */
+  const k = status(s).k;
+  if (!s.deadline || s.conf === "closed" && !s.deadline) return { mode: "nodate", dl: null, proj: false };
+  let d = parseD(s.deadline), proj = false;
+  if (k === "closed" || daysTo(s.deadline) < 0) { while (d < TODAY) d.setFullYear(d.getFullYear() + 1); proj = true; }
+  return { mode: proj ? "next" : "now", dl: d, proj };
+}
+function gDue(step, gs) {
+  if (!gs.dl || step.due === null || step.due === undefined || step.due === "" || isNaN(+step.due)) return null;
+  let back = +step.due;
+  /* short on time? squeeze the plan so every step still fits between today and the deadline */
+  if (back > 0 && gs.mode === "now" && G.data) {
+    const left = Math.round((gs.dl - TODAY) / 864e5), max = Math.max(...G.data.steps.map((x) => (+x.due > 0 ? +x.due : 0)));
+    if (max > left - 1 && left > 1) back = Math.round(back * (left - 1) / max);
+  }
+  const d = new Date(gs.dl); d.setDate(d.getDate() - back); return d;
+}
+function gSqueezed(gs) { if (gs.mode !== "now" || !G.data) return false; const left = Math.round((gs.dl - TODAY) / 864e5); return Math.max(...G.data.steps.map((x) => (+x.due > 0 ? +x.due : 0))) > left - 1; }
+const gKey = (id, i) => id + "|" + i;
+function gStepDone(id, i) { return !!st.guide.done[gKey(id, i)]; }
+function gProgress(id, n) { let c = 0; for (let i = 0; i < n; i++) if (gStepDone(id, i)) c++; return c; }
+function gLoad(id) {
+  if (G.cache[id]) return Promise.resolve(G.cache[id]);
+  return fetch("guides/" + encodeURIComponent(id) + ".json", { cache: "no-cache" }).then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); }).then((d) => (G.cache[id] = d));
+}
+
+/* --- picker --- */
+let gWhen = "";
+function renderGuidePick() {
+  const q = $("#gQ").value.toLowerCase().trim(), lv = $("#gLevel").value;
+  const list = DATA.filter((s) => {
+    if (lv && !s.levels.includes(lv)) return false;
+    const gs = gStatus(s);
+    if (gWhen === "now" && gs.mode !== "now") return false;
+    if (gWhen === "next" && gs.mode === "now") return false;
+    if (q && !(s.name + " " + s.host + " " + s.tags.join(" ") + " " + s.levels.join(" ") + " " + (s.fields || []).join(" ")).toLowerCase().includes(q)) return false;
+    return true;
+  }).sort((a, b) => { const A = gStatus(a), B = gStatus(b); const w = (x) => (x.mode === "now" ? 0 : x.mode === "next" ? 1 : 2); return w(A) - w(B) || ((A.dl || 0) - (B.dl || 0)) || a.name.localeCompare(b.name); });
+  $("#gList").innerHTML = list.map((s) => {
+    const gs = gStatus(s), started = st.guide.started[s.id];
+    const when = gs.mode === "now" ? `<span class="pill p-open">Apply now · T-${daysTo(s.deadline)}</span>` : gs.mode === "next" ? `<span class="pill p-up">Prepare for next round</span>` : `<span class="pill p-up">Watch for the call</span>`;
+    return `<button type="button" class="gpick" data-gstart="${s.id}"><div class="gp-meta">${when}<span>${esc(s.levels.join(" · "))}</span></div><h3>${esc(s.name)}</h3><span class="small muted">${esc(s.host)} · ${esc(s.funding)}</span>${started ? `<span class="small" style="color:var(--good);font-weight:600">You've started this guide → continue</span>` : `<span class="small" style="color:var(--accent);font-weight:600">Start the step-by-step guide →</span>`}</button>`;
+  }).join("") || `<p class="muted">Nothing matches. Clear the search.</p>`;
+  const mine = Object.keys(st.guide.started).filter((id) => DATA.some((s) => s.id === id));
+  $("#gMine").innerHTML = mine.length ? `<div class="card gmine"><h3>Continue where you left off</h3><div class="row">${mine.map((id) => { const s = DATA.find((x) => x.id === id), n = st.guide.started[id].n || 0, c = gProgress(id, n); return `<button type="button" class="btn" data-gstart="${id}">${esc(s.name)} <span class="mono small muted">${c}/${n}</span></button>`; }).join("")}</div></div>` : "";
+}
+$("#gQ").addEventListener("input", renderGuidePick);
+$("#gLevel").addEventListener("input", renderGuidePick);
+$$("#gWhen button").forEach((b) => b.addEventListener("click", () => { gWhen = b.dataset.w; $$("#gWhen button").forEach((x) => x.setAttribute("aria-pressed", x === b)); renderGuidePick(); }));
+
+/* --- open a guide --- */
+function openGuide(id, stepIdx) {
+  const s = DATA.find((x) => x.id === id); if (!s) return;
+  go("guide", true);
+  $("#gPick").hidden = true; $("#gRun").hidden = false;
+  $("#gRun").innerHTML = `<div class="card"><p class="muted">Loading the guide for ${esc(s.name)}…</p></div>`;
+  gLoad(id).then((d) => {
+    G.data = d; G.s = s; st.guide.cur = id;
+    if (!st.guide.started[id]) { st.guide.started[id] = { on: dayKey(), n: d.steps.length }; T("guide-start/" + id, "Started guide: " + s.name); addXP(10, "started a step-by-step guide"); }
+    st.guide.started[id].n = d.steps.length;
+    G.i = stepIdx != null ? stepIdx : (st.guide.step[id] != null ? st.guide.step[id] : -1);
+    save(); renderGuide(); setHash();
+  }).catch(() => { $("#gRun").innerHTML = `<div class="card stack"><p>The guide couldn't load. Check your connection and try again.</p><div class="row"><button class="btn" data-gback>Back to the list</button><a class="btn" href="${esc(s.url)}" target="_blank" rel="noopener">Official page ↗</a></div></div>`; });
+}
+function closeGuide() { st.guide.cur = null; save(); $("#gRun").hidden = true; $("#gPick").hidden = false; renderGuidePick(); setHash(); window.scrollTo({ top: 0 }); }
+function setHash() { try { history.replaceState(null, "", "#guide" + (st.guide.cur && !$("#gRun").hidden ? "/" + st.guide.cur + (G.i >= 0 ? "/" + (G.i + 1) : "") : "")); } catch (e) {} }
+
+function renderGuide() {
+  const d = G.data, s = G.s, id = s.id, gs = gStatus(s), n = d.steps.length, c = gProgress(id, n);
+  const dl = gs.dl ? fmtD(gs.dl) : "", left = gs.dl ? Math.round((gs.dl - TODAY) / 864e5) : null;
+  const banner = gs.mode === "now"
+    ? (gSqueezed(gs) ? `<div class="g-banner ${left <= 14 ? "bad" : "warn"}"><b>${left} days left.</b> Winners usually start about ${Math.max(...d.steps.map((x) => (+x.due > 0 ? +x.due : 0)))} days out, so I've squeezed every step to fit the time you have. Work through them in order and don't skip the checks.</div>` : "")
+    : gs.mode === "next" ? `<div class="g-banner warn"><b>This round has closed.</b> Use this guide to get ready for the next one. Dates below are projected from this year's deadline (${esc(s.window)}). Check the official page when the new call opens.</div>`
+    : `<div class="g-banner warn"><b>No fixed deadline yet.</b> ${esc(s.window || "")} Do the early steps now so you can apply the moment the call opens.</div>`;
+  const plan = PHASES.concat(["Other"]).map((ph) => {
+    const items = d.steps.map((x, i) => [x, i]).filter(([x]) => (PHASES.includes(x.phase) ? x.phase : "Other") === ph);
+    if (!items.length) return "";
+    return `<li class="ph">${esc(ph)}</li>` + items.map(([x, i]) => {
+      const due = gDue(x, gs), done = gStepDone(id, i), late = !done && due && due < TODAY && gs.mode === "now";
+      return `<li class="${done ? "done" : ""} ${late ? "late" : ""}"><button type="button" data-gstep="${i}" ${G.i === i ? 'aria-current="step"' : ""}><span class="dot">${done ? "✓" : i + 1}</span><span>${esc(x.title)}<small>${due ? (late ? "Overdue · was " : gs.proj ? "Aim for " : "Finish by ") + fmtD(due) : x.due < 0 ? "After you apply" : "When it applies"}</small></span></button></li>`;
+    }).join("");
+  }).join("");
+  const vids = (d.videos || []).filter((v) => okURL(v.u));
+  $("#gRun").innerHTML = `
+  <div class="row" style="justify-content:space-between"><button type="button" class="btn sm" data-gback>← All scholarships</button><div class="g-tools"><button type="button" class="btn sm" id="gIcs">Add my plan to calendar</button><button type="button" class="btn sm" id="gPrint">Print / save as PDF</button>${tbtn(id)}<button type="button" class="btn sm" id="gShare">Copy link to this guide</button></div></div>
+  <div class="card g-head">
+    <div class="row" style="gap:6px"><span class="pill ${status(s).cls}">${status(s).label}</span>${confPill(s)}<span class="pill p-up">${esc(s.host)}</span></div>
+    <h2>${esc(s.name)}</h2>
+    <p>${esc(d.summary || "")}</p>
+    <div class="g-count">${gs.dl ? `<div><span class="eyebrow">${gs.proj ? "Next deadline (projected)" : "Deadline"}</span><div><b class="mono">${left}</b> <span class="muted">days · ${dl}</span></div></div>` : ""}<div style="flex:1;min-width:200px"><span class="eyebrow">Your progress</span><div class="row" style="gap:8px"><div class="gbar" style="flex:1"><i style="width:${(c / n) * 100}%"></i></div><span class="mono small">${c}/${n} steps</span></div></div></div>
+    ${banner}
+  </div>
+  <div class="g-wrap">
+    <aside class="g-side">
+      <div class="card" style="padding:12px"><button type="button" class="btn sm" data-gstep="-1" style="width:100%;justify-content:center;margin-bottom:6px" ${G.i === -1 ? 'aria-current="step"' : ""}>Start here: can you apply?</button><ol class="g-plan">${plan}</ol></div>
+      ${vids.length ? `<div class="card stack" style="padding:12px"><h3 style="font-size:1rem">Watch and learn</h3><div class="vids">${vids.map(vidHTML).join("")}</div></div>` : ""}
+    </aside>
+    <div class="card" id="gMain">${G.i === -1 ? eligHTML() : G.i >= n ? finishHTML() : stepHTML(G.i)}</div>
+  </div>
+  ${(d.faq || []).length ? `<div class="card g-faq"><h3>Questions first-time applicants ask</h3>${d.faq.map((f) => `<details><summary>${esc(f.q)}</summary><p>${esc(f.a)}</p></details>`).join("")}</div>` : ""}
+  <p class="small muted">Guide researched from the official ${esc(s.name)} pages and other sources on ${fmtD(parseD(d.checked || window.LL_CHECKED))}. Rules change every cycle: always confirm on the <a href="${esc(s.url)}" target="_blank" rel="noopener">official page</a>. Laureate Lab is free and not affiliated with any funder. ${(d.sources || []).length ? `<details style="display:inline"><summary style="display:inline;cursor:pointer;text-decoration:underline">Sources (${d.sources.length})</summary><span style="display:block;margin-top:6px">${d.sources.filter(okURL).map((u) => `<a href="${esc(u)}" target="_blank" rel="noopener" style="display:block;word-break:break-all">${esc(u)}</a>`).join("")}</span></details>` : ""}</p>`;
+}
+function vidHTML(v, j) {
+  const emb = v.kind !== "search" ? ytEmbed(v.u) : "";
+  const inner = `<span class="pl ${emb ? "" : "s"}"></span><span>${esc(v.t)}<small>${esc(v.by ? v.by + " · " : "")}${esc(v.why || (emb ? "" : "Opens YouTube search"))}</small></span>`;
+  return `<div class="vid">${emb ? `<button type="button" data-vid="${esc(emb)}" data-watch="${esc(okURL(v.u))}" aria-label="Play video: ${esc(v.t)}">${inner}</button>` : `<a href="${esc(okURL(v.u))}" target="_blank" rel="noopener">${inner}</a>`}</div>`;
+}
+function linksHTML(links) {
+  const L = (links || []).filter((l) => okURL(l.u));
+  if (!L.length) return "";
+  const lbl = { official: "Official", guide: "Guide", video: "Video", search: "YouTube" };
+  return `<div class="g-sec"><h4>Open these</h4><div class="g-links">${L.map((l) => {
+    const emb = l.kind === "video" ? ytEmbed(l.u) : "";
+    return emb ? `<div class="vid"><button type="button" data-vid="${esc(emb)}" data-watch="${esc(l.u)}"><span class="pl"></span><span>${esc(l.t)}<small>Plays here</small></span></button></div>`
+      : `<a href="${esc(l.u)}" target="_blank" rel="noopener"><span class="k ${esc(l.kind || "")}">${lbl[l.kind] || "Link"}</span><span>${esc(l.t)} ↗</span></a>`;
+  }).join("")}</div></div>`;
+}
+function eligHTML() {
+  const d = G.data, id = G.s.id, qs = d.eligibility || [];
+  const ans = (j) => st.guide.elig[gKey(id, j)];
+  const no = qs.some((q, j) => q.must && ans(j) === "no");
+  const all = qs.length && qs.every((q, j) => ans(j));
+  return `<div class="g-step">
+    <div class="g-step-top"><div><span class="eyebrow">Before you start</span><h3>Can you apply? Answer honestly.</h3></div></div>
+    <p class="g-why">Most rejected applications fail here, before anyone reads an essay. Answer each question. If you hit a "no", I'll tell you what to do instead.</p>
+    ${(d.lookfor || []).length ? `<div class="g-box g-tipbox"><h4 class="eyebrow">What the selectors look for</h4><ul>${d.lookfor.map((x) => `<li>${esc(x)}</li>`).join("")}</ul></div>` : ""}
+    ${d.cycle ? `<p class="small"><b>This cycle:</b> ${esc(d.cycle)}</p>` : ""}
+    <div class="g-elig">${qs.map((q, j) => { const a = ans(j); return `<div class="g-q"><span>${esc(q.q)}${q.must ? "" : ` <span class="small muted">(helps, not required)</span>`}</span><div class="seg" role="group" aria-label="Your answer">${["yes", "no", "unsure"].map((v) => `<button type="button" data-elig="${j}" data-a="${v}" aria-pressed="${a === v}">${v === "unsure" ? "Not sure" : v[0].toUpperCase() + v.slice(1)}</button>`).join("")}</div>${a === "no" && q.no ? `<div class="no-msg">${q.must ? "<b>This one is required.</b> " : ""}${esc(q.no)}</div>` : ""}${a === "unsure" ? `<div class="unsure-msg">Check this on the <a href="${esc(G.s.url)}" target="_blank" rel="noopener">official eligibility page</a> before you spend time on the application.${q.no ? " If it turns out to be no: " + esc(q.no) : ""}</div>` : ""}</div>`; }).join("")}</div>
+    ${no ? `<div class="g-banner bad"><b>You don't meet a required condition yet.</b> Read the advice above. You can still read the steps to learn how this award works, or <button type="button" class="btn sm" data-gback>pick another scholarship</button>.</div>` : all ? `<div class="g-banner good"><b>Good, you can apply.</b> Next I'll take you through every step in order. Each one shows when to finish it.</div>` : ""}
+    <div class="g-nav"><span></span><button type="button" class="btn primary" data-gstep="0">${no ? "Show me the steps anyway" : "Start step 1"} →</button></div>
+  </div>`;
+}
+function stepHTML(i) {
+  const d = G.data, s = G.s, id = s.id, x = d.steps[i], n = d.steps.length, gs = gStatus(s), due = gDue(x, gs);
+  const late = due && due < TODAY && gs.mode === "now" && !gStepDone(id, i);
+  const acts = x.do || [], checks = x.check || [];
+  const actOK = (j) => !!st.guide.acts[gKey(id, i) + "|" + j], chkOK = (j) => !!st.guide.checks[gKey(id, i) + "|" + j];
+  const essayName = x.essay && ESSAYS[x.essay] ? ESSAYS[x.essay].name : "";
+  const ready = checks.every((c, j) => chkOK(j));
+  return `<div class="g-step">
+    <div class="g-step-top"><div><span class="eyebrow">Step ${i + 1} of ${n} · ${esc(x.phase || "")}</span><h3>${esc(x.title)}</h3></div>
+      <div class="g-when">${due ? `<span class="pill ${late ? "p-closed" : "p-open"}">${late ? "Overdue · was " : gs.proj ? "Aim for " : "Finish by "}${fmtD(due)}</span>` : x.due < 0 ? `<span class="pill p-up">After you apply</span>` : ""}${x.time ? `<span class="pill p-up">⏱ ${esc(x.time)}</span>` : ""}</div></div>
+    ${x.why ? `<p class="g-why"><b>Why this matters:</b> ${esc(x.why)}</p>` : ""}
+    ${late ? `<div class="g-banner bad">You're behind on this one. Do it today: the later steps depend on it.</div>` : ""}
+    <div class="g-sec"><h4>Do this, in order</h4><ol class="g-do">${acts.map((a, j) => `<li><label><input type="checkbox" data-gact="${i}|${j}" ${actOK(j) ? "checked" : ""}><span>${esc(a)}</span></label></li>`).join("")}</ol></div>
+    ${x.essay || x.prompt ? `<div class="g-essay"><span class="eyebrow">The question you're answering</span>${x.prompt ? `<p style="font-size:15px"><b>${esc(x.prompt)}</b></p>` : ""}${x.limit ? `<p class="small">Limit: <b>${esc(x.limit)}</b></p>` : ""}${essayName ? `<div class="row"><button type="button" class="btn primary sm" data-gessay="${esc(x.essay)}">Draft it in the Essay Dojo (${esc(essayName.toLowerCase())})</button><span class="small muted">Your draft is colour-coded as you type; come back here when it's done.</span></div>` : ""}</div>` : ""}
+    ${(x.tips || []).length || (x.avoid || []).length ? `<div class="g-two">${(x.tips || []).length ? `<div class="g-box g-tipbox"><h4 class="eyebrow">Do it well</h4><ul>${x.tips.map((t) => `<li>${esc(t)}</li>`).join("")}</ul></div>` : ""}${(x.avoid || []).length ? `<div class="g-box avoid"><h4 class="eyebrow">Avoid these mistakes</h4><ul>${x.avoid.map((t) => `<li>${esc(t)}</li>`).join("")}</ul></div>` : ""}</div>` : ""}
+    ${linksHTML(x.links)}
+    ${checks.length ? `<div class="g-check"><h4 class="eyebrow" style="margin-bottom:6px">Before you move on, can you say yes to these?</h4>${checks.map((c, j) => `<label><input type="checkbox" data-gchk="${i}|${j}" ${chkOK(j) ? "checked" : ""}> ${esc(c)}</label>`).join("")}</div>` : ""}
+    <div class="g-nav">
+      <button type="button" class="btn" data-gstep="${i - 1}">← ${i === 0 ? "Can you apply?" : "Previous step"}</button>
+      <div class="row">${gStepDone(id, i) ? `<button type="button" class="btn sm" data-gundo="${i}">Mark not done</button><button type="button" class="btn primary" data-gstep="${i + 1}">Next step →</button>` : `<button type="button" class="btn primary" data-gdone="${i}" ${ready ? "" : 'title="Tick the checks above first, or mark it done anyway"'}>${ready ? "Done, next step →" : "Mark done and continue →"}</button>`}</div>
+    </div>
+  </div>`;
+}
+function finishHTML() {
+  const s = G.s, n = G.data.steps.length, c = gProgress(s.id, n);
+  return `<div class="g-done-all"><span class="big">${c}/${n}</span><h3>${c === n ? "You've worked through every step." : "You've reached the end of the guide."}</h3><p class="muted" style="max-width:52ch">${c === n ? "That's the whole application, done the way winners do it. Keep the guide open for results day and the next stage." : "Some steps are still open. Use the plan on the left to go back to them."}</p><div class="row" style="justify-content:center"><button type="button" class="btn" data-gstep="0">Back to step 1</button><button type="button" class="btn primary" data-go="interview">Practise in the Interview Room</button><button type="button" class="btn" data-gback>Start another guide</button></div></div>`;
+}
+function gShow(i) { G.i = i; st.guide.step[G.s.id] = i; save(); renderGuide(); setHash(); const m = $("#gMain"); if (m) m.scrollIntoView({ behavior: "smooth", block: "start" }); }
+document.addEventListener("click", (e) => {
+  const t = e.target;
+  const gs = t.closest("[data-gstart]"); if (gs) { openGuide(gs.dataset.gstart); return; }
+  if (t.closest("[data-gback]")) { closeGuide(); return; }
+  const sp = t.closest("[data-gstep]"); if (sp && G.data) { const i = +sp.dataset.gstep; gShow(Math.max(-1, Math.min(G.data.steps.length, i))); return; }
+  const el = t.closest("[data-elig]"); if (el && G.s) { st.guide.elig[gKey(G.s.id, el.dataset.elig)] = el.dataset.a; save(); const y = window.scrollY; renderGuide(); window.scrollTo(0, y); return; }
+  const dn = t.closest("[data-gdone]"); if (dn && G.s) {
+    const i = +dn.dataset.gdone, k = gKey(G.s.id, i);
+    if (!st.guide.done[k]) { st.guide.done[k] = dayKey(); addXP(25, "step done: " + G.data.steps[i].title); T("guide-step/" + G.s.id, "Finished a guide step"); }
+    const n = G.data.steps.length; if (gProgress(G.s.id, n) === n) { stamp("coach"); T("guide-finish/" + G.s.id, "Finished a whole guide: " + G.s.name); }
+    gShow(i + 1); return;
+  }
+  const un = t.closest("[data-gundo]"); if (un && G.s) { delete st.guide.done[gKey(G.s.id, +un.dataset.gundo)]; save(); renderGuide(); return; }
+  const es = t.closest("[data-gessay]"); if (es) { $("#eType").value = es.dataset.gessay; loadType(); go("dojo"); return; }
+  const v = t.closest("[data-vid]"); if (v) { const box = v.closest(".vid"); if (!box.querySelector("iframe")) { box.insertAdjacentHTML("beforeend", `<iframe src="${esc(v.dataset.vid)}" title="Video" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen loading="lazy"></iframe><a class="small" style="display:block;padding:6px 10px" href="${esc(v.dataset.watch || "")}" target="_blank" rel="noopener">Not playing here? Watch on YouTube ↗</a>`); T("guide-video", "Played a guide video"); } else { box.querySelector("iframe").remove(); const w = box.querySelector("a.small"); if (w) w.remove(); } return; }
+  if (t.closest("#gPrint")) { window.print(); return; }
+  if (t.closest("#gShare")) { copyText(location.origin + location.pathname + "#guide/" + G.s.id); return; }
+  if (t.closest("#gIcs")) { gCalendar(); return; }
+});
+document.addEventListener("change", (e) => {
+  const a = e.target.closest("[data-gact]"), c = e.target.closest("[data-gchk]");
+  if (!(a || c) || !G.s) return;
+  const [i, j] = (a || c).dataset[a ? "gact" : "gchk"].split("|");
+  const bag = a ? st.guide.acts : st.guide.checks, k = gKey(G.s.id, i) + "|" + j;
+  if (e.target.checked) { bag[k] = 1; if (a) addXP(2); } else delete bag[k];
+  save();
+  if (c) { const x = G.data.steps[+i], ok = (x.check || []).every((q, jj) => st.guide.checks[gKey(G.s.id, i) + "|" + jj]); const b = $(`[data-gdone="${i}"]`); if (b) { b.textContent = ok ? "Done, next step →" : "Mark done and continue →"; } }
+});
+function gCalendar() {
+  const s = G.s, gs = gStatus(s), d = G.data;
+  const ics = (dt) => dt.getFullYear() + String(dt.getMonth() + 1).padStart(2, "0") + String(dt.getDate()).padStart(2, "0");
+  const clean = (t) => String(t).replace(/[\\;,]/g, (m) => "\\" + m).replace(/\n/g, "\\n");
+  const ev = [];
+  d.steps.forEach((x, i) => { const due = gDue(x, gs); if (!due || due < TODAY) return; const e2 = new Date(due); e2.setDate(e2.getDate() + 1); ev.push(["BEGIN:VEVENT", "UID:" + s.id + "-" + i + "@shagbaor.com/laureate", "DTSTAMP:" + ics(new Date()) + "T000000Z", "DTSTART;VALUE=DATE:" + ics(due), "DTEND;VALUE=DATE:" + ics(e2), "SUMMARY:" + clean(s.name + ": " + x.title), "DESCRIPTION:" + clean((x.do || []).map((a, j) => j + 1 + ". " + a).join("\n") + "\nGuide: " + location.origin + location.pathname + "#guide/" + s.id + "/" + (i + 1)), "END:VEVENT"].join("\r\n")); });
+  if (gs.dl && gs.dl >= TODAY) { const e2 = new Date(gs.dl); e2.setDate(e2.getDate() + 1); ev.push(["BEGIN:VEVENT", "UID:" + s.id + "-deadline@shagbaor.com/laureate", "DTSTAMP:" + ics(new Date()) + "T000000Z", "DTSTART;VALUE=DATE:" + ics(gs.dl), "DTEND;VALUE=DATE:" + ics(e2), "SUMMARY:" + clean(s.name + " DEADLINE" + (gs.proj ? " (projected — confirm)" : "")), "END:VEVENT"].join("\r\n")); }
+  if (!ev.length) { toast("No upcoming dates to add yet"); return; }
+  const body = ["BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//Laureate Lab//EN", "CALSCALE:GREGORIAN"].concat(ev, ["END:VCALENDAR"]).join("\r\n");
+  saveFile(s.id + "-plan.ics", body, "text/calendar"); T("guide-calendar", "Exported a guide plan to calendar"); addXP(10, "plan added to calendar");
+}
+renderGuidePick();
+
 /* ---------------- boot ---------------- */
 renderFields(); renderHome(); renderAtlas(); renderReady(); renderPaths(); renderGrade(); renderEmails(); renderGap(); renderScam(); renderTracker(); osShuffle(); raLoad(); wbCheck();
 $("#eType").value = "leadership"; loadType(); renderPlan();
 if (!getDraft("leadership")) { sampleText = "Ever since I was a child I have been passionate about agriculture. In 2023, as the only engineer at a 40-farmer cooperative in Benue, I saw 30% of our tomato harvest rot before reaching market. I designed a solar dryer from scrap metal and trained 12 farmers to build their own. It was very successful."; $("#eText").value = sampleText; runDojo(); }
 booting = false;
-const h = (location.hash || "").slice(1); go($$(".tab").some((t) => t.dataset.v === h) ? h : "home");
+const h = (location.hash || "").slice(1), gm = /^guide\/([\w-]+)(?:\/(\d+))?$/.exec(h);
+if (gm && DATA.some((x) => x.id === gm[1])) openGuide(gm[1], gm[2] ? +gm[2] - 1 : null);
+else go($$(".tab").some((t) => t.dataset.v === h) ? h : "home");
 renderPassport();
 })();
