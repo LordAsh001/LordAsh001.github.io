@@ -817,6 +817,12 @@ ul.list li button:hover,ul.list li button.on{background:var(--chip)}
 .photo img{display:block;width:100%;height:220px;object-fit:cover}
 .photo figcaption{font-size:11.5px;color:var(--muted);padding:6px 10px}
 .photo.off{padding:10px 12px;font-size:12.5px}
+.galrow{display:flex;gap:6px;padding:0 10px 10px;overflow-x:auto}
+.galrow button{flex:0 0 64px;height:48px;padding:0;border:2px solid transparent;border-radius:6px;overflow:hidden;background:var(--panel);cursor:pointer;opacity:.7}
+.galrow button.on,.galrow button:hover{border-color:var(--accent,#007a4d);opacity:1}
+.galrow button img{width:100%;height:100%;object-fit:cover;display:block}
+.box.unesco{border-color:color-mix(in srgb,#2a78d6 45%,var(--line));background:color-mix(in srgb,#2a78d6 7%,var(--bg))}
+.box.unesco h3{color:#2a78d6}
 .box{border:1px solid var(--line);border-radius:10px;padding:12px;background:var(--bg)}
 .box h3{font-family:var(--f-display);font-size:14.5px;margin:0 0 8px;display:flex;justify-content:space-between;align-items:baseline;gap:8px}
 .box h3 small{font-family:var(--f-body);font-size:11px;font-weight:500;color:var(--muted)}
@@ -1025,6 +1031,10 @@ const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&
 const css=n=>getComputedStyle(document.documentElement).getPropertyValue(n).trim();
 const gcol=g=>css('--g'+g);
 const today=new Date().toISOString().slice(0,10);
+const imgUrl=(p,w)=>p[5]?`https://upload.wikimedia.org/wikipedia/commons/${p[1]}`:`https://upload.wikimedia.org/wikipedia/commons/thumb/${p[1]}/${w}px-${p[1].split('/').pop()}`;
+const pageUrl=p=>'https://commons.wikimedia.org/wiki/File:'+encodeURIComponent(p[0].replace(/ /g,'_'));
+const capOf=p=>p[6]||p[0].replace(/\.\w+$/,'').replace(/_/g,' ').replace(/\s+\(\d+\)$/,'');
+const imgTag=(p,w,fb,alt,cls)=>`<img src="${imgUrl(p,w)}" data-alt="${imgUrl(p,fb)}" alt="${esc(alt||capOf(p))}" loading="lazy" ${cls?`class="${cls}"`:''} onerror="if(!this.dataset.f&&this.dataset.alt!==this.src){this.dataset.f=1;this.src=this.dataset.alt}else{this.remove()}">`;
 const track=(n,t)=>{try{window.SiteTrack&&window.SiteTrack(n,t)}catch(e){}};
 function toast(t){const e=$('#toast');e.textContent=t;e.hidden=false;clearTimeout(toast.t);toast.t=setTimeout(()=>e.hidden=true,3200)}
 function store(k,v){try{if(v===undefined)return JSON.parse(localStorage.getItem('ngfra.'+k)||'null');localStorage.setItem('ngfra.'+k,JSON.stringify(v))}catch(e){return null}}
@@ -1054,6 +1064,7 @@ function toCSV(rows){if(!rows.length)return'';const k=Object.keys(rows[0]);const
 let F,STATES,BY={};
 function init(){
   F=DATA.f;STATES=[...new Set(DATA.st.map(s=>s.n))].sort();
+  F.forEach(f=>{const P=f.photo;f.pics=[];if(P)f.pics.push([P.file,P.path,P.author,P.license,'cur',!!P.orig,P.caption]);(f.ph||[]).forEach(p=>{if(!f.pics.some(q=>q[1]===p[1]))f.pics.push(p)});});
   F.forEach(f=>{BY[f.i]=f;f.km=(f.a||f.ar||f.fh||0)/100;f.st=f.s?f.s.split(';').map(x=>x.trim()):[];
     f.txt=[f.n,f.alt,f.s,f.l,f.flora,f.fauna,f.tour,f.res,f.veg,f.thr].filter(Boolean).join(' ').toLowerCase();});
   initMap();initFilters();renderLegend();update();
@@ -1213,8 +1224,10 @@ function select(f,fromMap){
     ['Coordinates',f.la!=null?`<span class="mono">${f.la.toFixed(3)}° N, ${f.lo.toFixed(3)}° E</span> · ${f.q==='wdpa'?'WDPA boundary centre':f.q==='published'?'published point':f.q==='approx_town'?'approximate (nearest town)':'unverified'}`:'Not yet located',1,1]];
   if(f.formerly)facts.push(['Previous WDPA designation',f.formerly,1]);
   let h='';
-  if(f.photo){const P=f.photo,src=`https://upload.wikimedia.org/wikipedia/commons/${P.orig?'':'thumb/'}${P.path}${P.orig?'':'/960px-'+P.path.split('/').pop()}`;const pg='https://commons.wikimedia.org/wiki/File:'+encodeURIComponent(P.file);
-    h+=LIVE?`<figure class="photo"><img src="${src}" alt="${esc(P.caption)}" loading="lazy" onerror="this.remove()"><figcaption>${esc(P.caption)} · ${esc(P.author)}, <a href="${pg}" target="_blank" rel="noopener">${esc(P.license)} via Wikimedia Commons</a></figcaption></figure>`:`<div class="photo off">Photograph: <a href="${pg}" target="_blank" rel="noopener">${esc(P.caption)}</a> by ${esc(P.author)} (${esc(P.license)}). Photos display on the hosted site.</div>`}
+  if(f.pics.length){const P=f.pics[0];
+    if(LIVE){h+=`<figure class="photo" id="gal">${imgTag(P,960,500)}<figcaption id="galcap"></figcaption>${f.pics.length>1?`<div class="galrow">${f.pics.map((p,i)=>`<button type="button" data-g="${i}" class="${i?'':'on'}" aria-label="Show photo ${i+1}">${imgTag(p,250,330,'')}</button>`).join('')}</div>`:''}</figure>`}
+    else h+=`<div class="photo off">${f.pics.length} photograph${f.pics.length>1?'s':''} on Wikimedia Commons, e.g. <a href="${pageUrl(P)}" target="_blank" rel="noopener">${esc(capOf(P))}</a> by ${esc(P[2]||'unknown')} (${esc(P[3])}). Photos display on the website.</div>`}
+  if(f.unesco){const u=f.unesco;h+=`<div class="box unesco"><h3>UNESCO ${esc(u.list)} <small>${esc(u.year)}</small></h3><p style="margin:0;font-size:13px">${esc(u.name)}${u.criteria?` · criteria ${esc(u.criteria)}`:''}${u.category?` · ${esc(u.category)}`:''} · ref. ${esc(u.ref)}. <a href="${esc(u.url)}" target="_blank" rel="noopener">UNESCO record ↗</a></p></div>`}
   h+=`<div class="verif"><b class="lvl ${f.v}">${f.v}</b><div><b>Verification level ${f.v}.</b> ${LEVELS[f.v]}</div></div>`;
   h+=`<dl class="facts">${facts.map(([k,v,w,raw])=>`<div class="fact${w?' w':''}"><dt>${k}</dt><dd>${raw?v:esc(v)}</dd></div>`).join('')}</dl>`;
   const areas=[];if(f.a)areas.push(['From WDPA boundary (GIS)',ha(f.a)]);if(f.ar)areas.push(['Reported / gazetted',ha(f.ar)]);if(f.fh)areas.push([`FAO 1998 inventory${f.fm?' · '+f.fm:''}`,ha(f.fh)]);
@@ -1239,6 +1252,8 @@ function select(f,fromMap){
   h+=`<div class="sec"><h3>Sources</h3><ul class="srcs">${f.w?`<li>UNEP-WCMC &amp; IUCN, World Database on Protected Areas, WDPA ID <span class="mono">${f.w}</span> (boundary, area, designation)</li>`:''}${(f.src||[]).map(u=>`<li><a href="${esc(u)}" target="_blank" rel="noopener">${esc(u.replace(/^https?:\/\/(www\.)?/,'').slice(0,80))}</a></li>`).join('')}${!f.w&&!(f.src||[]).length?'<li>Compiled list; no URL recorded</li>':''}</ul></div>`;
   h+=`<div class="sec"><h3>Cite this record</h3><pre class="cite">${esc(citeText(f))}</pre></div>`;
   $('#sh-body').innerHTML=h;$('#sh-body').scrollTop=0;$('#sheet').hidden=false;
+  const setCap=i=>{const p=f.pics[i],c=$('#galcap');if(c)c.innerHTML=`${esc(capOf(p))} · ${esc(p[2]||'Unknown author')}, <a href="${pageUrl(p)}" target="_blank" rel="noopener">${esc(p[3])} via Wikimedia Commons</a>${p[4]==='G'?' · geotagged inside the reserve’s bounding box':''}`};
+  if($('#gal')){setCap(0);$$('#gal .galrow button').forEach(b=>b.onclick=()=>{const i=+b.dataset.g,p=f.pics[i],im=$('#gal>img');if(im){im.dataset.f='';im.dataset.alt=imgUrl(p,500);im.src=imgUrl(p,960)}else{$('#gal').insertAdjacentHTML('afterbegin',imgTag(p,960,500))}setCap(i);$$('#gal .galrow button').forEach(x=>x.classList.toggle('on',x===b))})}
   $$('#list button').forEach(x=>x.classList.toggle('on',x.dataset.id===f.i));
   renderSiteReports(f);
   if(LIVE)loadLive(f,b);
@@ -1368,20 +1383,22 @@ function buildStats(){
 
 /* ---------- visit view ---------- */
 function buildVisit(){
-  const sites=F.filter(f=>f.la!=null&&(f.vis||f.tour||[0,1,2,7,8].includes(f.c)||f.c===9));
+  const sites=F.filter(f=>f.la!=null&&(f.vis||f.tour||f.pics.length||[0,1,2,7,8].includes(f.c)||f.c===9));
   const RK={Established:0,Basic:1,Limited:2,'Closed/insecure':3};
   $('#visit').innerHTML=`<h2 class="title">Plan a visit</h2><p class="lede">Parks, sanctuaries, sacred groves, waterfalls and wetlands that receive or could receive visitors. Readiness ratings come from published sources and change often: confirm access, fees and security with the managing authority before you travel, and check your government’s current travel advice.</p>
   <div class="filterbar"><div><div class="lbl">Travelling from</div><select id="vf-from"><option value="">Anywhere</option>${Object.keys(CITIES).map(c=>`<option>${c}</option>`).join('')}</select></div>
   <div><div class="lbl">Readiness</div><select id="vf-r"><option value="">All</option><option>Established</option><option>Basic</option><option>Limited</option><option value="none">Not yet rated</option></select></div>
   <div><div class="lbl">Landscape</div><select id="vf-z"><option value="">All zones</option>${Object.entries(ZONES).map(([k,z])=>`<option value="${k}">${z.n}</option>`).join('')}</select></div>
-  <div><div class="lbl">Search</div><input type="text" id="vf-q" placeholder="e.g. waterfall, primates, birding"></div></div><div class="vgrid" id="vgrid"></div>`;
-  const draw=()=>{const from=$('#vf-from').value,r=$('#vf-r').value,z=$('#vf-z').value,q=$('#vf-q').value.trim().toLowerCase();
-    let L=sites.filter(f=>(!r||(r==='none'?!f.vis:(f.vis&&f.vis.visitor_readiness||'').startsWith(r)))&&(!z||f.z===z)&&(!q||(f.txt+' '+JSON.stringify(f.vis||'')).toLowerCase().includes(q)));
+  <div><div class="lbl">Search</div><input type="text" id="vf-q" placeholder="e.g. waterfall, primates, birding"></div>
+  <label class="toggle" style="align-self:center"><input type="checkbox" id="vf-p"> With photos only</label></div><p class="meta" id="vcount" style="margin:-6px 0 12px;font-size:12.5px;color:var(--muted)"></p><div class="vgrid" id="vgrid"></div>`;
+  const draw=()=>{const from=$('#vf-from').value,r=$('#vf-r').value,z=$('#vf-z').value,q=$('#vf-q').value.trim().toLowerCase(),onlyP=$('#vf-p').checked;
+    let L=sites.filter(f=>(!r||(r==='none'?!f.vis:(f.vis&&f.vis.visitor_readiness||'').startsWith(r)))&&(!z||f.z===z)&&(!onlyP||f.pics.length)&&(!q||(f.txt+' '+JSON.stringify(f.vis||'')).toLowerCase().includes(q)));
     L.forEach(f=>f._d=from?km(CITIES[from],[f.la,f.lo]):null);
-    L.sort((a,b)=>(RK[(a.vis||{}).visitor_readiness]??4)-(RK[(b.vis||{}).visitor_readiness]??4)||(from?a._d-b._d:0)||(b.r-a.r)||b.km-a.km);
-    $('#vgrid').innerHTML=L.slice(0,90).map(f=>{const v=f.vis||{},rd=v.visitor_readiness;const P=f.photo;const src=P&&LIVE?`https://upload.wikimedia.org/wikipedia/commons/${P.orig?'':'thumb/'}${P.path}${P.orig?'':'/960px-'+P.path.split('/').pop()}`:null;
-      return`<article class="vcard"><div class="ph" style="--c:var(--g${f.gp})">${src?`<img src="${src}" alt="${esc(P.caption)}" loading="lazy" onerror="this.remove()">`:''}<span class="ready ${esc((rd||'').split('/')[0])}">${esc(rd||'Not yet rated')}</span></div><div class="bd"><h3>${esc(f.n)}</h3><div class="meta">${esc(CATS[f.c])} · ${esc(f.s)}${v.nearest_city?' · near '+esc(v.nearest_city):''}${f._d?` · ${fmt.format(Math.round(f._d))} km from ${esc(from)} (straight line)`:''}</div>${v.safety_note?`<div class="safety">${esc(v.safety_note)}</div>`:''}<p>${esc((v.activities||f.tour||(ZONES[f.z]||{}).t||'').slice(0,220))}</p>${v.best_time?`<p class="meta"><b>Best time:</b> ${esc(v.best_time.slice(0,140))}</p>`:''}<div class="bt"><a class="btn sm" href="#${f.i}">Open profile</a><a class="btn sm" href="https://www.google.com/maps/dir/?api=1&destination=${f.la},${f.lo}" target="_blank" rel="noopener">Directions ↗</a></div></div></article>`}).join('')||'<p>No sites match these filters.</p>';};
-  ['vf-from','vf-r','vf-z'].forEach(i=>$('#'+i).onchange=draw);$('#vf-q').oninput=draw;draw();
+    L.sort((a,b)=>(RK[(a.vis||{}).visitor_readiness]??4)-(RK[(b.vis||{}).visitor_readiness]??4)||(from?a._d-b._d:0)||((b.pics.length?1:0)-(a.pics.length?1:0))||(b.r-a.r)||b.km-a.km);
+    $('#vcount').textContent=`${fmt.format(L.length)} places · ${fmt.format(L.filter(f=>f.pics.length).length)} with photographs`;
+    $('#vgrid').innerHTML=L.slice(0,state.vlimit||120).map(f=>{const v=f.vis||{},rd=v.visitor_readiness;const P=f.pics[0];
+      return`<article class="vcard"><div class="ph" style="--c:var(--g${f.gp})">${P&&LIVE?imgTag(P,500,330):''}<span class="ready ${esc((rd||'').split('/')[0])}">${esc(rd||'Not yet rated')}</span></div><div class="bd"><h3>${esc(f.n)}</h3><div class="meta">${esc(CATS[f.c])} · ${esc(f.s)}${v.nearest_city?' · near '+esc(v.nearest_city):''}${f._d?` · ${fmt.format(Math.round(f._d))} km from ${esc(from)} (straight line)`:''}</div>${v.safety_note?`<div class="safety">${esc(v.safety_note)}</div>`:''}<p>${esc((v.activities||f.tour||(ZONES[f.z]||{}).t||'').slice(0,220))}</p>${v.best_time?`<p class="meta"><b>Best time:</b> ${esc(v.best_time.slice(0,140))}</p>`:''}<div class="bt"><a class="btn sm" href="#${f.i}">Open profile</a><a class="btn sm" href="https://www.google.com/maps/dir/?api=1&destination=${f.la},${f.lo}" target="_blank" rel="noopener">Directions ↗</a></div></div></article>`}).join('')||'<p>No sites match these filters.</p>';};
+  ['vf-from','vf-r','vf-z','vf-p'].forEach(i=>$('#'+i).onchange=draw);$('#vf-q').oninput=draw;draw();
 }
 
 /* ---------- NGO hub ---------- */
