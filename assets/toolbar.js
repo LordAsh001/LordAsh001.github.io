@@ -14,7 +14,7 @@ var TOOLS = [
   { url: "/symbiosis/",         name: "Symbiosis Workbench",    note: "One site's waste, another's feedstock" },
   { url: "/sustainatable.html", name: "The SustainaTable",      note: "The SDGs as a periodic table" },
   { url: "/laureate/",          name: "Laureate Lab",           note: "Prepare a funding application" },
-  { url: "/citadel.html",       name: "Citadel",                note: "Learn to cite by doing" }
+  { url: "/citadel.html",       name: "Citadel",                note: "Academic writing, made clear" }
 ];
 var HOME = "/#resources";
 var HOME_LABEL = "Shagbaor Hycent Amool";
