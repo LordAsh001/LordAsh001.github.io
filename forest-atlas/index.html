@@ -16,7 +16,6 @@
 <link rel="canonical" href="https://shagbaor.com/forest-atlas/">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231d6b3c'/%3E%3Cpath d='M32 10C20 24 19 36 32 54C45 36 44 24 32 10Z' fill='%23fff'/%3E%3C/svg%3E">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"Nigeria Forest Reserves Atlas","description":"Free, source-linked atlas of 1,176 forest reserves, national parks, game reserves, sanctuaries, Ramsar wetlands and biosphere reserves across Nigeria's 36 states and the FCT, with statistics, a visit planner, an NGO field-report hub and open data downloads.","url":"https://shagbaor.com/forest-atlas/","creator":{"@type":"Person","name":"Shagbaor Hycent Amool","affiliation":"University of Northern British Columbia"},"spatialCoverage":"Nigeria","isAccessibleForFree":true,"distribution":[{"@type":"DataDownload","encodingFormat":"text/csv","contentUrl":"https://shagbaor.com/forest-atlas/data/nigeria_protected_areas.csv"},{"@type":"DataDownload","encodingFormat":"application/geo+json","contentUrl":"https://shagbaor.com/forest-atlas/data/nigeria_protected_areas.geojson"}]}</script>
-<script data-goatcounter="https://shagbaor.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 <script src="/assets/traction.js" defer></script>
 
 <meta name="description" content="Open, source-linked atlas of Nigeria's forest reserves, national parks, game reserves, Ramsar wetlands and biosphere reserves across 36 states and the FCT.">
@@ -787,7 +786,7 @@ ul.list li button:hover,ul.list li button.on{background:var(--chip)}
 .leaflet-control-attribution{background:color-mix(in srgb,var(--panel) 85%,transparent)!important;color:var(--muted)!important;max-width:70%}
 .leaflet-control-attribution a{color:var(--accent)!important}
 /* profile sheet */
-.sheet{position:absolute;top:0;right:0;bottom:0;width:min(470px,100%);background:var(--panel);border-left:1px solid var(--line);box-shadow:var(--shadow);z-index:600;display:flex;flex-direction:column;transition:transform .25s ease}
+.sheet{position:absolute;top:0;right:0;bottom:0;width:min(470px,100%);background:var(--panel);border-left:1px solid var(--line);box-shadow:var(--shadow);z-index:900;display:flex;flex-direction:column;transition:transform .25s ease}
 .sheet[hidden]{display:flex!important;transform:translateX(105%);visibility:hidden}
 .sheet-h{padding:14px 18px 12px;border-bottom:1px solid var(--line);display:grid;grid-template-columns:1fr auto;gap:8px}
 .sheet-h h2{font-family:var(--f-display);font-weight:800;font-size:23px;line-height:1.12;margin:4px 0 0;text-wrap:balance}
@@ -1209,7 +1208,7 @@ function select(f,fromMap){
     ['Coordinates',f.la!=null?`<span class="mono">${f.la.toFixed(3)}° N, ${f.lo.toFixed(3)}° E</span> · ${f.q==='wdpa'?'WDPA boundary centre':f.q==='published'?'published point':f.q==='approx_town'?'approximate (nearest town)':'unverified'}`:'Not yet located',1,1]];
   if(f.formerly)facts.push(['Previous WDPA designation',f.formerly,1]);
   let h='';
-  if(f.photo){const P=f.photo,src=`https://upload.wikimedia.org/wikipedia/commons/${P.orig?'':'thumb/'}${P.path}${P.orig?'':'/640px-'+P.path.split('/').pop()}`;const pg='https://commons.wikimedia.org/wiki/File:'+encodeURIComponent(P.file);
+  if(f.photo){const P=f.photo,src=`https://upload.wikimedia.org/wikipedia/commons/${P.orig?'':'thumb/'}${P.path}${P.orig?'':'/960px-'+P.path.split('/').pop()}`;const pg='https://commons.wikimedia.org/wiki/File:'+encodeURIComponent(P.file);
     h+=LIVE?`<figure class="photo"><img src="${src}" alt="${esc(P.caption)}" loading="lazy" onerror="this.remove()"><figcaption>${esc(P.caption)} · ${esc(P.author)}, <a href="${pg}" target="_blank" rel="noopener">${esc(P.license)} via Wikimedia Commons</a></figcaption></figure>`:`<div class="photo off">Photograph: <a href="${pg}" target="_blank" rel="noopener">${esc(P.caption)}</a> by ${esc(P.author)} (${esc(P.license)}). Photos display on the hosted site.</div>`}
   h+=`<div class="verif"><b class="lvl ${f.v}">${f.v}</b><div><b>Verification level ${f.v}.</b> ${LEVELS[f.v]}</div></div>`;
   h+=`<dl class="facts">${facts.map(([k,v,w,raw])=>`<div class="fact${w?' w':''}"><dt>${k}</dt><dd>${raw?v:esc(v)}</dd></div>`).join('')}</dl>`;
@@ -1375,7 +1374,7 @@ function buildVisit(){
     let L=sites.filter(f=>(!r||(r==='none'?!f.vis:(f.vis&&f.vis.visitor_readiness||'').startsWith(r)))&&(!z||f.z===z)&&(!q||(f.txt+' '+JSON.stringify(f.vis||'')).toLowerCase().includes(q)));
     L.forEach(f=>f._d=from?km(CITIES[from],[f.la,f.lo]):null);
     L.sort((a,b)=>(RK[(a.vis||{}).visitor_readiness]??4)-(RK[(b.vis||{}).visitor_readiness]??4)||(from?a._d-b._d:0)||(b.r-a.r)||b.km-a.km);
-    $('#vgrid').innerHTML=L.slice(0,90).map(f=>{const v=f.vis||{},rd=v.visitor_readiness;const P=f.photo;const src=P&&LIVE?`https://upload.wikimedia.org/wikipedia/commons/${P.orig?'':'thumb/'}${P.path}${P.orig?'':'/640px-'+P.path.split('/').pop()}`:null;
+    $('#vgrid').innerHTML=L.slice(0,90).map(f=>{const v=f.vis||{},rd=v.visitor_readiness;const P=f.photo;const src=P&&LIVE?`https://upload.wikimedia.org/wikipedia/commons/${P.orig?'':'thumb/'}${P.path}${P.orig?'':'/960px-'+P.path.split('/').pop()}`:null;
       return`<article class="vcard"><div class="ph" style="--c:var(--g${f.gp})">${src?`<img src="${src}" alt="${esc(P.caption)}" loading="lazy" onerror="this.remove()">`:''}<span class="ready ${esc((rd||'').split('/')[0])}">${esc(rd||'Not yet rated')}</span></div><div class="bd"><h3>${esc(f.n)}</h3><div class="meta">${esc(CATS[f.c])} · ${esc(f.s)}${v.nearest_city?' · near '+esc(v.nearest_city):''}${f._d?` · ${fmt.format(Math.round(f._d))} km from ${esc(from)} (straight line)`:''}</div>${v.safety_note?`<div class="safety">${esc(v.safety_note)}</div>`:''}<p>${esc((v.activities||f.tour||(ZONES[f.z]||{}).t||'').slice(0,220))}</p>${v.best_time?`<p class="meta"><b>Best time:</b> ${esc(v.best_time.slice(0,140))}</p>`:''}<div class="bt"><a class="btn sm" href="#${f.i}">Open profile</a><a class="btn sm" href="https://www.google.com/maps/dir/?api=1&destination=${f.la},${f.lo}" target="_blank" rel="noopener">Directions ↗</a></div></div></article>`}).join('')||'<p>No sites match these filters.</p>';};
   ['vf-from','vf-r','vf-z'].forEach(i=>$('#'+i).onchange=draw);$('#vf-q').oninput=draw;draw();
 }
