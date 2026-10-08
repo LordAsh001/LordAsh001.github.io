@@ -38,14 +38,19 @@ def main():
     atlas = json.loads(ATLAS.read_text())
     sites = atlas["f"]
     # 1. WDPA attributes
-    w = get(WDPA, {"where": "ISO3='NGA'", "outFields": "WDPAID,NAME,DESIG_E,IUCN_CA,STATUS_YR,AREA_KM2", "returnGeometry": "false", "f": "json", "resultRecordCount": 2000})
+    w = get(WDPA, {"where": "ISO3='NGA'", "outFields": "WDPAID,NAME,DESIG_E,IUCN_CA,AREA_KM2", "returnGeometry": "false", "f": "json", "resultRecordCount": 2000})
     rows = {a["attributes"]["WDPAID"]: a["attributes"] for a in w.get("features", [])}
     changed = missing = 0
+    if len(rows) < 500:
+        # the mirror answered with an error or a partial list: leave WDPA fields untouched this week
+        print(f"WDPA mirror returned {len(rows)} records ({w.get('error', '')}); skipping the WDPA step")
+        rows = None
     for f in sites:
-        if not f.get("w"): continue
+        if not f.get("w") or rows is None: continue
         r = rows.get(f["w"])
         if not r:
             missing += 1; f["wdpa_missing"] = True; continue
+        f.pop("wdpa_missing", None)
         a = round(float(r.get("AREA_KM2") or 0) * 100, 1)
         if a and abs(a - (f.get("a") or 0)) > 1: f["a"] = a; changed += 1
         iu = r.get("IUCN_CA")
@@ -64,7 +69,8 @@ def main():
         f["gb"] = [d.get("count", 0), len(fac.get("SPECIES_KEY", [])), iu.get("CR", 0), iu.get("EN", 0), iu.get("VU", 0)]
         time.sleep(0.2)
     today = datetime.date.today().isoformat()
-    atlas["meta"].update({"refreshed": today, "gbif_snapshot": today, "wdpa_access": today})
+    atlas["meta"].update({"refreshed": today, "gbif_snapshot": today})
+    if rows is not None: atlas["meta"]["wdpa_access"] = today
     ATLAS.write_text(json.dumps(atlas, separators=(",", ":")))
     print(f"WDPA areas updated: {changed}; WDPA records no longer found: {missing}; refreshed {today}")
 
