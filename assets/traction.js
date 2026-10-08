@@ -18,6 +18,7 @@ var TOOL = /\/symbiosis\//.test(path) ? "symbiosis"
   : /\/tea-studio\//.test(path) ? "tea-studio"
   : /\/eia-studio\//.test(path) ? "eia-studio"
   : /citadel/.test(path) ? "citadel"
+  : /\/forest-atlas\//.test(path) ? "forest-atlas"
   : "website";
 
 /* ---------- analytics (GoatCounter: no cookies, no personal data) ---------- */

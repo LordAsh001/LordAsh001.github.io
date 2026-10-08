@@ -14,7 +14,8 @@ var TOOLS = [
   { url: "/symbiosis/",         name: "Symbiosis Workbench",    note: "One site's waste, another's feedstock" },
   { url: "/sustainatable.html", name: "The SustainaTable",      note: "The SDGs as a periodic table" },
   { url: "/laureate/",          name: "Laureate Lab",           note: "Prepare a funding application" },
-  { url: "/citadel.html",       name: "Citadel",                note: "Academic writing, made clear" }
+  { url: "/citadel.html",       name: "Citadel",                note: "Academic writing, made clear" },
+  { url: "/forest-atlas/",      name: "Nigeria Forest Reserves Atlas", note: "Forest reserves, parks and wetlands, mapped" }
 ];
 var HOME = "/#resources";
 var HOME_LABEL = "Shagbaor Hycent Amool";
