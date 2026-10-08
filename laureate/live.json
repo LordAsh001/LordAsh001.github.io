@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-07",
+ "updated": "2026-10-08",
  "sources": [
   {
    "source": "Opportunities for Africans",
@@ -19,22 +19,22 @@
   {
    "source": "Scholarship Region",
    "ok": true,
-   "items": 7
+   "items": 8
   },
   {
    "source": "Opportunities for Youth",
-   "ok": false,
-   "error": "HTTP Error 403: Forbidden"
+   "ok": true,
+   "items": 9
   },
   {
    "source": "Commonwealth Scholarship Commission",
-   "ok": true,
-   "items": 2
+   "ok": false,
+   "error": "not well-formed (invalid token): line 1, column 0"
   },
   {
    "source": "Erasmus Mundus catalogue (EACEA)",
    "ok": true,
-   "items": 30
+   "items": 8
   },
   {
    "source": "Schwarzman Scholars",
@@ -56,6 +56,96 @@
   }
  ],
  "items": [
+  {
+   "title": "Novo Nordisk Foundation Postdoctoral Fellowships at Massachusetts Institute of Technology 2027 (Funded)",
+   "link": "https://opportunitydesk.org/2026/10/08/novo-nordisk-foundation-postdoctoral-fellowships-at-mit-2027/",
+   "date": "2026-10-08",
+   "source": "Opportunity Desk",
+   "official": false,
+   "ids": [],
+   "summary": "Deadline: January 29, 2027 Applications are open for the Novo Nordisk Foundation Postdoctoral Fellowships at Massachusetts Institute of Technology 2027. The postdoctoral fellowship offers a unique op…",
+   "seen": "2026-10-08"
+  },
+  {
+   "title": "HSC Youth Ambassador Program 2027 in Germany (Fully Funded)",
+   "link": "https://opportunitiescorners.com/hsc-youth-ambassador-program-2027/",
+   "date": "2026-10-08",
+   "source": "Opportunities Corners",
+   "official": false,
+   "ids": [],
+   "summary": "The Applications are now open for the HSC Youth Ambassador Program 2027 in Hamburg, Germany. The Hamburg Sustainability Conference (HSC) is a Fully Funded conference in Hamburg from 31st May to 1st J…",
+   "seen": "2026-10-08"
+  },
+  {
+   "title": "Cultural Futures Forum 2027 in Austria (Fully Funded)",
+   "link": "https://opportunitiescorners.com/cultural-futures-forum-2027-in-austria/",
+   "date": "2026-10-08",
+   "source": "Opportunities Corners",
+   "official": false,
+   "ids": [],
+   "summary": "Applications are now open for Cultural Futures Forum 2027, an international program organized by Salzburg Global in Salzburg, Austria. The forum will take place from March 14th to 19th, 2027. There i…",
+   "seen": "2026-10-08"
+  },
+  {
+   "title": "2027 California State Polytechnic University Scholarship in USA | Fully Funded",
+   "link": "https://www.scholarshipregion.com/california-state-polytechnic-university-scholarship/",
+   "date": "2026-10-08",
+   "source": "Scholarship Region",
+   "official": false,
+   "ids": [],
+   "summary": "The California State Polytechnic University is welcoming applications for fully funded master’s assistantships in Avian Ecology and Remote Sensing. The fully funded opportunity includes tuition, heal…",
+   "seen": "2026-10-08"
+  },
+  {
+   "title": "University of Edinburgh Cyber Security Scholarship in UK 2027 | Fully Funded",
+   "link": "https://www.scholarshipregion.com/university-of-edinburgh-cyber-security-scholarship/",
+   "date": "2026-10-08",
+   "source": "Scholarship Region",
+   "official": false,
+   "ids": [],
+   "summary": "The University of Edinburgh Cyber Security Scholarship is a fully funded postgraduate research programme by Department of Computing Science of the institution. The scholarship generally covers the co…",
+   "seen": "2026-10-08"
+  },
+  {
+   "title": "Gloria’s Foundation Fellowship 2027: $5,000 Fellowship for Activists, Artists, Change-Makers and Creative Thinkers in New York City",
+   "link": "https://opportunitiesforyouth.org/2026/10/08/glorias-foundation-fellowship-2027-5000-fellowship-for-activists-artists-change-makers-and-creative-thinkers-in-new-york-city/",
+   "date": "2026-10-08",
+   "source": "Opportunities for Youth",
+   "official": false,
+   "ids": [],
+   "summary": "Gloria’s Foundation Fellowship 2027 is inviting activists, artists, change-makers, and creative thinkers whose work or independent projects center on justice to apply for a one-year fellowship runnin…",
+   "seen": "2026-10-08"
+  },
+  {
+   "title": "University of Oxford Master of Public Policy Scholarships 2027–28: 1,000+ Funding Opportunities for Future Public Leaders",
+   "link": "https://opportunitiesforyouth.org/2026/10/08/master-of-public-policy-mpp-blavatnik-school-of-government-university-of-oxford/",
+   "date": "2026-10-08",
+   "source": "Opportunities for Youth",
+   "official": false,
+   "ids": [],
+   "summary": "The University of Oxford’s Master of Public Policy (MPP) programme offers a wide range of scholarships and funding opportunities to help students meet the substantial cost of studying at Oxford. For …",
+   "seen": "2026-10-08"
+  },
+  {
+   "title": "Rutgers University Global Urban Studies PhD 2027: Fully Funded Doctoral Opportunity in Urban Systems",
+   "link": "https://opportunitiesforyouth.org/2026/10/08/rutgers-university-global-urban-studies-phd-2027-fully-funded-doctoral-opportunity-in-urban-systems/",
+   "date": "2026-10-08",
+   "source": "Opportunities for Youth",
+   "official": false,
+   "ids": [],
+   "summary": "Rutgers University is currently accepting applications for its Global Urban Studies (GUS) PhD Program for Fall 2027, offering an exciting opportunity for students interested in cities, urban systems,…",
+   "seen": "2026-10-08"
+  },
+  {
+   "title": "Heinz Heinen Fellowships 2027/2028 at the University of Bonn, Germany – Fully Funded Research Fellowship for Scholars of Slavery and Dependency Studies",
+   "link": "https://opportunitiesforyouth.org/2026/10/08/heinz-heinen-fellowships-2027-2028-at-the-university-of-bonn-germany-fully-funded-research-fellowship-for-scholars-of-slavery-and-dependency-studies/",
+   "date": "2026-10-08",
+   "source": "Opportunities for Youth",
+   "official": false,
+   "ids": [],
+   "summary": "The Bonn Center for Dependency and Slavery Studies (BCDSS) at the University of Bonn, Germany, is inviting applications for the Heinz Heinen Fellowships for the 2027/2028 academic year. The fellowshi…",
+   "seen": "2026-10-08"
+  },
   {
    "title": "Government of Alberta Graduate Excellence Scholarship (AGES) in Canada 2027 | How To Apply",
    "link": "https://www.scholarshipregion.com/alberta-graduate-excellence-scholarship/",
@@ -177,6 +267,86 @@
    "ids": [],
    "summary": "The applications are now open for the Silicon Valley Fellowship 2026 in San Francisco, USA. Become a Silicon Valley insider in one week. The Silicon Valley Fellowship 2026 offers an immersive one-wee…",
    "seen": "2026-10-07"
+  },
+  {
+   "title": "27 Scholarship Opportunities Closing in October – October 7, 2026",
+   "link": "https://opportunitydesk.org/2026/10/07/27-scholarship-opportunities-closing-in-october-october-7-2026/",
+   "date": "2026-10-07",
+   "source": "Opportunity Desk",
+   "official": false,
+   "ids": [],
+   "summary": "1. France-South Africa Scholarship Programme 2026The France–South Africa Scholarship Programme supports eligible students intending to undertake a master’s degree or PhD at a French university or hig…",
+   "seen": "2026-10-08"
+  },
+  {
+   "title": "National Youth Pension Literacy Essay Competition For Nigerians | ₦2.5m Awards",
+   "link": "https://www.scholarshipregion.com/national-youth-pension-literacy-essay-competition/",
+   "date": "2026-10-07",
+   "source": "Scholarship Region",
+   "official": false,
+   "ids": [],
+   "summary": "The National Youth Pension Literacy Essay Competition invites secondary school students and tertiary/NYSC participants nationwide to write on financial independence, retirement planning, and pension …",
+   "seen": "2026-10-08"
+  },
+  {
+   "title": "University of Westminster Sanctuary Scholarship in UK 2027 | Fully Funded",
+   "link": "https://www.scholarshipregion.com/university-of-westminster-sanctuary-scholarship/",
+   "date": "2026-10-07",
+   "source": "Scholarship Region",
+   "official": false,
+   "ids": [],
+   "summary": "The University of Westminster Sanctuary Scholarship is a fully funded study opportunity for a Master’s degree in the United Kingdom. The University of Westminster Postgraduate Sanctuary Scholarship o…",
+   "seen": "2026-10-08"
+  },
+  {
+   "title": "Writing for the Media Training 2027: Fully Funded Research Communication Training by ACU and The Conversation for Early Career Researchers",
+   "link": "https://opportunitiesforyouth.org/2026/10/07/writing-for-the-media-training-2027-fully-funded-research-communication-training-by-acu-and-the-conversation-for-early-career-researchers/",
+   "date": "2026-10-07",
+   "source": "Opportunities for Youth",
+   "official": false,
+   "ids": [],
+   "summary": "Academic research has the power to influence public policy, transform communities, and address some of the world’s most pressing challenges. However, many researchers struggle to communicate their fi…",
+   "seen": "2026-10-08"
+  },
+  {
+   "title": "Novo Nordisk Foundation Postdoctoral Fellowships at MIT 2027: Up to DKK 3.6 Million for Early-Career Researchers",
+   "link": "https://opportunitiesforyouth.org/2026/10/07/novo-nordisk-foundation-postdoctoral-fellowships-at-mit-2027-up-to-dkk-3-6-million-for-early-career-researchers/",
+   "date": "2026-10-07",
+   "source": "Opportunities for Youth",
+   "official": false,
+   "ids": [],
+   "summary": "The Novo Nordisk Foundation Postdoctoral Fellowships at Massachusetts Institute of Technology (MIT) 2027 offer an opportunity for early-career researchers to undertake interdisciplinary research in c…",
+   "seen": "2026-10-08"
+  },
+  {
+   "title": "WES Ecosystem Fund 2027: Up to $80 Million in Funding for Organizations Supporting Women Entrepreneurs in Canada",
+   "link": "https://opportunitiesforyouth.org/2026/10/07/wes-ecosystem-fund-2027-up-to-80-million-in-funding-for-organizations-supporting-women-entrepreneurs-in-canada/",
+   "date": "2026-10-07",
+   "source": "Opportunities for Youth",
+   "official": false,
+   "ids": [],
+   "summary": "The Government of Canada has opened the application for the WES Ecosystem Fund 2027. The 2027 Women Entrepreneurship Strategy (WES) Ecosystem Fund Call for Proposals, providing an opportunity for eli…",
+   "seen": "2026-10-08"
+  },
+  {
+   "title": "UC Merced PhD in Public Health 2027: Fully Funded Doctoral Program for Domestic and International Students",
+   "link": "https://opportunitiesforyouth.org/2026/10/07/uc-merced-phd-in-public-health-2027/",
+   "date": "2026-10-07",
+   "source": "Opportunities for Youth",
+   "official": false,
+   "ids": [],
+   "summary": "The UC Merced PhD in Public Health 2027 offers an advanced doctoral opportunity for students seeking to pursue research, scholarship, and professional careers in public health. Offered by the Univers…",
+   "seen": "2026-10-08"
+  },
+  {
+   "title": "10 Fully Funded Postdoctoral Research Fellowships in Climate and Development at the University of Cape Town 2027",
+   "link": "https://opportunitiesforyouth.org/2026/10/07/10-fully-funded-postdoctoral-research-fellowships-in-climate-and-development-at-the-university-of-cape-town-2027/",
+   "date": "2026-10-07",
+   "source": "Opportunities for Youth",
+   "official": false,
+   "ids": [],
+   "summary": "Recent African PhD graduates looking to build careers in climate research, sustainable development, environmental policy, health, economics, marine science and related fields have an exciting opportu…",
+   "seen": "2026-10-08"
   },
   {
    "title": "The University of Global Health Equity (UGHE) Mastercard Foundation Scholars Program 2027 for African healthcare professionals (Fully Funded)",
