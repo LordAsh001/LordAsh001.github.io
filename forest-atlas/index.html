@@ -1077,11 +1077,12 @@ function goSite(id){location.hash=id}
 let map,canvas,statesLayer,labelLayer,siteLayer,tile=null,ovl={},hiState=null;
 const BASES={
   outline:{n:'Outline'},
-  map:{n:'Map',u:()=>matchMedia('(prefers-color-scheme: dark)').matches&&document.documentElement.dataset.theme!=='light'||document.documentElement.dataset.theme==='dark'?'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png':'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png',a:'© OpenStreetMap contributors © CARTO',mz:19},
+  map:{n:'Map',u:()=>isDark()?'https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}':'https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}',lab:()=>isDark()?'https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Reference/MapServer/tile/{z}/{y}/{x}':null,a:'Basemap © Esri, HERE, Garmin, © OpenStreetMap contributors',mz:16},
   sat:{n:'Satellite',u:()=>'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',a:'Imagery © Esri, Maxar, Earthstar Geographics',mz:18},
   topo:{n:'Terrain',u:()=>'https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png',a:'© OpenTopoMap (CC-BY-SA), © OpenStreetMap contributors',mz:17},
   nasa:{n:'NASA daily',u:()=>`https://gibs.earthdata.nasa.gov/wmts/epsg3857/best/VIIRS_SNPP_CorrectedReflectance_TrueColor/default/${new Date(Date.now()-864e5*2).toISOString().slice(0,10)}/GoogleMapsCompatible_Level9/{z}/{y}/{x}.jpg`,a:'Imagery: NASA GIBS / VIIRS SNPP corrected reflectance (2 days ago)',mz:9}
 };
+const isDark=()=>document.documentElement.dataset.theme==='dark'||(document.documentElement.dataset.theme!=='light'&&matchMedia('(prefers-color-scheme: dark)').matches);
 const OVERLAYS={loss:{n:'Forest loss 2001–2024',u:'https://storage.googleapis.com/earthenginepartners-hansen/tiles/gfc_v1.12/loss_alpha/{z}/{x}/{y}.png',a:'Forest loss: Hansen et al. / UMD / Google / USGS / NASA, GFC v1.12',mz:12}};
 function stateStyle(hi){const onTile=!!tile;return onTile?{color:'#ffffff',weight:hi?2.5:1,fillOpacity:0,opacity:.75}:{color:css('--land-line'),weight:hi?2:.8,fillColor:hi?css('--land-hi'):css('--land'),fillOpacity:1,opacity:1}}
 function initMap(){
@@ -1119,7 +1120,11 @@ function setBase(k){
   if(k!=='outline')track('basemap/'+k,'Switched basemap: '+k);
   $$('#base button').forEach(x=>x.setAttribute('aria-pressed',x.dataset.b===k));
   if(tile){map.removeLayer(tile);tile=null}
-  if(k!=='outline'){const B=BASES[k];tile=L.tileLayer(B.u(),{attribution:B.a,maxNativeZoom:B.mz,maxZoom:17,subdomains:'abc'}).addTo(map);tile.bringToBack();tile._key=k}
+  if(k!=='outline'){const B=BASES[k];const base=L.tileLayer(B.u(),{attribution:B.a,maxNativeZoom:B.mz,maxZoom:17,subdomains:'abc'});
+    const lab=B.lab&&B.lab()?L.tileLayer(B.lab(),{maxNativeZoom:B.mz,maxZoom:17,pane:'overlayPane'}):null;
+    tile=L.layerGroup(lab?[base,lab]:[base]).addTo(map);base.bringToBack();tile._key=k;
+    // if a tile service stops answering, fall back to the built-in outline map
+    let ok=0,bad=0;base.on('tileload',()=>ok++);base.on('tileerror',()=>{bad++;if(bad>=4&&ok===0&&tile&&tile._key===k){setBase('outline');const n=$('#tilenote');n.hidden=false;n.textContent=BASES[k].n+' tiles did not load, so the atlas switched to its built-in outline map.';setTimeout(()=>n.hidden=true,6000)}})}
   statesLayer.setStyle(stateStyle(false));if(hiState)hiState.setStyle(stateStyle(true));
   store('base',k);
 }
