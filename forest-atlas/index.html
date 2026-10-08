@@ -1,0 +1,1484 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Nigeria Forest Reserves Atlas</title>
+<meta name="author" content="Shagbaor Hycent Amool">
+<meta name="color-scheme" content="light dark">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Nigeria Forest Reserves Atlas">
+<meta property="og:description" content="Free, source-linked atlas of 1,176 forest reserves, national parks, game reserves, sanctuaries, Ramsar wetlands and biosphere reserves across Nigeria's 36 states and the FCT, with statistics, a visit planner, an NGO field-report hub and open data downloads.">
+<meta property="og:url" content="https://shagbaor.com/forest-atlas/">
+<meta property="og:image" content="https://shagbaor.com/images/tool-forest-atlas.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#1d6b3c">
+<link rel="canonical" href="https://shagbaor.com/forest-atlas/">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231d6b3c'/%3E%3Cpath d='M32 10C20 24 19 36 32 54C45 36 44 24 32 10Z' fill='%23fff'/%3E%3C/svg%3E">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"Nigeria Forest Reserves Atlas","description":"Free, source-linked atlas of 1,176 forest reserves, national parks, game reserves, sanctuaries, Ramsar wetlands and biosphere reserves across Nigeria's 36 states and the FCT, with statistics, a visit planner, an NGO field-report hub and open data downloads.","url":"https://shagbaor.com/forest-atlas/","creator":{"@type":"Person","name":"Shagbaor Hycent Amool","affiliation":"University of Northern British Columbia"},"spatialCoverage":"Nigeria","isAccessibleForFree":true,"distribution":[{"@type":"DataDownload","encodingFormat":"text/csv","contentUrl":"https://shagbaor.com/forest-atlas/data/nigeria_protected_areas.csv"},{"@type":"DataDownload","encodingFormat":"application/geo+json","contentUrl":"https://shagbaor.com/forest-atlas/data/nigeria_protected_areas.geojson"}]}</script>
+<script data-goatcounter="https://shagbaor.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+<script src="/assets/traction.js" defer></script>
+
+<meta name="description" content="Open, source-linked atlas of Nigeria's forest reserves, national parks, game reserves, Ramsar wetlands and biosphere reserves across 36 states and the FCT.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Public+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* required styles */
+
+.leaflet-pane,
+.leaflet-tile,
+.leaflet-marker-icon,
+.leaflet-marker-shadow,
+.leaflet-tile-container,
+.leaflet-pane > svg,
+.leaflet-pane > canvas,
+.leaflet-zoom-box,
+.leaflet-image-layer,
+.leaflet-layer {
+	position: absolute;
+	left: 0;
+	top: 0;
+	}
+.leaflet-container {
+	overflow: hidden;
+	}
+.leaflet-tile,
+.leaflet-marker-icon,
+.leaflet-marker-shadow {
+	-webkit-user-select: none;
+	   -moz-user-select: none;
+	        user-select: none;
+	  -webkit-user-drag: none;
+	}
+/* Prevents IE11 from highlighting tiles in blue */
+.leaflet-tile::selection {
+	background: transparent;
+}
+/* Safari renders non-retina tile on retina better with this, but Chrome is worse */
+.leaflet-safari .leaflet-tile {
+	image-rendering: -webkit-optimize-contrast;
+	}
+/* hack that prevents hw layers "stretching" when loading new tiles */
+.leaflet-safari .leaflet-tile-container {
+	width: 1600px;
+	height: 1600px;
+	-webkit-transform-origin: 0 0;
+	}
+.leaflet-marker-icon,
+.leaflet-marker-shadow {
+	display: block;
+	}
+/* .leaflet-container svg: reset svg max-width decleration shipped in Joomla! (joomla.org) 3.x */
+/* .leaflet-container img: map is broken in FF if you have max-width: 100% on tiles */
+.leaflet-container .leaflet-overlay-pane svg {
+	max-width: none !important;
+	max-height: none !important;
+	}
+.leaflet-container .leaflet-marker-pane img,
+.leaflet-container .leaflet-shadow-pane img,
+.leaflet-container .leaflet-tile-pane img,
+.leaflet-container img.leaflet-image-layer,
+.leaflet-container .leaflet-tile {
+	max-width: none !important;
+	max-height: none !important;
+	width: auto;
+	padding: 0;
+	}
+
+.leaflet-container img.leaflet-tile {
+	/* See: https://bugs.chromium.org/p/chromium/issues/detail?id=600120 */
+	mix-blend-mode: plus-lighter;
+}
+
+.leaflet-container.leaflet-touch-zoom {
+	-ms-touch-action: pan-x pan-y;
+	touch-action: pan-x pan-y;
+	}
+.leaflet-container.leaflet-touch-drag {
+	-ms-touch-action: pinch-zoom;
+	/* Fallback for FF which doesn't support pinch-zoom */
+	touch-action: none;
+	touch-action: pinch-zoom;
+}
+.leaflet-container.leaflet-touch-drag.leaflet-touch-zoom {
+	-ms-touch-action: none;
+	touch-action: none;
+}
+.leaflet-container {
+	-webkit-tap-highlight-color: transparent;
+}
+.leaflet-container a {
+	-webkit-tap-highlight-color: rgba(51, 181, 229, 0.4);
+}
+.leaflet-tile {
+	filter: inherit;
+	visibility: hidden;
+	}
+.leaflet-tile-loaded {
+	visibility: inherit;
+	}
+.leaflet-zoom-box {
+	width: 0;
+	height: 0;
+	-moz-box-sizing: border-box;
+	     box-sizing: border-box;
+	z-index: 800;
+	}
+/* workaround for https://bugzilla.mozilla.org/show_bug.cgi?id=888319 */
+.leaflet-overlay-pane svg {
+	-moz-user-select: none;
+	}
+
+.leaflet-pane         { z-index: 400; }
+
+.leaflet-tile-pane    { z-index: 200; }
+.leaflet-overlay-pane { z-index: 400; }
+.leaflet-shadow-pane  { z-index: 500; }
+.leaflet-marker-pane  { z-index: 600; }
+.leaflet-tooltip-pane   { z-index: 650; }
+.leaflet-popup-pane   { z-index: 700; }
+
+.leaflet-map-pane canvas { z-index: 100; }
+.leaflet-map-pane svg    { z-index: 200; }
+
+.leaflet-vml-shape {
+	width: 1px;
+	height: 1px;
+	}
+.lvml {
+	behavior: url(#default#VML);
+	display: inline-block;
+	position: absolute;
+	}
+
+
+/* control positioning */
+
+.leaflet-control {
+	position: relative;
+	z-index: 800;
+	pointer-events: visiblePainted; /* IE 9-10 doesn't have auto */
+	pointer-events: auto;
+	}
+.leaflet-top,
+.leaflet-bottom {
+	position: absolute;
+	z-index: 1000;
+	pointer-events: none;
+	}
+.leaflet-top {
+	top: 0;
+	}
+.leaflet-right {
+	right: 0;
+	}
+.leaflet-bottom {
+	bottom: 0;
+	}
+.leaflet-left {
+	left: 0;
+	}
+.leaflet-control {
+	float: left;
+	clear: both;
+	}
+.leaflet-right .leaflet-control {
+	float: right;
+	}
+.leaflet-top .leaflet-control {
+	margin-top: 10px;
+	}
+.leaflet-bottom .leaflet-control {
+	margin-bottom: 10px;
+	}
+.leaflet-left .leaflet-control {
+	margin-left: 10px;
+	}
+.leaflet-right .leaflet-control {
+	margin-right: 10px;
+	}
+
+
+/* zoom and fade animations */
+
+.leaflet-fade-anim .leaflet-popup {
+	opacity: 0;
+	-webkit-transition: opacity 0.2s linear;
+	   -moz-transition: opacity 0.2s linear;
+	        transition: opacity 0.2s linear;
+	}
+.leaflet-fade-anim .leaflet-map-pane .leaflet-popup {
+	opacity: 1;
+	}
+.leaflet-zoom-animated {
+	-webkit-transform-origin: 0 0;
+	    -ms-transform-origin: 0 0;
+	        transform-origin: 0 0;
+	}
+svg.leaflet-zoom-animated {
+	will-change: transform;
+}
+
+.leaflet-zoom-anim .leaflet-zoom-animated {
+	-webkit-transition: -webkit-transform 0.25s cubic-bezier(0,0,0.25,1);
+	   -moz-transition:    -moz-transform 0.25s cubic-bezier(0,0,0.25,1);
+	        transition:         transform 0.25s cubic-bezier(0,0,0.25,1);
+	}
+.leaflet-zoom-anim .leaflet-tile,
+.leaflet-pan-anim .leaflet-tile {
+	-webkit-transition: none;
+	   -moz-transition: none;
+	        transition: none;
+	}
+
+.leaflet-zoom-anim .leaflet-zoom-hide {
+	visibility: hidden;
+	}
+
+
+/* cursors */
+
+.leaflet-interactive {
+	cursor: pointer;
+	}
+.leaflet-grab {
+	cursor: -webkit-grab;
+	cursor:    -moz-grab;
+	cursor:         grab;
+	}
+.leaflet-crosshair,
+.leaflet-crosshair .leaflet-interactive {
+	cursor: crosshair;
+	}
+.leaflet-popup-pane,
+.leaflet-control {
+	cursor: auto;
+	}
+.leaflet-dragging .leaflet-grab,
+.leaflet-dragging .leaflet-grab .leaflet-interactive,
+.leaflet-dragging .leaflet-marker-draggable {
+	cursor: move;
+	cursor: -webkit-grabbing;
+	cursor:    -moz-grabbing;
+	cursor:         grabbing;
+	}
+
+/* marker & overlays interactivity */
+.leaflet-marker-icon,
+.leaflet-marker-shadow,
+.leaflet-image-layer,
+.leaflet-pane > svg path,
+.leaflet-tile-container {
+	pointer-events: none;
+	}
+
+.leaflet-marker-icon.leaflet-interactive,
+.leaflet-image-layer.leaflet-interactive,
+.leaflet-pane > svg path.leaflet-interactive,
+svg.leaflet-image-layer.leaflet-interactive path {
+	pointer-events: visiblePainted; /* IE 9-10 doesn't have auto */
+	pointer-events: auto;
+	}
+
+/* visual tweaks */
+
+.leaflet-container {
+	background: #ddd;
+	outline-offset: 1px;
+	}
+.leaflet-container a {
+	color: #0078A8;
+	}
+.leaflet-zoom-box {
+	border: 2px dotted #38f;
+	background: rgba(255,255,255,0.5);
+	}
+
+
+/* general typography */
+.leaflet-container {
+	font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-size: 0.75rem;
+	line-height: 1.5;
+	}
+
+
+/* general toolbar styles */
+
+.leaflet-bar {
+	box-shadow: 0 1px 5px rgba(0,0,0,0.65);
+	border-radius: 4px;
+	}
+.leaflet-bar a {
+	background-color: #fff;
+	border-bottom: 1px solid #ccc;
+	width: 26px;
+	height: 26px;
+	line-height: 26px;
+	display: block;
+	text-align: center;
+	text-decoration: none;
+	color: black;
+	}
+.leaflet-bar a,
+.leaflet-control-layers-toggle {
+	background-position: 50% 50%;
+	background-repeat: no-repeat;
+	display: block;
+	}
+.leaflet-bar a:hover,
+.leaflet-bar a:focus {
+	background-color: #f4f4f4;
+	}
+.leaflet-bar a:first-child {
+	border-top-left-radius: 4px;
+	border-top-right-radius: 4px;
+	}
+.leaflet-bar a:last-child {
+	border-bottom-left-radius: 4px;
+	border-bottom-right-radius: 4px;
+	border-bottom: none;
+	}
+.leaflet-bar a.leaflet-disabled {
+	cursor: default;
+	background-color: #f4f4f4;
+	color: #bbb;
+	}
+
+.leaflet-touch .leaflet-bar a {
+	width: 30px;
+	height: 30px;
+	line-height: 30px;
+	}
+.leaflet-touch .leaflet-bar a:first-child {
+	border-top-left-radius: 2px;
+	border-top-right-radius: 2px;
+	}
+.leaflet-touch .leaflet-bar a:last-child {
+	border-bottom-left-radius: 2px;
+	border-bottom-right-radius: 2px;
+	}
+
+/* zoom control */
+
+.leaflet-control-zoom-in,
+.leaflet-control-zoom-out {
+	font: bold 18px 'Lucida Console', Monaco, monospace;
+	text-indent: 1px;
+	}
+
+.leaflet-touch .leaflet-control-zoom-in, .leaflet-touch .leaflet-control-zoom-out  {
+	font-size: 22px;
+	}
+
+
+/* layers control */
+
+.leaflet-control-layers {
+	box-shadow: 0 1px 5px rgba(0,0,0,0.4);
+	background: #fff;
+	border-radius: 5px;
+	}
+.leaflet-control-layers-toggle {
+	background-image: url(images/layers.png);
+	width: 36px;
+	height: 36px;
+	}
+.leaflet-retina .leaflet-control-layers-toggle {
+	background-image: url(images/layers-2x.png);
+	background-size: 26px 26px;
+	}
+.leaflet-touch .leaflet-control-layers-toggle {
+	width: 44px;
+	height: 44px;
+	}
+.leaflet-control-layers .leaflet-control-layers-list,
+.leaflet-control-layers-expanded .leaflet-control-layers-toggle {
+	display: none;
+	}
+.leaflet-control-layers-expanded .leaflet-control-layers-list {
+	display: block;
+	position: relative;
+	}
+.leaflet-control-layers-expanded {
+	padding: 6px 10px 6px 6px;
+	color: #333;
+	background: #fff;
+	}
+.leaflet-control-layers-scrollbar {
+	overflow-y: scroll;
+	overflow-x: hidden;
+	padding-right: 5px;
+	}
+.leaflet-control-layers-selector {
+	margin-top: 2px;
+	position: relative;
+	top: 1px;
+	}
+.leaflet-control-layers label {
+	display: block;
+	font-size: 13px;
+	font-size: 1.08333em;
+	}
+.leaflet-control-layers-separator {
+	height: 0;
+	border-top: 1px solid #ddd;
+	margin: 5px -10px 5px -6px;
+	}
+
+/* Default icon URLs */
+.leaflet-default-icon-path { /* used only in path-guessing heuristic, see L.Icon.Default */
+	background-image: url(images/marker-icon.png);
+	}
+
+
+/* attribution and scale controls */
+
+.leaflet-container .leaflet-control-attribution {
+	background: #fff;
+	background: rgba(255, 255, 255, 0.8);
+	margin: 0;
+	}
+.leaflet-control-attribution,
+.leaflet-control-scale-line {
+	padding: 0 5px;
+	color: #333;
+	line-height: 1.4;
+	}
+.leaflet-control-attribution a {
+	text-decoration: none;
+	}
+.leaflet-control-attribution a:hover,
+.leaflet-control-attribution a:focus {
+	text-decoration: underline;
+	}
+.leaflet-attribution-flag {
+	display: inline !important;
+	vertical-align: baseline !important;
+	width: 1em;
+	height: 0.6669em;
+	}
+.leaflet-left .leaflet-control-scale {
+	margin-left: 5px;
+	}
+.leaflet-bottom .leaflet-control-scale {
+	margin-bottom: 5px;
+	}
+.leaflet-control-scale-line {
+	border: 2px solid #777;
+	border-top: none;
+	line-height: 1.1;
+	padding: 2px 5px 1px;
+	white-space: nowrap;
+	-moz-box-sizing: border-box;
+	     box-sizing: border-box;
+	background: rgba(255, 255, 255, 0.8);
+	text-shadow: 1px 1px #fff;
+	}
+.leaflet-control-scale-line:not(:first-child) {
+	border-top: 2px solid #777;
+	border-bottom: none;
+	margin-top: -2px;
+	}
+.leaflet-control-scale-line:not(:first-child):not(:last-child) {
+	border-bottom: 2px solid #777;
+	}
+
+.leaflet-touch .leaflet-control-attribution,
+.leaflet-touch .leaflet-control-layers,
+.leaflet-touch .leaflet-bar {
+	box-shadow: none;
+	}
+.leaflet-touch .leaflet-control-layers,
+.leaflet-touch .leaflet-bar {
+	border: 2px solid rgba(0,0,0,0.2);
+	background-clip: padding-box;
+	}
+
+
+/* popup */
+
+.leaflet-popup {
+	position: absolute;
+	text-align: center;
+	margin-bottom: 20px;
+	}
+.leaflet-popup-content-wrapper {
+	padding: 1px;
+	text-align: left;
+	border-radius: 12px;
+	}
+.leaflet-popup-content {
+	margin: 13px 24px 13px 20px;
+	line-height: 1.3;
+	font-size: 13px;
+	font-size: 1.08333em;
+	min-height: 1px;
+	}
+.leaflet-popup-content p {
+	margin: 17px 0;
+	margin: 1.3em 0;
+	}
+.leaflet-popup-tip-container {
+	width: 40px;
+	height: 20px;
+	position: absolute;
+	left: 50%;
+	margin-top: -1px;
+	margin-left: -20px;
+	overflow: hidden;
+	pointer-events: none;
+	}
+.leaflet-popup-tip {
+	width: 17px;
+	height: 17px;
+	padding: 1px;
+
+	margin: -10px auto 0;
+	pointer-events: auto;
+
+	-webkit-transform: rotate(45deg);
+	   -moz-transform: rotate(45deg);
+	    -ms-transform: rotate(45deg);
+	        transform: rotate(45deg);
+	}
+.leaflet-popup-content-wrapper,
+.leaflet-popup-tip {
+	background: white;
+	color: #333;
+	box-shadow: 0 3px 14px rgba(0,0,0,0.4);
+	}
+.leaflet-container a.leaflet-popup-close-button {
+	position: absolute;
+	top: 0;
+	right: 0;
+	border: none;
+	text-align: center;
+	width: 24px;
+	height: 24px;
+	font: 16px/24px Tahoma, Verdana, sans-serif;
+	color: #757575;
+	text-decoration: none;
+	background: transparent;
+	}
+.leaflet-container a.leaflet-popup-close-button:hover,
+.leaflet-container a.leaflet-popup-close-button:focus {
+	color: #585858;
+	}
+.leaflet-popup-scrolled {
+	overflow: auto;
+	}
+
+.leaflet-oldie .leaflet-popup-content-wrapper {
+	-ms-zoom: 1;
+	}
+.leaflet-oldie .leaflet-popup-tip {
+	width: 24px;
+	margin: 0 auto;
+
+	-ms-filter: "progid:DXImageTransform.Microsoft.Matrix(M11=0.70710678, M12=0.70710678, M21=-0.70710678, M22=0.70710678)";
+	filter: progid:DXImageTransform.Microsoft.Matrix(M11=0.70710678, M12=0.70710678, M21=-0.70710678, M22=0.70710678);
+	}
+
+.leaflet-oldie .leaflet-control-zoom,
+.leaflet-oldie .leaflet-control-layers,
+.leaflet-oldie .leaflet-popup-content-wrapper,
+.leaflet-oldie .leaflet-popup-tip {
+	border: 1px solid #999;
+	}
+
+
+/* div icon */
+
+.leaflet-div-icon {
+	background: #fff;
+	border: 1px solid #666;
+	}
+
+
+/* Tooltip */
+/* Base styles for the element that has a tooltip */
+.leaflet-tooltip {
+	position: absolute;
+	padding: 6px;
+	background-color: #fff;
+	border: 1px solid #fff;
+	border-radius: 3px;
+	color: #222;
+	white-space: nowrap;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	pointer-events: none;
+	box-shadow: 0 1px 3px rgba(0,0,0,0.4);
+	}
+.leaflet-tooltip.leaflet-interactive {
+	cursor: pointer;
+	pointer-events: auto;
+	}
+.leaflet-tooltip-top:before,
+.leaflet-tooltip-bottom:before,
+.leaflet-tooltip-left:before,
+.leaflet-tooltip-right:before {
+	position: absolute;
+	pointer-events: none;
+	border: 6px solid transparent;
+	background: transparent;
+	content: "";
+	}
+
+/* Directions */
+
+.leaflet-tooltip-bottom {
+	margin-top: 6px;
+}
+.leaflet-tooltip-top {
+	margin-top: -6px;
+}
+.leaflet-tooltip-bottom:before,
+.leaflet-tooltip-top:before {
+	left: 50%;
+	margin-left: -6px;
+	}
+.leaflet-tooltip-top:before {
+	bottom: 0;
+	margin-bottom: -12px;
+	border-top-color: #fff;
+	}
+.leaflet-tooltip-bottom:before {
+	top: 0;
+	margin-top: -12px;
+	margin-left: -6px;
+	border-bottom-color: #fff;
+	}
+.leaflet-tooltip-left {
+	margin-left: -6px;
+}
+.leaflet-tooltip-right {
+	margin-left: 6px;
+}
+.leaflet-tooltip-left:before,
+.leaflet-tooltip-right:before {
+	top: 50%;
+	margin-top: -6px;
+	}
+.leaflet-tooltip-left:before {
+	right: 0;
+	margin-right: -12px;
+	border-left-color: #fff;
+	}
+.leaflet-tooltip-right:before {
+	left: 0;
+	margin-left: -12px;
+	border-right-color: #fff;
+	}
+
+/* Printing */
+
+@media print {
+	/* Prevent printers from removing background-images of controls. */
+	.leaflet-control {
+		-webkit-print-color-adjust: exact;
+		print-color-adjust: exact;
+		}
+	}
+
+</style>
+<style>
+/* Layout: one-screen atlas app. Header with view switcher; Map view = filter rail + map + profile sheet; Statistics, Visit, NGO hub and Data views scroll inside the main area. */
+:root{
+  --bg:#eef2ec; --panel:#f9fbf7; --ink:#15231a; --muted:#56655b; --line:#d3dccf; --chip:#e4ebdf;
+  --accent:#1d6b3c; --accent-ink:#ffffff; --sea:#d7e3e6; --land:#f4f6f0; --land-line:#9fb0a2; --land-hi:#e3ecd9;
+  --label:#5b6b60; --warn:#8f5200; --bad:#a3282b; --good:#1d6b3c; --shadow:0 10px 30px rgba(21,35,26,.14);
+  --g0:#76a51f; --g1:#007a4d; --g2:#e0701f; --g3:#2a78d6; --g4:#d55181; --g5:#4a3aa7; --g6:#8a6d00;
+  --bar:#3f7d4f; --bar2:#9cc59f; --loss:#c2452d;
+  --f-display:"Bricolage Grotesque","Avenir Next","Segoe UI",system-ui,sans-serif;
+  --f-body:"Public Sans","Segoe UI",system-ui,-apple-system,sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,"SFMono-Regular",Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --bg:#0f1712; --panel:#141e18; --ink:#e4ece5; --muted:#9aaa9f; --line:#2a3a30; --chip:#1f2c24;
+  --accent:#5cc28a; --accent-ink:#08130c; --sea:#0b1418; --land:#18241d; --land-line:#3f5547; --land-hi:#223429;
+  --label:#a8b8ad; --warn:#e2a54a; --bad:#f07b6e; --good:#5cc28a; --shadow:0 10px 30px rgba(0,0,0,.5);
+  --g0:#929a10; --g1:#0c9690; --g2:#d95926; --g3:#3987e5; --g4:#d55181; --g5:#9085e9; --g6:#b38a00;
+  --bar:#5cb377; --bar2:#2f5c3c; --loss:#f07b5c; color-scheme:dark; } }
+:root[data-theme="dark"]{
+  --bg:#0f1712; --panel:#141e18; --ink:#e4ece5; --muted:#9aaa9f; --line:#2a3a30; --chip:#1f2c24;
+  --accent:#5cc28a; --accent-ink:#08130c; --sea:#0b1418; --land:#18241d; --land-line:#3f5547; --land-hi:#223429;
+  --label:#a8b8ad; --warn:#e2a54a; --bad:#f07b6e; --good:#5cc28a; --shadow:0 10px 30px rgba(0,0,0,.5);
+  --g0:#929a10; --g1:#0c9690; --g2:#d95926; --g3:#3987e5; --g4:#d55181; --g5:#9085e9; --g6:#b38a00;
+  --bar:#5cb377; --bar2:#2f5c3c; --loss:#f07b5c; color-scheme:dark; }
+html,body{height:100%}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:14px;line-height:1.45}
+*{box-sizing:border-box}
+button,input,select,textarea{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+a{color:var(--accent)}
+.app{display:grid;grid-template-rows:auto 1fr;height:100%}
+header.top{display:flex;flex-wrap:wrap;align-items:center;gap:10px 24px;padding:10px 18px;border-bottom:1px solid var(--line);background:var(--panel)}
+.brand{display:flex;align-items:center;gap:10px;min-width:0}
+.brand h1{font-family:var(--f-display);font-weight:800;font-size:21px;letter-spacing:-.01em;margin:0;line-height:1.1}
+.brand .sub{font-size:12px;color:var(--muted)}
+.mark{width:28px;height:28px;flex:none}
+nav.views{display:flex;gap:4px;margin-left:auto;flex-wrap:wrap}
+nav.views a{white-space:nowrap;text-decoration:none;color:var(--muted);font-weight:600;font-size:13.5px;padding:7px 12px;border-radius:8px}
+nav.views a:hover{background:var(--chip);color:var(--ink)}
+nav.views a[aria-current="page"]{background:var(--ink);color:var(--panel)}
+main{min-height:0;position:relative}
+.view{height:100%;overflow:auto}
+.view[hidden]{display:none!important}
+#v-map{display:grid;grid-template-columns:minmax(300px,370px) 1fr;overflow:hidden}
+aside.rail{border-right:1px solid var(--line);background:var(--panel);display:flex;flex-direction:column;min-height:0;min-width:0}
+.filters{padding:14px 16px 10px;display:grid;gap:10px;border-bottom:1px solid var(--line)}
+.search{position:relative;display:block}
+.search input{width:100%;padding:9px 12px 9px 34px;border:1px solid var(--line);border-radius:8px;background:var(--bg)}
+.search svg{position:absolute;left:10px;top:50%;transform:translateY(-50%);width:16px;height:16px;stroke:var(--muted)}
+.lbl{font-size:10.5px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);font-weight:600}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);background:var(--bg);border-radius:999px;padding:4px 10px 4px 8px;font-size:12px;cursor:pointer;user-select:none}
+.chip .dot{width:10px;height:10px;border-radius:50%;background:var(--c);flex:none}
+.chip .n{font-family:var(--f-mono);font-size:11px;color:var(--muted)}
+.chip[aria-pressed="false"]{opacity:.5}
+.chip[aria-pressed="false"] .dot{background:transparent;box-shadow:inset 0 0 0 2px var(--c)}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+select,input[type=text],input[type=date],input[type=url],textarea{width:100%;padding:7px 9px;border:1px solid var(--line);border-radius:8px;background:var(--bg)}
+.toggle{display:flex;align-items:center;gap:8px;font-size:13px;cursor:pointer}
+.toggle input{accent-color:var(--accent);width:16px;height:16px}
+.resbar{display:flex;justify-content:space-between;align-items:center;padding:8px 16px;font-size:12px;color:var(--muted);border-bottom:1px solid var(--line);gap:8px}
+.linkbtn{background:none;border:0;color:var(--accent);font-weight:600;cursor:pointer;padding:0}
+.listwrap{overflow:auto;flex:1;min-height:0}
+ul.list{list-style:none;margin:0;padding:0}
+ul.list li button{display:grid;grid-template-columns:12px 1fr auto;gap:10px;align-items:start;width:100%;text-align:left;background:none;border:0;border-bottom:1px solid var(--line);padding:9px 16px;cursor:pointer}
+ul.list li button:hover,ul.list li button.on{background:var(--chip)}
+.li-dot{width:10px;height:10px;border-radius:50%;margin-top:4px;background:var(--c)}
+.li-name{font-weight:600;font-size:13.5px;line-height:1.3}
+.li-meta{font-size:12px;color:var(--muted)}
+.li-tag{font-family:var(--f-mono);font-size:10.5px;color:var(--muted);white-space:nowrap;margin-top:2px;text-align:right}
+.lv{display:inline-block;font-family:var(--f-mono);font-size:10px;font-weight:500;border:1px solid var(--line);border-radius:4px;padding:0 4px;margin-left:6px;vertical-align:1px;color:var(--muted)}
+.lv.A{color:var(--good);border-color:currentColor}
+.btn{display:inline-flex;align-items:center;gap:6px;background:var(--chip);border:1px solid var(--line);border-radius:8px;padding:7px 12px;cursor:pointer;font-weight:600;font-size:13px;text-decoration:none;color:var(--ink)}
+.btn:hover{border-color:var(--accent)}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.btn.sm{padding:4px 9px;font-size:12px}
+.btn[disabled]{opacity:.5;cursor:not-allowed}
+.more{display:block;margin:12px auto 18px}
+.mapwrap{position:relative;min-width:0;min-height:0}
+#map{position:absolute;inset:0;background:var(--sea)}
+.leaflet-container{font-family:var(--f-body);background:var(--sea)}
+.maptools{position:absolute;top:12px;right:12px;z-index:500;display:flex;flex-direction:column;gap:8px;align-items:flex-end;max-width:calc(100% - 70px)}
+.seg{display:flex;flex-wrap:wrap;background:var(--panel);border:1px solid var(--line);border-radius:8px;overflow:hidden;box-shadow:var(--shadow)}
+.seg button{border:0;background:none;padding:6px 10px;font-size:12px;font-weight:600;color:var(--muted);cursor:pointer}
+.seg button[aria-pressed="true"]{background:var(--accent);color:var(--accent-ink)}
+.seg button[disabled]{opacity:.45;cursor:not-allowed}
+.note{max-width:280px;background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:8px 10px;font-size:12px;box-shadow:var(--shadow)}
+.legend{position:absolute;left:12px;bottom:22px;z-index:500;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:9px 11px;box-shadow:var(--shadow);font-size:11.5px;display:grid;grid-template-columns:auto auto;gap:3px 14px;max-width:calc(100% - 24px)}
+.legend .t,.legend .sm{grid-column:1/-1}
+.legend .t{font-family:var(--f-display);font-weight:700;font-size:13px;margin-bottom:2px}
+.legend .k{display:flex;align-items:center;gap:8px}
+.legend .sw{width:12px;height:12px;border-radius:3px;background:var(--c)}
+.legend .sm{font-size:11px;color:var(--muted);margin-top:4px;max-width:300px}
+.leaflet-tooltip.tip{background:var(--panel);color:var(--ink);border:1px solid var(--line);box-shadow:var(--shadow);font-family:var(--f-body);font-size:12px;padding:4px 8px;border-radius:6px}
+.leaflet-tooltip.tip:before{display:none}
+.st-label{font-family:var(--f-display);font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--label);white-space:nowrap;text-shadow:0 0 3px var(--land),0 0 3px var(--land);pointer-events:none}
+.leaflet-control-zoom a{background:var(--panel)!important;color:var(--ink)!important;border-color:var(--line)!important}
+.leaflet-control-attribution{background:color-mix(in srgb,var(--panel) 85%,transparent)!important;color:var(--muted)!important;max-width:70%}
+.leaflet-control-attribution a{color:var(--accent)!important}
+/* profile sheet */
+.sheet{position:absolute;top:0;right:0;bottom:0;width:min(470px,100%);background:var(--panel);border-left:1px solid var(--line);box-shadow:var(--shadow);z-index:600;display:flex;flex-direction:column;transition:transform .25s ease}
+.sheet[hidden]{display:flex!important;transform:translateX(105%);visibility:hidden}
+.sheet-h{padding:14px 18px 12px;border-bottom:1px solid var(--line);display:grid;grid-template-columns:1fr auto;gap:8px}
+.sheet-h h2{font-family:var(--f-display);font-weight:800;font-size:23px;line-height:1.12;margin:4px 0 0;text-wrap:balance}
+.sheet-h .alt{font-size:12px;color:var(--muted);margin-top:4px}
+.actions{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:6px}
+.x{background:var(--chip);border:1px solid var(--line);border-radius:8px;width:34px;height:34px;cursor:pointer;font-size:18px;line-height:1}
+.pill{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--ink)}
+.pill i{width:9px;height:9px;border-radius:50%;background:var(--c)}
+.sheet-b{overflow:auto;padding:14px 18px 28px;display:flex;flex-direction:column;gap:16px}
+.sheet-b>*{flex-shrink:0}
+.facts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:10px;overflow:hidden;margin:0}
+.fact{background:var(--panel);padding:8px 10px;min-width:0}
+.fact dt{font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);font-weight:600}
+.fact dd{margin:2px 0 0;font-variant-numeric:tabular-nums;overflow-wrap:anywhere}
+.fact.w{grid-column:1/-1}
+.mono{font-family:var(--f-mono);font-size:12.5px}
+.desigs{display:flex;flex-wrap:wrap;gap:6px}
+.desigs span{font-size:11px;font-weight:600;background:var(--chip);border:1px solid var(--line);border-radius:4px;padding:1px 6px}
+.sec h3{font-family:var(--f-display);font-size:14.5px;font-weight:700;margin:0 0 4px}
+.sec p{margin:0;max-width:65ch}
+.verif{display:grid;grid-template-columns:auto 1fr;gap:10px;align-items:center;border:1px solid var(--line);border-radius:10px;padding:10px 12px;background:var(--bg)}
+.verif b.lvl{font-family:var(--f-display);font-size:24px;width:40px;height:40px;border-radius:8px;display:grid;place-items:center;border:2px solid var(--muted);color:var(--muted)}
+.verif b.lvl.A{border-color:var(--good);color:var(--good)}
+.verif b.lvl.B{border-color:var(--accent);color:var(--accent)}
+.verif b.lvl.D{border-color:var(--warn);color:var(--warn)}
+.verif div{font-size:12.5px}
+.photo{margin:0;border-radius:10px;overflow:hidden;border:1px solid var(--line);background:var(--bg)}
+.photo img{display:block;width:100%;height:220px;object-fit:cover}
+.photo figcaption{font-size:11.5px;color:var(--muted);padding:6px 10px}
+.photo.off{padding:10px 12px;font-size:12.5px}
+.box{border:1px solid var(--line);border-radius:10px;padding:12px;background:var(--bg)}
+.box h3{font-family:var(--f-display);font-size:14.5px;margin:0 0 8px;display:flex;justify-content:space-between;align-items:baseline;gap:8px}
+.box h3 small{font-family:var(--f-body);font-size:11px;font-weight:500;color:var(--muted)}
+.box dl{margin:0;display:grid;gap:6px}
+.box dt{font-weight:600;font-size:12px}
+.box dd{margin:0;font-size:13px;color:var(--muted)}
+.kv{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-bottom:8px}
+.kv div{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:6px 8px}
+.kv b{display:block;font-family:var(--f-display);font-size:18px;font-variant-numeric:tabular-nums}
+.kv span{font-size:10.5px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+.splist{list-style:none;margin:0;padding:0;font-size:12.5px;display:grid;gap:3px}
+.splist li{display:flex;justify-content:space-between;gap:8px}
+.splist i{color:var(--ink)}
+.iucn{font-family:var(--f-mono);font-size:10px;font-weight:600;border-radius:3px;padding:0 4px;color:#fff}
+.iucn.CR{background:#b3261e}.iucn.EN{background:#c2560c}.iucn.VU{background:#9a7b00}.iucn.NT{background:#5c6e2e}
+.thumbs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px}
+.thumbs a{display:block;text-decoration:none;color:var(--muted);font-size:10.5px;line-height:1.25}
+.thumbs img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:6px;display:block;background:var(--chip)}
+.zone .zt{font-size:10.5px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);font-weight:700}
+.zone h4{font-family:var(--f-display);margin:2px 0 6px;font-size:15px}
+.zone{border-style:dashed}
+.gap{font-size:12.5px;color:var(--warn);border-left:3px solid var(--warn);padding:2px 0 2px 10px}
+.links{display:flex;flex-wrap:wrap;gap:8px}
+.links a{font-size:12.5px;font-weight:600;color:var(--accent);text-decoration:none;border:1px solid var(--line);border-radius:8px;padding:6px 10px;background:var(--bg)}
+.links a:hover{border-color:var(--accent)}
+.srcs{font-size:12px;margin:0;padding-left:18px;color:var(--muted);overflow-wrap:anywhere}
+.cite{font-size:12px;background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:8px 10px;font-family:var(--f-mono);white-space:pre-wrap;overflow-wrap:anywhere;margin:0}
+.wx{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:4px;text-align:center;font-size:11px}
+.wx div{background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:4px 2px}
+.wx b{display:block;font-size:12.5px;font-variant-numeric:tabular-nums}
+.loading{color:var(--muted);font-size:12.5px}
+/* page views */
+.page{max-width:1240px;margin:0 auto;padding:24px 20px 60px}
+.page h2.title{font-family:var(--f-display);font-weight:800;font-size:clamp(26px,3.4vw,38px);margin:0 0 6px;letter-spacing:-.015em;text-wrap:balance}
+.page .lede{color:var(--muted);max-width:72ch;margin:0 0 20px;font-size:15px}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:12px;overflow:hidden;margin-bottom:24px}
+.kpi{background:var(--panel);padding:14px 16px;min-width:0}
+.kpi b{display:block;font-family:var(--f-display);font-size:28px;font-weight:700;line-height:1.05;font-variant-numeric:tabular-nums}
+.kpi span{display:block;font-size:12.5px;color:var(--muted);margin-top:4px}
+.kpi small{display:block;font-size:10.5px;color:var(--muted);margin-top:6px}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,520px),1fr));gap:18px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px 18px;min-width:0;display:flex;flex-direction:column;gap:10px}
+.card h3{font-family:var(--f-display);font-size:17px;margin:0;line-height:1.2}
+.card .sub{font-size:12.5px;color:var(--muted);margin-top:2px}
+.card .foot{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:8px;border-top:1px solid var(--line);padding-top:8px;font-size:11.5px;color:var(--muted)}
+.card .foot .acts{display:flex;gap:6px}
+.chart{position:relative;min-width:0}
+.chart svg{display:block;width:100%;height:auto;overflow:visible}
+.chart text{fill:var(--muted);font-size:11px;font-family:var(--f-body)}
+.chart .lab{fill:var(--ink)}
+.chart .gridl{stroke:var(--line);stroke-width:1}
+.vtip{position:absolute;pointer-events:none;background:var(--ink);color:var(--panel);font-size:12px;padding:5px 8px;border-radius:6px;white-space:nowrap;transform:translate(-50%,-110%);z-index:5}
+.tbl-wrap{overflow:auto;max-height:340px;border:1px solid var(--line);border-radius:8px}
+table.dt{width:100%;border-collapse:collapse;font-size:12.5px}
+table.dt th{position:sticky;top:0;background:var(--panel);text-align:left;font-size:10.5px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);padding:7px 10px;border-bottom:1px solid var(--line)}
+table.dt td{padding:6px 10px;border-bottom:1px solid var(--line);font-variant-numeric:tabular-nums}
+table.dt td.n,table.dt th.n{text-align:right}
+table.dt tbody tr.click{cursor:pointer}
+table.dt tbody tr.click:hover{background:var(--chip)}
+.commit{display:grid;gap:10px}
+.commit div{border-left:3px solid var(--accent);padding:2px 0 2px 12px}
+.commit b{display:block}
+.commit span{font-size:13px;color:var(--muted)}
+.vgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr));gap:16px}
+.vcard{background:var(--panel);border:1px solid var(--line);border-radius:12px;overflow:hidden;display:flex;flex-direction:column}
+.vcard .ph{height:150px;background:linear-gradient(135deg,var(--c),color-mix(in srgb,var(--c) 40%,var(--panel)));position:relative}
+.vcard .ph img{width:100%;height:100%;object-fit:cover;display:block}
+.vcard .ph .ready{position:absolute;left:10px;top:10px}
+.vcard .bd{padding:12px 14px;display:flex;flex-direction:column;gap:6px;flex:1}
+.vcard h3{font-family:var(--f-display);font-size:17px;margin:0;line-height:1.2}
+.vcard .meta{font-size:12.5px;color:var(--muted)}
+.vcard p{margin:0;font-size:13px}
+.vcard .bt{display:flex;gap:6px;flex-wrap:wrap;margin-top:auto;padding-top:6px}
+.ready{font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;padding:3px 8px;border-radius:999px;background:var(--panel);border:1px solid var(--line);color:var(--ink)}
+.ready.Established{color:var(--good);border-color:currentColor}
+.ready.Limited,.ready.Closed{color:var(--bad);border-color:currentColor}
+.safety{font-size:12px;color:var(--bad)}
+.filterbar{display:flex;flex-wrap:wrap;gap:10px;align-items:end;margin-bottom:16px}
+.filterbar>div{min-width:160px;flex:1;max-width:260px}
+.form{display:grid;gap:10px}
+.form .two{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.form label{display:grid;gap:4px;font-size:12.5px;font-weight:600}
+textarea{min-height:90px;resize:vertical}
+.feed{display:grid;gap:10px}
+.rep{border:1px solid var(--line);border-radius:10px;padding:10px 12px;background:var(--bg)}
+.rep .h{display:flex;flex-wrap:wrap;gap:8px;align-items:center;font-size:12px;color:var(--muted)}
+.rep b{font-size:14px;color:var(--ink)}
+.rep p{margin:6px 0 0;font-size:13px}
+.typechip{font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;background:var(--chip);border-radius:4px;padding:1px 6px;color:var(--ink)}
+.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:var(--ink);color:var(--panel);padding:10px 16px;border-radius:10px;z-index:2000;font-size:13px;box-shadow:var(--shadow)}
+.srctbl td:first-child{font-weight:600}
+.prose p,.prose li{max-width:75ch}
+.prose h3{font-family:var(--f-display);font-size:18px;margin:22px 0 6px}
+.gaplist{font-size:12.5px}
+.gaplist b{display:block;margin-top:6px}
+.legbtn{display:none}
+@media (max-width:860px){
+  html,body{height:auto}
+  .app{display:block}
+  .view{height:auto;overflow:visible}
+  #v-map{display:flex;flex-direction:column}
+  .mapwrap{height:62vh;min-height:360px;order:1}
+  aside.rail{order:2;border-right:0;border-top:1px solid var(--line)}
+  .listwrap{overflow:visible}
+  nav.views{margin-left:0;width:100%;overflow-x:auto;flex-wrap:nowrap}
+  .sheet{position:fixed;top:auto;left:0;right:0;bottom:0;width:100%;height:80vh;border-left:0;border-top:1px solid var(--line);border-radius:14px 14px 0 0;padding-bottom:env(safe-area-inset-bottom,0px)}
+  .sheet[hidden]{transform:translateY(105%)}
+  .legend{display:none}
+  .legend.open{display:grid}
+  .legbtn{display:inline-block}
+  .form .two{grid-template-columns:1fr}
+}
+@media (prefers-reduced-motion:reduce){.sheet{transition:none}}
+</style>
+
+<style>[hidden]{display:none!important}
+body{margin:0;display:flex;flex-direction:column}
+.sitebar{z-index:1000!important}
+.app{flex:1;min-height:0;height:auto}
+@media (max-width:860px){body{display:block}}</style>
+</head>
+<body>
+<div class="app">
+  <header class="top">
+    <div class="brand">
+      <svg class="mark" viewBox="0 0 32 32" aria-hidden="true"><path d="M16 2 C8 10 7 17 16 30 C25 17 24 10 16 2Z" fill="var(--accent)"/><path d="M16 8 V27 M16 15 l-5 -4 M16 20 l6 -5" stroke="var(--panel)" stroke-width="1.8" fill="none" stroke-linecap="round"/></svg>
+      <div><h1>Nigeria Forest Reserves Atlas</h1><div class="sub">Forest reserves, parks, sanctuaries and wetlands · 36 states and the FCT</div></div>
+    </div>
+    <nav class="views" aria-label="Sections">
+      <a href="#map" data-v="map">Map</a>
+      <a href="#stats" data-v="stats">Statistics</a>
+      <a href="#visit" data-v="visit">Visit</a>
+      <a href="#ngo" data-v="ngo">NGO hub</a>
+      <a href="#data" data-v="data">Data &amp; sources</a>
+    </nav>
+  </header>
+  <main>
+    <section class="view" id="v-map">
+      <aside class="rail">
+        <div class="filters">
+          <label class="search"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg>
+            <input id="q" type="search" placeholder="Search name, state, species (e.g. chimpanzee)" aria-label="Search sites"></label>
+          <div><div class="lbl">Designation</div><div class="chips" id="cats" style="margin-top:6px"></div></div>
+          <div class="row2">
+            <div><div class="lbl" style="margin-bottom:4px">State</div><select id="state" aria-label="State"></select></div>
+            <div><div class="lbl" style="margin-bottom:4px">Ecological zone</div><select id="zone" aria-label="Ecological zone"></select></div>
+          </div>
+          <div class="row2">
+            <div><div class="lbl" style="margin-bottom:4px">Verification</div><select id="lvl" aria-label="Verification level"><option value="">All levels</option><option value="A">A · documented</option><option value="AB">A–B · sourced</option><option value="D">D · location uncertain</option></select></div>
+            <div><div class="lbl" style="margin-bottom:4px">Sort</div><select id="sort" aria-label="Sort"><option value="doc">Best documented</option><option value="area">Largest first</option><option value="gbif">Most biodiversity records</option><option value="name">A–Z</option></select></div>
+          </div>
+        </div>
+        <div class="resbar"><span id="count"></span><button id="reset" class="linkbtn" type="button">Reset filters</button></div>
+        <div class="listwrap"><ul class="list" id="list"></ul><button class="btn more" id="more" type="button" hidden>Show more</button></div>
+      </aside>
+      <div class="mapwrap">
+        <div id="map" role="region" aria-label="Map of Nigeria protected areas"></div>
+        <div class="maptools">
+          <div class="seg" id="base" aria-label="Basemap"></div>
+          <div class="seg" id="ovl" aria-label="Overlays"></div>
+          <button type="button" class="btn sm legbtn" id="legbtn">Legend</button>
+          <div class="note" id="tilenote" hidden></div>
+        </div>
+        <div class="legend" id="legend"></div>
+        <section class="sheet" id="sheet" hidden aria-label="Site profile">
+          <div class="sheet-h"><div id="sh-head"></div><button class="x" id="close" type="button" aria-label="Close profile">×</button><div class="actions" id="sh-act"></div></div>
+          <div class="sheet-b" id="sh-body"></div>
+        </section>
+      </div>
+    </section>
+    <section class="view" id="v-stats" hidden><div class="page" id="stats"></div></section>
+    <section class="view" id="v-visit" hidden><div class="page" id="visit"></div></section>
+    <section class="view" id="v-ngo" hidden><div class="page" id="ngo"></div></section>
+    <section class="view" id="v-data" hidden><div class="page prose" id="data"></div></section>
+  </main>
+</div>
+<div class="toast" id="toast" hidden></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.js"></script>
+<script>
+/* Nigeria Forest Reserves Atlas — app script */
+const CONFIG={
+  issuesRepo:'lordash001/lordash001.github.io',      // GitHub repo that receives field reports and corrections
+  siteUrl:'https://shagbaor.com/forest-atlas/',
+  dataUrl:'data/atlas.json'
+};
+let DATA=/*DATA*/null;
+const CATS=['National Park','Game Reserve','Wildlife Sanctuary','Strict Nature Reserve','Forest Reserve','Community Forest','Conservation Area','Ramsar Site','Biosphere Reserve','Other'];
+const GROUPS=['Forest reserve','National park','Game reserve or sanctuary','Ramsar wetland','Biosphere reserve','Community & conservation area','Other site'];
+const ZONES={
+ mangrove:{n:'Mangrove forest',v:'Tidal mangrove swamps of the coast, estuaries and Niger Delta creeks.',fl:'Red mangroves (Rhizophora racemosa, R. harrisonii, R. mangle), white mangrove (Avicennia germinans), Laguncularia racemosa, Acrostichum fern; invasive nipa palm (Nypa fruticans).',fa:'West African manatee, Nile and slender-snouted crocodiles, African clawless otter, mudskippers, fiddler crabs, periwinkles, herons, egrets and migrant shorebirds.',r:'Fisheries and shellfish, fuelwood and poles, coastal protection, carbon storage.',t:'Creek boat tours, birdwatching, fishing-village and mangrove-restoration visits.'},
+ swamp:{n:'Freshwater swamp forest',v:'Seasonally flooded swamp forest behind the Niger Delta mangrove belt.',fl:'Raphia palms, Mitragyna stipulosa, Symphonia globulifera, Alstonia boonei, Lophira alata on ridges, Anthocleista spp.',fa:'Niger Delta red colobus and other primates, sitatunga, water chevrotain, crocodiles, hornbills, kingfishers.',r:'Raffia wine and fibre, fish, timber, NTFPs and medicinal plants.',t:'Canoe trails, primate and bird watching, cultural visits.'},
+ rainforest:{n:'Lowland rainforest',v:'Moist and dry semi-deciduous high forest of the southern belt, often logged or converted to plantations.',fl:'Obeche (Triplochiton scleroxylon), African mahoganies (Khaya ivorensis, K. grandifoliola), iroko (Milicia excelsa), Entandrophragma spp., Terminalia superba, Mansonia altissima, Nauclea diderrichii, Cola spp.',fa:'Chimpanzee, white-throated, mona and putty-nosed monkeys, forest elephant (relict herds), red river hog, Maxwell’s and bay duikers, pangolins, grey parrot, hornbills.',r:'Hardwood timber, teak and Gmelina plantations, snails, bush mango, kola, honey, chewing sticks, watershed protection.',t:'Forest hikes, canopy walkways, primate tracking, research stations and sacred groves.'},
+ mosaic:{n:'Forest–savanna mosaic',v:'Derived savanna and transition woodland where forest has given way to grassland after farming and fire.',fl:'Daniellia oliveri, Lophira lanceolata, Parkia biglobosa (locust bean), shea (Vitellaria paradoxa), Anogeissus leiocarpa, oil palm, gallery forest along streams.',fa:'Patas and tantalus monkeys, olive baboon, bushbuck, Maxwell’s duiker, grasscutter, francolins, hornbills.',r:'Fuelwood and charcoal, shea and locust bean, grazing, gallery-forest timber, water catchment.',t:'Hills and inselbergs, waterfalls and gallery-forest walks.'},
+ sguinea:{n:'Southern Guinea savanna',v:'Tall-grass woodland savanna with broad-leaved trees and riverine forest.',fl:'Isoberlinia doka, Daniellia oliveri, Afzelia africana, Prosopis africana, Pterocarpus erinaceus, Burkea africana, shea and locust bean.',fa:'Roan antelope, western hartebeest, kob, oribi, warthog, olive baboon, bushbuck, hippopotamus on rivers, Abyssinian ground hornbill, vultures.',r:'Grazing, fuelwood, shea and locust bean, honey, rosewood (Pterocarpus erinaceus, CITES-listed), fisheries.',t:'Game viewing, river safaris, birding.'},
+ nguinea:{n:'Northern Guinea savanna',v:'Open woodland savanna with Isoberlinia and Monotes, shorter grasses, frequent dry-season fires.',fl:'Isoberlinia tomentosa and I. doka, Monotes kerstingii, Uapaca togoensis, Detarium microcarpum, shea, Terminalia spp.',fa:'Roan antelope, hartebeest, oribi, warthog, patas monkey, olive baboon, jackals, bustards, guineafowl, raptors.',r:'Fuelwood and poles, grazing, shea, gum and honey, watershed protection.',t:'Rock hills, waterfalls, wildlife and bird viewing.'},
+ sudan:{n:'Sudan savanna',v:'Dry short-grass savanna with scattered thorny trees and farmed parkland.',fl:'Acacia senegal, A. seyal, A. nilotica, Faidherbia albida, Balanites aegyptiaca, baobab (Adansonia digitata), doum palm (Hyphaene thebaica), Guiera senegalensis, Combretum spp.',fa:'Patas monkey, red-fronted gazelle (relict), side-striped jackal, hares, Arabian and Denham’s bustards, guineafowl, Palaearctic migrants at wetlands.',r:'Fuelwood, shelterbelts and windbreaks, gum arabic, grazing and fodder, doum palm leaves.',t:'Wetland birding, fadama landscapes, cultural sites.'},
+ sahel:{n:'Sahel savanna',v:'Semi-arid thorn scrub and dunes of the far north-east around Lake Chad.',fl:'Acacia tortilis (raddiana), Balanites aegyptiaca, Leptadenia pyrotechnica, Calotropis procera, Ziziphus mauritiana, Commiphora africana, doum palm.',fa:'Dorcas gazelle (relict), Nubian bustard, sandgrouse, desert hares, Palaearctic migrant waterbirds around Lake Chad.',r:'Grazing, gum arabic, fuelwood, oasis farming, shelterbelts against desertification.',t:'Oases and dunes, Lake Chad wetlands.'},
+ jos:{n:'Jos Plateau highland',v:'Upland grassland and wooded savanna above 1,200 m with gallery forest and granite outcrops.',fl:'Upland grasses, Isoberlinia, Uapaca togoensis, Burkea africana, gallery-forest species, Eucalyptus and pine plantations.',fa:'Rock firefinch and Jos Plateau indigobird (endemic birds), rock hyrax, patas monkey.',r:'Water catchment for northern rivers, fuelwood plantations, grazing.',t:'Rock formations, waterfalls, cool-climate eco-tourism and birding.'},
+ montane:{n:'Montane forest–grassland',v:'Highland forest and grassland of the Mambilla, Gotel and Obudu uplands along the Cameroon border.',fl:'Montane forest trees (Polyscias fulva, Carapa grandiflora, Entandrophragma angolense), Podocarpus on high ridges, tree ferns, montane grassland.',fa:'Nigeria–Cameroon chimpanzee, black-and-white colobus, putty-nosed monkey, montane forest birds of the Cameroon Highlands.',r:'Water catchment for Benue tributaries, tea and grazing on the plateau, NTFPs.',t:'Cool-climate trekking, ranch resorts, primate tracking and highland birding.'}
+};
+const LEVELS={A:'Boundary from WDPA plus a site profile backed by two or more cited sources.',B:'Official boundary or a published location, plus at least one sourced attribute (profile, gazetted area or year).',C:'Official name, boundary or published location only. No site-specific profile found yet.',D:'Location approximate (nearest town) or not yet found. Treat as provisional.'};
+const CITIES={Abuja:[9.0765,7.3986],Lagos:[6.5244,3.3792],Ibadan:[7.3775,3.947],'Port Harcourt':[4.8156,7.0498],Kano:[12.0022,8.592],Enugu:[6.4584,7.5464],Calabar:[4.9757,8.3417],'Benin City':[6.335,5.6037],Jos:[9.8965,8.8583],Kaduna:[10.5105,7.4165],Maiduguri:[11.8311,13.151],Yola:[9.2035,12.4954],Sokoto:[13.0059,5.2476],Ilorin:[8.4966,4.5421],Akure:[7.2571,5.2058],Bauchi:[10.3158,9.8442]};
+const fmt=new Intl.NumberFormat('en-GB'),fmt1=new Intl.NumberFormat('en-GB',{maximumFractionDigits:1});
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const css=n=>getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+const gcol=g=>css('--g'+g);
+const today=new Date().toISOString().slice(0,10);
+const track=(n,t)=>{try{window.SiteTrack&&window.SiteTrack(n,t)}catch(e){}};
+function toast(t){const e=$('#toast');e.textContent=t;e.hidden=false;clearTimeout(toast.t);toast.t=setTimeout(()=>e.hidden=true,3200)}
+function store(k,v){try{if(v===undefined)return JSON.parse(localStorage.getItem('ngfra.'+k)||'null');localStorage.setItem('ngfra.'+k,JSON.stringify(v))}catch(e){return null}}
+async function copy(text){try{await navigator.clipboard.writeText(text);toast('Copied to clipboard')}catch(e){const ta=document.createElement('textarea');ta.value=text;document.body.appendChild(ta);ta.select();try{document.execCommand('copy');toast('Copied to clipboard')}catch(_){toast('Select the text and copy it manually')}ta.remove()}}
+function km(a,b){const R=6371,dl=(b[0]-a[0])*Math.PI/180,dn=(b[1]-a[1])*Math.PI/180;const x=Math.sin(dl/2)**2+Math.cos(a[0]*Math.PI/180)*Math.cos(b[0]*Math.PI/180)*Math.sin(dn/2)**2;return 2*R*Math.asin(Math.sqrt(x))}
+let LIVE=false, CAP={db:null,user:null,downloads:null};
+
+/* ---------- downloads: claude downloads capability, else blob link ---------- */
+async function saveFile(name,text,type){
+  track('download/'+name,'Downloaded '+name);
+  if(CAP.downloads){try{await CAP.downloads.save({filename:name,data:new Blob([text],{type})});return}catch(e){if(e&&e.code==='declined')return;}}
+  try{const u=URL.createObjectURL(new Blob([text],{type}));const a=document.createElement('a');a.href=u;a.download=name;document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(u);a.remove()},500)}catch(e){toast('Download is not available here; use the Data page links on the hosted site')}
+}
+function toCSV(rows){if(!rows.length)return'';const k=Object.keys(rows[0]);const q=v=>v==null?'':/[",\n]/.test(String(v))?'"'+String(v).replace(/"/g,'""')+'"':String(v);return[k.join(','),...rows.map(r=>k.map(x=>q(r[x])).join(','))].join('\n')}
+
+/* ---------- boot ---------- */
+(async function boot(){
+  if(!DATA){try{DATA=await (await fetch(CONFIG.dataUrl)).json()}catch(e){document.body.innerHTML='<p style="padding:24px">The atlas data file (data/atlas.json) could not be loaded. Serve this folder over HTTP (for example GitHub Pages) rather than opening the file directly.</p>';return}}
+  try{const c=new AbortController();setTimeout(()=>c.abort(),4000);const r=await fetch('https://api.gbif.org/v1/occurrence/search?limit=0&country=NG',{signal:c.signal});LIVE=r.ok}catch(e){LIVE=false}
+  init();
+  if(window.claude&&window.claude.use){
+    claude.use('downloads').then(d=>CAP.downloads=d).catch(()=>{});
+    Promise.all([claude.use('db'),claude.use('user')]).then(([db,user])=>{CAP.db=db;CAP.user=user;if(db)startReports()}).catch(()=>{});
+  }
+})();
+
+let F,STATES,BY={};
+function init(){
+  F=DATA.f;STATES=[...new Set(DATA.st.map(s=>s.n))].sort();
+  F.forEach(f=>{BY[f.i]=f;f.km=(f.a||f.ar||f.fh||0)/100;f.st=f.s?f.s.split(';').map(x=>x.trim()):[];
+    f.txt=[f.n,f.alt,f.s,f.l,f.flora,f.fauna,f.tour,f.res,f.veg,f.thr].filter(Boolean).join(' ').toLowerCase();});
+  initMap();initFilters();renderLegend();update();
+  window.addEventListener('hashchange',route);route();
+}
+
+/* ---------- routing ---------- */
+const VIEWS=['map','stats','visit','ngo','data'];const built={};
+function route(){
+  let h=location.hash.slice(1)||'map';let site=null;
+  if(!VIEWS.includes(h)){if(BY[h]){site=BY[h];h='map'}else h='map'}
+  VIEWS.forEach(v=>{$('#v-'+v).hidden=v!==h});
+  $$('nav.views a').forEach(a=>{if(a.dataset.v===h)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current')});
+  if(h==='map'){setTimeout(()=>map.invalidateSize(),50);if(site)select(site,false)}
+  track('view/'+h,'Opened section: '+h);
+  if(!built[h]){built[h]=1;({stats:buildStats,visit:buildVisit,ngo:buildNgo,data:buildData}[h]||(()=>{}))()}
+}
+function goSite(id){location.hash=id}
+
+/* ---------- map ---------- */
+let map,canvas,statesLayer,labelLayer,siteLayer,tile=null,ovl={},hiState=null;
+const BASES={
+  outline:{n:'Outline'},
+  map:{n:'Map',u:()=>matchMedia('(prefers-color-scheme: dark)').matches&&document.documentElement.dataset.theme!=='light'||document.documentElement.dataset.theme==='dark'?'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png':'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png',a:'© OpenStreetMap contributors © CARTO',mz:19},
+  sat:{n:'Satellite',u:()=>'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',a:'Imagery © Esri, Maxar, Earthstar Geographics',mz:18},
+  topo:{n:'Terrain',u:()=>'https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png',a:'© OpenTopoMap (CC-BY-SA), © OpenStreetMap contributors',mz:17},
+  nasa:{n:'NASA daily',u:()=>`https://gibs.earthdata.nasa.gov/wmts/epsg3857/best/VIIRS_SNPP_CorrectedReflectance_TrueColor/default/${new Date(Date.now()-864e5*2).toISOString().slice(0,10)}/GoogleMapsCompatible_Level9/{z}/{y}/{x}.jpg`,a:'Imagery: NASA GIBS / VIIRS SNPP corrected reflectance (2 days ago)',mz:9}
+};
+const OVERLAYS={loss:{n:'Forest loss 2001–2024',u:'https://storage.googleapis.com/earthenginepartners-hansen/tiles/gfc_v1.12/loss_alpha/{z}/{x}/{y}.png',a:'Forest loss: Hansen et al. / UMD / Google / USGS / NASA, GFC v1.12',mz:12}};
+function stateStyle(hi){const onTile=!!tile;return onTile?{color:'#ffffff',weight:hi?2.5:1,fillOpacity:0,opacity:.75}:{color:css('--land-line'),weight:hi?2:.8,fillColor:hi?css('--land-hi'):css('--land'),fillOpacity:1,opacity:1}}
+function initMap(){
+  map=L.map('map',{preferCanvas:true,zoomSnap:.25,minZoom:5,maxZoom:17}).fitBounds([[4.1,2.6],[13.95,14.7]]);
+  map.attributionControl.setPrefix(false);
+  map.attributionControl.addAttribution('Boundaries: geoBoundaries · Protected areas: UNEP-WCMC & IUCN (WDPA) and cited sources');
+  canvas=L.canvas({padding:.3,tolerance:4});
+  statesLayer=L.geoJSON({type:'FeatureCollection',features:DATA.st.map(s=>({type:'Feature',properties:{n:s.n},geometry:{type:s.t,coordinates:s.g}}))},{renderer:canvas,interactive:false,style:()=>stateStyle(false)}).addTo(map);
+  labelLayer=L.layerGroup();
+  DATA.st.forEach(s=>L.marker([s.c[1],s.c[0]],{interactive:false,icon:L.divIcon({className:'st-label',html:esc(s.n),iconSize:null})}).addTo(labelLayer));
+  const tl=()=>{const z=map.getZoom();if(z>=6.25&&z<9.5){if(!map.hasLayer(labelLayer))labelLayer.addTo(map)}else map.removeLayer(labelLayer)};map.on('zoomend',tl);tl();
+  siteLayer=L.layerGroup().addTo(map);
+  F.forEach(f=>{
+    const col=gcol(f.gp);
+    if(f.g){f.poly=L.polygon(f.g.map(p=>p.map(r=>r.map(c=>[c[1],c[0]]))),{renderer:canvas,color:col,weight:1.2,fillColor:col,fillOpacity:f.gp===0?.28:.22,opacity:.9});
+      f.poly.on('click',()=>select(f,true));f.poly.bindTooltip(f.n,{className:'tip',sticky:true})}
+    if(f.la!=null){f.mk=L.circleMarker([f.la,f.lo],{renderer:canvas,radius:(innerWidth<700?.6:1)*Math.max(3.2,Math.min(9,3+Math.sqrt(f.km||1)/5)),color:css('--panel'),weight:1,fillColor:col,fillOpacity:f.q==='approx_town'?.55:.95,dashArray:f.q==='approx_town'?'2 2':null});
+      f.mk.on('click',()=>select(f,true));f.mk.bindTooltip(f.n+(f.q==='approx_town'?' (approximate location)':''),{className:'tip',direction:'top',offset:[0,-4]})}
+  });
+  // basemap buttons
+  const b=$('#base');b.innerHTML=Object.entries(BASES).map(([k,v])=>`<button type="button" data-b="${k}" aria-pressed="false" ${k!=='outline'&&!LIVE?'disabled title="Loads on the hosted site"':''}>${v.n}</button>`).join('');
+  $$('#base button').forEach(x=>x.onclick=()=>setBase(x.dataset.b));
+  $('#ovl').innerHTML=Object.entries(OVERLAYS).map(([k,v])=>`<button type="button" data-o="${k}" aria-pressed="false" ${!LIVE?'disabled title="Loads on the hosted site"':''}>${v.n}</button>`).join('');
+  $$('#ovl button').forEach(x=>x.onclick=()=>toggleOverlay(x.dataset.o));
+  if(!LIVE){const n=$('#tilenote');n.hidden=false;n.textContent='Satellite, terrain, NASA daily imagery and the forest-loss layer could not be reached from here, so the atlas is showing its built-in outline map.'}
+  setBase(store('base')&&LIVE?store('base'):(LIVE?'map':'outline'));
+  const re=()=>setTimeout(recolor,30);
+  matchMedia('(prefers-color-scheme: dark)').addEventListener('change',re);
+  new MutationObserver(re).observe(document.documentElement,{attributes:true,attributeFilter:['data-theme']});
+  $('#legbtn').onclick=()=>$('#legend').classList.toggle('open');
+  $('#close').onclick=closeSheet;
+  document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!$('#sheet').hidden)closeSheet()});
+}
+function setBase(k){
+  if(k!=='outline')track('basemap/'+k,'Switched basemap: '+k);
+  $$('#base button').forEach(x=>x.setAttribute('aria-pressed',x.dataset.b===k));
+  if(tile){map.removeLayer(tile);tile=null}
+  if(k!=='outline'){const B=BASES[k];tile=L.tileLayer(B.u(),{attribution:B.a,maxNativeZoom:B.mz,maxZoom:17,subdomains:'abc'}).addTo(map);tile.bringToBack();tile._key=k}
+  statesLayer.setStyle(stateStyle(false));if(hiState)hiState.setStyle(stateStyle(true));
+  store('base',k);
+}
+function toggleOverlay(k){
+  const on=!ovl[k];$$('#ovl button').forEach(x=>{if(x.dataset.o===k)x.setAttribute('aria-pressed',on)});
+  if(on){const O=OVERLAYS[k];ovl[k]=L.tileLayer(O.u,{attribution:O.a,maxNativeZoom:O.mz,maxZoom:17,opacity:.85}).addTo(map)}else{map.removeLayer(ovl[k]);ovl[k]=null}
+}
+function recolor(){if(tile&&tile._key==='map')setBase('map');statesLayer.setStyle(stateStyle(false));F.forEach(f=>{const c=gcol(f.gp);if(f.poly)f.poly.setStyle({color:c,fillColor:c});if(f.mk)f.mk.setStyle({fillColor:c,color:css('--panel')})});if(built.stats){built.stats=0;if(!$('#v-stats').hidden){built.stats=1;buildStats()}}}
+function renderLegend(){$('#legend').innerHTML=`<div class="t">Designation</div>`+GROUPS.map((g,i)=>`<div class="k"><span class="sw" style="--c:var(--g${i})"></span>${g}</div>`).join('')+`<div class="sm">Shapes are WDPA boundaries; dots mark centres. Dashed dots are placed at the nearest town.</div>`}
+
+/* ---------- filters + list ---------- */
+const state={q:'',groups:new Set(GROUPS.map((g,i)=>i)),st:'',zone:'',lvl:'',sort:'doc',limit:120,sel:null};
+function initFilters(){
+  $('#state').innerHTML='<option value="">All 36 states + FCT</option>'+STATES.map(s=>`<option>${esc(s)}</option>`).join('');
+  $('#zone').innerHTML='<option value="">All zones</option>'+Object.entries(ZONES).map(([k,z])=>`<option value="${k}">${z.n}</option>`).join('');
+  let qt;$('#q').addEventListener('input',e=>{clearTimeout(qt);qt=setTimeout(()=>{state.q=e.target.value.trim().toLowerCase();state.limit=120;update()},150)});
+  $('#state').onchange=()=>{state.st=$('#state').value;state.limit=120;update();zoomState(state.st)};
+  $('#zone').onchange=()=>{state.zone=$('#zone').value;update()};
+  $('#lvl').onchange=()=>{state.lvl=$('#lvl').value;update()};
+  $('#sort').onchange=()=>{state.sort=$('#sort').value;update()};
+  $('#more').onclick=()=>{state.limit+=150;renderList()};
+  $('#reset').onclick=()=>{Object.assign(state,{q:'',groups:new Set(GROUPS.map((g,i)=>i)),st:'',zone:'',lvl:'',limit:120});$('#q').value='';$('#state').value='';$('#zone').value='';$('#lvl').value='';update();zoomState('')};
+}
+function pass(f,ig){
+  if(!ig&&!state.groups.has(f.gp))return false;
+  if(state.st&&!f.st.includes(state.st))return false;
+  if(state.zone&&f.z!==state.zone)return false;
+  if(state.lvl&&!state.lvl.includes(f.v))return false;
+  if(state.q){for(const t of state.q.split(/\s+/))if(t&&!f.txt.includes(t))return false}
+  return true;
+}
+let current=[];
+function update(){
+  const s=state.sort;
+  current=F.filter(f=>pass(f)).sort(s==='name'?(a,b)=>a.n.localeCompare(b.n):s==='area'?(a,b)=>b.km-a.km:s==='gbif'?(a,b)=>((b.gb||[0])[0]-(a.gb||[0])[0]):(a,b)=>('ABCD'.indexOf(a.v)-'ABCD'.indexOf(b.v))||(a.gp===0)-(b.gp===0)||b.km-a.km);
+  siteLayer.clearLayers();
+  const order=[...current].sort((a,b)=>(b.gp===0)-(a.gp===0)||b.km-a.km);
+  order.forEach(f=>{if(f.poly)siteLayer.addLayer(f.poly)});order.forEach(f=>{if(f.mk)siteLayer.addLayer(f.mk)});
+  const counts=GROUPS.map(()=>0);F.forEach(f=>{if(pass(f,true))counts[f.gp]++});
+  $('#cats').innerHTML=GROUPS.map((g,i)=>`<button type="button" class="chip" style="--c:var(--g${i})" data-i="${i}" aria-pressed="${state.groups.has(i)}"><span class="dot"></span>${g}<span class="n">${counts[i]}</span></button>`).join('');
+  $$('#cats .chip').forEach(b=>b.onclick=e=>{const i=+b.dataset.i;if(e.altKey||e.metaKey)state.groups=new Set([i]);else state.groups.has(i)?state.groups.delete(i):state.groups.add(i);update()});
+  const unm=current.filter(f=>f.la==null).length;
+  $('#count').textContent=`${fmt.format(current.length)} sites${unm?` · ${unm} not yet located`:''}`;
+  renderList();
+}
+function renderList(){
+  const ul=$('#list');
+  ul.innerHTML=current.slice(0,state.limit).map(f=>`<li><button type="button" data-id="${f.i}" class="${state.sel===f?'on':''}"><span class="li-dot" style="--c:var(--g${f.gp})"></span><span><span class="li-name">${esc(f.n)}</span><span class="lv ${f.v}" title="Verification level ${f.v}">${f.v}</span><br><span class="li-meta">${esc(CATS[f.c])} · ${esc(f.s||'State unknown')}${f.l?' · '+esc(f.l):''}</span></span><span class="li-tag">${f.km?fmt.format(Math.round(f.km))+' km²':''}${f.gb&&f.gb[0]?'<br>'+fmt.format(f.gb[0])+' rec.':''}</span></button></li>`).join('')||'<li style="padding:18px 16px;color:var(--muted)">No sites match. Clear the search or switch designations back on.</li>';
+  ul.querySelectorAll('button').forEach(b=>b.onclick=()=>{const f=BY[b.dataset.id];history.replaceState(null,'','#'+f.i);select(f,false)});
+  const m=$('#more');m.hidden=current.length<=state.limit;m.textContent=`Show more (${fmt.format(current.length-state.limit)} left)`;
+}
+function zoomState(n){
+  if(hiState){hiState.setStyle(stateStyle(false));hiState=null}
+  if(!n){map.flyToBounds([[4.1,2.6],[13.95,14.7]],{duration:.6});return}
+  statesLayer.eachLayer(l=>{if(l.feature.properties.n===n){hiState=l;l.setStyle(stateStyle(true));map.flyToBounds(l.getBounds(),{padding:[30,30],duration:.6})}});
+}
+
+/* ---------- site profile ---------- */
+function bbox(f){
+  if(f.g){let a=[999,999,-999,-999];f.g.forEach(p=>p.forEach(r=>r.forEach(([x,y])=>{a[0]=Math.min(a[0],x);a[1]=Math.min(a[1],y);a[2]=Math.max(a[2],x);a[3]=Math.max(a[3],y)})));if(a[2]-a[0]<.04){const cx=(a[0]+a[2])/2,cy=(a[1]+a[3])/2;a=[cx-.02,cy-.02,cx+.02,cy+.02]}return a}
+  if(f.la==null)return null;const h=Math.max(.02,Math.sqrt(Math.max(4,f.km||4))/111/2);return[f.lo-h,f.la-h,f.lo+h,f.la+h];
+}
+const wkt=b=>`POLYGON((${b[0]} ${b[1]},${b[2]} ${b[1]},${b[2]} ${b[3]},${b[0]} ${b[3]},${b[0]} ${b[1]}))`;
+const ha=v=>fmt.format(Math.round(v))+' ha'+(v>=1000?` (${fmt.format(Math.round(v/100))} km²)`:'');
+function citeText(f){return `Nigeria Forest Reserves Atlas (2026). ${f.n}, ${f.s||'Nigeria'} [record ${f.i}${f.w?'; WDPA ID '+f.w:''}]. Version ${DATA.meta.version}. Retrieved ${today}, from ${CONFIG.siteUrl}#${f.i}`}
+function watchlist(){return store('watch')||[]}
+function toggleWatch(f){let w=watchlist();w=w.includes(f.i)?w.filter(x=>x!==f.i):[...w,f.i];store('watch',w);return w.includes(f.i)}
+function select(f,fromMap){
+  if(!f)return;
+  if($('#v-map').hidden){location.hash=f.i;return}
+  const p=state.sel;if(p&&p!==f){if(p.poly)p.poly.setStyle({weight:1.2});if(p.mk)p.mk.setStyle({weight:1,color:css('--panel')})}
+  state.sel=f;track('site-opened','Opened a site profile');
+  if(f.poly){f.poly.setStyle({weight:3});f.poly.bringToFront()}
+  if(f.mk){f.mk.setStyle({weight:3,color:css('--ink')});f.mk.bringToFront()}
+  if(!fromMap){if(f.poly)map.flyToBounds(f.poly.getBounds(),{padding:[60,60],maxZoom:11,duration:.7});else if(f.mk)map.flyTo([f.la,f.lo],Math.max(map.getZoom(),9),{duration:.7})}
+  else history.replaceState(null,'','#'+f.i);
+  $('#sh-head').innerHTML=`<span class="pill" style="--c:var(--g${f.gp})"><i></i>${esc(CATS[f.c])}</span><h2>${esc(f.n)}</h2>${f.alt?`<div class="alt">Also listed as: ${esc(f.alt)}</div>`:''}`;
+  const watched=watchlist().includes(f.i);
+  $('#sh-act').innerHTML=`<button class="btn sm" id="a-watch" type="button">${watched?'★ Watching':'☆ Watch'}</button><button class="btn sm" id="a-share" type="button">Copy link</button><button class="btn sm" id="a-cite" type="button">Cite</button><button class="btn sm" id="a-report" type="button">Report from the field</button>`;
+  $('#a-watch').onclick=()=>{$('#a-watch').textContent=toggleWatch(f)?'★ Watching':'☆ Watch';if(built.ngo)renderWatch()};
+  $('#a-share').onclick=()=>copy(CONFIG.siteUrl+'#'+f.i);
+  $('#a-cite').onclick=()=>copy(citeText(f));
+  $('#a-report').onclick=()=>{reportSite=f.i;location.hash='ngo';setTimeout(()=>{if($('#r-site')){$('#r-site').value=f.n;$('#r-site').dispatchEvent(new Event('change'));$('#r-title').focus()}},120)};
+  const z=f.z&&ZONES[f.z];const b=bbox(f);
+  const facts=[['State',f.s||'Not established'],['LGA',f.l||'Not recorded'],['Established / gazetted',f.y||'Not recorded'],['IUCN category',f.u||'Not reported'],['Managed by',f.auth||f.gv||'Not recorded',1],
+    ['Coordinates',f.la!=null?`<span class="mono">${f.la.toFixed(3)}° N, ${f.lo.toFixed(3)}° E</span> · ${f.q==='wdpa'?'WDPA boundary centre':f.q==='published'?'published point':f.q==='approx_town'?'approximate (nearest town)':'unverified'}`:'Not yet located',1,1]];
+  if(f.formerly)facts.push(['Previous WDPA designation',f.formerly,1]);
+  let h='';
+  if(f.photo){const P=f.photo,src=`https://upload.wikimedia.org/wikipedia/commons/${P.orig?'':'thumb/'}${P.path}${P.orig?'':'/640px-'+P.path.split('/').pop()}`;const pg='https://commons.wikimedia.org/wiki/File:'+encodeURIComponent(P.file);
+    h+=LIVE?`<figure class="photo"><img src="${src}" alt="${esc(P.caption)}" loading="lazy" onerror="this.remove()"><figcaption>${esc(P.caption)} · ${esc(P.author)}, <a href="${pg}" target="_blank" rel="noopener">${esc(P.license)} via Wikimedia Commons</a></figcaption></figure>`:`<div class="photo off">Photograph: <a href="${pg}" target="_blank" rel="noopener">${esc(P.caption)}</a> by ${esc(P.author)} (${esc(P.license)}). Photos display on the hosted site.</div>`}
+  h+=`<div class="verif"><b class="lvl ${f.v}">${f.v}</b><div><b>Verification level ${f.v}.</b> ${LEVELS[f.v]}</div></div>`;
+  h+=`<dl class="facts">${facts.map(([k,v,w,raw])=>`<div class="fact${w?' w':''}"><dt>${k}</dt><dd>${raw?v:esc(v)}</dd></div>`).join('')}</dl>`;
+  const areas=[];if(f.a)areas.push(['From WDPA boundary (GIS)',ha(f.a)]);if(f.ar)areas.push(['Reported / gazetted',ha(f.ar)]);if(f.fh)areas.push([`FAO 1998 inventory${f.fm?' · '+f.fm:''}`,ha(f.fh)]);
+  if(areas.length)h+=`<div class="box"><h3>Area <small>figures differ by source and date</small></h3><dl>${areas.map(([k,v])=>`<dt>${k}</dt><dd class="mono">${v}</dd>`).join('')}</dl></div>`;
+  if(f.ds&&f.ds.length)h+=`<div class="desigs">${f.ds.map(d=>`<span>${esc(d)}</span>`).join('')}</div>`;
+  const sec=(t,v)=>v?`<div class="sec"><h3>${t}</h3><p>${esc(v)}</p></div>`:'';
+  h+=sec('Vegetation',f.veg)+sec('Flora · notable plants',f.flora)+sec('Fauna · notable animals and birds',f.fauna)+sec('Resources',f.res)+sec('Tourism potential',f.tour)+sec('Threats',f.thr)+sec('Notes',f.notes);
+  if(f.vis){const v=f.vis;const rows=[['Visitor readiness',v.visitor_readiness],['Nearest city',v.nearest_city],['Getting there',v.access],['Best time',v.best_time],['Facilities',v.facilities],['Activities',v.activities],['Permits and fees',v.permits_fees]].filter(r=>r[1]);
+    h+=`<div class="box"><h3>Planning a visit <small>check locally before travelling</small></h3>${v.safety_note?`<p class="safety" style="margin:0 0 8px">${esc(v.safety_note)}</p>`:''}<dl>${rows.map(([k,x])=>`<dt>${k}</dt><dd>${esc(x)}</dd>`).join('')}</dl>${v.official_site?`<p style="margin:8px 0 0;font-size:12.5px"><a href="${esc(v.official_site)}" target="_blank" rel="noopener">Official website ↗</a></p>`:''}</div>`}
+  // biodiversity
+  const gb=f.gb;const gbifUrl=b?`https://www.gbif.org/occurrence/search?geometry=${encodeURIComponent(wkt(b))}`:null;
+  const inatUrl=b?`https://www.inaturalist.org/observations?swlat=${b[1]}&swlng=${b[0]}&nelat=${b[3]}&nelng=${b[2]}`:null;
+  if(b){h+=`<div class="box" id="bio"><h3>Recorded biodiversity <small>GBIF, within the reserve’s bounding box</small></h3>${gb?`<div class="kv"><div><b>${fmt.format(gb[0])}</b><span>records</span></div><div><b>${fmt.format(gb[1])}</b><span>species</span></div><div><b>${fmt.format(gb[2]+gb[3]+gb[4])}</b><span>threatened-species records</span></div></div>`:''}<div id="bio-live">${LIVE?'<p class="loading">Loading live species records…</p>':`<p class="loading" style="margin:0">Snapshot taken ${esc(DATA.meta.gbif_snapshot||'October 2026')}. Live species lists and photos load on the hosted site.</p>`}</div><div class="links" style="margin-top:8px"><a href="${gbifUrl}" target="_blank" rel="noopener">GBIF records ↗</a><a href="${inatUrl}" target="_blank" rel="noopener">iNaturalist observations ↗</a></div></div>`}
+  if(LIVE&&f.la!=null)h+=`<div class="box"><h3>Weather this week <small>Open-Meteo forecast</small></h3><div id="wx" class="loading">Loading…</div></div><div id="photos-live"></div>`;
+  if(!f.r)h+=`<div class="gap">No site-specific survey of plants, animals or tourism was found for this reserve. The zone profile below describes what is typical for its ecological setting; conditions on the ground may differ, and many reserves have been logged, farmed or converted to plantations.</div>`;
+  if(z)h+=`<div class="box zone"><div class="zt">Ecological zone · inferred from location</div><h4>${z.n}</h4><dl><dt>Setting</dt><dd>${z.v}</dd><dt>Characteristic flora</dt><dd>${z.fl}</dd><dt>Characteristic fauna</dt><dd>${z.fa}</dd><dt>Typical resources</dt><dd>${z.r}</dd><dt>Tourism assets in this zone</dt><dd>${z.t}</dd></dl></div>`;
+  const links=[];
+  if(f.la!=null){links.push(`<a href="https://www.google.com/maps/@${f.la},${f.lo},${f.km>200?11:13}z/data=!3m1!1e3" target="_blank" rel="noopener">Satellite view ↗</a>`);links.push(`<a href="https://www.google.com/maps/dir/?api=1&destination=${f.la},${f.lo}" target="_blank" rel="noopener">Directions ↗</a>`);links.push(`<a href="https://www.openstreetmap.org/#map=12/${f.la}/${f.lo}" target="_blank" rel="noopener">OpenStreetMap ↗</a>`)}
+  if(f.w)links.push(`<a href="https://www.protectedplanet.net/${f.w}" target="_blank" rel="noopener">Protected Planet ↗</a>`);
+  if(links.length)h+=`<div class="links">${links.join('')}</div>`;
+  h+=`<div class="sec" id="sh-reports"></div>`;
+  h+=`<div class="sec"><h3>Sources</h3><ul class="srcs">${f.w?`<li>UNEP-WCMC &amp; IUCN, World Database on Protected Areas, WDPA ID <span class="mono">${f.w}</span> (boundary, area, designation)</li>`:''}${(f.src||[]).map(u=>`<li><a href="${esc(u)}" target="_blank" rel="noopener">${esc(u.replace(/^https?:\/\/(www\.)?/,'').slice(0,80))}</a></li>`).join('')}${!f.w&&!(f.src||[]).length?'<li>Compiled list; no URL recorded</li>':''}</ul></div>`;
+  h+=`<div class="sec"><h3>Cite this record</h3><pre class="cite">${esc(citeText(f))}</pre></div>`;
+  $('#sh-body').innerHTML=h;$('#sh-body').scrollTop=0;$('#sheet').hidden=false;
+  $$('#list button').forEach(x=>x.classList.toggle('on',x.dataset.id===f.i));
+  renderSiteReports(f);
+  if(LIVE)loadLive(f,b);
+}
+function closeSheet(){$('#sheet').hidden=true;const p=state.sel;if(p){if(p.poly)p.poly.setStyle({weight:1.2});if(p.mk)p.mk.setStyle({weight:1,color:css('--panel')})}state.sel=null;$$('#list button.on').forEach(b=>b.classList.remove('on'));if(location.hash.length>1&&BY[location.hash.slice(1)])history.replaceState(null,'','#map')}
+
+/* ---------- live data (hosted site only) ---------- */
+const liveCache={};
+async function jget(u){if(liveCache[u])return liveCache[u];const r=await fetch(u);if(!r.ok)throw new Error(r.status);const j=await r.json();liveCache[u]=j;return j}
+async function loadLive(f,b){
+  const me=f;
+  if(b)(async()=>{try{
+    const j=await jget(`https://api.gbif.org/v1/occurrence/search?limit=300&hasCoordinate=true&geometry=${encodeURIComponent(wkt(b))}`);
+    if(state.sel!==me)return;const sp={};
+    j.results.forEach(o=>{if(!o.species)return;const k=o.species;sp[k]=sp[k]||{n:k,cl:o.class||o.kingdom||'',iu:o.iucnRedListCategory,c:0};sp[k].c++});
+    const list=Object.values(sp).sort((a,b)=>({CR:0,EN:1,VU:2,NT:3}[a.iu]??9)-({CR:0,EN:1,VU:2,NT:3}[b.iu]??9)||b.c-a.c).slice(0,14);
+    $('#bio-live').innerHTML=list.length?`<div class="lbl" style="margin:4px 0">Species in the ${fmt.format(j.results.length)} most recent records (live)</div><ul class="splist">${list.map(s=>`<li><span><i>${esc(s.n)}</i> <span style="color:var(--muted)">${esc(s.cl)}</span></span><span>${['CR','EN','VU','NT'].includes(s.iu)?`<span class="iucn ${s.iu}" title="IUCN Red List">${s.iu}</span> `:''}${s.c}</span></li>`).join('')}</ul>`:'<p class="loading" style="margin:0">No GBIF occurrence records found inside this area yet.</p>';
+  }catch(e){$('#bio-live').innerHTML='<p class="loading" style="margin:0">GBIF did not respond. Try the link below.</p>'}})();
+  if(f.la!=null)(async()=>{try{
+    const j=await jget(`https://api.open-meteo.com/v1/forecast?latitude=${f.la}&longitude=${f.lo}&daily=temperature_2m_max,temperature_2m_min,precipitation_probability_max&timezone=Africa%2FLagos`);
+    if(state.sel!==me)return;const d=j.daily;
+    $('#wx').className='wx';$('#wx').innerHTML=d.time.map((t,i)=>`<div><span>${new Date(t).toLocaleDateString('en-GB',{weekday:'short'})}</span><b>${Math.round(d.temperature_2m_max[i])}°</b><span>${Math.round(d.temperature_2m_min[i])}°</span><br><span title="Chance of rain">${d.precipitation_probability_max[i]??'–'}% ☂</span></div>`).join('');
+  }catch(e){$('#wx').textContent='Forecast unavailable.'}})();
+  if(b)(async()=>{try{
+    const [inat,com]=await Promise.allSettled([
+      jget(`https://api.inaturalist.org/v1/observations/species_counts?swlat=${b[1]}&swlng=${b[0]}&nelat=${b[3]}&nelng=${b[2]}&quality_grade=research&per_page=8`),
+      f.la!=null?jget(`https://commons.wikimedia.org/w/api.php?action=query&generator=geosearch&ggscoord=${f.la}|${f.lo}&ggsradius=10000&ggsnamespace=6&ggslimit=12&prop=imageinfo&iiprop=url|extmetadata&iiurlwidth=320&format=json&origin=*`):Promise.reject()]);
+    if(state.sel!==me)return;let h='';
+    if(inat.status==='fulfilled'&&inat.value.results.length){h+=`<div class="box"><h3>Species photographed here <small>iNaturalist research-grade</small></h3><div class="thumbs">${inat.value.results.filter(r=>r.taxon.default_photo).map(r=>`<a href="https://www.inaturalist.org/taxa/${r.taxon.id}" target="_blank" rel="noopener" title="${esc(r.taxon.default_photo.attribution)}"><img src="${esc(r.taxon.default_photo.square_url.replace('square','small'))}" alt="${esc(r.taxon.preferred_common_name||r.taxon.name)}" loading="lazy" onerror="this.style.visibility='hidden'">${esc(r.taxon.preferred_common_name||r.taxon.name)}</a>`).join('')}</div><p style="margin:6px 0 0;font-size:11px;color:var(--muted)">Photos © their observers on iNaturalist; hover for licence.</p></div>`}
+    if(com.status==='fulfilled'&&com.value.query){const pics=Object.values(com.value.query.pages).filter(p=>p.imageinfo&&/\.(jpe?g|png)$/i.test(p.title)&&!/ISS0|Earth|map|Map|svg|flag/.test(p.title)).slice(0,8);
+      if(pics.length)h+=`<div class="box"><h3>Photos taken nearby <small>Wikimedia Commons, within 10 km</small></h3><div class="thumbs">${pics.map(p=>{const i=p.imageinfo[0],m=i.extmetadata||{};const by=(m.Artist?m.Artist.value:'').replace(/<[^>]+>/g,'').trim();return`<a href="${esc(i.descriptionurl)}" target="_blank" rel="noopener" title="${esc(by)} · ${esc(m.LicenseShortName?m.LicenseShortName.value:'')}"><img src="${esc(i.thumburl)}" alt="${esc(p.title.slice(5))}" loading="lazy" onerror="this.style.visibility='hidden'">${esc(p.title.slice(5,40).replace(/\.\w+$/,''))}</a>`}).join('')}</div></div>`}
+    $('#photos-live').innerHTML=h;
+  }catch(e){}})();
+}
+
+/* ---------- charts ---------- */
+let tipEl=null;
+function tip(el,html,x,y){if(!tipEl){tipEl=document.createElement('div');tipEl.className='vtip'}el.appendChild(tipEl);tipEl.innerHTML=html;tipEl.style.left=x+'px';tipEl.style.top=y+'px';tipEl.hidden=false}
+function hideTip(){if(tipEl)tipEl.hidden=true}
+function hbar(el,rows,o={}){
+  const W=560,lw=o.lw||140,rh=o.rh||20,H=rows.length*rh+8,max=Math.max(...rows.map(r=>r.v))||1,iw=W-lw-58;
+  el.innerHTML=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="${esc(o.title||'')}">${rows.map((r,i)=>{const w=Math.max(1,r.v/max*iw),y=i*rh+4;return`<g data-i="${i}" ${r.id?`style="cursor:pointer"`:''}><rect x="0" y="${y-2}" width="${W}" height="${rh}" fill="transparent"/><text x="${lw-8}" y="${y+rh/2+2}" text-anchor="end" class="lab">${esc(r.l)}</text><rect x="${lw}" y="${y+3}" width="${w}" height="${rh-8}" rx="3" fill="${r.c||'var(--bar)'}"/><text x="${lw+w+5}" y="${y+rh/2+2}">${o.f?o.f(r.v):fmt.format(r.v)}</text></g>`}).join('')}</svg>`;
+  el.querySelectorAll('g[data-i]').forEach(g=>{const r=rows[+g.dataset.i];g.onmousemove=e=>{const bb=el.getBoundingClientRect();tip(el,`<b>${esc(r.l)}</b> · ${o.f?o.f(r.v):fmt.format(r.v)}${r.t?'<br>'+r.t:''}`,e.clientX-bb.left,e.clientY-bb.top)};g.onmouseleave=hideTip;if(r.on)g.onclick=r.on});
+}
+function cols(el,pts,o={}){
+  const W=560,H=220,pl=46,pb=24,pt=10,iw=W-pl-10,ih=H-pb-pt,max=o.max||Math.max(...pts.map(p=>p.v))*1.08,bw=iw/pts.length;
+  const ticks=niceTicks(0,max,4);
+  let s=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="${esc(o.title||'')}">`;
+  ticks.forEach(t=>{const y=pt+ih-t/max*ih;s+=`<line class="gridl" x1="${pl}" x2="${W-10}" y1="${y}" y2="${y}"/><text x="${pl-6}" y="${y+4}" text-anchor="end">${o.tf?o.tf(t):fmt.format(t)}</text>`});
+  pts.forEach((p,i)=>{const h=p.v/max*ih,x=pl+i*bw;s+=`<g data-i="${i}"><rect x="${x}" y="${pt}" width="${bw}" height="${ih}" fill="transparent"/><rect x="${x+bw*.15}" y="${pt+ih-h}" width="${bw*.7}" height="${Math.max(0,h)}" rx="2" fill="${p.c||o.c||'var(--bar)'}"/></g>`;
+    if(pts.length<=12||i%Math.ceil(pts.length/8)===0||i===pts.length-1)s+=`<text x="${x+bw/2}" y="${H-6}" text-anchor="middle">${esc(p.l)}</text>`});
+  el.innerHTML=s+'</svg>';
+  el.querySelectorAll('g[data-i]').forEach(g=>{const p=pts[+g.dataset.i];g.onmousemove=e=>{const bb=el.getBoundingClientRect();tip(el,`<b>${esc(p.l)}</b> · ${o.f?o.f(p.v):fmt.format(p.v)}`,e.clientX-bb.left,e.clientY-bb.top)};g.onmouseleave=hideTip});
+}
+function line(el,pts,o={}){
+  const W=560,H=220,pl=52,pb=24,pt=12,iw=W-pl-16,ih=H-pb-pt;const xs=pts.map(p=>p.x),x0=Math.min(...xs),x1=Math.max(...xs);
+  const lo=o.min??0,hi=o.max??Math.max(...pts.map(p=>p.v))*1.08;const X=x=>pl+(x-x0)/(x1-x0||1)*iw,Y=v=>pt+ih-(v-lo)/(hi-lo)*ih;
+  let s=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="${esc(o.title||'')}">`;
+  niceTicks(lo,hi,4).forEach(t=>{s+=`<line class="gridl" x1="${pl}" x2="${W-16}" y1="${Y(t)}" y2="${Y(t)}"/><text x="${pl-6}" y="${Y(t)+4}" text-anchor="end">${o.tf?o.tf(t):fmt.format(t)}</text>`});
+  pts.forEach(p=>{s+=`<text x="${X(p.x)}" y="${H-6}" text-anchor="middle">${p.x}</text>`});
+  const d=pts.map((p,i)=>(i?'L':'M')+X(p.x)+' '+Y(p.v)).join(' ');
+  s+=`<path d="${d} L${X(x1)} ${Y(lo)} L${X(x0)} ${Y(lo)} Z" fill="var(--bar)" opacity=".12"/><path d="${d}" fill="none" stroke="var(--bar)" stroke-width="2"/>`;
+  pts.forEach((p,i)=>{s+=`<circle cx="${X(p.x)}" cy="${Y(p.v)}" r="${i===pts.length-1?5:3.5}" fill="var(--bar)" stroke="var(--panel)" stroke-width="2" data-i="${i}"/>`});
+  const l=pts[pts.length-1];s+=`<text x="${X(l.x)-8}" y="${Y(l.v)-10}" text-anchor="end" class="lab">${o.f?o.f(l.v):fmt.format(l.v)}</text>`;
+  el.innerHTML=s+'</svg>';
+  el.querySelectorAll('circle[data-i]').forEach(c=>{const p=pts[+c.dataset.i];c.style.cursor='default';c.onmousemove=e=>{const bb=el.getBoundingClientRect();tip(el,`<b>${p.x}</b> · ${o.f?o.f(p.v):fmt.format(p.v)}`,e.clientX-bb.left,e.clientY-bb.top)};c.onmouseleave=hideTip});
+}
+function niceTicks(lo,hi,n){const span=hi-lo,step0=span/n,mag=10**Math.floor(Math.log10(step0)),st=[1,2,2.5,5,10].map(m=>m*mag).find(s=>s>=step0);const out=[];for(let v=Math.ceil(lo/st)*st;v<=hi+1e-9;v+=st)out.push(+v.toFixed(6));return out}
+function card(o){
+  const id='ch'+Math.random().toString(36).slice(2,8);
+  return{html:`<article class="card" id="${id}"><div><h3>${o.t}</h3>${o.s?`<div class="sub">${o.s}</div>`:''}</div><div class="chart"></div><div class="tbl-wrap" hidden></div><div class="foot"><span>Source: ${o.src}</span><span class="acts"><button class="btn sm" data-a="tbl" type="button">Table</button><button class="btn sm" data-a="csv" type="button">CSV</button><button class="btn sm" data-a="cite" type="button">Cite</button></span></div></article>`,
+    mount(){const el=$('#'+id);o.draw(el.querySelector('.chart'));const tw=el.querySelector('.tbl-wrap');
+      el.querySelector('[data-a=tbl]').onclick=e=>{tw.hidden=!tw.hidden;e.target.textContent=tw.hidden?'Table':'Chart only';if(!tw.innerHTML){const r=o.rows();const k=Object.keys(r[0]||{});tw.innerHTML=`<table class="dt"><thead><tr>${k.map(x=>`<th>${esc(x)}</th>`).join('')}</tr></thead><tbody>${r.map(x=>`<tr>${k.map(c=>`<td class="${typeof x[c]==='number'?'n':''}">${typeof x[c]==='number'?fmt1.format(x[c]):esc(x[c])}</td>`).join('')}</tr>`).join('')}</tbody></table>`}};
+      el.querySelector('[data-a=csv]').onclick=()=>saveFile(o.file+'.csv',toCSV(o.rows()),'text/csv');
+      el.querySelector('[data-a=cite]').onclick=()=>copy(`${o.t.replace(/<[^>]+>/g,'')}. ${o.src.replace(/<[^>]+>/g,'')}. In: Nigeria Forest Reserves Atlas (2026), version ${DATA.meta.version}. ${CONFIG.siteUrl}#stats (accessed ${today}).`)}};
+}
+
+/* ---------- statistics view ---------- */
+function buildStats(){
+  const NS=DATA.ns||{series:[],figures:[],commitments:[]};const S=id=>(NS.series||[]).find(s=>s.id===id);
+  const fr=F.filter(f=>f.c===4),frArea=fr.reduce((a,f)=>a+(f.a||0),0)/100;
+  const fra=S('fra2025_forest_area'),loss=S('gfw_tree_cover_loss'),pct=S('fra2025_forest_pct_land'),pa=S('wdpa_terrestrial_pa_pct');
+  const lossTot=loss?loss.data.reduce((a,d)=>a+d[1],0):0;const last=a=>a&&a.data[a.data.length-1];
+  const kp=[[fmt.format(F.length),'protected and reserved sites in this atlas','Compiled from WDPA and cited sources'],[fmt.format(fr.length),'forest reserves','WDPA, FAO 1998 and state lists'],[fmt.format(Math.round(frArea)),'km² of forest reserve inside mapped boundaries','Calculated from WDPA polygons'],
+    fra?[fmt.format(Math.round(last(fra)[1]/1000*10)/10)+' M ha','forest area in '+last(fra)[0],'FAO FRA 2025 (SDG 15.1.1)']:null,
+    pct?[fmt1.format(last(pct)[1])+'%','of land area under forest',`FAO FRA 2025 · ${last(pct)[0]}`]:null,
+    loss?[fmt1.format(lossTot/1e6)+' M ha',`tree cover lost ${loss.data[0][0]}–${last(loss)[0]}`,'Hansen/UMD via Global Forest Watch']:null,
+    pa?[fmt1.format(last(pa)[1])+'%','of land in protected areas','Protected Planet / World Bank']:null].filter(Boolean);
+  const byState=STATES.map(s=>{const fs=F.filter(f=>f.st.includes(s)),st=DATA.st.find(x=>x.n===s);const frkm=fs.filter(f=>f.c===4).reduce((a,f)=>a+(f.a||0)/100,0);return{s,n:fs.length,fr:fs.filter(f=>f.c===4).length,frkm,pct:st?frkm/st.km2*100:0,doc:fs.filter(f=>'AB'.includes(f.v)).length,land:st?st.km2:0}});
+  const cards=[];
+  if(fra)cards.push(card({t:'Nigeria’s forest area, 1990–'+last(fra)[0],s:'Thousand hectares. FRA 2025 revised earlier estimates downward; this series supersedes FRA 2020.',src:`<a href="${esc(fra.url)}" target="_blank" rel="noopener">${esc(fra.source)}</a>`,file:'forest_area_fra2025',
+    draw:el=>line(el,fra.data.map(d=>({x:d[0],v:d[1]})),{min:0,f:v=>fmt.format(Math.round(v))+' k ha',tf:v=>fmt.format(v/1000)+'M'}),rows:()=>fra.data.map(d=>({year:d[0],forest_area_thousand_ha:d[1]}))}));
+  if(loss)cards.push(card({t:'Annual tree cover loss',s:'Hectares per year, all tree cover above 30% canopy density.',src:`<a href="${esc(loss.url)}" target="_blank" rel="noopener">${esc(loss.source)}</a>`,file:'tree_cover_loss_gfw',
+    draw:el=>cols(el,loss.data.map(d=>({l:String(d[0]),v:d[1]})),{c:'var(--loss)',f:v=>fmt.format(Math.round(v))+' ha',tf:v=>fmt.format(v/1000)+'k'}),rows:()=>loss.data.map(d=>({year:d[0],tree_cover_loss_ha:d[1]}))}));
+  const sb=[...byState].sort((a,b)=>b.n-a.n);
+  cards.push(card({t:'Protected and reserved sites by state',s:'Count of sites in this atlas; click a bar to open the state on the map.',src:'Nigeria Forest Reserves Atlas compilation (WDPA + cited sources)',file:'sites_by_state',
+    draw:el=>hbar(el,sb.map(r=>({l:r.s,v:r.n,t:`${r.fr} forest reserves`,on:()=>{location.hash='map';setTimeout(()=>{state.st=r.s;$('#state').value=r.s;update();zoomState(r.s)},80)}})),{rh:17}),rows:()=>sb.map(r=>({state:r.s,sites:r.n,forest_reserves:r.fr,sourced_records_AB:r.doc}))}));
+  const sp=[...byState].sort((a,b)=>b.pct-a.pct);
+  cards.push(card({t:'Share of each state’s land inside forest reserves',s:'Mapped forest-reserve area as % of state land area (boundaries from WDPA and geoBoundaries).',src:'Calculated from WDPA polygons and geoBoundaries ADM1',file:'forest_reserve_share_by_state',
+    draw:el=>hbar(el,sp.map(r=>({l:r.s,v:+r.pct.toFixed(1),t:`${fmt.format(Math.round(r.frkm))} of ${fmt.format(r.land)} km²`})),{rh:17,f:v=>fmt1.format(v)+'%'}),rows:()=>sp.map(r=>({state:r.s,forest_reserve_km2:Math.round(r.frkm),state_land_km2:r.land,share_pct:+r.pct.toFixed(2)}))}));
+  const gcount=GROUPS.map((g,i)=>({l:g,v:F.filter(f=>f.gp===i).length,c:`var(--g${i})`}));
+  cards.push(card({t:'Sites by designation',s:'Each site is counted once under its main designation.',src:'WDPA designations; national parks updated to the 2023–2025 upgrades',file:'sites_by_designation',draw:el=>hbar(el,gcount,{lw:190}),rows:()=>gcount.map(r=>({designation:r.l,sites:r.v}))}));
+  const bins=[[0,1],[1,5],[5,10],[10,50],[50,100],[100,500],[500,1000],[1000,1e9]];const blab=['<1','1–5','5–10','10–50','50–100','100–500','500–1,000','>1,000'];
+  const hist=bins.map((b,i)=>({l:blab[i],v:fr.filter(f=>f.a&&f.a/100>=b[0]&&f.a/100<b[1]).length}));
+  cards.push(card({t:'How big are Nigeria’s forest reserves?',s:'Number of forest reserves by mapped area (km²). Most are small; a few dozen hold most of the area.',src:'Calculated from WDPA polygons',file:'forest_reserve_size_distribution',draw:el=>cols(el,hist,{}),rows:()=>hist.map(r=>({area_km2:r.l,forest_reserves:r.v}))}));
+  const dec={};F.filter(f=>f.y&&f.y>1890&&f.y<2030).forEach(f=>{const d=Math.floor(f.y/10)*10;dec[d]=(dec[d]||0)+1});const decs=Object.keys(dec).map(Number).sort();const dpts=[];for(let d=decs[0];d<=decs[decs.length-1];d+=10)dpts.push({l:d+'s',v:dec[d]||0});
+  cards.push(card({t:'When sites were gazetted or designated',s:`Sites with a recorded year (${fmt.format(F.filter(f=>f.y).length)} of ${fmt.format(F.length)}), by decade.`,src:'WDPA status year and cited sources',file:'gazettement_by_decade',draw:el=>cols(el,dpts,{}),rows:()=>dpts.map(r=>({decade:r.l,sites:r.v}))}));
+  const zr=Object.entries(ZONES).map(([k,z])=>{const fs=F.filter(f=>f.z===k);return{l:z.n,v:fs.length,a:Math.round(fs.reduce((a,f)=>a+(f.a||0)/100,0))}}).sort((a,b)=>b.v-a.v);
+  cards.push(card({t:'Sites by ecological zone',s:'Zone inferred from each site’s location.',src:'Atlas zoning from latitude, longitude and highland blocks',file:'sites_by_zone',draw:el=>hbar(el,zr.map(r=>({l:r.l,v:r.v,t:`${fmt.format(r.a)} km² mapped`})),{lw:170}),rows:()=>zr.map(r=>({zone:r.l,sites:r.v,mapped_area_km2:r.a}))}));
+  const top=F.filter(f=>f.gb&&f.gb[0]).sort((a,b)=>b.gb[1]-a.gb[1]).slice(0,15);
+  cards.push(card({t:'Best-recorded sites for biodiversity',s:'Distinct species with GBIF occurrence records inside each site’s bounding box. Shows where field data exist, not where diversity is highest.',src:`<a href="https://www.gbif.org" target="_blank" rel="noopener">GBIF.org</a> occurrence API, snapshot ${esc(DATA.meta.gbif_snapshot||'')}`,file:'gbif_species_by_site',
+    draw:el=>hbar(el,top.map(f=>({l:f.n.length>26?f.n.slice(0,25)+'…':f.n,v:f.gb[1],t:`${fmt.format(f.gb[0])} records`,c:`var(--g${f.gp})`,on:()=>goSite(f.i)})),{lw:190}),rows:()=>top.map(f=>({site:f.n,state:f.s,gbif_records:f.gb[0],species:f.gb[1],CR_records:f.gb[2],EN_records:f.gb[3],VU_records:f.gb[4]}))}));
+  const lv=['A','B','C','D'].map(l=>({l:'Level '+l,v:F.filter(f=>f.v===l).length,t:LEVELS[l]}));
+  cards.push(card({t:'How well each record is verified',s:'A = boundary plus multi-source profile; D = location provisional. Helps you judge fitness for use.',src:'Atlas verification scheme (see Data & sources)',file:'verification_levels',draw:el=>hbar(el,lv,{lw:90}),rows:()=>lv.map(r=>({level:r.l,sites:r.v,meaning:r.t}))}));
+  const kba=S('kba_terrestrial_pa_pct');if(kba)cards.push(card({t:'Key Biodiversity Areas covered by protected areas',s:'Average % of each terrestrial KBA inside protected areas (SDG indicator 15.1.2).',src:`<a href="${esc(kba.url)}" target="_blank" rel="noopener">${esc(kba.source)}</a>`,file:'kba_coverage',draw:el=>line(el,kba.data.map(d=>({x:d[0],v:d[1]})),{min:0,max:100,f:v=>fmt1.format(v)+'%',tf:v=>v+'%'}),rows:()=>kba.data.map(d=>({year:d[0],pct:d[1]}))}));
+  const fpa=S('fra2025_forest_in_pa_pct');if(fpa)cards.push(card({t:'Forest inside legally protected areas',s:'% of forest area (SDG 15.2.1 sub-indicator).',src:`<a href="${esc(fpa.url)}" target="_blank" rel="noopener">${esc(fpa.source)}</a>`,file:'forest_in_protected_areas',draw:el=>line(el,fpa.data.map(d=>({x:d[0],v:d[1]})),{min:0,f:v=>fmt1.format(v)+'%',tf:v=>v+'%'}),rows:()=>fpa.data.map(d=>({year:d[0],pct:d[1]}))}));
+  const figs=(NS.figures||[]).filter(x=>!/\[secondary\]/i.test(x.source||''));
+  $('#stats').innerHTML=`<h2 class="title">Nigeria’s forests in numbers</h2><p class="lede">Headline indicators for researchers, agencies and journalists. Every chart names its source and can be shown as a table, downloaded as CSV or copied as a citation. Site counts and areas come from this atlas; national indicators come from FAO, UN SDG and Global Forest Watch releases.</p>
+  <div class="kpis">${kp.map(([v,l,s])=>`<div class="kpi"><b>${v}</b><span>${l}</span><small>${s}</small></div>`).join('')}</div>
+  <div class="grid2">${cards.map(c=>c.html).join('')}</div>
+  <h3 style="font-family:var(--f-display);font-size:22px;margin:32px 0 10px">Policy commitments and targets</h3>
+  <div class="commit">${(NS.commitments||[]).map(c=>`<div><b>${esc(c.title)}</b><span>${esc(c.detail)} · <a href="${esc(c.url)}" target="_blank" rel="noopener">${esc(c.source)}</a></span></div>`).join('')}</div>
+  <h3 style="font-family:var(--f-display);font-size:22px;margin:32px 0 10px">Reference figures</h3>
+  <div class="tbl-wrap" style="max-height:none"><table class="dt"><thead><tr><th>Indicator</th><th class="n">Value</th><th>Year</th><th>Source</th></tr></thead><tbody>${figs.map(x=>`<tr><td>${esc(x.label)}</td><td class="n">${esc(x.value)} ${esc(x.unit||'')}</td><td>${esc(x.year||'')}</td><td>${x.url?`<a href="${esc(x.url)}" target="_blank" rel="noopener">${esc(x.source)}</a>`:esc(x.source)}</td></tr>`).join('')}</tbody></table></div>`;
+  cards.forEach(c=>c.mount());
+}
+
+/* ---------- visit view ---------- */
+function buildVisit(){
+  const sites=F.filter(f=>f.la!=null&&(f.vis||f.tour||[0,1,2,7,8].includes(f.c)||f.c===9));
+  const RK={Established:0,Basic:1,Limited:2,'Closed/insecure':3};
+  $('#visit').innerHTML=`<h2 class="title">Plan a visit</h2><p class="lede">Parks, sanctuaries, sacred groves, waterfalls and wetlands that receive or could receive visitors. Readiness ratings come from published sources and change often: confirm access, fees and security with the managing authority before you travel, and check your government’s current travel advice.</p>
+  <div class="filterbar"><div><div class="lbl">Travelling from</div><select id="vf-from"><option value="">Anywhere</option>${Object.keys(CITIES).map(c=>`<option>${c}</option>`).join('')}</select></div>
+  <div><div class="lbl">Readiness</div><select id="vf-r"><option value="">All</option><option>Established</option><option>Basic</option><option>Limited</option><option value="none">Not yet rated</option></select></div>
+  <div><div class="lbl">Landscape</div><select id="vf-z"><option value="">All zones</option>${Object.entries(ZONES).map(([k,z])=>`<option value="${k}">${z.n}</option>`).join('')}</select></div>
+  <div><div class="lbl">Search</div><input type="text" id="vf-q" placeholder="e.g. waterfall, primates, birding"></div></div><div class="vgrid" id="vgrid"></div>`;
+  const draw=()=>{const from=$('#vf-from').value,r=$('#vf-r').value,z=$('#vf-z').value,q=$('#vf-q').value.trim().toLowerCase();
+    let L=sites.filter(f=>(!r||(r==='none'?!f.vis:(f.vis&&f.vis.visitor_readiness||'').startsWith(r)))&&(!z||f.z===z)&&(!q||(f.txt+' '+JSON.stringify(f.vis||'')).toLowerCase().includes(q)));
+    L.forEach(f=>f._d=from?km(CITIES[from],[f.la,f.lo]):null);
+    L.sort((a,b)=>(RK[(a.vis||{}).visitor_readiness]??4)-(RK[(b.vis||{}).visitor_readiness]??4)||(from?a._d-b._d:0)||(b.r-a.r)||b.km-a.km);
+    $('#vgrid').innerHTML=L.slice(0,90).map(f=>{const v=f.vis||{},rd=v.visitor_readiness;const P=f.photo;const src=P&&LIVE?`https://upload.wikimedia.org/wikipedia/commons/${P.orig?'':'thumb/'}${P.path}${P.orig?'':'/640px-'+P.path.split('/').pop()}`:null;
+      return`<article class="vcard"><div class="ph" style="--c:var(--g${f.gp})">${src?`<img src="${src}" alt="${esc(P.caption)}" loading="lazy" onerror="this.remove()">`:''}<span class="ready ${esc((rd||'').split('/')[0])}">${esc(rd||'Not yet rated')}</span></div><div class="bd"><h3>${esc(f.n)}</h3><div class="meta">${esc(CATS[f.c])} · ${esc(f.s)}${v.nearest_city?' · near '+esc(v.nearest_city):''}${f._d?` · ${fmt.format(Math.round(f._d))} km from ${esc(from)} (straight line)`:''}</div>${v.safety_note?`<div class="safety">${esc(v.safety_note)}</div>`:''}<p>${esc((v.activities||f.tour||(ZONES[f.z]||{}).t||'').slice(0,220))}</p>${v.best_time?`<p class="meta"><b>Best time:</b> ${esc(v.best_time.slice(0,140))}</p>`:''}<div class="bt"><a class="btn sm" href="#${f.i}">Open profile</a><a class="btn sm" href="https://www.google.com/maps/dir/?api=1&destination=${f.la},${f.lo}" target="_blank" rel="noopener">Directions ↗</a></div></div></article>`}).join('')||'<p>No sites match these filters.</p>';};
+  ['vf-from','vf-r','vf-z'].forEach(i=>$('#'+i).onchange=draw);$('#vf-q').oninput=draw;draw();
+}
+
+/* ---------- NGO hub ---------- */
+const RTYPES=['Encroachment or farming','Illegal logging','Fire','Poaching or wildlife trade','Mining or quarrying','Wildlife sighting','Restoration or tree planting','Community initiative','Boundary or status change','Data correction','Other'];
+let reportSite=null,REPORTS=[],unsubR=null;
+function buildNgo(){
+  const nameIdx={};F.forEach(f=>nameIdx[f.n.toLowerCase()]=f.i);
+  const threats=F.filter(f=>f.thr).sort((a,b)=>b.km-a.km);
+  const hot=F.filter(f=>f.gb&&(f.gb[2]+f.gb[3]+f.gb[4])>0).sort((a,b)=>(b.gb[2]*3+b.gb[3]*2+b.gb[4])-(a.gb[2]*3+a.gb[3]*2+a.gb[4])).slice(0,15);
+  const gapsites=F.filter(f=>f.c===4&&f.v==='C'&&f.a).sort((a,b)=>b.a-a.a).slice(0,15);
+  $('#ngo').innerHTML=`<h2 class="title">NGO and community hub</h2><p class="lede">Tools for conservation organisations, researchers and community monitors: log what you see on the ground, keep a watchlist, and find the reserves that most need attention or study. Reports are shown as submitted and marked unverified until checked.</p>
+  <div class="grid2">
+   <article class="card"><h3>Report from the field</h3><div class="sub" id="r-mode"></div>
+    <form class="form" id="rform"><label>Site<input type="text" id="r-site" list="r-sites" placeholder="Start typing a reserve name" required></label><datalist id="r-sites">${F.map(f=>`<option value="${esc(f.n)}">${esc(f.s)}</option>`).join('')}</datalist>
+     <div class="two"><label>What did you observe?<select id="r-type">${RTYPES.map(t=>`<option>${t}</option>`).join('')}</select></label><label>Date observed<input type="date" id="r-date" value="${today}"></label></div>
+     <label>Short title<input type="text" id="r-title" maxlength="120" required placeholder="e.g. New farm clearings on the northern boundary"></label>
+     <label>Details<textarea id="r-body" maxlength="2000" placeholder="What, where (landmark or GPS), how large, who is affected. Avoid naming private individuals."></textarea></label>
+     <div class="two"><label>Organisation (optional)<input type="text" id="r-org" maxlength="120"></label><label>Evidence link (optional)<input type="url" id="r-link" placeholder="https://"></label></div>
+     <div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn primary" type="submit" id="r-submit">Publish report</button><button class="btn" type="button" id="r-copy">Copy report text</button></div>
+     <p id="r-msg" class="loading" style="margin:0"></p></form></article>
+   <article class="card"><h3>Shared field log</h3><div class="sub">Most recent reports from all contributors.</div><div class="row2"><select id="rf-type"><option value="">All report types</option>${RTYPES.map(t=>`<option>${t}</option>`).join('')}</select><select id="rf-state"><option value="">All states</option>${STATES.map(s=>`<option>${esc(s)}</option>`).join('')}</select></div><div class="feed" id="feed"></div></article>
+   <article class="card"><h3>My watchlist</h3><div class="sub">Sites you starred in their profiles. Saved in this browser only.</div><div id="watch"></div></article>
+   <article class="card"><h3>Sites with documented threats</h3><div class="sub">${threats.length} sites where a cited source records encroachment, logging, grazing, fire, mining or insecurity.</div><div class="tbl-wrap"><table class="dt"><thead><tr><th>Site</th><th>State</th><th>Recorded threats</th></tr></thead><tbody>${threats.map(f=>`<tr class="click" data-id="${f.i}"><td>${esc(f.n)}</td><td>${esc(f.s)}</td><td>${esc(f.thr.slice(0,140))}</td></tr>`).join('')}</tbody></table></div><div class="foot"><span>Sources cited on each profile</span><span class="acts"><button class="btn sm" id="dl-thr" type="button">CSV</button></span></div></article>
+   <article class="card"><h3>Threatened-species hotspots</h3><div class="sub">Sites with the most GBIF records of species listed as Critically Endangered, Endangered or Vulnerable.</div><div class="tbl-wrap"><table class="dt"><thead><tr><th>Site</th><th class="n">CR</th><th class="n">EN</th><th class="n">VU</th></tr></thead><tbody>${hot.map(f=>`<tr class="click" data-id="${f.i}"><td>${esc(f.n)}</td><td class="n">${fmt.format(f.gb[2])}</td><td class="n">${fmt.format(f.gb[3])}</td><td class="n">${fmt.format(f.gb[4])}</td></tr>`).join('')}</tbody></table></div><div class="foot"><span>GBIF occurrence records (counts are records, not individuals)</span></div></article>
+   <article class="card"><h3>Large reserves with no published profile</h3><div class="sub">Research and survey gaps: the biggest mapped forest reserves where no site-specific study was found.</div><div class="tbl-wrap"><table class="dt"><thead><tr><th>Site</th><th>State</th><th class="n">km²</th></tr></thead><tbody>${gapsites.map(f=>`<tr class="click" data-id="${f.i}"><td>${esc(f.n)}</td><td>${esc(f.s)}</td><td class="n">${fmt.format(Math.round(f.a/100))}</td></tr>`).join('')}</tbody></table></div><div class="foot"><span>Have data on one of these? Send it as a “Data correction” report.</span></div></article>
+  </div>`;
+  $$('#ngo tr.click').forEach(tr=>tr.onclick=()=>goSite(tr.dataset.id));
+  $('#dl-thr').onclick=()=>saveFile('sites_with_documented_threats.csv',toCSV(threats.map(f=>({id:f.i,site:f.n,state:f.s,threats:f.thr,sources:(f.src||[]).join(' | ')}))),'text/csv');
+  const siteOf=()=>{const v=$('#r-site').value.trim().toLowerCase();return nameIdx[v]?BY[nameIdx[v]]:null};
+  const text=()=>{const f=siteOf();return`Field report — ${$('#r-title').value}\nSite: ${f?f.n+' ('+f.s+') ['+f.i+']':$('#r-site').value}\nType: ${$('#r-type').value}\nDate observed: ${$('#r-date').value}\nOrganisation: ${$('#r-org').value||'—'}\nEvidence: ${$('#r-link').value||'—'}\n\n${$('#r-body').value}`};
+  $('#r-copy').onclick=()=>copy(text());
+  if(reportSite&&BY[reportSite])$('#r-site').value=BY[reportSite].n;
+  $('#rform').onsubmit=async e=>{e.preventDefault();const f=siteOf();track('field-report','Submitted a field report');
+    if(!f){$('#r-msg').textContent='Pick a site from the list so the report can be placed on the map.';return}
+    if(CAP.db){$('#r-submit').disabled=true;try{const uid=CAP.user&&CAP.user.id?await CAP.user.id():null;
+        await CAP.db.collection('reports').add({site:f.i,siteName:f.n,state:f.s,type:$('#r-type').value,date:$('#r-date').value,title:$('#r-title').value.slice(0,120),body:$('#r-body').value.slice(0,2000),org:$('#r-org').value.slice(0,120),link:/^https?:\/\//.test($('#r-link').value)?$('#r-link').value:'',author:uid,created:Date.now(),status:'unverified'});
+        $('#rform').reset();$('#r-date').value=today;$('#r-msg').textContent='Report published to the shared field log.';toast('Report published')}
+      catch(err){$('#r-msg').textContent=err&&err.code==='not_granted'?'You can read the log but not add to it. Ask the atlas owner for contributor access, or copy the report text and send it.':'The report could not be saved. Copy the text and try again later.'}
+      $('#r-submit').disabled=false}
+    else{const url=`https://github.com/${CONFIG.issuesRepo}/issues/new?labels=field-report&title=${encodeURIComponent('['+$('#r-type').value+'] '+f.n+': '+$('#r-title').value)}&body=${encodeURIComponent(text())}`;
+      const a=document.createElement('a');a.href=url;a.target='_blank';a.rel='noopener';document.body.appendChild(a);a.click();a.remove();$('#r-msg').innerHTML=`Your report opens as a GitHub issue for review. If nothing opened, <a href="${esc(url)}" target="_blank" rel="noopener">open it here</a> or copy the report text.`}};
+  $('#r-mode').textContent=CAP.db?'Reports are saved to this atlas’s shared log and visible to everyone it is shared with.':'On the public website, reports are filed as GitHub issues so maintainers can verify them before they are added.';
+  $('#rf-type').onchange=$('#rf-state').onchange=renderFeed;
+  renderFeed();renderWatch();
+}
+function startReports(){if(unsubR||!CAP.db)return;try{unsubR=CAP.db.collection('reports').orderBy('created','desc').limit(300).onSnapshot(s=>{REPORTS=s.docs.map(d=>({id:d.id,...d.data()}));renderFeed();if(state.sel)renderSiteReports(state.sel);if($('#r-mode'))$('#r-mode').textContent='Reports are saved to this atlas’s shared log and visible to everyone it is shared with.'},()=>{})}catch(e){}}
+async function names(ids){const out={};if(!CAP.user||!CAP.user.profiles||!ids.length)return out;try{const p=await CAP.user.profiles(ids);ids.forEach(i=>out[i]=(p[i]&&p[i].name)||'')}catch(e){}return out}
+async function renderFeed(){
+  const el=$('#feed');if(!el)return;
+  if(!CAP.db){el.innerHTML=`<p class="loading" style="margin:0">Submitted reports are reviewed on GitHub: <a href="https://github.com/${CONFIG.issuesRepo}/issues?q=label%3Afield-report" target="_blank" rel="noopener">see the open field reports ↗</a>.</p>`;return}
+  const t=$('#rf-type').value,s=$('#rf-state').value;const L=REPORTS.filter(r=>(!t||r.type===t)&&(!s||(r.state||'').includes(s))).slice(0,60);
+  const nm=await names([...new Set(L.map(r=>r.author).filter(Boolean))]);
+  el.innerHTML=L.length?L.map(r=>`<div class="rep"><div class="h"><span class="typechip">${esc(r.type)}</span><span>${esc(r.date||'')}</span><a href="#${esc(r.site)}">${esc(r.siteName||r.site)}</a><span>${esc(r.state||'')}</span><span>· unverified</span></div><b>${esc(r.title)}</b>${r.body?`<p>${esc(r.body)}</p>`:''}<div class="h" style="margin-top:6px">${nm[r.author]?esc(nm[r.author]):'A contributor'}${r.org?' · '+esc(r.org):''}${r.link?` · <a href="${esc(r.link)}" target="_blank" rel="noopener">evidence ↗</a>`:''}</div></div>`).join(''):'<p class="loading" style="margin:0">No reports yet. The first one you publish will appear here.</p>';
+}
+function renderSiteReports(f){const el=$('#sh-reports');if(!el)return;const L=REPORTS.filter(r=>r.site===f.i);el.innerHTML=L.length?`<h3>Field reports (${L.length})</h3>${L.slice(0,5).map(r=>`<div class="rep" style="margin-top:6px"><div class="h"><span class="typechip">${esc(r.type)}</span><span>${esc(r.date||'')}</span><span>· unverified</span></div><b>${esc(r.title)}</b>${r.body?`<p>${esc(r.body.slice(0,300))}</p>`:''}</div>`).join('')}`:''}
+function renderWatch(){const el=$('#watch');if(!el)return;const w=watchlist().map(i=>BY[i]).filter(Boolean);
+  el.innerHTML=w.length?`<div class="tbl-wrap"><table class="dt"><thead><tr><th>Site</th><th>State</th><th>Level</th><th class="n">GBIF species</th></tr></thead><tbody>${w.map(f=>`<tr class="click" data-id="${f.i}"><td>${esc(f.n)}</td><td>${esc(f.s)}</td><td>${f.v}</td><td class="n">${f.gb?fmt.format(f.gb[1]):'–'}</td></tr>`).join('')}</tbody></table></div><div style="margin-top:8px"><button class="btn sm" id="dl-watch" type="button">Download watchlist CSV</button></div>`:'<p class="loading" style="margin:0">Open any site on the map and press “Watch” to add it here.</p>';
+  $$('#watch tr.click').forEach(tr=>tr.onclick=()=>goSite(tr.dataset.id));
+  if($('#dl-watch'))$('#dl-watch').onclick=()=>saveFile('watchlist.csv',toCSV(w.map(exportRow)),'text/csv');}
+
+/* ---------- data & sources view ---------- */
+function exportRow(f){return{id:f.i,wdpa_id:f.w||'',name:f.n,category:CATS[f.c],state:f.s,lga:f.l||'',lat:f.la??'',lon:f.lo??'',area_ha_gis:f.a||'',area_ha_reported:f.ar||'',area_ha_fao1998:f.fh||'',year:f.y||'',iucn:f.u||'',verification_level:f.v,eco_zone_inferred:f.z?ZONES[f.z].n:'',vegetation:f.veg||'',flora:f.flora||'',fauna:f.fauna||'',resources:f.res||'',tourism:f.tour||'',threats:f.thr||'',notes:f.notes||'',gbif_records:f.gb?f.gb[0]:'',gbif_species:f.gb?f.gb[1]:'',visitor_readiness:f.vis?f.vis.visitor_readiness||'':'',sources:(f.src||[]).join(' | ')}}
+function buildData(){
+  const unm=F.filter(f=>f.la==null);const byS={};unm.forEach(f=>(byS[f.s||'Unknown']=byS[f.s||'Unknown']||[]).push(f.n));
+  const dsCite=`Nigeria Forest Reserves Atlas (2026). Nigeria forest reserves and protected areas dataset, version ${DATA.meta.version} [Data set]. ${CONFIG.siteUrl}. Includes data from UNEP-WCMC and IUCN (2026), Protected Planet: The World Database on Protected Areas (WDPA), accessed ${DATA.meta.wdpa_access}, Cambridge, UK: UNEP-WCMC and IUCN, www.protectedplanet.net.`;
+  const SRC=[
+   ['World Database on Protected Areas (UNEP-WCMC & IUCN)','960 Nigerian records: names, designations, boundaries, IUCN categories, status years','Primary spatial backbone','https://www.protectedplanet.net/country/NGA','Non-commercial use with attribution (WDPA terms)'],
+   ['geoBoundaries (William & Mary geoLab)','State (ADM1) and LGA (ADM2) boundaries for assigning sites and computing state areas','All sites','https://www.geoboundaries.org','CC BY 4.0'],
+   ['FAO, Forest Resource Situation Assessment of Nigeria (Beak Consultants, 1998), Table 18','Gazetted forest reserves and areas in the high-forest states, with management units','103 reserve entries; areas shown as “FAO 1998”','https://www.fao.org/4/ab578e/AB578E10.htm','FAO document'],
+   ['Federal Surveys of Nigeria (1966), “Nigeria: Forest Reserves” map, via ESDAC/EUDASM','Historical national map of reserves at the time of gazettement','Reference for checking names and historic extents; not digitised here','https://esdac.jrc.ec.europa.eu/content/nigeria-forest-reserves','EUDASM archive'],
+   ['Royal Museum for Central Africa, “Forest reserves in Northern Nigeria” (1:3,000,000)','Historical general map of northern reserves','Reference only; © RMCA','https://geocatalogue.africamuseum.be/geonetwork/srv/api/records/BE-RMCA-EARTHS-040026','© RMCA'],
+   ['“Map of Forest Reserves in Nigeria” (ResearchGate, 2020)','Academic GIS map of reserve locations and land mass','Reference for cross-checking','https://www.researchgate.net/publication/338969530_MAP_OF_FOREST_RESERVES_IN_NIGERIA','Author’s rights'],
+   ['Sambus Geospatial Open Data, “Nigeria Forest”','757 polygons. Checked: this is an OpenStreetMap forest-cover extract (landuse=forest), not a reserve register, and carries no licence','Not used for reserve records','https://opendata.sambusgeospatial.com/datasets/nigeria-forest/about','No licence stated'],
+   ['Ramsar Sites Information Service; UNESCO Man and the Biosphere; BirdLife / Key Biodiversity Areas','Designations, site descriptions, species and threats','Ramsar, biosphere and KBA sites','https://rsis.ramsar.org','Per source'],
+   ['National Park Service of Nigeria and federal announcements','National park list, upgrades approved 2023–2025, visitor information','National parks','https://nigeriaparkservice.gov.ng','Public information'],
+   ['State forestry laws and schedules, theses, journal papers, news reports','Reserve names, areas, gazettement years, species, threats','Cited on each profile','#map','Per source'],
+   ['GBIF.org occurrence API','Biodiversity record and species counts per site (snapshot) and live species lists','All mapped sites','https://www.gbif.org','Per dataset licence (CC0 / CC BY / CC BY-NC)'],
+   ['FAO FRA 2025 / UN SDG Global Database; Global Forest Watch (Hansen/UMD); Protected Planet country statistics','National forest area, tree cover loss, protected-area coverage','Statistics page','https://unstats.un.org/sdgs/dataportal','Per source'],
+   ['Live services on the hosted site','iNaturalist (species photos), Wikimedia Commons (photos), Open-Meteo (weather), CARTO / Esri / OpenTopoMap / NASA GIBS (basemaps), Hansen GFC v1.12 (forest-loss tiles)','On demand','https://www.inaturalist.org','Per service terms']];
+  $('#data').innerHTML=`<h2 class="title">Data, sources and method</h2><p class="lede">This atlas joins the official global protected-area register with national inventories, state laws, scientific literature and field reports, and records where every fact came from. It is built to be checked, cited and corrected.</p>
+  <h3>Download the dataset</h3><p>${fmt.format(F.length)} records, version ${esc(DATA.meta.version)}, compiled ${esc(DATA.meta.compiled)}. CSV opens in Excel or R; GeoJSON opens in QGIS, ArcGIS and most web maps.</p>
+  <div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn primary" id="dl-csv" type="button">Download CSV</button><button class="btn" id="dl-geo" type="button">Download GeoJSON</button><button class="btn" id="dl-cite" type="button">Copy dataset citation</button></div>
+  <pre class="cite" style="margin-top:10px">${esc(dsCite)}</pre>
+  <h3>Sources</h3><div class="tbl-wrap" style="max-height:none"><table class="dt srctbl"><thead><tr><th>Source</th><th>What it provides</th><th>Used for</th><th>Licence / terms</th></tr></thead><tbody>${SRC.map(s=>`<tr><td><a href="${esc(s[3])}" ${s[3].startsWith('#')?'':'target="_blank" rel="noopener"'}>${esc(s[0])}</a></td><td>${esc(s[1])}</td><td>${esc(s[2])}</td><td>${esc(s[4])}</td></tr>`).join('')}</tbody></table></div>
+  <h3>Verification levels</h3><ul>${Object.entries(LEVELS).map(([k,v])=>`<li><b>Level ${k}</b> (${F.filter(f=>f.v===k).length} records): ${esc(v)}</li>`).join('')}</ul>
+  <h3>Method</h3><ul>
+   <li>WDPA records were matched to compiled lists by normalised name and distance. Where a national park was created from an existing reserve, the record carries the new designation and notes the old one.</li>
+   <li>Each site is assigned to a state and LGA by where the centre of its boundary falls (geoBoundaries). Sites on a boundary are counted in each state named.</li>
+   <li>Areas are shown side by side: calculated from the WDPA polygon, as gazetted or reported, and as listed by FAO in 1998. Differences are normal and reflect survey dates and excisions.</li>
+   <li>Ecological zones are inferred from location and the main highland blocks. Zone text is labelled as inferred and never replaces site-specific evidence.</li>
+   <li>GBIF counts use each site’s bounding box, so they can include records just outside irregular boundaries. They show where data exist, not true species richness.</li>
+   <li>Boundaries are simplified to about 1 km for display. Use the WDPA originals for area statistics in publications.</li></ul>
+  <h3>Updates</h3><p>On the hosted website, species lists, photographs, weather, NASA daily imagery and the forest-loss layer are fetched live each time a profile opens. The core dataset is rebuilt by a scheduled job that re-reads the WDPA and GBIF, and field reports are reviewed before corrections are merged. Each release is versioned; cite the version you used.</p>
+  <h3>Known gaps</h3><p>Published counts suggest some states have more reserves than appear here: Benue reports about 52, Nasarawa about 41, Gombe 32 (state committee, 2026) and Enugu about 20. Imo, Abia and Lagos lists are thin. These ${unm.length} names are recorded but not yet located:</p>
+  <div class="gaplist">${Object.entries(byS).sort().map(([s,ns])=>`<b>${esc(s)}</b>${ns.map(esc).join(' · ')}`).join('')}</div>
+  <h3>Corrections</h3><p>Forestry departments, researchers and rangers can send corrections through the NGO hub (choose “Data correction”) or on <a href="https://github.com/${CONFIG.issuesRepo}/issues" target="_blank" rel="noopener">GitHub</a>. Please include a source.</p>`;
+  $('#dl-csv').onclick=()=>saveFile('nigeria_protected_areas.csv',toCSV(F.map(exportRow)),'text/csv');
+  $('#dl-geo').onclick=()=>saveFile('nigeria_protected_areas.geojson',JSON.stringify({type:'FeatureCollection',features:F.map(f=>({type:'Feature',properties:exportRow(f),geometry:f.g?{type:'MultiPolygon',coordinates:f.g}:f.la!=null?{type:'Point',coordinates:[f.lo,f.la]}:null}))}),'application/geo+json');
+  $('#dl-cite').onclick=()=>copy(dsCite);
+}
+
+</script>
+</body>
+</html>
