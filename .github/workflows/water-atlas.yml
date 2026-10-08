@@ -1,0 +1,60 @@
+# Keeps the Nigeria Water Resources Atlas current without anyone typing anything:
+#   - re-downloads dams (Global Dam Watch), the national dam inventory, rivers and lakes (DIVA-GIS),
+#     water points (GRID3), flood-risk LGAs, Wikidata/Wikipedia/Commons entries and DHS water indicators
+#   - refreshes 40-year GloFAS river-flow records for the flood-watch gauges
+#   - rebuilds water-atlas/data/*.json from those files plus the hand-written profiles in water-atlas/data/curated.json
+# Runs every Monday, and on demand from the Actions tab ("Run workflow").
+name: Refresh Nigeria Water Resources Atlas
+
+on:
+  schedule:
+    - cron: "17 5 * * 1"
+  workflow_dispatch:
+    inputs:
+      keep_raw:
+        description: "Also save the downloaded source files to the water-atlas-raw branch"
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install helpers
+        run: pip install pyshp shapely
+
+      - name: Download sources
+        run: python3 .github/scripts/water_atlas_fetch.py /tmp/raw
+
+      - name: Rebuild atlas data
+        run: |
+          if [ -f .github/scripts/water_atlas_build.py ]; then python3 .github/scripts/water_atlas_build.py /tmp/raw; else echo "No build script yet."; fi
+
+      - name: Save source files to the water-atlas-raw branch
+        if: ${{ inputs.keep_raw }}
+        run: |
+          cd /tmp/raw
+          git init -q -b water-atlas-raw
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A && git commit -qm "Water atlas source snapshot $(date -u +%F)"
+          git push -f "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" water-atlas-raw
+
+      - name: Commit if anything changed
+        run: |
+          if [ -z "$(git status --porcelain water-atlas/data)" ]; then
+            echo "Nothing to commit."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add water-atlas/data
+          git commit -m "Refresh Nigeria Water Resources Atlas data"
+          git pull --rebase
+          git push
