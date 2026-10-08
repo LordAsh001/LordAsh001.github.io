@@ -123,6 +123,13 @@
         "caption": "",
         "anchor": "Citadel",
         "hidden": false
+      },
+      {
+        "src": "/images/tool-forest-atlas.jpg",
+        "alt": "Screenshot of the Nigeria Forest Reserves Atlas: a map of Nigeria with forest reserves, national parks and wetlands coloured by designation, beside a searchable list of sites.",
+        "caption": "",
+        "anchor": "Nigeria Forest Reserves Atlas",
+        "hidden": false
       }
     ]
   }

@@ -93,6 +93,13 @@
     "news": [
       {
         "date": "Oct 2026",
+        "iso": "2026-10-08",
+        "text": "Launched the [Nigeria Forest Reserves Atlas](/forest-atlas/), an open map and dataset of 1,176 forest reserves, parks and wetlands across Nigeria.",
+        "url": "",
+        "hidden": false
+      },
+      {
+        "date": "Oct 2026",
         "iso": "2026-10-02",
         "text": "Led Women Ascension's two-part global mentorship webinars, *From Waste to Worth* and *Building Green Communities*.",
         "url": "",
@@ -137,7 +144,7 @@
     "metrics_title": "By the numbers",
     "metrics": [
       {
-        "value": "6",
+        "value": "7",
         "label": "free interactive tools for learning and research",
         "hidden": false
       },
@@ -611,6 +618,40 @@
             }
           ],
           "classroom": "set a level as homework before the first written assignment."
+        },
+        {
+          "name": "Nigeria Forest Reserves Atlas",
+          "text": "Explore Nigeria’s forest reserves, national parks, game reserves, sanctuaries, Ramsar wetlands and biosphere reserves on one map, with official boundaries, sourced profiles of plants, animals, resources and tourism, a statistics section with downloadable charts, a visit planner and a field-report hub for NGOs. Every record shows its sources and a verification level, and the full dataset downloads as CSV or GeoJSON.",
+          "link_label": "Open tool",
+          "sdgs": [
+            13,
+            15
+          ],
+          "hidden": false,
+          "url": "/forest-atlas/",
+          "kind": "Interactive map · free",
+          "audience": [
+            "Researchers",
+            "Practitioners",
+            "Educators",
+            "Students"
+          ],
+          "level": "All levels",
+          "numbers": [
+            {
+              "value": "1,176",
+              "label": "sites mapped"
+            },
+            {
+              "value": "36 + FCT",
+              "label": "states covered"
+            },
+            {
+              "value": "960",
+              "label": "official boundaries"
+            }
+          ],
+          "classroom": "have each group profile the reserves in their home state and compare what the records say with recent satellite imagery."
         }
       ],
       "note": "Using one of these in a course or workshop? I'd love to hear how it went: [amool@unbc.ca](mailto:amool@unbc.ca). Free to use for teaching and learning."
