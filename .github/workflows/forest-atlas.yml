@@ -1,0 +1,37 @@
+# Keeps the Nigeria Forest Reserves Atlas current without anyone typing anything:
+#   - re-reads areas and IUCN categories for every WDPA-linked site
+#   - refreshes biodiversity record counts from GBIF for every mapped site
+# Runs every Monday, and on demand from the Actions tab ("Run workflow").
+# Site profiles and sources in forest-atlas/data/atlas.json are never overwritten.
+name: Refresh Nigeria Forest Reserves Atlas
+
+on:
+  schedule:
+    - cron: "41 4 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Refresh WDPA attributes and GBIF counts
+        run: python3 .github/scripts/forest_atlas_refresh.py
+
+      - name: Commit if anything changed
+        run: |
+          if [ -z "$(git status --porcelain forest-atlas/data/atlas.json)" ]; then
+            echo "Nothing to commit."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add forest-atlas/data/atlas.json
+          git commit -m "Refresh Nigeria Forest Reserves Atlas data"
+          git pull --rebase
+          git push
