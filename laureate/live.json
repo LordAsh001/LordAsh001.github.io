@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-08",
+ "updated": "2026-10-09",
  "sources": [
   {
    "source": "Opportunities for Africans",
@@ -9,22 +9,22 @@
   {
    "source": "Opportunity Desk",
    "ok": true,
-   "items": 3
+   "items": 5
   },
   {
    "source": "Opportunities Corners",
    "ok": true,
-   "items": 6
+   "items": 5
   },
   {
    "source": "Scholarship Region",
-   "ok": true,
-   "items": 8
+   "ok": false,
+   "error": "<urlopen error _ssl.c:983: The handshake operation timed out>"
   },
   {
    "source": "Opportunities for Youth",
    "ok": true,
-   "items": 9
+   "items": 4
   },
   {
    "source": "Commonwealth Scholarship Commission",
@@ -43,8 +43,8 @@
   },
   {
    "source": "Federal Ministry of Education, Nigeria",
-   "ok": true,
-   "items": 0
+   "ok": false,
+   "error": "<urlopen error [Errno 111] Connection refused>"
   },
   {
    "source": "GOV.UK",
@@ -56,6 +56,46 @@
   }
  ],
  "items": [
+  {
+   "title": "World Bank Group Government Analytics Fellowship 2027",
+   "link": "https://opportunitydesk.org/2026/10/09/world-bank-group-government-analytics-fellowship-2027/",
+   "date": "2026-10-09",
+   "source": "Opportunity Desk",
+   "official": false,
+   "ids": [],
+   "summary": "Deadline: November 16, 2026 Do you want to lead change and drive innovation within your government? The World Bank invites dedicated public servants to apply for the 2027 Government Analytics Fellows…",
+   "seen": "2026-10-09"
+  },
+  {
+   "title": "EQUALS in Tech Awards 2027",
+   "link": "https://opportunitydesk.org/2026/10/09/equals-in-tech-awards-2027/",
+   "date": "2026-10-09",
+   "source": "Opportunity Desk",
+   "official": false,
+   "ids": [],
+   "summary": "Deadline: November 7, 2026 Applications are open for the EQUALS in Tech Awards 2027. First launched in 2014, the Awards recognize efforts at the global, regional and national levels that use technolo…",
+   "seen": "2026-10-09"
+  },
+  {
+   "title": "World Bank Government Analytics Fellowship 2027: Applications Open for Public Servants to Use Government Data for Better Decision-Making",
+   "link": "https://opportunitiesforyouth.org/2026/10/09/apply-for-the-2025-world-bank-government-analytics-fellowship/",
+   "date": "2026-10-09",
+   "source": "Opportunities for Youth",
+   "official": false,
+   "ids": [],
+   "summary": "Are you a government official or public servant interested in using data to improve public administration, strengthen government institutions, and support evidence-based policymaking? The World Bank …",
+   "seen": "2026-10-09"
+  },
+  {
+   "title": "World Finance Innovation Awards 2026: Apply for the 1,000 Young Entrepreneurs Initiative in Kenya",
+   "link": "https://opportunitiesforyouth.org/2026/10/09/world-finance-innovation-awards-2026-apply-for-the-1000-young-entrepreneurs-initiative-in-kenya/",
+   "date": "2026-10-09",
+   "source": "Opportunities for Youth",
+   "official": false,
+   "ids": [],
+   "summary": "The World Finance Innovation Awards competition is inviting young entrepreneurs in Kenya to submit innovative business ideas, social impact initiatives, and other creative solutions through its Stage…",
+   "seen": "2026-10-09"
+  },
   {
    "title": "Novo Nordisk Foundation Postdoctoral Fellowships at Massachusetts Institute of Technology 2027 (Funded)",
    "link": "https://opportunitydesk.org/2026/10/08/novo-nordisk-foundation-postdoctoral-fellowships-at-mit-2027/",
@@ -145,6 +185,66 @@
    "ids": [],
    "summary": "The Bonn Center for Dependency and Slavery Studies (BCDSS) at the University of Bonn, Germany, is inviting applications for the Heinz Heinen Fellowships for the 2027/2028 academic year. The fellowshi…",
    "seen": "2026-10-08"
+  },
+  {
+   "title": "Atlantic Fellows for Social and Economic Equity (AFSEE) Programme 2027-2028 (Fully-funded)",
+   "link": "https://opportunitydesk.org/2026/10/08/afsee-programme-2027-2028/",
+   "date": "2026-10-08",
+   "source": "Opportunity Desk",
+   "official": false,
+   "ids": [],
+   "summary": "Deadline: January 11, 2027 Applications are open for the Atlantic Fellows for Social and Economic Equity (AFSEE) Programme 2027-2028. Policymakers, researchers, activists, practitioners, artists, and…",
+   "seen": "2026-10-09"
+  },
+  {
+   "title": "Gloria’s Foundation Fellowship 2027 ($5,000 stipend)",
+   "link": "https://opportunitydesk.org/2026/10/08/gloria-foundation-fellowship-2027/",
+   "date": "2026-10-08",
+   "source": "Opportunity Desk",
+   "official": false,
+   "ids": [],
+   "summary": "Deadline: November 1, 2026 Applications are open for the Gloria’s Foundation Fellowship 2027. The Gloria’s Foundation will select two Fellows for a one-year fellowship, which will take place January …",
+   "seen": "2026-10-09"
+  },
+  {
+   "title": "Amazon Research Awards – Fall 2026",
+   "link": "https://opportunitydesk.org/2026/10/08/amazon-research-awards-fall-2026/",
+   "date": "2026-10-08",
+   "source": "Opportunity Desk",
+   "official": false,
+   "ids": [],
+   "summary": "Deadline: November 4, 2026 Proposals are invited for the Amazon Research Awards – Fall 2026. ARA funds in a variety of research areas relevant to Amazon, such as applied machine learning, automated r…",
+   "seen": "2026-10-09"
+  },
+  {
+   "title": "NextGen2030 2.0 Youth & AI Summit Riyadh 2026 (Fully Funded)",
+   "link": "https://opportunitiescorners.com/nextgen2030-youth-summit-riyadh-2026/",
+   "date": "2026-10-08",
+   "source": "Opportunities Corners",
+   "official": false,
+   "ids": [],
+   "summary": "The NextGen2030 Youth & AI Summit Riyadh 2026 is an international youth summit bringing together young leaders, innovators, entrepreneurs, and changemakers from around the world to explore the future…",
+   "seen": "2026-10-09"
+  },
+  {
+   "title": "CivicSpark Fellowship 2027: Apply for an 8-Month Fellowship to Build Community Planning Skills and Advance Local Change",
+   "link": "https://opportunitiesforyouth.org/2026/10/08/civicspark-fellowship-2027-apply-for-an-8-month-fellowship-to-build-community-planning-skills-and-advance-local-change/",
+   "date": "2026-10-08",
+   "source": "Opportunities for Youth",
+   "official": false,
+   "ids": [],
+   "summary": "The CivicSpark Fellowship is offering an opportunity for emerging professionals and community-minded leaders to gain practical experience while contributing to meaningful local planning and community…",
+   "seen": "2026-10-09"
+  },
+  {
+   "title": "Charles H. Hood Foundation Child Health Research Awards 2027: $200,000 Grant for Early-Career Researchers",
+   "link": "https://opportunitiesforyouth.org/2026/10/08/charles-h-hood-foundation-child-health-research-awards-2027-200000-grant-for-early-career-researchers/",
+   "date": "2026-10-08",
+   "source": "Opportunities for Youth",
+   "official": false,
+   "ids": [],
+   "summary": "The Charles H. Hood Foundation is now accepting submissions for the Child Health Research Awards Program for the April 2027 funding cycle, providing an important research funding opportunity for earl…",
+   "seen": "2026-10-09"
   },
   {
    "title": "Government of Alberta Graduate Excellence Scholarship (AGES) in Canada 2027 | How To Apply",
