@@ -1,0 +1,50 @@
+skipped GDW (WA_STEPS)
+skipped UNICEF (WA_STEPS)
+skipped DIVA-GIS (WA_STEPS)
+skipped GRID3 (WA_STEPS)
+skipped HydroBASINS (WA_STEPS)
+skipped Natural Earth (WA_STEPS)
+skipped Wikidata/Wikipedia/Commons (WA_STEPS)
+saved dhs.json
+saved worldbank.json
+saved sdg.json
+saved wastewater_jones.json
+POWER Cross River: 7 points
+POWER FCT: 3 points
+POWER Ogun: 6 points
+POWER Oyo: 8 points
+POWER Sokoto: 8 points
+POWER Zamfara: 8 points
+POWER Lagos: 2 points
+POWER Akwa Ibom: 3 points
+POWER Bayelsa: 3 points
+POWER Ondo: 3 points
+POWER Delta: 6 points
+POWER Rivers: 5 points
+POWER Kwara: 8 points
+POWER Kogi: 8 points
+POWER Benue: 8 points
+POWER Borno: 8 points
+POWER Katsina: 8 points
+POWER Plateau: 8 points
+POWER Edo: 5 points
+POWER Jigawa: 8 points
+POWER Anambra: 2 points
+POWER Kano: 7 points
+POWER Nasarawa: 8 points
+POWER Kebbi: 8 points
+POWER Imo: 1 points
+POWER Gombe: 5 points
+POWER Adamawa: 8 points
+POWER Yobe: 8 points
+POWER Abia: 2 points
+POWER Ekiti: 4 points
+POWER Osun: 3 points
+POWER Bauchi: 8 points
+POWER Niger: 8 points
+POWER Kaduna: 8 points
+POWER Enugu: 3 points
+POWER Taraba: 8 points
+POWER Ebonyi: 3 points
+saved power_precip.json
+skipped GloFAS gauges (WA_STEPS)
