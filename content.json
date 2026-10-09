@@ -1087,8 +1087,8 @@
       "id": "recognition",
       "show": true,
       "numbered": true,
-      "subtitle": "Prizes, nominations, and the toolkit behind them.",
-      "lede": "Prizes and scholarships I have won or been nominated for, and the skills behind them.",
+      "subtitle": "Prizes, memberships, and the toolkit behind them.",
+      "lede": "Prizes and scholarships I have won or been nominated for, my professional memberships, and the skills behind them.",
       "caption": "**Table 1** Awards and honours",
       "col_year": "Year",
       "col_item": "Honour",
@@ -1160,8 +1160,18 @@
           "hidden": false
         }
       ],
-      "groups_caption": "**Toolkit** Skills and methods behind the work.",
+      "groups_caption": "**Credentials & toolkit** Professional memberships, and the skills and methods behind the work.",
       "groups": [
+        {
+          "title": "Professional memberships",
+          "items": [
+            "Council for the Regulation of Engineering in Nigeria (COREN): registered engineer, R71623",
+            "Nigerian Society of Engineers (NSE)",
+            "Nigerian Institution of Agricultural Engineers (NIAE)",
+            "Nigerian Institute of Management (Chartered) (NIM)",
+            "International Association of Engineers (IAENG)"
+          ]
+        },
         {
           "title": "Sustainability analysis",
           "items": [
