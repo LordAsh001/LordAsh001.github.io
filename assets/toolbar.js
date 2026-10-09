@@ -125,6 +125,11 @@ function build() {
     "</div>";
   body.insertBefore(nav, body.firstChild);
 
+  /* Tell the homepage to put the visitor back where they left it (see index.html). */
+  nav.querySelector(".sb-home").addEventListener("click", function () {
+    try { sessionStorage.setItem("home-return", "1"); } catch (e) {}
+  });
+
   if (!ownToggle()) {
     applySaved();
     var tb = document.createElement("button");
