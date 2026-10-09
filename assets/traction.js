@@ -19,6 +19,7 @@ var TOOL = /\/symbiosis\//.test(path) ? "symbiosis"
   : /\/eia-studio\//.test(path) ? "eia-studio"
   : /citadel/.test(path) ? "citadel"
   : /\/forest-atlas\//.test(path) ? "forest-atlas"
+  : /\/water-atlas\//.test(path) ? "water-atlas"
   : "website";
 
 /* ---------- analytics (GoatCounter: no cookies, no personal data) ---------- */
