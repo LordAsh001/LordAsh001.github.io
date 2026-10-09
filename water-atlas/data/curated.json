@@ -1,0 +1,807 @@
+{
+  "about": "Hand-written reference content for the Nigeria Water Resources Atlas. Every entry names its source. water_atlas_build.py merges this file with the downloaded datasets; edit here, never in atlas.json.",
+  "nwrmp": {
+    "title": "National Water Resources Master Plan 2013 (official dissemination version)",
+    "by": "Federal Ministry of Water Resources with JICA (Yachiyo Engineering, CTI Engineering International, Sanyu Consultants)",
+    "date": "January 2014",
+    "url": "https://openjicareport.jica.go.jp/pdf/12146585.pdf",
+    "national": [
+      {
+        "label": "Total renewable water resources incl. inflow from neighbouring countries",
+        "value": 375.1,
+        "unit": "billion m³/yr"
+      },
+      {
+        "label": "Total renewable water resources generated inside Nigeria",
+        "value": 286.6,
+        "unit": "billion m³/yr"
+      },
+      {
+        "label": "Surface water incl. inflow",
+        "value": 332.7,
+        "unit": "billion m³/yr"
+      },
+      {
+        "label": "Surface water generated inside Nigeria",
+        "value": 244.2,
+        "unit": "billion m³/yr"
+      },
+      {
+        "label": "Renewable groundwater",
+        "value": 156,
+        "unit": "billion m³/yr"
+      },
+      {
+        "label": "Inflow from neighbouring countries (about 24% of surface water)",
+        "value": 88,
+        "unit": "billion m³/yr"
+      },
+      {
+        "label": "Average groundwater recharge, nationwide",
+        "value": 171,
+        "unit": "mm/yr"
+      },
+      {
+        "label": "Total water demand, 2010",
+        "value": 5.93,
+        "unit": "billion m³/yr"
+      },
+      {
+        "label": "Projected total water demand, 2030",
+        "value": 16.59,
+        "unit": "billion m³/yr"
+      },
+      {
+        "label": "Municipal water demand, 2010",
+        "value": 8254,
+        "unit": "million litres/day"
+      },
+      {
+        "label": "Projected municipal water demand, 2030",
+        "value": 23876,
+        "unit": "million litres/day"
+      }
+    ]
+  },
+  "hydrological_areas": [
+    {
+      "id": "HA-1",
+      "name": "Niger North",
+      "rivers": "Sokoto, Rima, Zamfara, Ka and the Niger above Kainji",
+      "tot": 37.4,
+      "tot_int": 10.7,
+      "sw": 35.1,
+      "sw_int": 8.4,
+      "gwr": 37,
+      "pop2020": 21829,
+      "pop2030": 27231
+    },
+    {
+      "id": "HA-2",
+      "name": "Niger Central",
+      "rivers": "Niger from Kainji to Lokoja, Kaduna, Gurara, Mariga",
+      "tot": 40.9,
+      "tot_int": 40.3,
+      "sw": 32.3,
+      "sw_int": 31.7,
+      "gwr": 132,
+      "pop2020": 23064,
+      "pop2030": 31171
+    },
+    {
+      "id": "HA-3",
+      "name": "Upper Benue",
+      "rivers": "Benue from the Cameroon border, Gongola, Taraba, Donga",
+      "tot": 60.2,
+      "tot_int": 37.9,
+      "sw": 56.4,
+      "sw_int": 34.1,
+      "gwr": 123,
+      "pop2020": 15565,
+      "pop2030": 19398
+    },
+    {
+      "id": "HA-4",
+      "name": "Lower Benue",
+      "rivers": "Lower Benue, Katsina-Ala, Mada, Okwa",
+      "tot": 47.9,
+      "tot_int": 32.8,
+      "sw": 46.0,
+      "sw_int": 30.9,
+      "gwr": 250,
+      "pop2020": 10909,
+      "pop2030": 14173
+    },
+    {
+      "id": "HA-5",
+      "name": "Niger South",
+      "rivers": "Niger below Lokoja, Anambra, the Delta distributaries (Forcados, Nun and others)",
+      "tot": 50.7,
+      "tot_int": 50.7,
+      "sw": 40.1,
+      "sw_int": 40.1,
+      "gwr": 592,
+      "pop2020": 24959,
+      "pop2030": 31078
+    },
+    {
+      "id": "HA-6",
+      "name": "Western Littoral",
+      "rivers": "Ogun, Osun, Oba, Owena, Osse, Benin and the Lagos lagoon system",
+      "tot": 43.7,
+      "tot_int": 43.6,
+      "sw": 35.7,
+      "sw_int": 35.6,
+      "gwr": 236,
+      "pop2020": 46036,
+      "pop2030": 57821
+    },
+    {
+      "id": "HA-7",
+      "name": "Eastern Littoral",
+      "rivers": "Cross, Imo, Kwa Ibo, Aba and Calabar",
+      "tot": 84.0,
+      "tot_int": 60.3,
+      "sw": 79.9,
+      "sw_int": 56.2,
+      "gwr": 570,
+      "pop2020": 26302,
+      "pop2030": 32593
+    },
+    {
+      "id": "HA-8",
+      "name": "Lake Chad",
+      "rivers": "Komadugu-Yobe, Hadejia, Jama'are, Kano, Ngadda, Yedseram",
+      "tot": 10.3,
+      "tot_int": 10.3,
+      "sw": 7.2,
+      "sw_int": 7.2,
+      "gwr": 24,
+      "pop2020": 35205,
+      "pop2030": 44350
+    }
+  ],
+  "ha_note": "From Tables 6 and 14 of the Master Plan: renewable water in billion m³ a year, groundwater recharge in mm a year, population in thousands. Principal rivers are listed for orientation.",
+  "rbdas": [
+    {
+      "name": "Sokoto-Rima RBDA",
+      "hq": "Sokoto",
+      "la": 13.06,
+      "lo": 5.24,
+      "area": "Sokoto-Rima basin of the north-west"
+    },
+    {
+      "name": "Hadejia-Jama'are RBDA",
+      "hq": "Kano",
+      "la": 12.0,
+      "lo": 8.52,
+      "area": "Hadejia and Jama'are rivers, part of the Lake Chad basin"
+    },
+    {
+      "name": "Chad Basin Development Authority",
+      "hq": "Maiduguri",
+      "la": 11.85,
+      "lo": 13.16,
+      "area": "Areas surrounding the Lake Chad basin"
+    },
+    {
+      "name": "Upper Benue RBDA",
+      "hq": "Yola",
+      "la": 9.2,
+      "lo": 12.48,
+      "area": "Areas drained by the Benue and tributaries from the international boundary to the Pai and Donga rivers"
+    },
+    {
+      "name": "Lower Benue RBDA",
+      "hq": "Makurdi",
+      "la": 7.73,
+      "lo": 8.52,
+      "area": "Catchment between the Donga/Pai and the Benue's confluence with the Niger"
+    },
+    {
+      "name": "Upper Niger RBDA",
+      "hq": "Minna",
+      "la": 9.61,
+      "lo": 6.55,
+      "area": "Niger, Kaduna and the Federal Capital Territory"
+    },
+    {
+      "name": "Lower Niger RBDA",
+      "hq": "Ilorin",
+      "la": 8.5,
+      "lo": 4.55,
+      "area": "Lower Niger catchment above the Delta"
+    },
+    {
+      "name": "Niger River Basin Development Authority (historic remit)",
+      "hq": "Ilorin",
+      "la": 8.5,
+      "lo": 4.55,
+      "area": "Areas drained by the Niger from its confluence with the Malendo River down to its confluence with the Ubo River",
+      "skip": true
+    },
+    {
+      "name": "Ogun-Osun RBDA",
+      "hq": "Abeokuta",
+      "la": 7.16,
+      "lo": 3.35,
+      "area": "Ogun, Osun and the western coastal rivers"
+    },
+    {
+      "name": "Benin-Owena RBDA",
+      "hq": "Benin City",
+      "la": 6.34,
+      "lo": 5.62,
+      "area": "Benin, Owena, Osse and neighbouring rivers"
+    },
+    {
+      "name": "Anambra-Imo RBDA",
+      "hq": "Owerri",
+      "la": 5.48,
+      "lo": 7.03,
+      "area": "East of the Niger, areas drained by the Imo and Anambra rivers"
+    },
+    {
+      "name": "Cross River Basin Development Authority",
+      "hq": "Calabar",
+      "la": 4.98,
+      "lo": 8.34,
+      "area": "Places drained by the Cross River and its tributaries"
+    },
+    {
+      "name": "Niger Delta Basin Development Authority",
+      "hq": "Port Harcourt",
+      "la": 4.82,
+      "lo": 7.03,
+      "area": "The Niger Delta"
+    }
+  ],
+  "rbda_source": {
+    "label": "River Basin Development Authorities Act (Cap. R9, Laws of the Federation 2004); summary at Wikipedia, River Basin Authorities in Nigeria",
+    "url": "https://en.wikipedia.org/wiki/River_Basin_Authorities_in_Nigeria"
+  },
+  "groundwater": [
+    {
+      "name": "Basement complex",
+      "where": "Large parts of the north-central, north-west, south-west and eastern border uplands",
+      "aquifer": "Low to moderate productivity. Water sits in fractures and a weathered mantle a few to tens of metres thick; boreholes are typically 10–70 m deep. Quality generally good."
+    },
+    {
+      "name": "Chad Basin (Chad and Gombe formations)",
+      "where": "North-east, Borno and Yobe",
+      "aquifer": "The Chad Formation is moderate to highly productive, with yields up to 30 L/s; deeper sandstone layers are often confined. The Gombe Formation yields about 1–5 L/s."
+    },
+    {
+      "name": "Sokoto Basin",
+      "where": "North-west, Sokoto and Kebbi",
+      "aquifer": "Highly variable yields, moderate to high where coarser sandstones dominate. Lower sandstones can be confined; upper layers unconfined."
+    },
+    {
+      "name": "Benue Trough",
+      "where": "Along the Benue valley, from Adamawa to Benue and Cross River",
+      "aquifer": "Lower Benue: moderately productive fractured aquifers, 2–8 L/s, boreholes 40–150 m, sometimes highly mineralised. Upper Benue: low to moderate, 1–5 L/s, boreholes 30–300 m."
+    },
+    {
+      "name": "Nupe (Bida) Basin",
+      "where": "Middle Niger valley, Niger and Kwara",
+      "aquifer": "Low to moderate productivity in fine, slightly cemented sandstones; 2–4 L/s where coarser sandstone dominates."
+    },
+    {
+      "name": "Niger Delta and coastal sediments",
+      "where": "Coastal belt from Lagos to Calabar",
+      "aquifer": "High to very high productivity in unconsolidated sands and gravels (Deltaic and Benin formations), 3–60 L/s, boreholes 10–800 m. Watch for saline intrusion, iron and urban pollution. Calabar and Port Harcourt rely entirely on groundwater."
+    },
+    {
+      "name": "Alluvium of the major rivers",
+      "where": "Niger and Benue floodplains",
+      "aquifer": "Shallow, largely unconfined alluvial aquifers 15–30 m thick, high productivity."
+    },
+    {
+      "name": "Volcanic rocks",
+      "where": "Jos Plateau, Biu Plateau and other volcanic fields",
+      "aquifer": "Low to moderate productivity, usually under 3 L/s, boreholes 15–50 m."
+    }
+  ],
+  "groundwater_source": {
+    "label": "British Geological Survey, Africa Groundwater Atlas: Hydrogeology of Nigeria (summarised via Wikipedia, Groundwater in Nigeria)",
+    "url": "https://earthwise.bgs.ac.uk/index.php/Hydrogeology_of_Nigeria"
+  },
+  "groundwater_facts": [
+    {
+      "label": "Share of Nigerians relying on groundwater point sources for drinking water (2018)",
+      "value": "60% (73% rural, 45% urban)",
+      "src": "WHO/UNICEF JMP via BGS Africa Groundwater Atlas"
+    },
+    {
+      "label": "Boreholes in Nigeria (2013 estimate)",
+      "value": "about 65,000, abstracting about 6.34 million m³/day; almost 45,000 fitted with hand pumps",
+      "src": "BGS Africa Groundwater Atlas"
+    },
+    {
+      "label": "Boreholes in working order (1996 Ministry of Water Resources survey)",
+      "value": "63%",
+      "src": "BGS Africa Groundwater Atlas"
+    },
+    {
+      "label": "Transboundary aquifers",
+      "value": "Iullemeden–Taoudeni/Tanezrouft, Chad Basin, Keta Basin, Benue Trough, Rio del Rey",
+      "src": "BGS Africa Groundwater Atlas"
+    }
+  ],
+  "agencies": [
+    {
+      "name": "Federal Ministry of Water Resources and Sanitation",
+      "role": "National water policy, dams, irrigation and the River Basin Development Authorities",
+      "url": "https://waterresources.gov.ng"
+    },
+    {
+      "name": "Nigeria Hydrological Services Agency (NIHSA)",
+      "role": "Hydrological and hydrogeological monitoring; publishes the Annual Flood Outlook",
+      "url": "https://nihsa.gov.ng"
+    },
+    {
+      "name": "Nigeria Integrated Water Resources Management Commission (NIWRMC)",
+      "role": "Regulates water use and allocation; issues water-use licences",
+      "url": "https://niwrmc.gov.ng"
+    },
+    {
+      "name": "National Water Resources Institute (NWRI), Kaduna",
+      "role": "Training, research and water data",
+      "url": "https://nwri.gov.ng"
+    },
+    {
+      "name": "National Emergency Management Agency (NEMA)",
+      "role": "Flood response and early warning dissemination",
+      "url": "https://nema.gov.ng"
+    },
+    {
+      "name": "Nigerian Meteorological Agency (NiMet)",
+      "role": "Seasonal Climate Prediction and rainfall outlooks",
+      "url": "https://nimet.gov.ng"
+    },
+    {
+      "name": "Niger Basin Authority (NBA)",
+      "role": "Nine-country body for the Niger basin; runs the Niger-HYCOS flood forecasting network",
+      "url": "https://www.abn.ne"
+    },
+    {
+      "name": "Lake Chad Basin Commission (LCBC)",
+      "role": "Shared management of Lake Chad and its basin aquifer",
+      "url": "https://cblt.org"
+    }
+  ],
+  "extra_titles": [
+    "Niger River",
+    "Benue River",
+    "Lake Chad",
+    "Niger Delta",
+    "Hadejia-Nguru wetlands",
+    "Lagdo Dam",
+    "2012 Nigeria floods",
+    "2022 Nigeria floods",
+    "2024 Maiduguri flood",
+    "Water supply and sanitation in Nigeria",
+    "Zungeru Hydroelectric Power Station",
+    "Kainji Dam",
+    "Shiroro Hydroelectric Power Station",
+    "Jebba Hydroelectric Power Station",
+    "Dadin Kowa Dam",
+    "Kashimbila Dam",
+    "Alau Dam",
+    "Tiga Dam",
+    "Challawa Gorge Dam",
+    "Goronyo Dam",
+    "Bakolori Dam",
+    "Oyan River Dam",
+    "Ikere Gorge Dam",
+    "Kiri Dam",
+    "Gurara Dam",
+    "Asejire Reservoir",
+    "Usuma Dam"
+  ],
+  "flood_events": [
+    {
+      "year": 2012,
+      "title": "2012 Nigeria floods"
+    },
+    {
+      "year": 2022,
+      "title": "2022 Nigeria floods"
+    },
+    {
+      "year": 2024,
+      "title": "2024 Maiduguri flood"
+    }
+  ],
+  "dam_wiki": {
+    "60": "Kainji Dam",
+    "377": "Shiroro Hydroelectric Power Station",
+    "379": "Jebba Hydroelectric Power Station",
+    "376": "Dadin Kowa Dam",
+    "371": "Tiga Dam",
+    "1951": "Challawa Gorge Dam",
+    "365": "Goronyo Dam",
+    "1960": "Kiri Dam",
+    "7412": "Kashimbila Dam",
+    "1943": "Bakolori Dam",
+    "1966": "Ikere Gorge Dam",
+    "1973": "Oyan River Dam",
+    "1937": "Jibiya Dam",
+    "1948": "Watari Dam",
+    "5225": "Asejire Reservoir",
+    "5216": "Jabi Lake",
+    "6612": "Obudu Dam",
+    "5199": "Gubi Dam",
+    "1949": "Jakara Dam",
+    "7670": "Alau Dam",
+    "1968": "Erinle Reservoir"
+  },
+  "extra_dams": [
+    {
+      "name": "Zungeru Dam",
+      "wiki": "Zungeru Hydroelectric Power Station",
+      "river": "Kaduna",
+      "state": "Niger",
+      "use": "Hydroelectricity",
+      "note": "700 MW hydropower scheme on the Kaduna River downstream of Shiroro; see the Wikipedia article for status and capacity."
+    },
+    {
+      "name": "Gurara Dam",
+      "wiki": "Gurara Dam",
+      "river": "Gurara",
+      "state": "Kaduna",
+      "use": "Water supply and inter-basin transfer to Abuja"
+    },
+    {
+      "name": "Lower Usuma Dam",
+      "wiki": "Usuma Dam",
+      "river": "Usuma",
+      "state": "Federal Capital Territory",
+      "use": "Water supply for Abuja"
+    }
+  ],
+  "rivers": [
+    {
+      "id": "niger",
+      "n": "Niger",
+      "wiki": "Niger River",
+      "ne": [
+        "Niger"
+      ],
+      "diva": [
+        "NIGER"
+      ]
+    },
+    {
+      "id": "benue",
+      "n": "Benue",
+      "wiki": "Benue River",
+      "ne": [
+        "Benue",
+        "Bénoué"
+      ],
+      "diva": []
+    },
+    {
+      "id": "kaduna",
+      "n": "Kaduna",
+      "wiki": "Kaduna River",
+      "ne": [
+        "Kaduna"
+      ],
+      "diva": [
+        "KADUNA"
+      ]
+    },
+    {
+      "id": "sokoto",
+      "n": "Sokoto",
+      "wiki": "Sokoto River",
+      "ne": [
+        "Sokoto"
+      ],
+      "diva": [
+        "SOKOTO"
+      ]
+    },
+    {
+      "id": "rima",
+      "n": "Rima",
+      "wiki": "Rima River",
+      "ne": [],
+      "diva": [
+        "RIMA"
+      ]
+    },
+    {
+      "id": "zamfara",
+      "n": "Zamfara",
+      "wiki": "Zamfara River",
+      "ne": [],
+      "diva": [
+        "ZAMFARA"
+      ]
+    },
+    {
+      "id": "gongola",
+      "n": "Gongola",
+      "wiki": "Gongola River",
+      "ne": [
+        "Gongola"
+      ],
+      "diva": [
+        "GONGOLA"
+      ]
+    },
+    {
+      "id": "yobe",
+      "n": "Komadugu-Yobe",
+      "wiki": "Yobe River",
+      "ne": [
+        "Komadugu Yobe"
+      ],
+      "diva": [
+        "KOMADUGU YOBE",
+        "KOMADOUGOU YOBE",
+        "KOMADUGU GANA"
+      ]
+    },
+    {
+      "id": "hadejia",
+      "n": "Hadejia",
+      "wiki": "Hadejia River",
+      "ne": [
+        "Hadejia"
+      ],
+      "diva": [
+        "HADEJIA"
+      ]
+    },
+    {
+      "id": "jamaare",
+      "n": "Jama'are",
+      "wiki": "Jama'are River",
+      "ne": [
+        "Bunga"
+      ],
+      "diva": [
+        "BUNGA",
+        "BUNGA RIVER"
+      ]
+    },
+    {
+      "id": "kano",
+      "n": "Kano",
+      "wiki": "Kano River",
+      "ne": [],
+      "diva": [
+        "KANO"
+      ]
+    },
+    {
+      "id": "katagum",
+      "n": "Katagum",
+      "wiki": "Katagum River",
+      "ne": [],
+      "diva": [
+        "KATAGUM"
+      ]
+    },
+    {
+      "id": "yedseram",
+      "n": "Yedseram",
+      "wiki": "Yedseram River",
+      "ne": [],
+      "diva": [
+        "YEDSERAM"
+      ]
+    },
+    {
+      "id": "ngadda",
+      "n": "Ngadda",
+      "wiki": "Ngadda River",
+      "ne": [],
+      "diva": [
+        "NGADDA"
+      ]
+    },
+    {
+      "id": "katsinaala",
+      "n": "Katsina-Ala",
+      "wiki": "Katsina Ala River",
+      "ne": [],
+      "diva": [
+        "KATSINA ALA"
+      ]
+    },
+    {
+      "id": "donga",
+      "n": "Donga",
+      "wiki": "Donga River",
+      "ne": [],
+      "diva": [
+        "DONGA"
+      ]
+    },
+    {
+      "id": "pai",
+      "n": "Pai",
+      "wiki": "Pai River",
+      "ne": [],
+      "diva": [
+        "PAI"
+      ]
+    },
+    {
+      "id": "gurara",
+      "n": "Gurara",
+      "wiki": "Gurara River",
+      "ne": [],
+      "diva": [
+        "GURARA"
+      ]
+    },
+    {
+      "id": "mariga",
+      "n": "Mariga",
+      "wiki": "Mariga River",
+      "ne": [
+        "Mariga"
+      ],
+      "diva": [
+        "MARIGA",
+        "RIVER MARIGA"
+      ]
+    },
+    {
+      "id": "anambra",
+      "n": "Anambra",
+      "wiki": "Anambra River",
+      "ne": [],
+      "diva": [
+        "ANAMBRA"
+      ]
+    },
+    {
+      "id": "imo",
+      "n": "Imo",
+      "wiki": "Imo River",
+      "ne": [],
+      "diva": [
+        "IMO"
+      ]
+    },
+    {
+      "id": "cross",
+      "n": "Cross",
+      "wiki": "Cross River (Nigeria)",
+      "ne": [],
+      "diva": [
+        "CROSS"
+      ]
+    },
+    {
+      "id": "calabar",
+      "n": "Calabar",
+      "wiki": "Calabar River",
+      "ne": [],
+      "diva": [
+        "CALABAR"
+      ]
+    },
+    {
+      "id": "ogun",
+      "n": "Ogun",
+      "wiki": "Ogun River",
+      "ne": [
+        "Ogun"
+      ],
+      "diva": [
+        "OGUN",
+        "RIVER OGUN"
+      ]
+    },
+    {
+      "id": "oyan",
+      "n": "Oyan",
+      "wiki": "Oyan River",
+      "ne": [],
+      "diva": [
+        "OYAN"
+      ]
+    },
+    {
+      "id": "osun",
+      "n": "Osun",
+      "wiki": "Osun River",
+      "ne": [],
+      "diva": [
+        "OSHIN",
+        "RIVER OSHIN"
+      ]
+    },
+    {
+      "id": "oba",
+      "n": "Oba",
+      "wiki": "Oba River",
+      "ne": [],
+      "diva": [
+        "OBA"
+      ]
+    },
+    {
+      "id": "osse",
+      "n": "Osse",
+      "wiki": "Osse River",
+      "ne": [],
+      "diva": [
+        "OSSE"
+      ]
+    },
+    {
+      "id": "okpara",
+      "n": "Okpara",
+      "wiki": "Okpara River",
+      "ne": [],
+      "diva": [
+        "OKPARA"
+      ]
+    },
+    {
+      "id": "kwaibo",
+      "n": "Kwa Ibo",
+      "wiki": "Kwa Ibo River",
+      "ne": [],
+      "diva": []
+    },
+    {
+      "id": "orashi",
+      "n": "Orashi",
+      "wiki": "Orashi River",
+      "ne": [],
+      "diva": [
+        "ORASHI"
+      ]
+    },
+    {
+      "id": "ethiope",
+      "n": "Ethiope",
+      "wiki": "Ethiope River",
+      "ne": [],
+      "diva": [
+        "ETHIOPE RIVER"
+      ]
+    }
+  ],
+  "gdw_name_fix": {
+    "379": "Jebba",
+    "365": "Goronyo",
+    "5169": "Bagauda",
+    "1949": "Jakara",
+    "6605": "Langtang",
+    "6602": "Yakubu Gowon (Shen)",
+    "6607": "Fofo"
+  },
+  "gdw_name_fix_note": "Spellings corrected to the names used by Wikipedia, Wikidata and the UNICEF Nigeria dam list; the Global Dam Watch spelling is kept as an alternative name.",
+  "basin_names": {
+    "1422": "Benue (incl. Gongola)",
+    "1423": "Middle Niger and Kaduna",
+    "1430": "Western coastal rivers (Ogun, Osun, Benin–Owena)",
+    "1624": "Komadugu-Yobe (Lake Chad basin)",
+    "1424": "Sokoto–Rima",
+    "1622": "Yedseram–Ngadda (Lake Chad basin)",
+    "1338": "Cross River",
+    "1421": "Lower Niger, Anambra and the Delta",
+    "1410": "Eastern coastal rivers (Imo, Kwa Ibo)",
+    "1425": "Niger above Kainji",
+    "1337": "Border rivers with Cameroon (Akwayafe)"
+  },
+  "basin_note": "Watersheds from HydroBASINS level 4 (Lehner & Grill 2013), clipped to Nigeria. Names were assigned by the atlas from the main rivers in each.",
+  "wikidata_exclude": {
+    "Q126935916": "Mambilla hydropower scheme: planned, not built",
+    "Q128601264": "Mambilla hydropower scheme: planned, not built",
+    "Q128634091": "a bridge, not a dam",
+    "Q127961963": "unclear label ('Dam peak'), no description",
+    "Q137573578": "project entry without location"
+  }
+}
