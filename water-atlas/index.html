@@ -984,6 +984,7 @@ body{margin:0;display:flex;flex-direction:column}
 .minilist a{color:var(--accent);text-decoration:none;cursor:pointer}
 .page h3.sh{font-family:var(--f-display);font-size:22px;margin:32px 0 10px}
 .seg button.busy{opacity:.6}
+#v-map,.mapwrap{overflow:clip}
 .facts>.fact:last-child:nth-child(odd){grid-column:1/-1}
 .chart svg.smap{max-width:520px;margin:0 auto}
 @media (max-width:860px){.maptools .seg,.maptools .note{display:none}.maptools.open .seg{display:flex}.maptools.open .note:not([hidden]){display:block}}
@@ -1151,9 +1152,9 @@ const OVERLAYS={
   basins:{n:'Basins'},
   flood:{n:'Flood risk 2024'},
   wp:{n:'Water points'},
-  satflood:{n:'Satellite flooding (NASA, 3 days)',tile:()=>`https://gibs.earthdata.nasa.gov/wmts/epsg3857/best/VIIRS_Combined_Flood_3-Day/default/${gibsDay(1)}/GoogleMapsCompatible_Level9/{z}/{y}/{x}.png`,a:'Flood mapping: NASA LANCE / VIIRS combined flood product (3-day composite), via NASA GIBS',mz:9,live:1},
-  imerg:{n:'Rain yesterday (NASA IMERG)',tile:()=>`https://gibs.earthdata.nasa.gov/wmts/epsg3857/best/IMERG_Precipitation_Rate/default/${gibsDay(2)}/GoogleMapsCompatible_Level6/{z}/{y}/{x}.png`,a:'Precipitation: NASA GPM IMERG daily precipitation rate, via NASA GIBS',mz:6,live:1},
-  gsw:{n:'Surface water 1984–2021',tile:'https://storage.googleapis.com/global-surface-water/tiles2021/occurrence/{z}/{x}/{y}.png',a:'Surface water: EC JRC / Google, Global Surface Water (Pekel et al. 2016)',mz:13,live:1}
+  satflood:{n:'Satellite floods',tile:()=>`https://gibs.earthdata.nasa.gov/wmts/epsg3857/best/VIIRS_Combined_Flood_3-Day/default/${gibsDay(1)}/GoogleMapsCompatible_Level9/{z}/{y}/{x}.png`,a:'Flood mapping: NASA LANCE / VIIRS combined flood product (3-day composite), via NASA GIBS',mz:9,live:1},
+  imerg:{n:'Rain yesterday',tile:()=>`https://gibs.earthdata.nasa.gov/wmts/epsg3857/best/IMERG_Precipitation_Rate/default/${gibsDay(2)}/GoogleMapsCompatible_Level6/{z}/{y}/{x}.png`,a:'Precipitation: NASA GPM IMERG daily precipitation rate, via NASA GIBS',mz:6,live:1},
+  gsw:{n:'Water 1984–2021',tile:'https://storage.googleapis.com/global-surface-water/tiles2021/occurrence/{z}/{x}/{y}.png',a:'Surface water: EC JRC / Google, Global Surface Water (Pekel et al. 2016)',mz:13,live:1}
 };
 function stateStyle(hi){const onTile=!!tile;return onTile?{color:'#ffffff',weight:hi?2.5:1,fillOpacity:0,opacity:.75}:{color:css('--land-line'),weight:hi?2:.8,fillColor:hi?css('--land-hi'):css('--land'),fillOpacity:1,opacity:1}}
 function initMap(){
@@ -1595,7 +1596,7 @@ async function seasonalLive(){const S=DATA.st;const lat=S.map(s=>s.c[1].toFixed(
 async function addFloodRain(){
   const host=$('#fkpi');if(!host)return;
   host.insertAdjacentHTML('afterend',`<div class="grid2" style="margin-bottom:18px"><article class="card"><h3>Rain expected in the next 3 days</h3><div class="sub">Millimetres, by state (model forecast at each state’s centre). Heavy rain on saturated ground is what turns into flash floods.</div><div id="fr-map" class="loading">${LIVE?'Loading forecast…':'Live forecasts load on the website.'}</div><div class="foot"><span>Source: Open-Meteo best-match forecast (ECMWF IFS, DWD ICON, NOAA GFS)</span><span class="acts"><a class="btn sm" href="#rain">Rain page</a></span></div></article>
-  <article class="card"><h3>Heavy-rain watch</h3><div class="sub">States where the forecast for the next 3 days exceeds 50 mm, or the next 7 days is more than one and a half times the normal for the time of year.</div><div id="fr-watch" class="loading">${LIVE?'Loading…':'Live forecasts load on the website.'}</div><div class="foot"><span>Satellite views: <button class="btn sm" id="fr-sat" type="button">Flood water seen from space</button> <button class="btn sm" id="fr-imerg" type="button">Rain yesterday</button></span></div></article></div>`);
+  <article class="card"><h3>Heavy-rain watch</h3><div class="sub">States where the forecast for the next 3 days exceeds 50 mm, or the next 7 days is more than one and a half times the normal for the time of year.</div><div id="fr-watch" class="loading">${LIVE?'Loading…':'Live forecasts load on the website.'}</div><div class="foot"><span>Satellite views: <button class="btn sm" id="fr-sat" type="button">Flood water seen from space (NASA)</button> <button class="btn sm" id="fr-imerg" type="button">Rain yesterday</button></span></div></article></div>`);
   $('#fr-sat').onclick=()=>{location.hash='map';setTimeout(()=>{if(!ovl.satflood)toggleOverlay('satflood');if(LIVE&&(!tile||tile._key!=='sat'))setBase('sat')},150)};
   $('#fr-imerg').onclick=()=>{location.hash='map';setTimeout(()=>{if(!ovl.imerg)toggleOverlay('imerg')},150)};
   if(!LIVE)return;
