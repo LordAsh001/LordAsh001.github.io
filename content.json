@@ -950,49 +950,67 @@
       "lede": "What people say after working with me, in their own words.",
       "items": [
         {
-          "quote": "You thought me various subjects during my time at Heriot watt for my MSc. Most importantly was academic writing, this literally changed how I approach academic question and dissect them before attempting to answer them and write on them which made things a lot easier in my academic journey. Community integration and volunteering was another angle we worked on and this was quite impactful in my social interaction journey with Edinburgh.",
           "name": "Theresa . E",
-          "role": "Student, Heriot watt university Edinburgh"
+          "role": "Student, Heriot watt university Edinburgh",
+          "hidden": false,
+          "quote": "You thought me various subjects during my time at Heriot watt for my MSc. Most importantly was academic writing, this literally changed how I approach academic question and dissect them before attempting to answer them and write on them which made things a lot easier in my academic journey. Community integration and volunteering was another angle we worked on and this was quite impactful in my social interaction journey with Edinburgh.",
+          "photo": ""
         },
         {
-          "quote": "I first connected with Ash through a scholar platform for PTDF scholars shortly after I arrived in Edinburgh. Since then, he has been incredibly supportive of my academic and career development, particularly through the workshops and webinars he organises, which have helped me better position myself for job and career opportunities. His guidance and the opportunities he shares have made a meaningful difference in my transition into studying and building my career in the UK.",
           "name": "Miriam Ejimi Uhili",
-          "role": "MSc student, Heriot-Watt university. Edinburgh"
+          "role": "MSc student, Heriot-Watt university. Edinburgh",
+          "hidden": false,
+          "quote": "I first connected with Ash through a scholar platform for PTDF scholars shortly after I arrived in Edinburgh. Since then, he has been incredibly supportive of my academic and career development, particularly through the workshops and webinars he organises, which have helped me better position myself for job and career opportunities. His guidance and the opportunities he shares have made a meaningful difference in my transition into studying and building my career in the UK.",
+          "photo": ""
         },
         {
-          "quote": "I have had the privilege of knowing and learning from him, both as a colleague in the Faculty of Engineering and as a fellow member of the same faith. He has been a steady source of guidance throughout my scholarship journey, particularly in navigating various scholarship and application processes, and has shared valuable knowledge through several webinars. What I admire most is his generosity with what he knows and his readiness to make himself available to support and empower others. He is genuinely committed to giving back to society and helping others grow.",
           "name": "Bala I. M.",
-          "role": "PhD Candidate Univesity of KwaZulu-Natal Durba, South Africa"
+          "role": "PhD Candidate Univesity of KwaZulu-Natal Durba, South Africa",
+          "hidden": false,
+          "quote": "I have had the privilege of knowing and learning from him, both as a colleague in the Faculty of Engineering and as a fellow member of the same faith. He has been a steady source of guidance throughout my scholarship journey, particularly in navigating various scholarship and application processes, and has shared valuable knowledge through several webinars. What I admire most is his generosity with what he knows and his readiness to make himself available to support and empower others. He is genuinely committed to giving back to society and helping others grow.",
+          "photo": ""
         },
         {
-          "quote": "Having completed same masters program before me, Ash provided invaluable guidance that transformed my understanding of complex coursework and directly boosted my academic performance. Beyond always being available to talk through tough assignments, having a fellow Nigerian to lean on made transitioning into a new university environment feel like home.",
           "name": "Onyedikachi Precious Onugha",
-          "role": "MSc student, Heriot-Watt University, Edinburgh."
+          "role": "MSc student, Heriot-Watt University, Edinburgh.",
+          "hidden": false,
+          "quote": "Having completed same masters program before me, Ash provided invaluable guidance that transformed my understanding of complex coursework and directly boosted my academic performance. Beyond always being available to talk through tough assignments, having a fellow Nigerian to lean on made transitioning into a new university environment feel like home.",
+          "photo": ""
         },
         {
-          "quote": "Mr. Ash hosted a stellar webinar on Academic Integrity at Heriot-Watt University that significantly improved my understanding of the UK education system when I had just arrived. He was always available to help with any issue I had at any point in time.",
           "name": "Amarachi Grace Uzoh",
-          "role": "MSc Student, Heriot-Watt University"
+          "role": "MSc Student, Heriot-Watt University",
+          "hidden": false,
+          "quote": "Mr. Ash hosted a stellar webinar on Academic Integrity at Heriot-Watt University that significantly improved my understanding of the UK education system when I had just arrived. He was always available to help with any issue I had at any point in time.",
+          "photo": ""
         },
         {
-          "quote": "Working alongside you in BIA has been a great experience. Your approach is very proactive and your consistency made a real difference. You take initiative, gets thing's organised without prompting.",
           "name": "Osato",
-          "role": "Edinburgh"
+          "role": "Edinburgh",
+          "hidden": false,
+          "quote": "Working alongside you in BIA has been a great experience. Your approach is very proactive and your consistency made a real difference. You take initiative, gets thing's organised without prompting.",
+          "photo": ""
         },
         {
-          "quote": "We worked on using EndNote effectively, particularly for managing references while working on academic projects. Learning how to use it properly has completely changed the way I handle my references. It has made my referencing process much easier and has really improved the way I work on my projects.",
           "name": "Ubi Omini",
-          "role": "MSc student, Heriot Watt University"
+          "role": "MSc student, Heriot Watt University",
+          "hidden": false,
+          "quote": "We worked on using EndNote effectively, particularly for managing references while working on academic projects. Learning how to use it properly has completely changed the way I handle my references. It has made my referencing process much easier and has really improved the way I work on my projects.",
+          "photo": ""
         },
         {
-          "quote": "I attended multiple highly informative webinars and seminars relevant to my degree that were hosted by Hycenth. I also had the opportunity of being coached by him on all my courses and this aided me to make As in all of them. Hycenth is a great teacher, selfless and very happy and willing to help others.",
           "name": "Mary Frank-Okoro",
-          "role": "MSc student, Heriot Watt"
+          "role": "MSc student, Heriot Watt",
+          "hidden": false,
+          "quote": "I attended multiple highly informative webinars and seminars relevant to my degree that were hosted by Hycenth. I also had the opportunity of being coached by him on all my courses and this aided me to make As in all of them. Hycenth is a great teacher, selfless and very happy and willing to help others.",
+          "photo": ""
         },
         {
-          "quote": "I crossed close paths with Ash in the first few weeks as a student in Heriot Watt. I stumbled into a startup factory challenge and we went ahead to win the regional prize and first runner up in the Nationals. Ash’s stellar presentation style, audience management and attention to detail was a huge impact to our success.",
           "name": "Troy",
-          "role": "MSc Student / Startup Partner"
+          "role": "MSc Student / Startup Partner",
+          "hidden": false,
+          "quote": "I crossed close paths with Ash in the first few weeks as a student in Heriot Watt. I stumbled into a startup factory challenge and we went ahead to win the regional prize and first runner up in the Nationals. Ash’s stellar presentation style, audience management and attention to detail was a huge impact to our success.",
+          "photo": ""
         }
       ]
     },
@@ -1165,11 +1183,11 @@
         {
           "title": "Professional memberships",
           "items": [
-            "Council for the Regulation of Engineering in Nigeria (COREN): registered engineer, R71623",
-            "Nigerian Society of Engineers (NSE)",
-            "Nigerian Institution of Agricultural Engineers (NIAE)",
-            "Nigerian Institute of Management (Chartered) (NIM)",
-            "International Association of Engineers (IAENG)"
+            "Council for the Regulation of Engineering in Nigeria (COREN): registered agricultural engineer, R71623",
+            "Nigerian Society of Engineers (NSE): 63806",
+            "Nigerian Institution of Agricultural Engineers (NIAE):M2485",
+            "Nigerian Institute of Management (Chartered) (NIM):254648",
+            "International Association of Engineers (IAENG):261056"
           ]
         },
         {
