@@ -116,23 +116,32 @@ def wikidata():
     rows = [{k: v["value"] for k, v in b.items()} for b in j["results"]["bindings"]]
     save("wikidata.json", rows)
     # Wikipedia lead paragraphs for items with an English article
-    titles = sorted({r["enwiki"].split("/wiki/")[-1] for r in rows if r.get("enwiki")})
+    titles = {r["enwiki"].split("/wiki/")[-1] for r in rows if r.get("enwiki")}
+    try:
+        cur = json.loads((pathlib.Path(__file__).resolve().parents[2] / "water-atlas" / "data" / "curated.json").read_text())
+        titles |= set(cur.get("extra_titles", [])) | {r["wiki"] for r in cur.get("rivers", [])} | {d["wiki"] for d in cur.get("extra_dams", [])}
+        titles |= set(cur.get("dam_wiki", {}).values()) | {e["title"] for e in cur.get("flood_events", [])}
+    except Exception as e:
+        log("curated.json not read", e)
+    titles = sorted(titles)
     ext = {}
     for i in range(0, len(titles), 20):
         chunk = [urllib.parse.unquote(t).replace("_", " ") for t in titles[i:i + 20]]
         try:
-            d = http("https://en.wikipedia.org/w/api.php", {"action": "query", "prop": "extracts|info", "exintro": 1, "explaintext": 1,
+            d = http("https://en.wikipedia.org/w/api.php", {"action": "query", "prop": "extracts|info|coordinates|pageimages", "exintro": 1, "piprop": "name", "colimit": "max", "explaintext": 1,
                                                              "inprop": "url", "redirects": 1, "format": "json", "titles": "|".join(chunk)})
             norm = {n["to"]: n["from"] for n in d["query"].get("redirects", []) + d["query"].get("normalized", [])}
             for p in d["query"]["pages"].values():
                 if "extract" in p:
-                    ext[p["title"]] = {"text": p["extract"], "url": p.get("fullurl"), "rev": p.get("lastrevid")}
+                    c = (p.get("coordinates") or [{}])[0]
+                    ext[p["title"]] = {"text": p["extract"], "url": p.get("fullurl"), "rev": p.get("lastrevid"),
+                                       "la": c.get("lat"), "lo": c.get("lon"), "img": p.get("pageimage")}
                     if p["title"] in norm: ext[norm[p["title"]]] = ext[p["title"]]
         except Exception as e:
             log("wikipedia chunk failed", e)
         time.sleep(0.5)
     save("wikipedia.json", ext)
-    commons_meta([r["img"].split("FilePath/")[-1] for r in rows if r.get("img")], "commons_wikidata.json")
+    commons_meta([r["img"].split("FilePath/")[-1] for r in rows if r.get("img")] + [e["img"] for e in ext.values() if e.get("img")], "commons_wikidata.json")
 
 def commons_meta(files, name):
     files = sorted({urllib.parse.unquote(f) for f in files})
@@ -165,6 +174,23 @@ def dhs():
     ind = http("https://api.dhsprogram.com/rest/dhs/indicators", {"indicatorIds": ",".join(DHS_IND), "f": "json",
                                                                   "returnFields": "IndicatorId,Label,Definition,MeasurementType"})
     save("dhs.json", {"subnational": sub.get("Data", []), "national": nat.get("Data", []), "indicators": ind.get("Data", [])})
+
+WDI = ["SH.H2O.BASW.ZS", "SH.H2O.BASW.RU.ZS", "SH.H2O.BASW.UR.ZS", "SH.H2O.SMDW.ZS", "SH.STA.BASS.ZS", "SH.STA.ODFC.ZS",
+       "ER.H2O.INTR.K3", "ER.H2O.INTR.PC", "ER.H2O.FWTL.K3", "ER.H2O.FWST.ZS", "ER.H2O.FWAG.ZS", "ER.H2O.FWDM.ZS", "ER.H2O.FWIN.ZS",
+       "AG.LND.IRIG.AG.ZS", "SP.POP.TOTL"]
+
+def worldbank():
+    out = {}
+    for ind in WDI:
+        try:
+            j = http(f"https://api.worldbank.org/v2/country/NGA/indicator/{ind}", {"format": "json", "per_page": 100})
+            meta = http(f"https://api.worldbank.org/v2/indicator/{ind}", {"format": "json"})
+            m = meta[1][0] if len(meta) > 1 and meta[1] else {}
+            out[ind] = {"name": m.get("name"), "source": (m.get("sourceOrganization") or "").strip(), "note": (m.get("sourceNote") or "")[:600],
+                        "data": sorted([[int(r["date"]), r["value"]] for r in (j[1] or []) if r.get("value") is not None])}
+        except Exception as e:
+            log(f"WDI {ind} failed: {e!r}")
+    save("worldbank.json", out)
 
 # flood-watch gauges: river, place, approximate channel position (lat, lon). Snapped to the GloFAS cell with most flow nearby.
 GAUGES = [
@@ -214,6 +240,6 @@ def gauges():
 
 if __name__ == "__main__":
     for name, fn in [("GDW", gdw), ("UNICEF", unicef), ("DIVA-GIS", diva), ("GRID3", waterpoints), ("HydroBASINS", basins),
-                     ("Natural Earth", naturalearth), ("Wikidata/Wikipedia/Commons", wikidata), ("DHS", dhs), ("GloFAS gauges", gauges)]:
+                     ("Natural Earth", naturalearth), ("Wikidata/Wikipedia/Commons", wikidata), ("DHS", dhs), ("World Bank", worldbank), ("GloFAS gauges", gauges)]:
         step(name, fn)
     (RAW / "fetch_log.txt").write_text("\n".join(LOG) + "\n")
