@@ -15,6 +15,10 @@ on:
         description: "Also save the downloaded source files to the water-atlas-raw branch"
         type: boolean
         default: false
+      steps:
+        description: "Only download these sources (comma-separated words, e.g. 'power,sdg'); leave empty for all"
+        type: string
+        default: ""
 
 permissions:
   contents: write
@@ -27,14 +31,19 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Install helpers
-        run: pip install pyshp shapely
+        run: pip install pyshp shapely openpyxl
 
       - name: Download sources
+        env:
+          WA_STEPS: ${{ inputs.steps }}
         run: python3 .github/scripts/water_atlas_fetch.py /tmp/raw
 
       - name: Rebuild atlas data
+        env:
+          WA_STEPS: ${{ inputs.steps }}
         run: |
-          if [ -f .github/scripts/water_atlas_build.py ]; then python3 .github/scripts/water_atlas_build.py /tmp/raw; else echo "No build script yet."; fi
+          if [ -n "$WA_STEPS" ]; then echo "Partial download ($WA_STEPS): data left unchanged."; exit 0; fi
+          python3 .github/scripts/water_atlas_build.py /tmp/raw
 
       - name: Save source files to the water-atlas-raw branch
         if: ${{ inputs.keep_raw }}
