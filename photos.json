@@ -130,6 +130,13 @@
         "caption": "",
         "anchor": "Nigeria Forest Reserves Atlas",
         "hidden": false
+      },
+      {
+        "src": "/images/tool-water-atlas.jpg",
+        "alt": "Screenshot of the Nigeria Water Resources Atlas: a map of Nigeria with rivers, dams, lakes, wetlands and flood-watch points, beside a searchable list.",
+        "caption": "",
+        "anchor": "Nigeria Water Resources Atlas",
+        "hidden": false
       }
     ]
   }

@@ -94,6 +94,13 @@
       {
         "date": "Oct 2026",
         "iso": "2026-10-08",
+        "text": "Launched the [Nigeria Water Resources Atlas](/water-atlas/), an open map and dataset of Nigeria's dams, rivers, lakes, wetlands and groundwater, with a river flood watch.",
+        "url": "",
+        "hidden": false
+      },
+      {
+        "date": "Oct 2026",
+        "iso": "2026-10-08",
         "text": "Launched the [Nigeria Forest Reserves Atlas](/forest-atlas/), an open map and dataset of 1,176 forest reserves, parks and wetlands across Nigeria.",
         "url": "",
         "hidden": false
@@ -144,7 +151,7 @@
     "metrics_title": "By the numbers",
     "metrics": [
       {
-        "value": "7",
+        "value": "8",
         "label": "free interactive tools for learning and research",
         "hidden": false
       },
@@ -652,6 +659,40 @@
             }
           ],
           "classroom": "have each group profile the reserves in their home state and compare what the records say with recent satellite imagery."
+        },
+        {
+          "name": "Nigeria Water Resources Atlas",
+          "text": "Explore Nigeria’s dams, reservoirs, rivers, lakes, waterfalls, springs and Ramsar wetlands on one map, with a river flood watch that compares modelled flow on the Niger, Benue and other rivers with what is normal for the date, pages on river basins and groundwater, statistics on water access by state with downloadable charts, a visit planner and a community field-report hub. Every record shows its sources and a verification level, and the dataset downloads as CSV or GeoJSON.",
+          "link_label": "Open tool",
+          "sdgs": [
+            6,
+            13
+          ],
+          "hidden": false,
+          "url": "/water-atlas/",
+          "kind": "Interactive map · free",
+          "audience": [
+            "Researchers",
+            "Practitioners",
+            "Educators",
+            "Students"
+          ],
+          "level": "All levels",
+          "numbers": [
+            {
+              "value": "102",
+              "label": "dams in Global Dam Watch"
+            },
+            {
+              "value": "19",
+              "label": "flood-watch points"
+            },
+            {
+              "value": "36 + FCT",
+              "label": "states covered"
+            }
+          ],
+          "classroom": "have each group pick a river basin, compare its water per person with the national figure, and check the flood watch during the rainy season."
         }
       ],
       "note": "Using one of these in a course or workshop? I'd love to hear how it went: [amool@unbc.ca](mailto:amool@unbc.ca). Free to use for teaching and learning."
