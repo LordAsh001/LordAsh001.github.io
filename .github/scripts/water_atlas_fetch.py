@@ -4,7 +4,7 @@ Run by .github/workflows/water-atlas.yml (or by hand: python3 .github/scripts/wa
 Each source is saved as JSON in RAW_DIR. A source that fails is logged and skipped, so one
 outage never blocks the rest; water_atlas_build.py then keeps the previous values for it.
 """
-import json, sys, time, math, datetime, urllib.request, urllib.parse, pathlib, io, zipfile
+import os, json, sys, time, math, datetime, urllib.request, urllib.parse, pathlib, io, zipfile
 
 RAW = pathlib.Path(sys.argv[1] if len(sys.argv) > 1 else "raw")
 RAW.mkdir(parents=True, exist_ok=True)
@@ -164,7 +164,8 @@ def commons_meta(files, name):
 
 DHS_IND = ["WS_SRCE_P_IMP", "WS_SRCE_P_BAS", "WS_SRCE_P_LTD", "WS_SRCE_P_NIM", "WS_SRCE_P_SRF", "WS_SRCE_P_TUB", "WS_SRCE_P_SCH",
            "WS_SRCE_P_PIP", "WS_SRCE_P_PYD", "WS_SRCE_P_TAP", "WS_SRCE_P_BOT", "WS_TIME_P_ONP", "WS_TIME_P_M30",
-           "WS_WTRT_P_APP", "WS_WTRT_P_NTR", "WS_TLET_P_BAS", "WS_TLET_P_NFC", "WS_HNDW_P_BAS"]
+           "WS_WTRT_P_APP", "WS_WTRT_P_NTR", "WS_TLET_P_BAS", "WS_TLET_P_NFC", "WS_HNDW_P_BAS",
+           "WS_SRCE_P_RNW", "WS_SRCE_P_PNB", "WS_WAVL_P_NAV", "WS_TLET_P_IMP", "HC_MEMB_H_MNM"]
 
 def dhs():
     base = "https://api.dhsprogram.com/rest/dhs/data"
@@ -191,6 +192,87 @@ def worldbank():
         except Exception as e:
             log(f"WDI {ind} failed: {e!r}")
     save("worldbank.json", out)
+
+SDG_IND = ["6.1.1", "6.2.1", "6.3.1", "6.3.2", "6.4.1", "6.4.2", "6.5.1", "6.6.1"]
+
+def sdg():
+    out = []
+    for ind in SDG_IND:
+        try:
+            j = http("https://unstats.un.org/sdgapi/v1/sdg/Indicator/Data", {"indicator": ind, "areaCode": 566, "pageSize": 2000})
+            for x in j.get("data", []):
+                out.append({"ind": ind, "series": x.get("series"), "desc": x.get("seriesDescription"), "year": x.get("timePeriodStart"),
+                            "value": x.get("value"), "dims": x.get("dimensions"), "units": (x.get("attributes") or {}).get("Units"),
+                            "nature": (x.get("attributes") or {}).get("Nature"), "source": x.get("source")})
+        except Exception as e:
+            log(f"SDG {ind} failed: {e!r}")
+    save("sdg.json", out)
+
+JONES_ZIP = "https://store.pangaea.de/Publications/JonesE-etal_2020/Global_wastewater.zip"
+
+def wastewater():
+    # Jones, van Vliet, Qadir & Bierkens (2021), country-level wastewater production, collection, treatment and reuse (2015), CC BY 4.0
+    b = http(JONES_ZIP, raw=True, timeout=300)
+    z = zipfile.ZipFile(io.BytesIO(b))
+    names = z.namelist()
+    out = {"source": JONES_ZIP, "files": names, "rows": []}
+    for n in names:
+        low = n.lower()
+        if low.endswith((".csv", ".txt")) and "5arc" not in low:
+            txt = z.read(n).decode("utf-8", "replace").splitlines()
+            head = txt[:3]
+            hits = [l for l in txt if "Nigeria" in l or "NGA" in l]
+            out["rows"].append({"file": n, "head": head, "hits": hits[:5]})
+        elif low.endswith(".xlsx"):
+            try:
+                import openpyxl
+                wb = openpyxl.load_workbook(io.BytesIO(z.read(n)), read_only=True, data_only=True)
+                for ws in wb.worksheets:
+                    rows = list(ws.iter_rows(values_only=True))
+                    head = [list(r) for r in rows[:4]]
+                    hits = [list(r) for r in rows if any(str(c).strip() in ("Nigeria", "NGA") for c in r if c is not None)]
+                    out["rows"].append({"file": n, "sheet": ws.title, "head": head, "hits": hits[:5]})
+            except Exception as e:
+                out["rows"].append({"file": n, "error": repr(e)})
+    save("wastewater_jones.json", out)
+
+def power():
+    # NASA POWER monthly precipitation (corrected, MERRA-2/IMERG based) at sample points inside every state
+    from shapely.geometry import shape, Point
+    root = pathlib.Path(__file__).resolve().parents[2]
+    st = json.loads((root / "forest-atlas" / "data" / "atlas.json").read_text())["st"]
+    end = datetime.date.today().year - 1
+    out = []
+    for s in st:
+        g = shape({"type": s["t"], "coordinates": s["g"]})
+        x0, y0, x1, y1 = g.bounds
+        pts = []
+        step = 0.5
+        while not pts and step > 0.05:
+            y = y0 + step / 2
+            while y < y1:
+                x = x0 + step / 2
+                while x < x1:
+                    if g.contains(Point(x, y)): pts.append((round(x, 3), round(y, 3)))
+                    x += step
+                y += step
+            step /= 2
+        if not pts:
+            c = g.representative_point(); pts = [(round(c.x, 3), round(c.y, 3))]
+        if len(pts) > 8:
+            pts = [pts[int(i * len(pts) / 8)] for i in range(8)]
+        series = []
+        for lo, la in pts:
+            try:
+                j = http("https://power.larc.nasa.gov/api/temporal/monthly/point",
+                         {"parameters": "PRECTOTCORR", "community": "AG", "longitude": lo, "latitude": la, "start": 1981, "end": end, "format": "JSON"}, timeout=120)
+                series.append({"lo": lo, "la": la, "p": j["properties"]["parameter"]["PRECTOTCORR"]})
+            except Exception as e:
+                log(f"POWER {s['n']} {lo},{la} failed: {e!r}")
+            time.sleep(0.4)
+        out.append({"n": s["n"], "pts": series})
+        log(f"POWER {s['n']}: {len(series)} points")
+    save("power_precip.json", {"end": end, "states": out})
 
 # flood-watch gauges: river, place, approximate channel position (lat, lon). Snapped to the GloFAS cell with most flow nearby.
 GAUGES = [
@@ -240,6 +322,9 @@ def gauges():
 
 if __name__ == "__main__":
     for name, fn in [("GDW", gdw), ("UNICEF", unicef), ("DIVA-GIS", diva), ("GRID3", waterpoints), ("HydroBASINS", basins),
-                     ("Natural Earth", naturalearth), ("Wikidata/Wikipedia/Commons", wikidata), ("DHS", dhs), ("World Bank", worldbank), ("GloFAS gauges", gauges)]:
+                     ("Natural Earth", naturalearth), ("Wikidata/Wikipedia/Commons", wikidata), ("DHS", dhs), ("World Bank", worldbank), ("UN SDG", sdg), ("Wastewater (Jones et al.)", wastewater), ("NASA POWER rainfall", power), ("GloFAS gauges", gauges)]:
+        only = [x.strip().lower() for x in os.environ.get("WA_STEPS", "").split(",") if x.strip()]
+        if only and not any(o in name.lower() for o in only):
+            log(f"skipped {name} (WA_STEPS)"); continue
         step(name, fn)
     (RAW / "fetch_log.txt").write_text("\n".join(LOG) + "\n")
