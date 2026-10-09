@@ -1,6 +1,7 @@
 # Keeps the Nigeria Water Resources Atlas current without anyone typing anything:
 #   - re-downloads dams (Global Dam Watch), the national dam inventory, rivers and lakes (DIVA-GIS),
 #     water points (GRID3), flood-risk LGAs, Wikidata/Wikipedia/Commons entries and DHS water indicators
+#   - re-downloads major roads (expressways, trunk and primary roads) from OpenStreetMap
 #   - refreshes 40-year GloFAS river-flow records for the flood-watch gauges
 #   - rebuilds water-atlas/data/*.json from those files plus the hand-written profiles in water-atlas/data/curated.json
 # Runs every Monday, and on demand from the Actions tab ("Run workflow").
@@ -16,7 +17,7 @@ on:
         type: boolean
         default: false
       steps:
-        description: "Only download these sources (comma-separated words, e.g. 'power,sdg'); leave empty for all"
+        description: "Only download these sources (comma-separated words, e.g. 'power,sdg' or 'roads'); leave empty for all"
         type: string
         default: ""
 
@@ -44,6 +45,11 @@ jobs:
         run: |
           if [ -n "$WA_STEPS" ]; then echo "Partial download ($WA_STEPS): data left unchanged."; exit 0; fi
           python3 .github/scripts/water_atlas_build.py /tmp/raw
+
+      - name: Major roads (OpenStreetMap)
+        if: ${{ inputs.steps == '' || inputs.steps == null || contains(inputs.steps, 'roads') }}
+        continue-on-error: true
+        run: python3 .github/scripts/water_atlas_roads.py /tmp/raw
 
       - name: Save source files to the water-atlas-raw branch
         if: ${{ inputs.keep_raw }}
