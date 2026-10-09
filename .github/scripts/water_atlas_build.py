@@ -603,6 +603,70 @@ for e in CUR.get("flood_events", []):
     if wt: EV.append({"year": e["year"], **wt})
 EXTRA = {t: wiki_text(t, 700) for t in ("Niger River", "Benue River", "Lake Chad", "Niger Delta", "Lagdo Dam", "Water supply and sanitation in Nigeria", "Hadejia-Nguru wetlands")}
 
+# ---------------------------------------------------------------- rainfall (NASA POWER) and water balance
+RAIN = PREV.get("rain")
+pw = raw("power_precip.json")
+if pw:
+    import calendar
+    KM2 = {s["n"]: s.get("km2") or 0 for s in ST}
+    states = []
+    for s in pw["states"]:
+        months = {}
+        for p in s["pts"]:
+            for k, v in p["p"].items():
+                if v is None or v < 0 or k.endswith("13"): continue
+                y, m = int(k[:4]), int(k[4:])
+                months.setdefault((y, m), []).append(v * calendar.monthrange(y, m)[1])
+        mm = {k: sum(v) / len(v) for k, v in months.items()}
+        if not mm: continue
+        normal = [round(statistics.mean([mm[(y, m)] for y in range(1991, 2021) if (y, m) in mm]), 1) for m in range(1, 13)]
+        years = sorted({y for y, _ in mm})
+        annual = [[y, round(sum(mm.get((y, m), 0) for m in range(1, 13)))] for y in years if all((y, m) in mm for m in range(1, 13))]
+        last = sorted(mm)[-24:]
+        states.append({"n": s["n"], "normal": normal, "ann": round(sum(normal)), "annual": annual,
+                       "recent": [[f"{y}-{m:02d}", round(mm[(y, m)])] for y, m in last], "pts": len(s["pts"])})
+    tot = sum(KM2.get(x["n"], 0) for x in states) or 1
+    yrs = sorted(set.intersection(*[set(a[0] for a in x["annual"]) for x in states])) if states else []
+    nat_annual = [[y, round(sum(dict(x["annual"])[y] * KM2.get(x["n"], 0) for x in states) / tot)] for y in yrs]
+    nat_normal = [round(sum(x["normal"][m] * KM2.get(x["n"], 0) for x in states) / tot, 1) for m in range(12)]
+    pvol = sum(x["ann"] * KM2.get(x["n"], 0) for x in states) * 1e-6  # km3 (1 mm over 1 km2 = 1000 m3)
+    RAIN = {"src": "NASA POWER (MERRA-2 with satellite-corrected precipitation, PRECTOTCORR), monthly, sampled at up to 8 points per state",
+            "end": pw["end"], "states": states, "nat": {"annual": nat_annual, "normal": nat_normal, "ann": round(sum(nat_normal)), "pvol_km3": round(pvol, 1)}}
+
+ck = raw("cckp_precip.json")
+if ck and RAIN:
+    srt = lambda d: [[int(k[:4]), round(v)] for k, v in sorted(d.items())]
+    if ck.get("cru_annual"): RAIN["cru"] = srt(ck["cru_annual"])
+    if ck.get("era5_annual"): RAIN["era5"] = srt(ck["era5_annual"])
+    if ck.get("cru_clim"): RAIN["cru_clim"] = [round(v, 1) for k, v in sorted(ck["cru_clim"].items())][:12]
+    RAIN["cckp_src"] = "World Bank Climate Change Knowledge Portal: CRU TS 4.08 (University of East Anglia, gauge-based) and ERA5 (ECMWF reanalysis), national averages"
+elif RAIN and PREV.get("rain"):
+    for k in ("cru", "era5", "cru_clim", "cckp_src"):
+        if PREV["rain"].get(k): RAIN[k] = PREV["rain"][k]
+
+SDG = PREV.get("sdg")
+sg = raw("sdg.json")
+if sg:
+    SDG = {}
+    for x in sg:
+        try: v = float(x["value"])
+        except Exception: continue
+        e = SDG.setdefault(x["series"], {"ind": x["ind"], "desc": x["desc"], "unit": x.get("units"), "src": x.get("source"), "by": {}})
+        k = ";".join(f"{a}={b}" for a, b in sorted((x.get("dims") or {}).items()) if a != "Reporting Type") or "total"
+        e["by"].setdefault(k, {})[int(str(x["year"])[:4])] = round(v, 3)
+    for e in SDG.values():
+        e["by"] = {k: sorted(v.items()) for k, v in e["by"].items()}
+
+WW = PREV.get("ww")
+jw = raw("wastewater_jones.json")
+if jw:
+    WW = {"src": "Jones, van Vliet, Qadir & Bierkens (2021), Earth System Science Data 13, 237–254; data: PANGAEA doi:10.1594/PANGAEA.918731 (CC BY 4.0)", "year": 2015}
+    for r in jw.get("rows", []):
+        if "FlowRate" in r.get("file", "") and r.get("hits"):
+            hdr = r["head"][0].split("\t"); vals = r["hits"][0].split("\t"); d = dict(zip(hdr, vals))
+            f = lambda k: round(float(d[k]), 1) if d.get(k) not in (None, "") else None
+            WW["ng"] = {"prod": f("WWp_million_m3_yr"), "coll": f("WWc_million_m3_yr"), "treat": f("WWt_million_m3_yr"), "reuse": f("WWr_million_m3_yr")}
+
 meta = {"version": "1.0", "compiled": PREV.get("meta", {}).get("compiled", TODAY), "refreshed": TODAY,
         "sources_ok": sorted(p.name for p in RAW.glob("*.json"))}
 atlas = {"meta": meta, "cats": CATS, "f": F, "st": [{"n": s["n"], "c": s["c"], "t": s["t"], "g": s["g"], "km2": s.get("km2")} for s in ST],
@@ -610,6 +674,7 @@ atlas = {"meta": meta, "cats": CATS, "f": F, "st": [{"n": s["n"], "c": s["c"], "
          "ha": CUR["hydrological_areas"], "ha_note": CUR["ha_note"], "nwrmp": CUR["nwrmp"], "rbda_src": CUR["rbda_source"],
          "gw": CUR["groundwater"], "gw_src": CUR["groundwater_source"], "gw_facts": CUR["groundwater_facts"], "ag": CUR["agencies"],
          "dhs": DHS, "wb": WB, "wp": WP, "fl": FL, "ev": EV or PREV.get("ev"), "wiki": {k: v for k, v in EXTRA.items() if v} or PREV.get("wiki"),
+         "rain": RAIN, "sdg": SDG, "ww": WW,
          "gauges": [{k: g[k] for k in ("id", "river", "place", "la", "lo", "mean", "record")} for g in GAUGES_OUT] if GAUGES_OUT else PREV.get("gauges")}
 (OUT / "atlas.json").write_text(json.dumps(atlas, separators=(",", ":"), ensure_ascii=False))
 if GAUGES_OUT: (OUT / "gauges.json").write_text(json.dumps({"refreshed": TODAY, "base": "1991–2020", "g": GAUGES_OUT}, separators=(",", ":")))

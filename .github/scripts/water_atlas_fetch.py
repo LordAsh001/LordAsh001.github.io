@@ -274,6 +274,23 @@ def power():
         log(f"POWER {s['n']}: {len(series)} points")
     save("power_precip.json", {"end": end, "states": out})
 
+CCKP = "https://cckpapi.worldbank.org/cckp/v1/"
+CCKP_SERIES = {
+    "cru_annual": "cru-x0.5_timeseries_pr_timeseries_annual_1901-2023_mean_historical_cru_ts4.08_mean",
+    "era5_annual": "era5-x0.25_timeseries_pr_timeseries_annual_1950-2023_mean_historical_era5_x0.25_mean",
+    "cru_clim": "cru-x0.5_climatology_pr_climatology_monthly_1991-2020_mean_historical_cru_ts4.08_mean",
+}
+
+def cckp():
+    # World Bank Climate Change Knowledge Portal: national precipitation from CRU TS (gauge-based) and ERA5
+    out = {}
+    for k, code in CCKP_SERIES.items():
+        try:
+            out[k] = http(CCKP + code + "/NGA", {"_format": "json"})["data"]["NGA"]
+        except Exception as e:
+            log(f"CCKP {k} failed: {e!r}")
+    save("cckp_precip.json", out)
+
 # flood-watch gauges: river, place, approximate channel position (lat, lon). Snapped to the GloFAS cell with most flow nearby.
 GAUGES = [
     ("niger-lokoja", "Niger", "Lokoja (below the Benue confluence)", 7.79, 6.75),
@@ -322,7 +339,7 @@ def gauges():
 
 if __name__ == "__main__":
     for name, fn in [("GDW", gdw), ("UNICEF", unicef), ("DIVA-GIS", diva), ("GRID3", waterpoints), ("HydroBASINS", basins),
-                     ("Natural Earth", naturalearth), ("Wikidata/Wikipedia/Commons", wikidata), ("DHS", dhs), ("World Bank", worldbank), ("UN SDG", sdg), ("Wastewater (Jones et al.)", wastewater), ("NASA POWER rainfall", power), ("GloFAS gauges", gauges)]:
+                     ("Natural Earth", naturalearth), ("Wikidata/Wikipedia/Commons", wikidata), ("DHS", dhs), ("World Bank", worldbank), ("UN SDG", sdg), ("Wastewater (Jones et al.)", wastewater), ("NASA POWER rainfall", power), ("Climate records (CCKP)", cckp), ("GloFAS gauges", gauges)]:
         only = [x.strip().lower() for x in os.environ.get("WA_STEPS", "").split(",") if x.strip()]
         if only and not any(o in name.lower() for o in only):
             log(f"skipped {name} (WA_STEPS)"); continue
