@@ -55,11 +55,30 @@ var CSS =
   ".sb-menu i{display:block;font-style:normal;font-size:11.5px;margin-top:2px;opacity:.72}" +
   ".sb-here{opacity:.6}" +
   ".sb-here b::after{content:' · you are here';font-weight:400;font-size:11.5px}" +
+  ".sb-theme{order:10;display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;margin-right:-4px;" +
+    "border:0;border-radius:6px;background:none;color:inherit;cursor:pointer;padding:0}" +
+  ".sb-theme:hover{background:var(--sb-hover,color-mix(in srgb,currentColor 8%,transparent))}" +
+  ".sb-theme:focus-visible{outline:2px solid currentColor;outline-offset:2px}" +
   "@media (max-width:560px){.sb-hide{display:none}}" +
   "@media print{.sitebar{display:none}}";
 
 var CHEV_L = '<svg aria-hidden="true" width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10 3 5 8l5 5"/></svg>';
 var CHEV_D = '<svg aria-hidden="true" width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6l5 5 5-5"/></svg>';
+
+var SUN = '<svg aria-hidden="true" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.2M12 19.3v2.2M4.6 4.6l1.6 1.6M17.8 17.8l1.6 1.6M2.5 12h2.2M19.3 12h2.2M4.6 19.4l1.6-1.6M17.8 6.2l1.6-1.6"/></svg>';
+var MOON = '<svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M20.5 14.5A8.5 8.5 0 1 1 9.5 3.5a7 7 0 0 0 11 11Z"/></svg>';
+
+/* Light / dark switch, shared with the homepage (same "theme" key, same data-theme attribute).
+   Tools that already have their own theme button (Citadel, Symbiosis Workbench) keep theirs. */
+var ROOT = document.documentElement;
+var MQ = window.matchMedia ? matchMedia("(prefers-color-scheme: dark)") : { matches: false };
+function ownToggle() { return !!document.getElementById("themeBtn"); }
+function isDark() { var t = ROOT.getAttribute("data-theme"); return t ? t === "dark" : MQ.matches; }
+function applySaved() {
+  if (ownToggle()) return;
+  try { var t = localStorage.getItem("theme"); if (t === "light" || t === "dark") ROOT.setAttribute("data-theme", t); } catch (e) {}
+}
+applySaved();
 
 function esc(s) {
   return String(s).replace(/[&<>"]/g, function (c) {
@@ -105,6 +124,28 @@ function build() {
         '<div class="sb-menu">' + items + "</div></details>" +
     "</div>";
   body.insertBefore(nav, body.firstChild);
+
+  if (!ownToggle()) {
+    applySaved();
+    var tb = document.createElement("button");
+    tb.type = "button"; tb.className = "sb-theme";
+    var paint = function () {
+      var d = isDark();
+      tb.innerHTML = d ? SUN : MOON;
+      tb.setAttribute("aria-label", d ? "Switch to light mode" : "Switch to dark mode");
+      tb.title = d ? "Light mode" : "Dark mode";
+    };
+    tb.addEventListener("click", function () {
+      var next = isDark() ? "light" : "dark";
+      ROOT.setAttribute("data-theme", next);
+      try { localStorage.setItem("theme", next); } catch (e) {}
+      paint();
+      try { window.SiteTrack && window.SiteTrack("theme/" + next, "Switched to " + next + " mode"); } catch (e) {}
+    });
+    if (MQ.addEventListener) MQ.addEventListener("change", paint);
+    nav.querySelector(".sitebar-in").appendChild(tb);
+    paint();
+  }
 
   var pick = nav.querySelector(".sb-pick");
   document.addEventListener("click", function (e) {
