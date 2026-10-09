@@ -985,6 +985,7 @@ body{margin:0;display:flex;flex-direction:column}
 .page h3.sh{font-family:var(--f-display);font-size:22px;margin:32px 0 10px}
 .seg button.busy{opacity:.6}
 .facts>.fact:last-child:nth-child(odd){grid-column:1/-1}
+.chart svg.smap{max-width:520px;margin:0 auto}
 @media (max-width:860px){.maptools .seg,.maptools .note{display:none}.maptools.open .seg{display:flex}.maptools.open .note:not([hidden]){display:block}}
 </style>
 </head>
@@ -1565,7 +1566,7 @@ function stateMap(el,vals,o){
   const X=lo=>(lo-2.6)*cos*k,Y=la=>(13.95-la)*k;
   const path=s=>{const polys=s.t==='Polygon'?[s.g]:s.g;return polys.map(p=>p.map(r=>'M'+r.map(c=>X(c[0]).toFixed(1)+','+Y(c[1]).toFixed(1)).join('L')+'Z').join('')).join('')};
   const col=v=>{if(v==null||isNaN(v))return 'var(--chip)';if(o.div){return divC()[binIdx(v,DIV_BREAKS)]}const c=seqC();return c[binIdx(v,o.breaks)]};
-  let s=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="${esc(o.title||'Map of states')}">`;
+  let s=`<svg viewBox="0 0 ${W} ${H}" class="smap" role="img" aria-label="${esc(o.title||'Map of states')}">`;
   S.forEach((st,i)=>{s+=`<path d="${path(st)}" fill="${col(vals[st.n])}" stroke="var(--panel)" stroke-width="1" data-i="${i}" style="cursor:pointer"/>`});
   s+='</svg>';
   const keys=o.div?['< −50%','−50 to −25%','−25 to −10%','near normal','+10 to +25%','+25 to +50%','> +50%'].map((l,i)=>[divC()[i],l]):seqC().map((c,i)=>[c,i===0?`< ${o.f(o.breaks[0])}`:i===o.breaks.length?`≥ ${o.f(o.breaks[i-1])}`:`${o.f(o.breaks[i-1])}–${o.f(o.breaks[i])}`]);
