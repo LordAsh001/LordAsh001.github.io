@@ -998,6 +998,7 @@ body{margin:0;display:flex;flex-direction:column}
     <nav class="views" aria-label="Sections">
       <a href="#map" data-v="map">Map</a>
       <a href="#flood" data-v="flood">Flood watch</a>
+      <a href="#rain" data-v="rain">Rain &amp; harvesting</a>
       <a href="#basins" data-v="basins">Basins &amp; groundwater</a>
       <a href="#stats" data-v="stats">Statistics</a>
       <a href="#visit" data-v="visit">Visit</a>
@@ -1040,6 +1041,7 @@ body{margin:0;display:flex;flex-direction:column}
       </div>
     </section>
     <section class="view" id="v-flood" hidden><div class="page" id="flood"></div></section>
+    <section class="view" id="v-rain" hidden><div class="page" id="rain"></div></section>
     <section class="view" id="v-basins" hidden><div class="page" id="basins"></div></section>
     <section class="view" id="v-stats" hidden><div class="page" id="stats"></div></section>
     <section class="view" id="v-visit" hidden><div class="page" id="visit"></div></section>
@@ -1120,7 +1122,7 @@ function init(){
 }
 
 /* ---------- routing ---------- */
-const VIEWS=['map','flood','basins','stats','visit','ngo','data'];const built={};
+const VIEWS=['map','flood','rain','basins','stats','visit','ngo','data'];const built={};
 function route(){
   let h=location.hash.slice(1)||'map';let site=null;
   if(!VIEWS.includes(h)){if(BY[h]){site=BY[h];h='map'}else h='map'}
@@ -1128,7 +1130,7 @@ function route(){
   $$('nav.views a').forEach(a=>{if(a.dataset.v===h)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current')});
   if(h==='map'){setTimeout(()=>map.invalidateSize(),50);if(site)select(site,false)}
   track('view/'+h,'Opened section: '+h);
-  if(!built[h]){built[h]=1;({flood:buildFlood,basins:buildBasins,stats:buildStats,visit:buildVisit,ngo:buildNgo,data:buildData}[h]||(()=>{}))()}
+  if(!built[h]){built[h]=1;({flood:buildFlood,rain:buildRain,basins:buildBasins,stats:buildStats,visit:buildVisit,ngo:buildNgo,data:buildData}[h]||(()=>{}))()}
 }
 function goSite(id){location.hash=id}
 
@@ -1148,6 +1150,8 @@ const OVERLAYS={
   basins:{n:'Basins'},
   flood:{n:'Flood risk 2024'},
   wp:{n:'Water points'},
+  satflood:{n:'Satellite flooding (NASA, 3 days)',tile:()=>`https://gibs.earthdata.nasa.gov/wmts/epsg3857/best/VIIRS_Combined_Flood_3-Day/default/${gibsDay(1)}/GoogleMapsCompatible_Level9/{z}/{y}/{x}.png`,a:'Flood mapping: NASA LANCE / VIIRS combined flood product (3-day composite), via NASA GIBS',mz:9,live:1},
+  imerg:{n:'Rain yesterday (NASA IMERG)',tile:()=>`https://gibs.earthdata.nasa.gov/wmts/epsg3857/best/IMERG_Precipitation_Rate/default/${gibsDay(2)}/GoogleMapsCompatible_Level6/{z}/{y}/{x}.png`,a:'Precipitation: NASA GPM IMERG daily precipitation rate, via NASA GIBS',mz:6,live:1},
   gsw:{n:'Surface water 1984–2021',tile:'https://storage.googleapis.com/global-surface-water/tiles2021/occurrence/{z}/{x}/{y}.png',a:'Surface water: EC JRC / Google, Global Surface Water (Pekel et al. 2016)',mz:13,live:1}
 };
 function stateStyle(hi){const onTile=!!tile;return onTile?{color:'#ffffff',weight:hi?2.5:1,fillOpacity:0,opacity:.75}:{color:css('--land-line'),weight:hi?2:.8,fillColor:hi?css('--land-hi'):css('--land'),fillOpacity:1,opacity:1}}
@@ -1212,21 +1216,24 @@ async function toggleOverlay(k){
   else if(k==='basins'){const g=L.layerGroup();(DATA.bas||[]).forEach(b=>{const p=L.polygon(b.g.map(p=>p.map(r=>r.map(c=>[c[1],c[0]]))),{renderer:canvas,color:css('--accent'),weight:1.6,fill:true,fillOpacity:.04,dashArray:'6 4',interactive:true});p.bindTooltip(`<b>${esc(b.name||'Basin '+b.pf)}</b><br>${fmt.format(b.kmng)} km² in Nigeria${b.endo?' · drains inland (endorheic)':''}`,{className:'tip',sticky:true});p.addTo(g)});ovl[k]=g.addTo(map)}
   else if(k==='flood'){btn.classList.add('busy');try{const d=await loadJSON('flood_lga.json');const g=L.layerGroup();d.f.forEach(x=>{const c=FLOODC[x.r[0]];if(!c)return;const p=L.polygon(x.g.map(p=>p.map(r=>r.map(c=>[c[1],c[0]]))),{renderer:canvas,color:css(c),weight:.5,fillColor:css(c),fillOpacity:x.r[0]==='H'?.45:.3});p.bindTooltip(`<b>${esc(x.n)}</b>, ${esc(x.s)}<br>Overall flood risk: ${riskName(x.r[0])}<br>Riverine ${riskName(x.r[1])} · flash ${riskName(x.r[2])} · coastal ${riskName(x.r[3])}${x.cm?'<br>'+esc(x.cm):''}`,{className:'tip',sticky:true});p.addTo(g)});ovl[k]=g.addTo(map);if(state.sel)siteLayer.bringToFront&&0}catch(e){toast('Flood-risk layer could not be loaded');btn.setAttribute('aria-pressed',false)}btn.classList.remove('busy')}
   else if(k==='wp'){btn.classList.add('busy');try{const d=await loadJSON('waterpoints.json');const g=L.layerGroup();const r=L.canvas({padding:.2});const c=css('--g0');d.p.forEach(p=>{L.circleMarker([p[1],p[0]],{renderer:r,radius:1.8,stroke:false,fillColor:c,fillOpacity:.6,interactive:false}).addTo(g)});ovl[k]=g.addTo(map);toast(fmt.format(d.p.length)+' water points loaded (GRID3, 2020)')}catch(e){toast('Water-point layer could not be loaded');btn.setAttribute('aria-pressed',false)}btn.classList.remove('busy')}
-  else if(O.tile){ovl[k]=L.tileLayer(O.tile,{attribution:O.a,maxNativeZoom:O.mz,maxZoom:17,opacity:.85}).addTo(map)}
+  else if(O.tile){ovl[k]=L.tileLayer(typeof O.tile==='function'?O.tile():O.tile,{attribution:O.a,maxNativeZoom:O.mz,maxZoom:17,opacity:.85}).addTo(map)}
   if(siteLayer){siteLayer.eachLayer(l=>l.bringToFront&&l.bringToFront())}
   if(on&&!O.on)track('layer/'+k,'Turned on layer: '+k);
   renderLegend();
 }
+const gibsDay=n=>new Date(Date.now()-864e5*n).toISOString().slice(0,10);
 const riskName=c=>({H:'high',M:'medium',L:'low',N:'none'}[c]||'not rated');
 function recolor(){if(tile&&tile._key==='map')setBase('map');statesLayer.setStyle(stateStyle(false));F.forEach(f=>{const c=gcol(f.gp);if(f.poly)f.poly.setStyle({color:c,fillColor:c});if(f.line)f.line.setStyle({color:c});if(f.mk)f.mk.setStyle({fillColor:c,color:css('--panel')})});
   netLayer.eachLayer(l=>l.setStyle({color:css('--river')}));lakeLayer.eachLayer(l=>l.setStyle({color:css('--lake'),fillColor:css('--lake')}));
   ['flood','wp','basins'].forEach(k=>{if(ovl[k]){map.removeLayer(ovl[k]);ovl[k]=null;toggleOverlay(k)}});
-  ['stats','basins','flood'].forEach(v=>{if(built[v]){built[v]=0;if(!$('#v-'+v).hidden){built[v]=1;({stats:buildStats,basins:buildBasins,flood:buildFlood})[v]()}}})}
+  ['stats','basins','flood','rain'].forEach(v=>{if(built[v]){built[v]=0;if(!$('#v-'+v).hidden){built[v]=1;({stats:buildStats,basins:buildBasins,flood:buildFlood,rain:buildRain})[v]()}}})}
 function renderLegend(){
   let h=`<div class="t">On the map</div>`+GROUPS.map((g,i)=>`<div class="k"><span class="${i===5?'ln':'sw'}" style="--c:var(--g${i})"></span>${g}</div>`).join('');
   if(ovl.net)h+=`<div class="k"><span class="ln" style="--c:var(--river)"></span>Other rivers and streams</div>`;
   if(ovl.lakes)h+=`<div class="k"><span class="ar" style="--c:var(--lake)"></span>Lakes, reservoirs, swamps</div>`;
   if(ovl.flood)h+=`<div class="t" style="margin-top:6px">Flood risk by LGA, 2024</div><div class="k"><span class="sq" style="--c:var(--s2)"></span>High</div><div class="k"><span class="sq" style="--c:var(--s1)"></span>Medium</div><div class="k"><span class="sq" style="--c:var(--river2)"></span>Low</div>`;
+  if(ovl.satflood)h+=`<div class="k"><span class="sq" style="--c:#e8202a"></span>Flood water seen by satellite</div><div class="k"><span class="sq" style="--c:#2c5aa0"></span>Normal open water</div>`;
+  if(ovl.imerg)h+=`<div class="k" style="grid-column:1/-1"><span class="sq" style="--c:linear-gradient(90deg,#9ad1ff,#2a6ef0,#f0d000,#f02a2a)"></span>Rain rate yesterday, light → heavy</div>`;
   if(ovl.wp)h+=`<div class="k"><span class="sw" style="--c:var(--g0);border-radius:50%;width:6px;height:6px"></span>Water point (GRID3, 2020)</div>`;
   h+=`<div class="sm">Dot size follows reservoir capacity or lake area. Dashed dots: location uncertain.</div>`;
   $('#legend').innerHTML=h;
@@ -1454,12 +1461,12 @@ function line(el,series,o={}){
   const lo=o.min??0,hi=o.max??Math.max(...series.flatMap(s=>s.pts.map(p=>p.v)))*1.08;const X=x=>pl+(x-x0)/(x1-x0||1)*iw,Y=v=>pt+ih-(v-lo)/(hi-lo)*ih;
   let s=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="${esc(o.title||'')}">`;
   niceTicks(lo,hi,4).forEach(t=>{s+=`<line class="gridl" x1="${pl}" x2="${W-16}" y1="${Y(t)}" y2="${Y(t)}"/><text x="${pl-6}" y="${Y(t)+4}" text-anchor="end">${o.tf?o.tf(t):fmt.format(t)}</text>`});
-  const yrs=[...new Set(xs)].sort((a,b)=>a-b);const step=Math.ceil(yrs.length/8);yrs.forEach((x,i)=>{if(i%step===0||i===yrs.length-1)s+=`<text x="${X(x)}" y="${H-6}" text-anchor="middle">${x}</text>`});
+  const yrs=[...new Set(xs)].sort((a,b)=>a-b);const step=Math.ceil(yrs.length/8);yrs.forEach((x,i)=>{if((i%step===0&&(yrs.length-1-i>=step/2||i===0))||i===yrs.length-1)s+=`<text x="${X(x)}" y="${H-6}" text-anchor="middle">${x}</text>`});
   series.forEach((S,si)=>{const d=S.pts.map((p,i)=>(i?'L':'M')+X(p.x)+' '+Y(p.v)).join(' ');
     if(series.length===1)s+=`<path d="${d} L${X(S.pts[S.pts.length-1].x)} ${Y(lo)} L${X(S.pts[0].x)} ${Y(lo)} Z" fill="${S.c}" opacity=".12"/>`;
     s+=`<path d="${d}" fill="none" stroke="${S.c}" stroke-width="2"/>`;
     S.pts.forEach((p,i)=>{s+=`<circle cx="${X(p.x)}" cy="${Y(p.v)}" r="${i===S.pts.length-1?4.5:3}" fill="${S.c}" stroke="var(--panel)" stroke-width="1.5" data-s="${si}" data-i="${i}"/>`});
-    const l=S.pts[S.pts.length-1];s+=`<text x="${X(l.x)-8}" y="${Y(l.v)-9}" text-anchor="end" class="lab">${o.f?o.f(l.v):fmt.format(l.v)}${series.length>1?' '+esc(S.name):''}</text>`});
+    if(series.length===1||o.endLabels){const l=S.pts[S.pts.length-1];s+=`<text x="${X(l.x)-8}" y="${Y(l.v)-9}" text-anchor="end" class="lab">${o.f?o.f(l.v):fmt.format(l.v)}</text>`}});
   el.innerHTML=s+'</svg>'+(series.length>1?`<div class="qkey">${series.map(S=>`<span><i style="--c:${S.c}"></i>${esc(S.name)}</span>`).join('')}</div>`:'');
   el.querySelectorAll('circle[data-i]').forEach(c=>{const S=series[+c.dataset.s],p=S.pts[+c.dataset.i];c.onmousemove=e=>{const bb=el.getBoundingClientRect();tip(el,`<b>${p.x}</b>${series.length>1?' · '+esc(S.name):''} · ${o.f?o.f(p.v):fmt.format(p.v)}`,e.clientX-bb.left,e.clientY-bb.top)};c.onmouseleave=hideTip});
 }
@@ -1488,6 +1495,7 @@ async function buildFlood(){
   <h3 class="sh">Recent major floods</h3><div class="grid2">${(DATA.ev||[]).map(e=>`<article class="card"><h3>${e.year}: ${esc(e.title)}</h3><p class="wiki">${esc(e.t)}</p><div class="foot"><span>From <a href="${esc(e.u)}" target="_blank" rel="noopener">Wikipedia</a> (CC BY-SA 4.0)</span></div></article>`).join('')}
   ${DATA.wiki&&DATA.wiki['Lagdo Dam']?`<article class="card"><h3>Lagdo Dam, Cameroon</h3><p class="wiki">${esc(DATA.wiki['Lagdo Dam'].t)}</p><div class="foot"><span>From <a href="${esc(DATA.wiki['Lagdo Dam'].u)}" target="_blank" rel="noopener">Wikipedia</a> (CC BY-SA 4.0). Watch the “Benue at the Cameroon border” gauge for its effect.</span></div></article>`:''}</div>
   <h3 class="sh">How the status is worked out</h3><ul class="prose" style="padding-left:18px;max-width:80ch">${STATUS.map((s,i)=>`<li>${statusChip(i)} ${esc(s.d)}</li>`).join('')}<li>Normal ranges come from 30 years (1991–2020) of daily GloFAS reanalysis at each point, using a 15-day window around each date. The forecast is the median of the GloFAS ensemble.</li><li>Each point is snapped to the 5 km model cell with the most flow nearby so it sits on the main channel.</li></ul>`;
+  addFloodRain();
   if($('#show-flood'))$('#show-flood').onclick=()=>{location.hash='map';setTimeout(()=>{if(!ovl.flood)toggleOverlay('flood')},120)};
   if(bys.length){const top=bys.filter(b=>b.High).slice(0,20);const c1=card({t:'States with the most high flood-risk LGAs, 2024',s:'Number of LGAs rated high overall (riverine, flash or coastal).',src:esc(fl.src),file:'flood_risk_lgas_by_state_2024',page:'flood',
       draw:el=>hbar(el,top.map(b=>({l:b.s,v:b.High,c:'var(--s2)',t:`${b.Medium} medium · ${b.lgas} LGAs in total`,on:()=>{location.hash='map';setTimeout(()=>{state.st=b.s;$('#state').value=b.s;update();zoomState(b.s);if(!ovl.flood)toggleOverlay('flood')},120)}})),{rh:17}),
@@ -1546,6 +1554,200 @@ function buildBasins(){
 }
 </script>
 <script>
+/* ---------- rainfall: shared helpers ---------- */
+const RAMP={seqL:['#e8f1fa','#c4dcf2','#93bfe6','#5c9bd6','#2f73bb','#174f8f'],seqD:['#1c2b3a','#1f4568','#245f98','#2f7fcb','#5aa2e6','#a6cdf3'],
+  divL:['#8c510a','#bf812d','#dfc27d','#e4e4e4','#80cdc1','#35978f','#01665e'],divD:['#a6611a','#c99447','#8a7a50','#3d4246','#4f8f87','#2fa396','#7fd3c6']};
+const seqC=()=>isDark()?RAMP.seqD:RAMP.seqL,divC=()=>isDark()?RAMP.divD:RAMP.divL;
+function binIdx(v,breaks){let i=0;while(i<breaks.length&&v>=breaks[i])i++;return i}
+const DIV_BREAKS=[-50,-25,-10,10,25,50];  // % of normal anomaly
+function stateMap(el,vals,o){
+  const W=560,H=440,S=DATA.st,cos=Math.cos(9*Math.PI/180),k=Math.min(W/((14.7-2.6)*cos),H/(13.95-4.2));
+  const X=lo=>(lo-2.6)*cos*k,Y=la=>(13.95-la)*k;
+  const path=s=>{const polys=s.t==='Polygon'?[s.g]:s.g;return polys.map(p=>p.map(r=>'M'+r.map(c=>X(c[0]).toFixed(1)+','+Y(c[1]).toFixed(1)).join('L')+'Z').join('')).join('')};
+  const col=v=>{if(v==null||isNaN(v))return 'var(--chip)';if(o.div){return divC()[binIdx(v,DIV_BREAKS)]}const c=seqC();return c[binIdx(v,o.breaks)]};
+  let s=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="${esc(o.title||'Map of states')}">`;
+  S.forEach((st,i)=>{s+=`<path d="${path(st)}" fill="${col(vals[st.n])}" stroke="var(--panel)" stroke-width="1" data-i="${i}" style="cursor:pointer"/>`});
+  s+='</svg>';
+  const keys=o.div?['< −50%','−50 to −25%','−25 to −10%','near normal','+10 to +25%','+25 to +50%','> +50%'].map((l,i)=>[divC()[i],l]):seqC().map((c,i)=>[c,i===0?`< ${o.f(o.breaks[0])}`:i===o.breaks.length?`≥ ${o.f(o.breaks[i-1])}`:`${o.f(o.breaks[i-1])}–${o.f(o.breaks[i])}`]);
+  el.className='chart';el.innerHTML=s+`<div class="qkey" style="margin-top:6px">${keys.map(([c,l])=>`<span><i class="band" style="--c:${c};opacity:1"></i>${l}</span>`).join('')}<span><i class="band" style="--c:var(--chip);opacity:1"></i>no data</span></div>`;
+  el.querySelectorAll('path').forEach(p=>{const st=S[+p.dataset.i];p.onmousemove=e=>{const bb=el.getBoundingClientRect();tip(el,`<b>${esc(st.n)}</b><br>${vals[st.n]==null?'no data':o.tip?o.tip(st.n,vals[st.n]):o.f(vals[st.n])}`,e.clientX-bb.left,e.clientY-bb.top)};p.onmouseleave=hideTip;
+    p.onclick=()=>{location.hash='map';setTimeout(()=>{state.st=st.n;$('#state').value=st.n;update();zoomState(st.n)},100)}});
+}
+const DIM=(y,m)=>new Date(Date.UTC(y,m,0)).getUTCDate();
+function normalFor(stn,dates){const R=(DATA.rain||{}).states||[];const r=R.find(x=>x.n===stn);if(!r)return null;return dates.reduce((a,d)=>{const y=+d.slice(0,4),m=+d.slice(5,7);return a+r.normal[m-1]/DIM(y,m)},0)}
+let RAINLIVE=null;
+async function rainLive(){
+  if(RAINLIVE)return RAINLIVE;
+  const S=DATA.st;const lat=S.map(s=>s.c[1].toFixed(3)).join(','),lon=S.map(s=>s.c[0].toFixed(3)).join(',');
+  RAINLIVE=(async()=>{const j=await jget(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&daily=precipitation_sum,precipitation_probability_max&past_days=31&forecast_days=16&timezone=Africa%2FLagos`);
+    const arr=Array.isArray(j)?j:[j];const out={};arr.forEach((r,i)=>{out[S[i].n]=r.daily});return out})();
+  return RAINLIVE;
+}
+function sumDays(d,from,to){let s=0,n=0;d.time.forEach((t,i)=>{if(t>=from&&t<=to&&d.precipitation_sum[i]!=null){s+=d.precipitation_sum[i];n++}});return n?s:null}
+const addDays=(s,n)=>new Date(Date.parse(s+'T12:00:00Z')+n*864e5).toISOString().slice(0,10);
+function rainWindows(){const t=today;return{p7:[addDays(t,-7),addDays(t,-1)],p30:[addDays(t,-30),addDays(t,-1)],n3:[t,addDays(t,2)],n7:[t,addDays(t,6)],n16:[t,addDays(t,15)]}}
+function datesIn(a,b){const out=[];for(let d=a;d<=b;d=addDays(d,1))out.push(d);return out}
+async function seasonalLive(){const S=DATA.st;const lat=S.map(s=>s.c[1].toFixed(3)).join(','),lon=S.map(s=>s.c[0].toFixed(3)).join(',');
+  const j=await jget(`https://seasonal-api.open-meteo.com/v1/seasonal?latitude=${lat}&longitude=${lon}&monthly=precipitation_mean,precipitation_anomaly`);const arr=Array.isArray(j)?j:[j];const out={};arr.forEach((r,i)=>out[S[i].n]=r.monthly);return out}
+
+/* ---------- flood page: rain panel ---------- */
+async function addFloodRain(){
+  const host=$('#fkpi');if(!host)return;
+  host.insertAdjacentHTML('afterend',`<div class="grid2" style="margin-bottom:18px"><article class="card"><h3>Rain expected in the next 3 days</h3><div class="sub">Millimetres, by state (model forecast at each state’s centre). Heavy rain on saturated ground is what turns into flash floods.</div><div id="fr-map" class="loading">${LIVE?'Loading forecast…':'Live forecasts load on the website.'}</div><div class="foot"><span>Source: Open-Meteo best-match forecast (ECMWF IFS, DWD ICON, NOAA GFS)</span><span class="acts"><a class="btn sm" href="#rain">Rain page</a></span></div></article>
+  <article class="card"><h3>Heavy-rain watch</h3><div class="sub">States where the forecast for the next 3 days exceeds 50 mm, or the next 7 days is more than one and a half times the normal for the time of year.</div><div id="fr-watch" class="loading">${LIVE?'Loading…':'Live forecasts load on the website.'}</div><div class="foot"><span>Satellite views: <button class="btn sm" id="fr-sat" type="button">Flood water seen from space</button> <button class="btn sm" id="fr-imerg" type="button">Rain yesterday</button></span></div></article></div>`);
+  $('#fr-sat').onclick=()=>{location.hash='map';setTimeout(()=>{if(!ovl.satflood)toggleOverlay('satflood');if(LIVE&&(!tile||tile._key!=='sat'))setBase('sat')},150)};
+  $('#fr-imerg').onclick=()=>{location.hash='map';setTimeout(()=>{if(!ovl.imerg)toggleOverlay('imerg')},150)};
+  if(!LIVE)return;
+  try{const L=await rainLive();const w=rainWindows();const n3={},rows=[];
+    Object.entries(L).forEach(([s,d])=>{n3[s]=sumDays(d,...w.n3);const n7=sumDays(d,...w.n7),nn7=normalFor(s,datesIn(...w.n7));const r=nn7?n7/nn7:null;if((n3[s]||0)>=50||(r&&r>=1.5&&n7>=20))rows.push({s,n3:n3[s],n7,r})});
+    stateMap($('#fr-map'),n3,{breaks:[5,15,30,50,80],f:v=>fmt.format(Math.round(v))+' mm',title:'Rain forecast for the next 3 days by state'});
+    rows.sort((a,b)=>b.n3-a.n3);
+    $('#fr-watch').className='';$('#fr-watch').innerHTML=rows.length?`<div class="tbl-wrap"><table class="dt"><thead><tr><th>State</th><th class="n">Next 3 days</th><th class="n">Next 7 days</th><th class="n">vs normal</th></tr></thead><tbody>${rows.map(r=>`<tr><td>${esc(r.s)}</td><td class="n">${fmt.format(Math.round(r.n3))} mm</td><td class="n">${fmt.format(Math.round(r.n7))} mm</td><td class="n">${r.r?fmt1.format(r.r)+'×':'–'}</td></tr>`).join('')}</tbody></table></div>`:'<p class="loading" style="margin:0">No state passes either threshold in the current forecast.</p>';
+  }catch(e){$('#fr-map').textContent='The forecast service did not respond. Try again later.'}
+}
+
+/* ---------- rain & harvesting view ---------- */
+function harvestDefaults(){const nat=(DATA.dhs||{}).nat||{};const hh=nat.HC_MEMB_H_MNM&&Object.values(nat.HC_MEMB_H_MNM).sort((a,b)=>b[0]-a[0])[0];const rw=nat.WS_SRCE_P_RNW&&Object.values(nat.WS_SRCE_P_RNW).sort((a,b)=>b[0]-a[0])[0];const pop=wbS('SP.POP.TOTL');
+  return{hh:hh?hh[1]:4.8,hhYr:hh?hh[0]:null,rw:rw?rw[1]:null,rwYr:rw?rw[0]:null,pop:pop?pop.data[pop.data.length-1][1]:null,popYr:pop?pop.data[pop.data.length-1][0]:null}}
+async function buildRain(){
+  const R=DATA.rain;
+  if(!R){$('#rain').innerHTML='<h2 class="title">Rainfall and rainwater harvesting</h2><p class="lede">Rainfall records are being prepared and will appear after the next data refresh.</p>';return}
+  const nat=R.nat,avg=nat.ann;const D=harvestDefaults();
+  const cru=R.cru||[],era=R.era5||[];const cruN=cru.length?Math.round(cru.filter(a=>a[0]>=1991&&a[0]<=2020).reduce((a,b)=>a+b[1],0)/30):null;const last=cru.length?cru[cru.length-1]:null;
+  const cards=[];
+  if(cru.length)cards.push(card({t:`Annual rainfall across Nigeria, ${cru[0][0]}–${last[0]}`,s:`National average, mm per year, from rain-gauge records (CRU TS) and the ERA5 reanalysis. The 1991–2020 gauge normal is ${fmt.format(cruN)} mm. The dry 1970s–80s Sahel drought shows clearly.`,src:esc(R.cckp_src||'World Bank CCKP'),file:'nigeria_annual_rainfall',page:'rain',
+    draw:el=>line(el,[{name:'Rain gauges (CRU TS)',c:'var(--bar)',pts:cru.map(a=>({x:a[0],v:a[1]}))},{name:'Reanalysis (ERA5)',c:'var(--g1)',pts:era.map(a=>({x:a[0],v:a[1]}))}],{min:600,f:v=>fmt.format(v)+' mm',tf:v=>fmt.format(v)}),rows:()=>cru.map(a=>({year:a[0],cru_ts_mm:a[1],era5_mm:(era.find(e=>e[0]===a[0])||[])[1]??''}))}));
+  const MN=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  cards.push(card({t:'The rainy season, month by month',s:'National average rainfall per month, 1991–2020 normal (mm). The south gets rain from March; the far north mainly from June to September.',src:esc(R.src),file:'nigeria_monthly_rainfall_normal',page:'rain',draw:el=>cols(el,nat.normal.map((v,i)=>({l:MN[i],v})),{f:v=>fmt.format(Math.round(v))+' mm'}),rows:()=>nat.normal.map((v,i)=>({month:MN[i],normal_mm:v}))}));
+  const sn=[...R.states].sort((a,b)=>b.ann-a.ann);
+  cards.push(card({t:'Normal annual rainfall by state',s:'mm per year, 1991–2020. Click a bar to open the state on the map.',src:esc(R.src),file:'rainfall_normal_by_state',page:'rain',draw:el=>hbar(el,sn.map(r=>({l:r.n,v:r.ann,t:`${r.pts} sample points`,on:()=>{location.hash='map';setTimeout(()=>{state.st=r.n;$('#state').value=r.n;update();zoomState(r.n)},80)}})),{rh:17,f:v=>fmt.format(v)+' mm'}),rows:()=>sn.map(r=>({state:r.n,normal_annual_mm:r.ann,...Object.fromEntries(r.normal.map((v,i)=>[MN[i].toLowerCase()+'_mm',v]))}))}));
+  $('#rain').innerHTML=`<h2 class="title">Rainfall and rainwater harvesting</h2><p class="lede">How much rain falls where and when, what the next weeks and months look like, and how much of it could be caught from roofs. Long-term records come from rain-gauge archives (CRU TS), the ERA5 reanalysis and NASA POWER; forecasts from open weather models via Open-Meteo, and seasonal outlooks from ECMWF SEAS5.</p>
+  <div class="kpis" id="rkpi"><div class="kpi"><b>${fmt.format(avg)} mm</b><span>normal annual rainfall (1991–2020, national average)</span><small>NASA POWER</small></div><div class="kpi"><b>${fmt.format(Math.round(nat.pvol_km3))} km³</b><span>of rain falls on Nigeria in a normal year</span><small>Calculated: rainfall × state areas</small></div>${last?`<div class="kpi"><b>${last[1]>=cruN?'+':''}${fmt.format(Math.round((last[1]/cruN-1)*100))}%</b><span>rainfall in ${last[0]} compared with the 1991–2020 normal</span><small>CRU TS rain-gauge record</small></div>`:''}<div class="kpi" id="k30"><b>…</b><span>last 30 days compared with normal</span><small>${LIVE?'Loading':'Live on the website'}</small></div></div>
+  <h3 class="sh" style="margin-top:4px">Now and the next 16 days</h3>
+  <div class="filterbar"><div><div class="lbl">Show</div><select id="rv"><option value="p7">Last 7 days (mm)</option><option value="p30a">Last 30 days vs normal</option><option value="n7" selected>Next 7 days (mm)</option><option value="n16">Next 16 days (mm)</option><option value="n16a">Next 16 days vs normal</option></select></div></div>
+  <div class="grid2"><article class="card"><h3 id="rv-t">Rain forecast</h3><div class="sub" id="rv-s"></div><div id="rv-map" class="loading">${LIVE?'Loading…':'Live rainfall loads on the website.'}</div><div class="foot"><span>Source: Open-Meteo (ECMWF IFS, DWD ICON, NOAA GFS and others; recent days are model analyses, not rain-gauge readings). Normals: NASA POWER 1991–2020.</span><span class="acts"><button class="btn sm" id="rv-csv" type="button">CSV</button></span></div></article>
+   <article class="card"><h3>Season ahead</h3><div class="sub">ECMWF SEAS5 monthly outlook: expected rainfall compared with the model’s own long-term average, national average of state centres.</div><div id="seas" class="loading">${LIVE?'Loading the seasonal outlook…':'The seasonal outlook loads on the website.'}</div><div class="foot"><span>Source: ECMWF SEAS5 via Open-Meteo Seasonal API. Seasonal outlooks show tendencies, not day-to-day weather.</span></div></article></div>
+  <h3 class="sh">Rainfall records</h3><div class="grid2">${cards.map(c=>c.html).join('')}</div>
+  <h3 class="sh">Rainwater harvesting potential</h3><p class="lede" style="margin-bottom:12px">Every 1 mm of rain on 1 m² of roof gives 1 litre of water, less what splashes, evaporates or is flushed away. Change the assumptions to see what roofs could supply in each state.</p>
+  <div class="card" style="margin-bottom:18px"><div class="filterbar" style="margin:0"><div><div class="lbl">Roof area per household (m²)</div><input type="number" id="h-roof" value="60" min="5" max="1000"></div>
+   <div><div class="lbl">Roof type</div><select id="h-c"><option value="0.85">Metal or zinc sheets (0.85)</option><option value="0.75">Tiles or asbestos (0.75)</option><option value="0.6">Concrete or flat (0.6)</option><option value="0.2">Thatch (0.2)</option></select></div>
+   <div><div class="lbl">People per household</div><input type="number" id="h-hh" value="${D.hh}" min="1" max="30" step="0.1"></div>
+   <div><div class="lbl">Litres per person per day</div><input type="number" id="h-l" value="50" min="5" max="300"></div>
+   <div><div class="lbl">Households that could harvest (%)</div><input type="number" id="h-share" value="50" min="0" max="100"></div></div>
+   <p class="loading" style="margin:6px 0 0">People per household: Nigeria DHS ${D.hhYr||''} average. 50 litres per person a day covers drinking, cooking and basic hygiene. Losses: the roof-type factor; first-flush diversion and tank overflow are not included.</p></div>
+  <div class="kpis" id="hkpi"></div><div class="grid2" id="hcards"></div>
+  <h3 class="sh">Where Nigeria’s rain goes</h3><p class="lede" style="margin-bottom:12px">A national water balance for a normal year, putting the rain that falls next to what is stored, used and lost. Volumes in cubic kilometres (1 km³ = 1 billion m³).</p><div class="grid2" id="wbal"></div>`;
+  cards.forEach(c=>c.mount());
+  $('#rv').onchange=drawRainView;$('#rv-csv').onclick=()=>{if(window._rvRows)saveFile('rain_by_state_'+$('#rv').value+'.csv',toCSV(window._rvRows),'text/csv')};
+  ['h-roof','h-c','h-hh','h-l','h-share'].forEach(i=>$('#'+i).oninput=drawHarvest);drawHarvest();drawBalance();
+  if(LIVE){drawRainView();seasonal()}
+}
+async function drawRainView(){
+  const v=$('#rv').value,el=$('#rv-map');
+  try{const L=await rainLive();const w=rainWindows();const vals={},rows=[];
+    const conf={p7:['Rain in the last 7 days','mm, by state',w.p7,0],p30a:['Last 30 days compared with normal','% above or below the 1991–2020 normal for these dates',w.p30,1],n7:['Rain forecast for the next 7 days','mm, by state',w.n7,0],n16:['Rain forecast for the next 16 days','mm, by state',w.n16,0],n16a:['Next 16 days compared with normal','% above or below the 1991–2020 normal for these dates',w.n16,1]}[v];
+    $('#rv-t').textContent=conf[0];$('#rv-s').textContent=conf[1]+` (${new Date(conf[2][0]).toLocaleDateString('en-GB',{day:'numeric',month:'short'})} – ${new Date(conf[2][1]).toLocaleDateString('en-GB',{day:'numeric',month:'short'})}).`;
+    let natS=0,natN=0,ar=0;const KM=Object.fromEntries(DATA.st.map(s=>[s.n,s.km2||0]));
+    Object.entries(L).forEach(([s,d])=>{const mm=sumDays(d,...conf[2]),nn=normalFor(s,datesIn(...conf[2]));if(mm==null)return;const a=nn?Math.round((mm/nn-1)*100):null;vals[s]=conf[3]?a:mm;rows.push({state:s,rain_mm:Math.round(mm),normal_mm:nn!=null?Math.round(nn):'',anomaly_pct:a??''});natS+=mm*KM[s];natN+=(nn||0)*KM[s];ar+=KM[s]});
+    window._rvRows=rows;
+    if(conf[3])stateMap(el,vals,{div:true,f:v=>(v>0?'+':'')+v+'%',tip:(s,x)=>{const r=rows.find(q=>q.state===s);return`${x>0?'+':''}${x}% · ${r.rain_mm} mm vs ${r.normal_mm} mm normal`},title:conf[0]});
+    else stateMap(el,vals,{breaks:v==='p7'?[5,15,30,60,100]:v==='n7'?[5,15,30,60,100]:[10,30,60,120,200],f:v=>fmt.format(Math.round(v))+' mm',title:conf[0]});
+    if(v==='p30a'||!$('#k30').dataset.done){const L30=Object.entries(L).map(([s,d])=>[s,sumDays(d,...w.p30),normalFor(s,datesIn(...w.p30))]);let a=0,b=0;L30.forEach(([s,x,n])=>{if(x!=null&&n){a+=x*KM[s];b+=n*KM[s]}});
+      if(b){const p=Math.round((a/b-1)*100);$('#k30').innerHTML=`<b>${p>0?'+':''}${p}%</b><span>rain in the last 30 days compared with normal</span><small>Open-Meteo vs NASA POWER normal</small>`;$('#k30').dataset.done=1}}
+  }catch(e){el.textContent='The forecast service did not respond. Try again later.'}
+}
+async function seasonal(){
+  const el=$('#seas');
+  try{const S=await seasonalLive();const months=Object.values(S)[0].time;const KM=Object.fromEntries(DATA.st.map(s=>[s.n,s.km2||0]));
+    const pts=months.map((t,i)=>{let m=0,a=0,w=0;Object.entries(S).forEach(([s,d])=>{if(d.precipitation_mean[i]!=null){m+=d.precipitation_mean[i]*KM[s];a+=d.precipitation_anomaly[i]*KM[s];w+=KM[s]}});const mean=m/w,anom=a/w;const clim=mean-anom;return{l:new Date(t).toLocaleDateString('en-GB',{month:'short',year:'2-digit'}),mean,anom,pct:clim>3?Math.round(anom/clim*100):null}});
+    el.className='';el.innerHTML=`<div class="chart" id="seas-c"></div><div class="tbl-wrap" style="margin-top:8px"><table class="dt"><thead><tr><th>Month</th><th class="n">Expected</th><th class="n">Difference from normal</th></tr></thead><tbody>${pts.map(p=>`<tr><td>${p.l}</td><td class="n">${fmt.format(Math.round(p.mean))} mm</td><td class="n">${p.anom>=0?'+':''}${fmt1.format(p.anom)} mm${p.pct!=null?` (${p.pct>0?'+':''}${p.pct}%)`:' (dry season)'}</td></tr>`).join('')}</tbody></table></div>`;
+    cols($('#seas-c'),pts.map(p=>({l:p.l,v:Math.round(p.mean),c:p.pct==null?'var(--bar2)':p.pct<=-10?divC()[1]:p.pct>=10?divC()[5]:'var(--bar)'})),{f:v=>fmt.format(v)+' mm'});
+  }catch(e){el.textContent='The seasonal service did not respond. Try again later.'}
+}
+function harvestCalc(){const roof=+$('#h-roof').value||0,c=+$('#h-c').value,hh=+$('#h-hh').value||1,l=+$('#h-l').value||0,share=(+$('#h-share').value||0)/100;
+  const need=hh*l*365/1000;return{roof,c,hh,l,share,need,st:DATA.rain.states.map(s=>{const m3=s.ann*roof*c/1000;return{s:s.n,mm:s.ann,m3,pct:need?m3/need*100:0,months:s.normal.filter(v=>v*roof*c/1000>=need/12).length}})}}
+function drawHarvest(){
+  const H=harvestCalc(),D=harvestDefaults();const nat=DATA.rain.nat;
+  const households=D.pop?D.pop/H.hh:null;const potKm3=households?households*H.share*(nat.ann*H.roof*H.c/1000)/1e9:null;
+  const usedKm3=D.pop&&D.rw!=null?D.pop*D.rw/100*H.l*365/1000/1e9:null;
+  const wd=wbS('ER.H2O.FWTL.K3'),dm=wbS('ER.H2O.FWDM.ZS');const muni=wd&&dm?wd.data[wd.data.length-1][1]*dm.data[dm.data.length-1][1]/100:null;
+  $('#hkpi').innerHTML=`<div class="kpi"><b>${fmt.format(Math.round(nat.ann*H.roof*H.c/1000))} m³</b><span>a year from one ${H.roof} m² roof at the national average rainfall</span><small>= ${fmt.format(Math.round(nat.ann*H.roof*H.c))} litres</small></div>
+   <div class="kpi"><b>${fmt.format(Math.round(H.need))} m³</b><span>a year needed by a household of ${H.hh} at ${H.l} L per person a day</span><small>Your assumptions</small></div>
+   ${potKm3!=null?`<div class="kpi"><b>${fmt1.format(potKm3)} km³</b><span>national rooftop potential a year if ${Math.round(H.share*100)}% of households harvest</span><small>Population ${D.popYr}: World Bank; ${fmt1.format(households/1e6)} M households</small></div>`:''}
+   ${usedKm3!=null?`<div class="kpi"><b>${fmt1.format(usedKm3*1000)} million m³</b><span>roughly captured today: ${fmt1.format(D.rw)}% of people rely on rainwater as their main drinking source</span><small>DHS ${D.rwYr}; × your litres per day</small></div>`:''}
+   ${muni!=null?`<div class="kpi"><b>${fmt1.format(muni)} km³</b><span>withdrawn for municipal use each year, for comparison</span><small>FAO AQUASTAT via World Bank</small></div>`:''}`;
+  const rows=[...H.st].sort((a,b)=>b.m3-a.m3);
+  const c1=card({t:'What one roof can collect, by state',s:`m³ a year from a ${H.roof} m² roof with a runoff factor of ${H.c}, at each state’s normal rainfall. The line is a household’s yearly need (${fmt.format(Math.round(H.need))} m³).`,src:'Calculated from NASA POWER 1991–2020 rainfall and your assumptions',file:'rooftop_harvest_by_state',page:'rain',
+    draw:el=>hbar(el,rows.map(r=>({l:r.s,v:Math.round(r.m3),c:r.m3>=H.need?'var(--bar)':'var(--bar2)',t:`${Math.round(r.pct)}% of household need · enough for ${r.months} months on its own`})),{rh:17,f:v=>fmt.format(v)+' m³'}),rows:()=>rows.map(r=>({state:r.s,normal_rain_mm:r.mm,harvest_m3_per_year:Math.round(r.m3),pct_of_household_need:Math.round(r.pct),months_fully_covered:r.months}))});
+  const pl=potKm3!=null&&usedKm3!=null?[{l:'Could be collected from roofs',v:Math.round(potKm3*1000),c:'var(--bar)'},{l:'Collected today (estimate)',v:Math.round(usedKm3*1000),c:'var(--g2)'},{l:'Not collected',v:Math.round((potKm3-usedKm3)*1000),c:'var(--s1)'}]:[];
+  const c2=pl.length?card({t:'Rooftop rain: collected and lost',s:'Million m³ a year. “Collected today” multiplies the share of people whose main drinking water is rainwater (DHS) by the litres per day above; it leaves out people who harvest only as a second source, so it is a lower bound.',src:'Calculated from NASA POWER, World Bank population and Nigeria DHS',file:'rooftop_collected_vs_lost',page:'rain',draw:el=>hbar(el,pl,{lw:200,f:v=>fmt.format(v)+' Mm³'}),rows:()=>pl.map(r=>({item:r.l,million_m3_per_year:r.v}))}):null;
+  $('#hcards').innerHTML=c1.html+(c2?c2.html:'');c1.mount();if(c2)c2.mount();
+}
+function drawBalance(){
+  const nat=DATA.rain.nat,N=Object.fromEntries((DATA.nwrmp.national||[]).map(x=>[x.label,x.value]));
+  const P=nat.pvol_km3,intR=286.6,inflow=88,gw=156,sw=244.2;const cap=F.filter(f=>f.gdw).reduce((a,f)=>a+(f.cap||0),0)/1000;
+  const wd=wbS('ER.H2O.FWTL.K3');const W=wd?wd.data[wd.data.length-1]:null;
+  const rows=[{l:'Rain falling on Nigeria',v:Math.round(P),c:'var(--bar)',t:'NASA POWER normal × state areas'},
+    {l:'Evaporates or is used by plants',v:Math.round(P-intR),c:'var(--muted)',t:'Rainfall minus internal renewable water'},
+    {l:'Becomes rivers and groundwater',v:intR,c:'var(--g2)',t:'Master Plan 2013: 286.6 km³ generated inside Nigeria'},
+    {l:'…of which recharges aquifers',v:gw,c:'var(--g2)',t:'Master Plan 2013; overlaps with river flow because groundwater feeds rivers'},
+    {l:'Flows in from neighbours',v:inflow,c:'var(--g6)',t:'Master Plan 2013'},
+    {l:'Reservoir capacity (all dams)',v:+cap.toFixed(1),c:'var(--g0)',t:'Sum of Global Dam Watch capacities; a stock, not a yearly flow'},
+    W?{l:`Withdrawn for use (${W[0]})`,v:+W[1].toFixed(1),c:'var(--s1)',t:'FAO AQUASTAT via World Bank'}:null,
+    W?{l:'Not withdrawn (flows on)',v:Math.round(intR+inflow-W[1]),c:'var(--river2)',t:'Renewable incl. inflow minus withdrawals'}:null].filter(Boolean);
+  const c=card({t:'Nigeria’s water balance in a normal year',s:'km³ a year (storage is a one-off capacity). Hover a bar for the source. These are long-term averages; individual years vary by 10–20%.',src:'NASA POWER; National Water Resources Master Plan 2013; Global Dam Watch; FAO AQUASTAT via World Bank',file:'nigeria_water_balance',page:'rain',draw:el=>hbar(el,rows,{lw:210,f:v=>fmt1.format(v)+' km³'}),rows:()=>rows.map(r=>({item:r.l,km3:r.v,basis:r.t}))});
+  const pct=W?[{l:'Withdrawn',v:+(W[1]/(intR+inflow)*100).toFixed(1),c:'var(--s1)'},{l:'Stored in reservoirs (capacity)',v:+(cap/(intR+inflow)*100).toFixed(1),c:'var(--g0)'}]:[];
+  const c2=pct.length?card({t:'How much of the renewable water is captured',s:'As % of renewable water including inflow (about 375 km³ a year). Nigeria uses a small share of its water; the gaps are storage, distribution and treatment, not total supply.',src:'Calculated from the Master Plan 2013, Global Dam Watch and FAO AQUASTAT',file:'share_captured',page:'rain',draw:el=>hbar(el,pct,{lw:200,f:v=>fmt1.format(v)+'%'}),rows:()=>pct.map(r=>({item:r.l,pct_of_renewable:r.v}))}):null;
+  $('#wbal').innerHTML=c.html+(c2?c2.html:'');c.mount();if(c2)c2.mount();
+}
+
+/* ---------- statistics: supply, wastewater, surface water ---------- */
+function sdgS(code,key){const e=(DATA.sdg||{})[code];if(!e)return null;const by=e.by[key||'total']||e.by[Object.keys(e.by).find(k=>k.includes(key||''))];return by?{desc:e.desc,src:e.src,data:by}:null}
+function buildStatsExtra(){
+  const host=$('#stats-extra');if(!host)return;const cards={sup:[],ww:[],sw:[]};
+  const sdgSrc=code=>`<a href="https://unstats.un.org/sdgs/dataportal/database" target="_blank" rel="noopener">UN SDG Global Database</a>, series ${code}${((DATA.sdg||{})[code]||{}).src?' ('+esc(String(DATA.sdg[code].src).slice(0,60))+')':''}`;
+  const tri=(code,title,sub,file,grp)=>{const ser=[['Location=ALLAREA','National','var(--bar)'],['Location=URBAN','Urban','var(--g6)'],['Location=RURAL','Rural','var(--g1)']].map(([k,n,c])=>{const s=sdgS(code,k);return s?{name:n,c,pts:s.data.map(d=>({x:d[0],v:d[1]}))}:null}).filter(Boolean);
+    if(ser.length)cards[grp].push(card({t:title,s:sub,src:sdgSrc(code),file,draw:el=>line(el,ser,{min:0,max:100,f:v=>fmt1.format(v)+'%',tf:v=>v+'%'}),rows:()=>ser[0].pts.map(p=>{const r={year:p.x};ser.forEach(S=>{const q=S.pts.find(q=>q.x===p.x);r[S.name.toLowerCase()+'_pct']=q?q.v:''});return r})}))};
+  const st=(grp,ind,t,s,file,good)=>{const d=dhsSub(ind);if(!d.rows.length)return;const r=d.rows.sort((a,b)=>good?a.v-b.v:b.v-a.v);cards[grp].push(card({t:t+` (${d.yr==='2024'?'2023–24':d.yr})`,s,src:DHS_SRC(d.id),file:file+'_'+d.yr,draw:el=>hbar(el,r.map(x=>({l:x.s,v:x.v})),{rh:17,f:v=>fmt1.format(v)+'%'}),rows:()=>r.map(x=>({state:x.s,pct:x.v}))}))};
+  /* municipal supply */
+  tri('SH_H2O_SAFE','Safely managed drinking water','% of people with water on premises, available when needed and free from contamination (SDG 6.1.1).','sdg611_safely_managed_water','sup');
+  const wd=wbS('ER.H2O.FWTL.K3'),dm=wbS('ER.H2O.FWDM.ZS'),pop=wbS('SP.POP.TOTL');
+  if(wd&&dm&&pop){const yrs=wd.data.map(d=>d[0]).filter(y=>dm.data.some(x=>x[0]===y)&&pop.data.some(x=>x[0]===y));const rows=yrs.map(y=>{const w=wd.data.find(x=>x[0]===y)[1],m=dm.data.find(x=>x[0]===y)[1],p=pop.data.find(x=>x[0]===y)[1];const km3=w*m/100;return{y,km3,lpd:km3*1e12/p/365}});
+    if(rows.length)cards.sup.push(card({t:'Municipal water withdrawals',s:`Water abstracted for public supply (homes, businesses, institutions): ${fmt1.format(rows[rows.length-1].km3)} km³ in ${rows[rows.length-1].y}, about ${fmt.format(Math.round(rows[rows.length-1].lpd))} litres per person a day before losses.`,src:'FAO AQUASTAT via World Bank WDI (total withdrawals × municipal share); per person calculated with World Bank population',file:'municipal_withdrawals',draw:el=>cols(el,rows.map(r=>({l:String(r.y),v:+r.km3.toFixed(2)})),{f:v=>fmt1.format(v)+' km³'}),rows:()=>rows.map(r=>({year:r.y,municipal_withdrawal_km3:+r.km3.toFixed(3),litres_per_person_day:Math.round(r.lpd)}))}))}
+  const nw=Object.fromEntries((DATA.nwrmp.national||[]).map(x=>[x.label,x.value]));
+  if(nw['Municipal water demand, 2010'])cards.sup.push(card({t:'Municipal water demand, 2010 and 2030',s:'Million litres per day, from the National Water Resources Master Plan. Demand is projected to almost triple.',src:`<a href="${esc(DATA.nwrmp.url)}" target="_blank" rel="noopener">National Water Resources Master Plan 2013</a>, Table 11`,file:'municipal_demand_nwrmp',draw:el=>hbar(el,[{l:'2010',v:nw['Municipal water demand, 2010']},{l:'2030 (projected)',v:nw['Projected municipal water demand, 2030'],c:'var(--bar2)'}],{lw:120,f:v=>fmt.format(v)+' MLD'}),rows:()=>[{year:2010,mld:nw['Municipal water demand, 2010']},{year:2030,mld:nw['Projected municipal water demand, 2030']}]}));
+  (()=>{const S=(DATA.dhs||{}).sub||{};const id=S.NG2024DHS?'NG2024DHS':'NG2018DHS';const r=Object.entries(S[id]||{}).map(([s,v])=>({s,v:+(['WS_SRCE_P_PIP','WS_SRCE_P_PYD','WS_SRCE_P_PNB','WS_SRCE_P_TAP'].reduce((a,k)=>a+(v[k]||0),0)).toFixed(1)})).filter(x=>x.v>0).sort((a,b)=>b.v-a.v);
+    if(r.length)cards.sup.push(card({t:`Piped water by state (${id==='NG2024DHS'?'2023–24':'2018'})`,s:'% of people whose main drinking water is piped: into the dwelling, yard, a neighbour’s tap or a public standpipe. Mostly the reach of state water boards.',src:DHS_SRC(id),file:'piped_water_by_state',draw:el=>hbar(el,r.map(x=>({l:x.s,v:x.v})),{rh:17,f:v=>fmt1.format(v)+'%'}),rows:()=>r.map(x=>({state:x.s,piped_pct:x.v}))}))})();
+  st('sup','WS_WAVL_P_NAV','Water supply interruptions by state','% of people using piped water or boreholes whose supply was unavailable for at least a day in the past two weeks.','supply_interruptions_by_state');
+  /* wastewater and sanitation */
+  const w631=sdgS('EN_WWT_WWDS');if(w631)cards.ww.push(card({t:'Domestic wastewater safely treated',s:'% of household wastewater flows treated to a safe standard (SDG 6.3.1), estimated by WHO and UN-Habitat. Most of the rest goes untreated into soil, drains and rivers through septic tanks and pits.',src:sdgSrc('EN_WWT_WWDS'),file:'sdg631_wastewater_treated',draw:el=>line(el,w631.data.map(d=>({x:d[0],v:d[1]})),{min:0,max:100,f:v=>fmt1.format(v)+'%',tf:v=>v+'%'}),rows:()=>w631.data.map(d=>({year:d[0],pct_safely_treated:d[1]}))}));
+  const ww=DATA.ww&&DATA.ww.ng;if(ww){const r=[['Generated',ww.prod],['Collected',ww.coll],['Treated',ww.treat],['Reused',ww.reuse]].filter(x=>x[1]!=null).map(([l,v],i)=>({l,v:Math.round(v),c:['var(--g1)','var(--g6)','var(--g0)','var(--g2)'][i]}));
+    cards.ww.push(card({t:'Municipal wastewater: generated, collected, treated, reused (2015)',s:`Million m³ a year. ${ww.prod&&ww.treat?`About ${Math.round(ww.treat/ww.prod*100)}% of what is generated is treated`:''}${ww.prod&&ww.reuse!=null?` and ${fmt1.format(ww.reuse/ww.prod*100)}% is reused`:''}. Country estimates from reported data and a statistical model.`,src:esc(DATA.ww.src),file:'wastewater_flows_2015',draw:el=>hbar(el,r,{lw:110,f:v=>fmt.format(v)+' Mm³'}),rows:()=>r.map(x=>({stage:x.l,million_m3_per_year:x.v}))}))}
+  tri('SH_SAN_SAFE','Safely managed sanitation','% of people using toilets whose waste is safely contained and treated or disposed of (SDG 6.2.1).','sdg621_safely_managed_sanitation','ww');
+  tri('SH_SAN_DEFECT','Open defecation','% of people with no toilet at all.','sdg621_open_defecation','ww');
+  st('ww','WS_TLET_P_BAS','Basic sanitation by state','% of people with an improved toilet not shared with other households. Lowest first.','dhs_basic_sanitation_by_state',true);
+  st('ww','WS_TLET_P_NFC','Open defecation by state','% of people with no toilet facility.','dhs_open_defecation_by_state');
+  const q=sdgS('EN_H2O_WBAMBQ'),qr=sdgS('EN_H2O_RVAMBQ');if(q){const ser=[{name:'All water bodies',c:'var(--bar)',pts:q.data.map(d=>({x:d[0],v:d[1]}))}].concat(qr?[{name:'Rivers',c:'var(--g6)',pts:qr.data.map(d=>({x:d[0],v:d[1]}))}]:[]);
+    cards.ww.push(card({t:'Water bodies with good ambient water quality',s:'% of monitored water bodies meeting national quality targets (SDG 6.3.2). Depends heavily on how many sites were sampled each round.',src:sdgSrc('EN_H2O_WBAMBQ'),file:'sdg632_water_quality',draw:el=>line(el,ser,{min:0,max:100,f:v=>fmt1.format(v)+'%',tf:v=>v+'%'}),rows:()=>ser[0].pts.map(p=>({year:p.x,all_water_bodies_pct:p.v}))}))}
+  /* surface water and stress */
+  const pw=sdgS('EN_LKRV_PWAN'),swn=sdgS('EN_LKRV_SWAN');if(pw||swn){const ser=[pw&&{name:'Permanent water',c:'var(--g0)',pts:pw.data.map(d=>({x:d[0],v:d[1]}))},swn&&{name:'Seasonal water',c:'var(--g2)',pts:swn.data.map(d=>({x:d[0],v:d[1]}))}].filter(Boolean);
+    cards.sw.push(card({t:'Lakes and rivers seen from space',s:'km² of permanent and seasonal open water in lakes and rivers, mapped from Landsat imagery (SDG 6.6.1).',src:sdgSrc('EN_LKRV_PWAN')+' · JRC Global Surface Water / UNEP Freshwater Ecosystems Explorer',file:'sdg661_surface_water',draw:el=>line(el,ser,{min:0,f:v=>fmt.format(Math.round(v))+' km²',tf:v=>fmt.format(v)}),rows:()=>ser[0].pts.map(p=>{const r={year:p.x};ser.forEach(S=>{const q=S.pts.find(q=>q.x===p.x);r[S.name.replace(/ /g,'_').toLowerCase()+'_km2']=q?Math.round(q.v):''});return r})}))}
+  const rmx=sdgS('EN_RSRV_MXWAN'),rmn=sdgS('EN_RSRV_MNWAN');if(rmx&&rmn){const ser=[{name:'Largest extent',c:'var(--g0)',pts:rmx.data.map(d=>({x:d[0],v:d[1]}))},{name:'Smallest extent',c:'var(--s1)',pts:rmn.data.map(d=>({x:d[0],v:d[1]}))}];
+    cards.sw.push(card({t:'Reservoir water area through the year',s:'km² of open water in reservoirs at their fullest and lowest each year (SDG 6.6.1).',src:sdgSrc('EN_RSRV_MXWAN'),file:'sdg661_reservoir_area',draw:el=>line(el,ser,{min:0,f:v=>fmt.format(Math.round(v))+' km²',tf:v=>fmt.format(v)}),rows:()=>ser[0].pts.map(p=>({year:p.x,max_km2:Math.round(p.v),min_km2:Math.round((ser[1].pts.find(q=>q.x===p.x)||{}).v||0)}))}))}
+  const ws=sdgS('ER_H2O_STRESS','Activity=TOTAL'),iw=sdgS('ER_H2O_IWRMD');const facts=[];
+  if(ws)facts.push(['Water stress (withdrawals ÷ available water), '+ws.data[ws.data.length-1][0],fmt1.format(ws.data[ws.data.length-1][1])+'%','SDG 6.4.2, FAO']);
+  if(iw)facts.push(['Integrated water resources management implemented, '+iw.data[iw.data.length-1][0],iw.data[iw.data.length-1][1]+'%','SDG 6.5.1, UNEP']);
+  const wet=sdgS('EN_WBE_INWTL');if(wet)facts.push(['Inland wetlands, '+wet.data[wet.data.length-1][0],fmt.format(Math.round(wet.data[wet.data.length-1][1]))+' km²','SDG 6.6.1, Ramsar Convention']);
+  const mg=sdgS('EN_WBE_MANGN');if(mg)facts.push(['Mangroves, '+mg.data[mg.data.length-1][0],fmt.format(Math.round(mg.data[mg.data.length-1][1]))+' km²','SDG 6.6.1, Global Mangrove Watch']);
+  const we=sdgS('ER_H2O_WUEYST','Activity=TOTAL');if(we)facts.push(['Water-use efficiency, '+we.data[we.data.length-1][0],'US$ '+fmt1.format(we.data[we.data.length-1][1])+' per m³','SDG 6.4.1, FAO']);
+  const all=k=>cards[k].map(c=>c.html).join('');
+  host.innerHTML=`${cards.sup.length?`<h3 class="sh">Drinking water and municipal supply</h3><div class="grid2">${all('sup')}</div>`:''}
+   ${cards.ww.length?`<h3 class="sh">Wastewater and sanitation</h3><div class="grid2">${all('ww')}</div>`:''}
+   ${cards.sw.length||facts.length?`<h3 class="sh">Surface water, wetlands and water stress</h3><div class="grid2">${all('sw')}</div>${facts.length?`<div class="tbl-wrap" style="max-height:none;margin-top:14px"><table class="dt"><thead><tr><th>Indicator</th><th class="n">Latest</th><th>Source</th></tr></thead><tbody>${facts.map(f=>`<tr><td>${esc(f[0])}</td><td class="n">${esc(f[1])}</td><td>${esc(f[2])}</td></tr>`).join('')}</tbody></table></div>`:''}`:''}`;
+  Object.values(cards).flat().forEach(c=>c.mount());
+}
+</script>
+<script>
 /* ---------- statistics ---------- */
 function wbS(id){const s=(DATA.wb||{})[id];return s&&s.data&&s.data.length?s:null}
 function dhsSub(ind,sv){const S=(DATA.dhs||{}).sub||{};const id=sv||(S.NG2024DHS?'NG2024DHS':'NG2018DHS');const st=S[id]||{};return{id,yr:id.slice(2,6),rows:Object.entries(st).filter(([s,v])=>v[ind]!=null).map(([s,v])=>({s,v:v[ind]}))}}
@@ -1560,7 +1762,7 @@ function buildStats(){
     bw?[fmt1.format(last(bw)[1])+'%','of Nigerians with at least basic drinking water',`WHO/UNICEF JMP · ${last(bw)[0]}`]:null,
     sm?[fmt1.format(last(sm)[1])+'%','with safely managed drinking water',`WHO/UNICEF JMP · ${last(sm)[0]}`]:null,
     pc?[fmt.format(Math.round(last(pc)[1]))+' m³','renewable internal freshwater per person',`FAO AQUASTAT via World Bank · ${last(pc)[0]}`]:null,
-    stress?[fmt1.format(last(stress)[1])+'%','water stress (withdrawals ÷ available water)',`SDG 6.4.2 · ${last(stress)[0]}`]:null].filter(Boolean);
+    (()=>{const x=sdgS('ER_H2O_STRESS','Activity=TOTAL');return x?[fmt1.format(x.data[x.data.length-1][1])+'%','water stress (withdrawals ÷ available water)',`SDG 6.4.2, FAO · ${x.data[x.data.length-1][0]}`]:null})()].filter(Boolean);
   const cards=[];
   const byB={};gdw.forEach(f=>{const b=f.bn||f.basin||'Not assigned';byB[b]=byB[b]||{n:0,cap:0};byB[b].n++;byB[b].cap+=f.cap||0});const bb=Object.entries(byB).map(([l,v])=>({l,v:Math.round(v.cap),t:`${v.n} dams`})).sort((a,b)=>b.v-a.v);
   cards.push(card({t:'Reservoir storage by major basin',s:'Million m³ of storage capacity. Kainji, Shiroro and Jebba alone hold most of the Niger basin’s total.',src:'Global Dam Watch v1.0 (Lehner et al. 2024)',file:'storage_by_basin',draw:el=>hbar(el,bb,{lw:250,f:v=>fmt.format(v)+' Mm³'}),rows:()=>bb.map(r=>({basin:r.l,capacity_million_m3:r.v,dams:+r.t.split(' ')[0]}))}));
@@ -1588,12 +1790,14 @@ function buildStats(){
     cards.push(card({t:'Mapped water points by state',s:`${fmt.format(DATA.wp.n)} boreholes, wells, taps and other points surveyed for GRID3. Coverage is uneven: states with few points were not fully surveyed, so this is not a measure of access.`,src:esc(DATA.wp.src),file:'grid3_water_points_by_state',draw:el=>hbar(el,r,{rh:17}),rows:()=>r.map(x=>({state:x.l,water_points:x.v}))}))}
   const lv=['A','B','C','D'].map(l=>({l:'Level '+l,v:F.filter(f=>f.v===l).length,t:LEVELS[l]}));
   cards.push(card({t:'How well each record is verified',s:'A = named and documented; D = listed only, location provisional.',src:'Atlas verification scheme (see Data & sources)',file:'verification_levels',draw:el=>hbar(el,lv,{lw:90}),rows:()=>lv.map(r=>({level:r.l,records:r.v,meaning:r.t}))}));
-  const WBT=Object.entries(DATA.wb||{}).filter(([k,s])=>s.data&&s.data.length);
+  const WBT=Object.entries(DATA.wb||{}).filter(([k,s])=>s.data&&s.data.length&&k!=='ER.H2O.FWST.ZS');
   $('#stats').innerHTML=`<h2 class="title">Nigeria’s water in numbers</h2><p class="lede">Headline indicators for researchers, agencies, journalists and students. Every chart names its source and can be shown as a table, downloaded as CSV or copied as a citation. Dam figures come from Global Dam Watch; access figures from the WHO/UNICEF Joint Monitoring Programme and Nigeria’s Demographic and Health Surveys.</p>
   <div class="kpis">${kp.map(([v,l,s])=>`<div class="kpi"><b>${v}</b><span>${l}</span><small>${s}</small></div>`).join('')}</div>
   <div class="grid2">${cards.map(c=>c.html).join('')}</div>
+  <div id="stats-extra"></div>
   ${WBT.length?`<h3 class="sh">Reference indicators</h3><div class="tbl-wrap" style="max-height:none"><table class="dt"><thead><tr><th>Indicator</th><th class="n">Latest</th><th>Year</th><th>Source</th></tr></thead><tbody>${WBT.map(([k,s])=>`<tr><td>${esc(s.name)}</td><td class="n">${fmt1.format(last(s)[1])}</td><td>${last(s)[0]}</td><td><a href="https://data.worldbank.org/indicator/${k}?locations=NG" target="_blank" rel="noopener">${esc((s.source||'World Bank WDI').slice(0,80))}</a></td></tr>`).join('')}</tbody></table></div>`:''}`;
   cards.forEach(c=>c.mount());
+  buildStatsExtra();
 }
 
 /* ---------- visit ---------- */
@@ -1693,6 +1897,12 @@ function buildData(){
    ['GRID3 Nigeria Water Points (eHealth Africa and Proxy Logics, 2020)','Locations and types of about 29,000 water points','Water points layer','https://grid3.gov.ng','CC BY 4.0'],
    ['UNICEF Nigeria, 2024 Nigeria Flood Risk Analysis (ArcGIS Online)','Riverine, flash and coastal flood-risk rating for each LGA','Flood risk layer','https://www.arcgis.com/home/search.html?q=2024%20Nigeria%20Flood%20Risk%20Analysis','Public layer; no licence stated'],
    ['geoBoundaries (William & Mary geoLab)','State boundaries','State assignment','https://www.geoboundaries.org','CC BY 4.0'],
+   ['NASA POWER (MERRA-2 with satellite-corrected precipitation)','Monthly rainfall at up to 8 points in every state, 1981 onwards; 1991–2020 state normals','Rain page, harvesting calculator, water balance','https://power.larc.nasa.gov','Free, NASA open data'],
+   ['World Bank Climate Change Knowledge Portal: CRU TS 4.08 and ERA5','National annual rainfall since 1901 (rain gauges) and 1950 (reanalysis)','Rainfall history','https://climateknowledgeportal.worldbank.org/country/nigeria','CC BY 4.0'],
+   ['Open-Meteo forecast and seasonal APIs (ECMWF IFS and SEAS5, DWD ICON, NOAA GFS)','Rain in the last 30 days, 16-day forecasts and 6-month outlooks for every state','Rain page and flood watch, live','https://open-meteo.com','CC BY 4.0'],
+   ['NASA GIBS: VIIRS combined flood product and GPM IMERG','Satellite-mapped flood water (3-day composite) and yesterday’s rainfall','Map layers, live','https://www.earthdata.nasa.gov/engage/open-data-services-software/earthdata-developer-portal/gibs-api','Free, NASA open data'],
+   ['UN SDG Global Database (WHO, UNICEF, UN-Habitat, FAO, UNEP, JRC)','Safely managed water and sanitation, wastewater treated, water quality, water stress, surface-water and wetland extent','Statistics','https://unstats.un.org/sdgs/dataportal','Open with attribution'],
+   ['Jones, van Vliet, Qadir and Bierkens (2021), Earth System Science Data 13, 237–254','Wastewater generated, collected, treated and reused (2015)','Statistics','https://doi.org/10.1594/PANGAEA.918731','CC BY 4.0'],
    ['Live services on the hosted site','Open-Meteo (weather, river flow), Wikimedia Commons (nearby photos), Esri / OpenTopoMap / NASA GIBS (basemaps), JRC Global Surface Water (surface-water tiles)','On demand','https://open-meteo.com','Per service terms']];
   const unnamed=F.filter(f=>/^Unnamed/.test(f.n)).length;
   $('#data').innerHTML=`<h2 class="title">Data, sources and method</h2><p class="lede">This atlas joins global scientific databases with Nigerian government plans, national surveys and open encyclopaedias, and records where every fact came from. It is built to be checked, cited and corrected.</p>
