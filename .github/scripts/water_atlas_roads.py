@@ -70,7 +70,8 @@ def main():
     roads, total = [], collections.Counter()
     for key, lines in groups.items():
         c, ref = key[0], key[1]
-        merged = linemerge(unary_union(lines))
+        u = unary_union(lines)
+        merged = linemerge(u) if isinstance(u, MultiLineString) else u
         parts = list(merged.geoms) if isinstance(merged, MultiLineString) else [merged]
         length = sum(km(p) for p in parts)
         total[c] += length
