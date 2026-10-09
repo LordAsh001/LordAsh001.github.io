@@ -1,0 +1,1719 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Nigeria Water Resources Atlas</title>
+<meta name="author" content="Shagbaor Hycent Amool">
+<meta name="color-scheme" content="light dark">
+<meta name="description" content="Open, source-linked atlas of Nigeria's rivers, dams, reservoirs, lakes, waterfalls, wetlands, groundwater and flood risk across the 36 states and the FCT, with a live river flood watch.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Nigeria Water Resources Atlas">
+<meta property="og:description" content="Free, source-linked atlas of Nigeria's rivers, dams, reservoirs, lakes, waterfalls, wetlands and groundwater, with a live river flood watch, statistics on water access, and open data downloads.">
+<meta property="og:url" content="https://shagbaor.com/water-atlas/">
+<meta property="og:image" content="https://shagbaor.com/images/tool-water-atlas.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#155e94">
+<link rel="canonical" href="https://shagbaor.com/water-atlas/">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23155e94'/%3E%3Cpath d='M32 9C24 22 17 31 17 40a15 15 0 0 0 30 0c0-9-7-18-15-31Z' fill='%23fff'/%3E%3C/svg%3E">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"Nigeria Water Resources Atlas","description":"Free, source-linked atlas of Nigeria's dams, reservoirs, rivers, lakes, waterfalls, springs, Ramsar wetlands, river basins, groundwater provinces, water access and flood risk, with a live GloFAS river flood watch.","url":"https://shagbaor.com/water-atlas/","creator":{"@type":"Person","name":"Shagbaor Hycent Amool","affiliation":"University of Northern British Columbia"},"spatialCoverage":"Nigeria","isAccessibleForFree":true,"distribution":[{"@type":"DataDownload","encodingFormat":"application/json","contentUrl":"https://shagbaor.com/water-atlas/data/atlas.json"}]}</script>
+<script src="/assets/traction.js" defer></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Public+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* required styles */
+
+.leaflet-pane,
+.leaflet-tile,
+.leaflet-marker-icon,
+.leaflet-marker-shadow,
+.leaflet-tile-container,
+.leaflet-pane > svg,
+.leaflet-pane > canvas,
+.leaflet-zoom-box,
+.leaflet-image-layer,
+.leaflet-layer {
+	position: absolute;
+	left: 0;
+	top: 0;
+	}
+.leaflet-container {
+	overflow: hidden;
+	}
+.leaflet-tile,
+.leaflet-marker-icon,
+.leaflet-marker-shadow {
+	-webkit-user-select: none;
+	   -moz-user-select: none;
+	        user-select: none;
+	  -webkit-user-drag: none;
+	}
+/* Prevents IE11 from highlighting tiles in blue */
+.leaflet-tile::selection {
+	background: transparent;
+}
+/* Safari renders non-retina tile on retina better with this, but Chrome is worse */
+.leaflet-safari .leaflet-tile {
+	image-rendering: -webkit-optimize-contrast;
+	}
+/* hack that prevents hw layers "stretching" when loading new tiles */
+.leaflet-safari .leaflet-tile-container {
+	width: 1600px;
+	height: 1600px;
+	-webkit-transform-origin: 0 0;
+	}
+.leaflet-marker-icon,
+.leaflet-marker-shadow {
+	display: block;
+	}
+/* .leaflet-container svg: reset svg max-width decleration shipped in Joomla! (joomla.org) 3.x */
+/* .leaflet-container img: map is broken in FF if you have max-width: 100% on tiles */
+.leaflet-container .leaflet-overlay-pane svg {
+	max-width: none !important;
+	max-height: none !important;
+	}
+.leaflet-container .leaflet-marker-pane img,
+.leaflet-container .leaflet-shadow-pane img,
+.leaflet-container .leaflet-tile-pane img,
+.leaflet-container img.leaflet-image-layer,
+.leaflet-container .leaflet-tile {
+	max-width: none !important;
+	max-height: none !important;
+	width: auto;
+	padding: 0;
+	}
+
+.leaflet-container img.leaflet-tile {
+	/* See: https://bugs.chromium.org/p/chromium/issues/detail?id=600120 */
+	mix-blend-mode: plus-lighter;
+}
+
+.leaflet-container.leaflet-touch-zoom {
+	-ms-touch-action: pan-x pan-y;
+	touch-action: pan-x pan-y;
+	}
+.leaflet-container.leaflet-touch-drag {
+	-ms-touch-action: pinch-zoom;
+	/* Fallback for FF which doesn't support pinch-zoom */
+	touch-action: none;
+	touch-action: pinch-zoom;
+}
+.leaflet-container.leaflet-touch-drag.leaflet-touch-zoom {
+	-ms-touch-action: none;
+	touch-action: none;
+}
+.leaflet-container {
+	-webkit-tap-highlight-color: transparent;
+}
+.leaflet-container a {
+	-webkit-tap-highlight-color: rgba(51, 181, 229, 0.4);
+}
+.leaflet-tile {
+	filter: inherit;
+	visibility: hidden;
+	}
+.leaflet-tile-loaded {
+	visibility: inherit;
+	}
+.leaflet-zoom-box {
+	width: 0;
+	height: 0;
+	-moz-box-sizing: border-box;
+	     box-sizing: border-box;
+	z-index: 800;
+	}
+/* workaround for https://bugzilla.mozilla.org/show_bug.cgi?id=888319 */
+.leaflet-overlay-pane svg {
+	-moz-user-select: none;
+	}
+
+.leaflet-pane         { z-index: 400; }
+
+.leaflet-tile-pane    { z-index: 200; }
+.leaflet-overlay-pane { z-index: 400; }
+.leaflet-shadow-pane  { z-index: 500; }
+.leaflet-marker-pane  { z-index: 600; }
+.leaflet-tooltip-pane   { z-index: 650; }
+.leaflet-popup-pane   { z-index: 700; }
+
+.leaflet-map-pane canvas { z-index: 100; }
+.leaflet-map-pane svg    { z-index: 200; }
+
+.leaflet-vml-shape {
+	width: 1px;
+	height: 1px;
+	}
+.lvml {
+	behavior: url(#default#VML);
+	display: inline-block;
+	position: absolute;
+	}
+
+
+/* control positioning */
+
+.leaflet-control {
+	position: relative;
+	z-index: 800;
+	pointer-events: visiblePainted; /* IE 9-10 doesn't have auto */
+	pointer-events: auto;
+	}
+.leaflet-top,
+.leaflet-bottom {
+	position: absolute;
+	z-index: 1000;
+	pointer-events: none;
+	}
+.leaflet-top {
+	top: 0;
+	}
+.leaflet-right {
+	right: 0;
+	}
+.leaflet-bottom {
+	bottom: 0;
+	}
+.leaflet-left {
+	left: 0;
+	}
+.leaflet-control {
+	float: left;
+	clear: both;
+	}
+.leaflet-right .leaflet-control {
+	float: right;
+	}
+.leaflet-top .leaflet-control {
+	margin-top: 10px;
+	}
+.leaflet-bottom .leaflet-control {
+	margin-bottom: 10px;
+	}
+.leaflet-left .leaflet-control {
+	margin-left: 10px;
+	}
+.leaflet-right .leaflet-control {
+	margin-right: 10px;
+	}
+
+
+/* zoom and fade animations */
+
+.leaflet-fade-anim .leaflet-popup {
+	opacity: 0;
+	-webkit-transition: opacity 0.2s linear;
+	   -moz-transition: opacity 0.2s linear;
+	        transition: opacity 0.2s linear;
+	}
+.leaflet-fade-anim .leaflet-map-pane .leaflet-popup {
+	opacity: 1;
+	}
+.leaflet-zoom-animated {
+	-webkit-transform-origin: 0 0;
+	    -ms-transform-origin: 0 0;
+	        transform-origin: 0 0;
+	}
+svg.leaflet-zoom-animated {
+	will-change: transform;
+}
+
+.leaflet-zoom-anim .leaflet-zoom-animated {
+	-webkit-transition: -webkit-transform 0.25s cubic-bezier(0,0,0.25,1);
+	   -moz-transition:    -moz-transform 0.25s cubic-bezier(0,0,0.25,1);
+	        transition:         transform 0.25s cubic-bezier(0,0,0.25,1);
+	}
+.leaflet-zoom-anim .leaflet-tile,
+.leaflet-pan-anim .leaflet-tile {
+	-webkit-transition: none;
+	   -moz-transition: none;
+	        transition: none;
+	}
+
+.leaflet-zoom-anim .leaflet-zoom-hide {
+	visibility: hidden;
+	}
+
+
+/* cursors */
+
+.leaflet-interactive {
+	cursor: pointer;
+	}
+.leaflet-grab {
+	cursor: -webkit-grab;
+	cursor:    -moz-grab;
+	cursor:         grab;
+	}
+.leaflet-crosshair,
+.leaflet-crosshair .leaflet-interactive {
+	cursor: crosshair;
+	}
+.leaflet-popup-pane,
+.leaflet-control {
+	cursor: auto;
+	}
+.leaflet-dragging .leaflet-grab,
+.leaflet-dragging .leaflet-grab .leaflet-interactive,
+.leaflet-dragging .leaflet-marker-draggable {
+	cursor: move;
+	cursor: -webkit-grabbing;
+	cursor:    -moz-grabbing;
+	cursor:         grabbing;
+	}
+
+/* marker & overlays interactivity */
+.leaflet-marker-icon,
+.leaflet-marker-shadow,
+.leaflet-image-layer,
+.leaflet-pane > svg path,
+.leaflet-tile-container {
+	pointer-events: none;
+	}
+
+.leaflet-marker-icon.leaflet-interactive,
+.leaflet-image-layer.leaflet-interactive,
+.leaflet-pane > svg path.leaflet-interactive,
+svg.leaflet-image-layer.leaflet-interactive path {
+	pointer-events: visiblePainted; /* IE 9-10 doesn't have auto */
+	pointer-events: auto;
+	}
+
+/* visual tweaks */
+
+.leaflet-container {
+	background: #ddd;
+	outline-offset: 1px;
+	}
+.leaflet-container a {
+	color: #0078A8;
+	}
+.leaflet-zoom-box {
+	border: 2px dotted #38f;
+	background: rgba(255,255,255,0.5);
+	}
+
+
+/* general typography */
+.leaflet-container {
+	font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-size: 0.75rem;
+	line-height: 1.5;
+	}
+
+
+/* general toolbar styles */
+
+.leaflet-bar {
+	box-shadow: 0 1px 5px rgba(0,0,0,0.65);
+	border-radius: 4px;
+	}
+.leaflet-bar a {
+	background-color: #fff;
+	border-bottom: 1px solid #ccc;
+	width: 26px;
+	height: 26px;
+	line-height: 26px;
+	display: block;
+	text-align: center;
+	text-decoration: none;
+	color: black;
+	}
+.leaflet-bar a,
+.leaflet-control-layers-toggle {
+	background-position: 50% 50%;
+	background-repeat: no-repeat;
+	display: block;
+	}
+.leaflet-bar a:hover,
+.leaflet-bar a:focus {
+	background-color: #f4f4f4;
+	}
+.leaflet-bar a:first-child {
+	border-top-left-radius: 4px;
+	border-top-right-radius: 4px;
+	}
+.leaflet-bar a:last-child {
+	border-bottom-left-radius: 4px;
+	border-bottom-right-radius: 4px;
+	border-bottom: none;
+	}
+.leaflet-bar a.leaflet-disabled {
+	cursor: default;
+	background-color: #f4f4f4;
+	color: #bbb;
+	}
+
+.leaflet-touch .leaflet-bar a {
+	width: 30px;
+	height: 30px;
+	line-height: 30px;
+	}
+.leaflet-touch .leaflet-bar a:first-child {
+	border-top-left-radius: 2px;
+	border-top-right-radius: 2px;
+	}
+.leaflet-touch .leaflet-bar a:last-child {
+	border-bottom-left-radius: 2px;
+	border-bottom-right-radius: 2px;
+	}
+
+/* zoom control */
+
+.leaflet-control-zoom-in,
+.leaflet-control-zoom-out {
+	font: bold 18px 'Lucida Console', Monaco, monospace;
+	text-indent: 1px;
+	}
+
+.leaflet-touch .leaflet-control-zoom-in, .leaflet-touch .leaflet-control-zoom-out  {
+	font-size: 22px;
+	}
+
+
+/* layers control */
+
+.leaflet-control-layers {
+	box-shadow: 0 1px 5px rgba(0,0,0,0.4);
+	background: #fff;
+	border-radius: 5px;
+	}
+.leaflet-control-layers-toggle {
+	background-image: url(images/layers.png);
+	width: 36px;
+	height: 36px;
+	}
+.leaflet-retina .leaflet-control-layers-toggle {
+	background-image: url(images/layers-2x.png);
+	background-size: 26px 26px;
+	}
+.leaflet-touch .leaflet-control-layers-toggle {
+	width: 44px;
+	height: 44px;
+	}
+.leaflet-control-layers .leaflet-control-layers-list,
+.leaflet-control-layers-expanded .leaflet-control-layers-toggle {
+	display: none;
+	}
+.leaflet-control-layers-expanded .leaflet-control-layers-list {
+	display: block;
+	position: relative;
+	}
+.leaflet-control-layers-expanded {
+	padding: 6px 10px 6px 6px;
+	color: #333;
+	background: #fff;
+	}
+.leaflet-control-layers-scrollbar {
+	overflow-y: scroll;
+	overflow-x: hidden;
+	padding-right: 5px;
+	}
+.leaflet-control-layers-selector {
+	margin-top: 2px;
+	position: relative;
+	top: 1px;
+	}
+.leaflet-control-layers label {
+	display: block;
+	font-size: 13px;
+	font-size: 1.08333em;
+	}
+.leaflet-control-layers-separator {
+	height: 0;
+	border-top: 1px solid #ddd;
+	margin: 5px -10px 5px -6px;
+	}
+
+/* Default icon URLs */
+.leaflet-default-icon-path { /* used only in path-guessing heuristic, see L.Icon.Default */
+	background-image: url(images/marker-icon.png);
+	}
+
+
+/* attribution and scale controls */
+
+.leaflet-container .leaflet-control-attribution {
+	background: #fff;
+	background: rgba(255, 255, 255, 0.8);
+	margin: 0;
+	}
+.leaflet-control-attribution,
+.leaflet-control-scale-line {
+	padding: 0 5px;
+	color: #333;
+	line-height: 1.4;
+	}
+.leaflet-control-attribution a {
+	text-decoration: none;
+	}
+.leaflet-control-attribution a:hover,
+.leaflet-control-attribution a:focus {
+	text-decoration: underline;
+	}
+.leaflet-attribution-flag {
+	display: inline !important;
+	vertical-align: baseline !important;
+	width: 1em;
+	height: 0.6669em;
+	}
+.leaflet-left .leaflet-control-scale {
+	margin-left: 5px;
+	}
+.leaflet-bottom .leaflet-control-scale {
+	margin-bottom: 5px;
+	}
+.leaflet-control-scale-line {
+	border: 2px solid #777;
+	border-top: none;
+	line-height: 1.1;
+	padding: 2px 5px 1px;
+	white-space: nowrap;
+	-moz-box-sizing: border-box;
+	     box-sizing: border-box;
+	background: rgba(255, 255, 255, 0.8);
+	text-shadow: 1px 1px #fff;
+	}
+.leaflet-control-scale-line:not(:first-child) {
+	border-top: 2px solid #777;
+	border-bottom: none;
+	margin-top: -2px;
+	}
+.leaflet-control-scale-line:not(:first-child):not(:last-child) {
+	border-bottom: 2px solid #777;
+	}
+
+.leaflet-touch .leaflet-control-attribution,
+.leaflet-touch .leaflet-control-layers,
+.leaflet-touch .leaflet-bar {
+	box-shadow: none;
+	}
+.leaflet-touch .leaflet-control-layers,
+.leaflet-touch .leaflet-bar {
+	border: 2px solid rgba(0,0,0,0.2);
+	background-clip: padding-box;
+	}
+
+
+/* popup */
+
+.leaflet-popup {
+	position: absolute;
+	text-align: center;
+	margin-bottom: 20px;
+	}
+.leaflet-popup-content-wrapper {
+	padding: 1px;
+	text-align: left;
+	border-radius: 12px;
+	}
+.leaflet-popup-content {
+	margin: 13px 24px 13px 20px;
+	line-height: 1.3;
+	font-size: 13px;
+	font-size: 1.08333em;
+	min-height: 1px;
+	}
+.leaflet-popup-content p {
+	margin: 17px 0;
+	margin: 1.3em 0;
+	}
+.leaflet-popup-tip-container {
+	width: 40px;
+	height: 20px;
+	position: absolute;
+	left: 50%;
+	margin-top: -1px;
+	margin-left: -20px;
+	overflow: hidden;
+	pointer-events: none;
+	}
+.leaflet-popup-tip {
+	width: 17px;
+	height: 17px;
+	padding: 1px;
+
+	margin: -10px auto 0;
+	pointer-events: auto;
+
+	-webkit-transform: rotate(45deg);
+	   -moz-transform: rotate(45deg);
+	    -ms-transform: rotate(45deg);
+	        transform: rotate(45deg);
+	}
+.leaflet-popup-content-wrapper,
+.leaflet-popup-tip {
+	background: white;
+	color: #333;
+	box-shadow: 0 3px 14px rgba(0,0,0,0.4);
+	}
+.leaflet-container a.leaflet-popup-close-button {
+	position: absolute;
+	top: 0;
+	right: 0;
+	border: none;
+	text-align: center;
+	width: 24px;
+	height: 24px;
+	font: 16px/24px Tahoma, Verdana, sans-serif;
+	color: #757575;
+	text-decoration: none;
+	background: transparent;
+	}
+.leaflet-container a.leaflet-popup-close-button:hover,
+.leaflet-container a.leaflet-popup-close-button:focus {
+	color: #585858;
+	}
+.leaflet-popup-scrolled {
+	overflow: auto;
+	}
+
+.leaflet-oldie .leaflet-popup-content-wrapper {
+	-ms-zoom: 1;
+	}
+.leaflet-oldie .leaflet-popup-tip {
+	width: 24px;
+	margin: 0 auto;
+
+	-ms-filter: "progid:DXImageTransform.Microsoft.Matrix(M11=0.70710678, M12=0.70710678, M21=-0.70710678, M22=0.70710678)";
+	filter: progid:DXImageTransform.Microsoft.Matrix(M11=0.70710678, M12=0.70710678, M21=-0.70710678, M22=0.70710678);
+	}
+
+.leaflet-oldie .leaflet-control-zoom,
+.leaflet-oldie .leaflet-control-layers,
+.leaflet-oldie .leaflet-popup-content-wrapper,
+.leaflet-oldie .leaflet-popup-tip {
+	border: 1px solid #999;
+	}
+
+
+/* div icon */
+
+.leaflet-div-icon {
+	background: #fff;
+	border: 1px solid #666;
+	}
+
+
+/* Tooltip */
+/* Base styles for the element that has a tooltip */
+.leaflet-tooltip {
+	position: absolute;
+	padding: 6px;
+	background-color: #fff;
+	border: 1px solid #fff;
+	border-radius: 3px;
+	color: #222;
+	white-space: nowrap;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	pointer-events: none;
+	box-shadow: 0 1px 3px rgba(0,0,0,0.4);
+	}
+.leaflet-tooltip.leaflet-interactive {
+	cursor: pointer;
+	pointer-events: auto;
+	}
+.leaflet-tooltip-top:before,
+.leaflet-tooltip-bottom:before,
+.leaflet-tooltip-left:before,
+.leaflet-tooltip-right:before {
+	position: absolute;
+	pointer-events: none;
+	border: 6px solid transparent;
+	background: transparent;
+	content: "";
+	}
+
+/* Directions */
+
+.leaflet-tooltip-bottom {
+	margin-top: 6px;
+}
+.leaflet-tooltip-top {
+	margin-top: -6px;
+}
+.leaflet-tooltip-bottom:before,
+.leaflet-tooltip-top:before {
+	left: 50%;
+	margin-left: -6px;
+	}
+.leaflet-tooltip-top:before {
+	bottom: 0;
+	margin-bottom: -12px;
+	border-top-color: #fff;
+	}
+.leaflet-tooltip-bottom:before {
+	top: 0;
+	margin-top: -12px;
+	margin-left: -6px;
+	border-bottom-color: #fff;
+	}
+.leaflet-tooltip-left {
+	margin-left: -6px;
+}
+.leaflet-tooltip-right {
+	margin-left: 6px;
+}
+.leaflet-tooltip-left:before,
+.leaflet-tooltip-right:before {
+	top: 50%;
+	margin-top: -6px;
+	}
+.leaflet-tooltip-left:before {
+	right: 0;
+	margin-right: -12px;
+	border-left-color: #fff;
+	}
+.leaflet-tooltip-right:before {
+	left: 0;
+	margin-left: -12px;
+	border-right-color: #fff;
+	}
+
+/* Printing */
+
+@media print {
+	/* Prevent printers from removing background-images of controls. */
+	.leaflet-control {
+		-webkit-print-color-adjust: exact;
+		print-color-adjust: exact;
+		}
+	}
+
+</style>
+<style>
+/* Water atlas layout (shared with the forest atlas): one-screen atlas app. Header with view switcher; Map view = filter rail + map + profile sheet; Statistics, Visit, NGO hub and Data views scroll inside the main area. */
+:root{
+  --bg:#edf2f5; --panel:#f9fbfc; --ink:#11202b; --muted:#536472; --line:#d0dbe2; --chip:#e1eaf0;
+  --accent:#155e94; --accent-ink:#ffffff; --sea:#d4e4ee; --land:#f5f6f2; --land-line:#9eabb4; --land-hi:#e2ebf1;
+  --label:#566874; --warn:#8f5200; --bad:#b3261e; --good:#1d6b3c; --shadow:0 10px 30px rgba(17,32,43,.14);
+  --g0:#2a78d6; --g1:#eb6834; --g2:#1baf7a; --g3:#eda100; --g4:#e87ba4; --g5:#008300; --g6:#4a3aa7; --g7:#52514e;
+  --river:#4f8fca; --river2:#9cc3e6; --lake:#8fc0e8; --bar:#1f6fae; --bar2:#a9cbe6; --loss:#c2452d;
+  --s0:#6b7a86; --s1:#b07800; --s2:#c2452d; --s3:#8e1b1b;
+  --f-display:"Bricolage Grotesque","Avenir Next","Segoe UI",system-ui,sans-serif;
+  --f-body:"Public Sans","Segoe UI",system-ui,-apple-system,sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,"SFMono-Regular",Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --bg:#0d151b; --panel:#121d25; --ink:#e3ebf0; --muted:#97a8b4; --line:#26363f; --chip:#1b2832;
+  --accent:#5aa9e6; --accent-ink:#06121b; --sea:#0a1319; --land:#16222b; --land-line:#3c505d; --land-hi:#20313d;
+  --label:#a6b7c2; --warn:#e2a54a; --bad:#f07b6e; --good:#5cc28a; --shadow:0 10px 30px rgba(0,0,0,.5);
+  --g0:#3987e5; --g1:#d95926; --g2:#199e70; --g3:#c98500; --g4:#d55181; --g5:#2f9a2f; --g6:#9085e9; --g7:#a3a29a;
+  --river:#3f86c4; --river2:#2a4f6e; --lake:#2c5d86; --bar:#5aa9e6; --bar2:#25465f; --loss:#f07b5c;
+  --s0:#8696a2; --s1:#e2a54a; --s2:#f07b5c; --s3:#ff4d4d; color-scheme:dark; } }
+:root[data-theme="dark"]{
+  --bg:#0d151b; --panel:#121d25; --ink:#e3ebf0; --muted:#97a8b4; --line:#26363f; --chip:#1b2832;
+  --accent:#5aa9e6; --accent-ink:#06121b; --sea:#0a1319; --land:#16222b; --land-line:#3c505d; --land-hi:#20313d;
+  --label:#a6b7c2; --warn:#e2a54a; --bad:#f07b6e; --good:#5cc28a; --shadow:0 10px 30px rgba(0,0,0,.5);
+  --g0:#3987e5; --g1:#d95926; --g2:#199e70; --g3:#c98500; --g4:#d55181; --g5:#2f9a2f; --g6:#9085e9; --g7:#a3a29a;
+  --river:#3f86c4; --river2:#2a4f6e; --lake:#2c5d86; --bar:#5aa9e6; --bar2:#25465f; --loss:#f07b5c;
+  --s0:#8696a2; --s1:#e2a54a; --s2:#f07b5c; --s3:#ff4d4d; color-scheme:dark; }
+html,body{height:100%}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:14px;line-height:1.45}
+*{box-sizing:border-box}
+button,input,select,textarea{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+a{color:var(--accent)}
+.app{display:grid;grid-template-rows:auto 1fr;height:100%}
+header.top{display:flex;flex-wrap:wrap;align-items:center;gap:10px 24px;padding:10px 18px;border-bottom:1px solid var(--line);background:var(--panel)}
+.brand{display:flex;align-items:center;gap:10px;min-width:0}
+.brand h1{font-family:var(--f-display);font-weight:800;font-size:21px;letter-spacing:-.01em;margin:0;line-height:1.1}
+.brand .sub{font-size:12px;color:var(--muted)}
+.mark{width:28px;height:28px;flex:none}
+nav.views{display:flex;gap:4px;margin-left:auto;flex-wrap:wrap}
+nav.views a{white-space:nowrap;text-decoration:none;color:var(--muted);font-weight:600;font-size:13.5px;padding:7px 12px;border-radius:8px}
+nav.views a:hover{background:var(--chip);color:var(--ink)}
+nav.views a[aria-current="page"]{background:var(--ink);color:var(--panel)}
+main{min-height:0;position:relative}
+.view{height:100%;overflow:auto}
+.view[hidden]{display:none!important}
+#v-map{display:grid;grid-template-columns:minmax(300px,370px) 1fr;overflow:hidden}
+aside.rail{border-right:1px solid var(--line);background:var(--panel);display:flex;flex-direction:column;min-height:0;min-width:0}
+.filters{padding:14px 16px 10px;display:grid;gap:10px;border-bottom:1px solid var(--line)}
+.search{position:relative;display:block}
+.search input{width:100%;padding:9px 12px 9px 34px;border:1px solid var(--line);border-radius:8px;background:var(--bg)}
+.search svg{position:absolute;left:10px;top:50%;transform:translateY(-50%);width:16px;height:16px;stroke:var(--muted)}
+.lbl{font-size:10.5px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);font-weight:600}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);background:var(--bg);border-radius:999px;padding:4px 10px 4px 8px;font-size:12px;cursor:pointer;user-select:none}
+.chip .dot{width:10px;height:10px;border-radius:50%;background:var(--c);flex:none}
+.chip .n{font-family:var(--f-mono);font-size:11px;color:var(--muted)}
+.chip[aria-pressed="false"]{opacity:.5}
+.chip[aria-pressed="false"] .dot{background:transparent;box-shadow:inset 0 0 0 2px var(--c)}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+select,input[type=text],input[type=date],input[type=url],textarea{width:100%;padding:7px 9px;border:1px solid var(--line);border-radius:8px;background:var(--bg)}
+.toggle{display:flex;align-items:center;gap:8px;font-size:13px;cursor:pointer}
+.toggle input{accent-color:var(--accent);width:16px;height:16px}
+.resbar{display:flex;justify-content:space-between;align-items:center;padding:8px 16px;font-size:12px;color:var(--muted);border-bottom:1px solid var(--line);gap:8px}
+.linkbtn{background:none;border:0;color:var(--accent);font-weight:600;cursor:pointer;padding:0}
+.listwrap{overflow:auto;flex:1;min-height:0}
+ul.list{list-style:none;margin:0;padding:0}
+ul.list li button{display:grid;grid-template-columns:12px 1fr auto;gap:10px;align-items:start;width:100%;text-align:left;background:none;border:0;border-bottom:1px solid var(--line);padding:9px 16px;cursor:pointer}
+ul.list li button:hover,ul.list li button.on{background:var(--chip)}
+.li-dot{width:10px;height:10px;border-radius:50%;margin-top:4px;background:var(--c)}
+.li-name{font-weight:600;font-size:13.5px;line-height:1.3}
+.li-meta{font-size:12px;color:var(--muted)}
+.li-tag{font-family:var(--f-mono);font-size:10.5px;color:var(--muted);white-space:nowrap;margin-top:2px;text-align:right}
+.lv{display:inline-block;font-family:var(--f-mono);font-size:10px;font-weight:500;border:1px solid var(--line);border-radius:4px;padding:0 4px;margin-left:6px;vertical-align:1px;color:var(--muted)}
+.lv.A{color:var(--good);border-color:currentColor}
+.btn{display:inline-flex;align-items:center;gap:6px;background:var(--chip);border:1px solid var(--line);border-radius:8px;padding:7px 12px;cursor:pointer;font-weight:600;font-size:13px;text-decoration:none;color:var(--ink)}
+.btn:hover{border-color:var(--accent)}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.btn.sm{padding:4px 9px;font-size:12px}
+.btn[disabled]{opacity:.5;cursor:not-allowed}
+.more{display:block;margin:12px auto 18px}
+.mapwrap{position:relative;min-width:0;min-height:0}
+#map{position:absolute;inset:0;background:var(--sea)}
+.leaflet-container{font-family:var(--f-body);background:var(--sea)}
+.maptools{position:absolute;top:12px;right:12px;z-index:500;display:flex;flex-direction:column;gap:8px;align-items:flex-end;max-width:calc(100% - 70px)}
+.seg{display:flex;flex-wrap:wrap;background:var(--panel);border:1px solid var(--line);border-radius:8px;overflow:hidden;box-shadow:var(--shadow)}
+.seg button{border:0;background:none;padding:6px 10px;font-size:12px;font-weight:600;color:var(--muted);cursor:pointer}
+.seg button[aria-pressed="true"]{background:var(--accent);color:var(--accent-ink)}
+.seg button[disabled]{opacity:.45;cursor:not-allowed}
+.note{max-width:280px;background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:8px 10px;font-size:12px;box-shadow:var(--shadow)}
+.legend{position:absolute;left:12px;bottom:22px;z-index:500;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:9px 11px;box-shadow:var(--shadow);font-size:11.5px;display:grid;grid-template-columns:auto auto;gap:3px 14px;max-width:calc(100% - 24px)}
+.legend .t,.legend .sm{grid-column:1/-1}
+.legend .t{font-family:var(--f-display);font-weight:700;font-size:13px;margin-bottom:2px}
+.legend .k{display:flex;align-items:center;gap:8px}
+.legend .sw{width:12px;height:12px;border-radius:3px;background:var(--c)}
+.legend .sm{font-size:11px;color:var(--muted);margin-top:4px;max-width:300px}
+.leaflet-tooltip.tip{background:var(--panel);color:var(--ink);border:1px solid var(--line);box-shadow:var(--shadow);font-family:var(--f-body);font-size:12px;padding:4px 8px;border-radius:6px}
+.leaflet-tooltip.tip:before{display:none}
+.st-label{font-family:var(--f-display);font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--label);white-space:nowrap;text-shadow:0 0 3px var(--land),0 0 3px var(--land);pointer-events:none}
+.leaflet-control-zoom a{background:var(--panel)!important;color:var(--ink)!important;border-color:var(--line)!important}
+.leaflet-control-attribution{background:color-mix(in srgb,var(--panel) 85%,transparent)!important;color:var(--muted)!important;max-width:70%}
+.leaflet-control-attribution a{color:var(--accent)!important}
+/* profile sheet */
+.sheet{position:absolute;top:0;right:0;bottom:0;width:min(470px,100%);background:var(--panel);border-left:1px solid var(--line);box-shadow:var(--shadow);z-index:1050;display:flex;flex-direction:column;transition:transform .25s ease}
+.sheet[hidden]{display:flex!important;transform:translateX(105%);visibility:hidden}
+.sheet-h{padding:14px 18px 12px;border-bottom:1px solid var(--line);display:grid;grid-template-columns:1fr auto;gap:8px}
+.sheet-h h2{font-family:var(--f-display);font-weight:800;font-size:23px;line-height:1.12;margin:4px 0 0;text-wrap:balance}
+.sheet-h .alt{font-size:12px;color:var(--muted);margin-top:4px}
+.actions{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:6px}
+.x{background:var(--chip);border:1px solid var(--line);border-radius:8px;width:34px;height:34px;cursor:pointer;font-size:18px;line-height:1}
+.pill{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--ink)}
+.pill i{width:9px;height:9px;border-radius:50%;background:var(--c)}
+.sheet-b{overflow:auto;padding:14px 18px 28px;display:flex;flex-direction:column;gap:16px}
+.sheet-b>*{flex-shrink:0}
+.facts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:10px;overflow:hidden;margin:0}
+.fact{background:var(--panel);padding:8px 10px;min-width:0}
+.fact dt{font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);font-weight:600}
+.fact dd{margin:2px 0 0;font-variant-numeric:tabular-nums;overflow-wrap:anywhere}
+.fact.w{grid-column:1/-1}
+.mono{font-family:var(--f-mono);font-size:12.5px}
+.desigs{display:flex;flex-wrap:wrap;gap:6px}
+.desigs span{font-size:11px;font-weight:600;background:var(--chip);border:1px solid var(--line);border-radius:4px;padding:1px 6px}
+.sec h3{font-family:var(--f-display);font-size:14.5px;font-weight:700;margin:0 0 4px}
+.sec p{margin:0;max-width:65ch}
+.verif{display:grid;grid-template-columns:auto 1fr;gap:10px;align-items:center;border:1px solid var(--line);border-radius:10px;padding:10px 12px;background:var(--bg)}
+.verif b.lvl{font-family:var(--f-display);font-size:24px;width:40px;height:40px;border-radius:8px;display:grid;place-items:center;border:2px solid var(--muted);color:var(--muted)}
+.verif b.lvl.A{border-color:var(--good);color:var(--good)}
+.verif b.lvl.B{border-color:var(--accent);color:var(--accent)}
+.verif b.lvl.D{border-color:var(--warn);color:var(--warn)}
+.verif div{font-size:12.5px}
+.photo{margin:0;border-radius:10px;overflow:hidden;border:1px solid var(--line);background:var(--bg)}
+.photo img{display:block;width:100%;height:220px;object-fit:cover}
+.photo figcaption{font-size:11.5px;color:var(--muted);padding:6px 10px}
+.photo.off{padding:10px 12px;font-size:12.5px}
+.galrow{display:flex;gap:6px;padding:0 10px 10px;overflow-x:auto}
+.galrow button{flex:0 0 64px;height:48px;padding:0;border:2px solid transparent;border-radius:6px;overflow:hidden;background:var(--panel);cursor:pointer;opacity:.7}
+.galrow button.on,.galrow button:hover{border-color:var(--accent,#007a4d);opacity:1}
+.galrow button img{width:100%;height:100%;object-fit:cover;display:block}
+.box.unesco{border-color:color-mix(in srgb,#2a78d6 45%,var(--line));background:color-mix(in srgb,#2a78d6 7%,var(--bg))}
+.box.unesco h3{color:#2a78d6}
+.box{border:1px solid var(--line);border-radius:10px;padding:12px;background:var(--bg)}
+.box h3{font-family:var(--f-display);font-size:14.5px;margin:0 0 8px;display:flex;justify-content:space-between;align-items:baseline;gap:8px}
+.box h3 small{font-family:var(--f-body);font-size:11px;font-weight:500;color:var(--muted)}
+.box dl{margin:0;display:grid;gap:6px}
+.box dt{font-weight:600;font-size:12px}
+.box dd{margin:0;font-size:13px;color:var(--muted)}
+.kv{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-bottom:8px}
+.kv div{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:6px 8px}
+.kv b{display:block;font-family:var(--f-display);font-size:18px;font-variant-numeric:tabular-nums}
+.kv span{font-size:10.5px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+.splist{list-style:none;margin:0;padding:0;font-size:12.5px;display:grid;gap:3px}
+.splist li{display:flex;justify-content:space-between;gap:8px}
+.splist i{color:var(--ink)}
+.iucn{font-family:var(--f-mono);font-size:10px;font-weight:600;border-radius:3px;padding:0 4px;color:#fff}
+.iucn.CR{background:#b3261e}.iucn.EN{background:#c2560c}.iucn.VU{background:#9a7b00}.iucn.NT{background:#5c6e2e}
+.thumbs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px}
+.thumbs a{display:block;text-decoration:none;color:var(--muted);font-size:10.5px;line-height:1.25}
+.thumbs img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:6px;display:block;background:var(--chip)}
+.zone .zt{font-size:10.5px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);font-weight:700}
+.zone h4{font-family:var(--f-display);margin:2px 0 6px;font-size:15px}
+.zone{border-style:dashed}
+.gap{font-size:12.5px;color:var(--warn);border-left:3px solid var(--warn);padding:2px 0 2px 10px}
+.links{display:flex;flex-wrap:wrap;gap:8px}
+.links a{font-size:12.5px;font-weight:600;color:var(--accent);text-decoration:none;border:1px solid var(--line);border-radius:8px;padding:6px 10px;background:var(--bg)}
+.links a:hover{border-color:var(--accent)}
+.srcs{font-size:12px;margin:0;padding-left:18px;color:var(--muted);overflow-wrap:anywhere}
+.cite{font-size:12px;background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:8px 10px;font-family:var(--f-mono);white-space:pre-wrap;overflow-wrap:anywhere;margin:0}
+.wx{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:4px;text-align:center;font-size:11px}
+.wx div{background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:4px 2px}
+.wx b{display:block;font-size:12.5px;font-variant-numeric:tabular-nums}
+.loading{color:var(--muted);font-size:12.5px}
+/* page views */
+.page{max-width:1240px;margin:0 auto;padding:24px 20px 60px}
+.page h2.title{font-family:var(--f-display);font-weight:800;font-size:clamp(26px,3.4vw,38px);margin:0 0 6px;letter-spacing:-.015em;text-wrap:balance}
+.page .lede{color:var(--muted);max-width:72ch;margin:0 0 20px;font-size:15px}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:12px;overflow:hidden;margin-bottom:24px}
+.kpi{background:var(--panel);padding:14px 16px;min-width:0}
+.kpi b{display:block;font-family:var(--f-display);font-size:28px;font-weight:700;line-height:1.05;font-variant-numeric:tabular-nums}
+.kpi span{display:block;font-size:12.5px;color:var(--muted);margin-top:4px}
+.kpi small{display:block;font-size:10.5px;color:var(--muted);margin-top:6px}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,520px),1fr));gap:18px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px 18px;min-width:0;display:flex;flex-direction:column;gap:10px}
+.card h3{font-family:var(--f-display);font-size:17px;margin:0;line-height:1.2}
+.card .sub{font-size:12.5px;color:var(--muted);margin-top:2px}
+.card .foot{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:8px;border-top:1px solid var(--line);padding-top:8px;font-size:11.5px;color:var(--muted)}
+.card .foot .acts{display:flex;gap:6px}
+.chart{position:relative;min-width:0}
+.chart svg{display:block;width:100%;height:auto;overflow:visible}
+.chart text{fill:var(--muted);font-size:11px;font-family:var(--f-body)}
+.chart .lab{fill:var(--ink)}
+.chart .gridl{stroke:var(--line);stroke-width:1}
+.vtip{position:absolute;pointer-events:none;background:var(--ink);color:var(--panel);font-size:12px;padding:5px 8px;border-radius:6px;white-space:nowrap;transform:translate(-50%,-110%);z-index:5}
+.tbl-wrap{overflow:auto;max-height:340px;border:1px solid var(--line);border-radius:8px}
+table.dt{width:100%;border-collapse:collapse;font-size:12.5px}
+table.dt th{position:sticky;top:0;background:var(--panel);text-align:left;font-size:10.5px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);padding:7px 10px;border-bottom:1px solid var(--line)}
+table.dt td{padding:6px 10px;border-bottom:1px solid var(--line);font-variant-numeric:tabular-nums}
+table.dt td.n,table.dt th.n{text-align:right}
+table.dt tbody tr.click{cursor:pointer}
+table.dt tbody tr.click:hover{background:var(--chip)}
+.commit{display:grid;gap:10px}
+.commit div{border-left:3px solid var(--accent);padding:2px 0 2px 12px}
+.commit b{display:block}
+.commit span{font-size:13px;color:var(--muted)}
+.vgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr));gap:16px}
+.vcard{background:var(--panel);border:1px solid var(--line);border-radius:12px;overflow:hidden;display:flex;flex-direction:column}
+.vcard .ph{height:150px;background:linear-gradient(135deg,var(--c),color-mix(in srgb,var(--c) 40%,var(--panel)));position:relative}
+.vcard .ph img{width:100%;height:100%;object-fit:cover;display:block}
+.vcard .ph .ready{position:absolute;left:10px;top:10px}
+.vcard .bd{padding:12px 14px;display:flex;flex-direction:column;gap:6px;flex:1}
+.vcard h3{font-family:var(--f-display);font-size:17px;margin:0;line-height:1.2}
+.vcard .meta{font-size:12.5px;color:var(--muted)}
+.vcard p{margin:0;font-size:13px}
+.vcard .bt{display:flex;gap:6px;flex-wrap:wrap;margin-top:auto;padding-top:6px}
+.ready{font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;padding:3px 8px;border-radius:999px;background:var(--panel);border:1px solid var(--line);color:var(--ink)}
+.ready.Established{color:var(--good);border-color:currentColor}
+.ready.Limited,.ready.Closed{color:var(--bad);border-color:currentColor}
+.safety{font-size:12px;color:var(--bad)}
+.filterbar{display:flex;flex-wrap:wrap;gap:10px;align-items:end;margin-bottom:16px}
+.filterbar>div{min-width:160px;flex:1;max-width:260px}
+.form{display:grid;gap:10px}
+.form .two{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.form label{display:grid;gap:4px;font-size:12.5px;font-weight:600}
+textarea{min-height:90px;resize:vertical}
+.feed{display:grid;gap:10px}
+.rep{border:1px solid var(--line);border-radius:10px;padding:10px 12px;background:var(--bg)}
+.rep .h{display:flex;flex-wrap:wrap;gap:8px;align-items:center;font-size:12px;color:var(--muted)}
+.rep b{font-size:14px;color:var(--ink)}
+.rep p{margin:6px 0 0;font-size:13px}
+.typechip{font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;background:var(--chip);border-radius:4px;padding:1px 6px;color:var(--ink)}
+.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:var(--ink);color:var(--panel);padding:10px 16px;border-radius:10px;z-index:2000;font-size:13px;box-shadow:var(--shadow)}
+.srctbl td:first-child{font-weight:600}
+.prose p,.prose li{max-width:75ch}
+.prose h3{font-family:var(--f-display);font-size:18px;margin:22px 0 6px}
+.gaplist{font-size:12.5px}
+.gaplist b{display:block;margin-top:6px}
+.legbtn{display:none}
+@media (max-width:860px){
+  html,body{height:auto}
+  .app{display:block}
+  .view{height:auto;overflow:visible}
+  #v-map{display:flex;flex-direction:column}
+  .mapwrap{height:62vh;min-height:360px;order:1}
+  aside.rail{order:2;border-right:0;border-top:1px solid var(--line)}
+  .listwrap{overflow:visible}
+  nav.views{margin-left:0;width:100%;overflow-x:auto;flex-wrap:nowrap}
+  .sheet{position:fixed;top:auto;left:0;right:0;bottom:0;width:100%;height:80vh;border-left:0;border-top:1px solid var(--line);border-radius:14px 14px 0 0;padding-bottom:env(safe-area-inset-bottom,0px)}
+  .sheet[hidden]{transform:translateY(105%)}
+  .legend{display:none}
+  .legend.open{display:grid}
+  .legbtn{display:inline-block}
+  .form .two{grid-template-columns:1fr}
+}
+@media (prefers-reduced-motion:reduce){.sheet{transition:none}}
+</style>
+
+<style>[hidden]{display:none!important}
+body{margin:0;display:flex;flex-direction:column}
+.sitebar{z-index:1100!important}
+.app{flex:1;min-height:0;height:auto}
+@media (max-width:860px){body{display:block}}</style>
+<style>
+/* water-atlas additions */
+.status{display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;border:1px solid currentColor;border-radius:999px;padding:2px 8px 2px 6px;white-space:nowrap}
+.status svg{width:12px;height:12px;flex:none}
+.status.s0{color:var(--s0)}.status.s1{color:var(--s1)}.status.s2{color:var(--s2)}.status.s3{color:var(--s3)}.status.sx{color:var(--muted);border-style:dashed}
+.ggrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,330px),1fr));gap:14px}
+.gcard{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px 14px;display:flex;flex-direction:column;gap:6px;min-width:0}
+.gcard h3{font-family:var(--f-display);font-size:16px;margin:0;line-height:1.2}
+.gcard .meta{font-size:12px;color:var(--muted)}
+.gcard .row{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap}
+.gcard .num{font-family:var(--f-display);font-size:22px;font-weight:700;font-variant-numeric:tabular-nums}
+.gcard .num small{font-family:var(--f-body);font-size:12px;color:var(--muted);font-weight:500}
+.qchart{position:relative}
+.qchart svg{display:block;width:100%;height:auto;overflow:visible}
+.qchart text{fill:var(--muted);font-size:10.5px;font-family:var(--f-body)}
+.qchart .gridl{stroke:var(--line)}
+.qkey{display:flex;flex-wrap:wrap;gap:4px 12px;font-size:11px;color:var(--muted)}
+.qkey i{display:inline-block;width:14px;height:0;border-top:2px solid var(--c);vertical-align:3px;margin-right:4px}
+.qkey i.band{height:8px;border:0;background:var(--c);opacity:.35;vertical-align:0}
+.qkey i.dash{border-top-style:dashed}
+.callout{border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:8px;padding:10px 12px;background:var(--panel);font-size:13px;max-width:90ch}
+.callout.warn{border-left-color:var(--s1)}
+.legend .ln{width:16px;height:0;border-top:2.5px solid var(--c);border-radius:2px}
+.legend .ar{width:12px;height:10px;border-radius:2px;background:var(--c);opacity:.7}
+.legend .sq{width:12px;height:12px;border-radius:2px;background:var(--c)}
+.ha-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,270px),1fr));gap:12px}
+.ha{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px 14px}
+.ha .id{font-family:var(--f-mono);font-size:11px;color:var(--muted)}
+.ha h4{font-family:var(--f-display);font-size:16px;margin:2px 0 6px}
+.ha p{margin:0 0 8px;font-size:12.5px;color:var(--muted)}
+.ha .kv{grid-template-columns:repeat(2,minmax(0,1fr));margin:0}
+.wiki{font-size:13px;margin:0;max-width:65ch}
+.wiki-src{font-size:11px;color:var(--muted);margin-top:4px}
+.minilist{list-style:none;margin:0;padding:0;font-size:12.5px;display:grid;gap:2px}
+.minilist li{display:flex;justify-content:space-between;gap:8px}
+.minilist a{color:var(--accent);text-decoration:none;cursor:pointer}
+.page h3.sh{font-family:var(--f-display);font-size:22px;margin:32px 0 10px}
+.seg button.busy{opacity:.6}
+.facts>.fact:last-child:nth-child(odd){grid-column:1/-1}
+@media (max-width:860px){.maptools .seg,.maptools .note{display:none}.maptools.open .seg{display:flex}.maptools.open .note:not([hidden]){display:block}}
+</style>
+</head>
+<body>
+<div class="app">
+  <header class="top">
+    <div class="brand">
+      <svg class="mark" viewBox="0 0 32 32" aria-hidden="true"><path d="M16 2.5C11.5 9.5 7 15 7 20.5a9 9 0 0 0 18 0C25 15 20.5 9.5 16 2.5Z" fill="var(--accent)"/><path d="M10.5 21.5c2-1.6 3.7-1.6 5.5 0s3.5 1.6 5.5 0" stroke="var(--panel)" stroke-width="1.8" fill="none" stroke-linecap="round"/></svg>
+      <div><h1>Nigeria Water Resources Atlas</h1><div class="sub">Rivers, dams, lakes, wetlands, groundwater and flood watch · 36 states and the FCT</div></div>
+    </div>
+    <nav class="views" aria-label="Sections">
+      <a href="#map" data-v="map">Map</a>
+      <a href="#flood" data-v="flood">Flood watch</a>
+      <a href="#basins" data-v="basins">Basins &amp; groundwater</a>
+      <a href="#stats" data-v="stats">Statistics</a>
+      <a href="#visit" data-v="visit">Visit</a>
+      <a href="#ngo" data-v="ngo">Community hub</a>
+      <a href="#data" data-v="data">Data &amp; sources</a>
+    </nav>
+  </header>
+  <main>
+    <section class="view" id="v-map">
+      <aside class="rail">
+        <div class="filters">
+          <label class="search"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg>
+            <input id="q" type="search" placeholder="Search name, river, state (e.g. Kainji, Benue)" aria-label="Search the atlas"></label>
+          <div><div class="lbl">Show</div><div class="chips" id="cats" style="margin-top:6px"></div></div>
+          <div class="row2">
+            <div><div class="lbl" style="margin-bottom:4px">State</div><select id="state" aria-label="State"></select></div>
+            <div><div class="lbl" style="margin-bottom:4px">River basin</div><select id="basin" aria-label="River basin"></select></div>
+          </div>
+          <div class="row2">
+            <div><div class="lbl" style="margin-bottom:4px">Verification</div><select id="lvl" aria-label="Verification level"><option value="">All levels</option><option value="A">A · documented</option><option value="AB">A–B · sourced</option><option value="D">D · location uncertain</option></select></div>
+            <div><div class="lbl" style="margin-bottom:4px">Sort</div><select id="sort" aria-label="Sort"><option value="size">Largest first</option><option value="doc">Best documented</option><option value="year">Newest first</option><option value="name">A–Z</option></select></div>
+          </div>
+        </div>
+        <div class="resbar"><span id="count"></span><button id="reset" class="linkbtn" type="button">Reset filters</button></div>
+        <div class="listwrap"><ul class="list" id="list"></ul><button class="btn more" id="more" type="button" hidden>Show more</button></div>
+      </aside>
+      <div class="mapwrap">
+        <div id="map" role="region" aria-label="Map of Nigeria's water resources"></div>
+        <div class="maptools">
+          <div class="seg" id="base" aria-label="Basemap"></div>
+          <div class="seg" id="ovl" aria-label="Layers"></div>
+          <div style="display:flex;gap:6px"><button type="button" class="btn sm legbtn" id="laybtn" aria-expanded="false">Layers</button><button type="button" class="btn sm legbtn" id="legbtn">Legend</button></div>
+          <div class="note" id="tilenote" hidden></div>
+        </div>
+        <div class="legend" id="legend"></div>
+        <section class="sheet" id="sheet" hidden aria-label="Profile">
+          <div class="sheet-h"><div id="sh-head"></div><button class="x" id="close" type="button" aria-label="Close profile">×</button><div class="actions" id="sh-act"></div></div>
+          <div class="sheet-b" id="sh-body"></div>
+        </section>
+      </div>
+    </section>
+    <section class="view" id="v-flood" hidden><div class="page" id="flood"></div></section>
+    <section class="view" id="v-basins" hidden><div class="page" id="basins"></div></section>
+    <section class="view" id="v-stats" hidden><div class="page" id="stats"></div></section>
+    <section class="view" id="v-visit" hidden><div class="page" id="visit"></div></section>
+    <section class="view" id="v-ngo" hidden><div class="page" id="ngo"></div></section>
+    <section class="view" id="v-data" hidden><div class="page prose" id="data"></div></section>
+  </main>
+</div>
+<div class="toast" id="toast" hidden></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.js"></script>
+<script>
+/* Nigeria Water Resources Atlas — app script (built on the Nigeria Forest Reserves Atlas framework) */
+const CONFIG={
+  issuesRepo:'lordash001/lordash001.github.io',   // GitHub repo that receives field reports and corrections
+  siteUrl:'https://shagbaor.com/water-atlas/',
+  dataUrl:'data/atlas.json',
+  forestUrl:'/forest-atlas/'
+};
+let DATA=/*DATA*/null;
+const GROUPS=['Dams and reservoirs','Dams in the UNICEF list','Lakes and lagoons','Waterfalls and springs','Ramsar wetlands','Rivers','Flood-watch gauges','Basin authorities (HQ)'];
+const GOF={0:0,9:0,1:1,2:2,3:2,4:3,5:3,6:4,7:5,8:6,10:7};
+const LEVELS={A:'Named record (Global Dam Watch, Wikidata or the Ramsar/WDPA register) backed by a Wikipedia article, photographs or a multi-source profile.',
+  B:'Named record from Global Dam Watch, Wikidata, the Ramsar/WDPA register, a Wikipedia article or another published source.',
+  C:'Location from satellite-mapped reservoirs or a single listing, with no site-specific profile yet.',
+  D:'Listed only in the UNICEF Nigeria dam list. Coordinates are rounded to the nearest minute and may be wrong; treat as provisional.'};
+const CITIES={Abuja:[9.0765,7.3986],Lagos:[6.5244,3.3792],Ibadan:[7.3775,3.947],'Port Harcourt':[4.8156,7.0498],Kano:[12.0022,8.592],Enugu:[6.4584,7.5464],Calabar:[4.9757,8.3417],'Benin City':[6.335,5.6037],Jos:[9.8965,8.8583],Kaduna:[10.5105,7.4165],Maiduguri:[11.8311,13.151],Yola:[9.2035,12.4954],Sokoto:[13.0059,5.2476],Ilorin:[8.4966,4.5421],Akure:[7.2571,5.2058],Bauchi:[10.3158,9.8442],Makurdi:[7.7322,8.5391],Lokoja:[7.8023,6.7333]};
+const STATUS=[{k:'Normal',d:'Below the wettest 10% of flows for this time of year (1991–2020).'},{k:'Elevated',d:'Among the wettest 10% of flows for this time of year.'},{k:'High',d:'Well above normal: past the midpoint between the 90th percentile and the highest flow recorded for this time of year.'},{k:'Exceptional',d:'Above the highest flow modelled for this time of year in 1991–2020.'}];
+const SHAPE=['<circle cx="6" cy="6" r="4.5" fill="currentColor"/>','<path d="M6 1.5 11 10.5H1Z" fill="currentColor"/>','<path d="M6 1 11 6 6 11 1 6Z" fill="currentColor"/>','<path d="M4 1h4l3 3v4l-3 3H4L1 8V4Z" fill="currentColor"/>'];
+const fmt=new Intl.NumberFormat('en-GB'),fmt1=new Intl.NumberFormat('en-GB',{maximumFractionDigits:1});
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const css=n=>getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+const gcol=g=>css('--g'+g);
+const today=new Date().toISOString().slice(0,10);
+const imgUrl=(p,w)=>p[5]?`https://upload.wikimedia.org/wikipedia/commons/${p[1]}`:`https://upload.wikimedia.org/wikipedia/commons/thumb/${p[1]}/${w}px-${p[1].split('/').pop()}${/\.(tiff?)$/i.test(p[1])?'.jpg':''}`;
+const pageUrl=p=>'https://commons.wikimedia.org/wiki/File:'+encodeURIComponent(p[0].replace(/ /g,'_'));
+const capOf=p=>p[6]||p[0].replace(/\.\w+$/,'').replace(/_/g,' ').replace(/\s+\(\d+\)$/,'');
+const imgTag=(p,w,fb,alt,cls)=>`<img src="${imgUrl(p,w)}" data-alt="${imgUrl(p,fb)}" alt="${esc(alt??capOf(p))}" loading="lazy" ${cls?`class="${cls}"`:''} onerror="if(!this.dataset.f&&this.dataset.alt!==this.src){this.dataset.f=1;this.src=this.dataset.alt}else{this.remove()}">`;
+const track=(n,t)=>{try{window.SiteTrack&&window.SiteTrack(n,t)}catch(e){}};
+function toast(t){const e=$('#toast');e.textContent=t;e.hidden=false;clearTimeout(toast.t);toast.t=setTimeout(()=>e.hidden=true,3200)}
+function store(k,v){try{if(v===undefined)return JSON.parse(localStorage.getItem('ngwra.'+k)||'null');localStorage.setItem('ngwra.'+k,JSON.stringify(v))}catch(e){return null}}
+async function copy(text){try{await navigator.clipboard.writeText(text);toast('Copied to clipboard')}catch(e){const ta=document.createElement('textarea');ta.value=text;document.body.appendChild(ta);ta.select();try{document.execCommand('copy');toast('Copied to clipboard')}catch(_){toast('Select the text and copy it manually')}ta.remove()}}
+function km(a,b){const R=6371,dl=(b[0]-a[0])*Math.PI/180,dn=(b[1]-a[1])*Math.PI/180;const x=Math.sin(dl/2)**2+Math.cos(a[0]*Math.PI/180)*Math.cos(b[0]*Math.PI/180)*Math.sin(dn/2)**2;return 2*R*Math.asin(Math.sqrt(x))}
+const statusChip=(s,label)=>s==null?`<span class="status sx">${esc(label||'No reading')}</span>`:`<span class="status s${s}" title="${esc(STATUS[s].d)}"><svg viewBox="0 0 12 12" aria-hidden="true">${SHAPE[s]}</svg>${esc(label||STATUS[s].k)}</span>`;
+let LIVE=false, CAP={db:null,user:null,downloads:null};
+
+/* ---------- downloads ---------- */
+async function saveFile(name,text,type){
+  track('download/'+name,'Downloaded '+name);
+  if(CAP.downloads){try{await CAP.downloads.save({filename:name,data:new Blob([text],{type})});return}catch(e){if(e&&e.code==='declined')return;}}
+  try{const u=URL.createObjectURL(new Blob([text],{type}));const a=document.createElement('a');a.href=u;a.download=name;document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(u);a.remove()},500)}catch(e){toast('Download is not available here; use the Data page on the hosted site')}
+}
+function toCSV(rows){if(!rows.length)return'';const k=Object.keys(rows[0]);const q=v=>v==null?'':/[",\n]/.test(String(v))?'"'+String(v).replace(/"/g,'""')+'"':String(v);return[k.join(','),...rows.map(r=>k.map(x=>q(r[x])).join(','))].join('\n')}
+const lazy={};
+async function loadJSON(name){if(lazy[name])return lazy[name];lazy[name]=fetch('data/'+name).then(r=>{if(!r.ok)throw new Error(r.status);return r.json()});return lazy[name]}
+
+/* ---------- boot ---------- */
+(async function boot(){
+  if(!DATA){try{DATA=await (await fetch(CONFIG.dataUrl)).json()}catch(e){document.body.innerHTML='<p style="padding:24px">The atlas data file (data/atlas.json) could not be loaded. Serve this folder over HTTP (for example GitHub Pages) rather than opening the file directly.</p>';return}}
+  try{const c=new AbortController();setTimeout(()=>c.abort(),4000);const r=await fetch('https://flood-api.open-meteo.com/v1/flood?latitude=7.8&longitude=6.7&daily=river_discharge&forecast_days=1',{signal:c.signal});LIVE=r.ok}catch(e){LIVE=false}
+  init();
+  if(window.claude&&window.claude.use){
+    claude.use('downloads').then(d=>CAP.downloads=d).catch(()=>{});
+    Promise.all([claude.use('db'),claude.use('user')]).then(([db,user])=>{CAP.db=db;CAP.user=user;if(db)startReports()}).catch(()=>{});
+  }
+})();
+
+let F,STATES,BY={},BASINS=[];
+function init(){
+  F=DATA.f;STATES=[...new Set(DATA.st.map(s=>s.n))].sort();
+  F.forEach(f=>{BY[f.i]=f;f.gp=GOF[f.c];f.pics=f.pics||[];
+    if(f.ph||f.photo){const P=f.photo;if(P&&!f.pics.some(q=>q[1]===P.path))f.pics.push([P.file,P.path,P.author,P.license,'cur',!!P.orig,P.caption]);(f.ph||[]).forEach(p=>{if(!f.pics.some(q=>q[1]===p[1]))f.pics.push(p)})}
+    f.st=f.s?f.s.split(';').map(x=>x.trim()):[];
+    f.size=f.cap!=null?f.cap:f.rlen!=null?f.rlen*10:f.akm!=null?f.akm*5:f.a?f.a/100:f.qmean?f.qmean:0;
+    f.txt=[f.n,f.alt,f.s,f.river,f.basin,f.sub,f.city,f.use,f.notes,f.wt&&f.wt.t,f.wdname,f.inv,f.hq,f.fauna].filter(Boolean).join(' ').toLowerCase();});
+  BASINS=[...new Set(F.map(f=>f.bn).filter(Boolean))].sort();
+  initMap();initFilters();renderLegend();update();
+  window.addEventListener('hashchange',route);route();
+}
+
+/* ---------- routing ---------- */
+const VIEWS=['map','flood','basins','stats','visit','ngo','data'];const built={};
+function route(){
+  let h=location.hash.slice(1)||'map';let site=null;
+  if(!VIEWS.includes(h)){if(BY[h]){site=BY[h];h='map'}else h='map'}
+  VIEWS.forEach(v=>{$('#v-'+v).hidden=v!==h});
+  $$('nav.views a').forEach(a=>{if(a.dataset.v===h)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current')});
+  if(h==='map'){setTimeout(()=>map.invalidateSize(),50);if(site)select(site,false)}
+  track('view/'+h,'Opened section: '+h);
+  if(!built[h]){built[h]=1;({flood:buildFlood,basins:buildBasins,stats:buildStats,visit:buildVisit,ngo:buildNgo,data:buildData}[h]||(()=>{}))()}
+}
+function goSite(id){location.hash=id}
+
+/* ---------- map ---------- */
+let map,canvas,statesLayer,labelLayer,siteLayer,netLayer,lakeLayer,tile=null,ovl={},hiState=null;
+const BASES={
+  outline:{n:'Outline'},
+  map:{n:'Map',u:()=>isDark()?'https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}':'https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}',lab:()=>isDark()?'https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Reference/MapServer/tile/{z}/{y}/{x}':null,a:'Basemap © Esri, HERE, Garmin, © OpenStreetMap contributors',mz:16},
+  sat:{n:'Satellite',u:()=>'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',a:'Imagery © Esri, Maxar, Earthstar Geographics',mz:18},
+  topo:{n:'Terrain',u:()=>'https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png',a:'© OpenTopoMap (CC-BY-SA), © OpenStreetMap contributors',mz:17},
+  nasa:{n:'NASA daily',u:()=>`https://gibs.earthdata.nasa.gov/wmts/epsg3857/best/VIIRS_SNPP_CorrectedReflectance_TrueColor/default/${new Date(Date.now()-864e5*2).toISOString().slice(0,10)}/GoogleMapsCompatible_Level9/{z}/{y}/{x}.jpg`,a:'Imagery: NASA GIBS / VIIRS SNPP corrected reflectance (2 days ago)',mz:9}
+};
+const isDark=()=>document.documentElement.dataset.theme==='dark'||(document.documentElement.dataset.theme!=='light'&&matchMedia('(prefers-color-scheme: dark)').matches);
+const OVERLAYS={
+  net:{n:'River network',on:1},
+  lakes:{n:'Lakes',on:1},
+  basins:{n:'Basins'},
+  flood:{n:'Flood risk 2024'},
+  wp:{n:'Water points'},
+  gsw:{n:'Surface water 1984–2021',tile:'https://storage.googleapis.com/global-surface-water/tiles2021/occurrence/{z}/{x}/{y}.png',a:'Surface water: EC JRC / Google, Global Surface Water (Pekel et al. 2016)',mz:13,live:1}
+};
+function stateStyle(hi){const onTile=!!tile;return onTile?{color:'#ffffff',weight:hi?2.5:1,fillOpacity:0,opacity:.75}:{color:css('--land-line'),weight:hi?2:.8,fillColor:hi?css('--land-hi'):css('--land'),fillOpacity:1,opacity:1}}
+function initMap(){
+  map=L.map('map',{preferCanvas:true,zoomSnap:.25,minZoom:5,maxZoom:17}).fitBounds([[4.1,2.6],[13.95,14.7]]);
+  map.attributionControl.setPrefix(false);
+  map.attributionControl.addAttribution('Boundaries: geoBoundaries · Rivers and lakes: DIVA-GIS (DCW), Natural Earth · Dams: Global Dam Watch · see Data & sources');
+  map.createPane('states');map.getPane('states').style.zIndex=350;map.createPane('lakes');map.getPane('lakes').style.zIndex=390;map.createPane('net');map.getPane('net').style.zIndex=395;
+  canvas=L.canvas({padding:.3,tolerance:4});
+  statesLayer=L.geoJSON({type:'FeatureCollection',features:DATA.st.map(s=>({type:'Feature',properties:{n:s.n},geometry:{type:s.t,coordinates:s.g}}))},{renderer:L.canvas({padding:.3,pane:'states'}),interactive:false,style:()=>stateStyle(false)}).addTo(map);
+  labelLayer=L.layerGroup();
+  DATA.st.forEach(s=>L.marker([s.c[1],s.c[0]],{interactive:false,icon:L.divIcon({className:'st-label',html:esc(s.n),iconSize:null})}).addTo(labelLayer));
+  const tl=()=>{const z=map.getZoom();if(z>=6.25&&z<9.5){if(!map.hasLayer(labelLayer))labelLayer.addTo(map)}else map.removeLayer(labelLayer)};map.on('zoomend',tl);tl();
+  const nr=L.canvas({padding:.3,pane:'net'}),lr=L.canvas({padding:.3,pane:'lakes'});
+  netLayer=L.layerGroup();
+  const N=DATA.net||{};(N.p||[]).forEach(l=>L.polyline(l.map(c=>[c[1],c[0]]),{renderer:nr,interactive:false,color:css('--river'),weight:1,opacity:.75}).addTo(netLayer));
+  (N.i||[]).forEach(l=>L.polyline(l.map(c=>[c[1],c[0]]),{renderer:nr,interactive:false,color:css('--river'),weight:1,opacity:.6,dashArray:'3 3'}).addTo(netLayer));
+  lakeLayer=L.layerGroup();
+  (DATA.lakes||[]).forEach(k=>{const p=L.polygon(k.g.map(p=>p.map(r=>r.map(c=>[c[1],c[0]]))),{renderer:lr,color:css('--lake'),weight:.6,fillColor:css('--lake'),fillOpacity:.55,interactive:!!k.n});if(k.n)p.bindTooltip(k.n,{className:'tip',sticky:true});p.addTo(lakeLayer)});
+  siteLayer=L.layerGroup().addTo(map);
+  F.forEach(f=>{
+    const col=gcol(f.gp);
+    if(f.ln){f.line=L.polyline(f.ln.map(l=>l.map(c=>[c[1],c[0]])),{renderer:canvas,color:col,weight:2.6,opacity:.85});f.line.on('click',()=>select(f,true));f.line.bindTooltip(f.n,{className:'tip',sticky:true})}
+    else if(f.g){f.poly=L.polygon(f.g.map(p=>p.map(r=>r.map(c=>[c[1],c[0]]))),{renderer:canvas,color:col,weight:1.2,fillColor:col,fillOpacity:.3,opacity:.9});
+      f.poly.on('click',()=>select(f,true));f.poly.bindTooltip(f.n,{className:'tip',sticky:true})}
+    if(f.la!=null&&!f.ln){const sz=f.c===8?6:f.c===10?5:Math.max(3.4,Math.min(10,3+Math.sqrt(Math.max(1,f.size))/6));
+      f.mk=L.circleMarker([f.la,f.lo],{renderer:canvas,radius:(innerWidth<700?.75:1)*sz,color:css('--panel'),weight:f.c===8?2:1,fillColor:col,fillOpacity:f.v==='D'?.55:.95,dashArray:f.v==='D'?'2 2':null});
+      f.mk.on('click',()=>select(f,true));f.mk.bindTooltip(f.n+(f.v==='D'?' (location uncertain)':''),{className:'tip',direction:'top',offset:[0,-4]})}
+  });
+  const b=$('#base');b.innerHTML=Object.entries(BASES).map(([k,v])=>`<button type="button" data-b="${k}" aria-pressed="false" ${k!=='outline'&&!LIVE?'disabled title="Loads on the hosted site"':''}>${v.n}</button>`).join('');
+  $$('#base button').forEach(x=>x.onclick=()=>setBase(x.dataset.b));
+  $('#ovl').innerHTML=Object.entries(OVERLAYS).map(([k,v])=>`<button type="button" data-o="${k}" aria-pressed="false" ${v.live&&!LIVE?'disabled title="Loads on the hosted site"':''}>${v.n}</button>`).join('');
+  $$('#ovl button').forEach(x=>x.onclick=()=>toggleOverlay(x.dataset.o));
+  Object.entries(OVERLAYS).forEach(([k,v])=>{if(v.on)toggleOverlay(k)});
+  if(!LIVE){const n=$('#tilenote');n.hidden=false;n.textContent='Basemap tiles, surface-water imagery and live river readings could not be reached from here, so the atlas is showing its built-in outline map.'}
+  setBase(store('base')&&LIVE?store('base'):(LIVE?'map':'outline'));
+  const re=()=>setTimeout(recolor,30);
+  matchMedia('(prefers-color-scheme: dark)').addEventListener('change',re);
+  new MutationObserver(re).observe(document.documentElement,{attributes:true,attributeFilter:['data-theme']});
+  $('#legbtn').onclick=()=>$('#legend').classList.toggle('open');$('#laybtn').onclick=()=>{const m=$('.maptools');m.classList.toggle('open');$('#laybtn').setAttribute('aria-expanded',m.classList.contains('open'))};
+  $('#close').onclick=closeSheet;
+  document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!$('#sheet').hidden)closeSheet()});
+}
+function setBase(k){
+  if(k!=='outline')track('basemap/'+k,'Switched basemap: '+k);
+  $$('#base button').forEach(x=>x.setAttribute('aria-pressed',x.dataset.b===k));
+  if(tile){map.removeLayer(tile);tile=null}
+  if(k!=='outline'){const B=BASES[k];const base=L.tileLayer(B.u(),{attribution:B.a,maxNativeZoom:B.mz,maxZoom:17,subdomains:'abc'});
+    const lab=B.lab&&B.lab()?L.tileLayer(B.lab(),{maxNativeZoom:B.mz,maxZoom:17,pane:'overlayPane'}):null;
+    tile=L.layerGroup(lab?[base,lab]:[base]).addTo(map);base.bringToBack();tile._key=k;
+    let ok=0,bad=0;base.on('tileload',()=>ok++);base.on('tileerror',()=>{bad++;if(bad>=4&&ok===0&&tile&&tile._key===k){setBase('outline');const n=$('#tilenote');n.hidden=false;n.textContent=BASES[k].n+' tiles did not load, so the atlas switched to its built-in outline map.';setTimeout(()=>n.hidden=true,6000)}})}
+  statesLayer.setStyle(stateStyle(false));if(hiState)hiState.setStyle(stateStyle(true));
+  store('base',k);
+}
+const FLOODC={H:'--s2',M:'--s1',L:'--river2',N:null};
+async function toggleOverlay(k){
+  const on=!ovl[k];const btn=$(`#ovl button[data-o="${k}"]`);if(btn)btn.setAttribute('aria-pressed',on);
+  if(!on){map.removeLayer(ovl[k]);ovl[k]=null;renderLegend();return}
+  const O=OVERLAYS[k];
+  if(k==='net')ovl[k]=netLayer.addTo(map);
+  else if(k==='lakes')ovl[k]=lakeLayer.addTo(map);
+  else if(k==='basins'){const g=L.layerGroup();(DATA.bas||[]).forEach(b=>{const p=L.polygon(b.g.map(p=>p.map(r=>r.map(c=>[c[1],c[0]]))),{renderer:canvas,color:css('--accent'),weight:1.6,fill:true,fillOpacity:.04,dashArray:'6 4',interactive:true});p.bindTooltip(`<b>${esc(b.name||'Basin '+b.pf)}</b><br>${fmt.format(b.kmng)} km² in Nigeria${b.endo?' · drains inland (endorheic)':''}`,{className:'tip',sticky:true});p.addTo(g)});ovl[k]=g.addTo(map)}
+  else if(k==='flood'){btn.classList.add('busy');try{const d=await loadJSON('flood_lga.json');const g=L.layerGroup();d.f.forEach(x=>{const c=FLOODC[x.r[0]];if(!c)return;const p=L.polygon(x.g.map(p=>p.map(r=>r.map(c=>[c[1],c[0]]))),{renderer:canvas,color:css(c),weight:.5,fillColor:css(c),fillOpacity:x.r[0]==='H'?.45:.3});p.bindTooltip(`<b>${esc(x.n)}</b>, ${esc(x.s)}<br>Overall flood risk: ${riskName(x.r[0])}<br>Riverine ${riskName(x.r[1])} · flash ${riskName(x.r[2])} · coastal ${riskName(x.r[3])}${x.cm?'<br>'+esc(x.cm):''}`,{className:'tip',sticky:true});p.addTo(g)});ovl[k]=g.addTo(map);if(state.sel)siteLayer.bringToFront&&0}catch(e){toast('Flood-risk layer could not be loaded');btn.setAttribute('aria-pressed',false)}btn.classList.remove('busy')}
+  else if(k==='wp'){btn.classList.add('busy');try{const d=await loadJSON('waterpoints.json');const g=L.layerGroup();const r=L.canvas({padding:.2});const c=css('--g0');d.p.forEach(p=>{L.circleMarker([p[1],p[0]],{renderer:r,radius:1.8,stroke:false,fillColor:c,fillOpacity:.6,interactive:false}).addTo(g)});ovl[k]=g.addTo(map);toast(fmt.format(d.p.length)+' water points loaded (GRID3, 2020)')}catch(e){toast('Water-point layer could not be loaded');btn.setAttribute('aria-pressed',false)}btn.classList.remove('busy')}
+  else if(O.tile){ovl[k]=L.tileLayer(O.tile,{attribution:O.a,maxNativeZoom:O.mz,maxZoom:17,opacity:.85}).addTo(map)}
+  if(siteLayer){siteLayer.eachLayer(l=>l.bringToFront&&l.bringToFront())}
+  if(on&&!O.on)track('layer/'+k,'Turned on layer: '+k);
+  renderLegend();
+}
+const riskName=c=>({H:'high',M:'medium',L:'low',N:'none'}[c]||'not rated');
+function recolor(){if(tile&&tile._key==='map')setBase('map');statesLayer.setStyle(stateStyle(false));F.forEach(f=>{const c=gcol(f.gp);if(f.poly)f.poly.setStyle({color:c,fillColor:c});if(f.line)f.line.setStyle({color:c});if(f.mk)f.mk.setStyle({fillColor:c,color:css('--panel')})});
+  netLayer.eachLayer(l=>l.setStyle({color:css('--river')}));lakeLayer.eachLayer(l=>l.setStyle({color:css('--lake'),fillColor:css('--lake')}));
+  ['flood','wp','basins'].forEach(k=>{if(ovl[k]){map.removeLayer(ovl[k]);ovl[k]=null;toggleOverlay(k)}});
+  ['stats','basins','flood'].forEach(v=>{if(built[v]){built[v]=0;if(!$('#v-'+v).hidden){built[v]=1;({stats:buildStats,basins:buildBasins,flood:buildFlood})[v]()}}})}
+function renderLegend(){
+  let h=`<div class="t">On the map</div>`+GROUPS.map((g,i)=>`<div class="k"><span class="${i===5?'ln':'sw'}" style="--c:var(--g${i})"></span>${g}</div>`).join('');
+  if(ovl.net)h+=`<div class="k"><span class="ln" style="--c:var(--river)"></span>Other rivers and streams</div>`;
+  if(ovl.lakes)h+=`<div class="k"><span class="ar" style="--c:var(--lake)"></span>Lakes, reservoirs, swamps</div>`;
+  if(ovl.flood)h+=`<div class="t" style="margin-top:6px">Flood risk by LGA, 2024</div><div class="k"><span class="sq" style="--c:var(--s2)"></span>High</div><div class="k"><span class="sq" style="--c:var(--s1)"></span>Medium</div><div class="k"><span class="sq" style="--c:var(--river2)"></span>Low</div>`;
+  if(ovl.wp)h+=`<div class="k"><span class="sw" style="--c:var(--g0);border-radius:50%;width:6px;height:6px"></span>Water point (GRID3, 2020)</div>`;
+  h+=`<div class="sm">Dot size follows reservoir capacity or lake area. Dashed dots: location uncertain.</div>`;
+  $('#legend').innerHTML=h;
+}
+
+/* ---------- filters + list ---------- */
+const state={q:'',groups:new Set([0,2,3,4,5,6]),st:'',basin:'',lvl:'',sort:'size',limit:120,sel:null};
+const DEFAULT_GROUPS=[0,2,3,4,5,6];
+function initFilters(){
+  $('#state').innerHTML='<option value="">All 36 states + FCT</option>'+STATES.map(s=>`<option>${esc(s)}</option>`).join('');
+  $('#basin').innerHTML='<option value="">All basins</option>'+BASINS.map(s=>`<option>${esc(s)}</option>`).join('');
+  let qt;$('#q').addEventListener('input',e=>{clearTimeout(qt);qt=setTimeout(()=>{state.q=e.target.value.trim().toLowerCase();state.limit=120;if(state.q)state.groups=new Set(GROUPS.map((g,i)=>i));update()},150)});
+  $('#state').onchange=()=>{state.st=$('#state').value;state.limit=120;update();zoomState(state.st)};
+  $('#basin').onchange=()=>{state.basin=$('#basin').value;update()};
+  $('#lvl').onchange=()=>{state.lvl=$('#lvl').value;update()};
+  $('#sort').onchange=()=>{state.sort=$('#sort').value;update()};
+  $('#more').onclick=()=>{state.limit+=150;renderList()};
+  $('#reset').onclick=()=>{Object.assign(state,{q:'',groups:new Set(DEFAULT_GROUPS),st:'',basin:'',lvl:'',limit:120});$('#q').value='';$('#state').value='';$('#basin').value='';$('#lvl').value='';update();zoomState('')};
+}
+function pass(f,ig){
+  if(!ig&&!state.groups.has(f.gp))return false;
+  if(state.st&&!f.st.includes(state.st))return false;
+  if(state.basin&&f.bn!==state.basin)return false;
+  if(state.lvl&&!state.lvl.includes(f.v))return false;
+  if(state.q){for(const t of state.q.split(/\s+/))if(t&&!f.txt.includes(t))return false}
+  return true;
+}
+let current=[];
+function update(){
+  const s=state.sort;
+  current=F.filter(f=>pass(f)).sort(s==='name'?(a,b)=>a.n.localeCompare(b.n):s==='year'?(a,b)=>(b.y||0)-(a.y||0):s==='doc'?(a,b)=>('ABCD'.indexOf(a.v)-'ABCD'.indexOf(b.v))||b.size-a.size:(a,b)=>b.size-a.size||a.n.localeCompare(b.n));
+  siteLayer.clearLayers();
+  const order=[...current].sort((a,b)=>b.size-a.size);
+  order.forEach(f=>{if(f.poly)siteLayer.addLayer(f.poly)});order.forEach(f=>{if(f.line)siteLayer.addLayer(f.line)});[...order].reverse().forEach(f=>{if(f.mk)siteLayer.addLayer(f.mk)});
+  const counts=GROUPS.map(()=>0);F.forEach(f=>{if(pass(f,true))counts[f.gp]++});
+  $('#cats').innerHTML=GROUPS.map((g,i)=>`<button type="button" class="chip" style="--c:var(--g${i})" data-i="${i}" aria-pressed="${state.groups.has(i)}"><span class="dot"></span>${g}<span class="n">${counts[i]}</span></button>`).join('');
+  $$('#cats .chip').forEach(b=>b.onclick=e=>{const i=+b.dataset.i;if(e.altKey||e.metaKey)state.groups=new Set([i]);else state.groups.has(i)?state.groups.delete(i):state.groups.add(i);update()});
+  $('#count').textContent=`${fmt.format(current.length)} places shown`;
+  renderList();
+}
+function sizeTag(f){if(f.cap)return fmt.format(Math.round(f.cap))+' Mm³';if(f.rlen)return fmt.format(Math.round(f.rlen))+' km';if(f.akm)return fmt1.format(f.akm)+' km²';if(f.a)return fmt.format(Math.round(f.a/100))+' km²';if(f.qmean)return fmt.format(f.qmean)+' m³/s';return''}
+function metaLine(f){const bits=[CATN(f)];if(f.river&&f.c!==7)bits.push(f.river+' River');bits.push(f.s||'State not established');return bits.join(' · ')}
+const CATN=f=>(DATA.cats||[])[f.c]||'';
+function renderList(){
+  const ul=$('#list');
+  ul.innerHTML=current.slice(0,state.limit).map(f=>`<li><button type="button" data-id="${f.i}" class="${state.sel===f?'on':''}"><span class="li-dot" style="--c:var(--g${f.gp})"></span><span><span class="li-name">${esc(f.n)}</span><span class="lv ${f.v}" title="Verification level ${f.v}">${f.v}</span><br><span class="li-meta">${esc(metaLine(f))}</span></span><span class="li-tag">${sizeTag(f)}${f.y?'<br>'+f.y:''}</span></button></li>`).join('')||'<li style="padding:18px 16px;color:var(--muted)">Nothing matches. Clear the search or switch categories back on.</li>';
+  ul.querySelectorAll('button').forEach(b=>b.onclick=()=>{const f=BY[b.dataset.id];history.replaceState(null,'','#'+f.i);select(f,false)});
+  const m=$('#more');m.hidden=current.length<=state.limit;m.textContent=`Show more (${fmt.format(current.length-state.limit)} left)`;
+}
+function zoomState(n){
+  if(hiState){hiState.setStyle(stateStyle(false));hiState=null}
+  if(!n){map.flyToBounds([[4.1,2.6],[13.95,14.7]],{duration:.6});return}
+  statesLayer.eachLayer(l=>{if(l.feature.properties.n===n){hiState=l;l.setStyle(stateStyle(true));map.flyToBounds(l.getBounds(),{padding:[30,30],duration:.6})}});
+}
+</script>
+<script>
+/* ---------- profile ---------- */
+function bbox(f){
+  const pts=f.ln?f.ln.flat():f.g?f.g.flat(2):null;
+  if(pts){let a=[999,999,-999,-999];pts.forEach(([x,y])=>{a[0]=Math.min(a[0],x);a[1]=Math.min(a[1],y);a[2]=Math.max(a[2],x);a[3]=Math.max(a[3],y)});if(a[2]-a[0]<.04){const cx=(a[0]+a[2])/2,cy=(a[1]+a[3])/2;a=[cx-.02,cy-.02,cx+.02,cy+.02]}return a}
+  if(f.la==null)return null;const h=Math.max(.02,Math.sqrt(Math.max(4,f.akm||4))/111/2);return[f.lo-h,f.la-h,f.lo+h,f.la+h];
+}
+const USE_SRC={GRanD:'GRanD (Global Reservoir and Dam database)',GOODD:'GOODD (Global geOreferenced Database of Dams), satellite-mapped','JRC-GSW':'JRC Global Surface Water, satellite-mapped',GROD:'GROD (Global River Obstruction Database)'};
+function citeText(f){return `Nigeria Water Resources Atlas (2026). ${f.n}, ${f.s||'Nigeria'} [record ${f.i}${f.gdw?'; GDW ID '+f.gdw:''}${f.wd?'; Wikidata '+f.wd:''}]. Version ${DATA.meta.version}. Retrieved ${today}, from ${CONFIG.siteUrl}#${f.i}`}
+function watchlist(){return store('watch')||[]}
+function toggleWatch(f){let w=watchlist();w=w.includes(f.i)?w.filter(x=>x!==f.i):[...w,f.i];store('watch',w);return w.includes(f.i)}
+const nfmt=(v,u,d)=>v==null?null:(d?fmt1:fmt).format(v)+(u?' '+u:'');
+function select(f,fromMap){
+  if(!f)return;
+  if($('#v-map').hidden){location.hash=f.i;return}
+  const p=state.sel;if(p&&p!==f)unhi(p);
+  if(!state.groups.has(f.gp)){state.groups.add(f.gp);update()}
+  state.sel=f;track('site-opened','Opened a profile');
+  if(f.poly){f.poly.setStyle({weight:3});f.poly.bringToFront()}
+  if(f.line){f.line.setStyle({weight:5});f.line.bringToFront()}
+  if(f.mk){f.mk.setStyle({weight:3,color:css('--ink')});f.mk.bringToFront()}
+  if(!fromMap){const wide=innerWidth>860,pad={paddingTopLeft:[50,50],paddingBottomRight:wide?[Math.min(500,innerWidth*.4)+40,50]:[40,innerHeight*.55],maxZoom:11,duration:.7};const L0=f.poly||f.line;if(L0)map.flyToBounds(L0.getBounds(),pad);else if(f.mk){const z=Math.max(map.getZoom(),9),d=.25*2**(9-z);map.flyToBounds([[f.la-d,f.lo-d],[f.la+d,f.lo+d]],{...pad,maxZoom:z})}}
+  else history.replaceState(null,'','#'+f.i);
+  $('#sh-head').innerHTML=`<span class="pill" style="--c:var(--g${f.gp})"><i></i>${esc(CATN(f))}</span><h2>${esc(f.n)}</h2>${f.alt?`<div class="alt">Also listed as: ${esc(f.alt)}</div>`:''}${f.named_from?`<div class="alt">Name taken from ${esc(f.named_from)}</div>`:''}`;
+  const watched=watchlist().includes(f.i);
+  $('#sh-act').innerHTML=`<button class="btn sm" id="a-watch" type="button">${watched?'★ Watching':'☆ Watch'}</button><button class="btn sm" id="a-share" type="button">Copy link</button><button class="btn sm" id="a-cite" type="button">Cite</button><button class="btn sm" id="a-report" type="button">Report from the field</button>`;
+  $('#a-watch').onclick=()=>{$('#a-watch').textContent=toggleWatch(f)?'★ Watching':'☆ Watch';if(built.ngo)renderWatch()};
+  $('#a-share').onclick=()=>copy(CONFIG.siteUrl+'#'+f.i);
+  $('#a-cite').onclick=()=>copy(citeText(f));
+  $('#a-report').onclick=()=>{reportSite=f.i;location.hash='ngo';setTimeout(()=>{if($('#r-site')){$('#r-site').value=f.n;$('#r-title').focus()}},120)};
+  const b=bbox(f);let h='';
+  if(f.pics.length){const P=f.pics[0];
+    if(LIVE){h+=`<figure class="photo" id="gal">${imgTag(P,960,500)}<figcaption id="galcap"></figcaption>${f.pics.length>1?`<div class="galrow">${f.pics.map((p,i)=>`<button type="button" data-g="${i}" class="${i?'':'on'}" aria-label="Show photo ${i+1}">${imgTag(p,250,330,'')}</button>`).join('')}</div>`:''}</figure>`}
+    else h+=`<div class="photo off">${f.pics.length} photograph${f.pics.length>1?'s':''} on Wikimedia Commons, e.g. <a href="${pageUrl(P)}" target="_blank" rel="noopener">${esc(capOf(P))}</a>. Photos display on the website.</div>`}
+  if(f.c===8)h+=`<div class="box" id="gauge-now"><h3>River flow now <small>GloFAS model via Open-Meteo</small></h3><div class="loading">${LIVE?'Loading the latest modelled flow…':'Live river readings load on the hosted site.'}</div></div>`;
+  h+=`<div class="verif"><b class="lvl ${f.v}">${f.v}</b><div><b>Verification level ${f.v}.</b> ${LEVELS[f.v]}</div></div>`;
+  if(f.loc_note)h+=`<div class="gap">${esc(f.loc_note)}</div>`;
+  const facts=[];const F2=(k,v,w,raw)=>{if(v!=null&&v!=='')facts.push([k,v,w,raw])};
+  F2(f.c===7?'States crossed (approx.)':'State',f.s||'Not established',f.c===7);
+  if(f.c===0||f.c===9||f.c===1){F2('River',f.river);F2('Basin',[f.basin,f.sub].filter(Boolean).join(' › '));F2('Completed',f.y);F2('Main use',f.use);F2('Dam height',nfmt(f.hgt,'m'));F2('Crest length',nfmt(f.len,'m'));
+    F2('Storage capacity',f.cap!=null?nfmt(f.cap,'million m³',1):null);F2('Reservoir area',nfmt(f.akm,'km²',1));F2('Mean depth',nfmt(f.dep,'m',1));F2('Average inflow',f.dis!=null?nfmt(f.dis,'m³/s',1):null);
+    F2('Upstream catchment',nfmt(f.catch,'km²'));F2('Installed power',nfmt(f.mw,'MW'));F2('Degree of regulation',f.dor!=null?nfmt(f.dor,'% of annual flow',1):null);F2('Elevation',nfmt(f.elev,'m a.s.l.'));F2('Nearest town',f.city);
+    if(f.uses&&f.uses.length)F2('Uses',f.uses.join(', '),1);if(f.inv)F2('Name in UNICEF dam list',f.inv)}
+  if(f.c===7){F2('Length (whole river)',f.rlen?nfmt(f.rlen,'km'):null);F2('Flows into',f.mouth);F2('Line drawn from',f.geomsrc,1)}
+  if(f.c===8){F2('River',f.river);F2('Average modelled flow, 1984–present',nfmt(f.qmean,'m³/s'));if(f.rec)F2('Highest modelled daily flow',`${fmt.format(f.rec[1])} m³/s on ${new Date(f.rec[2]).toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'})}`,1)}
+  if(f.c===6){F2('Area',f.a?ha(f.a):f.ar?ha(f.ar):null);F2('Designated',f.y);F2('Managed by',f.auth,1)}
+  if(f.c===10)F2('Headquarters',f.hq);
+  F2('Coordinates',f.la!=null?`<span class="mono">${f.la.toFixed(3)}° N, ${f.lo.toFixed(3)}° E</span> · ${({gdw:'Global Dam Watch dam point',inventory:'UNICEF dam list (rounded)',wikidata:'Wikidata',wikipedia:'Wikipedia',line:'middle of the mapped river line',glofas:'GloFAS model cell (≈5 km)',hq:'headquarters town',wdpa:'WDPA boundary centre'})[f.q]||'published point'}`:null,1,1);
+  h+=`<dl class="facts">${facts.map(([k,v,w,raw])=>`<div class="fact${w?' w':''}"><dt>${k}</dt><dd>${raw?v:esc(v)}</dd></div>`).join('')}</dl>`;
+  if(f.wt)h+=`<div class="sec"><h3>About</h3><p class="wiki">${esc(f.wt.t)}</p><div class="wiki-src">From <a href="${esc(f.wt.u)}" target="_blank" rel="noopener">Wikipedia, “${esc(f.wt.title)}”</a> (CC BY-SA 4.0), retrieved ${esc(DATA.meta.refreshed)}.</div></div>`;
+  const sec=(t,v)=>v?`<div class="sec"><h3>${t}</h3><p>${esc(v)}</p></div>`:'';
+  h+=sec('Notes',f.notes)+sec('Vegetation',f.veg)+sec('Wildlife',f.fauna)+sec('Resources',f.res)+sec('Tourism',f.tour)+sec('Threats',f.thr);
+  if(f.c===6&&f.forest_id)h+=`<div class="callout">This wetland also appears in the <a href="${CONFIG.forestUrl}#${esc(f.forest_id)}">Nigeria Forest Reserves Atlas</a>, with its biodiversity records.</div>`;
+  if(f.c===7){const onr=F.filter(x=>x!==f&&(x.c===0||x.c===8)&&x.river&&f.n.toLowerCase().startsWith(x.river.toLowerCase().split(/[–-]/)[0])).sort((a,b)=>(b.cap||b.qmean||0)-(a.cap||a.qmean||0)).slice(0,12);
+    if(onr.length)h+=`<div class="box"><h3>Dams and gauges on this river <small>from this atlas</small></h3><ul class="minilist">${onr.map(x=>`<li><a data-go="${x.i}">${esc(x.n)}</a><span>${esc(sizeTag(x))}</span></li>`).join('')}</ul></div>`}
+  if(f.c===0&&f.gdw&&f.dor!=null&&f.dor>100)h+=`<div class="gap">This reservoir can hold more than a year of its river’s average flow (degree of regulation ${fmt.format(Math.round(f.dor))}%), so releases strongly shape flows downstream.</div>`;
+  if(LIVE&&f.la!=null&&f.c!==10&&f.c!==8)h+=`<div class="box"><h3>River flow nearby <small>GloFAS model via Open-Meteo</small></h3><div id="qbox" class="loading">Loading…</div></div>`;
+  if(LIVE&&f.la!=null)h+=`<div class="box"><h3>Weather this week <small>Open-Meteo forecast</small></h3><div id="wx" class="loading">Loading…</div></div><div id="photos-live"></div>`;
+  const links=[];
+  if(f.la!=null){links.push(`<a href="https://www.google.com/maps/@${f.la},${f.lo},${f.c===7?9:13}z/data=!3m1!1e3" target="_blank" rel="noopener">Satellite view ↗</a>`);if([2,3,4,5,6].includes(f.c)||f.c===0)links.push(`<a href="https://www.google.com/maps/dir/?api=1&destination=${f.la},${f.lo}" target="_blank" rel="noopener">Directions ↗</a>`);links.push(`<a href="https://www.openstreetmap.org/#map=${f.c===7?9:13}/${f.la}/${f.lo}" target="_blank" rel="noopener">OpenStreetMap ↗</a>`)}
+  if(b)links.push(`<a href="https://global-surface-water.appspot.com/map" target="_blank" rel="noopener">Surface-water history ↗</a>`);
+  if(f.wd)links.push(`<a href="https://www.wikidata.org/wiki/${f.wd}" target="_blank" rel="noopener">Wikidata ↗</a>`);
+  if(f.w)links.push(`<a href="https://www.protectedplanet.net/${f.w}" target="_blank" rel="noopener">Protected Planet ↗</a>`);
+  if(links.length)h+=`<div class="links">${links.join('')}</div>`;
+  h+=`<div class="sec" id="sh-reports"></div>`;
+  const srcs=[];if(f.gdw)srcs.push(`Global Dam Watch v1.0 (Lehner et al. 2024), GDW ID <span class="mono">${f.gdw}</span>${f.osrc?' · original record: '+esc(USE_SRC[f.osrc]||f.osrc):''}${f.grand?' · GRanD ID '+f.grand:''}${f.qual?' · data quality '+esc(f.qual):''}`);
+  if(f.c===1||f.inv)srcs.push('Nigeria dam list published by UNICEF Nigeria GIS (Nigeria Dams layer, ArcGIS Online)');
+  if(f.c===7)srcs.push(f.geomsrc==='Natural Earth'?'River line: Natural Earth 1:10m rivers (public domain)':'River line: DIVA-GIS inland water (Digital Chart of the World)');
+  if(f.c===8)srcs.push('GloFAS river discharge (Copernicus Emergency Management Service) via the Open-Meteo Flood API');
+  if(f.w)srcs.push(`UNEP-WCMC &amp; IUCN, World Database on Protected Areas, WDPA ID <span class="mono">${f.w}</span>`);
+  h+=`<div class="sec"><h3>Sources</h3><ul class="srcs">${srcs.map(s=>`<li>${s}</li>`).join('')}${(f.src||[]).map(u=>`<li><a href="${esc(u)}" target="_blank" rel="noopener">${esc(u.replace(/^https?:\/\/(www\.)?/,'').slice(0,80))}</a></li>`).join('')}</ul></div>`;
+  h+=`<div class="sec"><h3>Cite this record</h3><pre class="cite">${esc(citeText(f))}</pre></div>`;
+  $('#sh-body').innerHTML=h;$('#sh-body').scrollTop=0;$('#sheet').hidden=false;
+  $$('#sh-body [data-go]').forEach(a=>a.onclick=()=>goSite(a.dataset.go));
+  const setCap=i=>{const p=f.pics[i],c=$('#galcap');if(c)c.innerHTML=`${esc(capOf(p))}${p[2]?' · '+esc(p[2]):''}, <a href="${pageUrl(p)}" target="_blank" rel="noopener">${esc(p[3])} via Wikimedia Commons</a>`};
+  if($('#gal')){setCap(0);$$('#gal .galrow button').forEach(bt=>bt.onclick=()=>{const i=+bt.dataset.g,p=f.pics[i],im=$('#gal>img');if(im){im.dataset.f='';im.dataset.alt=imgUrl(p,500);im.src=imgUrl(p,960)}else{$('#gal').insertAdjacentHTML('afterbegin',imgTag(p,960,500))}setCap(i);$$('#gal .galrow button').forEach(x=>x.classList.toggle('on',x===bt))})}
+  $$('#list button').forEach(x=>x.classList.toggle('on',x.dataset.id===f.i));
+  renderSiteReports(f);
+  if(LIVE)loadLive(f,b);
+}
+const ha=v=>fmt.format(Math.round(v))+' ha'+(v>=1000?` (${fmt.format(Math.round(v/100))} km²)`:'');
+function unhi(p){if(p.poly)p.poly.setStyle({weight:1.2});if(p.line)p.line.setStyle({weight:2.6});if(p.mk)p.mk.setStyle({weight:p.c===8?2:1,color:css('--panel')})}
+function closeSheet(){$('#sheet').hidden=true;const p=state.sel;if(p)unhi(p);state.sel=null;$$('#list button.on').forEach(b=>b.classList.remove('on'));if(location.hash.length>1&&BY[location.hash.slice(1)])history.replaceState(null,'','#map')}
+
+/* ---------- live data (hosted site only) ---------- */
+const liveCache={};
+async function jget(u){if(liveCache[u])return liveCache[u];const r=await fetch(u);if(!r.ok)throw new Error(r.status);const j=await r.json();liveCache[u]=j;return j}
+const FLOOD_API='https://flood-api.open-meteo.com/v1/flood';
+async function flow(la,lo,past=60,fut=45){return jget(`${FLOOD_API}?latitude=${la}&longitude=${lo}&daily=river_discharge,river_discharge_median,river_discharge_p25,river_discharge_p75,river_discharge_max&past_days=${past}&forecast_days=${fut}`)}
+let GAUGES=null;async function gaugeData(){if(!GAUGES){const d=await loadJSON('gauges.json');GAUGES={};d.g.forEach(g=>GAUGES[g.id]=g);GAUGES._base=d.base}return GAUGES}
+const doyOf=s=>{const d=new Date(s+'T00:00:00Z');return Math.min(365,Math.floor((d-Date.UTC(d.getUTCFullYear(),0,1))/864e5)+1)};
+function statusOf(v,g,date){if(v==null||!g)return null;const k=doyOf(date)-1,p90=g.clim.p90[k],mx=g.clim.max[k];if(p90==null)return null;if(v>=mx)return 3;if(v>=(p90+mx)/2)return 2;if(v>=p90)return 1;return 0}
+function gaugeSummary(j,g){
+  const d=j.daily,t=d.time,i0=t.indexOf(today);const nowI=Math.max(0,(i0<0?t.length:i0)-1);
+  const now=d.river_discharge[nowI];const s=statusOf(now,g,t[nowI]);
+  let peak=null,pk=-1;for(let i=nowI+1;i<t.length;i++){const v=d.river_discharge_median[i]??d.river_discharge[i];if(v!=null&&v>pk){pk=v;peak=i}}
+  const ps=peak!=null?statusOf(pk,g,t[peak]):null;
+  const k=doyOf(t[nowI])-1;return{now,nowDate:t[nowI],s,peak:pk>=0?pk:null,peakDate:peak!=null?t[peak]:null,ps,p50:g?g.clim.p50[k]:null,p90:g?g.clim.p90[k]:null,ratio:g&&g.clim.p50[k]?now/g.clim.p50[k]:null}
+}
+function qchart(el,j,g,o={}){
+  const d=j.daily,t=d.time,n=t.length,W=o.w||560,H=o.h||200,pl=46,pr=10,pt=10,pb=22,iw=W-pl-pr,ih=H-pt-pb;
+  const i0=Math.max(0,t.indexOf(today));const vals=[];
+  for(let i=0;i<n;i++){[d.river_discharge[i],d.river_discharge_max&&i>=i0?d.river_discharge_p75[i]:null].forEach(v=>v!=null&&vals.push(v));if(g){const k=doyOf(t[i])-1;g.clim.p90[k]!=null&&vals.push(g.clim.p90[k])}}
+  const hi=Math.max(...vals,1)*1.08;const X=i=>pl+i/(n-1)*iw,Y=v=>pt+ih-v/hi*ih;
+  let s=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="River discharge, last ${i0} days and ${n-i0} day forecast">`;
+  niceTicks(0,hi,4).forEach(v=>{s+=`<line class="gridl" x1="${pl}" x2="${W-pr}" y1="${Y(v)}" y2="${Y(v)}"/><text x="${pl-6}" y="${Y(v)+4}" text-anchor="end">${v>=1000?fmt1.format(v/1000)+'k':fmt.format(v)}</text>`});
+  if(g){let up='',lo='';for(let i=0;i<n;i++){const k=doyOf(t[i])-1;up+=(i?'L':'M')+X(i)+' '+Y(g.clim.p90[k]);}for(let i=n-1;i>=0;i--){const k=doyOf(t[i])-1;lo+='L'+X(i)+' '+Y(g.clim.p50[k])}
+    s+=`<path d="${up}${lo}Z" fill="var(--river)" opacity=".18"/>`;
+    let mx='';for(let i=0;i<n;i++){const k=doyOf(t[i])-1;mx+=(i?'L':'M')+X(i)+' '+Y(g.clim.max[k])}if(o.max!==false)s+=`<path d="${mx}" fill="none" stroke="var(--s2)" stroke-width="1" stroke-dasharray="2 3" opacity=".8"/>`}
+  if(d.river_discharge_p25){let up='',lo='';for(let i=i0;i<n;i++)up+=(i>i0?'L':'M')+X(i)+' '+Y(d.river_discharge_p75[i]??d.river_discharge[i]);for(let i=n-1;i>=i0;i--)lo+='L'+X(i)+' '+Y(d.river_discharge_p25[i]??d.river_discharge[i]);s+=`<path d="${up}${lo}Z" fill="var(--bar)" opacity=".15"/>`}
+  let past='',fut='';for(let i=0;i<n;i++){const v=d.river_discharge[i];if(v==null)continue;if(i<=i0)past+=(past?'L':'M')+X(i)+' '+Y(v);if(i>=i0)fut+=(fut?'L':'M')+X(i)+' '+Y(d.river_discharge_median?d.river_discharge_median[i]??v:v)}
+  s+=`<path d="${past}" fill="none" stroke="var(--bar)" stroke-width="2"/><path d="${fut}" fill="none" stroke="var(--bar)" stroke-width="2" stroke-dasharray="5 4"/>`;
+  s+=`<line x1="${X(i0)}" x2="${X(i0)}" y1="${pt}" y2="${pt+ih}" stroke="var(--ink)" stroke-width="1" opacity=".5"/><text x="${X(i0)+4}" y="${pt+10}">today</text>`;
+  [0,Math.round((n-1)/2),n-1].forEach(i=>{s+=`<text x="${X(i)}" y="${H-6}" text-anchor="${i===0?'start':i===n-1?'end':'middle'}">${new Date(t[i]).toLocaleDateString('en-GB',{day:'numeric',month:'short'})}</text>`});
+  s+=`<rect class="hit" x="${pl}" y="${pt}" width="${iw}" height="${ih}" fill="transparent"/><line class="xh" x1="0" x2="0" y1="${pt}" y2="${pt+ih}" stroke="var(--muted)" stroke-width="1" opacity="0"/></svg>`;
+  el.className='qchart';el.innerHTML=s+`<div class="qkey"><span><i style="--c:var(--bar)"></i>Modelled flow</span><span><i class="dash" style="--c:var(--bar)"></i>Forecast (ensemble median)</span>${d.river_discharge_p25?'<span><i class="band" style="--c:var(--bar)"></i>Forecast range (25–75%)</span>':''}${g?'<span><i class="band" style="--c:var(--river)"></i>Normal to wet (median–90th percentile, 1991–2020)</span>'+(o.max!==false?'<span><i class="dash" style="--c:var(--s2)"></i>Highest for the time of year</span>':''):''}</div>`;
+  const svg=el.querySelector('svg'),hit=svg.querySelector('.hit'),xh=svg.querySelector('.xh');
+  hit.onmousemove=e=>{const r=svg.getBoundingClientRect();const x=(e.clientX-r.left)/r.width*W;const i=Math.max(0,Math.min(n-1,Math.round((x-pl)/iw*(n-1))));xh.setAttribute('x1',X(i));xh.setAttribute('x2',X(i));xh.setAttribute('opacity',.6);
+    const k=doyOf(t[i])-1;const v=i>i0&&d.river_discharge_median?d.river_discharge_median[i]:d.river_discharge[i];
+    tip(el,`<b>${new Date(t[i]).toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'})}</b><br>${i>i0?'Forecast':'Modelled'}: ${v!=null?fmt.format(Math.round(v))+' m³/s':'–'}${g?`<br>Normal: ${fmt.format(g.clim.p50[k])} · wet (90th): ${fmt.format(g.clim.p90[k])}`:''}`,(X(i)/W)*r.width,(Y(v||0)/H)*r.height)};
+  hit.onmouseleave=()=>{xh.setAttribute('opacity',0);hideTip()};
+}
+async function loadLive(f,b){
+  const me=f;
+  if(f.c===8)(async()=>{try{const [j,G]=await Promise.all([flow(f.la,f.lo,60,45),gaugeData()]);if(state.sel!==me)return;const g=G[f.gauge];const sm=gaugeSummary(j,g);
+    $('#gauge-now').innerHTML=`<h3>River flow now <small>GloFAS model via Open-Meteo</small></h3><div class="row" style="display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;align-items:center"><div><b style="font-family:var(--f-display);font-size:24px">${fmt.format(Math.round(sm.now))} m³/s</b> <span style="color:var(--muted);font-size:12px">on ${new Date(sm.nowDate).toLocaleDateString('en-GB',{day:'numeric',month:'short'})}${sm.ratio?` · ${fmt1.format(sm.ratio)}× the normal for the date`:''}</span></div>${statusChip(sm.s)}</div><p style="margin:6px 0;font-size:12.5px">Forecast peak in the next 45 days: <b>${sm.peak!=null?fmt.format(Math.round(sm.peak))+' m³/s':'–'}</b>${sm.peakDate?` around ${new Date(sm.peakDate).toLocaleDateString('en-GB',{day:'numeric',month:'short'})}`:''} ${statusChip(sm.ps,sm.ps!=null?STATUS[sm.ps].k+' (forecast)':'')}</p><div id="qc"></div><p class="loading" style="margin:6px 0 0">Modelled, not measured: use it to see patterns and compare with normal; follow NIHSA and NEMA for official warnings.</p>`;
+    qchart($('#qc'),j,g);
+    if(g&&g.annual&&g.annual.length){$('#gauge-now').insertAdjacentHTML('afterend',`<div class="box"><h3>Yearly peak flow, ${g.annual[0][0]}–${g.annual[g.annual.length-1][0]} <small>GloFAS reanalysis</small></h3><div id="ann" class="chart"></div></div>`);cols($('#ann'),g.annual.map(a=>({l:String(a[0]),v:a[1],c:a===g.record?'var(--s2)':null})),{f:v=>fmt.format(v)+' m³/s',tf:v=>v>=1000?fmt1.format(v/1000)+'k':fmt.format(v)})}
+  }catch(e){$('#gauge-now').innerHTML='<h3>River flow now</h3><p class="loading" style="margin:0">The flow service did not respond. Try again later.</p>'}})();
+  if($('#qbox'))(async()=>{try{const j=await flow(f.la,f.lo,60,30);if(state.sel!==me)return;const d=j.daily;const ok=d.river_discharge.some(v=>v!=null&&v>0.5);
+    if(!ok){$('#qbox').textContent='No modelled river channel at this point (GloFAS cells are about 5 km wide; small streams are not resolved).';return}
+    $('#qbox').innerHTML=`<p style="margin:0 0 6px;font-size:12.5px">Nearest GloFAS model cell (${j.latitude.toFixed(2)}° N, ${j.longitude.toFixed(2)}° E). For reservoirs this may show inflow or the lake itself, not dam releases.</p><div id="qc2"></div>`;qchart($('#qc2'),j,null)}catch(e){$('#qbox').textContent='Flow service unavailable.'}})();
+  if(f.la!=null)(async()=>{try{
+    const j=await jget(`https://api.open-meteo.com/v1/forecast?latitude=${f.la}&longitude=${f.lo}&daily=temperature_2m_max,temperature_2m_min,precipitation_sum,precipitation_probability_max&timezone=Africa%2FLagos`);
+    if(state.sel!==me)return;const d=j.daily;
+    $('#wx').className='wx';$('#wx').innerHTML=d.time.map((t,i)=>`<div><span>${new Date(t).toLocaleDateString('en-GB',{weekday:'short'})}</span><b>${Math.round(d.temperature_2m_max[i])}°</b><span>${Math.round(d.temperature_2m_min[i])}°</span><br><span title="Rainfall">${fmt1.format(d.precipitation_sum[i]??0)} mm</span></div>`).join('');
+  }catch(e){$('#wx').textContent='Forecast unavailable.'}})();
+  if(f.la!=null&&f.c!==10)(async()=>{try{
+    const r=f.c===7?20000:8000;
+    const com=await jget(`https://commons.wikimedia.org/w/api.php?action=query&generator=geosearch&ggscoord=${f.la}|${f.lo}&ggsradius=${r}&ggsnamespace=6&ggslimit=14&prop=imageinfo&iiprop=url|extmetadata&iiurlwidth=320&format=json&origin=*`);
+    if(state.sel!==me||!com.query)return;const have=new Set(f.pics.map(p=>p[0]));
+    const pics=Object.values(com.query.pages).filter(p=>p.imageinfo&&/\.(jpe?g|png)$/i.test(p.title)&&!have.has(p.title.slice(5))&&!/ISS0|Earth|map|Map|svg|flag|logo/i.test(p.title)).slice(0,8);
+    if(pics.length)$('#photos-live').innerHTML=`<div class="box"><h3>Photos taken nearby <small>Wikimedia Commons, within ${r/1000} km</small></h3><div class="thumbs">${pics.map(p=>{const i=p.imageinfo[0],m=i.extmetadata||{};const by=(m.Artist?m.Artist.value:'').replace(/<[^>]+>/g,'').trim();return`<a href="${esc(i.descriptionurl)}" target="_blank" rel="noopener" title="${esc(by)} · ${esc(m.LicenseShortName?m.LicenseShortName.value:'')}"><img src="${esc(i.thumburl)}" alt="${esc(p.title.slice(5))}" loading="lazy" onerror="this.style.visibility='hidden'">${esc(p.title.slice(5,40).replace(/\.\w+$/,''))}</a>`}).join('')}</div><p style="margin:6px 0 0;font-size:11px;color:var(--muted)">Not checked by the atlas: nearby photos may show other places. Hover for author and licence.</p></div>`;
+  }catch(e){}})();
+}
+
+/* ---------- charts (shared with the forest atlas) ---------- */
+let tipEl=null;
+function tip(el,html,x,y){if(!tipEl){tipEl=document.createElement('div');tipEl.className='vtip'}el.appendChild(tipEl);tipEl.innerHTML=html;tipEl.style.left=x+'px';tipEl.style.top=y+'px';tipEl.hidden=false}
+function hideTip(){if(tipEl)tipEl.hidden=true}
+function hbar(el,rows,o={}){
+  const W=560,lw=o.lw||140,rh=o.rh||20,H=rows.length*rh+8,max=Math.max(...rows.map(r=>r.v))||1,iw=W-lw-64;
+  el.innerHTML=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="${esc(o.title||'')}">${rows.map((r,i)=>{const w=Math.max(1,r.v/max*iw),y=i*rh+4;return`<g data-i="${i}" ${r.on?`style="cursor:pointer"`:''}><rect x="0" y="${y-2}" width="${W}" height="${rh}" fill="transparent"/><text x="${lw-8}" y="${y+rh/2+2}" text-anchor="end" class="lab">${esc(r.l)}</text><rect x="${lw}" y="${y+3}" width="${w}" height="${rh-8}" rx="3" fill="${r.c||'var(--bar)'}"/><text x="${lw+w+5}" y="${y+rh/2+2}">${o.f?o.f(r.v):fmt.format(r.v)}</text></g>`}).join('')}</svg>`;
+  el.querySelectorAll('g[data-i]').forEach(g=>{const r=rows[+g.dataset.i];g.onmousemove=e=>{const bb=el.getBoundingClientRect();tip(el,`<b>${esc(r.l)}</b> · ${o.f?o.f(r.v):fmt.format(r.v)}${r.t?'<br>'+r.t:''}`,e.clientX-bb.left,e.clientY-bb.top)};g.onmouseleave=hideTip;if(r.on)g.onclick=r.on});
+}
+function cols(el,pts,o={}){
+  const W=560,H=220,pl=46,pb=24,pt=10,iw=W-pl-10,ih=H-pb-pt,max=o.max||Math.max(...pts.map(p=>p.v))*1.08||1,bw=iw/pts.length;
+  const ticks=niceTicks(0,max,4);
+  let s=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="${esc(o.title||'')}">`;
+  ticks.forEach(t=>{const y=pt+ih-t/max*ih;s+=`<line class="gridl" x1="${pl}" x2="${W-10}" y1="${y}" y2="${y}"/><text x="${pl-6}" y="${y+4}" text-anchor="end">${o.tf?o.tf(t):fmt.format(t)}</text>`});
+  pts.forEach((p,i)=>{const h=p.v/max*ih,x=pl+i*bw;s+=`<g data-i="${i}"><rect x="${x}" y="${pt}" width="${bw}" height="${ih}" fill="transparent"/><rect x="${x+bw*.15}" y="${pt+ih-h}" width="${bw*.7}" height="${Math.max(0,h)}" rx="2" fill="${p.c||o.c||'var(--bar)'}"/></g>`;
+    if(pts.length<=12||i%Math.ceil(pts.length/8)===0||i===pts.length-1)s+=`<text x="${x+bw/2}" y="${H-6}" text-anchor="middle">${esc(p.l)}</text>`});
+  el.innerHTML=s+'</svg>';
+  el.querySelectorAll('g[data-i]').forEach(g=>{const p=pts[+g.dataset.i];g.onmousemove=e=>{const bb=el.getBoundingClientRect();tip(el,`<b>${esc(p.l)}</b> · ${o.f?o.f(p.v):fmt.format(p.v)}`,e.clientX-bb.left,e.clientY-bb.top)};g.onmouseleave=hideTip});
+}
+function line(el,series,o={}){
+  // series: [{name,c,pts:[{x,v}]}] or a single pts array
+  if(!series[0]||!series[0].pts)series=[{name:o.name||'',c:'var(--bar)',pts:series}];
+  const W=560,H=220,pl=52,pb=24,pt=12,iw=W-pl-16,ih=H-pb-pt;const xs=series.flatMap(s=>s.pts.map(p=>p.x)),x0=Math.min(...xs),x1=Math.max(...xs);
+  const lo=o.min??0,hi=o.max??Math.max(...series.flatMap(s=>s.pts.map(p=>p.v)))*1.08;const X=x=>pl+(x-x0)/(x1-x0||1)*iw,Y=v=>pt+ih-(v-lo)/(hi-lo)*ih;
+  let s=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="${esc(o.title||'')}">`;
+  niceTicks(lo,hi,4).forEach(t=>{s+=`<line class="gridl" x1="${pl}" x2="${W-16}" y1="${Y(t)}" y2="${Y(t)}"/><text x="${pl-6}" y="${Y(t)+4}" text-anchor="end">${o.tf?o.tf(t):fmt.format(t)}</text>`});
+  const yrs=[...new Set(xs)].sort((a,b)=>a-b);const step=Math.ceil(yrs.length/8);yrs.forEach((x,i)=>{if(i%step===0||i===yrs.length-1)s+=`<text x="${X(x)}" y="${H-6}" text-anchor="middle">${x}</text>`});
+  series.forEach((S,si)=>{const d=S.pts.map((p,i)=>(i?'L':'M')+X(p.x)+' '+Y(p.v)).join(' ');
+    if(series.length===1)s+=`<path d="${d} L${X(S.pts[S.pts.length-1].x)} ${Y(lo)} L${X(S.pts[0].x)} ${Y(lo)} Z" fill="${S.c}" opacity=".12"/>`;
+    s+=`<path d="${d}" fill="none" stroke="${S.c}" stroke-width="2"/>`;
+    S.pts.forEach((p,i)=>{s+=`<circle cx="${X(p.x)}" cy="${Y(p.v)}" r="${i===S.pts.length-1?4.5:3}" fill="${S.c}" stroke="var(--panel)" stroke-width="1.5" data-s="${si}" data-i="${i}"/>`});
+    const l=S.pts[S.pts.length-1];s+=`<text x="${X(l.x)-8}" y="${Y(l.v)-9}" text-anchor="end" class="lab">${o.f?o.f(l.v):fmt.format(l.v)}${series.length>1?' '+esc(S.name):''}</text>`});
+  el.innerHTML=s+'</svg>'+(series.length>1?`<div class="qkey">${series.map(S=>`<span><i style="--c:${S.c}"></i>${esc(S.name)}</span>`).join('')}</div>`:'');
+  el.querySelectorAll('circle[data-i]').forEach(c=>{const S=series[+c.dataset.s],p=S.pts[+c.dataset.i];c.onmousemove=e=>{const bb=el.getBoundingClientRect();tip(el,`<b>${p.x}</b>${series.length>1?' · '+esc(S.name):''} · ${o.f?o.f(p.v):fmt.format(p.v)}`,e.clientX-bb.left,e.clientY-bb.top)};c.onmouseleave=hideTip});
+}
+function niceTicks(lo,hi,n){const span=hi-lo||1,step0=span/n,mag=10**Math.floor(Math.log10(step0)),st=[1,2,2.5,5,10].map(m=>m*mag).find(s=>s>=step0);const out=[];for(let v=Math.ceil(lo/st)*st;v<=hi+1e-9;v+=st)out.push(+v.toFixed(6));return out}
+function card(o){
+  const id='ch'+Math.random().toString(36).slice(2,8);
+  return{html:`<article class="card" id="${id}"><div><h3>${o.t}</h3>${o.s?`<div class="sub">${o.s}</div>`:''}</div><div class="chart"></div><div class="tbl-wrap" hidden></div><div class="foot"><span>Source: ${o.src}</span><span class="acts"><button class="btn sm" data-a="tbl" type="button">Table</button><button class="btn sm" data-a="csv" type="button">CSV</button><button class="btn sm" data-a="cite" type="button">Cite</button></span></div></article>`,
+    mount(){const el=$('#'+id);o.draw(el.querySelector('.chart'));const tw=el.querySelector('.tbl-wrap');
+      el.querySelector('[data-a=tbl]').onclick=e=>{tw.hidden=!tw.hidden;e.target.textContent=tw.hidden?'Table':'Chart only';if(!tw.innerHTML){const r=o.rows();const k=Object.keys(r[0]||{});tw.innerHTML=`<table class="dt"><thead><tr>${k.map(x=>`<th>${esc(x)}</th>`).join('')}</tr></thead><tbody>${r.map(x=>`<tr>${k.map(c=>`<td class="${typeof x[c]==='number'?'n':''}">${typeof x[c]==='number'?fmt1.format(x[c]):esc(x[c])}</td>`).join('')}</tr>`).join('')}</tbody></table>`}};
+      el.querySelector('[data-a=csv]').onclick=()=>saveFile(o.file+'.csv',toCSV(o.rows()),'text/csv');
+      el.querySelector('[data-a=cite]').onclick=()=>copy(`${o.t.replace(/<[^>]+>/g,'')}. ${o.src.replace(/<[^>]+>/g,'')}. In: Nigeria Water Resources Atlas (2026), version ${DATA.meta.version}. ${CONFIG.siteUrl}#${o.page||'stats'} (accessed ${today}).`)}};
+}
+</script>
+<script>
+/* ---------- flood watch ---------- */
+async function buildFlood(){
+  const gs=F.filter(f=>f.c===8);const fl=DATA.fl||{bystate:{}};
+  const bys=Object.entries(fl.bystate||{}).map(([s,v])=>({s,...v})).sort((a,b)=>b.High-a.High||b.Medium-a.Medium);
+  const totH=bys.reduce((a,b)=>a+b.High,0),totM=bys.reduce((a,b)=>a+b.Medium,0),totL=bys.reduce((a,b)=>a+b.lgas,0);
+  $('#flood').innerHTML=`<h2 class="title">River flood watch</h2><p class="lede">Modelled river flow at ${gs.length} points on Nigeria’s main rivers, compared with what is normal for the same time of year, with the next 45 days of forecast. Flood season on the Niger and Benue usually peaks between August and October.</p>
+  <div class="callout warn" style="margin-bottom:18px"><b>For awareness, not for decisions.</b> These are GloFAS model estimates (Copernicus Emergency Management Service, served by Open-Meteo), not gauge measurements, and they can miss local flash floods and dam releases. Official warnings come from the <a href="https://nihsa.gov.ng" target="_blank" rel="noopener">Nigeria Hydrological Services Agency</a> (Annual Flood Outlook), <a href="https://nema.gov.ng" target="_blank" rel="noopener">NEMA</a> and state emergency agencies; rainfall outlooks from <a href="https://nimet.gov.ng" target="_blank" rel="noopener">NiMet</a>.</div>
+  <div class="kpis" id="fkpi"><div class="kpi"><b>…</b><span>gauges loading</span></div></div>
+  <div class="filterbar"><div><div class="lbl">Order</div><select id="g-sort"><option value="status">Highest status first</option><option value="river">By river, upstream to downstream</option><option value="ratio">Most above normal</option></select></div></div>
+  <div class="ggrid" id="ggrid">${gs.map(f=>`<article class="gcard" data-g="${f.gauge}"><div class="row"><h3>${esc(f.n)}</h3><span class="gs">${statusChip(null,LIVE?'Loading…':'Live on website')}</span></div><div class="meta">Average ${fmt.format(f.qmean||0)} m³/s${f.rec?` · record ${fmt.format(f.rec[1])} m³/s (${f.rec[2].slice(0,4)})`:''}</div><div class="gbody"></div><div class="bt" style="display:flex;gap:6px;flex-wrap:wrap"><a class="btn sm" href="#${f.i}">Open on map</a></div></article>`).join('')}</div>
+  ${bys.length?`<h3 class="sh">Flood-risk areas, 2024</h3><p class="lede" style="margin-bottom:12px">${fmt.format(totH)} of ${fmt.format(totL)} local government areas were rated high and ${fmt.format(totM)} medium for flooding (riverine, flash or coastal) in UNICEF Nigeria’s 2024 flood risk analysis. <button class="btn sm" id="show-flood" type="button">Show on the map</button></p><div class="grid2" id="fcards"></div>`:''}
+  <h3 class="sh">Recent major floods</h3><div class="grid2">${(DATA.ev||[]).map(e=>`<article class="card"><h3>${e.year}: ${esc(e.title)}</h3><p class="wiki">${esc(e.t)}</p><div class="foot"><span>From <a href="${esc(e.u)}" target="_blank" rel="noopener">Wikipedia</a> (CC BY-SA 4.0)</span></div></article>`).join('')}
+  ${DATA.wiki&&DATA.wiki['Lagdo Dam']?`<article class="card"><h3>Lagdo Dam, Cameroon</h3><p class="wiki">${esc(DATA.wiki['Lagdo Dam'].t)}</p><div class="foot"><span>From <a href="${esc(DATA.wiki['Lagdo Dam'].u)}" target="_blank" rel="noopener">Wikipedia</a> (CC BY-SA 4.0). Watch the “Benue at the Cameroon border” gauge for its effect.</span></div></article>`:''}</div>
+  <h3 class="sh">How the status is worked out</h3><ul class="prose" style="padding-left:18px;max-width:80ch">${STATUS.map((s,i)=>`<li>${statusChip(i)} ${esc(s.d)}</li>`).join('')}<li>Normal ranges come from 30 years (1991–2020) of daily GloFAS reanalysis at each point, using a 15-day window around each date. The forecast is the median of the GloFAS ensemble.</li><li>Each point is snapped to the 5 km model cell with the most flow nearby so it sits on the main channel.</li></ul>`;
+  if($('#show-flood'))$('#show-flood').onclick=()=>{location.hash='map';setTimeout(()=>{if(!ovl.flood)toggleOverlay('flood')},120)};
+  if(bys.length){const top=bys.filter(b=>b.High).slice(0,20);const c1=card({t:'States with the most high flood-risk LGAs, 2024',s:'Number of LGAs rated high overall (riverine, flash or coastal).',src:esc(fl.src),file:'flood_risk_lgas_by_state_2024',page:'flood',
+      draw:el=>hbar(el,top.map(b=>({l:b.s,v:b.High,c:'var(--s2)',t:`${b.Medium} medium · ${b.lgas} LGAs in total`,on:()=>{location.hash='map';setTimeout(()=>{state.st=b.s;$('#state').value=b.s;update();zoomState(b.s);if(!ovl.flood)toggleOverlay('flood')},120)}})),{rh:17}),
+      rows:()=>bys.map(b=>({state:b.s,lgas:b.lgas,high:b.High,medium:b.Medium,low:b.Low,riverine_high:b.riv_high,flash_high:b.flash_high,coastal_high:b.coast_high}))});
+    const types=[['Riverine','riv_high'],['Flash','flash_high'],['Coastal','coast_high']].map(([l,k])=>({l,v:bys.reduce((a,b)=>a+b[k],0)}));
+    const c2=card({t:'What kind of flooding, 2024',s:'LGAs rated high for each flood type (an LGA can be high for more than one).',src:esc(fl.src),file:'flood_types_2024',page:'flood',draw:el=>hbar(el,types.map(t=>({...t,c:'var(--s2)'})),{lw:90}),rows:()=>types.map(t=>({flood_type:t.l,lgas_high:t.v}))});
+    $('#fcards').innerHTML=c1.html+c2.html;c1.mount();c2.mount()}
+  $('#g-sort').onchange=sortGauges;
+  if(!LIVE){$('#fkpi').innerHTML=`<div class="kpi"><b>${gs.length}</b><span>flood-watch points</span><small>Live readings load on the website</small></div><div class="kpi"><b>${fmt.format(totH)}</b><span>LGAs at high flood risk (2024)</span><small>UNICEF Nigeria analysis</small></div>`;return}
+  try{
+    const G=await gaugeData();const res={};
+    await Promise.all(gs.map(async f=>{try{const j=await flow(f.la,f.lo,30,45);const g=G[f.gauge];const sm=gaugeSummary(j,g);res[f.gauge]=sm;
+      const el=$(`.gcard[data-g="${f.gauge}"]`);if(!el)return;el.dataset.s=sm.s??-1;el.dataset.r=sm.ratio||0;
+      el.querySelector('.gs').innerHTML=statusChip(sm.s);
+      el.querySelector('.gbody').innerHTML=`<div class="row"><span class="num">${fmt.format(Math.round(sm.now))} <small>m³/s on ${new Date(sm.nowDate).toLocaleDateString('en-GB',{day:'numeric',month:'short'})}</small></span><span class="meta">${sm.ratio?fmt1.format(sm.ratio)+'× normal':''}</span></div><div class="meta">Forecast peak ${sm.peak!=null?fmt.format(Math.round(sm.peak))+' m³/s':'–'}${sm.peakDate?' around '+new Date(sm.peakDate).toLocaleDateString('en-GB',{day:'numeric',month:'short'}):''} ${sm.ps!=null&&sm.ps>0?statusChip(sm.ps,STATUS[sm.ps].k+' expected'):''}</div><div class="qc"></div>`;
+      qchart(el.querySelector('.qc'),j,g,{h:150,max:false});
+    }catch(e){const el=$(`.gcard[data-g="${f.gauge}"]`);if(el)el.querySelector('.gs').innerHTML=statusChip(null,'No reading')}}));
+    const cnt=[0,0,0,0];let fut=0;Object.values(res).forEach(r=>{if(r.s!=null)cnt[r.s]++;if(r.ps!=null&&r.ps>=1)fut++});
+    $('#fkpi').innerHTML=STATUS.map((s,i)=>`<div class="kpi"><b>${cnt[i]}</b><span>${statusChip(i)}</span><small>points now</small></div>`).join('')+`<div class="kpi"><b>${fut}</b><span>points forecast to reach Elevated or higher</span><small>next 45 days</small></div>`;
+    sortGauges();track('flood-watch','Viewed flood watch');
+  }catch(e){$('#fkpi').innerHTML='<div class="kpi"><b>–</b><span>Flow service unavailable; try again later</span></div>'}
+}
+const UPDOWN=['niger-border','niger-jebba','kaduna-kaduna','niger-baro','benue-border','benue-yola','benue-numan','benue-ibi','katsinaala-town','benue-makurdi','niger-lokoja','anambra-otuocha','niger-onitsha','niger-aboh','rima-sokoto','hadejia-hadejia','yobe-gashua','gongola-dadinkowa','cross-ikom','ogun-abeokuta'];
+function sortGauges(){const g=$('#ggrid');if(!g)return;const m=$('#g-sort').value;const cards=[...g.children];
+  cards.sort((a,b)=>m==='river'?UPDOWN.indexOf(a.dataset.g)-UPDOWN.indexOf(b.dataset.g):m==='ratio'?(+b.dataset.r||0)-(+a.dataset.r||0):((+b.dataset.s||-1)-(+a.dataset.s||-1))||((+b.dataset.r||0)-(+a.dataset.r||0)));cards.forEach(c=>g.appendChild(c))}
+
+/* ---------- basins & groundwater ---------- */
+function buildBasins(){
+  const HA=DATA.ha||[],N=DATA.nwrmp||{national:[]};
+  const pp=HA.map(h=>({...h,pc:Math.round(h.tot_int*1e9/(h.pop2020*1000))}));
+  const cards=[];
+  cards.push(card({t:'Renewable water by hydrological area',s:'Billion m³ per year generated inside Nigeria; the lighter tooltip figure includes inflow from neighbouring countries.',src:`<a href="${esc(N.url)}" target="_blank" rel="noopener">National Water Resources Master Plan 2013</a>, Table 14`,file:'renewable_water_by_HA',page:'basins',
+    draw:el=>hbar(el,HA.map(h=>({l:h.id+' '+h.name,v:h.tot_int,t:`${fmt1.format(h.tot)} incl. inflow · surface water ${fmt1.format(h.sw_int)}`})),{lw:170,f:v=>fmt1.format(v)+' bn m³'}),rows:()=>HA.map(h=>({area:h.id+' '+h.name,total_incl_inflow_bcm:h.tot,total_internal_bcm:h.tot_int,surface_incl_inflow_bcm:h.sw,surface_internal_bcm:h.sw_int}))}));
+  cards.push(card({t:'Groundwater recharge by hydrological area',s:'Millimetres of rain that soak through to aquifers each year. The Lake Chad area gets 24 mm a year; the Niger South area nearly 600.',src:`<a href="${esc(N.url)}" target="_blank" rel="noopener">National Water Resources Master Plan 2013</a>, Table 14`,file:'groundwater_recharge_by_HA',page:'basins',
+    draw:el=>hbar(el,HA.map(h=>({l:h.id+' '+h.name,v:h.gwr})),{lw:170,f:v=>fmt.format(v)+' mm/yr'}),rows:()=>HA.map(h=>({area:h.id+' '+h.name,recharge_mm_per_year:h.gwr}))}));
+  cards.push(card({t:'Water generated per person, 2020',s:'Internal renewable water divided by projected 2020 population. Below 1,700 m³ per person a year is commonly called water stress; below 1,000, scarcity.',src:'Calculated from the Master Plan 2013, Tables 6 and 14',file:'water_per_person_by_HA',page:'basins',
+    draw:el=>hbar(el,[...pp].sort((a,b)=>a.pc-b.pc).map(h=>({l:h.id+' '+h.name,v:h.pc,c:h.pc<1000?'var(--s2)':h.pc<1700?'var(--s1)':'var(--bar)',t:h.pc<1000?'scarcity threshold':h.pc<1700?'stress threshold':''})),{lw:170,f:v=>fmt.format(v)+' m³'}),rows:()=>pp.map(h=>({area:h.id+' '+h.name,internal_bcm:h.tot_int,population_2020_thousand:h.pop2020,m3_per_person:h.pc}))}));
+  cards.push(card({t:'Population by hydrological area, 2020 and 2030',s:'Thousands of people (Master Plan projections).',src:`<a href="${esc(N.url)}" target="_blank" rel="noopener">National Water Resources Master Plan 2013</a>, Table 6`,file:'population_by_HA',page:'basins',
+    draw:el=>hbar(el,HA.map(h=>({l:h.id+' '+h.name,v:h.pop2030,t:`2020: ${fmt.format(h.pop2020)} k`})),{lw:170,f:v=>fmt.format(v)+' k (2030)'}),rows:()=>HA.map(h=>({area:h.id+' '+h.name,pop_2020_thousand:h.pop2020,pop_2030_thousand:h.pop2030}))}));
+  const rb=F.filter(f=>f.c===10);
+  $('#basins').innerHTML=`<h2 class="title">River basins and groundwater</h2><p class="lede">How Nigeria’s water is organised: eight hydrological areas used for national planning, twelve River Basin Development Authorities that build and run dams and irrigation, and the aquifers that supply most drinking water.</p>
+  <div class="kpis">${(N.national||[]).slice(0,6).map(x=>`<div class="kpi"><b>${fmt1.format(x.value)}</b><span>${esc(x.unit)} · ${esc(x.label)}</span><small>Master Plan 2013</small></div>`).join('')}</div>
+  <h3 class="sh" style="margin-top:8px">Eight hydrological areas</h3><p class="lede" style="margin-bottom:12px">${esc(DATA.ha_note||'')} <button class="btn sm" id="show-bas" type="button">Show river basins on the map</button></p>
+  <div class="ha-grid">${HA.map(h=>`<div class="ha"><div class="id">${h.id}</div><h4>${esc(h.name)}</h4><p>${esc(h.rivers)}</p><div class="kv"><div><b>${fmt1.format(h.tot_int)}</b><span>bn m³/yr internal</span></div><div><b>${fmt.format(h.gwr)}</b><span>mm/yr recharge</span></div><div><b>${fmt1.format(h.pop2020/1000)} M</b><span>people, 2020</span></div><div><b>${fmt.format(Math.round(h.tot_int*1e9/(h.pop2020*1000)))}</b><span>m³ per person</span></div></div></div>`).join('')}</div>
+  <div class="grid2" style="margin-top:18px">${cards.map(c=>c.html).join('')}</div>
+  <h3 class="sh">River Basin Development Authorities</h3><p class="lede" style="margin-bottom:12px">Federal agencies under the Ministry of Water Resources and Sanitation that develop dams, irrigation schemes and water supply in their basins. Source: <a href="${esc(DATA.rbda_src.url)}" target="_blank" rel="noopener">${esc(DATA.rbda_src.label)}</a>.</p>
+  <div class="tbl-wrap" style="max-height:none"><table class="dt"><thead><tr><th>Authority</th><th>Headquarters</th><th>Area of operation</th><th class="n">Dams in this atlas within 150 km of HQ</th></tr></thead><tbody>${rb.map(f=>`<tr class="click" data-id="${f.i}"><td>${esc(f.n)}</td><td>${esc(f.hq)}</td><td>${esc((f.notes||'').replace(/^Headquarters: [^.]+\. Area of operation: /,''))}</td><td class="n">${F.filter(d=>d.c===0&&km([d.la,d.lo],[f.la,f.lo])<150).length}</td></tr>`).join('')}</tbody></table></div>
+  <h3 class="sh">Groundwater</h3><p class="lede" style="margin-bottom:12px">Most Nigerians drink groundwater from boreholes and wells. What a borehole yields depends on the rock beneath it. Source: <a href="${esc(DATA.gw_src.url)}" target="_blank" rel="noopener">${esc(DATA.gw_src.label)}</a>.</p>
+  <div class="tbl-wrap" style="max-height:none"><table class="dt"><thead><tr><th>Aquifer setting</th><th>Where</th><th>What to expect</th></tr></thead><tbody>${(DATA.gw||[]).map(g=>`<tr><td><b>${esc(g.name)}</b></td><td>${esc(g.where)}</td><td>${esc(g.aquifer)}</td></tr>`).join('')}</tbody></table></div>
+  <div class="tbl-wrap" style="max-height:none;margin-top:12px"><table class="dt"><thead><tr><th>Fact</th><th>Value</th><th>Source</th></tr></thead><tbody>${(DATA.gw_facts||[]).map(g=>`<tr><td>${esc(g.label)}</td><td>${esc(g.value)}</td><td>${esc(g.src)}</td></tr>`).join('')}</tbody></table></div>
+  <h3 class="sh">National water figures</h3><div class="tbl-wrap" style="max-height:none"><table class="dt"><thead><tr><th>Indicator</th><th class="n">Value</th><th>Unit</th></tr></thead><tbody>${(N.national||[]).map(x=>`<tr><td>${esc(x.label)}</td><td class="n">${fmt1.format(x.value)}</td><td>${esc(x.unit)}</td></tr>`).join('')}</tbody></table></div><p style="font-size:12.5px;color:var(--muted)">${esc(N.title)}, ${esc(N.by)}, ${esc(N.date)}. <a href="${esc(N.url)}" target="_blank" rel="noopener">Read the report ↗</a>. The report gives demand figures from different tables that cover different sectors; they are shown as published.</p>
+  <h3 class="sh">Who manages water</h3><div class="commit">${(DATA.ag||[]).map(a=>`<div><b><a href="${esc(a.url)}" target="_blank" rel="noopener">${esc(a.name)}</a></b><span>${esc(a.role)}</span></div>`).join('')}</div>`;
+  cards.forEach(c=>c.mount());
+  $$('#basins tr.click').forEach(tr=>tr.onclick=()=>goSite(tr.dataset.id));
+  $('#show-bas').onclick=()=>{location.hash='map';setTimeout(()=>{if(!ovl.basins)toggleOverlay('basins')},120)};
+}
+</script>
+<script>
+/* ---------- statistics ---------- */
+function wbS(id){const s=(DATA.wb||{})[id];return s&&s.data&&s.data.length?s:null}
+function dhsSub(ind,sv){const S=(DATA.dhs||{}).sub||{};const id=sv||(S.NG2024DHS?'NG2024DHS':'NG2018DHS');const st=S[id]||{};return{id,yr:id.slice(2,6),rows:Object.entries(st).filter(([s,v])=>v[ind]!=null).map(([s,v])=>({s,v:v[ind]}))}}
+const DHS_SRC=id=>`<a href="https://dhsprogram.com/Countries/Country-Main.cfm?ctry_id=30&c=Nigeria" target="_blank" rel="noopener">Nigeria DHS ${id==='NG2024DHS'?'2023–24':'2018'}</a> via the DHS Program API`;
+function buildStats(){
+  const dams=F.filter(f=>f.c===0),gdw=dams.filter(f=>f.gdw),cap=gdw.reduce((a,f)=>a+(f.cap||0),0),mw=dams.reduce((a,f)=>a+(f.mw||0),0);
+  const last=s=>s.data[s.data.length-1];
+  const bw=wbS('SH.H2O.BASW.ZS'),sm=wbS('SH.H2O.SMDW.ZS'),bs=wbS('SH.STA.BASS.ZS'),od=wbS('SH.STA.ODFC.ZS'),intr=wbS('ER.H2O.INTR.K3'),pc=wbS('ER.H2O.INTR.PC'),wd=wbS('ER.H2O.FWTL.K3'),stress=wbS('ER.H2O.FWST.ZS');
+  const kp=[[fmt.format(gdw.length),'dams and reservoirs mapped by Global Dam Watch','GDW v1.0'],[fmt1.format(cap/1000)+' bn m³','total reservoir storage capacity','Sum of GDW capacities'],
+    [fmt.format(F.filter(f=>f.c===1).length),'more dams listed only by UNICEF Nigeria','Location uncertain'],
+    [fmt.format(F.filter(f=>[2,3,4,5].includes(f.c)).length),'lakes, lagoons, waterfalls and springs','Wikidata and Wikipedia'],
+    bw?[fmt1.format(last(bw)[1])+'%','of Nigerians with at least basic drinking water',`WHO/UNICEF JMP · ${last(bw)[0]}`]:null,
+    sm?[fmt1.format(last(sm)[1])+'%','with safely managed drinking water',`WHO/UNICEF JMP · ${last(sm)[0]}`]:null,
+    pc?[fmt.format(Math.round(last(pc)[1]))+' m³','renewable internal freshwater per person',`FAO AQUASTAT via World Bank · ${last(pc)[0]}`]:null,
+    stress?[fmt1.format(last(stress)[1])+'%','water stress (withdrawals ÷ available water)',`SDG 6.4.2 · ${last(stress)[0]}`]:null].filter(Boolean);
+  const cards=[];
+  const byB={};gdw.forEach(f=>{const b=f.bn||f.basin||'Not assigned';byB[b]=byB[b]||{n:0,cap:0};byB[b].n++;byB[b].cap+=f.cap||0});const bb=Object.entries(byB).map(([l,v])=>({l,v:Math.round(v.cap),t:`${v.n} dams`})).sort((a,b)=>b.v-a.v);
+  cards.push(card({t:'Reservoir storage by major basin',s:'Million m³ of storage capacity. Kainji, Shiroro and Jebba alone hold most of the Niger basin’s total.',src:'Global Dam Watch v1.0 (Lehner et al. 2024)',file:'storage_by_basin',draw:el=>hbar(el,bb,{lw:250,f:v=>fmt.format(v)+' Mm³'}),rows:()=>bb.map(r=>({basin:r.l,capacity_million_m3:r.v,dams:+r.t.split(' ')[0]}))}));
+  const top=gdw.filter(f=>f.cap).sort((a,b)=>b.cap-a.cap).slice(0,15);
+  cards.push(card({t:'Largest reservoirs',s:'Storage capacity in million m³. Click a bar to open the dam.',src:'Global Dam Watch v1.0',file:'largest_reservoirs',draw:el=>hbar(el,top.map(f=>({l:f.n.length>24?f.n.slice(0,23)+'…':f.n,v:f.cap,t:[f.river&&f.river+' River',f.y,f.use].filter(Boolean).join(' · '),on:()=>goSite(f.i)})),{lw:170,f:v=>fmt.format(Math.round(v))+' Mm³'}),rows:()=>top.map(f=>({dam:f.n,river:f.river||'',state:f.s,year:f.y||'',capacity_million_m3:f.cap,area_km2:f.akm||'',main_use:f.use||''}))}));
+  const dec={};gdw.filter(f=>f.y).forEach(f=>{const d=Math.floor(f.y/10)*10;dec[d]=dec[d]||{n:0,c:0};dec[d].n++;dec[d].c+=f.cap||0});const ds=Object.keys(dec).map(Number).sort();const dp=[];for(let d=ds[0];d<=ds[ds.length-1];d+=10)dp.push({l:d+'s',v:(dec[d]||{}).n||0,c2:(dec[d]||{}).c||0});
+  cards.push(card({t:'When the dams were built',s:`Dams completed per decade (${gdw.filter(f=>f.y).length} with a recorded year). Most large dams date from the 1970s–1990s irrigation and hydropower drive.`,src:'Global Dam Watch v1.0',file:'dams_by_decade',draw:el=>cols(el,dp),rows:()=>dp.map(r=>({decade:r.l,dams:r.v,capacity_added_million_m3:Math.round(r.c2)}))}));
+  const uses={};gdw.filter(f=>f.use).forEach(f=>{uses[f.use]=(uses[f.use]||0)+1});const us=Object.entries(uses).map(([l,v])=>({l,v})).sort((a,b)=>b.v-a.v);
+  cards.push(card({t:'Main purpose of each dam',s:'Each dam counted once under its main use.',src:'Global Dam Watch v1.0',file:'dams_by_main_use',draw:el=>hbar(el,us,{lw:130}),rows:()=>us.map(r=>({main_use:r.l,dams:r.v}))}));
+  if(bw){const ser=[['SH.H2O.BASW.ZS','National','var(--bar)'],['SH.H2O.BASW.UR.ZS','Urban','var(--g6)'],['SH.H2O.BASW.RU.ZS','Rural','var(--g1)']].map(([id,n,c])=>{const s=wbS(id);return s?{name:n,c,pts:s.data.map(d=>({x:d[0],v:d[1]}))}:null}).filter(Boolean);
+    cards.push(card({t:'People with at least basic drinking water',s:'% of population: an improved source within a 30-minute round trip.',src:`<a href="https://washdata.org" target="_blank" rel="noopener">WHO/UNICEF Joint Monitoring Programme</a> via World Bank WDI`,file:'basic_drinking_water',draw:el=>line(el,ser,{min:0,max:100,f:v=>fmt1.format(v)+'%',tf:v=>v+'%'}),rows:()=>bw.data.map(d=>{const r={year:d[0],national_pct:d[1]};ser.slice(1).forEach(S=>{const p=S.pts.find(p=>p.x===d[0]);r[S.name.toLowerCase()+'_pct']=p?p.v:''});return r})}))}
+  if(bs||od){const ser=[[bs,'Basic sanitation','var(--bar)'],[od,'Open defecation','var(--s2)']].filter(x=>x[0]).map(([s,n,c])=>({name:n,c,pts:s.data.map(d=>({x:d[0],v:d[1]}))}));
+    cards.push(card({t:'Sanitation',s:'% of population with at least basic sanitation, and practising open defecation.',src:'WHO/UNICEF JMP via World Bank WDI',file:'sanitation',draw:el=>line(el,ser,{min:0,max:100,f:v=>fmt1.format(v)+'%',tf:v=>v+'%'}),rows:()=>ser[0].pts.map(p=>{const r={year:p.x};ser.forEach(S=>{const q=S.pts.find(q=>q.x===p.x);r[S.name]=q?q.v:''});return r})}))}
+  const sec=['ER.H2O.FWAG.ZS','ER.H2O.FWDM.ZS','ER.H2O.FWIN.ZS'].map((id,i)=>{const s=wbS(id);return s?{l:['Agriculture','Municipal (domestic)','Industry'][i],v:last(s)[1],y:last(s)[0]}:null}).filter(Boolean);
+  if(sec.length)cards.push(card({t:'Who uses the water that is withdrawn',s:`Share of annual freshwater withdrawals${wd?` (${fmt1.format(last(wd)[1])} billion m³ in ${last(wd)[0]})`:''}.`,src:'FAO AQUASTAT via World Bank WDI',file:'withdrawals_by_sector',draw:el=>hbar(el,sec,{lw:150,f:v=>fmt1.format(v)+'%'}),rows:()=>sec.map(r=>({sector:r.l,pct_of_withdrawals:r.v,year:r.y}))}));
+  const st=(ind,t,s,file,good)=>{const d=dhsSub(ind);if(!d.rows.length)return;const r=d.rows.sort((a,b)=>good?a.v-b.v:b.v-a.v);
+    cards.push(card({t:t+` (${d.yr==='2024'?'2023–24':d.yr})`,s,src:DHS_SRC(d.id),file:file+'_'+d.yr,draw:el=>hbar(el,r.map(x=>({l:x.s,v:x.v,on:()=>{location.hash='map';setTimeout(()=>{state.st=x.s;$('#state').value=x.s;update();zoomState(x.s)},80)}})),{rh:17,f:v=>fmt1.format(v)+'%'}),rows:()=>r.map(x=>({state:x.s,pct:x.v}))}))};
+  st('WS_SRCE_P_BAS','Basic drinking water by state','% of household population with basic drinking water service. Lowest first.','dhs_basic_water_by_state',true);
+  st('WS_SRCE_P_SRF','Drinking surface water by state','% of household population whose main drinking water is a river, stream, pond or dam.','dhs_surface_water_by_state');
+  st('WS_SRCE_P_TUB','Boreholes as the main source, by state','% of household population drinking mainly from a tubewell or borehole.','dhs_borehole_by_state');
+  st('WS_SRCE_P_SCH','Sachet water by state','% of household population drinking mainly “pure water” sachets.','dhs_sachet_by_state');
+  st('WS_TIME_P_M30','Water more than 30 minutes away, by state','% of household population needing over 30 minutes for a round trip to fetch water.','dhs_time_over30_by_state');
+  const nat=((DATA.dhs||{}).nat||{}).WS_SRCE_P_IMP;if(nat){const pts=Object.values(nat).sort((a,b)=>a[0]-b[0]).map(p=>({x:p[0],v:p[1]}));if(pts.length>1)cards.push(card({t:'Improved drinking water source, survey by survey',s:'% of household population, from each national DHS or MIS.',src:'Nigeria DHS and MIS surveys via the DHS Program API',file:'dhs_improved_water_trend',draw:el=>line(el,pts,{min:0,max:100,f:v=>fmt1.format(v)+'%',tf:v=>v+'%'}),rows:()=>pts.map(p=>({survey_year:p.x,pct:p.v}))}))}
+  if(DATA.wp){const r=Object.entries(DATA.wp.bystate).map(([s,v])=>({l:s,v:Object.values(v).reduce((a,b)=>a+b,0),t:Object.entries(v).sort((a,b)=>b[1]-a[1]).slice(0,3).map(([k,n])=>`${esc(k)} ${fmt.format(n)}`).join(' · ')})).sort((a,b)=>b.v-a.v);
+    cards.push(card({t:'Mapped water points by state',s:`${fmt.format(DATA.wp.n)} boreholes, wells, taps and other points surveyed for GRID3. Coverage is uneven: states with few points were not fully surveyed, so this is not a measure of access.`,src:esc(DATA.wp.src),file:'grid3_water_points_by_state',draw:el=>hbar(el,r,{rh:17}),rows:()=>r.map(x=>({state:x.l,water_points:x.v}))}))}
+  const lv=['A','B','C','D'].map(l=>({l:'Level '+l,v:F.filter(f=>f.v===l).length,t:LEVELS[l]}));
+  cards.push(card({t:'How well each record is verified',s:'A = named and documented; D = listed only, location provisional.',src:'Atlas verification scheme (see Data & sources)',file:'verification_levels',draw:el=>hbar(el,lv,{lw:90}),rows:()=>lv.map(r=>({level:r.l,records:r.v,meaning:r.t}))}));
+  const WBT=Object.entries(DATA.wb||{}).filter(([k,s])=>s.data&&s.data.length);
+  $('#stats').innerHTML=`<h2 class="title">Nigeria’s water in numbers</h2><p class="lede">Headline indicators for researchers, agencies, journalists and students. Every chart names its source and can be shown as a table, downloaded as CSV or copied as a citation. Dam figures come from Global Dam Watch; access figures from the WHO/UNICEF Joint Monitoring Programme and Nigeria’s Demographic and Health Surveys.</p>
+  <div class="kpis">${kp.map(([v,l,s])=>`<div class="kpi"><b>${v}</b><span>${l}</span><small>${s}</small></div>`).join('')}</div>
+  <div class="grid2">${cards.map(c=>c.html).join('')}</div>
+  ${WBT.length?`<h3 class="sh">Reference indicators</h3><div class="tbl-wrap" style="max-height:none"><table class="dt"><thead><tr><th>Indicator</th><th class="n">Latest</th><th>Year</th><th>Source</th></tr></thead><tbody>${WBT.map(([k,s])=>`<tr><td>${esc(s.name)}</td><td class="n">${fmt1.format(last(s)[1])}</td><td>${last(s)[0]}</td><td><a href="https://data.worldbank.org/indicator/${k}?locations=NG" target="_blank" rel="noopener">${esc((s.source||'World Bank WDI').slice(0,80))}</a></td></tr>`).join('')}</tbody></table></div>`:''}`;
+  cards.forEach(c=>c.mount());
+}
+
+/* ---------- visit ---------- */
+function buildVisit(){
+  const sites=F.filter(f=>f.la!=null&&([2,3,4,5,6].includes(f.c)||(f.c===0&&(f.pics.length||f.wt))));
+  const TYPES=[['falls','Waterfalls',f=>f.c===4],['springs','Warm springs and springs',f=>f.c===5],['lakes','Lakes and lagoons',f=>f.c===2||f.c===3],['wet','Ramsar wetlands',f=>f.c===6],['dams','Dams and reservoirs',f=>f.c===0]];
+  $('#visit').innerHTML=`<h2 class="title">Plan a visit</h2><p class="lede">Waterfalls, warm springs, lakes, lagoons, wetlands and reservoirs that receive or could receive visitors. Descriptions come from Wikipedia and the Ramsar register. Access, fees and security change often: confirm with the site or state tourism board before you travel, and check your government’s current travel advice. Avoid swimming near dam spillways and in fast water during the rainy season.</p>
+  <div class="filterbar"><div><div class="lbl">Travelling from</div><select id="vf-from"><option value="">Anywhere</option>${Object.keys(CITIES).map(c=>`<option>${c}</option>`).join('')}</select></div>
+  <div><div class="lbl">Type</div><select id="vf-t"><option value="">All</option>${TYPES.map(t=>`<option value="${t[0]}">${t[1]}</option>`).join('')}</select></div>
+  <div><div class="lbl">Search</div><input type="text" id="vf-q" placeholder="e.g. Plateau, warm spring, boating"></div>
+  <label class="toggle" style="align-self:center"><input type="checkbox" id="vf-p" checked> With photos only</label></div><p class="meta" id="vcount" style="margin:-6px 0 12px;font-size:12.5px;color:var(--muted)"></p><div class="vgrid" id="vgrid"></div>`;
+  const draw=()=>{const from=$('#vf-from').value,t=$('#vf-t').value,q=$('#vf-q').value.trim().toLowerCase(),onlyP=$('#vf-p').checked;const T=TYPES.find(x=>x[0]===t);
+    let L=sites.filter(f=>(!T||T[2](f))&&(!onlyP||f.pics.length)&&(!q||f.txt.includes(q)));
+    L.forEach(f=>f._d=from?km(CITIES[from],[f.la,f.lo]):null);
+    L.sort((a,b)=>(from?a._d-b._d:0)||((b.pics.length?1:0)-(a.pics.length?1:0))||((b.wt?1:0)-(a.wt?1:0))||([4,5,2,3,6,0].indexOf(a.c)-[4,5,2,3,6,0].indexOf(b.c)));
+    $('#vcount').textContent=`${fmt.format(L.length)} places · ${fmt.format(L.filter(f=>f.pics.length).length)} with photographs`;
+    $('#vgrid').innerHTML=L.slice(0,150).map(f=>{const P=f.pics[0];const txt=(f.wt?f.wt.t:f.tour||f.notes||'');
+      return`<article class="vcard"><div class="ph" style="--c:var(--g${f.gp})">${P&&LIVE?imgTag(P,500,330):''}<span class="ready">${esc(CATN(f))}</span></div><div class="bd"><h3>${esc(f.n)}</h3><div class="meta">${esc(f.s||'')}${f.river&&f.c===0?' · '+esc(f.river)+' River':''}${f._d?` · ${fmt.format(Math.round(f._d))} km from ${esc(from)} (straight line)`:''}</div><p>${esc(txt.slice(0,230))}${txt.length>230?'…':''}</p><div class="bt"><a class="btn sm" href="#${f.i}">Open profile</a><a class="btn sm" href="https://www.google.com/maps/dir/?api=1&destination=${f.la},${f.lo}" target="_blank" rel="noopener">Directions ↗</a></div></div></article>`}).join('')||'<p>No places match these filters.</p>';};
+  ['vf-from','vf-t','vf-p'].forEach(i=>$('#'+i).onchange=draw);$('#vf-q').oninput=draw;draw();
+}
+
+/* ---------- community hub ---------- */
+const RTYPES=['Flooding','Drought or very low water','Pollution or oil spill','Fish kill or algal bloom','Broken borehole or water point','New or repaired water point','Dam or embankment safety concern','Erosion or gully','Sand mining or dredging','Community water initiative','Data correction','Other'];
+let reportSite=null,REPORTS=[],unsubR=null;
+function buildNgo(){
+  const nameIdx={};F.forEach(f=>nameIdx[f.n.toLowerCase()]=f.i);
+  const unsure=F.filter(f=>f.c===1).sort((a,b)=>a.s.localeCompare(b.s)||a.n.localeCompare(b.n));
+  const unnamed=F.filter(f=>f.c===0&&/^Unnamed/.test(f.n)).sort((a,b)=>(b.cap||0)-(a.cap||0));
+  const noprof=F.filter(f=>f.c===0&&f.gdw&&!f.wt&&!/^Unnamed/.test(f.n)).sort((a,b)=>(b.cap||0)-(a.cap||0)).slice(0,20);
+  const tbl=(L,cols)=>`<div class="tbl-wrap"><table class="dt"><thead><tr>${cols.map(c=>`<th class="${c[2]?'n':''}">${c[0]}</th>`).join('')}</tr></thead><tbody>${L.map(f=>`<tr class="click" data-id="${f.i}">${cols.map(c=>`<td class="${c[2]?'n':''}">${c[1](f)}</td>`).join('')}</tr>`).join('')}</tbody></table></div>`;
+  $('#ngo').innerHTML=`<h2 class="title">Community hub</h2><p class="lede">For water user associations, NGOs, researchers, journalists and community monitors: log what you see on the ground, keep a watchlist, and find the records that most need checking. Reports are shown as submitted and marked unverified until checked.</p>
+  <div class="grid2">
+   <article class="card"><h3>Report from the field</h3><div class="sub" id="r-mode"></div>
+    <form class="form" id="rform"><label>Place<input type="text" id="r-site" list="r-sites" placeholder="Start typing a dam, river, lake or town" required></label><datalist id="r-sites">${F.map(f=>`<option value="${esc(f.n)}">${esc(f.s)}</option>`).join('')}</datalist>
+     <div class="two"><label>What did you observe?<select id="r-type">${RTYPES.map(t=>`<option>${t}</option>`).join('')}</select></label><label>Date observed<input type="date" id="r-date" value="${today}"></label></div>
+     <label>Short title<input type="text" id="r-title" maxlength="120" required placeholder="e.g. River overtopped the bank at the market road"></label>
+     <label>Details<textarea id="r-body" maxlength="2000" placeholder="What, where (landmark or GPS), how large, who is affected. Avoid naming private individuals."></textarea></label>
+     <div class="two"><label>Organisation (optional)<input type="text" id="r-org" maxlength="120"></label><label>Evidence link (optional)<input type="url" id="r-link" placeholder="https://"></label></div>
+     <div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn primary" type="submit" id="r-submit">Publish report</button><button class="btn" type="button" id="r-copy">Copy report text</button></div>
+     <p id="r-msg" class="loading" style="margin:0"></p></form>
+     <p class="loading" style="margin:0">In an emergency, contact your State Emergency Management Agency or NEMA first.</p></article>
+   <article class="card"><h3>Shared field log</h3><div class="sub">Most recent reports from all contributors.</div><div class="row2"><select id="rf-type"><option value="">All report types</option>${RTYPES.map(t=>`<option>${t}</option>`).join('')}</select><select id="rf-state"><option value="">All states</option>${STATES.map(s=>`<option>${esc(s)}</option>`).join('')}</select></div><div class="feed" id="feed"></div></article>
+   <article class="card"><h3>My watchlist</h3><div class="sub">Places you starred in their profiles. Saved in this browser only.</div><div id="watch"></div></article>
+   <article class="card"><h3>Large dams with no published profile</h3><div class="sub">Named reservoirs in Global Dam Watch without a Wikipedia article: a gap for students, journalists and RBDAs to fill.</div>${tbl(noprof,[['Dam',f=>esc(f.n)],['River',f=>esc(f.river||'')],['Mm³',f=>f.cap?fmt.format(Math.round(f.cap)):'–',1]])}</article>
+   <article class="card"><h3>Reservoirs seen from space but unnamed</h3><div class="sub">${unnamed.length} reservoirs mapped from satellite images (GOODD, GROD, JRC) with no name on record. Know one? Send a “Data correction”.</div>${tbl(unnamed,[['Record',f=>esc(f.n)],['State',f=>esc(f.s)],['Mm³',f=>f.cap?fmt1.format(f.cap):'–',1]])}</article>
+   <article class="card"><h3>Listed dams that need locating</h3><div class="sub">${unsure.length} dams in the UNICEF Nigeria list that could not be matched to a mapped reservoir. Their coordinates are rounded, and some fall in a different state from the one listed.</div>${tbl(unsure,[['Dam',f=>esc(f.n)],['Listed state',f=>esc(f.s_listed||'')],['Level',f=>f.v]])}</article>
+  </div>`;
+  $$('#ngo tr.click').forEach(tr=>tr.onclick=()=>goSite(tr.dataset.id));
+  const siteOf=()=>{const v=$('#r-site').value.trim().toLowerCase();return nameIdx[v]?BY[nameIdx[v]]:null};
+  const text=()=>{const f=siteOf();return`Field report — ${$('#r-title').value}\nPlace: ${f?f.n+' ('+f.s+') ['+f.i+']':$('#r-site').value}\nType: ${$('#r-type').value}\nDate observed: ${$('#r-date').value}\nOrganisation: ${$('#r-org').value||'—'}\nEvidence: ${$('#r-link').value||'—'}\n\n${$('#r-body').value}`};
+  $('#r-copy').onclick=()=>copy(text());
+  if(reportSite&&BY[reportSite])$('#r-site').value=BY[reportSite].n;
+  $('#rform').onsubmit=async e=>{e.preventDefault();const f=siteOf();track('field-report','Submitted a field report');
+    if(CAP.db){if(!f){$('#r-msg').textContent='Pick a place from the list so the report can be placed on the map.';return}$('#r-submit').disabled=true;try{const uid=CAP.user&&CAP.user.id?await CAP.user.id():null;
+        await CAP.db.collection('reports').add({site:f.i,siteName:f.n,state:f.s,type:$('#r-type').value,date:$('#r-date').value,title:$('#r-title').value.slice(0,120),body:$('#r-body').value.slice(0,2000),org:$('#r-org').value.slice(0,120),link:/^https?:\/\//.test($('#r-link').value)?$('#r-link').value:'',author:uid,created:Date.now(),status:'unverified'});
+        $('#rform').reset();$('#r-date').value=today;$('#r-msg').textContent='Report published to the shared field log.';toast('Report published')}
+      catch(err){$('#r-msg').textContent=err&&err.code==='not_granted'?'You can read the log but not add to it. Copy the report text and send it instead.':'The report could not be saved. Copy the text and try again later.'}
+      $('#r-submit').disabled=false}
+    else{const url=`https://github.com/${CONFIG.issuesRepo}/issues/new?labels=water-report&title=${encodeURIComponent('[Water] ['+$('#r-type').value+'] '+(f?f.n:$('#r-site').value)+': '+$('#r-title').value)}&body=${encodeURIComponent(text())}`;
+      const a=document.createElement('a');a.href=url;a.target='_blank';a.rel='noopener';document.body.appendChild(a);a.click();a.remove();$('#r-msg').innerHTML=`Your report opens as a GitHub issue for review (a free GitHub account is needed). If nothing opened, <a href="${esc(url)}" target="_blank" rel="noopener">open it here</a>, or copy the report text and email it to <a href="mailto:amool@unbc.ca">amool@unbc.ca</a>.`}};
+  $('#r-mode').textContent=CAP.db?'Reports are saved to this atlas’s shared log and visible to everyone it is shared with.':'On the public website, reports are filed as GitHub issues so maintainers can check them before they are added.';
+  $('#rf-type').onchange=$('#rf-state').onchange=renderFeed;
+  renderFeed();renderWatch();
+}
+function startReports(){if(unsubR||!CAP.db)return;try{unsubR=CAP.db.collection('reports').orderBy('created','desc').limit(300).onSnapshot(s=>{REPORTS=s.docs.map(d=>({id:d.id,...d.data()}));renderFeed();if(state.sel)renderSiteReports(state.sel)},()=>{})}catch(e){}}
+async function names(ids){const out={};if(!CAP.user||!CAP.user.profiles||!ids.length)return out;try{const p=await CAP.user.profiles(ids);ids.forEach(i=>out[i]=(p[i]&&p[i].name)||'')}catch(e){}return out}
+async function renderFeed(){
+  const el=$('#feed');if(!el)return;
+  if(!CAP.db){el.innerHTML=`<p class="loading" style="margin:0">Submitted reports are reviewed in public on GitHub: <a href="https://github.com/${CONFIG.issuesRepo}/issues?q=label%3Awater-report" target="_blank" rel="noopener">see the field reports ↗</a>.</p>`;return}
+  const t=$('#rf-type').value,s=$('#rf-state').value;const L=REPORTS.filter(r=>(!t||r.type===t)&&(!s||(r.state||'').includes(s))).slice(0,60);
+  const nm=await names([...new Set(L.map(r=>r.author).filter(Boolean))]);
+  el.innerHTML=L.length?L.map(r=>`<div class="rep"><div class="h"><span class="typechip">${esc(r.type)}</span><span>${esc(r.date||'')}</span><a href="#${esc(r.site)}">${esc(r.siteName||r.site)}</a><span>${esc(r.state||'')}</span><span>· unverified</span></div><b>${esc(r.title)}</b>${r.body?`<p>${esc(r.body)}</p>`:''}<div class="h" style="margin-top:6px">${nm[r.author]?esc(nm[r.author]):'A contributor'}${r.org?' · '+esc(r.org):''}${r.link?` · <a href="${esc(r.link)}" target="_blank" rel="noopener">evidence ↗</a>`:''}</div></div>`).join(''):'<p class="loading" style="margin:0">No reports yet. The first one you publish will appear here.</p>';
+}
+function renderSiteReports(f){const el=$('#sh-reports');if(!el)return;const L=REPORTS.filter(r=>r.site===f.i);el.innerHTML=L.length?`<h3>Field reports (${L.length})</h3>${L.slice(0,5).map(r=>`<div class="rep" style="margin-top:6px"><div class="h"><span class="typechip">${esc(r.type)}</span><span>${esc(r.date||'')}</span><span>· unverified</span></div><b>${esc(r.title)}</b>${r.body?`<p>${esc(r.body.slice(0,300))}</p>`:''}</div>`).join('')}`:''}
+function renderWatch(){const el=$('#watch');if(!el)return;const w=watchlist().map(i=>BY[i]).filter(Boolean);
+  el.innerHTML=w.length?`<div class="tbl-wrap"><table class="dt"><thead><tr><th>Place</th><th>Type</th><th>State</th><th>Level</th></tr></thead><tbody>${w.map(f=>`<tr class="click" data-id="${f.i}"><td>${esc(f.n)}</td><td>${esc(CATN(f))}</td><td>${esc(f.s)}</td><td>${f.v}</td></tr>`).join('')}</tbody></table></div><div style="margin-top:8px"><button class="btn sm" id="dl-watch" type="button">Download watchlist CSV</button></div>`:'<p class="loading" style="margin:0">Open any place on the map and press “Watch” to add it here.</p>';
+  $$('#watch tr.click').forEach(tr=>tr.onclick=()=>goSite(tr.dataset.id));
+  if($('#dl-watch'))$('#dl-watch').onclick=()=>saveFile('watchlist.csv',toCSV(w.map(exportRow)),'text/csv');}
+
+/* ---------- data & sources ---------- */
+function exportRow(f){return{id:f.i,name:f.n,type:CATN(f),state:f.s||'',lat:f.la??'',lon:f.lo??'',river:f.river||'',basin:f.basin||'',year_completed:f.y||'',dam_height_m:f.hgt??'',crest_length_m:f.len??'',capacity_million_m3:f.cap??'',reservoir_area_km2:f.akm??'',mean_depth_m:f.dep??'',average_inflow_m3s:f.dis??'',catchment_km2:f.catch??'',power_mw:f.mw??'',main_use:f.use||'',uses:(f.uses||[]).join('; '),river_length_km:f.rlen??'',gdw_id:f.gdw||'',grand_id:f.grand||'',wikidata:f.wd||'',wdpa_id:f.w||'',verification_level:f.v,location_basis:f.q||'',location_note:f.loc_note||'',wikipedia:f.wt?f.wt.u:'',sources:(f.src||[]).join(' | ')}}
+function buildData(){
+  const dsCite=`Nigeria Water Resources Atlas (2026). Nigeria dams, reservoirs, rivers, lakes and wetlands dataset, version ${DATA.meta.version} [Data set]. ${CONFIG.siteUrl}. Includes data from Global Dam Watch v1.0 (Lehner, B. et al., 2024, Scientific Data 11:1069), DIVA-GIS/Digital Chart of the World, Wikidata, GRID3 Nigeria, the DHS Program and GloFAS (Copernicus EMS).`;
+  const SRC=[
+   ['Global Dam Watch (GDW) database v1.0 — Lehner et al. 2024','Dam points, reservoir outlines, river, year, height, capacity, area, depth, inflow, catchment and uses. Combines GRanD with satellite-mapped GOODD, GROD and JRC records','Dams and reservoirs','https://www.globaldamwatch.org','CC BY 4.0'],
+   ['Nigeria dam list (Nigeria Dams layer, UNICEF Nigeria GIS, ArcGIS Online)','Names, states and rounded coordinates of 160+ dams','Dams not found in GDW (level C–D)','https://www.arcgis.com/home/search.html?q=Nigeria%20Dams_WFL1','Public layer; no licence stated'],
+   ['DIVA-GIS inland water (from the Digital Chart of the World)','Rivers, streams, lakes and swamps','River network and water bodies','https://www.diva-gis.org/gdata','Free for non-commercial use'],
+   ['Natural Earth 1:10m rivers and lakes','Named major river lines and Lake Chad','Main rivers','https://www.naturalearthdata.com','Public domain'],
+   ['HydroBASINS level 4 (Lehner & Grill 2013)','Watershed boundaries','Basins layer','https://www.hydrosheds.org/products/hydrobasins','Free with attribution'],
+   ['Wikidata and Wikipedia','Lakes, waterfalls, springs, extra dams, river lengths, descriptions and photographs (Wikimedia Commons)','Profiles and photos','https://www.wikidata.org','CC0 (Wikidata); CC BY-SA (text); per-file licences (photos)'],
+   ['Ramsar Sites Information Service and WDPA, via the Nigeria Forest Reserves Atlas','Ramsar wetland boundaries and profiles','Wetlands',CONFIG.forestUrl,'Per source'],
+   ['GloFAS v4 river discharge (Copernicus EMS) via the Open-Meteo Flood API','Daily modelled river flow since 1984 and ensemble forecasts','Flood watch and river-flow charts','https://open-meteo.com/en/docs/flood-api','CC BY 4.0'],
+   ['National Water Resources Master Plan 2013 (Federal Ministry of Water Resources and JICA)','Hydrological areas, renewable water, recharge, population, demand','Basins page','https://openjicareport.jica.go.jp/pdf/12146585.pdf','Government report'],
+   ['British Geological Survey, Africa Groundwater Atlas','Aquifer types, yields, borehole statistics','Groundwater','https://earthwise.bgs.ac.uk/index.php/Hydrogeology_of_Nigeria','© BGS / UKRI'],
+   ['Nigeria DHS 2023–24 and 2018 (NPC and ICF), DHS Program API','Drinking water sources, time to water, sanitation by state','Statistics','https://api.dhsprogram.com','Public API; cite the DHS Program'],
+   ['World Bank World Development Indicators (JMP, FAO AQUASTAT)','National water access, sanitation, freshwater resources, withdrawals','Statistics','https://data.worldbank.org/country/nigeria','CC BY 4.0'],
+   ['GRID3 Nigeria Water Points (eHealth Africa and Proxy Logics, 2020)','Locations and types of about 29,000 water points','Water points layer','https://grid3.gov.ng','CC BY 4.0'],
+   ['UNICEF Nigeria, 2024 Nigeria Flood Risk Analysis (ArcGIS Online)','Riverine, flash and coastal flood-risk rating for each LGA','Flood risk layer','https://www.arcgis.com/home/search.html?q=2024%20Nigeria%20Flood%20Risk%20Analysis','Public layer; no licence stated'],
+   ['geoBoundaries (William & Mary geoLab)','State boundaries','State assignment','https://www.geoboundaries.org','CC BY 4.0'],
+   ['Live services on the hosted site','Open-Meteo (weather, river flow), Wikimedia Commons (nearby photos), Esri / OpenTopoMap / NASA GIBS (basemaps), JRC Global Surface Water (surface-water tiles)','On demand','https://open-meteo.com','Per service terms']];
+  const unnamed=F.filter(f=>/^Unnamed/.test(f.n)).length;
+  $('#data').innerHTML=`<h2 class="title">Data, sources and method</h2><p class="lede">This atlas joins global scientific databases with Nigerian government plans, national surveys and open encyclopaedias, and records where every fact came from. It is built to be checked, cited and corrected.</p>
+  <h3>Download the dataset</h3><p>${fmt.format(F.length)} records, version ${esc(DATA.meta.version)}, refreshed ${esc(DATA.meta.refreshed)}. CSV opens in Excel or R; GeoJSON opens in QGIS, ArcGIS and most web maps. The full build files (river network, water points, flood-risk LGAs, gauge climatologies) are in the <a href="data/atlas.json">data folder</a>.</p>
+  <div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn primary" id="dl-csv" type="button">Download CSV</button><button class="btn" id="dl-geo" type="button">Download GeoJSON</button><button class="btn" id="dl-cite" type="button">Copy dataset citation</button></div>
+  <pre class="cite" style="margin-top:10px">${esc(dsCite)}</pre>
+  <h3>Sources</h3><div class="tbl-wrap" style="max-height:none"><table class="dt srctbl"><thead><tr><th>Source</th><th>What it provides</th><th>Used for</th><th>Licence / terms</th></tr></thead><tbody>${SRC.map(s=>`<tr><td><a href="${esc(s[3])}" ${s[3].startsWith('/')?'':'target="_blank" rel="noopener"'}>${esc(s[0])}</a></td><td>${esc(s[1])}</td><td>${esc(s[2])}</td><td>${esc(s[4])}</td></tr>`).join('')}</tbody></table></div>
+  <h3>Verification levels</h3><ul>${Object.entries(LEVELS).map(([k,v])=>`<li><b>Level ${k}</b> (${F.filter(f=>f.v===k).length} records): ${esc(v)}</li>`).join('')}</ul>
+  <h3>Method</h3><ul>
+   <li>Global Dam Watch is the backbone for dams. UNICEF-list and Wikidata entries were matched to it by name and distance; unmatched UNICEF-list dams are kept as level D so they can be located.</li>
+   <li>Unnamed satellite-mapped reservoirs take a name only when a UNICEF-list or Wikidata entry lies within a few kilometres, and the profile says so.</li>
+   <li>Each record is assigned to a state by where its point falls (geoBoundaries). Rivers list the states their mapped line crosses.</li>
+   <li>Wikidata duplicates (the same waterfall entered two or three times) were merged when within 2.5 km and of the same kind.</li>
+   <li>Flood-watch normals use 1991–2020 GloFAS reanalysis at each point in a 15-day window around each date. GloFAS is a model at about 5 km resolution: it is good at large rivers and seasonal patterns and weak at small streams, urban drainage and dam operations.</li>
+   <li>River lines are simplified to about 500 m and reservoir outlines to about 150 m for display.</li></ul>
+  <h3>Updates</h3><p>A scheduled job re-downloads every source each Monday and rebuilds the data; river flows, weather and nearby photos are fetched live when you open a profile. Hand-written content (basins, groundwater, agencies) lives in <a href="data/curated.json">curated.json</a> with its sources. Each release is versioned; cite the version you used.</p>
+  <h3>Known gaps</h3><ul><li>${unnamed} reservoirs are still unnamed and ${F.filter(f=>f.c===1).length} UNICEF-list dams are not precisely located.</li><li>Small earth dams, community ponds and many boreholes are missing; the GRID3 water-point survey did not cover every state.</li><li>Hydropower capacity is not recorded for most dams in GDW; newer schemes such as Zungeru are added from Wikipedia.</li><li>The eight hydrological areas are described but not drawn: their official boundaries are not published as open data. The Basins layer shows HydroBASINS watersheds instead.</li></ul>
+  <h3>Corrections</h3><p>Water agencies, RBDAs, researchers and community monitors can send corrections through the Community hub (choose “Data correction”) or on <a href="https://github.com/${CONFIG.issuesRepo}/issues" target="_blank" rel="noopener">GitHub</a>. Please include a source.</p>`;
+  $('#dl-csv').onclick=()=>saveFile('nigeria_water_atlas.csv',toCSV(F.map(exportRow)),'text/csv');
+  $('#dl-geo').onclick=()=>saveFile('nigeria_water_atlas.geojson',JSON.stringify({type:'FeatureCollection',features:F.map(f=>({type:'Feature',properties:exportRow(f),geometry:f.ln?{type:'MultiLineString',coordinates:f.ln}:f.g?{type:'MultiPolygon',coordinates:f.g}:f.la!=null?{type:'Point',coordinates:[f.lo,f.la]}:null}))}),'application/geo+json');
+  $('#dl-cite').onclick=()=>copy(dsCite);
+}
+</script>
+</body>
+</html>
