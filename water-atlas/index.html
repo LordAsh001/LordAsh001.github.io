@@ -693,7 +693,7 @@ svg.leaflet-image-layer.leaflet-interactive path {
   --accent:#155e94; --accent-ink:#ffffff; --sea:#d4e4ee; --land:#f5f6f2; --land-line:#9eabb4; --land-hi:#e2ebf1;
   --label:#566874; --warn:#8f5200; --bad:#b3261e; --good:#1d6b3c; --shadow:0 10px 30px rgba(17,32,43,.14);
   --g0:#2a78d6; --g1:#eb6834; --g2:#1baf7a; --g3:#eda100; --g4:#e87ba4; --g5:#008300; --g6:#4a3aa7; --g7:#52514e;
-  --river:#4f8fca; --river2:#9cc3e6; --lake:#8fc0e8; --bar:#1f6fae; --bar2:#a9cbe6; --loss:#c2452d;
+  --river:#4f8fca; --river2:#9cc3e6; --lake:#8fc0e8; --road0:#9a3412; --road1:#c2672f; --road2:#a08b76; --bar:#1f6fae; --bar2:#a9cbe6; --loss:#c2452d;
   --s0:#6b7a86; --s1:#b07800; --s2:#c2452d; --s3:#8e1b1b;
   --f-display:"Bricolage Grotesque","Avenir Next","Segoe UI",system-ui,sans-serif;
   --f-body:"Public Sans","Segoe UI",system-ui,-apple-system,sans-serif;
@@ -704,14 +704,14 @@ svg.leaflet-image-layer.leaflet-interactive path {
   --accent:#5aa9e6; --accent-ink:#06121b; --sea:#0a1319; --land:#16222b; --land-line:#3c505d; --land-hi:#20313d;
   --label:#a6b7c2; --warn:#e2a54a; --bad:#f07b6e; --good:#5cc28a; --shadow:0 10px 30px rgba(0,0,0,.5);
   --g0:#3987e5; --g1:#d95926; --g2:#199e70; --g3:#c98500; --g4:#d55181; --g5:#2f9a2f; --g6:#9085e9; --g7:#a3a29a;
-  --river:#3f86c4; --river2:#2a4f6e; --lake:#2c5d86; --bar:#5aa9e6; --bar2:#25465f; --loss:#f07b5c;
+  --river:#3f86c4; --river2:#2a4f6e; --lake:#2c5d86; --road0:#f29a62; --road1:#c98256; --road2:#857262; --bar:#5aa9e6; --bar2:#25465f; --loss:#f07b5c;
   --s0:#8696a2; --s1:#e2a54a; --s2:#f07b5c; --s3:#ff4d4d; color-scheme:dark; } }
 :root[data-theme="dark"]{
   --bg:#0d151b; --panel:#121d25; --ink:#e3ebf0; --muted:#97a8b4; --line:#26363f; --chip:#1b2832;
   --accent:#5aa9e6; --accent-ink:#06121b; --sea:#0a1319; --land:#16222b; --land-line:#3c505d; --land-hi:#20313d;
   --label:#a6b7c2; --warn:#e2a54a; --bad:#f07b6e; --good:#5cc28a; --shadow:0 10px 30px rgba(0,0,0,.5);
   --g0:#3987e5; --g1:#d95926; --g2:#199e70; --g3:#c98500; --g4:#d55181; --g5:#2f9a2f; --g6:#9085e9; --g7:#a3a29a;
-  --river:#3f86c4; --river2:#2a4f6e; --lake:#2c5d86; --bar:#5aa9e6; --bar2:#25465f; --loss:#f07b5c;
+  --river:#3f86c4; --river2:#2a4f6e; --lake:#2c5d86; --road0:#f29a62; --road1:#c98256; --road2:#857262; --bar:#5aa9e6; --bar2:#25465f; --loss:#f07b5c;
   --s0:#8696a2; --s1:#e2a54a; --s2:#f07b5c; --s3:#ff4d4d; color-scheme:dark; }
 html,body{height:100%}
 body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:14px;line-height:1.45}
@@ -1149,6 +1149,7 @@ const isDark=()=>document.documentElement.dataset.theme==='dark'||(document.docu
 const OVERLAYS={
   net:{n:'River network',on:1},
   lakes:{n:'Lakes',on:1},
+  roads:{n:'Major roads'},
   basins:{n:'Basins'},
   flood:{n:'Flood risk 2024'},
   wp:{n:'Water points'},
@@ -1161,7 +1162,7 @@ function initMap(){
   map=L.map('map',{preferCanvas:true,zoomSnap:.25,minZoom:5,maxZoom:17}).fitBounds([[4.1,2.6],[13.95,14.7]]);
   map.attributionControl.setPrefix(false);
   map.attributionControl.addAttribution('Boundaries: geoBoundaries · Rivers and lakes: DIVA-GIS (DCW), Natural Earth · Dams: Global Dam Watch · see Data & sources');
-  map.createPane('states');map.getPane('states').style.zIndex=350;map.createPane('lakes');map.getPane('lakes').style.zIndex=390;map.createPane('net');map.getPane('net').style.zIndex=395;
+  map.createPane('states');map.getPane('states').style.zIndex=350;map.createPane('roads');map.getPane('roads').style.zIndex=380;map.createPane('lakes');map.getPane('lakes').style.zIndex=390;map.createPane('net');map.getPane('net').style.zIndex=395;
   canvas=L.canvas({padding:.3,tolerance:4});
   statesLayer=L.geoJSON({type:'FeatureCollection',features:DATA.st.map(s=>({type:'Feature',properties:{n:s.n},geometry:{type:s.t,coordinates:s.g}}))},{renderer:L.canvas({padding:.3,pane:'states'}),interactive:false,style:()=>stateStyle(false)}).addTo(map);
   labelLayer=L.layerGroup();
@@ -1211,28 +1212,34 @@ function setBase(k){
 const FLOODC={H:'--s2',M:'--s1',L:'--river2',N:null};
 async function toggleOverlay(k){
   const on=!ovl[k];const btn=$(`#ovl button[data-o="${k}"]`);if(btn)btn.setAttribute('aria-pressed',on);
-  if(!on){map.removeLayer(ovl[k]);ovl[k]=null;renderLegend();return}
+  if(!on){map.removeLayer(ovl[k]);ovl[k]=null;if(k==='roads')map.attributionControl.removeAttribution(ROADS_ATTR);renderLegend();return}
   const O=OVERLAYS[k];
   if(k==='net')ovl[k]=netLayer.addTo(map);
   else if(k==='lakes')ovl[k]=lakeLayer.addTo(map);
   else if(k==='basins'){const g=L.layerGroup();(DATA.bas||[]).forEach(b=>{const p=L.polygon(b.g.map(p=>p.map(r=>r.map(c=>[c[1],c[0]]))),{renderer:canvas,color:css('--accent'),weight:1.6,fill:true,fillOpacity:.04,dashArray:'6 4',interactive:true});p.bindTooltip(`<b>${esc(b.name||'Basin '+b.pf)}</b><br>${fmt.format(b.kmng)} km² in Nigeria${b.endo?' · drains inland (endorheic)':''}`,{className:'tip',sticky:true});p.addTo(g)});ovl[k]=g.addTo(map)}
   else if(k==='flood'){btn.classList.add('busy');try{const d=await loadJSON('flood_lga.json');const g=L.layerGroup();d.f.forEach(x=>{const c=FLOODC[x.r[0]];if(!c)return;const p=L.polygon(x.g.map(p=>p.map(r=>r.map(c=>[c[1],c[0]]))),{renderer:canvas,color:css(c),weight:.5,fillColor:css(c),fillOpacity:x.r[0]==='H'?.45:.3});p.bindTooltip(`<b>${esc(x.n)}</b>, ${esc(x.s)}<br>Overall flood risk: ${riskName(x.r[0])}<br>Riverine ${riskName(x.r[1])} · flash ${riskName(x.r[2])} · coastal ${riskName(x.r[3])}${x.cm?'<br>'+esc(x.cm):''}`,{className:'tip',sticky:true});p.addTo(g)});ovl[k]=g.addTo(map);if(state.sel)siteLayer.bringToFront&&0}catch(e){toast('Flood-risk layer could not be loaded');btn.setAttribute('aria-pressed',false)}btn.classList.remove('busy')}
+  else if(k==='roads'){btn.classList.add('busy');try{const d=await loadJSON('roads.json');const g=L.layerGroup();const r=L.canvas({padding:.3,pane:'roads',tolerance:5});const W=[2.6,1.9,1.1],CN=['Expressway','Trunk road','Primary road'];
+    d.r.forEach(x=>{const p=L.polyline(x.g.map(l=>l.map(c=>[c[1],c[0]])),{renderer:r,rc:x.c,color:css('--road'+x.c),weight:W[x.c],opacity:x.c===2?.8:.95,lineCap:'round',lineJoin:'round'});p.bindTooltip(x.ref||x.n?`<b>${esc(x.ref?x.ref.replace(/ \/ /g,', '):x.n[0])}</b> · ${CN[x.c]}`:CN[x.c],{className:'tip',sticky:true});p.addTo(g)});
+    ovl[k]=g.addTo(map);map.attributionControl.addAttribution(ROADS_ATTR)}catch(e){toast('Road layer could not be loaded');btn.setAttribute('aria-pressed',false)}btn.classList.remove('busy')}
   else if(k==='wp'){btn.classList.add('busy');try{const d=await loadJSON('waterpoints.json');const g=L.layerGroup();const r=L.canvas({padding:.2});const c=css('--g0');d.p.forEach(p=>{L.circleMarker([p[1],p[0]],{renderer:r,radius:1.8,stroke:false,fillColor:c,fillOpacity:.6,interactive:false}).addTo(g)});ovl[k]=g.addTo(map);toast(fmt.format(d.p.length)+' water points loaded (GRID3, 2020)')}catch(e){toast('Water-point layer could not be loaded');btn.setAttribute('aria-pressed',false)}btn.classList.remove('busy')}
   else if(O.tile){ovl[k]=L.tileLayer(typeof O.tile==='function'?O.tile():O.tile,{attribution:O.a,maxNativeZoom:O.mz,maxZoom:17,opacity:.85}).addTo(map)}
   if(siteLayer){siteLayer.eachLayer(l=>l.bringToFront&&l.bringToFront())}
   if(on&&!O.on)track('layer/'+k,'Turned on layer: '+k);
   renderLegend();
 }
+const ROADS_ATTR='Roads: © <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> contributors';
 const gibsDay=n=>new Date(Date.now()-864e5*n).toISOString().slice(0,10);
 const riskName=c=>({H:'high',M:'medium',L:'low',N:'none'}[c]||'not rated');
 function recolor(){if(tile&&tile._key==='map')setBase('map');statesLayer.setStyle(stateStyle(false));F.forEach(f=>{const c=gcol(f.gp);if(f.poly)f.poly.setStyle({color:c,fillColor:c});if(f.line)f.line.setStyle({color:c});if(f.mk)f.mk.setStyle({fillColor:c,color:css('--panel')})});
   netLayer.eachLayer(l=>l.setStyle({color:css('--river')}));lakeLayer.eachLayer(l=>l.setStyle({color:css('--lake'),fillColor:css('--lake')}));
   ['flood','wp','basins'].forEach(k=>{if(ovl[k]){map.removeLayer(ovl[k]);ovl[k]=null;toggleOverlay(k)}});
+  if(ovl.roads)ovl.roads.eachLayer(l=>l.setStyle({color:css('--road'+l.options.rc)}));
   ['stats','basins','flood','rain'].forEach(v=>{if(built[v]){built[v]=0;if(!$('#v-'+v).hidden){built[v]=1;({stats:buildStats,basins:buildBasins,flood:buildFlood,rain:buildRain})[v]()}}})}
 function renderLegend(){
   let h=`<div class="t">On the map</div>`+GROUPS.map((g,i)=>`<div class="k"><span class="${i===5?'ln':'sw'}" style="--c:var(--g${i})"></span>${g}</div>`).join('');
   if(ovl.net)h+=`<div class="k"><span class="ln" style="--c:var(--river)"></span>Other rivers and streams</div>`;
   if(ovl.lakes)h+=`<div class="k"><span class="ar" style="--c:var(--lake)"></span>Lakes, reservoirs, swamps</div>`;
+  if(ovl.roads)h+=`<div class="k"><span class="ln" style="--c:var(--road0);border-top-width:3px"></span>Expressway</div><div class="k"><span class="ln" style="--c:var(--road1)"></span>Trunk road</div><div class="k"><span class="ln" style="--c:var(--road2);border-top-width:1.5px"></span>Primary road</div>`;
   if(ovl.flood)h+=`<div class="t" style="margin-top:6px">Flood risk by LGA, 2024</div><div class="k"><span class="sq" style="--c:var(--s2)"></span>High</div><div class="k"><span class="sq" style="--c:var(--s1)"></span>Medium</div><div class="k"><span class="sq" style="--c:var(--river2)"></span>Low</div>`;
   if(ovl.satflood)h+=`<div class="k"><span class="sq" style="--c:#e8202a"></span>Flood water seen by satellite</div><div class="k"><span class="sq" style="--c:#2c5aa0"></span>Normal open water</div>`;
   if(ovl.imerg)h+=`<div class="k" style="grid-column:1/-1"><span class="sq" style="--c:linear-gradient(90deg,#9ad1ff,#2a6ef0,#f0d000,#f02a2a)"></span>Rain rate yesterday, light → heavy</div>`;
@@ -1897,6 +1904,7 @@ function buildData(){
    ['Nigeria DHS 2023–24 and 2018 (NPC and ICF), DHS Program API','Drinking water sources, time to water, sanitation by state','Statistics','https://api.dhsprogram.com','Public API; cite the DHS Program'],
    ['World Bank World Development Indicators (JMP, FAO AQUASTAT)','National water access, sanitation, freshwater resources, withdrawals','Statistics','https://data.worldbank.org/country/nigeria','CC BY 4.0'],
    ['GRID3 Nigeria Water Points (eHealth Africa and Proxy Logics, 2020)','Locations and types of about 29,000 water points','Water points layer','https://grid3.gov.ng','CC BY 4.0'],
+   ['OpenStreetMap (via the Overpass API)','Expressways, trunk and primary roads','Major roads layer','https://www.openstreetmap.org/copyright','ODbL 1.0, © OpenStreetMap contributors'],
    ['UNICEF Nigeria, 2024 Nigeria Flood Risk Analysis (ArcGIS Online)','Riverine, flash and coastal flood-risk rating for each LGA','Flood risk layer','https://www.arcgis.com/home/search.html?q=2024%20Nigeria%20Flood%20Risk%20Analysis','Public layer; no licence stated'],
    ['geoBoundaries (William & Mary geoLab)','State boundaries','State assignment','https://www.geoboundaries.org','CC BY 4.0'],
    ['NASA POWER (MERRA-2 with satellite-corrected precipitation)','Monthly rainfall at up to 8 points in every state, 1981 onwards; 1991–2020 state normals','Rain page, harvesting calculator, water balance','https://power.larc.nasa.gov','Free, NASA open data'],
@@ -1908,7 +1916,7 @@ function buildData(){
    ['Live services on the hosted site','Open-Meteo (weather, river flow), Wikimedia Commons (nearby photos), Esri / OpenTopoMap / NASA GIBS (basemaps), JRC Global Surface Water (surface-water tiles)','On demand','https://open-meteo.com','Per service terms']];
   const unnamed=F.filter(f=>/^Unnamed/.test(f.n)).length;
   $('#data').innerHTML=`<h2 class="title">Data, sources and method</h2><p class="lede">This atlas joins global scientific databases with Nigerian government plans, national surveys and open encyclopaedias, and records where every fact came from. It is built to be checked, cited and corrected.</p>
-  <h3>Download the dataset</h3><p>${fmt.format(F.length)} records, version ${esc(DATA.meta.version)}, refreshed ${esc(DATA.meta.refreshed)}. CSV opens in Excel or R; GeoJSON opens in QGIS, ArcGIS and most web maps. The full build files (river network, water points, flood-risk LGAs, gauge climatologies) are in the <a href="data/atlas.json">data folder</a>.</p>
+  <h3>Download the dataset</h3><p>${fmt.format(F.length)} records, version ${esc(DATA.meta.version)}, refreshed ${esc(DATA.meta.refreshed)}. CSV opens in Excel or R; GeoJSON opens in QGIS, ArcGIS and most web maps. The full build files (river network, roads, water points, flood-risk LGAs, gauge climatologies) are in the <a href="data/atlas.json">data folder</a>.</p>
   <div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn primary" id="dl-csv" type="button">Download CSV</button><button class="btn" id="dl-geo" type="button">Download GeoJSON</button><button class="btn" id="dl-cite" type="button">Copy dataset citation</button></div>
   <pre class="cite" style="margin-top:10px">${esc(dsCite)}</pre>
   <h3>Sources</h3><div class="tbl-wrap" style="max-height:none"><table class="dt srctbl"><thead><tr><th>Source</th><th>What it provides</th><th>Used for</th><th>Licence / terms</th></tr></thead><tbody>${SRC.map(s=>`<tr><td><a href="${esc(s[3])}" ${s[3].startsWith('/')?'':'target="_blank" rel="noopener"'}>${esc(s[0])}</a></td><td>${esc(s[1])}</td><td>${esc(s[2])}</td><td>${esc(s[4])}</td></tr>`).join('')}</tbody></table></div>
@@ -1919,7 +1927,8 @@ function buildData(){
    <li>Each record is assigned to a state by where its point falls (geoBoundaries). Rivers list the states their mapped line crosses.</li>
    <li>Wikidata duplicates (the same waterfall entered two or three times) were merged when within 2.5 km and of the same kind.</li>
    <li>Flood-watch normals use 1991–2020 GloFAS reanalysis at each point in a 15-day window around each date. GloFAS is a model at about 5 km resolution: it is good at large rivers and seasonal patterns and weak at small streams, urban drainage and dam operations.</li>
-   <li>River lines are simplified to about 500 m and reservoir outlines to about 150 m for display.</li></ul>
+   <li>River lines are simplified to about 500 m, reservoir outlines to about 150 m and roads to about 200 m for display.</li>
+   <li>Major roads are OpenStreetMap expressways, trunk and primary roads, joined by route number. They show how places connect, not road condition or seasonal access; volunteer mapping is more complete around cities than in rural areas.</li></ul>
   <h3>Updates</h3><p>A scheduled job re-downloads every source each Monday and rebuilds the data; river flows, weather and nearby photos are fetched live when you open a profile. Hand-written content (basins, groundwater, agencies) lives in <a href="data/curated.json">curated.json</a> with its sources. Each release is versioned; cite the version you used.</p>
   <h3>Known gaps</h3><ul><li>${unnamed} reservoirs are still unnamed and ${F.filter(f=>f.c===1).length} UNICEF-list dams are not precisely located.</li><li>Small earth dams, community ponds and many boreholes are missing; the GRID3 water-point survey did not cover every state.</li><li>Hydropower capacity is not recorded for most dams in GDW; newer schemes such as Zungeru are added from Wikipedia.</li><li>The eight hydrological areas are described but not drawn: their official boundaries are not published as open data. The Basins layer shows HydroBASINS watersheds instead.</li></ul>
   <h3>Corrections</h3><p>Water agencies, RBDAs, researchers and community monitors can send corrections through the Community hub (choose “Data correction”) or on <a href="https://github.com/${CONFIG.issuesRepo}/issues" target="_blank" rel="noopener">GitHub</a>. Please include a source.</p>`;
