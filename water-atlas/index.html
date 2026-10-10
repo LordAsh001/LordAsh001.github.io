@@ -998,7 +998,7 @@ ol.refs li{margin:0 0 6px}
 .sm-note{font-size:12px;color:var(--muted);margin:6px 0 0;max-width:90ch}
 .tag{display:inline-block;font-family:var(--f-body);font-size:10.5px;font-weight:600;color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:1px 7px;vertical-align:2px;white-space:nowrap}
 .page h4.h4{font-family:var(--f-display);font-size:15px;margin:0 0 8px}
-#irrig select{width:auto;font:inherit;font-size:13px;padding:6px 8px;border:1px solid var(--line);border-radius:8px;background:var(--panel);color:var(--ink)}
+#fh-host select,#irrig select{width:auto;font:inherit;font-size:13px;padding:6px 8px;border:1px solid var(--line);border-radius:8px;background:var(--panel);color:var(--ink)}
 .box dd .rcite{white-space:normal}
 </style>
 </head>
@@ -1166,6 +1166,11 @@ const OVERLAYS={
   roads:{n:'Major roads'},
   basins:{n:'Basins'},
   flood:{n:'Flood risk 2024'},
+  glofas:{n:'GloFAS alerts',fl:1},
+  geoglows:{n:'High river flows',fl:1},
+  gdacs:{n:'GDACS floods',fl:1},
+  hazard:{n:'100-year flood zone',wms:'FloodHazard100y',a:'Flood hazard: Copernicus EMS GloFAS, 100-year return period (JRC)',live:1},
+  history:{n:'Past floods',fl:1},
   wp:{n:'Water points'},
   satflood:{n:'Satellite floods',tile:()=>`https://gibs.earthdata.nasa.gov/wmts/epsg3857/best/VIIRS_Combined_Flood_3-Day/default/${gibsDay(1)}/GoogleMapsCompatible_Level9/{z}/{y}/{x}.png`,a:'Flood mapping: NASA LANCE / VIIRS combined flood product (3-day composite), via NASA GIBS',mz:9,live:1},
   imerg:{n:'Rain yesterday',tile:()=>`https://gibs.earthdata.nasa.gov/wmts/epsg3857/best/IMERG_Precipitation_Rate/default/${gibsDay(2)}/GoogleMapsCompatible_Level6/{z}/{y}/{x}.png`,a:'Precipitation: NASA GPM IMERG daily precipitation rate, via NASA GIBS',mz:6,live:1},
@@ -1236,6 +1241,8 @@ async function toggleOverlay(k){
     d.r.forEach(x=>{const p=L.polyline(x.g.map(l=>l.map(c=>[c[1],c[0]])),{renderer:r,rc:x.c,color:css('--road'+x.c),weight:W[x.c],opacity:x.c===2?.8:.95,lineCap:'round',lineJoin:'round'});p.bindTooltip(x.ref||x.n?`<b>${esc(x.ref?x.ref.replace(/ \/ /g,', '):x.n[0])}</b> · ${CN[x.c]}`:CN[x.c],{className:'tip',sticky:true});p.addTo(g)});
     ovl[k]=g.addTo(map);map.attributionControl.addAttribution(ROADS_ATTR)}catch(e){toast('Road layer could not be loaded');btn.setAttribute('aria-pressed',false)}btn.classList.remove('busy')}
   else if(k==='wp'){btn.classList.add('busy');try{const d=await loadJSON('waterpoints.json');const g=L.layerGroup();const r=L.canvas({padding:.2});const c=css('--g0');d.p.forEach(p=>{L.circleMarker([p[1],p[0]],{renderer:r,radius:1.8,stroke:false,fillColor:c,fillOpacity:.6,interactive:false}).addTo(g)});ovl[k]=g.addTo(map);toast(fmt.format(d.p.length)+' water points loaded (GRID3, 2020)')}catch(e){toast('Water-point layer could not be loaded');btn.setAttribute('aria-pressed',false)}btn.classList.remove('busy')}
+  else if(O.fl){btn.classList.add('busy');try{const g=await floodOverlay(k);if(ovl[k]===undefined||ovl[k]===null)ovl[k]=g.addTo(map)}catch(e){toast(O.n+' could not be loaded');btn.setAttribute('aria-pressed',false)}btn.classList.remove('busy');startFloodTimer()}
+  else if(O.wms){ovl[k]=L.tileLayer.wms(GLOFAS_WMS,{layers:O.wms,format:'image/png',transparent:true,version:'1.3.0',opacity:.7,attribution:O.a}).addTo(map)}
   else if(O.tile){ovl[k]=L.tileLayer(typeof O.tile==='function'?O.tile():O.tile,{attribution:O.a,maxNativeZoom:O.mz,maxZoom:17,opacity:.85}).addTo(map)}
   if(siteLayer){siteLayer.eachLayer(l=>l.bringToFront&&l.bringToFront())}
   if(on&&!O.on)track('layer/'+k,'Turned on layer: '+k);
@@ -1257,6 +1264,11 @@ function renderLegend(){
   if(ovl.flood)h+=`<div class="t" style="margin-top:6px">Flood risk by LGA, 2024</div><div class="k"><span class="sq" style="--c:var(--s2)"></span>High</div><div class="k"><span class="sq" style="--c:var(--s1)"></span>Medium</div><div class="k"><span class="sq" style="--c:var(--river2)"></span>Low</div>`;
   if(ovl.satflood)h+=`<div class="k"><span class="sq" style="--c:#e8202a"></span>Flood water seen by satellite</div><div class="k"><span class="sq" style="--c:#2c5aa0"></span>Normal open water</div>`;
   if(ovl.imerg)h+=`<div class="k" style="grid-column:1/-1"><span class="sq" style="--c:linear-gradient(90deg,#9ad1ff,#2a6ef0,#f0d000,#f02a2a)"></span>Rain rate yesterday, light → heavy</div>`;
+  if(ovl.glofas)h+=`<div class="t" style="margin-top:6px">GloFAS flood alerts</div><div class="k"><span class="sw" style="--c:var(--s3);border-radius:50%"></span>Severe (20-year)</div><div class="k"><span class="sw" style="--c:var(--s2);border-radius:50%"></span>High (5-year)</div><div class="k"><span class="sw" style="--c:var(--s1);border-radius:50%"></span>Medium or some 2-year chance</div><div class="k"><span class="sw" style="--c:var(--s0);border-radius:50%"></span>No alert</div>`;
+  if(ovl.geoglows)h+=`<div class="t" style="margin-top:6px">Rivers forecast above (GEOGLOWS)</div><div class="k"><span class="ln" style="--c:var(--s1)"></span>2-year flood flow</div><div class="k"><span class="ln" style="--c:var(--s2)"></span>5- to 10-year</div><div class="k"><span class="ln" style="--c:var(--s3)"></span>25-year or more</div>`;
+  if(ovl.gdacs)h+=`<div class="t" style="margin-top:6px">GDACS flood events (120 days)</div><div class="k"><span class="sw" style="--c:#d93b2b;border-radius:50%"></span>Red</div><div class="k"><span class="sw" style="--c:#e8891f;border-radius:50%"></span>Orange</div><div class="k"><span class="sw" style="--c:#2e9e44;border-radius:50%"></span>Green</div>`;
+  if(ovl.hazard)h+=`<div class="k" style="grid-column:1/-1"><span class="sq" style="--c:linear-gradient(90deg,#c6dbef,#08519c)"></span>Flood depth in a 100-year flood (GloFAS)</div>`;
+  if(ovl.history)h+=`<div class="k" style="grid-column:1/-1"><span class="sw" style="--c:var(--s2);border-radius:50%;opacity:.6"></span>Past large floods (DFO; size = deaths); rings = GDACS events</div>`;
   if(ovl.wp)h+=`<div class="k"><span class="sw" style="--c:var(--g0);border-radius:50%;width:6px;height:6px"></span>Water point (GRID3, 2020)</div>`;
   h+=`<div class="sm">Dot size follows reservoir capacity or lake area. Dashed dots: location uncertain.</div>`;
   $('#legend').innerHTML=h;
@@ -1512,14 +1524,18 @@ async function buildFlood(){
   const totH=bys.reduce((a,b)=>a+b.High,0),totM=bys.reduce((a,b)=>a+b.Medium,0),totL=bys.reduce((a,b)=>a+b.lgas,0);
   $('#flood').innerHTML=`<h2 class="title">River flood watch</h2><p class="lede">Modelled river flow at ${gs.length} points on Nigeria’s main rivers, compared with what is normal for the same time of year, with the next 45 days of forecast. Flood season on the Niger and Benue usually peaks between August and October.</p>
   <div class="callout warn" style="margin-bottom:18px"><b>For awareness, not for decisions.</b> These are GloFAS model estimates (Copernicus Emergency Management Service, served by Open-Meteo), not gauge measurements, and they can miss local flash floods and dam releases. Official warnings come from the <a href="https://nihsa.gov.ng" target="_blank" rel="noopener">Nigeria Hydrological Services Agency</a> (Annual Flood Outlook), <a href="https://nema.gov.ng" target="_blank" rel="noopener">NEMA</a> and state emergency agencies; rainfall outlooks from <a href="https://nimet.gov.ng" target="_blank" rel="noopener">NiMet</a>.</div>
+  <div id="fw-host"></div>
+  <h3 class="sh" style="margin-top:4px">Atlas flow gauges</h3>
   <div class="kpis" id="fkpi"><div class="kpi"><b>…</b><span>gauges loading</span></div></div>
   <div class="filterbar"><div><div class="lbl">Order</div><select id="g-sort"><option value="status">Highest status first</option><option value="river">By river, upstream to downstream</option><option value="ratio">Most above normal</option></select></div></div>
-  <div class="ggrid" id="ggrid">${gs.map(f=>`<article class="gcard" data-g="${f.gauge}"><div class="row"><h3>${esc(f.n)}</h3><span class="gs">${statusChip(null,LIVE?'Loading…':'Live on website')}</span></div><div class="meta">Average ${fmt.format(f.qmean||0)} m³/s${f.rec?` · record ${fmt.format(f.rec[1])} m³/s (${f.rec[2].slice(0,4)})`:''}</div><div class="gbody"></div><div class="bt" style="display:flex;gap:6px;flex-wrap:wrap"><a class="btn sm" href="#${f.i}">Open on map</a></div></article>`).join('')}</div>
+  <div class="ggrid" id="ggrid">${gs.map(f=>`<article class="gcard" data-g="${f.gauge}"><div class="row"><h3>${esc(f.n)}</h3><span class="gs">${statusChip(null,LIVE?'Loading…':'Live on website')}</span></div><div class="meta">Average ${fmt.format(f.qmean||0)} m³/s${f.rec?` · record ${fmt.format(f.rec[1])} m³/s (${f.rec[2].slice(0,4)})`:''}</div><div class="gbody"></div><div class="meta ggl"></div><div class="bt" style="display:flex;gap:6px;flex-wrap:wrap"><a class="btn sm" href="#${f.i}">Open on map</a></div></article>`).join('')}</div>
   ${bys.length?`<h3 class="sh">Flood-risk areas, 2024</h3><p class="lede" style="margin-bottom:12px">${fmt.format(totH)} of ${fmt.format(totL)} local government areas were rated high and ${fmt.format(totM)} medium for flooding (riverine, flash or coastal) in UNICEF Nigeria’s 2024 flood risk analysis. <button class="btn sm" id="show-flood" type="button">Show on the map</button></p><div class="grid2" id="fcards"></div>`:''}
-  <h3 class="sh">Recent major floods</h3><div class="grid2">${(DATA.ev||[]).map(e=>`<article class="card"><h3>${e.year}: ${esc(e.title)}</h3><p class="wiki">${esc(e.t)}</p><div class="foot"><span>From <a href="${esc(e.u)}" target="_blank" rel="noopener">Wikipedia</a> (CC BY-SA 4.0)</span></div></article>`).join('')}
+  <div id="fh-host"></div>
+  <h3 class="sh" id="ev-old-h">Recent major floods</h3><div class="grid2" id="ev-old">${(DATA.ev||[]).map(e=>`<article class="card"><h3>${e.year}: ${esc(e.title)}</h3><p class="wiki">${esc(e.t)}</p><div class="foot"><span>From <a href="${esc(e.u)}" target="_blank" rel="noopener">Wikipedia</a> (CC BY-SA 4.0)</span></div></article>`).join('')}
   ${DATA.wiki&&DATA.wiki['Lagdo Dam']?`<article class="card"><h3>Lagdo Dam, Cameroon</h3><p class="wiki">${esc(DATA.wiki['Lagdo Dam'].t)}</p><div class="foot"><span>From <a href="${esc(DATA.wiki['Lagdo Dam'].u)}" target="_blank" rel="noopener">Wikipedia</a> (CC BY-SA 4.0). Watch the “Benue at the Cameroon border” gauge for its effect.</span></div></article>`:''}</div>
+  ${floodDashboards()}
   <h3 class="sh">How the status is worked out</h3><ul class="prose" style="padding-left:18px;max-width:80ch">${STATUS.map((s,i)=>`<li>${statusChip(i)} ${esc(s.d)}</li>`).join('')}<li>Normal ranges come from 30 years (1991–2020) of daily GloFAS reanalysis at each point, using a 15-day window around each date. The forecast is the median of the GloFAS ensemble.</li><li>Each point is snapped to the 5 km model cell with the most flow nearby so it sits on the main channel.</li></ul>`;
-  addFloodRain();
+  addFloodRain();addFloodLive();addFloodHistory();
   if($('#show-flood'))$('#show-flood').onclick=()=>{location.hash='map';setTimeout(()=>{if(!ovl.flood)toggleOverlay('flood')},120)};
   if(bys.length){const top=bys.filter(b=>b.High).slice(0,20);const c1=card({t:'States with the most high flood-risk LGAs, 2024',s:'Number of LGAs rated high overall (riverine, flash or coastal).',src:esc(fl.src),file:'flood_risk_lgas_by_state_2024',page:'flood',
       draw:el=>hbar(el,top.map(b=>({l:b.s,v:b.High,c:'var(--s2)',t:`${b.Medium} medium · ${b.lgas} LGAs in total`,on:()=>{location.hash='map';setTimeout(()=>{state.st=b.s;$('#state').value=b.s;update();zoomState(b.s);if(!ovl.flood)toggleOverlay('flood')},120)}})),{rh:17}),
@@ -1922,6 +1938,10 @@ function buildData(){
    ['World Bank World Development Indicators (JMP, FAO AQUASTAT)','National water access, sanitation, freshwater resources, withdrawals','Statistics','https://data.worldbank.org/country/nigeria','CC BY 4.0'],
    ['GRID3 Nigeria Water Points (eHealth Africa and Proxy Logics, 2020)','Locations and types of about 29,000 water points','Water points layer','https://grid3.gov.ng','CC BY 4.0'],
    ['OpenStreetMap (via the Overpass API)','Expressways, trunk and primary roads','Major roads layer','https://www.openstreetmap.org/copyright','ODbL 1.0, © OpenStreetMap contributors'],
+   ['GloFAS, Copernicus Emergency Management Service (web map service)','Official flood alerts at reporting points, flood summary for the next 30 days, 100-year flood hazard map','Flood watch alerts and map layers, refreshed hourly','https://global-flood.emergency.copernicus.eu','Copernicus licence; free with attribution'],
+   ['GEOGLOWS, ECMWF (API and ArcGIS live feed)','15-day river flow forecasts for every river reach and return-period flags','Second forecast at the gauges; rivers above flood flows (live)','https://geoglows.ecmwf.int','CC BY 4.0'],
+   ['GDACS, European Commission JRC and UN OCHA (API)','Flood events for Nigeria since 1985 with alert levels and reported impacts','Live events and flood history','https://www.gdacs.org','Free with attribution'],
+   ['Dartmouth Flood Observatory, Global Active Archive of Large Flood Events (G.R. Brakenridge)','Large floods since 1985 with dates, deaths, displacement and causes','Flood history','https://floodobservatory.colorado.edu/Archives/index.html','Free for non-commercial use with attribution'],
    ['UNICEF Nigeria, 2024 Nigeria Flood Risk Analysis (ArcGIS Online)','Riverine, flash and coastal flood-risk rating for each LGA','Flood risk layer','https://www.arcgis.com/home/search.html?q=2024%20Nigeria%20Flood%20Risk%20Analysis','Public layer; no licence stated'],
    ['geoBoundaries (William & Mary geoLab)','State boundaries','State assignment','https://www.geoboundaries.org','CC BY 4.0'],
    ['NASA POWER (MERRA-2 with satellite-corrected precipitation)','Monthly rainfall at up to 8 points in every state, 1981 onwards; 1991–2020 state normals','Rain page, harvesting calculator, water balance','https://power.larc.nasa.gov','Free, NASA open data'],
@@ -1947,7 +1967,7 @@ function buildData(){
    <li>Flood-watch normals use 1991–2020 GloFAS reanalysis at each point in a 15-day window around each date. GloFAS is a model at about 5 km resolution: it is good at large rivers and seasonal patterns and weak at small streams, urban drainage and dam operations.</li>
    <li>River lines are simplified to about 500 m, reservoir outlines to about 150 m and roads to about 200 m for display.</li>
    <li>Major roads are OpenStreetMap expressways, trunk and primary roads, joined by route number. They show how places connect, not road condition or seasonal access; volunteer mapping is more complete around cities than in rural areas.</li></ul>
-  <h3>Updates</h3><p>A scheduled job re-downloads every source each Monday and rebuilds the data; river flows, weather and nearby photos are fetched live when you open a profile. Hand-written content (basins, groundwater, agencies) lives in <a href="data/curated.json">curated.json</a> with its sources. Each release is versioned; cite the version you used.</p>
+  <h3>Updates</h3><p>A scheduled job re-downloads every source each Monday and rebuilds the data; a second job refreshes the flood alerts, forecasts and flood history every hour, and the flood watch page fetches GDACS events and GEOGLOWS river forecasts live and re-checks them every 15 minutes while it is open; river flows, weather and nearby photos are fetched live when you open a profile. Hand-written content (basins, groundwater, agencies) lives in <a href="data/curated.json">curated.json</a> with its sources. Each release is versioned; cite the version you used.</p>
   <h3>Known gaps</h3><ul><li>${unnamed} reservoirs are still unnamed and ${F.filter(f=>f.c===1).length} UNICEF-list dams are not precisely located.</li><li>Small earth dams, community ponds and many boreholes are missing; the GRID3 water-point survey did not cover every state.</li><li>Hydropower capacity is not recorded for most dams in GDW; newer schemes such as Zungeru are added from Wikipedia.</li><li>The eight hydrological areas are described but not drawn: their official boundaries are not published as open data. The Basins layer shows HydroBASINS watersheds instead.</li></ul>
   <h3>Corrections</h3><p>Water agencies, RBDAs, researchers and community monitors can send corrections through the Community hub (choose “Data correction”) or on <a href="https://github.com/${CONFIG.issuesRepo}/issues" target="_blank" rel="noopener">GitHub</a>. Please include a source.</p>`;
   addReportSources();
@@ -2035,6 +2055,130 @@ async function addReportSources(){
   const el=$('#reports-src');if(!el)return;
   el.innerHTML=`<h3>Reports and studies</h3><p>Facts from these documents appear on the Irrigation &amp; power and Basins pages and in dam and river profiles, each cited to the page. ${esc(REP.pages)}</p><div class="tbl-wrap" style="max-height:none"><table class="dt srctbl"><thead><tr><th>Document</th><th>Used for</th></tr></thead><tbody>${Object.values(REP.refs).sort((a,b)=>b.y-a.y).map(R=>`<tr><td>${R.u?`<a href="${esc(R.u)}" target="_blank" rel="noopener">${esc(R.c)}</a>`:esc(R.c)}</td><td>${esc(R.use)}</td></tr>`).join('')}</tbody></table></div>`;
 }
+</script>
+<script>
+/* ---------- flood watch: live alerts (GloFAS, GEOGLOWS, GDACS) and flood history ---------- */
+const GDACS_API='https://www.gdacs.org/gdacsapi/api/events/geteventlist/SEARCH';
+const GG_FEED='https://livefeeds3.arcgis.com/arcgis/rest/services/GEOGLOWS/GlobalWaterModel_Medium/MapServer/0/query';
+const GLOFAS_WMS='https://ows.globalfloods.eu/glofas-ows/ows.py';
+const ALERTC={Severe:'var(--s3)',High:'var(--s2)',Medium:'var(--s1)'};
+const GDC={Red:'#d93b2b',Orange:'#e8891f',Green:'#2e9e44'};
+const rpCol=rp=>rp>=25?'var(--s3)':rp>=5?'var(--s2)':'var(--s1)';
+const dshort=d=>d?new Date(d+(d.length===10?'T12:00:00Z':'')).toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'}):'–';
+let FW=null,FH=null,LIVEFW={gdacs:null,reaches:null,at:null},fwTimer=null;
+async function fwData(force){if(FW&&!force)return FW;try{FW=await (await fetch('data/floodwatch.json'+(force?'?t='+Date.now():''),{cache:force?'no-store':'default'})).json()}catch(e){FW=FW||{}}return FW}
+async function fhData(){if(FH)return FH;try{FH=await loadJSON('floodhistory.json')}catch(e){FH={}}return FH}
+async function liveGdacs(){
+  const from=new Date(Date.now()-120*864e5).toISOString().slice(0,10),to=new Date(Date.now()+2*864e5).toISOString().slice(0,10);
+  const j=await (await fetch(`${GDACS_API}?eventlist=FL&country=Nigeria&fromDate=${from}&toDate=${to}&alertlevel=Green;Orange;Red&pageSize=100`)).json();
+  return (j.features||[]).map(f=>{const p=f.properties,c=(f.geometry||{}).coordinates||[];return{id:+p.eventid,from:p.fromdate.slice(0,10),to:p.todate.slice(0,10),alert:((a=>a.charAt(0).toUpperCase()+a.slice(1))((p.alertlevel||'').toLowerCase())),cur:p.iscurrent===true||p.iscurrent==='true',lo:c[0],la:c[1],url:`https://www.gdacs.org/report.aspx?eventtype=FL&eventid=${p.eventid}`}}).sort((a,b)=>b.from.localeCompare(a.from));
+}
+async function liveReaches(){
+  const q=new URLSearchParams({f:'json',where:"returnperiod>=2 AND rivercountry='Nigeria'",outFields:'comid,returnperiod,meanflow,streamorder,upstreamarea',returnGeometry:'true',outSR:'4326',maxAllowableOffset:'0.01',resultRecordCount:'4000'});
+  const j=await (await fetch(GG_FEED+'?'+q)).json();if(j.error)throw new Error(j.error.message);
+  return (j.features||[]).map(f=>({rp:f.attributes.returnperiod,q:f.attributes.meanflow,so:f.attributes.streamorder,km2:Math.round((f.attributes.upstreamarea||0)/1e6),paths:(f.geometry||{}).paths||[]}));
+}
+function stateAt(lo,la){if(lo==null||!statesLayer)return null;let s=null;statesLayer.eachLayer(l=>{if(s)return;const ll=L.latLng(la,lo);if(l.getBounds().contains(ll)&&pip(ll,l))s=l.feature.properties.n});return s}
+function pip(ll,poly){const x=ll.lng,y=ll.lat;const rings=poly.getLatLngs().flat(1).filter(r=>Array.isArray(r)&&r.length&&r[0].lat!=null);let inside=false;rings.forEach(r=>{for(let i=0,j=r.length-1;i<r.length;j=i++){const xi=r[i].lng,yi=r[i].lat,xj=r[j].lng,yj=r[j].lat;if(((yi>y)!==(yj>y))&&(x<(xj-xi)*(y-yi)/(yj-yi)+xi))inside=!inside}});return inside}
+async function refreshLive(){
+  const [fw,gd,rc]=await Promise.allSettled([fwData(!!LIVEFW.at),LIVE?liveGdacs():Promise.reject('offline'),LIVE?liveReaches():Promise.reject('offline')]);
+  LIVEFW.gdacs=gd.status==='fulfilled'?gd.value:null;LIVEFW.reaches=rc.status==='fulfilled'?rc.value:null;LIVEFW.at=new Date();
+  renderLive();
+}
+const gname=p=>!p.n||/^not a station$/i.test(p.n)?'GloFAS model point (no gauge)':p.n.replace(/\bA\b/,'at');
+function glofasRows(){const P=((FW||{}).glofas||{}).points||[];return P.filter(p=>p.country==='Nigeria'||/niger|benue|benoue|faro|mayo kebi|komadugu|yobe|sokoto|rima|alibori|mekrou/i.test((p.river||'')+' '+(p.basin||'')))}
+function renderLive(){
+  if(!$('#fw-kpi'))return;const fw=FW||{};const G=fw.glofas||{},GG=fw.geoglows||{};
+  const gd=LIVEFW.gdacs||((fw.gdacs||{}).events)||[];const gdLive=!!LIVEFW.gdacs;
+  const rch=LIVEFW.reaches;const rcount=rch?rch.length:Object.values(GG.reach_counts||{}).reduce((a,b)=>a+b,0);
+  const rbig=rch?rch.filter(r=>r.so>=4).length:null;
+  const pts=glofasRows();const al=pts.filter(p=>p.alert&&p.alert!=='Inactive');const any2=pts.filter(p=>(p.p2||0)>0);
+  const active=gd.filter(e=>e.cur);
+  $('#fw-kpi').innerHTML=`<div class="kpi"><b>${al.length}</b><span>GloFAS reporting points with an official flood alert</span><small>${any2.length} show some chance of a 2-year flood · forecast ${esc((G.time||'').slice(0,10))}</small></div>
+   <div class="kpi"><b>${fmt.format(rcount)}</b><span>river stretches in Nigeria forecast above a 2-year flood flow</span><small>GEOGLOWS (ECMWF)${rbig!=null?` · ${fmt.format(rbig)} on larger rivers`:''}${rch?' · live':''}</small></div>
+   <div class="kpi"><b>${active.length}</b><span>GDACS flood events active in Nigeria</span><small>${gd.length} in the last 120 days${gdLive?' · live':''}</small></div>`;
+  $('#fw-when').textContent=`Live sources checked ${LIVEFW.at.toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'})} your time; the page refreshes them every 15 minutes while open. Stored forecasts updated ${fw.checked?new Date(fw.checked.replace('Z',':00Z')).toLocaleString([], {day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'}):'–'}.`;
+  const order={Severe:3,High:2,Medium:1};
+  const rows=[...pts].sort((a,b)=>(order[b.alert]||0)-(order[a.alert]||0)||(b.p2||0)-(a.p2||0)||(b.area||0)-(a.area||0));
+  $('#fw-glofas').innerHTML=rows.length?`<div class="tbl-wrap" style="max-height:420px"><table class="dt"><thead><tr><th>Station</th><th>River</th><th>Where</th><th class="n">2-yr %</th><th class="n">5-yr %</th><th class="n">20-yr %</th><th>Alert</th><th>Highest chance</th></tr></thead><tbody>${rows.map(p=>`<tr class="click" data-ll="${p.la},${p.lo}"><td><b>${esc(gname(p))}</b> <span class="mono" style="font-size:11px;color:var(--muted)">${esc(p.id==='NA'?'':p.id)}</span></td><td>${esc(p.river&&p.river!=='NA'?p.river:'')}</td><td>${esc(p.st||p.country||'')}</td><td class="n">${p.p2??'–'}</td><td class="n">${p.p5??'–'}</td><td class="n">${p.p20??'–'}</td><td>${p.alert&&p.alert!=='Inactive'?`<span class="status s${order[p.alert]||1}">${esc(p.alert)}</span>`:'<span style="color:var(--muted)">None</span>'}</td><td>${esc(p.peak||'')}</td></tr>`).join('')}</tbody></table></div><p class="sm-note">Maximum probability, across the 51-member ECMWF ensemble over the forecast period, of exceeding the 2-, 5- and 20-year flood flow at each official GloFAS reporting point. Click a row to see it on the map.</p>`:'<p class="loading">GloFAS reporting-point alerts are refreshed hourly; none are stored yet.</p>';
+  $$('#fw-glofas tr.click').forEach(tr=>tr.onclick=()=>{const [la,lo]=tr.dataset.ll.split(',').map(Number);location.hash='map';setTimeout(()=>{if(!ovl.glofas)toggleOverlay('glofas');map.flyTo([la,lo],9)},150)});
+  $('#fw-gdacs').innerHTML=gd.length?`<div class="tbl-wrap" style="max-height:360px"><table class="dt"><thead><tr><th>Dates</th><th>Alert</th><th>Where</th><th>Reported impact</th><th></th></tr></thead><tbody>${gd.slice(0,40).map(e=>{const old=((fw.gdacs||{}).events||[]).find(o=>o.id===e.id)||{};const im=e.impact||old.impact||{};const st=e.st||old.st||stateAt(e.lo,e.la);const IML={death:'dead',missing:'missing',injured:'injured',displaced:'displaced',affected:'affected',houses:'houses damaged',evacuated:'evacuated'};const parts=Object.entries(im).filter(([k,v])=>v).map(([k,v])=>`${fmt.format(v)} ${esc(IML[k]||k)}`);return`<tr><td>${dshort(e.from)} – ${dshort(e.to)}${e.cur?' <span class="tag">active</span>':''}</td><td><span class="status" style="color:${GDC[e.alert]||'var(--muted)'}">${esc(e.alert||'')}</span></td><td>${esc(st||'Nigeria')}</td><td>${parts.join(' · ')||'<span style="color:var(--muted)">–</span>'}</td><td><a href="${esc(e.url)}" target="_blank" rel="noopener">GDACS report ↗</a></td></tr>`}).join('')}</tbody></table></div>`:'<p class="loading">No GDACS flood events for Nigeria in the last 120 days.</p>';
+  const top=(GG.reaches||[]).slice(0,12);
+  $('#fw-gg').innerHTML=top.length?`<div class="tbl-wrap" style="max-height:320px"><table class="dt"><thead><tr><th>Where</th><th class="n">Catchment km²</th><th class="n">Forecast flow m³/s</th><th>Return period</th></tr></thead><tbody>${top.map(r=>`<tr class="click" data-ll="${r.la},${r.lo}"><td>${esc(r.st||'Nigeria')} <span class="mono" style="font-size:11px;color:var(--muted)">${r.comid}</span></td><td class="n">${fmt.format(r.km2)}</td><td class="n">${fmt.format(Math.round(r.q))}</td><td><span class="status" style="color:${rpCol(r.rp)}">${r.rp}-year</span></td></tr>`).join('')}</tbody></table></div><p class="sm-note">Largest rivers among those forecast above a flood flow, from the last hourly refresh. The map layer is fetched live. Very small streams can be flagged by the model when local rain is heavy.</p>`:'';
+  $$('#fw-gg tr.click').forEach(tr=>tr.onclick=()=>{const [la,lo]=tr.dataset.ll.split(',').map(Number);location.hash='map';setTimeout(()=>{if(!ovl.geoglows)toggleOverlay('geoglows');map.flyTo([la,lo],9)},150)});
+  // GEOGLOWS lines on gauge cards
+  Object.entries(GG.gauges||{}).forEach(([k,g])=>{const el=$(`.gcard[data-g="${k}"] .ggl`);if(!el)return;
+    el.innerHTML=`Second model, GEOGLOWS (ECMWF): peak ${fmt.format(Math.round(g.peak))} m³/s around ${dshort(g.peakDate)}${g.rp?` <span class="status" style="color:${rpCol(g.rp)}">above ${g.rp}-year flow</span>`:''}`});
+}
+function startFloodTimer(){if(fwTimer)return;fwTimer=setInterval(()=>{if(!document.hidden&&($('#v-flood')&&!$('#v-flood').hidden||ovl.gdacs||ovl.geoglows||ovl.glofas)){refreshLive();['gdacs','geoglows','glofas'].forEach(k=>{if(ovl[k]){map.removeLayer(ovl[k]);ovl[k]=null;toggleOverlay(k)}})}},15*60e3)}
+async function addFloodLive(){
+  const host=$('#fw-host');if(!host)return;
+  host.innerHTML=`<div class="box" style="margin-bottom:18px"><h3>Live flood alerts <small id="fw-when">Loading…</small></h3>
+   <div class="kpis" id="fw-kpi" style="margin-bottom:12px"><div class="kpi"><b>…</b><span>loading</span></div></div>
+   <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px"><button class="btn sm" data-lay="glofas" type="button">GloFAS alerts on map</button><button class="btn sm" data-lay="geoglows" type="button">High river flows on map</button><button class="btn sm" data-lay="gdacs" type="button">GDACS events on map</button><button class="btn sm" data-lay="hazard" type="button">100-year flood zone</button><button class="btn sm" id="fw-now" type="button">Refresh now</button></div>
+   <h4 class="h4">Official GloFAS flood alerts at reporting points</h4><div id="fw-glofas"></div>
+   <h4 class="h4" style="margin-top:14px">GDACS flood events, last 120 days</h4><div id="fw-gdacs"></div>
+   <h4 class="h4" style="margin-top:14px">Rivers forecast above flood flows (GEOGLOWS)</h4><div id="fw-gg"></div></div>`;
+  $$('#fw-host [data-lay]').forEach(b=>b.onclick=()=>{const k=b.dataset.lay;location.hash='map';setTimeout(()=>{if(!ovl[k])toggleOverlay(k)},150)});
+  $('#fw-now').onclick=()=>{$('#fw-when').textContent='Refreshing…';refreshLive()};
+  await refreshLive();startFloodTimer();
+}
+/* ---------- map overlays ---------- */
+async function floodOverlay(k){
+  if(k==='glofas'){await fwData();const g=L.layerGroup();
+    if(LIVE)L.tileLayer.wms(GLOFAS_WMS,{layers:'FloodSummary1_30',format:'image/png',transparent:true,version:'1.3.0',time:((FW.glofas||{}).time||'')+'',opacity:.85,attribution:'Flood forecasts: Copernicus EMS GloFAS'}).addTo(g);
+    glofasRows().forEach(p=>{if(p.la==null)return;const c=ALERTC[p.alert]||((p.p2||0)>0?'var(--s1)':'var(--s0)');L.circleMarker([p.la,p.lo],{renderer:canvas,radius:6,color:css('--panel'),weight:1.5,fillColor:css(c.slice(4,-1)),fillOpacity:.95})
+      .bindTooltip(`<b>${esc(gname(p))}</b> (${esc(p.river&&p.river!=='NA'?p.river:'')}${p.id!=='NA'?', GloFAS '+esc(p.id):''})<br>Chance of exceeding 2-/5-/20-year flood: ${p.p2??'–'}% / ${p.p5??'–'}% / ${p.p20??'–'}%<br>Alert: ${esc(p.alert||'none')}${p.peak?' · highest chance '+esc(p.peak):''}`,{className:'tip',sticky:true}).addTo(g)});return g}
+  if(k==='geoglows'){const g=L.layerGroup();let R=null;try{R=LIVE?await liveReaches():null}catch(e){}
+    if(R){LIVEFW.reaches=R;R.forEach(r=>{r.paths.forEach(p=>L.polyline(p.map(c=>[c[1],c[0]]),{renderer:canvas,color:css(rpCol(r.rp).slice(4,-1)),weight:r.so>=6?3.5:r.so>=4?2.5:1.6,opacity:.95}).bindTooltip(`Forecast above the <b>${r.rp}-year</b> flood flow<br>${fmt.format(Math.round(r.q))} m³/s · catchment ${fmt.format(r.km2)} km²`,{className:'tip',sticky:true}).addTo(g))})}
+    else{await fwData();((FW.geoglows||{}).reaches||[]).forEach(r=>{if(r.la!=null)L.circleMarker([r.la,r.lo],{renderer:canvas,radius:5,color:css('--panel'),weight:1,fillColor:css(rpCol(r.rp).slice(4,-1)),fillOpacity:.9}).bindTooltip(`Forecast above the ${r.rp}-year flood flow`,{className:'tip'}).addTo(g)})}
+    return g}
+  if(k==='gdacs'){const g=L.layerGroup();let E=null;try{E=LIVE?await liveGdacs():null}catch(e){}if(!E){await fwData();E=(FW.gdacs||{}).events||[]}
+    E.forEach(e=>{if(e.la==null)return;L.circleMarker([e.la,e.lo],{renderer:canvas,radius:e.cur?9:6,color:'#fff',weight:e.cur?2.5:1,fillColor:GDC[e.alert]||'#888',fillOpacity:e.cur?.95:.6}).bindTooltip(`<b>GDACS ${esc(e.alert)} flood</b>${e.cur?' (active)':''}<br>${dshort(e.from)} – ${dshort(e.to)}`,{className:'tip'}).on('click',()=>window.open(e.url,'_blank','noopener')).addTo(g)});return g}
+  if(k==='history'){const H=await fhData();const g=L.layerGroup();(H.dfo||[]).forEach(e=>{if(e.la==null)return;L.circleMarker([e.la,e.lo],{renderer:canvas,radius:Math.min(14,3+Math.sqrt(e.dead||0)),color:css('--panel'),weight:1,fillColor:css('--s2'),fillOpacity:.55}).bindTooltip(`<b>${dshort(e.from)}</b> flood (Dartmouth Flood Observatory)<br>${e.dead!=null?fmt.format(e.dead)+' dead':''}${e.disp?' · '+fmt.format(e.disp)+' displaced':''}${e.cause?'<br>'+esc(e.cause):''}`,{className:'tip'}).addTo(g)});
+    (H.gdacs||[]).forEach(e=>{if(e.la==null)return;L.circleMarker([e.la,e.lo],{renderer:canvas,radius:4,color:GDC[e.alert]||'#888',weight:1.5,fill:false}).bindTooltip(`<b>${dshort(e.from)}</b> GDACS ${esc(e.alert)} flood`,{className:'tip'}).addTo(g)});return g}
+}
+/* ---------- flood history ---------- */
+async function addFloodHistory(){
+  const host=$('#fh-host');if(!host)return;const H=await fhData();const D=H.dfo||[],G=H.gdacs||[];
+  if(!D.length&&!G.length){host.innerHTML='';return}
+  const yrs={};const add=(y,k,v=1)=>{(yrs[y]=yrs[y]||{dfo:0,gdacs:0,dead:0,disp:0})[k]+=v};
+  D.forEach(e=>{const y=+e.from.slice(0,4);add(y,'dfo');add(y,'dead',e.dead||0);add(y,'disp',e.disp||0)});G.forEach(e=>add(+e.from.slice(0,4),'gdacs'));
+  const y0=Math.min(...Object.keys(yrs).map(Number)),y1=new Date().getFullYear();const all=[];for(let y=y0;y<=y1;y++)all.push(y);
+  const dmax=Math.max(...D.map(e=>+e.from.slice(0,4)));
+  const cards=[];
+  cards.push(card({t:'Floods recorded each year',s:`Two independent archives. The Dartmouth Flood Observatory lists large floods from news, government and satellite reports (to ${dmax}); GDACS lists every flood event its system recorded for Nigeria. The same flood can appear in both.`,src:'<a href="https://floodobservatory.colorado.edu/Archives/index.html" target="_blank" rel="noopener">Dartmouth Flood Observatory</a>; <a href="https://www.gdacs.org" target="_blank" rel="noopener">GDACS</a>',file:'nigeria_floods_per_year',page:'flood',
+    draw:el=>line(el,[{name:'Dartmouth Flood Observatory',c:'var(--s2)',pts:all.filter(y=>y<=dmax).map(y=>({x:y,v:(yrs[y]||{}).dfo||0}))},{name:'GDACS',c:'var(--bar)',pts:all.map(y=>({x:y,v:(yrs[y]||{}).gdacs||0}))}],{endLabels:true,f:v=>fmt.format(v)+(v===1?' flood':' floods')}),
+    rows:()=>all.map(y=>({year:y,dfo_floods:y<=dmax?(yrs[y]||{}).dfo||0:null,gdacs_floods:(yrs[y]||{}).gdacs||0}))}));
+  cards.push(card({t:'Deaths in large floods each year',s:'People killed, as recorded by the Dartmouth Flood Observatory archive. Hover for people displaced.',src:'<a href="https://floodobservatory.colorado.edu/Archives/index.html" target="_blank" rel="noopener">Dartmouth Flood Observatory</a> (Brakenridge, G.R., Global Active Archive of Large Flood Events)',file:'nigeria_flood_deaths_dfo',page:'flood',
+    draw:el=>cols(el,all.filter(y=>y<=dmax).map(y=>({l:String(y),v:(yrs[y]||{}).dead||0,c:'var(--s2)'})),{f:v=>fmt.format(v)+' dead'}),rows:()=>all.filter(y=>y<=dmax).map(y=>({year:y,dead:(yrs[y]||{}).dead||0,displaced:(yrs[y]||{}).disp||0}))}));
+  const ev=[...D.map(e=>({d:e.from,to:e.to,src:'DFO',where:e.st||'',lvl:e.sev!=null?'Severity '+e.sev:'',dead:e.dead,disp:e.disp,cause:e.cause||'',url:'https://floodobservatory.colorado.edu/Archives/index.html'})),
+    ...G.map(e=>({d:e.from,to:e.to,src:'GDACS',where:e.st||(e.regions||[]).slice(0,3).join(', '),lvl:e.alert,dead:(e.impact||{}).death,disp:(e.impact||{}).displaced??(e.impact||{}).affected,cause:'',url:e.url}))].sort((a,b)=>b.d.localeCompare(a.d));
+  const W=Object.entries(H.wiki||{}).map(([title,v])=>({title,ex:v.t,u:v.u,y:+((title.match(/\d{4}/)||(v.t||'').match(/\b(?:19|20)\d{2}\b/)||[0])[0])})).sort((a,b)=>b.y-a.y);
+  host.innerHTML=`<h3 class="sh">Flood history of Nigeria, ${y0}–${y1}</h3><p class="lede" style="margin-bottom:12px">${fmt.format(D.length)} large floods in the Dartmouth Flood Observatory archive and ${fmt.format(G.length)} flood events recorded by GDACS. Reported deaths and displacement are as the sources give them and are often incomplete. <button class="btn sm" id="fh-map" type="button">Show past floods on the map</button></p>
+  <div class="grid2">${cards.map(c=>c.html).join('')}</div>
+  <div class="row" style="display:flex;gap:8px;flex-wrap:wrap;margin:14px 0 8px"><select id="fh-src" aria-label="Source"><option value="">Both archives</option><option value="DFO">Dartmouth Flood Observatory</option><option value="GDACS">GDACS</option></select><input id="fh-q" type="text" placeholder="Filter by state or year" style="max-width:220px"><button class="btn sm" id="fh-csv" type="button">Download CSV</button></div>
+  <div class="tbl-wrap" style="max-height:440px"><table class="dt"><thead><tr><th>Began</th><th>Ended</th><th>Where</th><th>Source</th><th>Level</th><th class="n">Dead</th><th class="n">Displaced / affected</th><th>Cause</th></tr></thead><tbody id="fh-body"></tbody></table></div>
+  ${W.length?`<h3 class="sh">Major floods</h3><div class="grid2">${W.map(w=>`<article class="card"><h3>${esc(w.title)}</h3><p class="wiki">${esc(w.ex||'')}</p><div class="foot"><span>From <a href="${esc(w.u||'')}" target="_blank" rel="noopener">Wikipedia</a> (CC BY-SA 4.0)</span></div></article>`).join('')}</div>`:''}`;
+  cards.forEach(c=>c.mount());
+  if(W.length){const g=$('#ev-old');if(g){[...g.children].forEach(a=>{if(!/Lagdo/.test(a.textContent))a.remove()});if(!g.children.length){g.remove();$('#ev-old-h').remove()}else $('#ev-old-h').textContent='Upstream: Lagdo Dam'}}
+  const fil=()=>{const s=$('#fh-src').value,q=$('#fh-q').value.trim().toLowerCase();return ev.filter(e=>(!s||e.src===s)&&(!q||(e.where+' '+e.d).toLowerCase().includes(q)))};
+  const render=()=>{$('#fh-body').innerHTML=fil().map(e=>`<tr><td>${dshort(e.d)}</td><td>${dshort(e.to)}</td><td>${esc(e.where||'–')}</td><td><a href="${esc(e.url)}" target="_blank" rel="noopener">${e.src}</a></td><td>${esc(e.lvl||'')}</td><td class="n">${e.dead!=null?fmt.format(e.dead):'–'}</td><td class="n">${e.disp!=null?fmt.format(e.disp):'–'}</td><td>${esc(e.cause)}</td></tr>`).join('')};
+  $('#fh-src').onchange=render;$('#fh-q').oninput=render;render();
+  $('#fh-csv').onclick=()=>saveFile('nigeria_flood_history.csv',toCSV(fil().map(e=>({began:e.d,ended:e.to,where:e.where,source:e.src,level:e.lvl,dead:e.dead,displaced_or_affected:e.disp,cause:e.cause,link:e.url}))),'text/csv');
+  $('#fh-map').onclick=()=>{location.hash='map';setTimeout(()=>{if(!ovl.history)toggleOverlay('history')},150)};
+}
+function floodDashboards(){return`<h3 class="sh">Other flood dashboards for Africa</h3><div class="commit">
+ <div><b><a href="https://global-flood.emergency.copernicus.eu" target="_blank" rel="noopener">GloFAS, Copernicus Emergency Management Service</a></b><span>Global river flood forecasts. Used here: reporting-point alerts, flood summary map, 100-year flood zone and the river-flow forecasts.</span></div>
+ <div><b><a href="https://www.gdacs.org" target="_blank" rel="noopener">GDACS</a></b><span>Global Disaster Alert and Coordination System (European Commission and UN OCHA). Used here: live and past flood events with reported impacts.</span></div>
+ <div><b><a href="https://geoglows.ecmwf.int" target="_blank" rel="noopener">GEOGLOWS (ECMWF)</a></b><span>15-day forecasts for every river reach. Used here as a second forecast and for rivers above flood flows.</span></div>
+ <div><b><a href="https://floodobservatory.colorado.edu/Archives/index.html" target="_blank" rel="noopener">Dartmouth Flood Observatory</a></b><span>Archive of large floods since 1985. Used here for the flood history.</span></div>
+ <div><b><a href="https://hydrology.soton.ac.uk/apps/afdm" target="_blank" rel="noopener">African Flood and Drought Monitor</a></b><span>University of Southampton and Princeton. Near-real-time monitoring and forecasts across Africa; no open data service to connect to, so linked rather than embedded.</span></div>
+ <div><b><a href="https://fanfar.eu" target="_blank" rel="noopener">FANFAR</a></b><span>Flood forecasting and alerts for West Africa with AGRHYMET and national hydrological services. Access is through its own portal.</span></div>
+ <div><b><a href="https://www.notre-planete.info/live/global-flood-map.php" target="_blank" rel="noopener">Live Global Flood Map (notre-planete.info)</a></b><span>Combines GDACS events with NASA VIIRS flood detections, the same two sources used on this atlas.</span></div>
+ <div><b><a href="https://unosat.org/products" target="_blank" rel="noopener">UNOSAT flood maps</a></b><span>Satellite flood-extent maps for major events, including Nigeria in 2024.</span></div>
+ <div><b><a href="https://maps.digitalearth.africa" target="_blank" rel="noopener">Digital Earth Africa</a></b><span>Water Observations from Space and coastal change across Africa.</span></div>
+ <div><b><a href="https://floodwatch.icpac.net" target="_blank" rel="noopener">East Africa Flood Watch (ICPAC)</a> and <a href="https://www.iwmi.cgiar.org" target="_blank" rel="noopener">HydroSecure (IWMI)</a></b><span>Regional systems for East Africa and for basins in Zambia, Ghana, Burkina Faso and Ethiopia; they do not cover Nigeria.</span></div></div>`}
 </script>
 </body>
 </html>
