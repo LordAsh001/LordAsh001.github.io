@@ -1282,7 +1282,7 @@ function renderLegend(){
   if(ovl.glofas)h+=`<div class="t" style="margin-top:6px">GloFAS flood alerts</div><div class="k"><span class="sw" style="--c:var(--s3);border-radius:50%"></span>Severe (20-year)</div><div class="k"><span class="sw" style="--c:var(--s2);border-radius:50%"></span>High (5-year)</div><div class="k"><span class="sw" style="--c:var(--s1);border-radius:50%"></span>Medium or some 2-year chance</div><div class="k"><span class="sw" style="--c:var(--s0);border-radius:50%"></span>No alert</div>`;
   if(ovl.geoglows)h+=`<div class="t" style="margin-top:6px">Rivers forecast above (GEOGLOWS)</div><div class="k"><span class="ln" style="--c:var(--s1)"></span>2-year flood flow</div><div class="k"><span class="ln" style="--c:var(--s2)"></span>5- to 10-year</div><div class="k"><span class="ln" style="--c:var(--s3)"></span>25-year or more</div>`;
   if(ovl.gdacs)h+=`<div class="t" style="margin-top:6px">GDACS flood events (120 days)</div><div class="k"><span class="sw" style="--c:#d93b2b;border-radius:50%"></span>Red</div><div class="k"><span class="sw" style="--c:#e8891f;border-radius:50%"></span>Orange</div><div class="k"><span class="sw" style="--c:#2e9e44;border-radius:50%"></span>Green</div>`;
-  if(ovl.nimet)h+=`<div class="t" style="margin-top:6px">NiMet warnings</div><div class="k"><span class="sq" style="--c:var(--s3)"></span>Extreme</div><div class="k"><span class="sq" style="--c:var(--s2)"></span>Severe</div><div class="k"><span class="sq" style="--c:var(--s1)"></span>Moderate</div><div class="k" style="grid-column:1/-1"><span class="ln" style="--c:var(--muted);border-top-style:dashed"></span>Recently expired</div>`;
+  if(ovl.nimet)h+=`<div class="t" style="margin-top:6px">NiMet warnings</div><div class="k"><span class="sq" style="--c:var(--s3)"></span>Extreme</div><div class="k"><span class="sq" style="--c:var(--s2)"></span>Severe</div><div class="k"><span class="sq" style="--c:var(--s1)"></span>Moderate</div><div class="k" style="grid-column:1/-1"><span class="ln" style="--c:var(--muted);border-top-style:dashed"></span>Latest warning, expired (shown when none is in force)</div>`;
   if(ovl.hazard)h+=`<div class="k" style="grid-column:1/-1"><span class="sq" style="--c:linear-gradient(90deg,#c6dbef,#08519c)"></span>Flood depth in a 100-year flood (GloFAS)</div>`;
   if(ovl.history)h+=`<div class="k" style="grid-column:1/-1"><span class="sw" style="--c:var(--s2);border-radius:50%;opacity:.6"></span>Past large floods (DFO; size = deaths); rings = GDACS events</div>`;
   if(ovl.wp)h+=`<div class="k"><span class="sw" style="--c:var(--g0);border-radius:50%;width:6px;height:6px"></span>Water point (GRID3, 2020)</div>`;
@@ -2260,9 +2260,9 @@ async function addNimet(){
 }
 async function nimetOverlay(){
   const A=NM.alerts||await nimetAlerts();const g=L.layerGroup();
-  A.forEach(a=>{const on=isActive(a);(a.poly||[]).forEach(p=>L.polygon(p,{color:css(SEVC[a.sev]||'--s0'),weight:on?2:1,dashArray:on?null:'4 4',fillOpacity:on?.25:.05,opacity:on?.95:.5})
+  const act=A.filter(isActive);(act.length?act:A.slice(0,1)).forEach(a=>{const on=isActive(a);(a.poly||[]).forEach(p=>L.polygon(p,{color:css(SEVC[a.sev]||'--s0'),weight:on?2:1.5,dashArray:on?null:'5 5',fillOpacity:on?.25:0,opacity:on?.95:.7})
     .bindTooltip(`<b>${esc(a.event||'')}</b> (${esc(a.sev||'')})${on?'':' – expired'}<br>${dtime(a.onset)} – ${dtime(a.exp)}<br>${esc((a.area||'').slice(0,160))}`,{className:'tip',sticky:true}).addTo(g))});
-  if(!A.some(a=>(a.poly||[]).length))toast('No NiMet warning areas to show right now');return g}
+  if(!act.length)toast(A.length?'No NiMet warning in force; showing the latest, expired one':'No NiMet warning areas to show right now');return g}
 
 /* ---------- Early Warnings for All ---------- */
 function addEw4(){const el=$('#nm-ew4');if(!el)return;
