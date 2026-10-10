@@ -1187,6 +1187,8 @@ const OVERLAYS={
   nimetfc:{n:'NiMet 3-day forecast',fl:1},
   hazard:{n:'100-year flood zone',wms:'FloodHazard100y',a:'Flood hazard: Copernicus EMS GloFAS, 100-year return period (JRC)',live:1},
   history:{n:'Past floods',fl:1},
+  aquifers:{n:'Aquifers',fl:1},
+  wstress:{n:'Water stress by state',fl:1},
   wp:{n:'Water points'},
   satflood:{n:'Satellite floods',tile:()=>`https://gibs.earthdata.nasa.gov/wmts/epsg3857/best/VIIRS_Combined_Flood_3-Day/default/${gibsDay(1)}/GoogleMapsCompatible_Level9/{z}/{y}/{x}.png`,a:'Flood mapping: NASA LANCE / VIIRS combined flood product (3-day composite), via NASA GIBS',mz:9,live:1},
   imerg:{n:'Rain yesterday',tile:()=>`https://gibs.earthdata.nasa.gov/wmts/epsg3857/best/IMERG_Precipitation_Rate/default/${gibsDay(2)}/GoogleMapsCompatible_Level6/{z}/{y}/{x}.png`,a:'Precipitation: NASA GPM IMERG daily precipitation rate, via NASA GIBS',mz:6,live:1},
@@ -1287,6 +1289,8 @@ function renderLegend(){
   if(ovl.nimetfc)h+=`<div class="t" style="margin-top:6px">NiMet 3-day forecast (wettest day)</div><div class="k"><span class="sw" style="--c:var(--s3);border-radius:50%"></span>Heavy rain</div><div class="k"><span class="sw" style="--c:var(--s2);border-radius:50%"></span>Rain</div><div class="k"><span class="sw" style="--c:var(--s1);border-radius:50%"></span>Thunderstorms</div><div class="k"><span class="sw" style="--c:var(--s0);border-radius:50%"></span>Dry or cloudy</div>`;
   if(ovl.hazard)h+=`<div class="k" style="grid-column:1/-1"><span class="sq" style="--c:linear-gradient(90deg,#c6dbef,#08519c)"></span>Flood depth in a 100-year flood (GloFAS)</div>`;
   if(ovl.history)h+=`<div class="k" style="grid-column:1/-1"><span class="sw" style="--c:var(--s2);border-radius:50%;opacity:.6"></span>Past large floods (DFO; size = deaths); rings = GDACS events</div>`;
+  if(ovl.aquifers)h+=`<div class="t" style="margin-top:6px">Aquifer productivity (BGS)</div><div class="k"><span class="sq" style="--c:#08306b"></span>High to very high</div><div class="k"><span class="sq" style="--c:#2171b5"></span>High</div><div class="k"><span class="sq" style="--c:#4292c6"></span>Moderate to high</div><div class="k"><span class="sq" style="--c:#6baed6"></span>Moderate</div><div class="k"><span class="sq" style="--c:#9ecae1"></span>Low to moderate (sedimentary)</div><div class="k"><span class="sq" style="--c:#deebf7"></span>Low to moderate (basement, igneous)</div>`;
+  if(ovl.wstress)h+=`<div class="t" style="margin-top:6px">Baseline water stress (Aqueduct)</div><div class="k"><span class="sq" style="--c:#ffff99"></span>Low</div><div class="k"><span class="sq" style="--c:#ffe600"></span>Low–medium</div><div class="k"><span class="sq" style="--c:#ff9900"></span>Medium–high</div><div class="k"><span class="sq" style="--c:#ff1900"></span>High</div><div class="k"><span class="sq" style="--c:#990000"></span>Extremely high</div>`;
   if(ovl.wp)h+=`<div class="k"><span class="sw" style="--c:var(--g0);border-radius:50%;width:6px;height:6px"></span>Water point (GRID3, 2020)</div>`;
   h+=`<div class="sm">Dot size follows reservoir capacity or lake area. Dashed dots: location uncertain.</div>`;
   $('#legend').innerHTML=h;
@@ -1393,7 +1397,7 @@ function select(f,fromMap){
   h+=`<dl class="facts">${facts.map(([k,v,w,raw])=>`<div class="fact${w?' w':''}"><dt>${k}</dt><dd>${raw?v:esc(v)}</dd></div>`).join('')}</dl>`;
   if(f.wt)h+=`<div class="sec"><h3>About</h3><p class="wiki">${esc(f.wt.t)}</p><div class="wiki-src">From <a href="${esc(f.wt.u)}" target="_blank" rel="noopener">Wikipedia, “${esc(f.wt.title)}”</a> (CC BY-SA 4.0), retrieved ${esc(DATA.meta.refreshed)}.</div></div>`;
   const sec=(t,v)=>v?`<div class="sec"><h3>${t}</h3><p>${esc(v)}</p></div>`:'';
-  h+='<div id="repbox"></div>';
+  h+='<div id="repbox"></div><div id="faobox"></div>';
   h+=sec('Notes',f.notes)+sec('Vegetation',f.veg)+sec('Wildlife',f.fauna)+sec('Resources',f.res)+sec('Tourism',f.tour)+sec('Threats',f.thr);
   if(f.c===6&&f.forest_id)h+=`<div class="callout">This wetland also appears in the <a href="${CONFIG.forestUrl}#${esc(f.forest_id)}">Nigeria Forest Reserves Atlas</a>, with its biodiversity records.</div>`;
   if(f.c===7){const onr=F.filter(x=>x!==f&&(x.c===0||x.c===8)&&x.river&&f.n.toLowerCase().startsWith(x.river.toLowerCase().split(/[–-]/)[0])).sort((a,b)=>(b.cap||b.qmean||0)-(a.cap||a.qmean||0)).slice(0,12);
@@ -1415,7 +1419,7 @@ function select(f,fromMap){
   if(f.w)srcs.push(`UNEP-WCMC &amp; IUCN, World Database on Protected Areas, WDPA ID <span class="mono">${f.w}</span>`);
   h+=`<div class="sec"><h3>Sources</h3><ul class="srcs">${srcs.map(s=>`<li>${s}</li>`).join('')}${(f.src||[]).map(u=>`<li><a href="${esc(u)}" target="_blank" rel="noopener">${esc(u.replace(/^https?:\/\/(www\.)?/,'').slice(0,80))}</a></li>`).join('')}</ul></div>`;
   h+=`<div class="sec"><h3>Cite this record</h3><pre class="cite">${esc(citeText(f))}</pre></div>`;
-  $('#sh-body').innerHTML=h;$('#sh-body').scrollTop=0;$('#sheet').hidden=false;fillReports(f);
+  $('#sh-body').innerHTML=h;$('#sh-body').scrollTop=0;$('#sheet').hidden=false;fillReports(f);fillFao(f);
   $$('#sh-body [data-go]').forEach(a=>a.onclick=()=>goSite(a.dataset.go));
   const setCap=i=>{const p=f.pics[i],c=$('#galcap');if(c)c.innerHTML=`${esc(capOf(p))}${p[2]?' · '+esc(p[2]):''}, <a href="${pageUrl(p)}" target="_blank" rel="noopener">${esc(p[3])} via Wikimedia Commons</a>`};
   if($('#gal')){setCap(0);$$('#gal .galrow button').forEach(bt=>bt.onclick=()=>{const i=+bt.dataset.g,p=f.pics[i],im=$('#gal>img');if(im){im.dataset.f='';im.dataset.alt=imgUrl(p,500);im.src=imgUrl(p,960)}else{$('#gal').insertAdjacentHTML('afterbegin',imgTag(p,960,500))}setCap(i);$$('#gal .galrow button').forEach(x=>x.classList.toggle('on',x===bt))})}
@@ -1607,13 +1611,15 @@ function buildBasins(){
   <h3 class="sh">Groundwater</h3><p class="lede" style="margin-bottom:12px">Most Nigerians drink groundwater from boreholes and wells. What a borehole yields depends on the rock beneath it. Source: <a href="${esc(DATA.gw_src.url)}" target="_blank" rel="noopener">${esc(DATA.gw_src.label)}</a>.</p>
   <div class="tbl-wrap" style="max-height:none"><table class="dt"><thead><tr><th>Aquifer setting</th><th>Where</th><th>What to expect</th></tr></thead><tbody>${(DATA.gw||[]).map(g=>`<tr><td><b>${esc(g.name)}</b></td><td>${esc(g.where)}</td><td>${esc(g.aquifer)}</td></tr>`).join('')}</tbody></table></div>
   <div class="tbl-wrap" style="max-height:none;margin-top:12px"><table class="dt"><thead><tr><th>Fact</th><th>Value</th><th>Source</th></tr></thead><tbody>${(DATA.gw_facts||[]).map(g=>`<tr><td>${esc(g.label)}</td><td>${esc(g.value)}</td><td>${esc(g.src)}</td></tr>`).join('')}</tbody></table></div>
+  <div id="x9-gw"></div><div id="x9-aq"></div>
   <h3 class="sh">National water figures</h3><div class="tbl-wrap" style="max-height:none"><table class="dt"><thead><tr><th>Indicator</th><th class="n">Value</th><th>Unit</th></tr></thead><tbody>${(N.national||[]).map(x=>`<tr><td>${esc(x.label)}</td><td class="n">${fmt1.format(x.value)}</td><td>${esc(x.unit)}</td></tr>`).join('')}</tbody></table></div><p style="font-size:12.5px;color:var(--muted)">${esc(N.title)}, ${esc(N.by)}, ${esc(N.date)}. <a href="${esc(N.url)}" target="_blank" rel="noopener">Read the report ↗</a>. The report gives demand figures from different tables that cover different sectors; they are shown as published.</p>
   <div id="basin-reports"></div>
+  <div id="x9-pol"></div>
   <h3 class="sh">Who manages water</h3><div class="commit">${(DATA.ag||[]).map(a=>`<div><b><a href="${esc(a.url)}" target="_blank" rel="noopener">${esc(a.name)}</a></b><span>${esc(a.role)}</span></div>`).join('')}</div>`;
   cards.forEach(c=>c.mount());
   $$('#basins tr.click').forEach(tr=>tr.onclick=()=>goSite(tr.dataset.id));
   $('#show-bas').onclick=()=>{location.hash='map';setTimeout(()=>{if(!ovl.basins)toggleOverlay('basins')},120)};
-  addBasinReports();
+  addBasinReports();addX9Basins();
 }
 </script>
 <script>
@@ -1909,7 +1915,7 @@ function buildNgo(){
    <article class="card"><h3>Reservoirs seen from space but unnamed</h3><div class="sub">${unnamed.length} reservoirs mapped from satellite images (GOODD, GROD, JRC) with no name on record. Know one? Send a “Data correction”.</div>${tbl(unnamed,[['Record',f=>esc(f.n)],['State',f=>esc(f.s)],['Mm³',f=>f.cap?fmt1.format(f.cap):'–',1]])}</article>
    <article class="card"><h3>Listed dams that need locating</h3><div class="sub">${unsure.length} dams in the UNICEF Nigeria list that could not be matched to a mapped reservoir. Their coordinates are rounded, and some fall in a different state from the one listed.</div>${tbl(unsure,[['Dam',f=>esc(f.n)],['Listed state',f=>esc(f.s_listed||'')],['Level',f=>f.v]])}</article>
   </div>`;
-  $$('#ngo tr.click').forEach(tr=>tr.onclick=()=>goSite(tr.dataset.id));
+  $$('#ngo tr.click').forEach(tr=>tr.onclick=()=>goSite(tr.dataset.id));addX9Ngo();
   const siteOf=()=>{const v=$('#r-site').value.trim().toLowerCase();return nameIdx[v]?BY[nameIdx[v]]:null};
   const text=()=>{const f=siteOf();return`Field report — ${$('#r-title').value}\nPlace: ${f?f.n+' ('+f.s+') ['+f.i+']':$('#r-site').value}\nType: ${$('#r-type').value}\nDate observed: ${$('#r-date').value}\nOrganisation: ${$('#r-org').value||'—'}\nEvidence: ${$('#r-link').value||'—'}\n\n${$('#r-body').value}`};
   $('#r-copy').onclick=()=>copy(text());
@@ -1968,6 +1974,11 @@ function buildData(){
    ['NiMet Seasonal Rainfall Prediction (SRP)','Predicted onset, end, season length and annual rainfall for each LGA','Rain page','https://nimet.gov.ng/srp','Public; credit NiMet'],
    ['NiMet, 2025 State of the Climate in Nigeria (2026)','Rainfall anomalies since 1981, extreme rainfall, dry spells and the 2025 floods','Rain page and flood history','https://nimet.gov.ng/SoCN','Cited by page'],
    ['Early Warnings for All Dashboard (WMO, UNDRR, ITU, IFRC)','Country capacity for multi-hazard early warning','Flood watch','https://earlywarningsforall.org/site/early-warnings-all/dashboards/early-warnings-all-dashboard','Public'],
+   ['British Geological Survey, Africa Groundwater Atlas: country hydrogeology map and Hydrogeology of Nigeria','Aquifer types and productivity at 1:5 million; yields, depths, recharge and borehole counts','Aquifers map layer and the Basins page','https://africagroundwateratlas.org/downloadGIS.html','CC BY-SA'],
+   ['WRI Aqueduct 4.0 country and province rankings','Baseline and future water stress, drought risk and riverine flood risk for Nigeria and each state','Water stress map layer and the Basins page','https://www.wri.org/data/aqueduct-40-country-rankings','CC BY 4.0'],
+   ['FAO AQUASTAT dams database and country profile (2016)','Dam height, capacity, area, purposes and year; national water and irrigation statistics','Dam profiles, Community hub and the Basins page','https://www.fao.org/aquastat/en/databases/dams','Free with attribution'],
+   ['Federal Ministry of Water Resources, National Water Resources Policy (2016)','Policy statements, targets, water potential and demand to 2030','Basins page','https://waterresources.gov.ng','Public document'],
+   ['Nigeria Development Cooperation Dashboard','Donor-funded water resources and sanitation projects with funders, amounts and states','Community hub','https://ndcd.ng/by/mtef-sector/21','Public'],
    ['Dartmouth Flood Observatory, Global Active Archive of Large Flood Events (G.R. Brakenridge)','Large floods since 1985 with dates, deaths, displacement and causes','Flood history','https://floodobservatory.colorado.edu/Archives/index.html','Free for non-commercial use with attribution'],
    ['UNICEF Nigeria, 2024 Nigeria Flood Risk Analysis (ArcGIS Online)','Riverine, flash and coastal flood-risk rating for each LGA','Flood risk layer','https://www.arcgis.com/home/search.html?q=2024%20Nigeria%20Flood%20Risk%20Analysis','Public layer; no licence stated'],
    ['geoBoundaries (William & Mary geoLab)','State boundaries','State assignment','https://www.geoboundaries.org','CC BY 4.0'],
@@ -1985,6 +1996,7 @@ function buildData(){
   <pre class="cite" style="margin-top:10px">${esc(dsCite)}</pre>
   <h3>Sources</h3><div class="tbl-wrap" style="max-height:none"><table class="dt srctbl"><thead><tr><th>Source</th><th>What it provides</th><th>Used for</th><th>Licence / terms</th></tr></thead><tbody>${SRC.map(s=>`<tr><td><a href="${esc(s[3])}" ${s[3].startsWith('/')?'':'target="_blank" rel="noopener"'}>${esc(s[0])}</a></td><td>${esc(s[1])}</td><td>${esc(s[2])}</td><td>${esc(s[4])}</td></tr>`).join('')}</tbody></table></div>
   <div id="reports-src"></div>
+  ${x9Atlases()}
   <h3>Verification levels</h3><ul>${Object.entries(LEVELS).map(([k,v])=>`<li><b>Level ${k}</b> (${F.filter(f=>f.v===k).length} records): ${esc(v)}</li>`).join('')}</ul>
   <h3>Method</h3><ul>
    <li>Global Dam Watch is the backbone for dams. UNICEF-list and Wikidata entries were matched to it by name and distance; unmatched UNICEF-list dams are kept as level D so they can be located.</li>
@@ -1994,7 +2006,7 @@ function buildData(){
    <li>Flood-watch normals use 1991–2020 GloFAS reanalysis at each point in a 15-day window around each date. GloFAS is a model at about 5 km resolution: it is good at large rivers and seasonal patterns and weak at small streams, urban drainage and dam operations.</li>
    <li>River lines are simplified to about 500 m, reservoir outlines to about 150 m and roads to about 200 m for display.</li>
    <li>Major roads are OpenStreetMap expressways, trunk and primary roads, joined by route number. They show how places connect, not road condition or seasonal access; volunteer mapping is more complete around cities than in rural areas.</li></ul>
-  <h3>Updates</h3><p>A scheduled job re-downloads every source each Monday and rebuilds the data; a second job refreshes the flood alerts, forecasts, NiMet warnings and 3-day forecasts, and the flood history every hour (NiMet’s seasonal rainfall prediction daily), and the flood watch page fetches NiMet warnings, GDACS events and GEOGLOWS river forecasts live and re-checks them every 15 minutes while it is open; river flows, weather and nearby photos are fetched live when you open a profile. Hand-written content (basins, groundwater, agencies) lives in <a href="data/curated.json">curated.json</a> with its sources. Each release is versioned; cite the version you used.</p>
+  <h3>Updates</h3><p>A scheduled job re-downloads every source each Monday and rebuilds the data; a second job refreshes the flood alerts, forecasts, NiMet warnings and 3-day forecasts, and the flood history every hour (NiMet’s seasonal rainfall prediction daily), and a third job refreshes the aquifer map, state water-stress rankings, FAO dam records and donor projects each month, and the flood watch page fetches NiMet warnings, GDACS events and GEOGLOWS river forecasts live and re-checks them every 15 minutes while it is open; river flows, weather and nearby photos are fetched live when you open a profile. Hand-written content (basins, groundwater, agencies) lives in <a href="data/curated.json">curated.json</a> with its sources. Each release is versioned; cite the version you used.</p>
   <h3>Known gaps</h3><ul><li>${unnamed} reservoirs are still unnamed and ${F.filter(f=>f.c===1).length} UNICEF-list dams are not precisely located.</li><li>Small earth dams, community ponds and many boreholes are missing; the GRID3 water-point survey did not cover every state.</li><li>Hydropower capacity is not recorded for most dams in GDW; newer schemes such as Zungeru are added from Wikipedia.</li><li>The eight hydrological areas are described but not drawn: their official boundaries are not published as open data. The Basins layer shows HydroBASINS watersheds instead.</li></ul>
   <h3>Corrections</h3><p>Water agencies, RBDAs, researchers and community monitors can send corrections through the Community hub (choose “Data correction”) or on <a href="https://github.com/${CONFIG.issuesRepo}/issues" target="_blank" rel="noopener">GitHub</a>. Please include a source.</p>`;
   addReportSources();
@@ -2154,6 +2166,8 @@ async function addFloodLive(){
 async function floodOverlay(k){
   if(k==='nimet')return nimetOverlay();
   if(k==='nimetfc')return nimetFcOverlay();
+  if(k==='aquifers')return aquiferOverlay();
+  if(k==='wstress')return stressOverlay();
   if(k==='glofas'){await fwData();const g=L.layerGroup();
     if(LIVE)L.tileLayer.wms(GLOFAS_WMS,{layers:'FloodSummary1_30',format:'image/png',transparent:true,version:'1.3.0',time:((FW.glofas||{}).time||'')+'',opacity:.85,attribution:'Flood forecasts: Copernicus EMS GloFAS'}).addTo(g);
     glofasRows().forEach(p=>{if(p.la==null)return;const c=ALERTC[p.alert]||((p.p2||0)>0?'var(--s1)':'var(--s0)');L.circleMarker([p.la,p.lo],{renderer:canvas,radius:6,color:css('--panel'),weight:1.5,fillColor:css(c.slice(4,-1)),fillOpacity:.95})
@@ -2365,6 +2379,176 @@ async function addRainNimet(){
     const pref=state.st&&S.states[state.st]?state.st:'FCT';if(S.states[pref])$('#srp-st').value=pref;drawSrp()}
   function drawSrp(){const n=$('#srp-st').value;$('#srp-body').innerHTML=(S.states[n]||[]).map(r=>`<tr><td>${esc(r[0])}</td><td>${esc(r[1]||'–')}</td><td>${esc(r[2]||'–')}</td><td class="n">${r[3]??'–'}</td><td class="n">${r[4]!=null?fmt.format(r[4]):'–'}</td></tr>`).join('')}
 }
+</script>
+<script>
+/* ---------- Reference sources added October 2026: BGS aquifer map, WRI Aqueduct state water stress, FAO AQUASTAT dams,
+   National Water Resources Policy 2016, NBS water statistics note, FAO/USAID/UNEP country profiles, OSS ITAS atlas, donor projects ---------- */
+const R9={
+ pol:{s:'National Water Resources Policy 2016',c:'Federal Ministry of Water Resources (2016). National Water Resources Policy. Abuja, July 2016. Page numbers are the printed page numbers.'},
+ nbs:{s:'NBS, Water Resource Development Statistics',c:'National Bureau of Statistics (c. 2012). Water Resource Development Statistics. Sources and Methods of Compiling Nigeria’s Official Statistics. Page numbers are PDF pages.'},
+ bgs:{s:'Africa Groundwater Atlas',c:'Tijani, M., Crane, E., Upton, K., Ó Dochartaigh, B.É. and Bellwood-Howard, I. (2018). Africa Groundwater Atlas: Hydrogeology of Nigeria. British Geological Survey. CC BY-SA 3.0.',u:'https://earthwise.bgs.ac.uk/index.php/Hydrogeology_of_Nigeria'},
+ fao:{s:'FAO AQUASTAT 2016',c:'FAO (2016). AQUASTAT Country Profile – Nigeria. Food and Agriculture Organization of the United Nations, Rome.',u:'https://www.fao.org/3/i9807en/I9807EN.pdf'},
+ swp:{s:'USAID SWP 2021',c:'USAID Sustainable Water Partnership (2021). Nigeria Water Resources Profile Overview. Water Resources Profile Series.',u:'https://winrock.org/wp-content/uploads/2021/08/Nigeria_Country_Profile_Final.pdf'},
+ dicf:{s:'UNEP DICF',c:'UNEP/GRID-Geneva. Data and Information for Country Frameworks: Nigeria – Water (accessed October 2026).',u:'https://dicf.unepgrid.ch/nigeria/water'},
+ oss:{s:'OSS GICRESAIT Atlas 2017',c:'Sahara and Sahel Observatory (OSS) (2017). GICRESAIT Water Resources Atlas: Iullemeden and Taoudeni/Tanezrouft Aquifer System.',u:'https://www.oss-online.org/sites/default/files/2022-11/OSS-GICRESAIT-Atlas_En.pdf'},
+ aqd:{s:'WRI Aqueduct 4.0',c:'Kuzma, S. et al. (2023). Aqueduct 4.0: Updated decision-relevant global water risk indicators. World Resources Institute. Country and province rankings.',u:'https://www.wri.org/data/aqueduct-40-country-rankings'},
+};
+const c9=(k,p)=>{const R=R9[k];const t=`(${R.s}${p!=null?`, ${/[–,-]/.test(String(p))?'pp.':'p.'} ${p}`:''})`;return R.u?` <a class="rcite" href="${R.u}" target="_blank" rel="noopener" title="${esc(R.c)}">${esc(t)}</a>`:` <span class="rcite" title="${esc(R.c)}">${esc(t)}</span>`};
+const f9=a=>`<ul class="rfacts">${a.map(x=>`<li>${x[0]}${x[1]?c9(x[1],x[2]):''}</li>`).join('')}</ul>`;
+const X9={};const x9=async n=>{if(X9[n]!==undefined)return X9[n];try{X9[n]=await loadJSON(n)}catch(e){X9[n]=null}return X9[n]};
+
+/* ---------- aquifers (BGS) ---------- */
+const AQC={'U-H/VH':'#08306b','U-H':'#2171b5','CSI-M/H':'#4292c6','CSIF-M (H)':'#6baed6','CSI-L/M':'#9ecae1','I-L/M':'#c6dbef','B-L/M':'#deebf7','n/a':'#7fcdbb'};
+const AQD=[ // from the BGS Africa Groundwater Atlas country page
+ [/Unconsolidated sedimentary - Quaternary/,'Alluvium','High','Along the main river valleys; thickest (15–30 m) along the Niger and Benue. Largely unconfined with shallow water tables, recharged by rain and by the rivers.'],
+ [/Niger Delta/,'Niger Delta: Deltaic and Benin formations','High to very high','Extensive, high-yielding sands and gravels. Yields 3–60 L/s; boreholes 10–800 m deep; water table 0–10 m (Deltaic) or 3–15 m (Benin, up to 55 m). Sea-water intrusion, iron and pollution problems.'],
+ [/Volcanic/,'Volcanic rocks (basalts)','Low to moderate','Usually below 3 L/s; boreholes commonly 15–50 m; water table varies by less than 5 m. Quality generally good.'],
+ [/Younger granite/,'Younger granites','Low to moderate','Igneous rock aquifers; yields usually below 3 L/s where weathered or fractured.'],
+ [/Chad Basin/,'Chad Basin: Chad, Kerri-Kerri and Gombe formations','Moderate to high','Chad Formation yields 2.5–30 L/s, water table often 10–15 m; deeper sandstones confined and can be artesian. Gombe Sandstone about 1–5 L/s.'],
+ [/Sokoto Basin/,'Sokoto Basin: Sokoto and Rima groups, Illo/Gundumi','Moderate to high','Water table 20–100 m in the Gwandu Formation, with high storage; Illo/Gundumi yields 2–8 L/s; transmissivity from under 10 to nearly 1,000 m²/day. Part of the Iullemeden basin shared with Niger, Mali and Benin.'],
+ [/Nupe Basin/,'Nupe (Bida) Basin: Nupe, Patti and Lokoja sandstones','Low to moderate','Poor and variable yields; about 2–4 L/s where sandstones dominate.'],
+ [/Upper Benue/,'Upper Benue: Bima and Yolde sandstones','Low to moderate','About 1–5 L/s; water table 60–165 m; boreholes 30–300 m deep.'],
+ [/Lower Benue|Cretaceous - east/,'Lower Benue: Makurdi, Keana, Ezeaku, Awe and Asu River formations','Moderate (locally high)','Fracture flow; typical yields 2–8 L/s; water table 10–40 m; boreholes 40–150 m. Water can be highly mineralised (Awe Formation).'],
+ [/Basement/,'Basement complex','Low to moderate','Water in the weathered and fractured zone, typically 10–25 m thick; water table 5–15 m; boreholes 10–70 m. Quality generally good.'],
+ [/Surface water/,'Surface water','–','Large lakes and reservoirs.']];
+const aqInfo=g=>AQD.find(d=>d[0].test(g))||[null,g,'',''];
+async function aquiferOverlay(){const A=await x9('aquifers.json');const g=L.layerGroup();if(!A){toast('Aquifer map could not be loaded');return g}
+  A.f.forEach(f=>{const i=aqInfo(f.geo),[type,prod]=(A.codes[f.c]||['','']);L.geoJSON({type:'Feature',geometry:{type:f.t,coordinates:f.g}},{style:{color:'#ffffff',weight:.4,fillColor:AQC[f.c]||'#ccc',fillOpacity:.62},interactive:true})
+    .bindTooltip(`<b>${esc(i[1])}</b><br>${esc(type)} · productivity: <b>${esc(prod)}</b><br><span style="font-size:11.5px">${esc(i[3])}</span><br><span style="font-size:11px;opacity:.75">BGS Africa Groundwater Atlas, 1:5 million</span>`,{className:'tip',sticky:true,maxWidth:320}).addTo(g)});
+  return g}
+
+/* ---------- Aqueduct water stress by state ---------- */
+const AQK=['#ffff99','#ffe600','#ff9900','#ff1900','#990000'],AQKL=['Low (<10%)','Low–medium (10–20%)','Medium–high (20–40%)','High (40–80%)','Extremely high (>80%)'];
+const lb=v=>v&&v[0]!=null&&v[0]>=0?v[2]:'no data';const aqCol=c=>c==null||c<0?'#bdbdbd':AQK[Math.min(4,c)];
+async function stressOverlay(){const Q=await x9('aqueduct.json');const g=L.layerGroup();if(!Q){toast('Water-stress data could not be loaded');return g}
+  (DATA.st||[]).forEach(s=>{const q=Q.st[s.n];if(!q)return;const b=(q.bws||{}).Tot;L.geoJSON({type:'Feature',geometry:{type:s.t,coordinates:s.g}},{style:{color:css('--panel'),weight:1,fillColor:aqCol(b&&b[1]),fillOpacity:.7}})
+    .bindTooltip(`<b>${esc(s.n)}</b><br>Baseline water stress: <b>${esc(b?b[2]:'–')}</b><br>Drought risk: ${esc(lb((q.drr||{}).Tot))}<br>Riverine flood risk: ${esc(lb((q.rfr||{}).Pop))}<br>Water stress in 2050 (business as usual): ${esc(lb((q.fut||{})['2050_bau']))}<br><span style="font-size:11px;opacity:.75">WRI Aqueduct 4.0</span>`,{className:'tip',sticky:true}).addTo(g)});
+  return g}
+
+/* ---------- Basins page additions ---------- */
+async function addX9Basins(){
+  const A=await x9('aquifers.json'),Q=await x9('aqueduct.json');
+  const gw=$('#x9-gw');if(gw){
+    const REC=[['Niger North',5.0],['Niger Central',20.5],['Upper Benue',19.3],['Lower Benue',18.6],['Niger South',31.9],['Western Littoral',23.4],['Eastern Littoral',32.8],['Chad Basin',4.3]];
+    const area={};if(A)A.f.forEach(f=>{area[f.c]=(area[f.c]||0)+1});
+    const c1=card({t:'Groundwater recharge by hydrological area',s:'Billion m³ a year that reach aquifers (total 155.8). The north-west and the Chad basin get the least.',src:`<a href="${R9.bgs.u}" target="_blank" rel="noopener">BGS Africa Groundwater Atlas</a>, citing JICA (2014) for the Master Plan review`,file:'groundwater_recharge_bcm_by_HA',page:'basins',
+      draw:el=>hbar(el,REC.map(r=>({l:r[0],v:r[1]})),{lw:150,f:v=>fmt1.format(v)+' bn m³/yr'}),rows:()=>REC.map(r=>({area:r[0],recharge_bcm_per_year:r[1]}))});
+    const PTS=[['Boreholes with hand pumps',44736],['Boreholes with motorised pumps',19758],['Shallow hand-dug wells',13108]];
+    const c2=card({t:'Groundwater access points',s:'Counted for the 2013 Master Plan. Hand pumps give at most about 10 m³ a day; in a 1996 survey only 63% of boreholes were working.',src:`<a href="${R9.bgs.u}" target="_blank" rel="noopener">BGS Africa Groundwater Atlas</a>, citing JICA (2014) and the Ministry of Water Resources (2013)`,file:'groundwater_access_points',page:'basins',
+      draw:el=>hbar(el,PTS.map(r=>({l:r[0],v:r[1]})),{lw:190,f:v=>fmt.format(v)}),rows:()=>PTS.map(r=>({type:r[0],count:r[1]}))});
+    gw.innerHTML=`<h3 class="sh">Aquifer map and borehole yields</h3><p class="lede" style="margin-bottom:12px">The British Geological Survey’s 1:5 million hydrogeology map shows where aquifers are more or less productive. Yields are what boreholes typically give; local conditions vary a lot.${c9('bgs')} <button class="btn sm" id="x9-aqmap" type="button">Show aquifers on the map</button></p>
+     <div class="tbl-wrap" style="max-height:none"><table class="dt"><thead><tr><th></th><th>Aquifer</th><th>Productivity</th><th>Yields, depths and quality</th></tr></thead><tbody>${AQD.filter(d=>!/Surface/.test(d[1])).map(d=>{const code=A?(A.f.find(f=>d[0].test(f.geo))||{}).c:null;return`<tr><td><span class="sw" style="display:inline-block;width:12px;height:12px;border-radius:3px;background:${AQC[code]||'#ccc'}"></span></td><td><b>${esc(d[1])}</b></td><td>${esc(d[2])}</td><td>${esc(d[3])}</td></tr>`}).join('')}</tbody></table></div>
+     <div class="grid2" style="margin-top:14px">${c1.html}${c2.html}</div>
+     <div class="box"><h3>Groundwater status and management</h3>${f9([
+      ['Total renewable groundwater is estimated at 155.8 billion m³ a year from recharge; recharge is lowest in the north, where rain is low and evaporation high.','bgs'],
+      ['About 65,000 boreholes and other groundwater points abstracted an estimated 6.34 million m³ a day in 2013, mostly for rural and small-town supply. Calabar and Port Harcourt depend entirely on groundwater.','bgs'],
+      ['Over-abstraction in coastal cities, including Lagos and Port Harcourt, has lowered water levels, caused local land subsidence and let sea water into aquifers.','bgs'],
+      ['NIHSA runs a national groundwater-level network of 43 monitoring points, 32 with data loggers reading daily; a full water-quality programme is not yet in place for lack of equipment.','bgs'],
+      ['JICA modelling for the Master Plan review expects climate change to reduce recharge, most in the Niger North and Chad basins, and suggests drilling future boreholes and setting pumps about 20 m deeper.','bgs'],
+      ['Groundwater supplies more than half of all freshwater abstraction and is the main domestic source for about 60% of people; about three-quarters of irrigation water comes from groundwater, much of it on fadama land. Shallow aquifer levels in the north-east have fallen by more than 13 m on average.','swp'],
+      ['Transboundary aquifers: Iullemeden–Taoudeni/Tanezrouft (shared by seven countries and covering about 2.5 million km²), Chad Basin, Keta Basin, Benue Trough and Rio del Rey. The Niger crosses about 100 km of the system in Nigeria, through the Sokoto basin.','oss']])}</div>`;
+    [c1,c2].forEach(c=>c.mount());
+    $('#x9-aqmap').onclick=()=>{location.hash='map';setTimeout(()=>{if(!ovl.aquifers)toggleOverlay('aquifers')},150)};
+  }
+  const aq=$('#x9-aq');if(aq&&Q){
+    const ok=v=>v&&v[0]!=null&&v[0]>=0?v:null;const S=Object.entries(Q.st).map(([n,q])=>({n,b:ok((q.bws||{}).Tot),d:ok((q.drr||{}).Tot),f:ok((q.rfr||{}).Pop),fu:q.fut||{}})).filter(x=>x.b).sort((a,b)=>b.b[0]-a.b[0]);
+    const nb=(Q.nga.bws||{}).Tot,nf=Q.nga.fut||{};
+    const c1=card({t:'Baseline water stress by state',s:'How much of the available surface and groundwater is withdrawn each year, scored 0–5. Hover for the category. Northern states face the highest stress.',src:`<a href="${R9.aqd.u}" target="_blank" rel="noopener">WRI Aqueduct 4.0</a> province rankings (all sectors)`,file:'aqueduct_water_stress_by_state',page:'basins',
+      draw:el=>hbar(el,S.map(x=>({l:x.n,v:x.b[0],c:aqCol(x.b[1]),t:x.b[2]})),{rh:17,f:v=>fmt1.format(v)+' / 5'}),rows:()=>S.map(x=>({state:x.n,water_stress_score:x.b[0],water_stress:x.b[2],drought_risk:x.d&&x.d[2],riverine_flood_risk:x.f&&x.f[2],stress_2030_bau:(x.fu['2030_bau']||[])[2],stress_2050_bau:(x.fu['2050_bau']||[])[2],stress_2080_bau:(x.fu['2080_bau']||[])[2]}))});
+    const D=[...S].filter(x=>x.d).sort((a,b)=>b.d[0]-a.d[0]);
+    const c2=card({t:'Drought risk by state',s:'Combines drought hazard, exposure and vulnerability, scored 0–5. Sokoto and Jigawa have no score in the source.',src:`<a href="${R9.aqd.u}" target="_blank" rel="noopener">WRI Aqueduct 4.0</a> province rankings`,file:'aqueduct_drought_risk_by_state',page:'basins',
+      draw:el=>hbar(el,D.map(x=>({l:x.n,v:x.d[0],c:aqCol(x.d[1]),t:x.d[2]})),{rh:17,f:v=>fmt1.format(v)+' / 5'}),rows:()=>D.map(x=>({state:x.n,drought_score:x.d[0],drought_risk:x.d[2]}))});
+    const yrs=[['Baseline',nb],['2030',nf['2030_bau']],['2050',nf['2050_bau']],['2080',nf['2080_bau']]].filter(x=>x[1]);
+    aq.innerHTML=`<h3 class="sh">Water stress, drought and flood risk by state</h3><p class="lede" style="margin-bottom:12px">From the World Resources Institute’s Aqueduct 4.0. Nationally, Nigeria’s baseline water stress is <b>${esc(nb?nb[2]:'–')}</b>, rising to ${esc((nf['2050_bau']||[])[2]||'–')} by 2050 and ${esc((nf['2080_bau']||[])[2]||'–')} by 2080 under business as usual; but the averages hide a dry north and a wet south.${c9('aqd')} Aqueduct compares withdrawals with all available water in each sub-basin; the UN SDG 6.4.2 indicator also sets aside water for the environment, so it gives a higher national figure. <button class="btn sm" id="x9-wsmap" type="button">Show on the map</button></p>
+     <div class="kpis" style="margin-bottom:12px">${yrs.map(([y,v])=>`<div class="kpi"><b style="color:${aqCol(v[1])==='#ffff99'||aqCol(v[1])==='#ffe600'?'inherit':aqCol(v[1])}">${fmt1.format(v[0])}</b><span>${y==='Baseline'?'baseline water stress score':'water stress score '+y+' (business as usual)'}: ${esc(v[2])}</span><small>Aqueduct 4.0</small></div>`).join('')}</div>
+     <div class="grid2">${c1.html}${c2.html}</div>`;
+    [c1,c2].forEach(c=>c.mount());
+    $('#x9-wsmap').onclick=()=>{location.hash='map';setTimeout(()=>{if(!ovl.wstress)toggleOverlay('wstress')},150)};
+  }
+  const pol=$('#x9-pol');if(pol){
+    const DEM=[['Water supply',3047,8852],['Irrigation',1926,6245],['Aquaculture',728,1166],['Livestock',233,312]];
+    const c1=card({t:'Consumptive water demand, 2010 and 2030',s:'Million m³ a year. Total 5,933 in 2010 rising to 16,585 in 2030 (2.8 times). The policy’s tables label the unit “MCM/Day”, but its text gives million m³ a year, which matches the totals.',src:'National Water Resources Policy 2016, Tables 1–2, pp. 4 and 15 (from the Master Plan 2013)',file:'water_demand_2010_2030',page:'basins',
+      draw:el=>hbar(el,DEM.map(d=>({l:d[0],v:d[2],t:`2010: ${fmt.format(d[1])} · ×${fmt1.format(d[2]/d[1])}`})),{lw:120,f:v=>fmt.format(v)+' (2030)'}),rows:()=>DEM.map(d=>({sector:d[0],mcm_2010:d[1],mcm_2030:d[2],factor:+(d[2]/d[1]).toFixed(1)}))});
+    const PS=[['Water resources assessment and planning',16],['Conservation, protection and use',17],['Data and information systems',18],['Human resources and knowledge management',19],['Transboundary issues',20],['Dams and reservoirs',21],['Irrigation and drainage',22],['Water supply and sanitation',24],['Regulation and pricing',25],['Flood, drought and climate change',26],['Monitoring and evaluation',27],['Institutional framework',28],['Private sector participation',29],['Sector funding',30],['Sub-sector policies',31]];
+    const HAS=[['HA-1 Niger North','Katsina, Zamfara, Sokoto, Kebbi, Niger, Kano'],['HA-2 Niger Central','Niger, Kaduna, Plateau, Kogi, FCT'],['HA-3 Upper Benue','Adamawa, Bauchi, Gombe, Plateau, Taraba, Yobe'],['HA-4 Lower Benue','Nasarawa, Benue, Plateau, Kogi, Rivers'],['HA-5 Niger South','Anambra, Bayelsa, Delta, Imo, Kogi, Rivers'],['HA-6 Western Littoral','Edo, Ekiti, Lagos, Ogun, Ondo, Oyo, Osun'],['HA-7 Eastern Littoral','Abia, Akwa Ibom, Cross River, Ebonyi, Enugu, Imo'],['HA-8 Chad','Bauchi, Gombe, Jigawa, Kano, Yobe, Borno']];
+    pol.innerHTML=`<h3 class="sh">National Water Resources Policy 2016</h3><p class="lede" style="margin-bottom:12px">The Federal Ministry of Water Resources’ policy, built on Integrated Water Resources Management (IWRM) and the 2013 Master Plan. It first went to draft in 2004.${c9('pol',1)}</p>
+     <div class="grid2">${c1.html}<div class="box"><h3>Key figures and targets</h3>${f9([
+      ['Rainfall ranges from about 500 mm in the north-east to over 4,000 mm in the south-east; average 1,150 mm a year.','pol','2, 4'],
+      ['Water resources potential: 375 billion m³ a year including 88 billion m³ of inflow from neighbouring countries (about 24% of surface water); 287 billion m³ generated inside Nigeria; 156 billion m³ of renewable groundwater.','pol',4],
+      ['Demand was just 1.6% of surface water potential in 2010 and is expected to reach 4.4% by 2030; the problem is distribution in place and time, not total supply.','pol',4],
+      ['About 60% of the country is underlain by crystalline rock, 20% by consolidated and 20% by unconsolidated sediments; static water levels range from zero on the coast to 200 m in some sedimentary areas.','pol',2],
+      ['Targets: IWRM operating in all eight hydrological areas by 2030, and 100% water supply coverage by 2030.','pol',15],
+      ['Hydropower potential of about 15,000 MW; agriculture employs about 70% of people and takes about 70% of water drawn.','pol',9],
+      ['UNICEF estimated 190,000 children under five die of diarrhoea each year in Nigeria, 88% of cases due to poor water, sanitation and hygiene.','pol',9],
+      ['In 2015, 69% of Nigerians had safe water and 29% improved sanitation (WHO/UNICEF JMP): over 50 million without clean water and over 100 million without basic sanitation.','pol',24],
+      ['NIHSA has an area office in each of the eight hydrological areas; each area is to get a Catchment Management Office and committee to regulate and allocate water.','pol','34–35']])}</div></div>
+     <div class="grid2" style="margin-top:14px"><div class="box"><h3>Fifteen policy statements</h3><ol class="refs" style="font-size:13px">${PS.map(p=>`<li>${esc(p[0])} <span class="rcite">(p. ${p[1]})</span></li>`).join('')}</ol></div>
+      <div class="box"><h3>States in each hydrological area</h3><div class="tbl-wrap" style="max-height:none"><table class="dt"><tbody>${HAS.map(h=>`<tr><td><b>${esc(h[0])}</b></td><td>${esc(h[1])}</td></tr>`).join('')}</tbody></table></div><p class="sm-note">States as the policy lists them; several states fall in more than one area.${c9('pol',3)}</p></div></div>
+     <div class="grid2" style="margin-top:14px"><div class="box"><h3>How water statistics are kept</h3>${f9([
+      ['The Ministry of Water Resources was part of the Federal Ministry of Agriculture until 1992.','nbs',1],
+      ['The National Water Resources Institute (NWRI) holds the national water data bank and is meant to harmonise hydrological, hydrogeological and meteorological data from the eight hydrological areas; the 12 RBDAs report on dams, irrigation, water supply and fisheries.','nbs',3],
+      ['Many station records are taken daily or more often, but there was no comprehensive database of water resources and rural development statistics.','nbs',4],
+      ['The National Bureau of Statistics codes 44 RBDA data items; it recommended capacity building if the data bank moved from the Institute to the Ministry.','nbs','5–6']])}</div>
+      <div class="box"><h3>From national and international profiles</h3>${f9([
+      ['Total renewable water resources 286.2 billion m³ a year (1,571 m³ per person in 2015), with a 23% dependency on inflow. Withdrawals in 2010 were 12.5 billion m³: 40% municipal, 36% irrigation, 16% industry; about 59% from groundwater.','fao'],
+      ['Irrigation potential 2.33 million ha, but only 325,106 ha were equipped in 2010 (232,106 ha full control and 93,000 ha of improved fadama), and 133,000 ha actually irrigated.','fao'],
+      ['264 dams with about 50.7 billion m³ capacity; average effective storage about 78% of capacity. More than half of the Hadejia–Nguru wetlands have been lost to drought and upstream dams.','fao'],
+      ['Kainji, Shiroro and Jebba hold about 70% of national dam storage; less than 10% of industrial effluent is treated; 30% of groundwater sources in one national survey exceeded the WHO fluoride guideline.','swp'],
+      ['The 2012 floods damaged or destroyed 600,000 houses, displaced over 2 million people and caused about US$17 billion in losses.','swp'],
+      ['The National Irrigation Development Programme aims at 500,000 ha by 2030 and had delivered 121,792 ha by December 2020. WASHNORM 2021 found only 10% of people with basic water, sanitation and hygiene together, and 48 million practising open defecation.','dicf']])}</div></div>`;
+    c1.mount();
+  }
+}
+
+/* ---------- FAO AQUASTAT record in dam profiles ---------- */
+const FAOP=[['Irrigation','Irrigation'],['Water supply','Water supply'],['Flood control','Flood control'],['Hydroelectricity (MW)','Hydropower'],['Navigation','Navigation'],['Recreation','Recreation'],['Livestock rearing','Livestock'],['Other','Other']];
+async function fillFao(f){
+  const box=$('#faobox');if(!box||![0,1].includes(f.c))return;const D=await x9('fao_dams.json');if(!D||state.sel!==f)return;
+  const d=D.dams.find(x=>x.atlas===f.i);if(!d){box.innerHTML='';return}
+  const pur=FAOP.filter(([k])=>d[k]).map(([k,n])=>k==='Hydroelectricity (MW)'&&typeof d[k]==='number'?`${n} (${fmt.format(d[k])} MW)`:n);
+  const cap=d['Reservoir capacity (million m3)'],ar=d['Reservoir area (km2)'],dep=typeof cap==='number'&&typeof ar==='number'&&ar>0?cap/ar:null,odd=dep!=null&&(dep<0.5||dep>150);
+  const kv=[['Completed / operational since',d['Completed /operational since']],['Dam height',d['Dam height (m)']!=null?d['Dam height (m)']+' m':null],['Reservoir capacity',d['Reservoir capacity (million m3)']!=null?fmt1.format(d['Reservoir capacity (million m3)'])+' million m³':null],['Reservoir area',d['Reservoir area (km2)']!=null?fmt1.format(d['Reservoir area (km2)'])+' km²':null],['Sedimentation (latest known)',d['Sedimen-tation (latest known) (%)']!=null?d['Sedimen-tation (latest known) (%)']+'%':null],['Purposes',pur.join(', ')||null],['River',d.River],['Sub-basin',d['Sub-basin']],['Nearest city',d['Nearest city']],['Notes',d.Comments]].filter(x=>x[1]!=null&&x[1]!=='');
+  box.innerHTML=`<div class="box"><h3>FAO AQUASTAT dams database</h3><dl>${kv.map(([k,v])=>`<dt>${esc(k)}</dt><dd>${esc(String(v))}</dd>`).join('')}</dl>${odd?`<p class="sm-note" style="margin:8px 0 0">Capacity and area here imply an average depth of ${fmt1.format(dep)} m, which is not plausible: one of the two figures is probably mis-entered in the source.</p>`:''}<p class="sm-note" style="margin:8px 0 0">Record “${esc(d['Name of dam'])}”${d.km>20?`; FAO’s coordinates are about ${d.km} km from the position used here, so one of the two may be wrong`:''}. Source: <a href="${esc(D.u)}" target="_blank" rel="noopener">FAO AQUASTAT</a>.</p></div>`;
+}
+
+/* ---------- Community hub: FAO dams not in the atlas, donor projects ---------- */
+async function addX9Ngo(){
+  const host=$('#ngo');if(!host)return;const D=await x9('fao_dams.json'),P=await x9('ndcd_water.json');let h='';
+  if(D){const miss=D.dams.filter(d=>!d.atlas);
+    h+=`<h3 class="sh">Dams in FAO AQUASTAT not yet on this map</h3><p class="lede" style="margin-bottom:12px">${miss.length} of ${D.dams.length} dams in FAO’s database could not be matched to a dam in this atlas. Some are planned or proposed sites, some are small, and some may be known here under another name. Know where one is? Send a “Data correction”.</p>
+     <div class="tbl-wrap" style="max-height:360px"><table class="dt"><thead><tr><th>FAO name</th><th>State</th><th>River</th><th class="n">Since</th><th class="n">Capacity (Mm³)</th><th>Purposes</th></tr></thead><tbody>${miss.map(d=>`<tr><td>${esc(d['Name of dam'])}${d['Alternate dam name']?` <span class="sm-note">(${esc(d['Alternate dam name'])})</span>`:''}</td><td>${esc(d['Administrative Unit']||'–')}</td><td>${esc(d.River||'–')}</td><td class="n">${esc(String(d['Completed /operational since']||'–'))}</td><td class="n">${d['Reservoir capacity (million m3)']!=null?fmt1.format(d['Reservoir capacity (million m3)']):'–'}</td><td>${FAOP.filter(([k])=>d[k]).map(x=>x[1]).join(', ')||'–'}</td></tr>`).join('')}</tbody></table></div>`}
+  if(P){const A=P.acts,money=v=>!v?'–':v>=1e6?'$'+fmt1.format(v/1e6)+'m':'$'+fmt.format(Math.round(v/1e3))+'k';const act=A.filter(a=>a.status!=='Closed');
+    const tot=A.reduce((s,a)=>s+(a.commit||0),0),disb=A.reduce((s,a)=>s+(a.disb||0),0);const bySt={};A.forEach(a=>(a.st||[]).forEach(s=>bySt[s]=(bySt[s]||0)+1));
+    const fund={};A.forEach(a=>{fund[a.funder]=(fund[a.funder]||0)+(a.commit||0)});const FU=Object.entries(fund).filter(x=>x[1]>0).sort((a,b)=>b[1]-a[1]).slice(0,8);
+    const c1=card({t:'Commitments by funder',s:'US$ million committed to water resources and sanitation projects in Nigeria, all statuses.',src:`<a href="${esc(P.u)}" target="_blank" rel="noopener">Nigeria Development Cooperation Dashboard</a>`,file:'water_aid_by_funder',page:'ngo',
+      draw:el=>hbar(el,FU.map(x=>({l:x[0],v:x[1]/1e6})),{lw:220,f:v=>'$'+fmt1.format(v)+'m'}),rows:()=>FU.map(x=>({funder:x[0],committed_usd:x[1]}))});
+    h+=`<h3 class="sh">Donor-funded water and sanitation projects</h3><p class="lede" style="margin-bottom:12px">${A.length} projects in the Water Resources and Sanitation sector of the Nigeria Development Cooperation Dashboard (${act.length} not yet closed): ${money(tot)} committed and ${money(disb)} disbursed. States are given where the dashboard records them; many projects are national. Updated monthly.</p>
+     <div class="grid2">${c1.html}<div class="box"><h3>Projects by state</h3><p class="sm-note" style="margin-top:0">Number of projects recorded in each state.</p><div class="tbl-wrap" style="max-height:260px"><table class="dt"><tbody>${Object.entries(bySt).sort((a,b)=>b[1]-a[1]).map(([s,n])=>`<tr><td>${esc(s)}</td><td class="n">${n}</td></tr>`).join('')}</tbody></table></div></div></div>
+     <div class="row" style="display:flex;gap:8px;flex-wrap:wrap;margin:12px 0 8px"><select id="dv-st" aria-label="Status"><option value="">All statuses</option>${[...new Set(A.map(a=>a.status))].map(s=>`<option>${esc(s)}</option>`).join('')}</select><button class="btn sm" id="dv-csv" type="button">Download CSV</button></div>
+     <div class="tbl-wrap" style="max-height:420px"><table class="dt"><thead><tr><th>Project</th><th>Funder</th><th>Status</th><th>States</th><th class="n">Committed</th><th class="n">Disbursed</th></tr></thead><tbody id="dv-body"></tbody></table></div>`;
+    host.insertAdjacentHTML('beforeend',h);c1.mount();
+    const rows=()=>A.filter(a=>!$('#dv-st').value||a.status===$('#dv-st').value);
+    const render=()=>{$('#dv-body').innerHTML=rows().map(a=>`<tr><td>${a.iati?`<a href="https://d-portal.org/ctrack.html#view=act&aid=${encodeURIComponent(a.iati)}" target="_blank" rel="noopener">${esc(a.t)}</a>`:esc(a.t)}</td><td>${esc(a.funder||'–')}</td><td>${esc(a.status)}</td><td>${esc((a.st||[]).join(', ')||'national / not given')}</td><td class="n">${money(a.commit)}</td><td class="n">${money(a.disb)}</td></tr>`).join('')};
+    $('#dv-st').onchange=render;render();
+    $('#dv-csv').onclick=()=>saveFile('nigeria_water_projects_ndcd.csv',toCSV(rows().map(a=>({project:a.t,funder:a.funder,status:a.status,states:(a.st||[]).join('; '),committed_usd:a.commit,disbursed_usd:a.disb,projected_usd:a.proj,iati_id:a.iati}))),'text/csv');
+  }else if(h)host.insertAdjacentHTML('beforeend',h);
+}
+
+/* ---------- Data page: other water atlases ---------- */
+function x9Atlases(){return`<h3>Other water atlases and profiles for Nigeria</h3><div class="commit">
+ <div><b><a href="https://africagroundwateratlas.org" target="_blank" rel="noopener">Africa Groundwater Atlas (BGS)</a></b><span>Aquifer map and country hydrogeology page. Used here: the aquifer layer and groundwater facts.</span></div>
+ <div><b><a href="https://www.wri.org/aqueduct" target="_blank" rel="noopener">WRI Aqueduct Water Risk Atlas</a></b><span>Water stress, drought and flood risk by basin, country and state. Used here: the state rankings.</span></div>
+ <div><b><a href="https://www.fao.org/aquastat/en/countries-and-basins/country-profiles/country/NGA" target="_blank" rel="noopener">FAO AQUASTAT country profile</a></b><span>Water resources, withdrawals, irrigation and the dams database. Used here: dam records and profile facts.</span></div>
+ <div><b><a href="https://www.sdg6data.org/en/country-or-area/Nigeria" target="_blank" rel="noopener">UN-Water SDG 6 Data Portal</a></b><span>Progress on every SDG 6 target for Nigeria; the same UN series are charted on the Statistics page.</span></div>
+ <div><b><a href="https://dicf.unepgrid.ch/nigeria/water" target="_blank" rel="noopener">UNEP Data and Information for Country Frameworks</a></b><span>Drivers, pressures, state, impacts and responses for Nigeria’s water.</span></div>
+ <div><b><a href="https://winrock.org/wp-content/uploads/2021/08/Nigeria_Country_Profile_Final.pdf" target="_blank" rel="noopener">USAID Nigeria Water Resources Profile (2021)</a></b><span>Short overview of availability, demand, quality, climate and governance.</span></div>
+ <div><b><a href="https://wedocs.unep.org/bitstreams/c419895b-d428-436d-bfac-19f240b2b803/download" target="_blank" rel="noopener">Sanitation and Wastewater Atlas of Africa (2020)</a></b><span>UNEP, AfDB and GRID-Arendal; country graphics for Nigeria on <a href="https://www.grida.no/resources/14105" target="_blank" rel="noopener">GRID-Arendal</a>.</span></div>
+ <div><b><a href="https://www.oss-online.org/en/realeases/OSS-GICRESAIT-Atlas" target="_blank" rel="noopener">OSS GICRESAIT Atlas (2017)</a></b><span>The Iullemeden–Taoudeni/Tanezrouft aquifer system shared with six neighbours, including the Sokoto basin.</span></div>
+ <div><b><a href="https://knowledgehub.amcow-online.org/resources/library/africa-water-atlas" target="_blank" rel="noopener">Africa Water Atlas (UNEP/AMCOW, 2010)</a></b><span>Continental atlas with country profiles.</span></div>
+ <div><b><a href="https://eu.boell.org/en/WaterAtlas" target="_blank" rel="noopener">Water Atlas 2025 (Heinrich Böll Foundation)</a></b><span>Global facts on water use, rights and pollution.</span></div>
+ <div><b><a href="https://ndcd.ng/by/mtef-sector/21" target="_blank" rel="noopener">Nigeria Development Cooperation Dashboard</a></b><span>Donor-funded projects. Used here: the water and sanitation projects on the Community hub.</span></div>
+ <div><b><a href="https://wateractionhub.org/geos/country/161/d/nigeria/" target="_blank" rel="noopener">CEO Water Mandate Water Action Hub</a></b><span>Self-reported company and NGO water projects; useful for finding partners.</span></div>
+ <div><b><a href="https://ourworldindata.org/water-use-stress" target="_blank" rel="noopener">Our World in Data: water use and stress</a></b><span>Global comparisons of withdrawals and water stress.</span></div></div>`}
 </script>
 </body>
 </html>
