@@ -7,6 +7,8 @@ Writes two files:
   water-atlas/data/floodhistory.json – flood history of Nigeria: Dartmouth Flood Observatory archive (1985 onwards),
                                        every GDACS flood event for Nigeria with reported impacts, Wikipedia summaries
                                        of major floods. Rebuilt once a day (or when WA_FULL=1).
+  floodwatch.json also carries NiMet's public warnings (CAP feed) and its latest forecast bulletins.
+  water-atlas/data/srp.json          – NiMet Seasonal Rainfall Prediction by LGA (onset, end, length, total). Daily check.
 A source that fails keeps its previous values, so one outage never empties the page.
 Files are only rewritten when their content changes, so quiet hours make no commit.
 """
@@ -276,6 +278,90 @@ def gdacs_live(prev):
     ev.sort(key=lambda e: e["from"], reverse=True)
     return {"events": ev, "active": sum(e["cur"] for e in ev)}
 
+# ------------------------------------------------------------- NiMet (Nigerian Meteorological Agency)
+NIMET_CAP = "https://cap-sources.s3.amazonaws.com/ng-nimet-en/rss.xml"
+NIMET = "https://nimet.gov.ng/"
+SRP_API = "https://nimet-scp-backend.onrender.com/api/srp"
+SRP_F = DATA / "srp.json"
+
+def _tag(x, t):
+    m = re.search(r"<(?:cap:)?%s>([\s\S]*?)</(?:cap:)?%s>" % (t, t), x)
+    if not m: return None
+    v = re.sub(r"<!\[CDATA\[|\]\]>", "", m.group(1)).strip()
+    import html as _h
+    return _h.unescape(v)
+
+def nimet_cap(prev):
+    rss = http(NIMET_CAP, raw=True, timeout=40).decode("utf-8", "replace")
+    old = {a["id"]: a for a in ((prev.get("nimet") or {}).get("alerts") or [])}
+    out = []
+    for it in rss.split("<item>")[1:16]:
+        link = _tag(it, "link")
+        if not link: continue
+        aid = link.rsplit("/", 1)[-1].replace(".xml", "")
+        if aid in old: out.append(old[aid]); continue
+        x = http(link, raw=True, timeout=40, tries=2).decode("utf-8", "replace")
+        info = x.split("<cap:info>")[1] if "<cap:info>" in x else x
+        polys = []
+        for m in re.finditer(r"<cap:polygon>([\s\S]*?)</cap:polygon>", info):
+            pts = []
+            for pr in m.group(1).split():
+                try:
+                    la, lo = pr.split(",")[:2]; pts.append([round(float(la), 3), round(float(lo), 3)])
+                except Exception: pass
+            if len(pts) > 2: polys.append(pts)
+        out.append({"id": aid, "u": link, "sent": _tag(x, "sent"), "event": _tag(info, "event"), "head": _tag(info, "headline") or _tag(it, "title"),
+                    "sev": _tag(info, "severity"), "urg": _tag(info, "urgency"), "cert": _tag(info, "certainty"),
+                    "onset": _tag(info, "onset") or _tag(info, "effective"), "exp": _tag(info, "expires"),
+                    "desc": _tag(info, "description"), "instr": _tag(info, "instruction"), "area": _tag(info, "areaDesc"), "poly": polys})
+        time.sleep(.2)
+    if not out: raise RuntimeError("empty CAP feed")
+    out.sort(key=lambda a: a.get("sent") or "", reverse=True)
+    return out
+
+def nimet_bulletins(prev):
+    """The bulletin page lists the latest ~10 items in a JS array; older ones are kept from previous runs."""
+    import html as _h
+    h = http(NIMET + "weather_forecast_bulletin", raw=True, timeout=60).decode("utf-8", "replace")
+    m = re.search(r"var products\s*=\s*(\[[\s\S]*?\]\]);", h)
+    if not m: raise RuntimeError("bulletin list not found")
+    keep = {b["id"]: b for b in ((prev.get("nimet") or {}).get("bulletins") or [])}
+    for r in json.loads(m.group(1)):
+        try:
+            bid = int(r[0])
+            desc = re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", _h.unescape(r[2] or ""))).strip()
+            keep[bid] = {"id": bid, "t": (r[1] or "").strip(), "type": (r[-1] or "").strip() or None, "date": r[11] if len(r) > 11 else None,
+                         "d": desc[:600], "img": (NIMET + "admin/" + r[5]) if r[5] else None, "pdf": (NIMET + "admin/" + r[3]) if r[3] else None,
+                         "u": NIMET + "weather_forecast_bulletin_detail?id=%d" % bid}
+        except Exception: continue
+    out = sorted(keep.values(), key=lambda b: (b.get("date") or "", b["id"]), reverse=True)
+    flood = [b for b in out if re.search(r"flood|rain", (b.get("type") or "") + " " + b["t"], re.I)][:6]
+    out = out[:12] + [b for b in flood if b not in out[:12]]
+    if not out: raise RuntimeError("no bulletins parsed")
+    return out
+
+def nimet(prev):
+    p = prev.get("nimet") or {}
+    a = step("NiMet CAP alerts", nimet_cap, prev)
+    b = step("NiMet bulletins", nimet_bulletins, prev)
+    if a is None and b is None: return None
+    return {"alerts": a if a is not None else p.get("alerts", []), "bulletins": b if b is not None else p.get("bulletins", [])}
+
+def srp():
+    d = http(SRP_API, timeout=120)
+    states, year = {}, None
+    for s in d:
+        n = (s.get("statename") or "").strip()
+        n = {"River": "Rivers", "Federal Capital Territory": "FCT", "Abuja": "FCT", "Nassarawa": "Nasarawa"}.get(n, n)
+        year = year or s.get("year")
+        rows = []
+        for c in s.get("city") or []:
+            num_ = lambda v: int(float(v)) if str(v).replace(".", "", 1).isdigit() else None
+            rows.append([c.get("name"), c.get("onset"), c.get("seasonend"), num_(c.get("seasonlength")), num_(c.get("annualrainfall"))])
+        if n: states[n] = sorted(rows, key=lambda r: r[0] or "")
+    if len(states) < 30: raise RuntimeError("SRP: only %d states" % len(states))
+    return {"year": year or NOW.year, "src": "NiMet Seasonal Rainfall Prediction (SRP) %s" % (year or NOW.year), "u": NIMET + "srp", "states": states}
+
 # ------------------------------------------------------------- history
 DFO = "https://services1.arcgis.com/AXaYBvnJsB5Q7sDF/ArcGIS/rest/services/Global_Archive_of_large_flood_events/FeatureServer/0/query"
 
@@ -328,7 +414,7 @@ def history(prevh):
 def main():
     prev = load(LIVE_F)
     live = {"checked": NOW.strftime("%Y-%m-%dT%H:%MZ")}
-    for key, fn in (("glofas", glofas_points), ("geoglows", geoglows), ("gdacs", gdacs_live)):
+    for key, fn in (("glofas", glofas_points), ("geoglows", geoglows), ("gdacs", gdacs_live), ("nimet", nimet)):
         v = step(key, fn, prev)
         live[key] = v if v is not None else prev.get(key)
         if v is None and prev.get(key): live[key]["stale"] = True
@@ -338,6 +424,11 @@ def main():
     if os.environ.get("WA_FULL") == "1" or not prevh or prevh.get("built") != NOW.strftime("%Y-%m-%d"):
         h = step("history", history, prevh)
         if h: save_if_changed(HIST_F, h, ignore=())
+        daily = True
+    else: daily = False
+    if daily or not SRP_F.exists():
+        r = step("NiMet SRP", srp)
+        if r: save_if_changed(SRP_F, r, ignore=())
 
 if __name__ == "__main__":
     main()
