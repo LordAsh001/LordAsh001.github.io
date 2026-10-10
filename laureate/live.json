@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-09",
+ "updated": "2026-10-10",
  "sources": [
   {
    "source": "Opportunities for Africans",
@@ -18,13 +18,13 @@
   },
   {
    "source": "Scholarship Region",
-   "ok": false,
-   "error": "<urlopen error _ssl.c:983: The handshake operation timed out>"
+   "ok": true,
+   "items": 8
   },
   {
    "source": "Opportunities for Youth",
    "ok": true,
-   "items": 4
+   "items": 5
   },
   {
    "source": "Commonwealth Scholarship Commission",
@@ -43,8 +43,8 @@
   },
   {
    "source": "Federal Ministry of Education, Nigeria",
-   "ok": false,
-   "error": "<urlopen error [Errno 111] Connection refused>"
+   "ok": true,
+   "items": 0
   },
   {
    "source": "GOV.UK",
@@ -56,6 +56,68 @@
   }
  ],
  "items": [
+  {
+   "title": "WomanKind Creative Grant 2027",
+   "link": "https://opportunitydesk.org/2026/10/10/womankind-creative-grant-2027/",
+   "date": "2026-10-10",
+   "source": "Opportunity Desk",
+   "official": false,
+   "ids": [],
+   "summary": "Deadline: November 1, 2026 Applications for the WomanKind Creative Grant 2027 are now open. The WomanKind Creative Grant provides early-stage women’s health companies with the strategic branding and …",
+   "seen": "2026-10-10"
+  },
+  {
+   "title": "Yves Rocher Foundation Terre de Femmes International Award 2027 (€10,000 grant)",
+   "link": "https://opportunitydesk.org/2026/10/10/terre-de-femmes-international-award-2027/",
+   "date": "2026-10-10",
+   "source": "Opportunity Desk",
+   "official": false,
+   "ids": [],
+   "summary": "Deadline: November 30, 2026 Applications are open for the Yves Rocher Foundation Terre de Femmes International Award 2027. This new edition of the thematic Terre de Femmes International Award will re…",
+   "seen": "2026-10-10"
+  },
+  {
+   "title": "Eiffel Excellence Scholarship 2027 in France (Fully Funded)",
+   "link": "https://opportunitiescorners.com/eiffel-excellence-scholarship-2027/",
+   "date": "2026-10-10",
+   "source": "Opportunities Corners",
+   "official": false,
+   "ids": [
+    "eiffel"
+   ],
+   "summary": "Applications for the 2027 Eiffel Excellence Scholarship in France are open until January 8th, 2027. Those seeking a fully funded scholarship to study in France can apply for the Eiffel Excellence Sch…",
+   "seen": "2026-10-10"
+  },
+  {
+   "title": "Shenzhen FinTech Competition 2026 in China (Fully Funded)",
+   "link": "https://opportunitiescorners.com/shenzhen-fintech-competition-2026/",
+   "date": "2026-10-10",
+   "source": "Opportunities Corners",
+   "official": false,
+   "ids": [],
+   "summary": "Applications are now open for the Shenzhen FinTech Competition 2026 (FinTechathon) – International Track, an international competition for university students interested in artificial intelligence (A…",
+   "seen": "2026-10-10"
+  },
+  {
+   "title": "KITLV Visiting Fellowship 2027 in the Netherlands: Apply for a 3-Month Research Fellowship in Southeast Asian and Caribbean Studies",
+   "link": "https://opportunitiesforyouth.org/2026/10/10/kitlv-visiting-fellowship-2027-in-the-netherlands-apply-for-a-3-month-research-fellowship-in-southeast-asian-and-caribbean-studies/",
+   "date": "2026-10-10",
+   "source": "Opportunities for Youth",
+   "official": false,
+   "ids": [],
+   "summary": "Are you a scholar, researcher, or independent academic looking for an opportunity to advance your research, develop a scholarly publication, and collaborate with experts in Southeast Asian or Caribbe…",
+   "seen": "2026-10-10"
+  },
+  {
+   "title": "NSF Graduate Research Fellowship Program 2027: Eligibility Requirements, STEM Fields, Benefits, and How to Qualify for the U.S. Graduate Fellowship",
+   "link": "https://opportunitiesforyouth.org/2026/10/10/nsf-graduate-research-fellowship-program-2027-eligibility-requirements-stem-fields-benefits-and-how-to-qualify-for-the-u-s-graduate-fellowship/",
+   "date": "2026-10-10",
+   "source": "Opportunities for Youth",
+   "official": false,
+   "ids": [],
+   "summary": "The National Science Foundation Graduate Research Fellowship Program (NSF GRFP) is one of the United States’ major fellowship programs designed to support outstanding students pursuing advanced resea…",
+   "seen": "2026-10-10"
+  },
   {
    "title": "World Bank Group Government Analytics Fellowship 2027",
    "link": "https://opportunitydesk.org/2026/10/09/world-bank-group-government-analytics-fellowship-2027/",
@@ -95,6 +157,188 @@
    "ids": [],
    "summary": "The World Finance Innovation Awards competition is inviting young entrepreneurs in Kenya to submit innovative business ideas, social impact initiatives, and other creative solutions through its Stage…",
    "seen": "2026-10-09"
+  },
+  {
+   "title": "US-MEPI Tomorrow’s Leaders Program 2027/2028 for undergraduate & graduate Students from the Middle East and North Africa (Fully Funded)",
+   "link": "https://www.opportunitiesforafricans.com/us-mepi-tomorrows-leaders-program-2027-2028/",
+   "date": "2026-10-09",
+   "source": "Opportunities for Africans",
+   "official": false,
+   "ids": [],
+   "summary": "Application Deadline: November 18, 2026 Applications are now open for the 2027/2028 US-MEPI Tomorrow’s Leaders Program. Sponsored by the Department of State’s U.S.-Middle East Partnership Initiative …",
+   "seen": "2026-10-10"
+  },
+  {
+   "title": "The University of British Columbia (UBC) International Scholars Program 2027 for international students (Fully Funded)",
+   "link": "https://www.opportunitiesforafricans.com/the-university-of-british-columbia-ubc-international-scholars-program-2027-for-international-students/",
+   "date": "2026-10-09",
+   "source": "Opportunities for Africans",
+   "official": false,
+   "ids": [
+    "ubc-isp"
+   ],
+   "summary": "Application Deadline: 15 November 2026 Applications are now open for the 2027 University of British Columbia (UBC) International Scholars Program. The UBC International Scholars Program is for intern…",
+   "seen": "2026-10-10"
+  },
+  {
+   "title": "Harvard LEAD Fellowship for Promoting Women in Global Health 2027-2028 (Funded)",
+   "link": "https://opportunitydesk.org/2026/10/09/harvard-lead-fellowship-for-promoting-women-in-global-health-2027-2028/",
+   "date": "2026-10-09",
+   "source": "Opportunity Desk",
+   "official": false,
+   "ids": [],
+   "summary": "Deadline: November 15, 2026 Applications are open for the Harvard LEAD Fellowship for Promoting Women in Global Health 2027-2028. The LEAD Fellowship, a one-year fellowship designed to advance leader…",
+   "seen": "2026-10-10"
+  },
+  {
+   "title": "Youth Diplomacy Convention 2027 in Belgium (Fully Funded)",
+   "link": "https://opportunitiescorners.com/youth-diplomacy-convention-2027-in-belgium/",
+   "date": "2026-10-09",
+   "source": "Opportunities Corners",
+   "official": false,
+   "ids": [],
+   "summary": "Applications are now open for the Youth Diplomacy Convention 2027 in Brussels, Belgium. Organised by the Organisation for Global Peace and Sustainability (OGPS), this four-day international conferenc…",
+   "seen": "2026-10-10"
+  },
+  {
+   "title": "Harvard LEAD Fellowship 2027/28, USA (Fully Funded)",
+   "link": "https://opportunitiescorners.com/harvard-lead-fellowship-2027/",
+   "date": "2026-10-09",
+   "source": "Opportunities Corners",
+   "official": false,
+   "ids": [],
+   "summary": "Applications are now open for the Harvard LEAD Fellowship 2027, a fully funded fellowship for one year, offered by the Harvard Global Health Institute (HGHI) in collaboration with the Department of G…",
+   "seen": "2026-10-10"
+  },
+  {
+   "title": "SDG Innovation Summit Malaysia 2026 (Fully Funded)",
+   "link": "https://opportunitiescorners.com/sdg-innovation-summit-malaysia-2026/",
+   "date": "2026-10-09",
+   "source": "Opportunities Corners",
+   "official": false,
+   "ids": [],
+   "summary": "Deadline Approaching. Apply now for the fully funded SDG Innovation Summit Malaysia 2026, an international youth summit that will bring together 100 young leaders, innovators, students, youth leaders…",
+   "seen": "2026-10-10"
+  },
+  {
+   "title": "World Bank Government Analytics Fellowship Program 2027 | Fully Funded",
+   "link": "https://www.scholarshipregion.com/world-bank-government-analytics-fellowship/",
+   "date": "2026-10-09",
+   "source": "Scholarship Region",
+   "official": false,
+   "ids": [],
+   "summary": "The World Bank Government Analytics Fellowship program provides in-person training and in-service support from senior experts at the World Bank and University College London. The World Bank Fellowshi…",
+   "seen": "2026-10-10"
+  },
+  {
+   "title": "2027 UBC Masters Scholarship in Cell and Developmental Biology | Fully Funded",
+   "link": "https://www.scholarshipregion.com/ubc-masters-scholarship-in-cell-biology/",
+   "date": "2026-10-09",
+   "source": "Scholarship Region",
+   "official": false,
+   "ids": [
+    "ubc-isp"
+   ],
+   "summary": "The University of British Columbia (UBC) offers funding to incoming graduate students to study in Canada. The UBC Masters Scholarship offers up to $25,639 in funding per year to cover study and livin…",
+   "seen": "2026-10-10"
+  },
+  {
+   "title": "University of British Columbia Scholarships in Canada 2027 | Fully Funded",
+   "link": "https://www.scholarshipregion.com/university-of-british-columbia-scholarships/",
+   "date": "2026-10-09",
+   "source": "Scholarship Region",
+   "official": false,
+   "ids": [
+    "ubc-isp"
+   ],
+   "summary": "If you have always dreamed of studying in Canada, we have got the best opportunity for you to do so in this post. The University of British Columbia in Canada annually welcomes students from all coun…",
+   "seen": "2026-10-10"
+  },
+  {
+   "title": "Aliko Dangote Foundation Student Share Grant 2026 For Nigerians | How To Apply",
+   "link": "https://www.scholarshipregion.com/aliko-dangote-foundation-student-share-grant/",
+   "date": "2026-10-09",
+   "source": "Scholarship Region",
+   "official": false,
+   "ids": [],
+   "summary": "The Aliko Dangote Foundation (ADF) has introduced a Share Grant Initiative that could provide eligible Nigerian tertiary students with an application for an additional 10 shares in the Dangote Petrol…",
+   "seen": "2026-10-10"
+  },
+  {
+   "title": "2027 GLOBE Erasmus Mundus Joint Master Scholarship Program in Europe | Fully Funded",
+   "link": "https://www.scholarshipregion.com/globe-erasmus-mundus-joint-master-scholarship/",
+   "date": "2026-10-09",
+   "source": "Scholarship Region",
+   "official": false,
+   "ids": [
+    "erasmus"
+   ],
+   "summary": "GLOBE is the Erasmus Mundus Joint Master’s Degree in Global Change and Biodiversity Management. The program offers a fully funded degree funded by the European Union and covers tuition, travel costs,…",
+   "seen": "2026-10-10"
+  },
+  {
+   "title": "Okwuchukwu Fund Support Grant For Pharmacy Students 2026 | How To Apply",
+   "link": "https://www.scholarshipregion.com/okwuchukwu-fund-support-grant/",
+   "date": "2026-10-09",
+   "source": "Scholarship Region",
+   "official": false,
+   "ids": [],
+   "summary": "Are you a pharmacy student from Imo State? The Okwuchukwu Fund Support Grant is a funding opportunity for 4th-year undergraduate Pharmacy students in Nigeria who are indigenes of Imo State. The grant…",
+   "seen": "2026-10-10"
+  },
+  {
+   "title": "University of Reading International PhD Studentships in UK 2027 | Fully Funded",
+   "link": "https://www.scholarshipregion.com/university-of-reading-international-phd-studentships/",
+   "date": "2026-10-09",
+   "source": "Scholarship Region",
+   "official": false,
+   "ids": [],
+   "summary": "The University of Reading in the United Kingdom (UK) is welcoming applications for its fully funded studentship opportunities for international students. The fully funded International PhD studentshi…",
+   "seen": "2026-10-10"
+  },
+  {
+   "title": "2027 UBC International Scholars Program in Canada | Fully Funded",
+   "link": "https://www.scholarshipregion.com/ubc-international-scholars-program/",
+   "date": "2026-10-09",
+   "source": "Scholarship Region",
+   "official": false,
+   "ids": [
+    "ubc-isp"
+   ],
+   "summary": "The University of British Columbia in Canada is pleased to invite applicants for the 2027 UBC International Scholars Program. The UBC International Scholarship Program covers the cost of tuition and …",
+   "seen": "2026-10-10"
+  },
+  {
+   "title": "Tarbell Fellowship 2027–2028: Earn $75,000–$135,000 to Cover Artificial Intelligence at Leading Newsrooms",
+   "link": "https://opportunitiesforyouth.org/2026/10/09/tarbell-fellowship-shaping-the-future-of-ai-journalism/",
+   "date": "2026-10-09",
+   "source": "Opportunities for Youth",
+   "official": false,
+   "ids": [],
+   "summary": "Are you a journalist, researcher, or artificial intelligence (AI) specialist looking to build a career at the intersection of technology, journalism, and public policy? The Tarbell Fellowship 2027–20…",
+   "seen": "2026-10-10"
+  },
+  {
+   "title": "2027 Indigenous Youth Fellowship by Cultural Survival: Apply for $5,000 in Funding for Indigenous-Led Community Projects",
+   "link": "https://opportunitiesforyouth.org/2026/10/09/2027-indigenous-youth-fellowship-by-cultural-survival-apply-for-5000-in-funding-for-indigenous-led-community-projects/",
+   "date": "2026-10-09",
+   "source": "Opportunities for Youth",
+   "official": false,
+   "ids": [],
+   "summary": "Are you an Indigenous young person passionate about protecting Indigenous cultures, revitalising traditional languages, addressing climate change, defending Indigenous lands, or strengthening communi…",
+   "seen": "2026-10-10"
+  },
+  {
+   "title": "ETH AI Center Fellowships 2027 in Switzerland: Fully Funded PhD and Postdoctoral Research Opportunities at ETH Zurich",
+   "link": "https://opportunitiesforyouth.org/2026/10/09/eth-ai-center-fellowships-2027-in-switzerland-fully-funded-phd-and-postdoctoral-research-opportunities-at-eth-zurich/",
+   "date": "2026-10-09",
+   "source": "Opportunities for Youth",
+   "official": false,
+   "ids": [
+    "eth"
+   ],
+   "summary": "The ETH AI Center Fellowships 2027 in Switzerland offer outstanding opportunities for aspiring doctoral researchers and experienced researchers who want to advance their careers in artificial intelli…",
+   "seen": "2026-10-10"
   },
   {
    "title": "Novo Nordisk Foundation Postdoctoral Fellowships at Massachusetts Institute of Technology 2027 (Funded)",
