@@ -988,6 +988,18 @@ body{margin:0;display:flex;flex-direction:column}
 .facts>.fact:last-child:nth-child(odd){grid-column:1/-1}
 .chart svg.smap{max-width:520px;margin:0 auto}
 @media (max-width:860px){.maptools .seg,.maptools .note{display:none}.maptools.open .seg{display:flex}.maptools.open .note:not([hidden]){display:block}}
+.rcite{font-size:11.5px;color:var(--muted);white-space:nowrap;text-decoration:none}
+a.rcite:hover{color:var(--accent);text-decoration:underline}
+.rfacts{margin:0 0 8px;padding-left:18px;max-width:90ch;font-size:13.5px}
+.rfacts li{margin:0 0 7px}
+.box .rfacts{font-size:13px;padding-left:16px}
+ol.refs{font-size:12.5px;padding-left:20px;max-width:100ch}
+ol.refs li{margin:0 0 6px}
+.sm-note{font-size:12px;color:var(--muted);margin:6px 0 0;max-width:90ch}
+.tag{display:inline-block;font-family:var(--f-body);font-size:10.5px;font-weight:600;color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:1px 7px;vertical-align:2px;white-space:nowrap}
+.page h4.h4{font-family:var(--f-display);font-size:15px;margin:0 0 8px}
+#irrig select{width:auto;font:inherit;font-size:13px;padding:6px 8px;border:1px solid var(--line);border-radius:8px;background:var(--panel);color:var(--ink)}
+.box dd .rcite{white-space:normal}
 </style>
 </head>
 <body>
@@ -1002,6 +1014,7 @@ body{margin:0;display:flex;flex-direction:column}
       <a href="#flood" data-v="flood">Flood watch</a>
       <a href="#rain" data-v="rain">Rain &amp; harvesting</a>
       <a href="#basins" data-v="basins">Basins &amp; groundwater</a>
+      <a href="#irrig" data-v="irrig">Irrigation &amp; power</a>
       <a href="#stats" data-v="stats">Statistics</a>
       <a href="#visit" data-v="visit">Visit</a>
       <a href="#ngo" data-v="ngo">Community hub</a>
@@ -1045,6 +1058,7 @@ body{margin:0;display:flex;flex-direction:column}
     <section class="view" id="v-flood" hidden><div class="page" id="flood"></div></section>
     <section class="view" id="v-rain" hidden><div class="page" id="rain"></div></section>
     <section class="view" id="v-basins" hidden><div class="page" id="basins"></div></section>
+    <section class="view" id="v-irrig" hidden><div class="page" id="irrig"></div></section>
     <section class="view" id="v-stats" hidden><div class="page" id="stats"></div></section>
     <section class="view" id="v-visit" hidden><div class="page" id="visit"></div></section>
     <section class="view" id="v-ngo" hidden><div class="page" id="ngo"></div></section>
@@ -1124,7 +1138,7 @@ function init(){
 }
 
 /* ---------- routing ---------- */
-const VIEWS=['map','flood','rain','basins','stats','visit','ngo','data'];const built={};
+const VIEWS=['map','flood','rain','basins','irrig','stats','visit','ngo','data'];const built={};
 function route(){
   let h=location.hash.slice(1)||'map';let site=null;
   if(!VIEWS.includes(h)){if(BY[h]){site=BY[h];h='map'}else h='map'}
@@ -1132,7 +1146,7 @@ function route(){
   $$('nav.views a').forEach(a=>{if(a.dataset.v===h)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current')});
   if(h==='map'){setTimeout(()=>map.invalidateSize(),50);if(site)select(site,false)}
   track('view/'+h,'Opened section: '+h);
-  if(!built[h]){built[h]=1;({flood:buildFlood,rain:buildRain,basins:buildBasins,stats:buildStats,visit:buildVisit,ngo:buildNgo,data:buildData}[h]||(()=>{}))()}
+  if(!built[h]){built[h]=1;({flood:buildFlood,rain:buildRain,basins:buildBasins,irrig:buildIrr,stats:buildStats,visit:buildVisit,ngo:buildNgo,data:buildData}[h]||(()=>{}))()}
 }
 function goSite(id){location.hash=id}
 
@@ -1349,6 +1363,7 @@ function select(f,fromMap){
   h+=`<dl class="facts">${facts.map(([k,v,w,raw])=>`<div class="fact${w?' w':''}"><dt>${k}</dt><dd>${raw?v:esc(v)}</dd></div>`).join('')}</dl>`;
   if(f.wt)h+=`<div class="sec"><h3>About</h3><p class="wiki">${esc(f.wt.t)}</p><div class="wiki-src">From <a href="${esc(f.wt.u)}" target="_blank" rel="noopener">Wikipedia, “${esc(f.wt.title)}”</a> (CC BY-SA 4.0), retrieved ${esc(DATA.meta.refreshed)}.</div></div>`;
   const sec=(t,v)=>v?`<div class="sec"><h3>${t}</h3><p>${esc(v)}</p></div>`:'';
+  h+='<div id="repbox"></div>';
   h+=sec('Notes',f.notes)+sec('Vegetation',f.veg)+sec('Wildlife',f.fauna)+sec('Resources',f.res)+sec('Tourism',f.tour)+sec('Threats',f.thr);
   if(f.c===6&&f.forest_id)h+=`<div class="callout">This wetland also appears in the <a href="${CONFIG.forestUrl}#${esc(f.forest_id)}">Nigeria Forest Reserves Atlas</a>, with its biodiversity records.</div>`;
   if(f.c===7){const onr=F.filter(x=>x!==f&&(x.c===0||x.c===8)&&x.river&&f.n.toLowerCase().startsWith(x.river.toLowerCase().split(/[–-]/)[0])).sort((a,b)=>(b.cap||b.qmean||0)-(a.cap||a.qmean||0)).slice(0,12);
@@ -1370,7 +1385,7 @@ function select(f,fromMap){
   if(f.w)srcs.push(`UNEP-WCMC &amp; IUCN, World Database on Protected Areas, WDPA ID <span class="mono">${f.w}</span>`);
   h+=`<div class="sec"><h3>Sources</h3><ul class="srcs">${srcs.map(s=>`<li>${s}</li>`).join('')}${(f.src||[]).map(u=>`<li><a href="${esc(u)}" target="_blank" rel="noopener">${esc(u.replace(/^https?:\/\/(www\.)?/,'').slice(0,80))}</a></li>`).join('')}</ul></div>`;
   h+=`<div class="sec"><h3>Cite this record</h3><pre class="cite">${esc(citeText(f))}</pre></div>`;
-  $('#sh-body').innerHTML=h;$('#sh-body').scrollTop=0;$('#sheet').hidden=false;
+  $('#sh-body').innerHTML=h;$('#sh-body').scrollTop=0;$('#sheet').hidden=false;fillReports(f);
   $$('#sh-body [data-go]').forEach(a=>a.onclick=()=>goSite(a.dataset.go));
   const setCap=i=>{const p=f.pics[i],c=$('#galcap');if(c)c.innerHTML=`${esc(capOf(p))}${p[2]?' · '+esc(p[2]):''}, <a href="${pageUrl(p)}" target="_blank" rel="noopener">${esc(p[3])} via Wikimedia Commons</a>`};
   if($('#gal')){setCap(0);$$('#gal .galrow button').forEach(bt=>bt.onclick=()=>{const i=+bt.dataset.g,p=f.pics[i],im=$('#gal>img');if(im){im.dataset.f='';im.dataset.alt=imgUrl(p,500);im.src=imgUrl(p,960)}else{$('#gal').insertAdjacentHTML('afterbegin',imgTag(p,960,500))}setCap(i);$$('#gal .galrow button').forEach(x=>x.classList.toggle('on',x===bt))})}
@@ -1556,10 +1571,12 @@ function buildBasins(){
   <div class="tbl-wrap" style="max-height:none"><table class="dt"><thead><tr><th>Aquifer setting</th><th>Where</th><th>What to expect</th></tr></thead><tbody>${(DATA.gw||[]).map(g=>`<tr><td><b>${esc(g.name)}</b></td><td>${esc(g.where)}</td><td>${esc(g.aquifer)}</td></tr>`).join('')}</tbody></table></div>
   <div class="tbl-wrap" style="max-height:none;margin-top:12px"><table class="dt"><thead><tr><th>Fact</th><th>Value</th><th>Source</th></tr></thead><tbody>${(DATA.gw_facts||[]).map(g=>`<tr><td>${esc(g.label)}</td><td>${esc(g.value)}</td><td>${esc(g.src)}</td></tr>`).join('')}</tbody></table></div>
   <h3 class="sh">National water figures</h3><div class="tbl-wrap" style="max-height:none"><table class="dt"><thead><tr><th>Indicator</th><th class="n">Value</th><th>Unit</th></tr></thead><tbody>${(N.national||[]).map(x=>`<tr><td>${esc(x.label)}</td><td class="n">${fmt1.format(x.value)}</td><td>${esc(x.unit)}</td></tr>`).join('')}</tbody></table></div><p style="font-size:12.5px;color:var(--muted)">${esc(N.title)}, ${esc(N.by)}, ${esc(N.date)}. <a href="${esc(N.url)}" target="_blank" rel="noopener">Read the report ↗</a>. The report gives demand figures from different tables that cover different sectors; they are shown as published.</p>
+  <div id="basin-reports"></div>
   <h3 class="sh">Who manages water</h3><div class="commit">${(DATA.ag||[]).map(a=>`<div><b><a href="${esc(a.url)}" target="_blank" rel="noopener">${esc(a.name)}</a></b><span>${esc(a.role)}</span></div>`).join('')}</div>`;
   cards.forEach(c=>c.mount());
   $$('#basins tr.click').forEach(tr=>tr.onclick=()=>goSite(tr.dataset.id));
   $('#show-bas').onclick=()=>{location.hash='map';setTimeout(()=>{if(!ovl.basins)toggleOverlay('basins')},120)};
+  addBasinReports();
 }
 </script>
 <script>
@@ -1920,6 +1937,7 @@ function buildData(){
   <div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn primary" id="dl-csv" type="button">Download CSV</button><button class="btn" id="dl-geo" type="button">Download GeoJSON</button><button class="btn" id="dl-cite" type="button">Copy dataset citation</button></div>
   <pre class="cite" style="margin-top:10px">${esc(dsCite)}</pre>
   <h3>Sources</h3><div class="tbl-wrap" style="max-height:none"><table class="dt srctbl"><thead><tr><th>Source</th><th>What it provides</th><th>Used for</th><th>Licence / terms</th></tr></thead><tbody>${SRC.map(s=>`<tr><td><a href="${esc(s[3])}" ${s[3].startsWith('/')?'':'target="_blank" rel="noopener"'}>${esc(s[0])}</a></td><td>${esc(s[1])}</td><td>${esc(s[2])}</td><td>${esc(s[4])}</td></tr>`).join('')}</tbody></table></div>
+  <div id="reports-src"></div>
   <h3>Verification levels</h3><ul>${Object.entries(LEVELS).map(([k,v])=>`<li><b>Level ${k}</b> (${F.filter(f=>f.v===k).length} records): ${esc(v)}</li>`).join('')}</ul>
   <h3>Method</h3><ul>
    <li>Global Dam Watch is the backbone for dams. UNICEF-list and Wikidata entries were matched to it by name and distance; unmatched UNICEF-list dams are kept as level D so they can be located.</li>
@@ -1932,9 +1950,90 @@ function buildData(){
   <h3>Updates</h3><p>A scheduled job re-downloads every source each Monday and rebuilds the data; river flows, weather and nearby photos are fetched live when you open a profile. Hand-written content (basins, groundwater, agencies) lives in <a href="data/curated.json">curated.json</a> with its sources. Each release is versioned; cite the version you used.</p>
   <h3>Known gaps</h3><ul><li>${unnamed} reservoirs are still unnamed and ${F.filter(f=>f.c===1).length} UNICEF-list dams are not precisely located.</li><li>Small earth dams, community ponds and many boreholes are missing; the GRID3 water-point survey did not cover every state.</li><li>Hydropower capacity is not recorded for most dams in GDW; newer schemes such as Zungeru are added from Wikipedia.</li><li>The eight hydrological areas are described but not drawn: their official boundaries are not published as open data. The Basins layer shows HydroBASINS watersheds instead.</li></ul>
   <h3>Corrections</h3><p>Water agencies, RBDAs, researchers and community monitors can send corrections through the Community hub (choose “Data correction”) or on <a href="https://github.com/${CONFIG.issuesRepo}/issues" target="_blank" rel="noopener">GitHub</a>. Please include a source.</p>`;
+  addReportSources();
   $('#dl-csv').onclick=()=>saveFile('nigeria_water_atlas.csv',toCSV(F.map(exportRow)),'text/csv');
   $('#dl-geo').onclick=()=>saveFile('nigeria_water_atlas.geojson',JSON.stringify({type:'FeatureCollection',features:F.map(f=>({type:'Feature',properties:exportRow(f),geometry:f.ln?{type:'MultiLineString',coordinates:f.ln}:f.g?{type:'MultiPolygon',coordinates:f.g}:f.la!=null?{type:'Point',coordinates:[f.lo,f.la]}:null}))}),'application/geo+json');
   $('#dl-cite').onclick=()=>copy(dsCite);
+}
+</script>
+<script>
+/* ---------- reports: irrigation, hydropower and facts from reports and studies ---------- */
+let REP=null;
+async function reports(){if(REP)return REP;REP=await loadJSON('reports.json');return REP}
+function cite(o){if(!REP||!o||!REP.refs[o.r])return'';const R=REP.refs[o.r];const t=`${R.s}, ${/[,–-]/.test(String(o.p))?'pp.':'p.'} ${String(o.p).replace(/-/g,'–')}`;
+  return R.u?` <a class="rcite" href="${esc(R.u)}" target="_blank" rel="noopener" title="${esc(R.c)}">(${esc(t)})</a>`:` <span class="rcite" title="${esc(R.c)}">(${esc(t)})</span>`}
+function factList(a){return`<ul class="rfacts">${a.map(x=>`<li>${esc(x.t)}${cite(x)}</li>`).join('')}</ul>`}
+function refList(ids){return`<ol class="refs">${ids.map(k=>{const R=REP.refs[k];return`<li id="ref-${k}">${esc(R.c)}${R.u?` <a href="${esc(R.u)}" target="_blank" rel="noopener">Link ↗</a>`:''}</li>`}).join('')}</ol><p class="sm-note">${esc(REP.pages)} Facts are quoted as the reports give them; where a report contradicts itself both figures are shown.</p>`}
+const haf=v=>v==null?'–':fmt.format(Math.round(v));
+function gbars(el,rows,o={}){
+  const S=[['pl','Planned','var(--bar2)'],['dv','Developed','var(--bar)'],['ir','Irrigated 2003/04','var(--g2)']];
+  const W=560,lw=o.lw||110,rh=30,H=rows.length*rh+8,max=Math.max(...rows.flatMap(r=>S.map(s=>r[s[0]]||0)))||1,iw=W-lw-70;
+  let s=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="${esc(o.title||'')}">`;
+  rows.forEach((r,i)=>{const y=i*rh+4;s+=`<g data-i="${i}" style="cursor:pointer"><rect x="0" y="${y}" width="${W}" height="${rh}" fill="transparent"/><text x="${lw-8}" y="${y+rh/2+3}" text-anchor="end" class="lab">${esc(r.n)}</text>`;
+    S.forEach(([k,,c],j)=>{const w=Math.max(r[k]?1:0,(r[k]||0)/max*iw);s+=`<rect x="${lw}" y="${y+3+j*8}" width="${w}" height="7" rx="2" fill="${c}"/>`});
+    s+=`<text x="${lw+Math.max(1,(r.pl||0)/max*iw)+5}" y="${y+12}">${fmt.format(r.pl)}</text></g>`});
+  el.innerHTML=s+`</svg><div class="qkey">${S.map(([,n,c])=>`<span><i class="band" style="--c:${c};opacity:1"></i>${n}</span>`).join('')}</div>`;
+  el.querySelectorAll('g[data-i]').forEach(g=>{const r=rows[+g.dataset.i];g.onmousemove=e=>{const bb=el.getBoundingClientRect();tip(el,`<b>${esc(r.n)} RBDA</b><br>Planned ${haf(r.pl)} ha · developed ${haf(r.dv)} ha · irrigated ${haf(r.ir)} ha`,e.clientX-bb.left,e.clientY-bb.top)};g.onmouseleave=hideTip;g.onclick=()=>goSite(r.id)});
+}
+async function buildIrr(){
+  const P=$('#irrig');P.innerHTML='<p class="loading">Loading…</p>';
+  try{await reports()}catch(e){P.innerHTML='<p>The irrigation pages could not be loaded.</p>';return}
+  const I=REP.irr,H=REP.hydro;const A=I.tableA;
+  const cards=[];
+  cards.push(card({t:'Irrigated area by type, 2003/04',s:'Hectares actually irrigated. Hover for planned and equipped areas.',src:`${esc(REP.refs.ropisin.s)}, Table A, p. ${A.p}`,file:'irrigated_area_by_type_2004',page:'irrig',
+    draw:el=>hbar(el,A.rows.slice(0,-1).map(r=>({l:r[0].replace(' (National Fadama Development Project)',''),v:r[3],c:'var(--g2)',t:`planned ${haf(r[1])} ha · equipped ${haf(r[2])} ha`})),{lw:190,f:v=>fmt.format(v)+' ha'}),
+    rows:()=>A.rows.map(r=>({type:r[0],planned_ha_2004:r[1],equipped_ha_2004:r[2],irrigated_ha_2003_04:r[3]}))}));
+  cards.push(card({t:'Area irrigated on RBDA schemes',s:esc(I.trend.note),src:`${esc(REP.refs.ropisin.s)}, pp. ${I.trend.p}`,file:'rbda_irrigated_area_trend',page:'irrig',
+    draw:el=>cols(el,I.trend.pts.map(p=>({l:p[0],v:p[1],c:'var(--g2)'})),{f:v=>fmt.format(v)+' ha'}),rows:()=>I.trend.pts.map(p=>({season:p[0],irrigated_ha:p[1]}))}));
+  cards.push(card({t:'The 62 federal schemes by River Basin Development Authority',s:'Planned, developed and actually irrigated hectares in 2003/04. Click a row to open the authority on the map. '+esc(I.rbda_note),src:`${esc(REP.refs.ropisin.s)}, Table 4.1, p. ${I.rbda_src.p}`,file:'rbda_irrigation_2004',page:'irrig',
+    draw:el=>gbars(el,[...I.rbda].sort((a,b)=>b.pl-a.pl),{lw:120}),rows:()=>I.rbda.map(r=>({rbda:r.n,planned_ha:r.pl,developed_ha:r.dv,irrigated_ha_2003_04:r.ir}))}));
+  const rbs=[...new Set(I.schemes.map(s=>s.rbn))].sort();
+  const used=['ropisin','ifpri','bfp','uchua','spin','triming','tractebel','lrdc','boka'];
+  P.innerHTML=`<h2 class="title">Irrigation and hydropower</h2><p class="lede">How the water stored behind Nigeria’s dams and in its aquifers is used for farming and power: what was built, what actually works, and where the potential lies. Figures come from government reviews, research studies and project documents, each cited to the page.</p>
+  <div class="kpis">${I.kpi.map(k=>`<div class="kpi"><b>${esc(k.v)}${k.u?` <small style="display:inline;font-size:14px">${esc(k.u)}</small>`:''}</b><span>${esc(k.l)}</span><small>${esc(REP.refs[k.r].s)}, p. ${esc(k.p)}</small></div>`).join('')}</div>
+  <div class="callout warn" style="margin-bottom:18px">The most complete national review of public irrigation dates from 2004. Many schemes have changed since then; treat scheme figures as a 2003/04 snapshot.${cite({r:'ropisin',p:'10-12'})}</div>
+  <div class="grid2">${cards.map(c=>c.html).join('')}</div>
+  <p class="sm-note">${esc(A.note)}</p>
+  <h3 class="sh">Federal irrigation schemes, 2003/04</h3>
+  <p class="lede" style="margin-bottom:10px">The 62 schemes reviewed by the Federal Ministry of Water Resources and FAO, plus the Savannah Sugar estate. Dams linked here open on the map.${cite({r:'ropisin',p:'29, 58-73, 136-158'})}</p>
+  <div class="row" style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:8px"><select id="ir-rb" aria-label="River Basin Development Authority"><option value="">All authorities</option>${rbs.map(r=>`<option>${esc(r)}</option>`).join('')}</select><select id="ir-sort" aria-label="Sort"><option value="pl">Largest planned area</option><option value="ir">Largest irrigated area</option><option value="n">Name</option></select><button class="btn sm" id="ir-csv" type="button">Download CSV</button></div>
+  <div class="tbl-wrap" style="max-height:520px"><table class="dt"><thead><tr><th>Scheme</th><th>Authority</th><th>Water source</th><th class="n">Planned ha</th><th class="n">Developed ha</th><th class="n">Irrigated ha</th><th>Status in 2004</th></tr></thead><tbody id="ir-body"></tbody></table></div>
+  <h3 class="sh">What the 2004 review found</h3>${factList(I.facts)}
+  <h3 class="sh">Where the potential lies</h3>${factList(I.potential)}
+  <h3 class="sh">The Lower Benue floodplain</h3>${factList(I.benue)}
+  <h3 class="sh">Proposed programmes <small class="tag">not yet built</small></h3><p class="lede" style="margin-bottom:8px">These are plans and targets described in project documents, not completed work.</p>${factList(I.plans)}
+  <h3 class="sh">Hydropower</h3>
+  <div class="grid2"><div><h4 class="h4">Large plants</h4><div class="tbl-wrap" style="max-height:none"><table class="dt"><thead><tr><th>Plant</th><th>River</th><th class="n">Installed MW</th></tr></thead><tbody>${H.existing.map(x=>`<tr class="click" data-id="${x.id}"><td>${esc(x.n)}</td><td>${esc(x.river)}</td><td class="n">${fmt.format(x.mw)}</td></tr>`).join('')}</tbody></table></div><p class="sm-note">${cite(H.existing_src).trim()}</p></div>
+  <div><h4 class="h4">Sites shortlisted in a 2016 screening study</h4><div class="tbl-wrap" style="max-height:none"><table class="dt"><thead><tr><th>Site</th><th>River</th><th class="n">MW</th><th class="n">GWh/yr</th><th>Result</th></tr></thead><tbody>${H.sites.map(x=>`<tr><td><span class="mono">${esc(x[0])}</span> ${esc(x[1])}</td><td>${esc(x[2])}</td><td class="n">${esc(String(x[3]))}</td><td class="n">${esc(String(typeof x[4]==='number'?fmt.format(x[4]):x[4]))}</td><td>${esc(x[5])}</td></tr>`).join('')}</tbody></table></div><p class="sm-note">Candidate sites from a study, not approved projects.${cite(H.sites_src)}</p></div></div>
+  ${factList(H.facts)}
+  <h3 class="sh">Earlier studies and methods</h3>${factList(I.history)}
+  <h3 class="sh">References</h3>${refList(used)}`;
+  cards.forEach(c=>c.mount());
+  $$('#irrig tr.click').forEach(tr=>tr.onclick=()=>goSite(tr.dataset.id));
+  const rowsOf=()=>{const rb=$('#ir-rb').value,so=$('#ir-sort').value;return I.schemes.filter(s=>!rb||s.rbn===rb).sort((a,b)=>so==='n'?a.n.localeCompare(b.n):(b[so]??-1)-(a[so]??-1))};
+  const render=()=>{$('#ir-body').innerHTML=rowsOf().map(s=>`<tr${s.dams.length?` class="click" data-id="${s.dams[0]}" title="Open ${esc(s.dams.map(d=>BY[d]?BY[d].n:d).join(', '))} on the map"`:''}><td><b>${esc(s.n)}</b>${s.dams.length?' <span class="tag">dam on map</span>':''}</td><td>${esc(s.rbn)}</td><td>${esc(s.src)}</td><td class="n">${haf(s.pl)}</td><td class="n">${haf(s.dv)}</td><td class="n">${haf(s.ir)}</td><td>${esc(s.status)}</td></tr>`).join('');
+    $$('#ir-body tr.click').forEach(tr=>tr.onclick=()=>goSite(tr.dataset.id))};
+  $('#ir-rb').onchange=render;$('#ir-sort').onchange=render;render();
+  $('#ir-csv').onclick=()=>saveFile('nigeria_federal_irrigation_schemes_2004.csv',toCSV(rowsOf().map(s=>({scheme:s.n,rbda:s.rbn,water_source:s.src,planned_ha:s.pl,developed_ha:s.dv,irrigated_ha_2003_04:s.ir,status_2004:s.status,source:REP.refs.ropisin.c+' p. '+s.p}))),'text/csv');
+}
+async function addBasinReports(){
+  try{await reports()}catch(e){return}
+  const el=$('#basin-reports');if(!el)return;
+  el.innerHTML=`<h3 class="sh">The Benue and Niger basins in the reports</h3><div class="grid2"><div class="box"><h3>Benue basin</h3>${factList(REP.basins.benue)}</div><div class="box"><h3>Niger basin</h3>${factList(REP.basins.niger)}</div></div>
+  <p class="sm-note">Irrigation schemes, dam use and hydropower sites are on the <a href="#irrig">Irrigation &amp; power</a> page.</p>`;
+}
+async function fillReports(f){
+  const box=$('#repbox');if(!box)return;
+  try{await reports()}catch(e){return}
+  if(state.sel!==f)return;
+  const D=REP.dams[f.i]||[];const sch=REP.irr.schemes.filter(s=>s.dams.includes(f.i));
+  if(!D.length&&!sch.length)return;
+  box.innerHTML=`<div class="box"><h3>From reports and studies <small>cited to the page</small></h3><dl>${D.map(x=>`<dt>${esc(x.k)}</dt><dd>${esc(x.v)}${cite(x)}</dd>`).join('')}${sch.map(s=>`<dt>Irrigation scheme: ${esc(s.n)} (2003/04)</dt><dd>Planned ${haf(s.pl)} ha, developed ${haf(s.dv)} ha, irrigated ${haf(s.ir)} ha. ${esc(s.status)}.${cite({r:'ropisin',p:s.p})}</dd>`).join('')}</dl><p class="sm-note" style="margin:8px 0 0"><a href="#irrig">More on irrigation and hydropower</a></p></div>`;
+}
+async function addReportSources(){
+  try{await reports()}catch(e){return}
+  const el=$('#reports-src');if(!el)return;
+  el.innerHTML=`<h3>Reports and studies</h3><p>Facts from these documents appear on the Irrigation &amp; power and Basins pages and in dam and river profiles, each cited to the page. ${esc(REP.pages)}</p><div class="tbl-wrap" style="max-height:none"><table class="dt srctbl"><thead><tr><th>Document</th><th>Used for</th></tr></thead><tbody>${Object.values(REP.refs).sort((a,b)=>b.y-a.y).map(R=>`<tr><td>${R.u?`<a href="${esc(R.u)}" target="_blank" rel="noopener">${esc(R.c)}</a>`:esc(R.c)}</td><td>${esc(R.use)}</td></tr>`).join('')}</tbody></table></div>`;
 }
 </script>
 </body>
