@@ -1184,6 +1184,7 @@ const OVERLAYS={
   geoglows:{n:'High river flows',fl:1},
   gdacs:{n:'GDACS floods',fl:1},
   nimet:{n:'NiMet warnings',fl:1},
+  nimetfc:{n:'NiMet 3-day forecast',fl:1},
   hazard:{n:'100-year flood zone',wms:'FloodHazard100y',a:'Flood hazard: Copernicus EMS GloFAS, 100-year return period (JRC)',live:1},
   history:{n:'Past floods',fl:1},
   wp:{n:'Water points'},
@@ -1283,6 +1284,7 @@ function renderLegend(){
   if(ovl.geoglows)h+=`<div class="t" style="margin-top:6px">Rivers forecast above (GEOGLOWS)</div><div class="k"><span class="ln" style="--c:var(--s1)"></span>2-year flood flow</div><div class="k"><span class="ln" style="--c:var(--s2)"></span>5- to 10-year</div><div class="k"><span class="ln" style="--c:var(--s3)"></span>25-year or more</div>`;
   if(ovl.gdacs)h+=`<div class="t" style="margin-top:6px">GDACS flood events (120 days)</div><div class="k"><span class="sw" style="--c:#d93b2b;border-radius:50%"></span>Red</div><div class="k"><span class="sw" style="--c:#e8891f;border-radius:50%"></span>Orange</div><div class="k"><span class="sw" style="--c:#2e9e44;border-radius:50%"></span>Green</div>`;
   if(ovl.nimet)h+=`<div class="t" style="margin-top:6px">NiMet warnings</div><div class="k"><span class="sq" style="--c:var(--s3)"></span>Extreme</div><div class="k"><span class="sq" style="--c:var(--s2)"></span>Severe</div><div class="k"><span class="sq" style="--c:var(--s1)"></span>Moderate</div><div class="k" style="grid-column:1/-1"><span class="ln" style="--c:var(--muted);border-top-style:dashed"></span>Latest warning, expired (shown when none is in force)</div>`;
+  if(ovl.nimetfc)h+=`<div class="t" style="margin-top:6px">NiMet 3-day forecast (wettest day)</div><div class="k"><span class="sw" style="--c:var(--s3);border-radius:50%"></span>Heavy rain</div><div class="k"><span class="sw" style="--c:var(--s2);border-radius:50%"></span>Rain</div><div class="k"><span class="sw" style="--c:var(--s1);border-radius:50%"></span>Thunderstorms</div><div class="k"><span class="sw" style="--c:var(--s0);border-radius:50%"></span>Dry or cloudy</div>`;
   if(ovl.hazard)h+=`<div class="k" style="grid-column:1/-1"><span class="sq" style="--c:linear-gradient(90deg,#c6dbef,#08519c)"></span>Flood depth in a 100-year flood (GloFAS)</div>`;
   if(ovl.history)h+=`<div class="k" style="grid-column:1/-1"><span class="sw" style="--c:var(--s2);border-radius:50%;opacity:.6"></span>Past large floods (DFO; size = deaths); rings = GDACS events</div>`;
   if(ovl.wp)h+=`<div class="k"><span class="sw" style="--c:var(--g0);border-radius:50%;width:6px;height:6px"></span>Water point (GRID3, 2020)</div>`;
@@ -1962,6 +1964,7 @@ function buildData(){
    ['GEOGLOWS, ECMWF (API and ArcGIS live feed)','15-day river flow forecasts for every river reach and return-period flags','Second forecast at the gauges; rivers above flood flows (live)','https://geoglows.ecmwf.int','CC BY 4.0'],
    ['GDACS, European Commission JRC and UN OCHA (API)','Flood events for Nigeria since 1985 with alert levels and reported impacts','Live events and flood history','https://www.gdacs.org','Free with attribution'],
    ['Nigerian Meteorological Agency (NiMet): CAP warning feed','Official weather warnings with areas, timing and advice','Flood watch warnings and map layer','https://nimet.gov.ng/hazardwatch','Public warnings'],
+   ['NiMet Weather API: 3-day forecasts','Daily weather and day/night temperatures at 57 NiMet forecast stations','Flood watch table and map layer','https://nimet.gov.ng/weatherapi','Registered API key; credit NiMet'],
    ['NiMet Seasonal Rainfall Prediction (SRP)','Predicted onset, end, season length and annual rainfall for each LGA','Rain page','https://nimet.gov.ng/srp','Public; credit NiMet'],
    ['NiMet, 2025 State of the Climate in Nigeria (2026)','Rainfall anomalies since 1981, extreme rainfall, dry spells and the 2025 floods','Rain page and flood history','https://nimet.gov.ng/SoCN','Cited by page'],
    ['Early Warnings for All Dashboard (WMO, UNDRR, ITU, IFRC)','Country capacity for multi-hazard early warning','Flood watch','https://earlywarningsforall.org/site/early-warnings-all/dashboards/early-warnings-all-dashboard','Public'],
@@ -1991,7 +1994,7 @@ function buildData(){
    <li>Flood-watch normals use 1991–2020 GloFAS reanalysis at each point in a 15-day window around each date. GloFAS is a model at about 5 km resolution: it is good at large rivers and seasonal patterns and weak at small streams, urban drainage and dam operations.</li>
    <li>River lines are simplified to about 500 m, reservoir outlines to about 150 m and roads to about 200 m for display.</li>
    <li>Major roads are OpenStreetMap expressways, trunk and primary roads, joined by route number. They show how places connect, not road condition or seasonal access; volunteer mapping is more complete around cities than in rural areas.</li></ul>
-  <h3>Updates</h3><p>A scheduled job re-downloads every source each Monday and rebuilds the data; a second job refreshes the flood alerts, forecasts, NiMet warnings and the flood history every hour (NiMet’s seasonal rainfall prediction daily), and the flood watch page fetches NiMet warnings, GDACS events and GEOGLOWS river forecasts live and re-checks them every 15 minutes while it is open; river flows, weather and nearby photos are fetched live when you open a profile. Hand-written content (basins, groundwater, agencies) lives in <a href="data/curated.json">curated.json</a> with its sources. Each release is versioned; cite the version you used.</p>
+  <h3>Updates</h3><p>A scheduled job re-downloads every source each Monday and rebuilds the data; a second job refreshes the flood alerts, forecasts, NiMet warnings and 3-day forecasts, and the flood history every hour (NiMet’s seasonal rainfall prediction daily), and the flood watch page fetches NiMet warnings, GDACS events and GEOGLOWS river forecasts live and re-checks them every 15 minutes while it is open; river flows, weather and nearby photos are fetched live when you open a profile. Hand-written content (basins, groundwater, agencies) lives in <a href="data/curated.json">curated.json</a> with its sources. Each release is versioned; cite the version you used.</p>
   <h3>Known gaps</h3><ul><li>${unnamed} reservoirs are still unnamed and ${F.filter(f=>f.c===1).length} UNICEF-list dams are not precisely located.</li><li>Small earth dams, community ponds and many boreholes are missing; the GRID3 water-point survey did not cover every state.</li><li>Hydropower capacity is not recorded for most dams in GDW; newer schemes such as Zungeru are added from Wikipedia.</li><li>The eight hydrological areas are described but not drawn: their official boundaries are not published as open data. The Basins layer shows HydroBASINS watersheds instead.</li></ul>
   <h3>Corrections</h3><p>Water agencies, RBDAs, researchers and community monitors can send corrections through the Community hub (choose “Data correction”) or on <a href="https://github.com/${CONFIG.issuesRepo}/issues" target="_blank" rel="noopener">GitHub</a>. Please include a source.</p>`;
   addReportSources();
@@ -2150,6 +2153,7 @@ async function addFloodLive(){
 /* ---------- map overlays ---------- */
 async function floodOverlay(k){
   if(k==='nimet')return nimetOverlay();
+  if(k==='nimetfc')return nimetFcOverlay();
   if(k==='glofas'){await fwData();const g=L.layerGroup();
     if(LIVE)L.tileLayer.wms(GLOFAS_WMS,{layers:'FloodSummary1_30',format:'image/png',transparent:true,version:'1.3.0',time:((FW.glofas||{}).time||'')+'',opacity:.85,attribution:'Flood forecasts: Copernicus EMS GloFAS'}).addTo(g);
     glofasRows().forEach(p=>{if(p.la==null)return;const c=ALERTC[p.alert]||((p.p2||0)>0?'var(--s1)':'var(--s0)');L.circleMarker([p.la,p.lo],{renderer:canvas,radius:6,color:css('--panel'),weight:1.5,fillColor:css(c.slice(4,-1)),fillOpacity:.95})
@@ -2194,7 +2198,7 @@ async function addFloodHistory(){
   $('#fh-map').onclick=()=>{location.hash='map';setTimeout(()=>{if(!ovl.history)toggleOverlay('history')},150)};
 }
 function floodDashboards(){return`<h3 class="sh">Other flood dashboards for Africa</h3><div class="commit">
- <div><b><a href="https://nimet.gov.ng/hazardwatch" target="_blank" rel="noopener">NiMet Hazard Watch</a>, <a href="http://maproom.nimet.gov.ng/" target="_blank" rel="noopener">Map Room</a> and <a href="https://nimet.gov.ng/weatherapi" target="_blank" rel="noopener">Weather API</a></b><span>Nigeria’s weather service. Used here: its CAP warnings and the Seasonal Rainfall Prediction; its forecast bulletins, including the ten-day flash-flood risk maps, are linked. The Weather API (forecasts, observations, seasonal predictions by LGA) needs a free registered key; the NiMet Weather app is on the App Store and Google Play.</span></div>
+ <div><b><a href="https://nimet.gov.ng/hazardwatch" target="_blank" rel="noopener">NiMet Hazard Watch</a>, <a href="http://maproom.nimet.gov.ng/" target="_blank" rel="noopener">Map Room</a> and <a href="https://nimet.gov.ng/weatherapi" target="_blank" rel="noopener">Weather API</a></b><span>Nigeria’s weather service. Used here: its CAP warnings, 3-day station forecasts from the Weather API and the Seasonal Rainfall Prediction; its forecast bulletins, including the ten-day flash-flood risk maps, are linked. The NiMet Weather app is on the App Store and Google Play.</span></div>
  <div><b><a href="https://global-flood.emergency.copernicus.eu" target="_blank" rel="noopener">GloFAS, Copernicus Emergency Management Service</a></b><span>Global river flood forecasts. Used here: reporting-point alerts, flood summary map, 100-year flood zone and the river-flow forecasts.</span></div>
  <div><b><a href="https://www.gdacs.org" target="_blank" rel="noopener">GDACS</a></b><span>Global Disaster Alert and Coordination System (European Commission and UN OCHA). Used here: live and past flood events with reported impacts.</span></div>
  <div><b><a href="https://geoglows.ecmwf.int" target="_blank" rel="noopener">GEOGLOWS (ECMWF)</a></b><span>15-day forecasts for every river reach. Used here as a second forecast and for rivers above flood flows.</span></div>
@@ -2245,13 +2249,30 @@ function renderBulletins(){
   const el=$('#nm-bul');if(!el)return;const L=(u,t)=>`<a class="btn sm" href="https://nimet.gov.ng/${u}" target="_blank" rel="noopener">${t}</a>`;
   el.innerHTML=`<p class="sm-note" style="margin-top:0">NiMet publishes a daily impact-based forecast, weather outlooks, heavy-rainfall advisories and, during the rains, <b>probable flash-flood risk maps</b> for each ten-day period. They are on NiMet’s website, which does not allow other sites to read them automatically, so they are linked here.</p><div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:6px">${L('weather_forecast_bulletin','Forecast bulletins and flash-flood maps')}${L('scp','Seasonal Climate Prediction')}${L('publication','Publications')}${L('weatherapi','Weather API')}</div>`;
 }
-async function refreshNimet(force){await nimetAlerts(force);renderNimetAlerts();renderBulletins();if(ovl.nimet){map.removeLayer(ovl.nimet);ovl.nimet=null;toggleOverlay('nimet')}}
+const fcRank=c=>/heavy/i.test(c||'')?3:/rain|shower|drizzle/i.test(c||'')?2:/thunder/i.test(c||'')?1:0;
+const FCC=['var(--s0)','var(--s1)','var(--s2)','var(--s3)'],FCL=['Dry or cloudy','Thunderstorms','Rain or thunderstorms with rain','Heavy rain'];
+function renderForecast(){
+  const el=$('#nm-fc');if(!el)return;const F=((FW||{}).nimet||{}).fc;if(!F||!(F.st||[]).length){el.innerHTML='';return}
+  const S=[...F.st].sort((a,b)=>Math.max(...b.d.map(d=>fcRank(d[1])))-Math.max(...a.d.map(d=>fcRank(d[1])))||a.n.localeCompare(b.n));
+  const wet=S.filter(x=>x.d.some(d=>fcRank(d[1])>=2)).length,days=(S[0]||{d:[]}).d.map(d=>d[0]);
+  el.innerHTML=`<h4 class="h4" style="margin-top:14px">NiMet 3-day forecast at ${S.length} stations <small class="nm-t">issued ${dshort(F.at)}</small></h4>
+   <p class="sm-note" style="margin-top:0">${wet} of ${S.length} stations expect rain in the next three days. <button class="btn sm" data-lay="nimetfc" type="button">Forecast on map</button> <button class="btn sm" id="nm-fc-csv" type="button">CSV</button></p>
+   <div class="tbl-wrap" style="max-height:300px"><table class="dt"><thead><tr><th>Station</th><th>State</th>${days.map(d=>`<th>${esc(d||'')}</th>`).join('')}</tr></thead><tbody>${S.map(x=>`<tr><td>${esc(x.n)}</td><td>${esc(x.st||'')}</td>${x.d.map(d=>`<td><span class="sw" style="--c:${FCC[fcRank(d[1])]};display:inline-block;width:9px;height:9px;border-radius:50%;background:var(--c);margin-right:5px"></span>${esc(d[1]||'–')}${d[2]!=null?` <span class="nm-t">${d[2]}°/${d[3]??'–'}°</span>`:''}</td>`).join('')}</tr>`).join('')}</tbody></table></div>`;
+  $$('#nm-fc [data-lay]').forEach(b=>b.onclick=()=>{location.hash='map';setTimeout(()=>{if(!ovl.nimetfc)toggleOverlay('nimetfc')},150)});
+  $('#nm-fc-csv').onclick=()=>saveFile('nimet_3day_forecast_'+F.at+'.csv',toCSV(S.flatMap(x=>x.d.map(d=>({station:x.n,state:x.st,lga:x.lga,day:d[0],condition:d[1],max_c:d[2],min_c:d[3]})))),'text/csv');
+}
+async function nimetFcOverlay(){await fwData();const F=((FW||{}).nimet||{}).fc;const g=L.layerGroup();
+  ((F||{}).st||[]).forEach(x=>{if(x.la==null)return;const r=Math.max(...x.d.map(d=>fcRank(d[1])));L.circleMarker([x.la,x.lo],{renderer:canvas,radius:7,color:css('--panel'),weight:1.5,fillColor:css(FCC[r].slice(4,-1)),fillOpacity:.95})
+    .bindTooltip(`<b>${esc(x.n)}</b> (NiMet station, ${esc(x.st||'')})<br>${x.d.map(d=>`${esc(d[0]||'')}: ${esc(d[1]||'–')}${d[2]!=null?` · ${d[2]}°/${d[3]??'–'}°C`:''}`).join('<br>')}`,{className:'tip'}).addTo(g)});
+  if(!F)toast('NiMet forecasts are not available yet');return g}
+async function refreshNimet(force){await nimetAlerts(force);renderNimetAlerts();renderBulletins();renderForecast();if(ovl.nimet){map.removeLayer(ovl.nimet);ovl.nimet=null;toggleOverlay('nimet')}}
 async function addNimet(){
   const host=$('#nm-host');if(host){
   host.innerHTML=`<div class="box" style="margin-bottom:18px"><h3>NiMet weather warnings <small id="nm-when">Loading…</small></h3>
    <p class="sm-note" style="margin-top:0">Times are Nigerian time (WAT). Official warnings from the Nigerian Meteorological Agency, published in the international Common Alerting Protocol (CAP) format: thunderstorms, heavy rain, dust and heat. Heavy rain on wet ground is what turns into flash floods.</p>
    <div id="nm-alerts"></div>
    <div style="display:flex;gap:6px;flex-wrap:wrap;margin:10px 0 4px"><button class="btn sm" data-lay="nimet" type="button">Warning areas on map</button><a class="btn sm" href="https://nimet.gov.ng/hazardwatch" target="_blank" rel="noopener">NiMet Hazard Watch</a><a class="btn sm" href="http://maproom.nimet.gov.ng/" target="_blank" rel="noopener">NiMet Map Room</a></div>
+   <div id="nm-fc"></div>
    <h4 class="h4" style="margin-top:14px">NiMet forecast bulletins</h4><div id="nm-bul"></div>
    <p class="sm-note">Warnings are read live from NiMet’s CAP feed each time the page opens and every 15 minutes, with an hourly copy kept on this site in case the feed is unreachable.</p></div>`;
   $$('#nm-host [data-lay]').forEach(b=>b.onclick=()=>{location.hash='map';setTimeout(()=>{if(!ovl.nimet)toggleOverlay('nimet')},150)});
