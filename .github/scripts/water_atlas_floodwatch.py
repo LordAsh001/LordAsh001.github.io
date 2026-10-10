@@ -7,7 +7,7 @@ Writes two files:
   water-atlas/data/floodhistory.json – flood history of Nigeria: Dartmouth Flood Observatory archive (1985 onwards),
                                        every GDACS flood event for Nigeria with reported impacts, Wikipedia summaries
                                        of major floods. Rebuilt once a day (or when WA_FULL=1).
-  floodwatch.json also carries NiMet's public warnings (CAP feed).
+  floodwatch.json also carries NiMet's public warnings (CAP feed) and, when the NIMET_API_KEY secret is set, its 3-day station forecasts.
   water-atlas/data/srp.json          – NiMet Seasonal Rainfall Prediction by LGA (onset, end, length, total). Daily check.
 A source that fails keeps its previous values, so one outage never empties the page.
 Files are only rewritten when their content changes, so quiet hours make no commit.
@@ -319,9 +319,61 @@ def nimet_cap(prev):
     out.sort(key=lambda a: a.get("sent") or "", reverse=True)
     return out
 
+# NiMet Weather API (https://nimet.gov.ng/weatherapi): 3-day forecasts at NiMet's forecast stations.
+# Needs the repository secret NIMET_API_KEY; the key stays on GitHub and is never written to the website.
+NIMET_API = "https://api.nimet.gov.ng/api"
+# Approximate positions of NiMet forecast stations (town centres or the coastal station); the API gives names only.
+NIMET_STN = {
+    "ABAKALIKI": (8.11, 6.33), "ABEOKUTA": (3.35, 7.15), "ABUJA": (7.49, 9.06), "ADO-EKITI": (5.22, 7.62), "AKURE": (5.19, 7.25),
+    "ASABA": (6.73, 6.20), "AWKA": (7.07, 6.21), "BAUCHI": (9.84, 10.31), "BADAGRY": (2.88, 6.42), "BENIN": (5.63, 6.34),
+    "BIDA": (6.01, 9.08), "CALABAR": (8.33, 4.96), "CALABAR MARINE": (8.31, 4.93), "DUTSE": (9.34, 11.76), "EKET MARINE": (7.95, 4.59),
+    "ENUGU": (7.49, 6.44), "GOMBE": (11.17, 10.29), "GUSAU": (6.66, 12.16), "IBADAN": (3.90, 7.38), "IJEBU-ODE": (3.92, 6.82),
+    "IKEJA": (3.35, 6.60), "IKOM": (8.71, 5.96), "ILORIN": (4.55, 8.50), "ISEYIN": (3.60, 7.97), "JALINGO": (11.36, 8.89),
+    "JOS": (8.89, 9.90), "KADUNA": (7.44, 10.52), "KANO": (8.52, 12.00), "KATSINA": (7.60, 12.99), "KEBBI": (4.20, 12.45),
+    "KOKO": (5.47, 6.00), "LAFIA": (8.52, 8.49), "LOKOJA": (6.74, 7.80), "MAIDUGURI": (13.16, 11.83), "MAKURDI": (8.54, 7.73),
+    "MINNA": (6.55, 9.61), "NGURU": (10.45, 12.88), "NIOMR LAGOS": (3.40, 6.42), "OBUDU": (9.17, 6.66), "OSOGBO": (4.56, 7.77),
+    "OWERRI": (7.03, 5.48), "PORT HARCOURT": (7.01, 4.82), "PORT HARCOURT MARINE": (7.03, 4.77), "POTISKUM": (11.07, 11.71),
+    "SHAKI": (3.39, 8.67), "SOKOTO": (5.24, 13.06), "UMUAHIA": (7.49, 5.53), "UYO": (7.93, 5.04), "WARRI": (5.75, 5.52),
+    "WARRI NPA": (5.73, 5.51), "YELWA": (4.75, 10.84), "YENAGOA": (6.26, 4.93), "YENAGOA MARINE": (6.08, 4.70), "YOLA": (12.46, 9.21),
+    "ZARIA": (7.70, 11.09), "APAPA LAGOS": (3.37, 6.45), "AYETORO ONDO": (4.75, 6.10),
+}
+
+def nimet_forecast():
+    key = os.environ.get("NIMET_API_KEY", "").strip()
+    if not key: return None
+    hdr = dict(UA, **{"x-api-key": key})
+    def get(path):
+        req = urllib.request.Request(NIMET_API + path, headers=hdr)
+        with urllib.request.urlopen(req, timeout=40) as r: return json.loads(r.read())
+    stations = get("/forecaststation")
+    out = []
+    for st in stations:
+        name = (st.get("station") or "").strip()
+        try: f = get("/forecast/" + urllib.parse.quote(name))
+        except Exception as e:
+            log("NiMet forecast", name, repr(e)); continue
+        days = []
+        for k in ("day1", "day2", "day3"):
+            d = f.get(k) or {}
+            t = re.findall(r"-?\d+(?:\.\d+)?", d.get("temp") or "")
+            days.append([d.get("date"), d.get("condition"), float(t[0]) if t else None, float(t[1]) if len(t) > 1 else None])
+        lo, la = NIMET_STN.get(name.upper(), (None, None))
+        stn = {"Federal Capital Territory": "FCT"}.get(st.get("state"), st.get("state"))
+        out.append({"n": name.title(), "st": stn, "lga": st.get("lga"), "lo": lo, "la": la, "d": days})
+        time.sleep(.15)
+    if not out: raise RuntimeError("no NiMet forecasts")
+    return {"at": NOW.strftime("%Y-%m-%d"), "st": out}
+
 def nimet(prev):
     # Forecast bulletins on nimet.gov.ng sit behind a JavaScript bot check, so they are linked on the page, not collected.
-    return {"alerts": nimet_cap(prev)}
+    p = prev.get("nimet") or {}
+    a = step("NiMet CAP alerts", nimet_cap, prev)
+    f = step("NiMet forecasts", nimet_forecast)
+    if a is None and f is None and not p: return None
+    o = {"alerts": a if a is not None else p.get("alerts", [])}
+    fc = f if f is not None else p.get("fc")
+    if fc: o["fc"] = fc
+    return o
 
 def srp():
     d = http(SRP_API, timeout=120)
