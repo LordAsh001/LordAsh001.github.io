@@ -1028,6 +1028,7 @@ ol.refs li{margin:0 0 6px}
       <a href="#flood" data-v="flood">Flood watch</a>
       <a href="#rain" data-v="rain">Rain &amp; harvesting</a>
       <a href="#basins" data-v="basins">Basins &amp; groundwater</a>
+      <a href="#wq" data-v="wq">Pollution &amp; security</a>
       <a href="#irrig" data-v="irrig">Irrigation &amp; power</a>
       <a href="#stats" data-v="stats">Statistics</a>
       <a href="#visit" data-v="visit">Visit</a>
@@ -1072,6 +1073,7 @@ ol.refs li{margin:0 0 6px}
     <section class="view" id="v-flood" hidden><div class="page" id="flood"></div></section>
     <section class="view" id="v-rain" hidden><div class="page" id="rain"></div></section>
     <section class="view" id="v-basins" hidden><div class="page" id="basins"></div></section>
+    <section class="view" id="v-wq" hidden><div class="page" id="wq"></div></section>
     <section class="view" id="v-irrig" hidden><div class="page" id="irrig"></div></section>
     <section class="view" id="v-stats" hidden><div class="page" id="stats"></div></section>
     <section class="view" id="v-visit" hidden><div class="page" id="visit"></div></section>
@@ -1152,7 +1154,7 @@ function init(){
 }
 
 /* ---------- routing ---------- */
-const VIEWS=['map','flood','rain','basins','irrig','stats','visit','ngo','data'];const built={};
+const VIEWS=['map','flood','rain','basins','wq','irrig','stats','visit','ngo','data'];const built={};
 function route(){
   let h=location.hash.slice(1)||'map';let site=null;
   if(!VIEWS.includes(h)){if(BY[h]){site=BY[h];h='map'}else h='map'}
@@ -1160,7 +1162,7 @@ function route(){
   $$('nav.views a').forEach(a=>{if(a.dataset.v===h)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current')});
   if(h==='map'){setTimeout(()=>map.invalidateSize(),50);if(site)select(site,false)}
   track('view/'+h,'Opened section: '+h);
-  if(!built[h]){built[h]=1;({flood:buildFlood,rain:buildRain,basins:buildBasins,irrig:buildIrr,stats:buildStats,visit:buildVisit,ngo:buildNgo,data:buildData}[h]||(()=>{}))()}
+  if(!built[h]){built[h]=1;({flood:buildFlood,rain:buildRain,basins:buildBasins,wq:buildWq,irrig:buildIrr,stats:buildStats,visit:buildVisit,ngo:buildNgo,data:buildData}[h]||(()=>{}))()}
 }
 function goSite(id){location.hash=id}
 
@@ -1189,6 +1191,8 @@ const OVERLAYS={
   history:{n:'Past floods',fl:1},
   aquifers:{n:'Aquifers',fl:1},
   wstress:{n:'Water stress by state',fl:1},
+  oilspill:{n:'Oil spills',fl:1},
+  wpfunc:{n:'Broken water points',fl:1},
   wp:{n:'Water points'},
   satflood:{n:'Satellite floods',tile:()=>`https://gibs.earthdata.nasa.gov/wmts/epsg3857/best/VIIRS_Combined_Flood_3-Day/default/${gibsDay(1)}/GoogleMapsCompatible_Level9/{z}/{y}/{x}.png`,a:'Flood mapping: NASA LANCE / VIIRS combined flood product (3-day composite), via NASA GIBS',mz:9,live:1},
   imerg:{n:'Rain yesterday',tile:()=>`https://gibs.earthdata.nasa.gov/wmts/epsg3857/best/IMERG_Precipitation_Rate/default/${gibsDay(2)}/GoogleMapsCompatible_Level6/{z}/{y}/{x}.png`,a:'Precipitation: NASA GPM IMERG daily precipitation rate, via NASA GIBS',mz:6,live:1},
@@ -1273,7 +1277,7 @@ function recolor(){if(tile&&tile._key==='map')setBase('map');statesLayer.setStyl
   netLayer.eachLayer(l=>l.setStyle({color:css('--river')}));lakeLayer.eachLayer(l=>l.setStyle({color:css('--lake'),fillColor:css('--lake')}));
   ['flood','wp','basins'].forEach(k=>{if(ovl[k]){map.removeLayer(ovl[k]);ovl[k]=null;toggleOverlay(k)}});
   if(ovl.roads)ovl.roads.eachLayer(l=>l.setStyle({color:css('--road'+l.options.rc)}));
-  ['stats','basins','flood','rain'].forEach(v=>{if(built[v]){built[v]=0;if(!$('#v-'+v).hidden){built[v]=1;({stats:buildStats,basins:buildBasins,flood:buildFlood,rain:buildRain})[v]()}}})}
+  ['stats','basins','flood','rain','wq'].forEach(v=>{if(built[v]){built[v]=0;if(!$('#v-'+v).hidden){built[v]=1;({stats:buildStats,basins:buildBasins,flood:buildFlood,rain:buildRain,wq:buildWq})[v]()}}})}
 function renderLegend(){
   let h=`<div class="t">On the map</div>`+GROUPS.map((g,i)=>`<div class="k"><span class="${i===5?'ln':'sw'}" style="--c:var(--g${i})"></span>${g}</div>`).join('');
   if(ovl.net)h+=`<div class="k"><span class="ln" style="--c:var(--river)"></span>Other rivers and streams</div>`;
@@ -1291,6 +1295,8 @@ function renderLegend(){
   if(ovl.history)h+=`<div class="k" style="grid-column:1/-1"><span class="sw" style="--c:var(--s2);border-radius:50%;opacity:.6"></span>Past large floods (DFO; size = deaths); rings = GDACS events</div>`;
   if(ovl.aquifers)h+=`<div class="t" style="margin-top:6px">Aquifer productivity (BGS)</div><div class="k"><span class="sq" style="--c:#08306b"></span>High to very high</div><div class="k"><span class="sq" style="--c:#2171b5"></span>High</div><div class="k"><span class="sq" style="--c:#4292c6"></span>Moderate to high</div><div class="k"><span class="sq" style="--c:#6baed6"></span>Moderate</div><div class="k"><span class="sq" style="--c:#9ecae1"></span>Low to moderate (sedimentary)</div><div class="k"><span class="sq" style="--c:#deebf7"></span>Low to moderate (basement, igneous)</div>`;
   if(ovl.wstress)h+=`<div class="t" style="margin-top:6px">Baseline water stress (Aqueduct)</div><div class="k"><span class="sq" style="--c:#ffff99"></span>Low</div><div class="k"><span class="sq" style="--c:#ffe600"></span>Low–medium</div><div class="k"><span class="sq" style="--c:#ff9900"></span>Medium–high</div><div class="k"><span class="sq" style="--c:#ff1900"></span>High</div><div class="k"><span class="sq" style="--c:#990000"></span>Extremely high</div>`;
+  if(ovl.oilspill)h+=`<div class="t" style="margin-top:6px">Oil spills (NOSDRA), by cause</div>`+['sab','eqf','cor','ome','ytd','other'].map(k=>`<div class="k"><span class="sw" style="--c:${SPC[k][1]}"></span>${SPC[k][0]}</div>`).join('')+`<div class="k" style="font-size:11px">Larger dots: 10+ and 100+ barrels</div>`;
+  if(ovl.wpfunc)h+=`<div class="t" style="margin-top:6px">Water points not working (WPDx)</div>`+['Under 12.5%','12.5–25%','25–37.5%','37.5–50%','50% or more'].map((l,i)=>`<div class="k"><span class="sq" style="--c:${WPK[i]}"></span>${l}</div>`).join('');
   if(ovl.wp)h+=`<div class="k"><span class="sw" style="--c:var(--g0);border-radius:50%;width:6px;height:6px"></span>Water point (GRID3, 2020)</div>`;
   h+=`<div class="sm">Dot size follows reservoir capacity or lake area. Dashed dots: location uncertain.</div>`;
   $('#legend').innerHTML=h;
@@ -1974,6 +1980,11 @@ function buildData(){
    ['NiMet Seasonal Rainfall Prediction (SRP)','Predicted onset, end, season length and annual rainfall for each LGA','Rain page','https://nimet.gov.ng/srp','Public; credit NiMet'],
    ['NiMet, 2025 State of the Climate in Nigeria (2026)','Rainfall anomalies since 1981, extreme rainfall, dry spells and the 2025 floods','Rain page and flood history','https://nimet.gov.ng/SoCN','Cited by page'],
    ['Early Warnings for All Dashboard (WMO, UNDRR, ITU, IFRC)','Country capacity for multi-hazard early warning','Flood watch','https://earlywarningsforall.org/site/early-warnings-all/dashboards/early-warnings-all-dashboard','Public'],
+   ['National Oil Spill Detection and Response Agency (NOSDRA) incident register, via the Nigerian Oil Spill Monitor','Oil spill incidents with date, place, cause, contaminant, estimated quantity, habitat and operator','Oil spills map layer and the Pollution & security page','https://oilspillmonitor.ng','Public register'],
+   ['Water Point Data Exchange (WPDx+)','Water points by state and technology, and whether they were working when last visited','Broken water points map layer and the Pollution & security page','https://www.waterpointdata.org','CC BY 4.0'],
+   ['Pacific Institute, Water Conflict Chronology','Events in which water was a trigger, weapon or casualty of conflict','Pollution & security page','https://www.worldwater.org/water-conflict/','Free with attribution'],
+   ['WHO via the UN SDG database (indicator 3.9.2) and Our World in Data (reported cholera cases)','Deaths attributed to unsafe water, sanitation and hygiene; cholera cases a year','Pollution & security page','https://ourworldindata.org/grapher/number-of-reported-cases-of-cholera','CC BY 4.0'],
+   ['FMWR, NBS and UNICEF, WASHNORM 2021; UNICEF Nigeria (2021); UNEP Environmental Assessment of Ogoniland (2011); MSF (2012)','Drinking water contamination, service levels, water vulnerability, oil and lead pollution','Pollution & security page','https://www.unicef.org/nigeria/media/5956/file/2021WASHNORM%20Infographics.pdf','Cited facts'],
    ['British Geological Survey, Africa Groundwater Atlas: country hydrogeology map and Hydrogeology of Nigeria','Aquifer types and productivity at 1:5 million; yields, depths, recharge and borehole counts','Aquifers map layer and the Basins page','https://africagroundwateratlas.org/downloadGIS.html','CC BY-SA'],
    ['WRI Aqueduct 4.0 country and province rankings','Baseline and future water stress, drought risk and riverine flood risk for Nigeria and each state','Water stress map layer and the Basins page','https://www.wri.org/data/aqueduct-40-country-rankings','CC BY 4.0'],
    ['FAO AQUASTAT dams database and country profile (2016)','Dam height, capacity, area, purposes and year; national water and irrigation statistics','Dam profiles, Community hub and the Basins page','https://www.fao.org/aquastat/en/databases/dams','Free with attribution'],
@@ -2006,7 +2017,7 @@ function buildData(){
    <li>Flood-watch normals use 1991–2020 GloFAS reanalysis at each point in a 15-day window around each date. GloFAS is a model at about 5 km resolution: it is good at large rivers and seasonal patterns and weak at small streams, urban drainage and dam operations.</li>
    <li>River lines are simplified to about 500 m, reservoir outlines to about 150 m and roads to about 200 m for display.</li>
    <li>Major roads are OpenStreetMap expressways, trunk and primary roads, joined by route number. They show how places connect, not road condition or seasonal access; volunteer mapping is more complete around cities than in rural areas.</li></ul>
-  <h3>Updates</h3><p>A scheduled job re-downloads every source each Monday and rebuilds the data; a second job refreshes the flood alerts, forecasts, NiMet warnings and 3-day forecasts, and the flood history every hour (NiMet’s seasonal rainfall prediction daily), and a third job refreshes the aquifer map, state water-stress rankings, FAO dam records and donor projects each month, and the flood watch page fetches NiMet warnings, GDACS events and GEOGLOWS river forecasts live and re-checks them every 15 minutes while it is open; river flows, weather and nearby photos are fetched live when you open a profile. Hand-written content (basins, groundwater, agencies) lives in <a href="data/curated.json">curated.json</a> with its sources. Each release is versioned; cite the version you used.</p>
+  <h3>Updates</h3><p>A scheduled job re-downloads every source each Monday and rebuilds the data; a second job refreshes the flood alerts, forecasts, NiMet warnings and 3-day forecasts, and the flood history every hour (NiMet’s seasonal rainfall prediction daily), and a third job refreshes the aquifer map, state water-stress rankings, FAO dam records, donor projects, oil spills, water-point status, water conflicts and WASH health figures each month, and the flood watch page fetches NiMet warnings, GDACS events and GEOGLOWS river forecasts live and re-checks them every 15 minutes while it is open; river flows, weather and nearby photos are fetched live when you open a profile. Hand-written content (basins, groundwater, agencies) lives in <a href="data/curated.json">curated.json</a> with its sources. Each release is versioned; cite the version you used.</p>
   <h3>Known gaps</h3><ul><li>${unnamed} reservoirs are still unnamed and ${F.filter(f=>f.c===1).length} UNICEF-list dams are not precisely located.</li><li>Small earth dams, community ponds and many boreholes are missing; the GRID3 water-point survey did not cover every state.</li><li>Hydropower capacity is not recorded for most dams in GDW; newer schemes such as Zungeru are added from Wikipedia.</li><li>The eight hydrological areas are described but not drawn: their official boundaries are not published as open data. The Basins layer shows HydroBASINS watersheds instead.</li></ul>
   <h3>Corrections</h3><p>Water agencies, RBDAs, researchers and community monitors can send corrections through the Community hub (choose “Data correction”) or on <a href="https://github.com/${CONFIG.issuesRepo}/issues" target="_blank" rel="noopener">GitHub</a>. Please include a source.</p>`;
   addReportSources();
@@ -2168,6 +2179,8 @@ async function floodOverlay(k){
   if(k==='nimetfc')return nimetFcOverlay();
   if(k==='aquifers')return aquiferOverlay();
   if(k==='wstress')return stressOverlay();
+  if(k==='oilspill')return spillOverlay();
+  if(k==='wpfunc')return wpFuncOverlay();
   if(k==='glofas'){await fwData();const g=L.layerGroup();
     if(LIVE)L.tileLayer.wms(GLOFAS_WMS,{layers:'FloodSummary1_30',format:'image/png',transparent:true,version:'1.3.0',time:((FW.glofas||{}).time||'')+'',opacity:.85,attribution:'Flood forecasts: Copernicus EMS GloFAS'}).addTo(g);
     glofasRows().forEach(p=>{if(p.la==null)return;const c=ALERTC[p.alert]||((p.p2||0)>0?'var(--s1)':'var(--s0)');L.circleMarker([p.la,p.lo],{renderer:canvas,radius:6,color:css('--panel'),weight:1.5,fillColor:css(c.slice(4,-1)),fillOpacity:.95})
@@ -2549,6 +2562,133 @@ function x9Atlases(){return`<h3>Other water atlases and profiles for Nigeria</h3
  <div><b><a href="https://ndcd.ng/by/mtef-sector/21" target="_blank" rel="noopener">Nigeria Development Cooperation Dashboard</a></b><span>Donor-funded projects. Used here: the water and sanitation projects on the Community hub.</span></div>
  <div><b><a href="https://wateractionhub.org/geos/country/161/d/nigeria/" target="_blank" rel="noopener">CEO Water Mandate Water Action Hub</a></b><span>Self-reported company and NGO water projects; useful for finding partners.</span></div>
  <div><b><a href="https://ourworldindata.org/water-use-stress" target="_blank" rel="noopener">Our World in Data: water use and stress</a></b><span>Global comparisons of withdrawals and water stress.</span></div></div>`}
+</script>
+<script>
+/* ---------- Water pollution and water security (October 2026): NOSDRA oil spills, WPDx water points, Pacific Institute water conflicts,
+   WASH-attributable deaths (SDG 3.9.2), reported cholera, WASHNORM 2021, UNICEF water vulnerability, UNEP Ogoniland, MSF Zamfara ---------- */
+const R10={
+ nos:{s:'NOSDRA via Nigerian Oil Spill Monitor',c:'National Oil Spill Detection and Response Agency (NOSDRA). Oil spill incident register, published by the Nigerian Oil Spill Monitor (accessed October 2026).',u:'https://oilspillmonitor.ng'},
+ wpdx:{s:'WPDx',c:'Water Point Data Exchange (WPDx+). Nigeria records (accessed October 2026).',u:'https://www.waterpointdata.org'},
+ pi:{s:'Pacific Institute',c:'Pacific Institute. Water Conflict Chronology (accessed October 2026).',u:'https://www.worldwater.org/water-conflict/'},
+ wn:{s:'WASHNORM 2021',c:'Federal Ministry of Water Resources, National Bureau of Statistics and UNICEF (2022). Water, Sanitation and Hygiene National Outcome Routine Mapping (WASHNORM) 2021: infographics.',u:'https://www.unicef.org/nigeria/media/5956/file/2021WASHNORM%20Infographics.pdf'},
+ uni:{s:'UNICEF Nigeria, March 2021',c:'UNICEF Nigeria (22 March 2021). Nearly one third of Nigerian children do not have enough water to meet their daily needs. Press release.',u:'https://www.unicef.org/nigeria/press-releases/nearly-one-third-nigerian-children-do-not-have-enough-water-meet-their-daily-needs'},
+ unep:{s:'UNEP 2011',c:'UNEP (2011). Environmental Assessment of Ogoniland. United Nations Environment Programme, Nairobi.',u:'https://www.unep.org/topics/disasters-and-conflicts/country-presence/nigeria/environmental-assessment-ogoniland-report'},
+ msf:{s:'MSF 2012',c:'Médecins Sans Frontières (2012). Lead poisoning crisis in Zamfara State, northern Nigeria.',u:'https://www.doctorswithoutborders.org/latest/lead-poisoning-crisis-zamfara-state-northern-nigeria'},
+ ncdc:{s:'NCDC 2021 figures, reported by NAN',c:'Nigeria Centre for Disease Control, 2021 epidemiological week 52 cholera figures, as reported by the News Agency of Nigeria (January 2022).',u:'https://gazettengr.com/cholera-killed-3604-nigerians-in-2021-says-ncdc/'},
+ owid:{s:'Our World in Data',c:'Our World in Data. Number of reported cases of cholera (WHO data).',u:'https://ourworldindata.org/grapher/number-of-reported-cases-of-cholera'},
+ sdg:{s:'UN SDG database',c:'United Nations Statistics Division, Global SDG Indicators Database (WHO Global Health Observatory figures).',u:'https://unstats.un.org/sdgs/dataportal'},
+ jones:{s:'Jones et al. 2021',c:'Jones, E.R., van Vliet, M.T.H., Qadir, M. and Bierkens, M.F.P. (2021). Country-level and gridded estimates of wastewater production, collection, treatment and reuse. Earth System Science Data 13, 237–254.',u:'https://doi.org/10.1594/PANGAEA.918731'},
+ fao95:{s:'FAO Water Reports 7',c:'FAO (1995). Irrigation in Africa in figures. Water Reports 7. Country profile: Nigeria.',u:'https://www.fao.org/4/v8260b/V8260B1b.htm'},
+};
+const c10=k=>{const R=R10[k];return` <a class="rcite" href="${R.u}" target="_blank" rel="noopener" title="${esc(R.c)}">(${esc(R.s)})</a>`};
+const f10=a=>`<ul class="rfacts">${a.map(x=>`<li>${x[0]}${x[1]?(x[1] in R10?c10(x[1]):c9(x[1],x[2])):''}</li>`).join('')}</ul>`;
+const SPC={sab:['Sabotage or theft','#c0392b'],eqf:['Equipment failure','#e67e22'],cor:['Corrosion','#8e6c3a'],ome:['Operational or maintenance error','#8e44ad'],ytd:['Cause not yet determined','#7f8c8d'],mys:['Mystery spill','#34495e'],other:['Other','#95a5a6'],'':['Not stated','#bdc3c7']};
+const SPK={cr:'Crude oil',ga:'Gas',re:'Refined product',co:'Condensate',ch:'Chemical',no:'No spill found',other:'Other','':'Not stated'};
+const SPH={la:'Land',sw:'Swamp',of:'Offshore',ss:'Seasonal swamp',iw:'Inland water',ns:'Near shore',other:'Other','':'Not stated'};
+const bbl=v=>v==null?'not given':fmt.format(Math.round(v))+' barrels';
+
+/* ---------- map layers ---------- */
+async function spillOverlay(){const O=await x9('oilspills.json');const g=L.layerGroup();if(!O){toast('Oil spill records could not be loaded');return g}
+  const r=L.canvas({padding:.2,tolerance:3});
+  O.inc.forEach(p=>{const c=(SPC[p[3]]||SPC.other)[1];L.circleMarker([p[0],p[1]],{renderer:r,radius:p[5]>=100?4.5:p[5]>=10?3.2:2.2,stroke:false,fillColor:c,fillOpacity:.7})
+    .bindTooltip(`<b>Oil spill${p[2]?', '+p[2]:''}</b>${p[7]?' · '+esc(p[7]):''}<br>${esc((SPC[p[3]]||SPC.other)[0])} · ${esc(SPK[p[4]]||'')} · ${esc(SPH[p[6]]||'')}<br>Estimated quantity: ${bbl(p[5])}<br>Operator: ${esc(O.comp[p[8]]||'')}<br><span style="font-size:11px;opacity:.75">NOSDRA register via oilspillmonitor.ng</span>`,{className:'tip'}).addTo(g)});
+  toast(fmt.format(O.inc.length)+' oil spill locations loaded (NOSDRA)');return g}
+const WPK=['#1a9850','#91cf60','#fee08b','#fc8d59','#d73027'];const wpCol=p=>p==null?'#bdbdbd':WPK[Math.min(4,Math.floor(p/12.5))];
+const wpShare=s=>s&&s.y+s.n>0?s.n/(s.y+s.n)*100:null;
+async function wpFuncOverlay(){const W=await x9('wpdx.json');const g=L.layerGroup();if(!W){toast('Water point records could not be loaded');return g}
+  (DATA.st||[]).forEach(s=>{const q=W.st[s.n];const p=wpShare(q);L.geoJSON({type:'Feature',geometry:{type:s.t,coordinates:s.g}},{style:{color:css('--panel'),weight:1,fillColor:wpCol(p),fillOpacity:.72}})
+    .bindTooltip(`<b>${esc(s.n)}</b><br>${q?`Water points not working when last visited: <b>${fmt1.format(p)}%</b><br>${fmt.format(q.n)} not working, ${fmt.format(q.y)} working${q.u?`, ${fmt.format(q.u)} status unknown`:''}`:'No WPDx records'}<br><span style="font-size:11px;opacity:.75">WPDx; most records are from 2015–2018 surveys</span>`,{className:'tip',sticky:true}).addTo(g)});
+  return g}
+
+/* ---------- the page ---------- */
+async function buildWq(){
+  const host=$('#wq');host.innerHTML='<h2 class="title">Water pollution and water security</h2><p class="lede">Loading…</p>';
+  const [O,W,C,H,Q]=await Promise.all(['oilspills.json','wpdx.json','conflicts.json','health.json','aqueduct.json'].map(x9));
+  const S=DATA.sdg||{};const last=k=>{const s=S[k];if(!s)return null;const b=Object.values(s.by)[0]||[];return b.length?b[b.length-1]:null};
+  const cards=[];const mk=o=>{const c=card(Object.assign({page:'wq'},o));cards.push(c);return c.html};
+  const mapBtn=(id,k,t)=>`<button class="btn sm" id="${id}" data-k="${k}" type="button">${t}</button>`;
+  let h=`<h2 class="title">Water pollution and water security</h2><p class="lede">What is getting into Nigeria’s water, who goes without enough safe water, and where the room for improvement lies. Figures come from the oil spill register kept by NOSDRA, the Water Point Data Exchange, national WASH surveys, WHO and UNICEF, UNEP and the Pacific Institute; each figure links to its source.</p>`;
+
+  /* ---- pollution profile ---- */
+  h+=`<h3 class="sh">Pollution profile</h3>`;
+  const amb=last('EN_H2O_WBAMBQ'),wwt=last('EN_WWT_WWDS'),wash=(H&&H.sdg||[]).find(x=>x.series==='SH_STA_WASHARI');
+  if(O){const A=O.agg,tot=Object.values(A.cause).reduce((a,b)=>a+b[0],0),sab=(A.cause.sab||[0])[0],vol=Object.values(A.cause).reduce((a,b)=>a+b[1],0),nd=Object.entries(A.state).filter(([k])=>/Rivers|Bayelsa|Delta|Akwa Ibom/.test(k)).reduce((a,b)=>a+b[1][0],0);
+    h+=`<div class="kpis"><div class="kpi"><b>${fmt.format(O.n)}</b><span>oil spill incidents on the NOSDRA register</span><small>${fmt.format(O.inc.length)} with map coordinates</small></div>
+      <div class="kpi"><b>${fmt.format(Math.round(vol/1000))}k</b><span>barrels reported spilled</span><small>estimates; many records give no quantity</small></div>
+      <div class="kpi"><b>${Math.round(sab/tot*100)}%</b><span>of incidents put down to sabotage or theft</span><small>as recorded by NOSDRA</small></div>
+      <div class="kpi"><b>${Math.round(nd/tot*100)}%</b><span>in Rivers, Bayelsa, Delta and Akwa Ibom</span></div>
+      ${amb?`<div class="kpi"><b>${Math.round(amb[1])}%</b><span>of monitored water bodies with good ambient water quality</span><small>SDG 6.3.2, ${amb[0]}</small></div>`:''}
+      ${wwt?`<div class="kpi"><b>${Math.round(wwt[1])}%</b><span>of household wastewater safely treated</span><small>SDG 6.3.1, ${wwt[0]}</small></div>`:''}</div>`;
+    const Y=Object.entries(A.year).map(([y,v])=>[+y,v[0],v[1]]).filter(x=>x[0]>=2006).sort((a,b)=>a[0]-b[0]);const yNow=+O.built.slice(0,4);
+    const ST=Object.entries(A.state).filter(([k])=>k!=='Not stated').sort((a,b)=>b[1][0]-a[1][0]).slice(0,14);
+    const CA=Object.entries(A.cause).sort((a,b)=>b[1][0]-a[1][0]);const CO=Object.entries(A.comp).sort((a,b)=>b[1][0]-a[1][0]).slice(0,12);const HB=Object.entries(A.hab).sort((a,b)=>b[1][0]-a[1][0]);
+    h+=`<p class="lede" style="margin-bottom:12px">Oil spills are the best-recorded source of water pollution in Nigeria. Most fall on land and in the swamps and creeks of the Niger Delta, where people fish and draw drinking water. ${mapBtn('wq-spmap','oilspill','Show oil spills on the map')}</p>
+     <div class="grid2">${mk({t:'Oil spill incidents a year',s:`Incidents reported to NOSDRA, ${Y[0][0]}–${yNow}. ${yNow} is part of a year, and the latest years may be incomplete while reports are processed. Reporting also improved over time, so early years may be undercounted.`,src:`<a href="${R10.nos.u}" target="_blank" rel="noopener">NOSDRA register via Nigerian Oil Spill Monitor</a>`,file:'oil_spills_by_year',
+        draw:el=>cols(el,Y.map(x=>({l:String(x[0]),v:x[1],c:x[0]===yNow?'var(--g2)':null})),{f:v=>fmt.format(v)+' incidents'}),rows:()=>Y.map(x=>({year:x[0],incidents:x[1],barrels_reported:x[2]}))})}
+      ${mk({t:'Oil spill incidents by state',s:'All years. About one record in eight names no state.',src:`<a href="${R10.nos.u}" target="_blank" rel="noopener">NOSDRA register via Nigerian Oil Spill Monitor</a>`,file:'oil_spills_by_state',
+        draw:el=>hbar(el,ST.map(([k,v])=>({l:k,v:v[0],t:bbl(v[1])+' reported'})),{rh:18,f:v=>fmt.format(v)}),rows:()=>ST.map(([k,v])=>({state:k,incidents:v[0],barrels_reported:v[1]}))})}
+      ${mk({t:'What caused the spills',s:'Cause as recorded on the register, all years.',src:`<a href="${R10.nos.u}" target="_blank" rel="noopener">NOSDRA register via Nigerian Oil Spill Monitor</a>`,file:'oil_spills_by_cause',
+        draw:el=>hbar(el,CA.map(([k,v])=>({l:(SPC[k]||SPC.other)[0],v:v[0],c:(SPC[k]||SPC.other)[1],t:bbl(v[1])+' reported'})),{lw:210,f:v=>fmt.format(v)}),rows:()=>CA.map(([k,v])=>({cause:(SPC[k]||SPC.other)[0],incidents:v[0],barrels_reported:v[1]}))})}
+      ${mk({t:'Where the oil went',s:'Habitat of the spill site, all years.',src:`<a href="${R10.nos.u}" target="_blank" rel="noopener">NOSDRA register via Nigerian Oil Spill Monitor</a>`,file:'oil_spills_by_habitat',
+        draw:el=>hbar(el,HB.map(([k,v])=>({l:SPH[k]||k,v:v[0],t:bbl(v[1])+' reported'})),{lw:130,f:v=>fmt.format(v)}),rows:()=>HB.map(([k,v])=>({habitat:SPH[k]||k,incidents:v[0],barrels_reported:v[1]}))})}
+      ${mk({t:'Operators with the most reported incidents',s:'Company or agency named on the register, all years. Operators of large pipeline networks report more incidents, including spills caused by others.',src:`<a href="${R10.nos.u}" target="_blank" rel="noopener">NOSDRA register via Nigerian Oil Spill Monitor</a>`,file:'oil_spills_by_operator',
+        draw:el=>hbar(el,CO.map(([k,v])=>({l:k,v:v[0],t:bbl(v[1])+' reported'})),{lw:170,rh:18,f:v=>fmt.format(v)}),rows:()=>CO.map(([k,v])=>({operator:k,incidents:v[0],barrels_reported:v[1]}))})}
+      ${cholCard()}</div>`;
+  }
+  function cholCard(){const ch=H&&H.cholera;if(!ch)return'';const D=ch.data.filter(d=>d[0]>=1990);
+    return mk({t:'Reported cholera cases a year',s:'Cholera spreads through water and food contaminated with faeces. 2021 was the worst year on record: 111,062 suspected cases and 3,604 deaths.',src:`<a href="${R10.owid.u}" target="_blank" rel="noopener">Our World in Data</a> (WHO); 2021 deaths: <a href="${R10.ncdc.u}" target="_blank" rel="noopener">NCDC via NAN</a>`,file:'cholera_cases_reported',
+      draw:el=>cols(el,D.map(d=>({l:String(d[0]),v:d[1]})),{f:v=>fmt.format(v)+' cases'}),rows:()=>D.map(d=>({year:d[0],reported_cases:d[1]}))})}
+  h+=`<div class="box"><h3>Drinking water quality, wastewater and other pollution</h3>${f10([
+    ['In a 2021 national survey, 68% of water sources and 70% of household drinking water tested positive for E. coli, a sign of faecal contamination.','wn'],
+    ['About 70% of Nigerians have at least basic water services, but more than half of those sources are contaminated.','uni'],
+    ...(wash?[[`Unsafe water, sanitation and hygiene are linked to about ${fmt1.format(+wash.value)} deaths per 100,000 people a year (${Math.round(wash.year)}), mostly from diarrhoea (SDG 3.9.2).`,'sdg']]:[]),
+    ...(DATA.ww&&DATA.ww.ng?[[`Towns and cities generated an estimated ${fmt.format(DATA.ww.ng.prod)} million m³ of wastewater in 2015; about ${Math.round(DATA.ww.ng.treat/DATA.ww.ng.prod*100)}% was treated in treatment plants. The SDG 6.3.1 figure above is higher because it also counts septic tanks and other on-site systems.`,'jones']]:[]),
+    ['In Ogoniland (Rivers State), UNEP found families drinking well water with benzene, a carcinogen, at over 900 times the WHO guideline, and a layer of refined oil about 8 cm thick floating on the groundwater at Nisisioken Ogale. It estimated that full recovery could take 25 to 30 years and proposed an initial US$1 billion restoration fund.','unep'],
+    ['In Zamfara State, unsafe artisanal gold-ore processing contaminated villages with lead; an estimated 400 children died before Médecins Sans Frontières began treatment in June 2010, and more than 2,500 children were enrolled in treatment by 2012.','msf'],
+    ['Aquifers in the Niger Delta have problems with sea-water intrusion, iron and pollution, and over-pumping in Lagos and Port Harcourt has drawn sea water inland.','bgs']])}</div>`;
+
+  /* ---- security profile ---- */
+  h+=`<h3 class="sh">Water security profile</h3>`;
+  const safe=last('SH_H2O_SAFE'),stress=last('ER_H2O_STRESS');const nb=Q&&(Q.nga.bws||{}).Tot;
+  let wt=null;if(W){wt=Object.values(W.st).reduce((a,b)=>({y:a.y+b.y,n:a.n+b.n,u:a.u+b.u}),{y:0,n:0,u:0})}
+  h+=`<div class="kpis">${safe?`<div class="kpi"><b>${Math.round(safe[1])}%</b><span>of people use safely managed drinking water</span><small>SDG 6.1.1, ${safe[0]}</small></div>`:''}
+    <div class="kpi"><b>26.5 million</b><span>children (29%) live with high or extremely high water vulnerability</span><small>UNICEF, 2021</small></div>
+    <div class="kpi"><b>9 L</b><span>average water a person gets each day where there is a source</span><small>UNICEF, 2021</small></div>
+    ${wt?`<div class="kpi"><b>${Math.round(wt.n/(wt.y+wt.n)*100)}%</b><span>of recorded water points not working at the last visit</span><small>WPDx, ${fmt.format(wt.y+wt.n)} points with a status</small></div>`:''}
+    ${stress?`<div class="kpi"><b>${Math.round(stress[1])}%</b><span>of available freshwater withdrawn (national water stress)</span><small>SDG 6.4.2, ${stress[0]}</small></div>`:''}
+    ${nb?`<div class="kpi"><b>${esc(nb[2].replace(/\s*\(.*\)/,''))}</b><span>baseline water stress, WRI Aqueduct</span><small>a different method from SDG 6.4.2; state ranking on the Basins page</small></div>`:''}</div>`;
+  if(W){const ST=Object.entries(W.st).map(([k,v])=>({k,v,p:wpShare(v)})).filter(x=>x.p!=null).sort((a,b)=>b.p-a.p);
+    const T=Object.entries(W.tech).filter(([k])=>k!=='Unknown').map(([k,v])=>({k,v,p:wpShare(v)})).sort((a,b)=>b.p-a.p);
+    const yrs=Object.entries(W.years).sort((a,b)=>b[1]-a[1]).slice(0,2).map(x=>x[0]).sort();
+    h+=`<p class="lede" style="margin-bottom:12px">A water point that has broken down leaves a community without water as surely as one never built. The Water Point Data Exchange holds ${fmt.format(+W.range.n)} Nigerian water points; most were surveyed in ${yrs.join(' and ')}, so the picture is dated, but it shows where repairs matter most. ${mapBtn('wq-wpmap','wpfunc','Show on the map')}</p>
+     <div class="grid2">${mk({t:'Water points not working, by state',s:'Share of water points with a known status that were not working when last visited. Hover for counts.',src:`<a href="${R10.wpdx.u}" target="_blank" rel="noopener">Water Point Data Exchange</a>`,file:'water_points_not_working_by_state',
+        draw:el=>hbar(el,ST.map(x=>({l:x.k,v:x.p,c:wpCol(x.p),t:`${fmt.format(x.v.n)} not working, ${fmt.format(x.v.y)} working${x.v.u?`, ${fmt.format(x.v.u)} unknown`:''}`})),{rh:17,f:v=>fmt1.format(v)+'%'}),rows:()=>ST.map(x=>({state:x.k,not_working:x.v.n,working:x.v.y,status_unknown:x.v.u,share_not_working_pct:+x.p.toFixed(1)}))})}
+      ${mk({t:'Breakdowns by type of pump',s:'Share not working at the last visit. Motorised pumps break down more often than hand pumps.',src:`<a href="${R10.wpdx.u}" target="_blank" rel="noopener">Water Point Data Exchange</a>`,file:'water_points_not_working_by_technology',
+        draw:el=>hbar(el,T.map(x=>({l:x.k,v:x.p,t:`${fmt.format(x.v.n)} of ${fmt.format(x.v.y+x.v.n)}`})),{lw:140,f:v=>fmt1.format(v)+'%'}),rows:()=>T.map(x=>({technology:x.k,not_working:x.v.n,working:x.v.y,share_not_working_pct:+x.p.toFixed(1)}))})}</div>`;
+  }
+  h+=`<div class="box"><h3>Access, reliability and drought</h3>${f10([
+    ['In 2021, 67% of people used at least a basic water service, but only 10% had basic water, sanitation and hygiene services together; 23% (about 48 million people) practised open defecation.','wn'],
+    ['77% of water points were working at the time of the 2021 survey; rural households used on average 9–10 litres per person a day, well below what is needed for drinking, cooking and hygiene.','wn'],
+    ['Someone in Lagos is about three times as likely to use a basic water service as someone in Sokoto.','wn'],
+    ['More than 86% of Nigerians lack a safely managed drinking water source, and nearly one child in three lacks enough water to meet daily needs.','uni'],
+    ['Northern states face the highest water stress and drought risk, and climate change is expected to reduce groundwater recharge most in the Niger North and Chad basins. See the Basins page for state rankings and the Flood watch page for flood risk.','bgs']])}</div>`;
+  if(C){const E=C.ev.slice().reverse();
+    h+=`<div class="box"><h3>Conflict over water <small>${E.length} events that involve Nigeria</small></h3><p style="margin:0 0 10px">Competition for water, especially between farmers and herders and around Lake Chad, is one of the drivers of violence in Nigeria. The Pacific Institute records events where water was a trigger, a weapon or a casualty.${c10('pi')}</p>
+     <div class="tbl-wrap" style="max-height:340px"><table class="dt"><thead><tr><th>When</th><th>Event</th><th>Water was</th></tr></thead><tbody>${E.map(e=>`<tr><td>${esc(e.d)}</td><td>${esc(e.h)}</td><td>${esc(e.type.toLowerCase().replace(/casualty/,'a casualty').replace(/trigger/,'a trigger').replace(/weapon/,'a weapon'))}</td></tr>`).join('')}</tbody></table></div></div>`}
+
+  /* ---- potential ---- */
+  h+=`<h3 class="sh">Potential: where improvement could come from</h3><div class="box">${f10([
+    ['Nigeria has an estimated 286.2 billion m³ of renewable water a year; withdrawals in 2010 were about 12.5 billion m³.','fao'],
+    ['Aquifers are recharged with about 155.8 billion m³ a year, least in the north-west and the Chad basin. See the Basins page for aquifers and borehole yields.','bgs'],
+    ...(wt?[[`Repairing broken water points could restore supply quickly: WPDx records ${fmt.format(wt.n)} water points that were not working at their last visit, most of them hand-pump and motorised boreholes.`,'wpdx']]:[]),
+    ['Irrigation potential was estimated in the 1990s at about 3.14 million hectares. See the Irrigation page for schemes and dams.','fao95'],
+    ...(DATA.ww&&DATA.ww.ng?[[`Wastewater is a largely untapped resource: of about ${fmt.format(DATA.ww.ng.prod)} million m³ generated in 2015, roughly ${fmt.format(DATA.ww.ng.treat)} million m³ was treated and almost none reused.`,'jones']]:[]),
+    ['Rainwater harvesting from roofs can add to household supply; the Rain page estimates what a roof can collect in each state.',null],
+    ['Cleaning up oil-polluted land, creeks and groundwater, as UNEP set out for Ogoniland, is a precondition for safe local water in much of the Niger Delta.','unep'],
+    ['Cholera outbreaks follow contaminated water: in 2021, 33 states and the FCT reported cases. Bauchi, Jigawa, Kano and Zamfara reported the most cases, which makes them priorities for safe water, sanitation and hygiene.','ncdc']])}</div>`;
+  host.innerHTML=h;cards.forEach(c=>c.mount());
+  $$('#wq [data-k]').forEach(b=>b.onclick=()=>{const k=b.dataset.k;location.hash='map';setTimeout(()=>{if(!ovl[k])toggleOverlay(k)},150)});
+}
 </script>
 </body>
 </html>
