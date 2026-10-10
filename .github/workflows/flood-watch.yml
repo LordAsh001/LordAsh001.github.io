@@ -1,0 +1,45 @@
+# Keeps the flood watch on the Nigeria Water Resources Atlas fresh between the weekly full rebuilds:
+#   - GloFAS official flood alerts at reporting points (Copernicus Emergency Management Service)
+#   - GEOGLOWS 15-day river forecasts (ECMWF) at the atlas gauges, and rivers in Nigeria forecast above flood thresholds
+#   - GDACS flood events for Nigeria (European Commission JRC and UN OCHA)
+#   - once a day: the flood history (Dartmouth Flood Observatory archive, all GDACS events since 1985, Wikipedia summaries)
+# Runs every hour; it only commits when something has changed. The web page also fetches GDACS and GEOGLOWS live.
+name: Refresh flood watch
+
+on:
+  schedule:
+    - cron: "23 * * * *"
+  workflow_dispatch:
+    inputs:
+      full:
+        description: "Also rebuild the flood history now"
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: flood-watch
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install helpers
+        run: pip install pillow shapely
+      - name: Fetch flood alerts, forecasts and history
+        env:
+          WA_FULL: ${{ inputs.full && '1' || '0' }}
+        run: python3 .github/scripts/water_atlas_floodwatch.py
+      - name: Commit if anything changed
+        run: |
+          if [ -z "$(git status --porcelain water-atlas/data)" ]; then echo "Nothing new."; exit 0; fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add water-atlas/data
+          git commit -m "Refresh flood watch"
+          for i in 1 2 3; do git pull --rebase && git push && break; sleep 5; done
