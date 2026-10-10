@@ -7,7 +7,7 @@ Writes two files:
   water-atlas/data/floodhistory.json – flood history of Nigeria: Dartmouth Flood Observatory archive (1985 onwards),
                                        every GDACS flood event for Nigeria with reported impacts, Wikipedia summaries
                                        of major floods. Rebuilt once a day (or when WA_FULL=1).
-  floodwatch.json also carries NiMet's public warnings (CAP feed) and its latest forecast bulletins.
+  floodwatch.json also carries NiMet's public warnings (CAP feed).
   water-atlas/data/srp.json          – NiMet Seasonal Rainfall Prediction by LGA (onset, end, length, total). Daily check.
 A source that fails keeps its previous values, so one outage never empties the page.
 Files are only rewritten when their content changes, so quiet hours make no commit.
@@ -319,54 +319,9 @@ def nimet_cap(prev):
     out.sort(key=lambda a: a.get("sent") or "", reverse=True)
     return out
 
-def nimet_bulletins(prev):
-    """The bulletin page lists the latest ~10 items in a JS array; older ones are kept from previous runs."""
-    import html as _h
-    # nimet.gov.ng answers a first visit with a 307 that sets a cookie, so keep cookies across the redirect.
-    from http.cookiejar import CookieJar
-    op = urllib.request.build_opener(urllib.request.HTTPCookieProcessor(CookieJar()))
-    hdr = {"User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126 Safari/537.36 nigeria-water-atlas",
-           "Accept": "text/html,application/xhtml+xml", "Accept-Language": "en"}
-    h, err = None, None
-    for i in range(3):
-        try:
-            with op.open(urllib.request.Request(NIMET + "weather_forecast_bulletin", headers=hdr), timeout=60) as r:
-                h = r.read().decode("utf-8", "replace"); break
-        except Exception as e:
-            err = e; time.sleep(4 * (i + 1))
-    if h is None:
-        try:  # record what the site answered, to see why the page could not be read
-            class NoRedir(urllib.request.HTTPRedirectHandler):
-                def redirect_request(self, *a, **k): return None
-            try: urllib.request.build_opener(NoRedir).open(urllib.request.Request(NIMET + "weather_forecast_bulletin", headers=hdr), timeout=30)
-            except urllib.error.HTTPError as e:
-                log("NiMet bulletin page answered", e.code, "Location:", e.headers.get("Location"), "Server:", e.headers.get("Server"),
-                    "Cookies:", [c.split("=")[0] for c in e.headers.get_all("Set-Cookie") or []], "Body:", e.read(300))
-        except Exception as e2: log("diagnostic failed", repr(e2))
-        raise err
-    m = re.search(r"var products\s*=\s*(\[[\s\S]*?\]\]);", h)
-    if not m: raise RuntimeError("bulletin list not found")
-    keep = {b["id"]: b for b in ((prev.get("nimet") or {}).get("bulletins") or [])}
-    for r in json.loads(m.group(1)):
-        try:
-            bid = int(r[0])
-            desc = re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", _h.unescape(r[2] or ""))).strip()
-            keep[bid] = {"id": bid, "t": (r[1] or "").strip(), "type": (r[-1] or "").strip() or None, "date": r[11] if len(r) > 11 else None,
-                         "d": desc[:600], "img": (NIMET + "admin/" + r[5]) if r[5] else None, "pdf": (NIMET + "admin/" + r[3]) if r[3] else None,
-                         "u": NIMET + "weather_forecast_bulletin_detail?id=%d" % bid}
-        except Exception: continue
-    out = sorted(keep.values(), key=lambda b: (b.get("date") or "", b["id"]), reverse=True)
-    flood = [b for b in out if re.search(r"flood|rain", (b.get("type") or "") + " " + b["t"], re.I)][:6]
-    out = out[:12] + [b for b in flood if b not in out[:12]]
-    if not out: raise RuntimeError("no bulletins parsed")
-    return out
-
 def nimet(prev):
-    p = prev.get("nimet") or {}
-    a = step("NiMet CAP alerts", nimet_cap, prev)
-    b = step("NiMet bulletins", nimet_bulletins, prev)
-    if a is None and b is None: return None
-    return {"alerts": a if a is not None else p.get("alerts", []), "bulletins": b if b is not None else p.get("bulletins", [])}
+    # Forecast bulletins on nimet.gov.ng sit behind a JavaScript bot check, so they are linked on the page, not collected.
+    return {"alerts": nimet_cap(prev)}
 
 def srp():
     d = http(SRP_API, timeout=120)
@@ -439,7 +394,7 @@ def main():
         v = step(key, fn, prev)
         live[key] = v if v is not None else prev.get(key)
         if v is None and prev.get(key): live[key]["stale"] = True
-    live["log"] = [l for l in LOG if l.startswith(("FAILED", "NiMet bulletin page"))]
+    live["log"] = [l for l in LOG if l.startswith("FAILED")]
     save_if_changed(LIVE_F, live, ignore=("checked", "log"))
     prevh = load(HIST_F)
     if os.environ.get("WA_FULL") == "1" or not prevh or prevh.get("built") != NOW.strftime("%Y-%m-%d"):
