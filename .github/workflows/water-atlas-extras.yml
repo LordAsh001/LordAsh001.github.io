@@ -1,0 +1,43 @@
+# Reference datasets for the Nigeria Water Resources Atlas that change slowly:
+#   BGS Africa Groundwater Atlas aquifer map, FAO AQUASTAT dams, WRI Aqueduct 4.0 state rankings,
+#   Our World in Data water series, and donor-funded water projects from the Nigeria Development Cooperation Dashboard.
+# Runs on the 3rd of each month; it only commits when something has changed.
+name: Refresh water atlas reference data
+
+on:
+  schedule:
+    - cron: "41 4 3 * *"
+  workflow_dispatch:
+    inputs:
+      only:
+        description: "Comma-separated list of sources to run (aquifers,fao_dams,aqueduct,owid,ndcd); empty = all"
+        type: string
+        default: ""
+
+permissions:
+  contents: write
+
+concurrency:
+  group: water-atlas-extras
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install helpers
+        run: pip install pyshp shapely openpyxl
+      - name: Fetch reference datasets
+        env:
+          WA_ONLY: ${{ inputs.only }}
+        run: python3 .github/scripts/water_atlas_extras.py
+      - name: Commit if anything changed
+        run: |
+          if [ -z "$(git status --porcelain water-atlas/data)" ]; then echo "Nothing new."; exit 0; fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add water-atlas/data
+          git commit -m "Refresh water atlas reference data"
+          for i in 1 2 3; do git pull --rebase && git push && break; sleep 5; done
