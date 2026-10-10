@@ -2253,6 +2253,7 @@ const fcRank=c=>/heavy/i.test(c||'')?3:/rain|shower|drizzle/i.test(c||'')?2:/thu
 const FCC=['var(--s0)','var(--s1)','var(--s2)','var(--s3)'],FCL=['Dry or cloudy','Thunderstorms','Rain or thunderstorms with rain','Heavy rain'];
 function renderForecast(){
   const el=$('#nm-fc');if(!el)return;const F=((FW||{}).nimet||{}).fc;if(!F||!(F.st||[]).length){el.innerHTML='';return}
+  if(fcSame(F)){el.innerHTML=`<h4 class="h4" style="margin-top:14px">NiMet 3-day station forecasts</h4><p class="sm-note" style="margin-top:0">On ${dshort(F.at)} NiMet’s Weather API returned the same forecast for all ${F.st.length} stations, which looks like placeholder data, so it is not shown. It will appear here automatically once the stations differ.</p>`;return}
   const S=[...F.st].sort((a,b)=>Math.max(...b.d.map(d=>fcRank(d[1])))-Math.max(...a.d.map(d=>fcRank(d[1])))||a.n.localeCompare(b.n));
   const wet=S.filter(x=>x.d.some(d=>fcRank(d[1])>=2)).length,days=(S[0]||{d:[]}).d.map(d=>d[0]);
   el.innerHTML=`<h4 class="h4" style="margin-top:14px">NiMet 3-day forecast at ${S.length} stations <small class="nm-t">issued ${dshort(F.at)}</small></h4>
@@ -2261,7 +2262,9 @@ function renderForecast(){
   $$('#nm-fc [data-lay]').forEach(b=>b.onclick=()=>{location.hash='map';setTimeout(()=>{if(!ovl.nimetfc)toggleOverlay('nimetfc')},150)});
   $('#nm-fc-csv').onclick=()=>saveFile('nimet_3day_forecast_'+F.at+'.csv',toCSV(S.flatMap(x=>x.d.map(d=>({station:x.n,state:x.st,lga:x.lga,day:d[0],condition:d[1],max_c:d[2],min_c:d[3]})))),'text/csv');
 }
-async function nimetFcOverlay(){await fwData();const F=((FW||{}).nimet||{}).fc;const g=L.layerGroup();
+const fcSame=F=>F&&F.st.length>3&&new Set(F.st.map(x=>JSON.stringify(x.d))).size===1;
+async function nimetFcOverlay(){await fwData();let F=((FW||{}).nimet||{}).fc;const g=L.layerGroup();
+  if(fcSame(F)){toast('NiMet’s API is returning the same forecast for every station today, so none is shown');return g}
   ((F||{}).st||[]).forEach(x=>{if(x.la==null)return;const r=Math.max(...x.d.map(d=>fcRank(d[1])));L.circleMarker([x.la,x.lo],{renderer:canvas,radius:7,color:css('--panel'),weight:1.5,fillColor:css(FCC[r].slice(4,-1)),fillOpacity:.95})
     .bindTooltip(`<b>${esc(x.n)}</b> (NiMet station, ${esc(x.st||'')})<br>${x.d.map(d=>`${esc(d[0]||'')}: ${esc(d[1]||'–')}${d[2]!=null?` · ${d[2]}°/${d[3]??'–'}°C`:''}`).join('<br>')}`,{className:'tip'}).addTo(g)});
   if(!F)toast('NiMet forecasts are not available yet');return g}
