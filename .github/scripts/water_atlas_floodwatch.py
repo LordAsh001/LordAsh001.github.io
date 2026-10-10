@@ -322,7 +322,19 @@ def nimet_cap(prev):
 def nimet_bulletins(prev):
     """The bulletin page lists the latest ~10 items in a JS array; older ones are kept from previous runs."""
     import html as _h
-    h = http(NIMET + "weather_forecast_bulletin", raw=True, timeout=60).decode("utf-8", "replace")
+    # nimet.gov.ng answers a first visit with a 307 that sets a cookie, so keep cookies across the redirect.
+    from http.cookiejar import CookieJar
+    op = urllib.request.build_opener(urllib.request.HTTPCookieProcessor(CookieJar()))
+    hdr = {"User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126 Safari/537.36 nigeria-water-atlas",
+           "Accept": "text/html,application/xhtml+xml", "Accept-Language": "en"}
+    h, err = None, None
+    for i in range(3):
+        try:
+            with op.open(urllib.request.Request(NIMET + "weather_forecast_bulletin", headers=hdr), timeout=60) as r:
+                h = r.read().decode("utf-8", "replace"); break
+        except Exception as e:
+            err = e; time.sleep(4 * (i + 1))
+    if h is None: raise err
     m = re.search(r"var products\s*=\s*(\[[\s\S]*?\]\]);", h)
     if not m: raise RuntimeError("bulletin list not found")
     keep = {b["id"]: b for b in ((prev.get("nimet") or {}).get("bulletins") or [])}
