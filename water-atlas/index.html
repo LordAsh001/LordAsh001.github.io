@@ -2093,7 +2093,7 @@ const GDC={Red:'#d93b2b',Orange:'#e8891f',Green:'#2e9e44'};
 const rpCol=rp=>rp>=25?'var(--s3)':rp>=5?'var(--s2)':'var(--s1)';
 const dshort=d=>d?new Date(d+(d.length===10?'T12:00:00Z':'')).toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'}):'–';
 let FW=null,FH=null,LIVEFW={gdacs:null,reaches:null,at:null},fwTimer=null;
-async function fwData(force){if(FW&&!force)return FW;try{FW=await (await fetch('data/floodwatch.json'+(force?'?t='+Date.now():''),{cache:force?'no-store':'default'})).json()}catch(e){FW=FW||{}}return FW}
+async function fwData(force){if(FW&&!force)return FW;try{FW=await (await fetch('data/floodwatch.json'+(force?'?t='+Date.now():''),{cache:force?'no-store':'no-cache'})).json()}catch(e){FW=FW||{}}return FW}
 async function fhData(){if(FH)return FH;try{FH=await loadJSON('floodhistory.json')}catch(e){FH={}}return FH}
 async function liveGdacs(){
   const from=new Date(Date.now()-120*864e5).toISOString().slice(0,10),to=new Date(Date.now()+2*864e5).toISOString().slice(0,10);
