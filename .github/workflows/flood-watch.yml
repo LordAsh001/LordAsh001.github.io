@@ -2,6 +2,7 @@
 #   - GloFAS official flood alerts at reporting points (Copernicus Emergency Management Service)
 #   - GEOGLOWS 15-day river forecasts (ECMWF) at the atlas gauges, and rivers in Nigeria forecast above flood thresholds
 #   - GDACS flood events for Nigeria (European Commission JRC and UN OCHA)
+#   - NiMet warnings (CAP feed) and, with the NIMET_API_KEY repository secret, NiMet 3-day station forecasts
 #   - once a day: the flood history (Dartmouth Flood Observatory archive, all GDACS events since 1985, Wikipedia summaries)
 # Runs every hour; it only commits when something has changed. The web page also fetches GDACS and GEOGLOWS live.
 name: Refresh flood watch
@@ -34,6 +35,7 @@ jobs:
       - name: Fetch flood alerts, forecasts and history
         env:
           WA_FULL: ${{ inputs.full && '1' || '0' }}
+          NIMET_API_KEY: ${{ secrets.NIMET_API_KEY }}
         run: python3 .github/scripts/water_atlas_floodwatch.py
       - name: Commit if anything changed
         run: |
