@@ -334,7 +334,16 @@ def nimet_bulletins(prev):
                 h = r.read().decode("utf-8", "replace"); break
         except Exception as e:
             err = e; time.sleep(4 * (i + 1))
-    if h is None: raise err
+    if h is None:
+        try:  # record what the site answered, to see why the page could not be read
+            class NoRedir(urllib.request.HTTPRedirectHandler):
+                def redirect_request(self, *a, **k): return None
+            try: urllib.request.build_opener(NoRedir).open(urllib.request.Request(NIMET + "weather_forecast_bulletin", headers=hdr), timeout=30)
+            except urllib.error.HTTPError as e:
+                log("NiMet bulletin page answered", e.code, "Location:", e.headers.get("Location"), "Server:", e.headers.get("Server"),
+                    "Cookies:", [c.split("=")[0] for c in e.headers.get_all("Set-Cookie") or []], "Body:", e.read(300))
+        except Exception as e2: log("diagnostic failed", repr(e2))
+        raise err
     m = re.search(r"var products\s*=\s*(\[[\s\S]*?\]\]);", h)
     if not m: raise RuntimeError("bulletin list not found")
     keep = {b["id"]: b for b in ((prev.get("nimet") or {}).get("bulletins") or [])}
@@ -430,7 +439,7 @@ def main():
         v = step(key, fn, prev)
         live[key] = v if v is not None else prev.get(key)
         if v is None and prev.get(key): live[key]["stale"] = True
-    live["log"] = [l for l in LOG if l.startswith("FAILED")]
+    live["log"] = [l for l in LOG if l.startswith(("FAILED", "NiMet bulletin page"))]
     save_if_changed(LIVE_F, live, ignore=("checked", "log"))
     prevh = load(HIST_F)
     if os.environ.get("WA_FULL") == "1" or not prevh or prevh.get("built") != NOW.strftime("%Y-%m-%d"):
