@@ -1,6 +1,7 @@
 # Reference datasets for the Nigeria Water Resources Atlas that change slowly:
 #   BGS Africa Groundwater Atlas aquifer map, FAO AQUASTAT dams, WRI Aqueduct 4.0 state rankings,
-#   and donor-funded water projects from the Nigeria Development Cooperation Dashboard.
+#   donor-funded water projects from the Nigeria Development Cooperation Dashboard, NOSDRA oil spills,
+#   WPDx water points, the Pacific Institute water conflict chronology and WASH-related health series.
 # Runs on the 3rd of each month; it only commits when something has changed.
 name: Refresh water atlas reference data
 
@@ -10,7 +11,7 @@ on:
   workflow_dispatch:
     inputs:
       only:
-        description: "Comma-separated list of sources to run (aquifers,fao_dams,aqueduct,ndcd); empty = all"
+        description: "Comma-separated list of sources to run (aquifers,fao_dams,aqueduct,ndcd,oilspills,wpdx,conflicts,health); empty = all"
         type: string
         default: ""
 
