@@ -2,9 +2,8 @@
 
 Writes to water-atlas/data/:
   aquifers.json   – Africa Groundwater Atlas hydrogeology map of Nigeria, 1:5 million (British Geological Survey, CC BY-SA)
-  fao_dams.json   – FAO AQUASTAT dams database, Nigeria sheet
-  aqueduct.json   – WRI Aqueduct 4.0 country and state (province) rankings for Nigeria
-  owid_water.json – Our World in Data series for Nigeria (SDG 6.4.2 water stress, withdrawals, safely managed water and sanitation)
+  fao_dams.json   – FAO AQUASTAT dams database, Nigeria sheet, each record matched to the atlas dam it describes
+  aqueduct.json   – WRI Aqueduct 4.0 country and state (province) rankings for Nigeria: water stress, drought and riverine flood risk
   ndcd_water.json – Nigeria Development Cooperation Dashboard: donor-funded water resources and sanitation projects, by state
 Each source is independent: one failing leaves its previous file in place.
 """
@@ -72,7 +71,33 @@ def fao_dams():
     for r in rows[h + 1:]:
         d = {k: v for k, v in zip(head, r) if k and v not in (None, "")}
         if d.get("Name of dam"): out.append(d)
-    save("fao_dams.json", {"built": NOW, "src": "FAO AQUASTAT dams database, Nigeria", "u": "https://www.fao.org/aquastat/en/databases/dams", "head": head, "dams": out})
+    match_dams(out)
+    save("fao_dams.json", {"built": NOW, "src": "FAO AQUASTAT dams database, Nigeria", "u": "https://www.fao.org/aquastat/en/databases/dams", "dams": out})
+
+def match_dams(fao):
+    """Attach the id of the atlas dam each FAO record describes: names that agree (allowing for spelling), or nearly agree within 15 km.
+    Where FAO lists the same dam twice, the record closest to the atlas position keeps the match."""
+    import difflib, math
+    atlas = json.loads((DATA / "atlas.json").read_text())
+    dams = [f for f in atlas.get("f", []) if f.get("c") in (0, 1)]
+    norm = lambda s: re.sub(r"\s+", " ", re.sub(r"\b(dam|dams|reservoir|lake|gorge|barrage|polder)\b", "", re.sub(r"\(.*?\)", "", str(s or "").lower())).replace("-", " ")).strip()
+    km = lambda a, b, c, d: 111 * math.hypot(a - c, (b - d) * math.cos(math.radians(a)))
+    best = {}
+    for k, d in enumerate(fao):
+        names = [norm(d.get("Name of dam"))] + ([norm(d["Alternate dam name"])] if d.get("Alternate dam name") else [])
+        la, lo = d.get("Decimal degree latitude"), d.get("Decimal degree longitude")
+        top = None
+        for f in dams:
+            r = max(difflib.SequenceMatcher(None, n, norm(f["n"])).ratio() for n in names)
+            dist = km(la, lo, f["la"], f["lo"]) if isinstance(la, (int, float)) and isinstance(lo, (int, float)) and f.get("la") is not None else None
+            if (r >= 0.9 or (r >= 0.75 and dist is not None and dist < 15)) and (top is None or r > top[0]): top = (r, f["i"], dist)
+        if not top: continue
+        d["km"] = round(top[2]) if top[2] is not None else None
+        prev = best.get(top[1])
+        rank = (top[2] if top[2] is not None else 999, -len(d))
+        if prev is None or rank < prev[0]: best[top[1]] = (rank, k)
+    for aid, (_, k) in best.items(): fao[k]["atlas"] = aid
+    print("FAO dams matched to atlas:", len(best), "of", len(fao), flush=True)
 
 # ---------------------------------------------------------------- WRI Aqueduct 4.0 country and province rankings
 def aqueduct():
@@ -92,24 +117,27 @@ def aqueduct():
                     keep.append([round(c, 4) if isinstance(c, float) else c for c in r])
             sheets[f"{n.rsplit('/', 1)[-1]}::{ws.title}"] = {"head": head, "rows": keep}
             print("aqueduct sheet", n, ws.title, len(keep), flush=True)
-    save("aqueduct.json", {"built": NOW, "src": "WRI Aqueduct 4.0 Current and Future Country Rankings", "u": "https://www.wri.org/data/aqueduct-40-country-rankings", "sheets": sheets})
+    save("aqueduct.json", trim_aqueduct(sheets))
 
-# ---------------------------------------------------------------- Our World in Data
-OWID = ["freshwater-withdrawals-as-a-share-of-internal-resources", "water-withdrawals-per-capita", "annual-freshwater-withdrawals",
-        "renewable-water-resources-per-capita", "proportion-using-safely-managed-drinking-water", "share-using-safely-managed-sanitation",
-        "share-of-the-population-using-at-least-basic-drinking-water", "share-of-population-using-at-least-basic-sanitation",
-        "water-productivity", "agricultural-water-as-a-share-of-total-water-withdrawals"]
-def owid():
-    out = {}
-    for s in OWID:
-        try:
-            t = get(f"https://ourworldindata.org/grapher/{s}.csv?v=1&csvType=full&useColumnShortNames=true").decode("utf-8")
-            rows = list(csv.reader(io.StringIO(t))); head = rows[0]
-            keep = [r for r in rows[1:] if r[0] in ("Nigeria", "Sub-Saharan Africa (WB)", "Sub-Saharan Africa", "World", "Africa")]
-            out[s] = {"head": head, "rows": keep}
-        except Exception as e: print("owid", s, repr(e), flush=True)
-    if not out: raise RuntimeError("no OWID series")
-    save("owid_water.json", {"built": NOW, "src": "Our World in Data (UN SDG database, FAO AQUASTAT, WHO/UNICEF JMP)", "u": "https://ourworldindata.org/water-use-stress", "series": out})
+def trim_aqueduct(sheets):
+    """Keep, for Nigeria and each state: baseline water stress (bws) and drought risk (drr) by sector weight, riverine flood risk (rfr),
+    and future water stress (all sectors) for 2030, 2050 and 2080 under three scenarios. Each value is [score 0-5, category 0-4, label]."""
+    fix = {"Federal Capital Territory": "FCT", "Nassarawa": "Nasarawa"}
+    out = {"built": NOW, "src": "WRI Aqueduct 4.0 Current and Future Country Rankings (2023)", "u": "https://www.wri.org/data/aqueduct-40-country-rankings",
+           "nga": {}, "st": {}}
+    for key, sh in sheets.items():
+        h = sh.get("head") or []; ix = {c: i for i, c in enumerate(h)}
+        if "indicator_name" not in ix: continue
+        for r in sh["rows"]:
+            g = lambda c: r[ix[c]] if c in ix and ix[c] < len(r) else None
+            val = [g("score"), g("cat"), g("label")]
+            tgt = out["nga"] if "name_1" not in ix else out["st"].setdefault(fix.get(g("name_1"), g("name_1")), {})
+            if "year" in ix:
+                if g("weight") != "Tot": continue
+                tgt.setdefault("fut", {})[f"{g('year')}_{g('scenario')}"] = val
+            else:
+                tgt.setdefault(g("indicator_name"), {})[g("weight")] = val
+    return out
 
 # ---------------------------------------------------------------- Nigeria Development Cooperation Dashboard
 NDCD = "https://ndcd.ng/api/"
@@ -130,6 +158,7 @@ def ndcd():
                              "u": "https://ndcd.ng/by/mtef-sector/21", "acts": sorted(acts.values(), key=lambda a: -(a.get("proj") or a.get("commit") or 0))})
 
 if __name__ == "__main__":
+    (DATA / "owid_water.json").unlink(missing_ok=True)  # retired: the UN SDG series in atlas.json already cover it
     only = set(filter(None, os.environ.get("WA_ONLY", "").split(",")))
-    for name, fn in (("aquifers", aquifers), ("fao_dams", fao_dams), ("aqueduct", aqueduct), ("owid", owid), ("ndcd", ndcd)):
+    for name, fn in (("aquifers", aquifers), ("fao_dams", fao_dams), ("aqueduct", aqueduct), ("ndcd", ndcd)):
         if not only or name in only: step(name, fn)
