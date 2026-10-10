@@ -21,7 +21,10 @@ NOW = datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%d")
 def get(url, timeout=180):
     for i in range(3):
         try:
-            with urllib.request.urlopen(urllib.request.Request(url, headers=UA), timeout=timeout) as r: return r.read()
+            with urllib.request.urlopen(urllib.request.Request(url, headers=UA), timeout=timeout) as r: b = r.read()
+            if b[:2] == b"\x1f\x8b":  # some servers gzip even when not asked
+                import gzip; b = gzip.decompress(b)
+            return b
         except Exception as e:
             err = e; time.sleep(5 * (i + 1))
     raise err
@@ -251,14 +254,14 @@ def conflicts():
 # ---------------------------------------------------------------- WASH-attributable deaths and cholera
 def health():
     out = {"built": NOW, "sdg": [], "cholera": None}
-    for sc in ("SH_STA_WASHARIMV",):
-        j = json.loads(get(f"https://unstats.un.org/sdgapi/v1/sdg/Series/Data?seriesCode={sc}&areaCode=566&pageSize=500"))
+    for ind in ("3.9.2", "3.9.1"):
+        j = json.loads(get(f"https://unstats.un.org/sdgapi/v1/sdg/Indicator/Data?indicator={ind}&areaCode=566&pageSize=2000"))
         for x in j.get("data", []):
-            out["sdg"].append({"series": sc, "desc": x.get("seriesDescription"), "year": x.get("timePeriodStart"), "value": x.get("value"),
+            out["sdg"].append({"ind": ind, "series": x.get("series"), "desc": x.get("seriesDescription"), "year": x.get("timePeriodStart"), "value": x.get("value"),
                                "dims": x.get("dimensions"), "units": (x.get("attributes") or {}).get("Units"), "source": x.get("source")})
     for slug in ("number-of-reported-cases-of-cholera", "number-reported-cases-of-cholera", "cholera-cases-reported", "reported-cholera-cases"):
         try:
-            txt = get(f"https://ourworldindata.org/grapher/{slug}.csv?country=NGA&v=1&csvType=filtered&useColumnShortNames=false", timeout=60).decode("utf-8")
+            txt = get(f"https://ourworldindata.org/grapher/{slug}.csv?v=1&csvType=full&useColumnShortNames=false", timeout=120).decode("utf-8")
             rows = list(csv.reader(io.StringIO(txt)))
             data = [[int(r[2]), float(r[3])] for r in rows[1:] if len(r) > 3 and r[1] == "NGA" and r[3] not in ("", None)]
             if data:
