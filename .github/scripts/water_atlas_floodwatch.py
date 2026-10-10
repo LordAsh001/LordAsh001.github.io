@@ -222,7 +222,8 @@ def geoglows(prev):
             mid = path[0][len(path[0]) // 2] if path and path[0] else [None, None]
             reaches.append({"comid": a["comid"], "rp": a["returnperiod"], "q": a["meanflow"], "so": a["streamorder"],
                             "km2": round((a["upstreamarea"] or 0) / 1e6), "lo": round(mid[0], 3) if mid[0] else None, "la": round(mid[1], 3) if mid[1] else None})
-        reaches.sort(key=lambda x: (-x["rp"], -x["km2"]))
+        reaches = [x for x in reaches if (x["so"] or 0) >= 3]
+        reaches.sort(key=lambda x: (-x["km2"], -x["rp"]))
         for x in reaches[:40]: x["st"] = state_of(x["lo"], x["la"])
     except Exception as e:
         log(f"GEOGLOWS reaches: {e!r}")
