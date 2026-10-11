@@ -137,6 +137,13 @@
         "caption": "",
         "anchor": "Nigeria Water Resources Atlas",
         "hidden": false
+      },
+      {
+        "src": "/images/tool-market-atlas.jpg",
+        "alt": "Screenshot of the Nigeria Market Atlas: a map of Nigeria with food markets, grain silos, warehouses and weighbridges, beside a panel of market counts by type and a live produce price ticker.",
+        "caption": "",
+        "anchor": "Nigeria Market Atlas",
+        "hidden": false
       }
     ]
   }
