@@ -1,0 +1,700 @@
+{
+ "markets": [
+  {
+   "id": "mile12",
+   "name": "Mile 12 Market",
+   "state": "Lagos"
+  },
+  {
+   "id": "oyingbo",
+   "name": "Oyingbo Market",
+   "state": "Lagos"
+  },
+  {
+   "id": "mushin",
+   "name": "Mushin Market",
+   "state": "Lagos"
+  },
+  {
+   "id": "daleko",
+   "name": "Daleko Market",
+   "state": "Lagos"
+  },
+  {
+   "id": "ketu",
+   "name": "Ketu Fruit Market",
+   "state": "Lagos"
+  },
+  {
+   "id": "agege",
+   "name": "Agege Market",
+   "state": "Lagos"
+  },
+  {
+   "id": "kara",
+   "name": "Kara Cattle Market",
+   "state": "Ogun"
+  },
+  {
+   "id": "kuto",
+   "name": "Kuto Market, Abeokuta",
+   "state": "Ogun"
+  },
+  {
+   "id": "ijebu",
+   "name": "Oja Oba, Ijebu-Ode",
+   "state": "Ogun"
+  },
+  {
+   "id": "bodija",
+   "name": "Bodija Market",
+   "state": "Oyo"
+  },
+  {
+   "id": "shasha",
+   "name": "Shasha Market, Ibadan",
+   "state": "Oyo"
+  },
+  {
+   "id": "akinyele",
+   "name": "Akinyele Cattle Market",
+   "state": "Oyo"
+  },
+  {
+   "id": "ogbomoso",
+   "name": "Waso Market, Ogbomoso",
+   "state": "Oyo"
+  },
+  {
+   "id": "oyotown",
+   "name": "Akesan Market, Oyo",
+   "state": "Oyo"
+  },
+  {
+   "id": "saki",
+   "name": "Saki Market",
+   "state": "Oyo"
+  },
+  {
+   "id": "osogbo",
+   "name": "Oja Oba, Osogbo",
+   "state": "Osun"
+  },
+  {
+   "id": "ikirun",
+   "name": "Ikirun Market",
+   "state": "Osun"
+  },
+  {
+   "id": "akure",
+   "name": "Oja Oba, Akure",
+   "state": "Ondo"
+  },
+  {
+   "id": "ore",
+   "name": "Ore Market",
+   "state": "Ondo"
+  },
+  {
+   "id": "adoekiti",
+   "name": "Oja Oba, Ado-Ekiti",
+   "state": "Ekiti"
+  },
+  {
+   "id": "ipata",
+   "name": "Ipata Market, Ilorin",
+   "state": "Kwara"
+  },
+  {
+   "id": "ilorinoba",
+   "name": "Oja Oba, Ilorin",
+   "state": "Kwara"
+  },
+  {
+   "id": "bode",
+   "name": "Bode Saadu Market",
+   "state": "Kwara"
+  },
+  {
+   "id": "lokoja",
+   "name": "Lokoja International Market",
+   "state": "Kogi"
+  },
+  {
+   "id": "anyigba",
+   "name": "Anyigba Market",
+   "state": "Kogi"
+  },
+  {
+   "id": "okene",
+   "name": "Okene Central Market",
+   "state": "Kogi"
+  },
+  {
+   "id": "dawanau",
+   "name": "Dawanau International Grain Market",
+   "state": "Kano"
+  },
+  {
+   "id": "singer",
+   "name": "Singer Market",
+   "state": "Kano"
+  },
+  {
+   "id": "sabongarikn",
+   "name": "Sabon Gari Market, Kano",
+   "state": "Kano"
+  },
+  {
+   "id": "yankaba",
+   "name": "Yankaba Vegetable Market",
+   "state": "Kano"
+  },
+  {
+   "id": "wudil",
+   "name": "Wudil Cattle Market",
+   "state": "Kano"
+  },
+  {
+   "id": "kura",
+   "name": "Kura Rice Market",
+   "state": "Kano"
+  },
+  {
+   "id": "kwanargafan",
+   "name": "Kwanar Gafan Tomato Market",
+   "state": "Kano"
+  },
+  {
+   "id": "giwa",
+   "name": "Giwa Grain Market",
+   "state": "Kaduna"
+  },
+  {
+   "id": "zaria",
+   "name": "Sabon Gari Market, Zaria",
+   "state": "Kaduna"
+  },
+  {
+   "id": "kadcentral",
+   "name": "Kaduna Central Market",
+   "state": "Kaduna"
+  },
+  {
+   "id": "kafanchan",
+   "name": "Kafanchan Market",
+   "state": "Kaduna"
+  },
+  {
+   "id": "kachia",
+   "name": "Kachia Market",
+   "state": "Kaduna"
+  },
+  {
+   "id": "charanchi",
+   "name": "Charanchi Grain Market",
+   "state": "Katsina"
+  },
+  {
+   "id": "maiadua",
+   "name": "Mai'adua Border Market",
+   "state": "Katsina"
+  },
+  {
+   "id": "katsinacentral",
+   "name": "Katsina Central Market",
+   "state": "Katsina"
+  },
+  {
+   "id": "funtua",
+   "name": "Funtua Market",
+   "state": "Katsina"
+  },
+  {
+   "id": "maigatari",
+   "name": "Maigatari Border Market",
+   "state": "Jigawa"
+  },
+  {
+   "id": "hadejia",
+   "name": "Hadejia Market",
+   "state": "Jigawa"
+  },
+  {
+   "id": "jega",
+   "name": "Jega Market",
+   "state": "Kebbi"
+  },
+  {
+   "id": "birninkebbi",
+   "name": "Birnin Kebbi Central Market",
+   "state": "Kebbi"
+  },
+  {
+   "id": "argungu",
+   "name": "Argungu Market",
+   "state": "Kebbi"
+  },
+  {
+   "id": "sokotocentral",
+   "name": "Sokoto Central Market",
+   "state": "Sokoto"
+  },
+  {
+   "id": "illela",
+   "name": "Illela Border Market",
+   "state": "Sokoto"
+  },
+  {
+   "id": "gusau",
+   "name": "Gusau Central Market",
+   "state": "Zamfara"
+  },
+  {
+   "id": "talatamafara",
+   "name": "Talata Mafara Market",
+   "state": "Zamfara"
+  },
+  {
+   "id": "mokwa",
+   "name": "Mokwa Market",
+   "state": "Niger"
+  },
+  {
+   "id": "kure",
+   "name": "Kure Market, Minna",
+   "state": "Niger"
+  },
+  {
+   "id": "bida",
+   "name": "Bida Market",
+   "state": "Niger"
+  },
+  {
+   "id": "kontagora",
+   "name": "Kontagora Market",
+   "state": "Niger"
+  },
+  {
+   "id": "newbussa",
+   "name": "New Bussa Fish Market",
+   "state": "Niger"
+  },
+  {
+   "id": "deidei",
+   "name": "Dei-Dei Grains & Livestock Market",
+   "state": "FCT"
+  },
+  {
+   "id": "wuse",
+   "name": "Wuse Market",
+   "state": "FCT"
+  },
+  {
+   "id": "garki",
+   "name": "Garki Market",
+   "state": "FCT"
+  },
+  {
+   "id": "mararaba",
+   "name": "Mararaba Market",
+   "state": "Nasarawa"
+  },
+  {
+   "id": "lafia",
+   "name": "Lafia Modern Market",
+   "state": "Nasarawa"
+  },
+  {
+   "id": "doma",
+   "name": "Doma Market",
+   "state": "Nasarawa"
+  },
+  {
+   "id": "josterminus",
+   "name": "Terminus Market, Jos",
+   "state": "Plateau"
+  },
+  {
+   "id": "faringada",
+   "name": "Farin Gada Vegetable Market",
+   "state": "Plateau"
+  },
+  {
+   "id": "bukuru",
+   "name": "Bukuru Market",
+   "state": "Plateau"
+  },
+  {
+   "id": "wurukum",
+   "name": "Wurukum Market, Makurdi",
+   "state": "Benue"
+  },
+  {
+   "id": "makurdimodern",
+   "name": "Makurdi Modern Market",
+   "state": "Benue"
+  },
+  {
+   "id": "zakibiam",
+   "name": "Zaki Biam Yam Market",
+   "state": "Benue"
+  },
+  {
+   "id": "gboko",
+   "name": "Gboko Main Market",
+   "state": "Benue"
+  },
+  {
+   "id": "otukpo",
+   "name": "Otukpo Market",
+   "state": "Benue"
+  },
+  {
+   "id": "daudu",
+   "name": "Daudu Market",
+   "state": "Benue"
+  },
+  {
+   "id": "katsinaala",
+   "name": "Katsina-Ala Market",
+   "state": "Benue"
+  },
+  {
+   "id": "jalingo",
+   "name": "Jalingo Main Market",
+   "state": "Taraba"
+  },
+  {
+   "id": "wukari",
+   "name": "Wukari Market",
+   "state": "Taraba"
+  },
+  {
+   "id": "mutumbiyu",
+   "name": "Mutum Biyu Market",
+   "state": "Taraba"
+  },
+  {
+   "id": "takum",
+   "name": "Takum Market",
+   "state": "Taraba"
+  },
+  {
+   "id": "mubi",
+   "name": "Mubi Market",
+   "state": "Adamawa"
+  },
+  {
+   "id": "jimeta",
+   "name": "Jimeta Modern Market, Yola",
+   "state": "Adamawa"
+  },
+  {
+   "id": "gombemain",
+   "name": "Gombe Main Market",
+   "state": "Gombe"
+  },
+  {
+   "id": "kumo",
+   "name": "Kumo Market",
+   "state": "Gombe"
+  },
+  {
+   "id": "bauchicentral",
+   "name": "Bauchi Central Market",
+   "state": "Bauchi"
+  },
+  {
+   "id": "azare",
+   "name": "Azare Market",
+   "state": "Bauchi"
+  },
+  {
+   "id": "maiduguri",
+   "name": "Monday Market, Maiduguri",
+   "state": "Borno"
+  },
+  {
+   "id": "custommkt",
+   "name": "Custom Market, Maiduguri",
+   "state": "Borno"
+  },
+  {
+   "id": "biu",
+   "name": "Biu Market",
+   "state": "Borno"
+  },
+  {
+   "id": "potiskum",
+   "name": "Potiskum Cattle Market",
+   "state": "Yobe"
+  },
+  {
+   "id": "damaturu",
+   "name": "Damaturu Market",
+   "state": "Yobe"
+  },
+  {
+   "id": "gashua",
+   "name": "Gashua Market",
+   "state": "Yobe"
+  },
+  {
+   "id": "nguru",
+   "name": "Nguru Market",
+   "state": "Yobe"
+  },
+  {
+   "id": "ogbete",
+   "name": "Ogbete Main Market, Enugu",
+   "state": "Enugu"
+  },
+  {
+   "id": "orba",
+   "name": "Orie Orba Market",
+   "state": "Enugu"
+  },
+  {
+   "id": "ogige",
+   "name": "Ogige Market, Nsukka",
+   "state": "Enugu"
+  },
+  {
+   "id": "abakaliki",
+   "name": "Abakaliki Foodstuff Regional Market",
+   "state": "Ebonyi"
+  },
+  {
+   "id": "afikpo",
+   "name": "Afikpo Market",
+   "state": "Ebonyi"
+  },
+  {
+   "id": "onitsha",
+   "name": "Onitsha Main Market",
+   "state": "Anambra"
+  },
+  {
+   "id": "onitsharelief",
+   "name": "Relief Market, Onitsha",
+   "state": "Anambra"
+  },
+  {
+   "id": "ekeawka",
+   "name": "Eke Awka Market",
+   "state": "Anambra"
+  },
+  {
+   "id": "ubani",
+   "name": "Ubani Ibeku Market, Umuahia",
+   "state": "Abia"
+  },
+  {
+   "id": "abanew",
+   "name": "Ahia Ohuru (New Market), Aba",
+   "state": "Abia"
+  },
+  {
+   "id": "owerrirelief",
+   "name": "Relief Market, Owerri",
+   "state": "Imo"
+  },
+  {
+   "id": "mile3",
+   "name": "Mile 3 Market, Port Harcourt",
+   "state": "Rivers"
+  },
+  {
+   "id": "creekroad",
+   "name": "Creek Road Fish Market",
+   "state": "Rivers"
+  },
+  {
+   "id": "oyigbo",
+   "name": "Oyigbo Market",
+   "state": "Rivers"
+  },
+  {
+   "id": "akpanandem",
+   "name": "Akpan Andem Market, Uyo",
+   "state": "Akwa Ibom"
+  },
+  {
+   "id": "itam",
+   "name": "Itam Market",
+   "state": "Akwa Ibom"
+  },
+  {
+   "id": "watt",
+   "name": "Watt Market, Calabar",
+   "state": "Cross River"
+  },
+  {
+   "id": "ogoja",
+   "name": "Ogoja Market",
+   "state": "Cross River"
+  },
+  {
+   "id": "ikom",
+   "name": "Ikom Market",
+   "state": "Cross River"
+  },
+  {
+   "id": "swali",
+   "name": "Swali Market, Yenagoa",
+   "state": "Bayelsa"
+  },
+  {
+   "id": "ogbeogonogo",
+   "name": "Ogbeogonogo Market, Asaba",
+   "state": "Delta"
+  },
+  {
+   "id": "warrimain",
+   "name": "Warri Main Market",
+   "state": "Delta"
+  },
+  {
+   "id": "ughelli",
+   "name": "Ughelli Market",
+   "state": "Delta"
+  },
+  {
+   "id": "uselu",
+   "name": "Uselu Market, Benin City",
+   "state": "Edo"
+  },
+  {
+   "id": "obamarket",
+   "name": "Oba Market, Benin City",
+   "state": "Edo"
+  },
+  {
+   "id": "uromi",
+   "name": "Uromi Market",
+   "state": "Edo"
+  },
+  {
+   "id": "ileepo",
+   "name": "Ile-Epo Market",
+   "state": "Lagos"
+  },
+  {
+   "id": "sabo",
+   "name": "Sabo Market, Yaba",
+   "state": "Lagos"
+  },
+  {
+   "id": "ajah",
+   "name": "Ajah Market",
+   "state": "Lagos"
+  },
+  {
+   "id": "agbalata",
+   "name": "Agbalata Market, Badagry",
+   "state": "Lagos"
+  },
+  {
+   "id": "epe",
+   "name": "Epe Market",
+   "state": "Lagos"
+  },
+  {
+   "id": "ffhmushin",
+   "name": "Fresh Food Hub, Mushin",
+   "state": "Lagos"
+  },
+  {
+   "id": "alabarago",
+   "name": "Alaba Rago Market",
+   "state": "Lagos"
+  },
+  {
+   "id": "lashemoney",
+   "name": "Lashe Money Market",
+   "state": "Borno"
+  },
+  {
+   "id": "biliri",
+   "name": "Billiri Market",
+   "state": "Gombe"
+  },
+  {
+   "id": "kujama",
+   "name": "Kujama Market",
+   "state": "Kaduna"
+  },
+  {
+   "id": "pambeguwa",
+   "name": "Pambeguwa Market",
+   "state": "Kaduna"
+  },
+  {
+   "id": "anchau",
+   "name": "Anchau Market",
+   "state": "Kaduna"
+  },
+  {
+   "id": "birningwari",
+   "name": "Birnin Gwari Market",
+   "state": "Kaduna"
+  },
+  {
+   "id": "kasuwanmagani",
+   "name": "Kasuwan Magani Market",
+   "state": "Kaduna"
+  },
+  {
+   "id": "makarfi",
+   "name": "Makarfi Market",
+   "state": "Kaduna"
+  },
+  {
+   "id": "kawo",
+   "name": "Kawo Market",
+   "state": "Kaduna"
+  },
+  {
+   "id": "saminaka",
+   "name": "Saminaka Market",
+   "state": "Kaduna"
+  },
+  {
+   "id": "dandume",
+   "name": "Dandume Market",
+   "state": "Katsina"
+  }
+ ],
+ "commodities": [
+  "maize",
+  "sorghum",
+  "millet",
+  "ricel",
+  "ricei",
+  "beansb",
+  "beansw",
+  "garriw",
+  "garriy",
+  "tomato",
+  "onion",
+  "ginger",
+  "palmoil",
+  "vegoil",
+  "soy",
+  "groundnut",
+  "egusi",
+  "pepper",
+  "eggs",
+  "paddy",
+  "oloyin",
+  "sesame",
+  "cocoa",
+  "cashew",
+  "shea",
+  "gingerdry",
+  "hibiscus",
+  "yam",
+  "wheat"
+ ]
+}

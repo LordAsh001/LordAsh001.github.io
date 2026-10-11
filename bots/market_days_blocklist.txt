@@ -1,0 +1,1 @@
+# One Tally submission id per line to keep it off the calendar (spam, duplicates).
