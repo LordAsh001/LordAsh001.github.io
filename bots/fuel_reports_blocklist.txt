@@ -1,0 +1,1 @@
+# One Tally submission id per line to drop a fuel report (spam, mistakes).

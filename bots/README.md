@@ -66,3 +66,12 @@ How the bot handles reports:
 - Reports that would put a market day in the future, or that miss the name, state, LGA or cycle, are dropped.
 - To remove spam or a duplicate, add its Tally submission id to `bots/market_days_blocklist.txt`.
 - Reporters' own positions are never sent. Only their distance from the market is recorded.
+
+## Fuel prices: community reports
+
+The atlas's Fuel tab shows NNPC pump prices by state, depot prices, NBS monthly averages and black-market prices. Black-market prices come only from what people report. On the website, reports go to a second Tally form (`tally.so/r/xXk2Zy`), and `bots/fuel_reports.py` turns them into `market-atlas/data/fuel-reports.json` every day.
+
+- The bot uses the same `TALLY_API_KEY` secret as the market-day bot; the form id is set in the workflow.
+- It keeps reports from the last 90 days. A report is dropped if its state isn't recognised or its price is outside a sensible range (₦300–₦6,000 for petrol).
+- To remove a bad report, add its submission id to `bots/fuel_reports_blocklist.txt`.
+- The official prices (NNPC by state, depot prices, NBS) are typed into the page and need a manual update when new figures come out.
