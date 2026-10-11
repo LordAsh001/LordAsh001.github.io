@@ -200,7 +200,7 @@
    "rows": 84,
    "first": "2026-10-10",
    "last": "2026-10-11",
-   "bytes": 12104,
+   "bytes": 12113,
    "fields": [
     {
      "name": "date",
@@ -280,10 +280,10 @@
    "source": "GEOGLOWS, ECMWF",
    "licence": "CC BY 4.0",
    "update": "Daily",
-   "rows": 38,
+   "rows": 57,
    "first": "2026-10-09",
-   "last": "2026-10-10",
-   "bytes": 6126,
+   "last": "2026-10-11",
+   "bytes": 9124,
    "fields": [
     {
      "name": "issue_date",
@@ -534,7 +534,32 @@
    ]
   }
  ],
- "snapshots": [],
+ "snapshots": [
+  {
+   "month": "2026-10",
+   "files": [
+    "snapshots/2026-10/aqueduct.json.gz",
+    "snapshots/2026-10/aquifers.json.gz",
+    "snapshots/2026-10/atlas.json.gz",
+    "snapshots/2026-10/conflicts.json.gz",
+    "snapshots/2026-10/curated.json.gz",
+    "snapshots/2026-10/fao_dams.json.gz",
+    "snapshots/2026-10/flood_lga.json.gz",
+    "snapshots/2026-10/floodhistory.json.gz",
+    "snapshots/2026-10/floodwatch.json.gz",
+    "snapshots/2026-10/gauges.json.gz",
+    "snapshots/2026-10/health.json.gz",
+    "snapshots/2026-10/ndcd_water.json.gz",
+    "snapshots/2026-10/oilspills.json.gz",
+    "snapshots/2026-10/reports.json.gz",
+    "snapshots/2026-10/roads.json.gz",
+    "snapshots/2026-10/srp.json.gz",
+    "snapshots/2026-10/waterpoints.json.gz",
+    "snapshots/2026-10/wpdx.json.gz"
+   ],
+   "bytes": 951222
+  }
+ ],
  "citation": "Amool, S. H. (2026). Nigeria Water Resources Atlas: data archive [Data set]. https://shagbaor.com/water-atlas/archive/",
- "generated": "2026-10-11T08:41Z"
+ "generated": "2026-10-11T13:11Z"
 }
