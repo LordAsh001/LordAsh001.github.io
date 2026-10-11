@@ -42,22 +42,42 @@ def fetch_year(client, year, out):
         return sorted(glob.glob(str(d / "*.nc")))
     return [out]
 
-def series(files, cells):
+def open_all(files):
     import xarray as xr
-    out = {g: {} for g in cells}
+    out = []
     for f in files:
         ds = xr.open_dataset(f)
         var = next(v for v in ds.data_vars if len(ds[v].dims) >= 3)
-        tname = next(c for c in ("valid_time", "time", "forecast_reference_time") if c in ds[var].dims or c in ds.coords)
-        latn = "latitude" if "latitude" in ds.coords else "lat"; lonn = "longitude" if "longitude" in ds.coords else "lon"
-        da = ds[var]
-        for g, (la, lo) in cells.items():
-            p = da.sel({latn: la, lonn: lo}, method="nearest")
-            for t, v in zip(p[tname].values, p.values.reshape(-1)):
-                day = str(t)[:10]                      # date of the time stamp; the day offset is fixed by the overlap check
-                if v == v: out[g][day] = round(float(v), 2)
-        ds.close()
+        tname = next(c for c in ("valid_time", "time", "forecast_reference_time") if c in ds[var].dims)
+        latn = "latitude" if "latitude" in ds[var].dims else "lat"; lonn = "longitude" if "longitude" in ds[var].dims else "lon"
+        out.append((ds, ds[var], tname, latn, lonn))
     return out
+
+def describe(opened):
+    for ds, da, t, la, lo in opened:
+        lat, lon = da[la].values, da[lo].values
+        log(f"file: variable {da.name} ({da.attrs.get('units', '?')}), dims {dict(da.sizes)}, "
+            f"lat {lat[0]:.4f}..{lat[-1]:.4f} step {lat[1]-lat[0]:+.4f}, lon {lon[0]:.4f}..{lon[-1]:.4f} step {lon[1]-lon[0]:+.4f}, "
+            f"time {str(da[t].values[0])[:16]}..{str(da[t].values[-1])[:16]}")
+
+def cell_series(opened, la, lo, di=0, dj=0):
+    """Daily values at the grid cell nearest (la, lo), moved di rows and dj columns."""
+    out = {}
+    for ds, da, t, latn, lonn in opened:
+        lat, lon = da[latn].values, da[lonn].values
+        i = int(abs(lat - la).argmin()) + di; j = int(abs(lon - lo).argmin()) + dj
+        if not (0 <= i < len(lat) and 0 <= j < len(lon)): continue
+        p = da.isel({latn: i, lonn: j})
+        for tt, v in zip(p[t].values, p.values.reshape(-1)):
+            if v == v: out[str(tt)[:10]] = round(float(v), 2)
+    return out
+
+def shifted(sr, k):
+    return {(datetime.date.fromisoformat(d) + datetime.timedelta(days=k)).isoformat(): v for d, v in sr.items()}
+
+def diff(sr, have):
+    e = [abs(v - have[d]) / have[d] for d, v in sr.items() if d in have and have[d] > 1]
+    return (sum(e) / len(e), len(e)) if e else (None, 0)
 
 def main():
     import cdsapi
@@ -67,44 +87,52 @@ def main():
     gauges = read_csv(RF / "gauges.csv")
     cells = {g["gauge_id"]: (float(g["model_cell_lat"]), float(g["model_cell_lon"])) for g in gauges}
     tmp = tempfile.mkdtemp()
+    tol = float(os.environ.get("BF_TOL", "0.15"))
 
-    # 1. overlap check: which day offset makes the EWDS values line up with the Open-Meteo values already archived,
-    #    and how closely they agree. GloFAS stamps each 24-hour mean at the end of the period, Open-Meteo at the day it covers.
-    shift_days = int(os.environ.get("BF_SHIFT", "-1"))
-    try:
-        s = series(fetch_year(client, CHECK, f"{tmp}/check.nc"), cells)
-        score = {}
-        for k in (-1, 0, 1):
-            errs = []
-            for g in gauges:
-                have = {r["date"]: float(r["discharge_m3s"]) for r in read_csv(ARC / g["file"]) if r["date"].startswith(str(CHECK)) and r["discharge_m3s"]}
-                for d, v in s[g["gauge_id"]].items():
-                    dd = (datetime.date.fromisoformat(d) + datetime.timedelta(days=k)).isoformat()
-                    if dd in have and have[dd] > 1: errs.append(abs(v - have[dd]) / have[dd])
-            if errs: score[k] = sum(errs) / len(errs)
-        if score:
-            shift_days = min(score, key=score.get)
-            log("overlap " + ", ".join(f"shift {k:+d} day: mean difference {v:.1%}" for k, v in sorted(score.items())) + f"; using {shift_days:+d}")
-            if score[shift_days] > 0.10: log("WARNING: EWDS and Open-Meteo values differ by more than 10% on average; check before trusting the backfill.")
-    except Exception as e:
-        log(f"overlap check skipped ({e!r}); using shift {shift_days:+d} day")
+    # 1. Overlap check on 1997, gauge by gauge: find the grid cell (within two cells of the one Open-Meteo uses)
+    #    and the day offset at which the EWDS series matches the Open-Meteo values already archived.
+    #    Gauges that do not match within the tolerance are left alone.
+    opened = open_all(fetch_year(client, CHECK, f"{tmp}/check.nc")); describe(opened)
+    choice = {}
+    for g in gauges:
+        gid = g["gauge_id"]; la, lo = cells[gid]
+        have = {r["date"]: float(r["discharge_m3s"]) for r in read_csv(ARC / g["file"]) if r["date"].startswith(str(CHECK)) and r["discharge_m3s"]}
+        best = None
+        for di in range(-2, 3):
+            for dj in range(-2, 3):
+                sr = cell_series(opened, la, lo, di, dj)
+                for k in (-1, 0, 1):
+                    d, n = diff(shifted(sr, k), have)
+                    if d is not None and n > 300 and (best is None or d < best[0]): best = (d, di, dj, k)
+        base = diff(shifted(cell_series(opened, la, lo), -1), have)[0]
+        if best and best[0] <= tol:
+            choice[gid] = best[1:]
+            log(f"{gid}: match {best[0]:.1%} at cell offset ({best[1]:+d},{best[2]:+d}), day shift {best[3]:+d} (same cell, shift -1: {base if base is None else f'{base:.1%}'})")
+        else:
+            log(f"{gid}: NO MATCH (best {best[0]:.1%} at {best[1:]}" if best else f"{gid}: NO DATA", "- skipped")
+    for o in opened: o[0].close()
+    if os.environ.get("BF_CHECK_ONLY", "") in ("1", "true"):
+        log("Check only: nothing added."); return
+    if not choice: sys.exit("No gauge matched the archived values; nothing added.")
 
-    # 2. backfill
-    got = {g: {} for g in cells}
+    # 2. Backfill the matched gauges
+    got = {g: {} for g in choice}
     for y in range(FIRST, LAST + 1):
         try:
-            s = series(fetch_year(client, y, f"{tmp}/{y}.nc"), cells)
-            for g in cells:
-                got[g].update({(datetime.date.fromisoformat(d) + datetime.timedelta(days=shift_days)).isoformat(): v for d, v in s[g].items()})
-            log(f"{y}: {sum(len(v) for v in s.values())} gauge-days")
+            opened = open_all(fetch_year(client, y, f"{tmp}/{y}.nc"))
+            for gid, (di, dj, k) in choice.items():
+                got[gid].update(shifted(cell_series(opened, *cells[gid], di, dj), k))
+            for o in opened: o[0].close()
+            log(f"{y}: done")
         except Exception as e:
             log(f"{y} FAILED: {e!r}")
 
-    # 3. merge in front of the existing records (existing days always win)
+    # 3. Merge in front of the existing records (existing days always win)
     for g in gauges:
+        if g["gauge_id"] not in got: continue
         p = ARC / g["file"]; rows = read_csv(p); have = {r["date"] for r in rows}
         first = min(have) if have else "9999"
-        add = sorted((d, v) for d, v in got[g["gauge_id"]].items() if d < first and d not in have)
+        add = sorted((d, v) for d, v in got[g["gauge_id"]].items() if d < first and d not in have and d >= f"{FIRST}-01-01")
         if not add: continue
         lines = ["date,discharge_m3s"] + [f"{d},{v:g}" for d, v in add] + [f"{r['date']},{r['discharge_m3s']}" for r in rows]
         p.write_text("\n".join(lines) + "\n", encoding="utf-8")
