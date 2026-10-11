@@ -119,6 +119,9 @@ def river_flow(raw):
         while rows and rows[0].endswith(","): rows.pop(0)          # leading days before the record starts
         if not rows: continue
         fn = f"river_flow/{g['id']}.csv"
+        # keep earlier years added by the GloFAS backfill (water_atlas_glofas_backfill.py), which Open-Meteo does not serve
+        old = [r for r in read_csv(ARC / fn) if r.get("date", "") < rows[0][:10]]
+        rows = [f"{r['date']},{r['discharge_m3s']}" for r in old] + rows
         write_if_changed(ARC / fn, "date,discharge_m3s\n" + "\n".join(rows) + "\n")
         idx.append({"gauge_id": g["id"], "river": g.get("river"), "place": g.get("place"), "lat": g.get("la"), "lon": g.get("lo"),
                     "model_cell_lat": g.get("sla"), "model_cell_lon": g.get("slo"), "first_date": rows[0][:10], "last_date": rows[-1][:10],
@@ -186,6 +189,9 @@ def catalogue():
             gs = read_csv(p); item["gauges"] = [{"id": g["gauge_id"], "name": f"{g['river']} at {g['place']}", "file": g["file"],
                 "first": g["first_date"], "last": g["last_date"], "days": int(g["days"])} for g in gs]
             if gs: item["first"], item["last"] = min(g["first_date"] for g in gs), max(g["last_date"] for g in gs)
+            if item.get("first") and item["first"] < "1997":
+                item["description"] += " Years before 1997 come from the GloFAS v4 consolidated reanalysis in the CEMS Early Warning Data Store, at the same model cell; later years come through the Open-Meteo Flood API."
+                item["source"] = "GloFAS v4, Copernicus Emergency Management Service, via the CEMS Early Warning Data Store (before 1997) and the Open-Meteo Flood API"
             item["rows"] = sum(int(g["days"]) for g in gs); item["bytes"] = sum((ARC / g["file"]).stat().st_size for g in gs if (ARC / g["file"]).exists())
         out.append(item)
     snaps = []
