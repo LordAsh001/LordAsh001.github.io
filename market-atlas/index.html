@@ -2767,10 +2767,10 @@ const VALHALLA = "https://valhalla1.openstreetmap.de/route";
 const PHOTON = "https://photon.komoot.io/api/";
 const NG_BBOX = "2.6,4.2,14.7,13.95";
 const VEHICLES = {
-  car:   {label:"Car",               costing:"auto",  speed:60, allow:20, color:"--indigo"},
-  bus:   {label:"Bus",               costing:"bus",   speed:50, allow:30, color:"--leaf"},
+  car:   {label:"Car",               costing:"auto",  speed:60, allow:10, color:"--indigo"},
+  bus:   {label:"Bus",               costing:"bus",   speed:50, allow:20, color:"--leaf", options:{bus:{top_speed:80}}},
   truck: {label:"Articulated truck", costing:"truck", speed:40, allow:45, color:"--sorghum",
-          options:{truck:{length:16.5, width:2.55, height:4.0, weight:40, axle_load:10}}}
+          options:{truck:{length:16.5, width:2.55, height:4.0, weight:40, axle_load:10, top_speed:65}}}
 };
 const LETTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 let ROUTE_PICK = false, DRAWING = false, DRAW_CANDS = null;
@@ -2787,7 +2787,7 @@ if (!Array.isArray(RS.stops)){
   if (!RS.stops.length) RS.stops = [stopFromPlace(byId("dawanau")), stopFromPlace(byId("mile12"))];
 }
 RS.vehicle ||= "truck";
-RS.allow = Object.assign({car:20, bus:30, truck:45}, RS.allow||{});
+RS.allow = Object.assign({car:10, bus:20, truck:35}, RS.allow2||{}); RS.allow2 = RS.allow;
 
 function stopFromPlace(p){
   if (!p) return null;
