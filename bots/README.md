@@ -15,7 +15,6 @@ These scripts keep the prices in the Nigeria Market Atlas up to date. Once a day
 | `opaindex` | Opaindex (re-publishes NBS) | New NBS Selected Food Prices Watch months | ₦/kg national |
 | `wfp_hdx` | WFP food prices for Nigeria on HDX (CC BY-IGO) | Monthly market prices from WFP monitors (last 6 months) | Taken from the CSV unit column |
 
-Sources I looked at but chose not to collect are listed in the atlas's Data tab. They include paid feeds (Bloomberg, Statista, Vesper, Expana), a Facebook group that needs a login, and sites with no public data.
 
 ## How the bots behave
 
