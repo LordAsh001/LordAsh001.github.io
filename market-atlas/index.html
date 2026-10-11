@@ -3,14 +3,22 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Nigeria Market Atlas</title>
+<meta name="author" content="Shagbaor Hycent Amool">
+<meta name="color-scheme" content="light dark">
 <meta name="description" content="Interactive map of Nigerian produce markets, market days, prices, storage and weighbridges, with a multi-stop road trip planner and fuel price tracker.">
-<link rel="canonical" href="https://shagbaor.com/market-atlas/">
+<meta property="og:type" content="website">
 <meta property="og:title" content="Nigeria Market Atlas">
 <meta property="og:description" content="Markets, market days, produce prices, storage and weighbridges across Nigeria, with road distances and travel times by car, bus and articulated truck.">
 <meta property="og:url" content="https://shagbaor.com/market-atlas/">
+<meta property="og:image" content="https://shagbaor.com/images/tool-market-atlas.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#2c3e9e">
+<link rel="canonical" href="https://shagbaor.com/market-atlas/">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%232c3e9e'/%3E%3Cpath d='M12 26 18 14h28l6 12Z' fill='%23fff'/%3E%3Cpath d='M15 30h34v20H15Z' fill='none' stroke='%23fff' stroke-width='5' stroke-linejoin='round'/%3E%3C/svg%3E">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"Nigeria Market Atlas","description":"Free, source-linked map of Nigerian produce markets, market days, food prices, grain silos, warehouses and weighbridges, with road distances and trucking cost estimates between markets.","url":"https://shagbaor.com/market-atlas/","creator":{"@type":"Person","name":"Shagbaor Hycent Amool","affiliation":"University of Northern British Columbia"},"spatialCoverage":"Nigeria","isAccessibleForFree":true}</script>
 <script>try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t);}catch(e){}</script>
 <script src="/assets/traction.js" defer></script>
-<title>Nigeria Market Atlas</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@500;600;700&family=Public+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <style>
@@ -196,6 +204,12 @@ td:first-child{font-family:var(--f-body)}
   .legend{max-width:170px}
 }
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+
+/* shared site bar (added by /assets/toolbar.js): sits above the workbench, above Leaflet panes */
+body{margin:0;display:flex;flex-direction:column}
+.sitebar{z-index:1100!important}
+.app{flex:1;min-height:0;height:auto}
+@media (max-width:820px){body{display:block}.app{min-height:100%}}
 </style>
 </head>
 <body>
