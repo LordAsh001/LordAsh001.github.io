@@ -76,7 +76,8 @@ def shifted(sr, k):
     return {(datetime.date.fromisoformat(d) + datetime.timedelta(days=k)).isoformat(): v for d, v in sr.items()}
 
 def diff(sr, have):
-    e = [abs(v - have[d]) / have[d] for d, v in sr.items() if d in have and have[d] > 1]
+    # relative difference; flows under 1 m3/s (dry-season small rivers) are compared on an absolute 1 m3/s scale
+    e = [abs(v - have[d]) / max(have[d], 1.0) for d, v in sr.items() if d in have]
     return (sum(e) / len(e), len(e)) if e else (None, 0)
 
 def main():
