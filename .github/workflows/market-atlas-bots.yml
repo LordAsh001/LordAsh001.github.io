@@ -42,6 +42,13 @@ jobs:
           TALLY_FORM_ID: obroDO
         continue-on-error: true
 
+      - name: Collect community fuel-price reports
+        run: python bots/fuel_reports.py market-atlas/data
+        env:
+          TALLY_API_KEY: ${{ secrets.TALLY_API_KEY }}
+          TALLY_FUEL_FORM_ID: xXk2Zy
+        continue-on-error: true
+
       - name: Commit updated feed
         run: |
           git config user.name  "market-atlas-bot"
