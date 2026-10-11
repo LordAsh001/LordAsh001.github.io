@@ -130,3 +130,18 @@ def test_market_days_build():
     e = M.build(M.flatten(subs, qs), blocked={"s4"})
     assert len(e) == 1
     assert e[0]["anchor"] == "2026-10-05" and e[0]["reports"] == 2 and e[0]["status"] == "confirmed" and e[0]["cycle"] == 5
+
+
+def test_fuel_reports_build():
+    import fuel_reports as F
+    from datetime import date, timedelta
+    d = (date.today() - timedelta(days=2)).isoformat()
+    qs = [{"id": f"q{i}", "title": k} for i, k in enumerate(F.FIELDS)]
+    def sub(i, vals):
+        return {"id": i, "submittedAt": d + "T10:00:00Z", "responses": [{"questionId": f"q{F.FIELDS.index(k)}", "value": v} for k, v in vals.items()]}
+    subs = [sub("a", {"product": "pms", "kind": "black", "price": "1650", "state": "Kano State", "date": d}),
+            sub("b", {"product": "ago", "kind": "pump", "price": "99999", "state": "Lagos", "date": d}),
+            sub("c", {"product": "pms", "kind": "pump", "price": "1400", "state": "Mars", "date": d}),
+            sub("e", {"product": "lpg", "kind": "pump", "price": "1100", "state": "Abuja", "date": d})]
+    r = F.build(F.flatten(subs, qs), blocked=set())
+    assert [(x["id"], x["state"]) for x in r] == [("a", "Kano"), ("e", "FCT")]
