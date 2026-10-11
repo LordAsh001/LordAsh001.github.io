@@ -3,7 +3,7 @@
 The live atlas files in water-atlas/data are overwritten as sources update. This script keeps their history
 in water-atlas/archive so planners, researchers and policy analysts can download it:
 
-  river_flow/<gauge>.csv          daily modelled river flow at each flood-watch gauge since 1984 (GloFAS via Open-Meteo),
+  river_flow/<gauge>.csv          daily modelled river flow at each flood-watch gauge, from the start of the record (GloFAS via Open-Meteo),
                                   rewritten by the weekly rebuild:  python3 water_atlas_archive.py --gauges /tmp/raw/glofas_gauges.json
   river_flow/gauges.csv           the gauges: river, place, coordinates and the model cell used
   flood_alerts_glofas.csv         one row per GloFAS reporting point per day (alert level, flood probabilities, peak timing)
@@ -116,6 +116,7 @@ def river_flow(raw):
         q = g.get("q") or []; t0 = datetime.date.fromisoformat(g["t0"])
         rows = [(t0 + datetime.timedelta(days=i)).isoformat() + "," + ("" if v is None else f"{v:g}") for i, v in enumerate(q)]
         while rows and rows[-1].endswith(","): rows.pop()          # trailing days without a value
+        while rows and rows[0].endswith(","): rows.pop(0)          # leading days before the record starts
         if not rows: continue
         fn = f"river_flow/{g['id']}.csv"
         write_if_changed(ARC / fn, "date,discharge_m3s\n" + "\n".join(rows) + "\n")
@@ -138,8 +139,8 @@ def snapshot():
 # ---------------------------------------------------------------- catalogue (read by the Data page)
 CC = "CC BY 4.0"
 CAT = [
- ("river_flow", "Daily river flow at the flood-watch gauges, 1984 to date",
-  "Modelled daily river discharge (m³/s) at each of the atlas's flood-watch gauges, from the GloFAS v4 reanalysis and recent forecast runs. One CSV per gauge; gauges.csv lists the rivers, places, coordinates and the model grid cell used.",
+ ("river_flow", "Daily river flow at the flood-watch gauges",
+  "Modelled daily river discharge (m³/s) at each of the atlas's flood-watch gauges, from the start of the record to yesterday, from the GloFAS v4 reanalysis and recent forecast runs. One CSV per gauge; gauges.csv lists the rivers, places, coordinates and the model grid cell used.",
   "river_flow/gauges.csv", "GloFAS v4, Copernicus Emergency Management Service, via the Open-Meteo Flood API", CC, "Weekly",
   [("date", "Day (UTC)"), ("discharge_m3s", "Modelled mean daily river discharge, cubic metres per second")],
   "GloFAS is a global model at about 5 km resolution: good for large rivers and seasonal patterns, weak for small streams, urban drainage and dam releases. It is not a measured gauge record."),
