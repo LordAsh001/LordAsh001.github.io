@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="description" content="Interactive map of Nigerian produce markets, market days, prices, storage and weighbridges, with a multi-stop road trip planner.">
+<meta name="description" content="Interactive map of Nigerian produce markets, market days, prices, storage and weighbridges, with a multi-stop road trip planner and fuel price tracker.">
 <link rel="canonical" href="https://shagbaor.com/market-atlas/">
 <meta property="og:title" content="Nigeria Market Atlas">
 <meta property="og:description" content="Markets, market days, produce prices, storage and weighbridges across Nigeria, with road distances and travel times by car, bus and articulated truck.">
@@ -53,7 +53,14 @@ header.top{display:flex;align-items:center;gap:12px;flex-wrap:wrap;padding:10px 
 .crumbs button[aria-current="true"]{color:var(--ink);cursor:default}
 .crumbs span{color:var(--muted)}
 .iconbtn{border:1px solid var(--line);background:var(--soft);border-radius:999px;padding:5px 11px;cursor:pointer;font-size:12.5px}
-.main{display:grid;grid-template-columns:minmax(330px,420px) 1fr;min-height:0}
+.main{display:grid;grid-template-columns:var(--pw,420px) 10px minmax(0,1fr);min-height:0}
+.splitter{background:var(--soft);border-left:1px solid var(--line);border-right:1px solid var(--line);cursor:col-resize;position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;touch-action:none;user-select:none;z-index:5}
+.splitter:hover,.splitter.drag,.splitter:focus-visible{background:color-mix(in srgb,var(--indigo) 18%,var(--soft))}
+.splitter .grip{width:4px;height:40px;border-radius:2px;background:var(--land-line);opacity:.6}
+.splbtn{width:18px;height:22px;border:1px solid var(--line);border-radius:4px;background:var(--panel);color:var(--ink);font-size:12px;line-height:1;padding:0;cursor:pointer}
+.main.panel-closed aside.panel{visibility:hidden;overflow:hidden;min-width:0}
+.main.map-closed .mapwrap{visibility:hidden;overflow:hidden;min-width:0}
+.mapwrap{isolation:isolate;overflow:hidden}
 aside.panel{background:var(--panel);border-right:1px solid var(--line);display:flex;flex-direction:column;min-height:0;min-width:0}
 .tabs{display:flex;border-bottom:1px solid var(--line);overflow-x:auto}
 .tabs button{flex:1 0 auto;background:none;border:0;border-bottom:2px solid transparent;padding:10px 9px;cursor:pointer;font-weight:600;font-size:12.5px;color:var(--muted);white-space:nowrap}
@@ -178,8 +185,10 @@ td:first-child{font-family:var(--f-body)}
 .pickbar button{background:var(--panel);color:var(--ink);border:0;border-radius:5px;padding:4px 9px;cursor:pointer;font-weight:600}
 @media (prefers-reduced-motion:reduce){.tick-track{animation:none}.ticker{overflow-x:auto}}
 @media (max-width:820px){
-  .main{grid-template-columns:1fr;grid-template-rows:52vh auto}
-  .mapwrap{order:1} aside.panel{order:2;border-right:0;border-top:1px solid var(--line)}
+  .main{grid-template-columns:1fr;grid-template-rows:var(--mh,52vh) 14px auto}
+  .mapwrap{order:1} .splitter{order:2;cursor:row-resize;flex-direction:row;border:0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)} .splitter .grip{width:40px;height:4px}
+  .splbtn{transform:rotate(90deg)}
+  aside.panel{order:3;border-right:0}
   .app{height:auto;min-height:100%}
   .pane{overflow:visible}
   .crumbs{margin-left:0;width:100%}
@@ -211,6 +220,7 @@ td:first-child{font-family:var(--f-body)}
         <button role="tab" id="t-tracker" aria-selected="false" data-tab="tracker">Tracker</button>
         <button role="tab" id="t-calendar" aria-selected="false" data-tab="calendar">Calendar</button>
         <button role="tab" id="t-route" aria-selected="false" data-tab="route">Logistics</button>
+        <button role="tab" id="t-fuel" aria-selected="false" data-tab="fuel">Fuel</button>
         <button role="tab" id="t-data" aria-selected="false" data-tab="data">Data</button>
       </div>
       <div class="pane" id="pane-explore"></div>
@@ -218,8 +228,10 @@ td:first-child{font-family:var(--f-body)}
       <div class="pane" id="pane-tracker" hidden></div>
       <div class="pane" id="pane-calendar" hidden></div>
       <div class="pane" id="pane-route" hidden></div>
+      <div class="pane" id="pane-fuel" hidden></div>
       <div class="pane" id="pane-data" hidden></div>
     </aside>
+    <div class="splitter" id="splitter" role="separator" aria-orientation="vertical" aria-label="Resize the panel and the map" tabindex="0"><span class="grip"></span><button type="button" class="splbtn" id="splPanel" aria-label="Widen the panel">‹</button><button type="button" class="splbtn" id="splMap" aria-label="Widen the map">›</button></div>
     <div class="mapwrap">
       <div id="map" role="application" aria-label="Map of Nigeria"></div>
       <details class="layerbox" id="layerbox" open>
@@ -232,6 +244,7 @@ td:first-child{font-family:var(--f-body)}
             <option value="markets">Markets mapped</option>
             <option value="wh">Exchange warehouses (SEC 2019)</option>
             <option value="extreme">Price extremes (selected item)</option>
+            <option value="pms">Petrol price (NNPC)</option>
           </select>
           <label><input type="checkbox" id="tilesChk"> Street basemap</label>
         </div>
@@ -1700,6 +1713,9 @@ function stateStyle(f){
       const max = SHADE==="markets" ? Math.max(...STATE_NAMES.map(shadeValue)) : 11;
       const v = shadeValue(st);
       fill = v ? mix(ind, land, Math.round(10 + 45*v/max)) : land;
+    } else if (SHADE==="pms"){
+      const o = (typeof FUEL_OBS!=="undefined") ? FUEL_OBS.find(x=>x.nnpc && x.where===st) : null;
+      if (o){ const all = FUEL_OBS.filter(x=>x.nnpc).map(x=>x.price); const lo=Math.min(...all), hi=Math.max(...all); const t=(o.price-lo)/(hi-lo||1); fill = t<0.5 ? mix(cssVar("--leaf"), land, Math.round(70-100*t)) : mix(cssVar("--bad"), land, Math.round(100*(t-0.5)+20)); }
     } else if (SHADE==="extreme"){
       const ex = obsFor(PRICE_C).filter(o=>o.scope==="state" && o.where===st && o.ext);
       const latest = ex.sort((a,b)=>b.date.localeCompare(a.date))[0];
@@ -1769,6 +1785,7 @@ function drawLegend(){
   h += Object.entries(FAC_TYPES).filter(([k])=>LAYERS[k]).map(([k,t])=>`<div class="lg"><span style="width:10px;height:10px;background:${t.color};display:inline-block;${t.shape==="diamond"?"transform:rotate(45deg)":""}"></span>${t.label}</div>`).join("");
   if (SHADE==="markets") h += `<div class="lg muted">State shade: more markets mapped = darker</div>`;
   if (SHADE==="wh") h += `<div class="lg muted">State shade: exchange-certified warehouses (2019)</div>`;
+  if (SHADE==="pms") h += `<div class="lg"><span class="dot" style="background:var(--leaf)"></span>Cheaper petrol (NNPC)</div><div class="lg"><span class="dot" style="background:var(--bad)"></span>Dearer petrol (NNPC)</div><div class="lg muted">NNPC pump prices, 8 Oct 2026</div>`;
   if (SHADE==="extreme") h += `<div class="lg"><span class="dot" style="background:var(--bad)"></span>Highest-price state</div><div class="lg"><span class="dot" style="background:var(--leaf)"></span>Lowest-price state</div><div class="lg muted">${esc(COMMODITIES[PRICE_C].label)} · NBS · pale = zone</div>`;
   $("#legend").innerHTML = h;
 }
@@ -1829,6 +1846,7 @@ function showTab(t){
   if (t==="data") renderData();
   if (t==="tracker") renderTracker();
   if (t==="calendar") renderCalendar();
+  if (t==="fuel") renderFuel();
 }
 document.querySelectorAll(".tabs button").forEach(b=>b.onclick=()=>showTab(b.dataset.tab));
 
@@ -2760,6 +2778,185 @@ for (const fn of ["goState","goLGA","select"]){
   window[fn] = function(...a){ if (typeof mapBusy==="function" ? mapBusy() : PICKING) return; return orig.apply(this, a); };
 }
 
+// ---------- Fuel: pump-price tracker, black-market reports, trip fuel cost ----------
+const FUEL_FORM_URL = "https://tally.so/r/xXk2Zy";
+const FUEL_PRODUCTS = {
+  pms: {label:"Petrol (PMS)",   short:"Petrol", unit:"litre", used:"Cars, 18-seater buses, tricycles and motorcycles"},
+  ago: {label:"Diesel (AGO)",   short:"Diesel", unit:"litre", used:"Articulated trucks, lorries, coaster and luxury buses, generators"},
+  dpk: {label:"Kerosene (DPK)", short:"Kerosene", unit:"litre", used:"Household cooking and lamps"},
+  lpg: {label:"LPG (gas)",      short:"LPG",    unit:"kg",    used:"Cooking gas and autogas (CNG/LPG vehicles)"}
+};
+Object.assign(SOURCES, {
+  nbs_pms:{name:"NBS Petrol (PMS) Price Watch, monthly", url:"https://nigerianstat.gov.ng/elibrary", kind:"NBS (monthly)", conf:"high"},
+  nbs_pms_feb:{name:"NBS PMS Price Watch Feb 2026 (via Legit.ng)", url:"https://www.legit.ng/business-economy/industry/1702662-nbs-releases-list-states-highest-lowest-petrol-prices/", kind:"NBS (monthly)", conf:"high"},
+  nbs_pms_mar:{name:"NBS PMS & AGO Price Watch Mar 2026 (via BusinessPost)", url:"https://businesspost.ng/general/petrol-prices-in-nigeria-rise-22-55-in-march-2026-on-hormuz-closure/", kind:"NBS (monthly)", conf:"high"},
+  nbs_pms_apr:{name:"NBS PMS Price Watch Apr 2026 (via Channels TV)", url:"https://www.channelstv.com/2026/05/30/average-petrol-price-hits-%E2%82%A61532-per-litre/", kind:"NBS (monthly)", conf:"high"},
+  nbs_pms_may:{name:"NBS PMS Price Watch May 2026 (via The Whistler)", url:"https://thewhistler.ng/petrol-price-hits-%E2%82%A61596-litre-as-north-west-records-lowest-pms-cost/", kind:"NBS (monthly)", conf:"high"},
+  nnpc_oct8:{name:"NNPC retail petrol prices by state, 8 Oct 2026 (via Legit.ng)", url:"https://www.legit.ng/business-economy/energy/1734964-nnpc-reduces-petrol-price-by-n5-announces-rates/", kind:"NNPC pump prices", conf:"high"},
+  depot_oct10:{name:"Depot prices, 10 Oct 2026 (petroleumprice.ng via Awajis)", url:"https://awajis.com/fuel-price-in-nigeria-today/", kind:"Depot (wholesale)", conf:"medium"},
+  pp_sep22:{name:"Fuel price trend report, 22 Sep 2026 (priceandpromo via Brand Icon Image)", url:"https://www.brandiconimage.com/2026/10/petrol-diesel-prices-surge-86-in-2026.html", kind:"Retail survey", conf:"medium"},
+  dailyfuels:{name:"DailyFuels Nigeria, week of 10 Oct 2026", url:"https://dailyfuels.com/nigeria/", kind:"Aggregator (weekly)", conf:"medium"},
+  fuel_reports:{name:"Community fuel price reports", url:"https://tally.so/r/xXk2Zy", kind:"Reports from atlas users", conf:"medium"}
+});
+// p: product · kind: pump | depot | black · scope: national | state | zone
+const FUEL_OBS = [
+  ...[["2026-01",1034.76,"nbs_pms_feb"],["2026-02",1051.47,"nbs_pms_feb"],["2026-03",1288.54,"nbs_pms_mar"],["2026-04",1532.93,"nbs_pms_apr"],["2026-05",1596.25,"nbs_pms_may"]]
+     .map(([d,p,s])=>({p:"pms", kind:"pump", scope:"national", where:"Nigeria", price:p, date:d, src:s, series:"nbs"})),
+  ...[["2026-02",1420.17,"nbs_pms_mar"],["2026-03",1648.08,"nbs_pms_mar"],["2026-05",3277.47,"nbs_ago26"]]
+     .map(([d,p,s])=>({p:"ago", kind:"pump", scope:"national", where:"Nigeria", price:p, date:d, src:s, series:"nbs"})),
+  {p:"dpk", kind:"pump", scope:"national", where:"Nigeria", price:2971.94, date:"2026-05", src:"depot_oct10", series:"nbs"},
+  // NBS state extremes
+  ...[["pms","2026-02","Yobe",1134.73,"high","nbs_pms_feb"],["pms","2026-02","Lagos",966.61,"low","nbs_pms_feb"],
+      ["pms","2026-03","Anambra",1441.22,"high","nbs_pms_mar"],["pms","2026-03","Lagos",1162.71,"low","nbs_pms_mar"],
+      ["pms","2026-04","Yobe",1599.05,"high","nbs_pms_apr"],["pms","2026-04","Niger",1403.89,"low","nbs_pms_apr"],
+      ["pms","2026-05","Edo",1722.91,"high","nbs_pms_may"],["pms","2026-05","Adamawa",1469.83,"low","nbs_pms_may"],
+      ["ago","2026-03","Ebonyi",2262.29,"high","nbs_pms_mar"],["ago","2026-03","Kogi",1383.40,"low","nbs_pms_mar"],
+      ["ago","2026-05","Nasarawa",3785.84,"high","nbs_ago26"],["ago","2026-05","Kogi",2823.85,"low","nbs_ago26"]]
+     .map(([p,d,w,price,ext,s])=>({p, kind:"pump", scope:"state", where:w, price, date:d, ext, src:s, series:"nbs"})),
+  // current market
+  {p:"pms", kind:"pump", scope:"national", where:"Nigeria", price:1378, date:"2026-09-22", src:"pp_sep22", label:"retail average"},
+  {p:"ago", kind:"pump", scope:"national", where:"Nigeria", price:1899, date:"2026-09-22", src:"pp_sep22", label:"retail average"},
+  {p:"pms", kind:"pump", scope:"national", where:"Nigeria", price:1318, date:"2026-10-10", src:"dailyfuels", label:"weekly average"},
+  {p:"ago", kind:"pump", scope:"national", where:"Nigeria", price:1730, date:"2026-10-10", src:"dailyfuels", label:"weekly average"},
+  {p:"dpk", kind:"pump", scope:"national", where:"Nigeria", price:1850, date:"2026-10-10", src:"dailyfuels", label:"weekly average"},
+  {p:"pms", kind:"depot", scope:"national", where:"Nigeria", price:1325, date:"2026-10-08", src:"nnpc_oct8", label:"Dangote ex-gantry"},
+  {p:"pms", kind:"depot", scope:"state", where:"Lagos", price:1340, date:"2026-10-10", src:"depot_oct10", label:"depot (lowest)"},
+  {p:"pms", kind:"depot", scope:"state", where:"Rivers", price:1350, date:"2026-10-10", src:"depot_oct10", label:"depot (mid of ₦1,340–1,360)"},
+  {p:"ago", kind:"depot", scope:"state", where:"Lagos", price:1802.5, date:"2026-10-10", src:"depot_oct10", label:"depot (₦1,800–1,805)"},
+  {p:"lpg", kind:"depot", scope:"state", where:"Lagos", price:1010, date:"2026-10-10", src:"depot_oct10", label:"Dangote depot, per kg"},
+  {p:"lpg", kind:"depot", scope:"state", where:"Delta", price:1100, date:"2026-10-10", src:"depot_oct10", label:"Warri depot, per kg"},
+  // NNPC pump price per state
+  ...Object.entries({"Lagos":1355,"Rivers":1355,"Osun":1358,"Akwa Ibom":1360,"Ogun":1367,"Oyo":1367,"Abia":1370,"FCT":1370,"Anambra":1372,"Enugu":1372,"Imo":1372,
+    "Ebonyi":1375,"Kwara":1375,"Ekiti":1377,"Ondo":1377,"Delta":1379,"Bayelsa":1380,"Edo":1380,"Bauchi":1385,"Kano":1385,"Cross River":1390,"Kogi":1390,"Kaduna":1400,
+    "Benue":1410,"Zamfara":1414,"Adamawa":1420,"Jigawa":1420,"Kebbi":1420,"Plateau":1420,"Taraba":1420,"Borno":1430,"Gombe":1430,"Nasarawa":1430,"Sokoto":1430,"Niger":1433,"Yobe":1435})
+     .map(([w,price])=>({p:"pms", kind:"pump", scope:"state", where:w, price, date:"2026-10-08", src:"nnpc_oct8", label:"NNPC stations", nnpc:true}))
+];
+
+// community reports (db on claude.ai, Tally feed on the website, local otherwise)
+let FUEL = {db:null, uid:null, mode:"loading", entries:[], feed:[], local: store.get("fuelLocal", [])};
+const fuelReports = () => [...FUEL.entries, ...FUEL.feed, ...FUEL.local];
+async function initFuelStore(){
+  try { const r = await fetch("data/fuel-reports.json", {cache:"no-store"}); if (r.ok){ const j = await r.json(); FUEL.feed = (j.reports||[]).map(x=>Object.assign({src:"feed"}, x)); } } catch(e){}
+  if (!window.claude?.use){ FUEL.mode = FUEL_FORM_URL ? "tally" : "local"; afterFuel(); return; }
+  const db = await claude.use("db"); const user = await claude.use("user");
+  if (!db){ FUEL.mode = FUEL_FORM_URL ? "tally" : "local"; afterFuel(); return; }
+  FUEL.db = db; FUEL.uid = user ? await user.id() : null;
+  const can = user ? await user.can("data.write") : null;
+  FUEL.mode = can===false ? "readonly" : "shared";
+  db.collection("fuel_reports").onSnapshot(s=>{ FUEL.entries = s.docs.map(d=>Object.assign({id:d.id, src:"db"}, d.data())); afterFuel(); }, err=>{ if (err.code!=="unavailable"){ FUEL.mode="local"; afterFuel(); } });
+}
+function afterFuel(){ if (!$("#pane-fuel").hidden) renderFuel(); if (!$("#pane-route").hidden) renderRoute(); }
+function median(a){ if (!a.length) return null; const s=[...a].sort((x,y)=>x-y), m=Math.floor(s.length/2); return s.length%2?s[m]:(s[m-1]+s[m])/2; }
+function reportsFor(p, kind, state, days=21){
+  return fuelReports().filter(r=>r.product===p && r.kind===kind && (!state || r.state===state) && daysOld(r.date)<=days && r.price>0);
+}
+// best current price for a product in a state, by kind
+function fuelPrice(p, kind="pump", state=null){
+  if (kind==="black"){
+    const rs = reportsFor(p, "black", state); const rn = reportsFor(p, "black", null);
+    if (rs.length) return {price: median(rs.map(r=>+r.price)), label:`median of ${rs.length} report${rs.length>1?"s":""} in ${state}`, date: rs.map(r=>r.date).sort().pop(), src:"fuel_reports"};
+    if (rn.length) return {price: median(rn.map(r=>+r.price)), label:`median of ${rn.length} report${rn.length>1?"s":""} nationwide`, date: rn.map(r=>r.date).sort().pop(), src:"fuel_reports"};
+    return null;
+  }
+  const rep = state ? reportsFor(p, kind, state, 14) : [];
+  if (rep.length>=2) return {price: median(rep.map(r=>+r.price)), label:`median of ${rep.length} reports in ${state}`, date: rep.map(r=>r.date).sort().pop(), src:"fuel_reports"};
+  const cand = FUEL_OBS.filter(o=>o.p===p && o.kind===kind && !o.series && ((state && o.scope==="state" && o.where===state) || o.scope==="national")).sort((a,b)=>(a.scope==="state"?0:1)-(b.scope==="state"?0:1) || b.date.localeCompare(a.date));
+  const o = cand[0]; if (!o) return null;
+  return {price:o.price, label:`${o.label||"price"}${o.scope==="state"?", "+o.where:", national"}`, date:o.date, src:o.src};
+}
+
+// trip vehicles and fuel use (editable assumptions)
+const FUEL_VEH = {
+  car:   {label:"Car",                                fuel:"pms", lp100:9},
+  bus:   {label:"18-seater bus (petrol)",             fuel:"pms", lp100:14},
+  coach: {label:"Coaster / luxury bus (diesel)",      fuel:"ago", lp100:25},
+  truck: {label:"Articulated truck (diesel, loaded)", fuel:"ago", lp100:45}
+};
+let FS = Object.assign({p:"pms", state:null, calcKm:500, calcVeh:"car", lp:{}, black:{}, roundTrip:false}, store.get("fuel", {}));
+const saveFS = () => store.set("fuel", FS);
+const lpOf = v => FS.lp[v] ?? FUEL_VEH[v].lp100;
+function tripFuel(km, v, state){
+  const f = FUEL_VEH[v]; const litres = km * lpOf(v) / 100 * (FS.roundTrip ? 2 : 1);
+  const pump = fuelPrice(f.fuel, "pump", state);
+  const bm = FS.black[f.fuel] ? {price:+FS.black[f.fuel], label:"your price"} : fuelPrice(f.fuel, "black", state);
+  return {litres, pump, bm, pumpCost: pump ? litres*pump.price : null, bmCost: bm ? litres*bm.price : null, fuel:f.fuel};
+}
+
+// ----- Fuel tab -----
+function renderFuel(){
+  const el = $("#pane-fuel"); const p = FS.p, P = FUEL_PRODUCTS[p];
+  const st = FS.state;
+  const pump = fuelPrice(p, "pump", st), depot = fuelPrice(p, "depot", st), bm = fuelPrice(p, "black", st);
+  let h = `<div><h2>Fuel prices</h2><p class="small muted">Pump, depot and black-market prices for the fuels Nigerian vehicles use, with a calculator for what a trip will cost in fuel.</p></div>`;
+  h += `<div class="seg">${Object.entries(FUEL_PRODUCTS).map(([k,v])=>`<button type="button" data-fp="${k}" aria-pressed="${k===p}">${v.short}</button>`).join("")}</div>`;
+  h += `<p class="hint">${esc(P.label)}: ${esc(P.used)}.</p>`;
+  h += `<div class="field"><label for="fuelState">State</label><select id="fuelState"><option value="">Nigeria (national)</option>${STATE_NAMES.map(s=>`<option ${s===st?"selected":""}>${esc(s)}</option>`).join("")}</select></div>`;
+  const tile = (title, x, cls="") => `<div class="stat"><span>${title}</span><b class="${cls}">${x?naira(x.price):"–"}</b><span>${x?`${esc(x.label)} · ${fmtDate(x.date)}`:"no recent data"}</span></div>`;
+  h += `<div class="stats">${tile("Pump", pump)}${tile("Depot / ex-gantry", depot)}${tile("Black market", bm, "bad")}</div>`;
+  h += `<p class="hint">Prices per ${P.unit}. Black-market prices come only from reports by atlas users; add yours below.</p>`;
+  // trend
+  const nbs = FUEL_OBS.filter(o=>o.p===p && o.series==="nbs" && o.scope==="national").sort((a,b)=>a.date.localeCompare(b.date));
+  const recent = FUEL_OBS.filter(o=>o.p===p && o.kind==="pump" && o.scope==="national" && !o.series).sort((a,b)=>a.date.localeCompare(b.date));
+  const series = [...nbs.map(o=>({d:o.date, v:o.price})), ...recent.map(o=>({d:o.date.slice(0,7), v:o.price}))];
+  if (series.length>1) h += `<div class="card"><h3>National pump price, 2026</h3>${spark(series)}<p class="hint">January–May: NBS monthly averages. September–October: retail surveys (${recent.map(o=>esc(SOURCES[o.src].name.split(",")[0])).join("; ")}).${p==="ago"?" The May NBS figure reflects the spike during the Strait of Hormuz closure.":""}</p></div>`;
+  // NNPC table for petrol
+  if (p==="pms"){
+    const rows = FUEL_OBS.filter(o=>o.nnpc).sort((a,b)=>a.price-b.price);
+    const lo = rows[0].price, hi = rows[rows.length-1].price;
+    h += `<div class="card"><h3>NNPC petrol pump price by state · ${fmtDate(rows[0].date)}</h3><div class="bars">${rows.map(o=>`<button class="item" type="button" data-fst="${esc(o.where)}" style="padding:2px 0;border:0;display:block"><span class="bar"><span>${esc(o.where)}</span><span class="track"><span class="fill ${o.price===lo?"min":o.price===hi?"max":""}" style="width:${Math.max(6, 100*(o.price-lo+20)/(hi-lo+20))}%;display:block"></span></span><span class="num">${naira(o.price)}</span></span></button>`).join("")}</div><p class="hint">Private stations often sell above or below NNPC. Katsina was not in the list. Choose “Petrol price (NNPC)” under Map layers to shade the map.</p></div>`;
+  }
+  const ext = FUEL_OBS.filter(o=>o.p===p && o.ext).sort((a,b)=>b.date.localeCompare(a.date));
+  if (ext.length){ const d = ext[0].date; const hiX = ext.find(o=>o.date===d && o.ext==="high"), loX = ext.find(o=>o.date===d && o.ext==="low");
+    h += `<div class="row"><div class="stat"><span>Dearest state (NBS ${fmtDate(d)})</span><b class="bad">${esc(hiX.where)}</b><span class="num">${naira(hiX.price,2)}</span></div><div class="stat"><span>Cheapest state (NBS ${fmtDate(d)})</span><b class="good">${esc(loX.where)}</b><span class="num">${naira(loX.price,2)}</span></div></div>`; }
+  // calculator
+  const cv = FS.calcVeh, f = FUEL_VEH[cv];
+  const calc = tripFuel(+FS.calcKm||0, cv, st);
+  const routeKm = (typeof ROUTES!=="undefined" && ROUTES[RS.vehicle]) ? ROUTES[RS.vehicle].km : null;
+  h += `<div class="card"><h3>Fuel cost calculator</h3>
+    <div class="row"><div class="field"><label for="fcKm">Distance (km)</label><input type="number" id="fcKm" min="1" value="${FS.calcKm}"></div><div class="field"><label for="fcVeh">Vehicle</label><select id="fcVeh">${Object.entries(FUEL_VEH).map(([k,v])=>`<option value="${k}" ${k===cv?"selected":""}>${v.label}</option>`).join("")}</select></div></div>
+    ${routeKm?`<button class="btn ghost" type="button" id="fcRoute">Use my Logistics trip (${fmtN(routeKm)} km)</button>`:""}
+    <div class="row"><div class="field"><label for="fcLp">Litres per 100 km</label><input type="number" id="fcLp" min="1" step="0.5" value="${lpOf(cv)}"></div><div class="field"><label for="fcBm">Black-market ${FUEL_PRODUCTS[f.fuel].short.toLowerCase()} ₦/L</label><input type="number" id="fcBm" min="0" value="${FS.black[f.fuel]||""}" placeholder="${calc.bm?Math.round(calc.bm.price):"what you'd pay"}"></div></div>
+    <label class="small" style="display:flex;gap:6px;align-items:center"><input type="checkbox" id="fcRt" ${FS.roundTrip?"checked":""}> Return trip (double the distance)</label>
+    <dl class="kv"><dt>Fuel needed</dt><dd>${fmtN(calc.litres)} L ${FUEL_PRODUCTS[f.fuel].short.toLowerCase()}</dd><dt>At pump price${calc.pump?` (${naira(calc.pump.price)}/L)`:""}</dt><dd>${naira(calc.pumpCost)}</dd><dt>At black-market price${calc.bm?` (${naira(calc.bm.price)}/L)`:""}</dt><dd class="bad">${calc.bmCost!=null?naira(calc.bmCost):"enter a price"}</dd>${calc.bmCost!=null&&calc.pumpCost!=null?`<dt>Extra if buying black market</dt><dd>${naira(calc.bmCost-calc.pumpCost)}</dd>`:""}</dl>
+    <p class="hint">Consumption figures are typical values for Nigerian roads; change them to match your vehicle and load.</p></div>`;
+  // report form
+  h += `<div class="card"><h3>Report a price you saw</h3>${FUEL.mode==="readonly"?`<p class="small muted">Reporting here needs Contributor access; use the form on the atlas website.</p>`:""}
+    <form id="fuelForm" style="display:flex;flex-direction:column;gap:8px">
+    <div class="row"><div class="field"><label for="frP">Fuel</label><select id="frP">${Object.entries(FUEL_PRODUCTS).map(([k,v])=>`<option value="${k}" ${k===p?"selected":""}>${v.label}</option>`).join("")}</select></div><div class="field"><label for="frK">Where bought</label><select id="frK"><option value="pump">Filling station (pump)</option><option value="black">Black market / roadside</option></select></div></div>
+    <div class="row"><div class="field"><label for="frPrice">Price ₦ per litre/kg</label><input type="number" id="frPrice" min="100" max="20000" required></div><div class="field"><label for="frDate">Date</label><input type="date" id="frDate" value="${todayStr()}" max="${todayStr()}"></div></div>
+    <div class="row"><div class="field"><label for="frState">State</label><select id="frState" required><option value="">Choose…</option>${STATE_NAMES.map(s=>`<option ${s===st?"selected":""}>${esc(s)}</option>`).join("")}</select></div><div class="field"><label for="frLga">LGA</label><select id="frLga"><option value="">Choose…</option>${st?lgaOptions(st,""):""}</select></div></div>
+    <div class="row"><div class="field"><label for="frTown">Town or area</label><input type="text" id="frTown" maxlength="60"></div><div class="field"><label for="frStation">Station (optional)</label><input type="text" id="frStation" maxlength="60" placeholder="e.g. NNPC, MRS, Total"></div></div>
+    <div class="btns"><button class="btn" type="submit" ${FUEL.mode==="readonly"?"disabled":""}>Send report</button></div><div id="frMsg" class="small"></div></form>
+    <p class="hint">${FUEL.mode==="tally"?"Reports go through the atlas form and appear after the next daily update.":FUEL.mode==="local"?"Saved in this browser only, because shared saving is not available here.":"Reports are shared with everyone who uses this atlas."}</p></div>`;
+  const recentReps = fuelReports().filter(r=>r.product===p).sort((a,b)=>(b.date||"").localeCompare(a.date||"")).slice(0,10);
+  if (recentReps.length) h += `<h3>Latest reports</h3><div class="tablewrap"><table><thead><tr><th>Where</th><th>Type</th><th>₦</th><th>Date</th></tr></thead><tbody>${recentReps.map(r=>`<tr><td style="font-family:var(--f-body);white-space:normal">${esc([r.town, r.lga, r.state].filter(Boolean).join(", "))}${r.station?` · ${esc(r.station)}`:""}</td><td style="font-family:var(--f-body)">${r.kind==="black"?'<span class="bad">black mkt</span>':"pump"}</td><td>${naira(r.price)}</td><td>${fmtDate(r.date)}</td></tr>`).join("")}</tbody></table></div>`;
+  h += `<p class="hint">Sources: ${[...new Set(FUEL_OBS.filter(o=>o.p===p).map(o=>o.src))].map(s=>SOURCES[s]?`<a href="${SOURCES[s].url}" target="_blank" rel="noopener" style="color:var(--indigo)">${esc(SOURCES[s].name)}</a>`:"").join(" · ")}</p>`;
+  el.innerHTML = h;
+  el.querySelectorAll("[data-fp]").forEach(b=>b.onclick=()=>{ FS.p=b.dataset.fp; saveFS(); renderFuel(); });
+  el.querySelectorAll("[data-fst]").forEach(b=>b.onclick=()=>{ FS.state=b.dataset.fst; saveFS(); renderFuel(); el.scrollTop=0; });
+  $("#fuelState").onchange = e=>{ FS.state = e.target.value || null; saveFS(); renderFuel(); };
+  $("#fcKm").onchange = e=>{ FS.calcKm = +e.target.value || 0; saveFS(); renderFuel(); };
+  $("#fcVeh").onchange = e=>{ FS.calcVeh = e.target.value; saveFS(); renderFuel(); };
+  $("#fcLp").onchange = e=>{ const v=+e.target.value; if (v>0){ FS.lp[FS.calcVeh]=v; saveFS(); renderFuel(); } };
+  $("#fcBm").onchange = e=>{ const v=+e.target.value; FS.black[FUEL_VEH[FS.calcVeh].fuel] = v>0 ? v : undefined; saveFS(); renderFuel(); };
+  $("#fcRt").onchange = e=>{ FS.roundTrip = e.target.checked; saveFS(); renderFuel(); };
+  $("#fcRoute") && ($("#fcRoute").onclick = ()=>{ FS.calcKm = Math.round(routeKm); FS.calcVeh = RS.vehicle==="truck"?"truck":RS.vehicle==="bus"?"bus":"car"; saveFS(); renderFuel(); });
+  $("#frState").onchange = e=>{ $("#frLga").innerHTML = `<option value="">Choose…</option>${e.target.value?lgaOptions(e.target.value,""):""}`; };
+  $("#fuelForm").onsubmit = async ev=>{ ev.preventDefault(); const msg = t=>$("#frMsg").innerHTML = t;
+    const r = {product:$("#frP").value, kind:$("#frK").value, price:+$("#frPrice").value, date:$("#frDate").value, state:$("#frState").value, lga:$("#frLga").value, town:$("#frTown").value.trim(), station:$("#frStation").value.trim()};
+    if (!r.state) return msg(`<span class="bad">Choose the state.</span>`);
+    if (!(r.price>=100 && r.price<=20000)) return msg(`<span class="bad">Enter a price between ₦100 and ₦20,000.</span>`);
+    if (!r.date || r.date>todayStr()) return msg(`<span class="bad">Choose a date that has passed.</span>`);
+    r.createdAt = new Date().toISOString(); r.by = FUEL.uid || null;
+    try {
+      if (FUEL.mode==="shared") await FUEL.db.collection("fuel_reports").add(r);
+      else if (FUEL.mode==="tally"){ window.open(FUEL_FORM_URL+"?"+new URLSearchParams(Object.entries(r).filter(([k,v])=>v!=null && v!=="" && k!=="by" && k!=="createdAt").map(([k,v])=>[k,String(v)])).toString(), "_blank", "noopener"); FUEL.local.push(Object.assign({id:"l"+Date.now(), src:"local", pending:true}, r)); store.set("fuelLocal", FUEL.local); }
+      else { FUEL.local.push(Object.assign({id:"l"+Date.now(), src:"local"}, r)); store.set("fuelLocal", FUEL.local); }
+      toast(FUEL.mode==="tally" ? "Opening the atlas form to send your report" : "Thanks, price reported"); renderFuel();
+    } catch(e){ msg(`<span class="bad">${e && e.code==="invalid_argument" ? "Your access here is view-only." : "Could not save the report. Try again."}</span>`); }
+  };
+}
+
 // ---------- Logistics: multi-stop road trips ----------
 // Road routing: Valhalla on OpenStreetMap (FOSSGIS public server), costing auto / bus / truck.
 // Place search: atlas markets, market days, LGAs and states offline; Photon (OpenStreetMap) for any town online.
@@ -2787,6 +2984,7 @@ if (!Array.isArray(RS.stops)){
   if (!RS.stops.length) RS.stops = [stopFromPlace(byId("dawanau")), stopFromPlace(byId("mile12"))];
 }
 RS.vehicle ||= "truck";
+if (!RS.dieselSet && (RS.diesel===DIESEL.national || !RS.diesel)){ const a = fuelPrice('ago','pump'); if (a) RS.diesel = a.price; }
 RS.allow = Object.assign({car:10, bus:20, truck:35}, RS.allow2||{}); RS.allow2 = RS.allow;
 
 function stopFromPlace(p){
@@ -2855,7 +3053,7 @@ async function computeRoutes(){
   const key = JSON.stringify(stops.map(s=>[s.lat.toFixed(4), s.lng.toFixed(4)]));
   if (stops.length<2){ ROUTES = {}; ROUTE_KEY = key; drawTrip(); renderRoute(); return; }
   if (key===ROUTE_KEY && Object.keys(ROUTES).length) return;
-  ROUTE_KEY = key; const my = ++routeAbort;
+  ROUTE_KEY = key; const my = ++routeAbort; if (!(PERMS && PERMS.status==='loading')) PERMS = PERMS && PERMS.list && PERMS.list.some(o=>o.stops.length===stops.length && o.stops.every((x,i)=>x===stops[i])) ? PERMS : null; ALTS = null; altLayer.clearLayers();
   ROUTES = Object.fromEntries(Object.keys(VEHICLES).map(v=>[v, Object.assign(estimateRoute(stops, v), {pending:true})]));
   drawTrip(); renderRoute();
   // selected vehicle first, then the others, one request per second (server fair-use)
@@ -2970,6 +3168,99 @@ function suggestOrder(){
   RS.stops = route; saveRS(); computeRoutes(); toast("Stops reordered for the shortest drive");
 }
 
+// ----- fuel, route options and saved comparisons -----
+const FUEL_FOR = {car:"car", bus:"bus", truck:"truck"};
+function startState(){ const s = RS.stops.filter(Boolean)[0]; if (!s) return null; const l = findLGA(s.lat, s.lng); return l ? l.properties.state : null; }
+function fuelCells(km, v){ const t = tripFuel(km, FUEL_FOR[v], startState()); return {pump: t.pumpCost, bm: t.bmCost, litres: t.litres, fuel: t.fuel}; }
+function haulCost(km, nStops){
+  const stops = RS.stops.filter(Boolean); const tr = TRUCKS[RS.truck], trips = Math.max(1, Math.ceil(RS.tonnes / tr.cap));
+  const back = RS.emptyReturn && stops.length>1 ? hav([stops[0].lat,stops[0].lng],[stops[stops.length-1].lat,stops[stops.length-1].lng])*RS.circuity : 0;
+  const legKm = km + back, fuelL = legKm*RS.lp100/100;
+  const total = (fuelL*RS.diesel + legKm*RS.perkm + RS.fixed*Math.max(1,nStops-1)) * trips;
+  return {total, perT: total/RS.tonnes, trips, fuelL: fuelL*trips};
+}
+let ALTS = null;        // {vehicle, list:[{legs,km,s,source}], shown:index|null}
+let PERMS = null;       // {status, list:[{stops, km, s, source}]}
+let SAVED = store.get("tripOptions", []);
+async function findAlternatives(){
+  const stops = RS.stops.filter(Boolean); if (stops.length!==2) return;
+  const v = RS.vehicle; ALTS = {vehicle:v, list:[], status:"loading"}; renderRoute();
+  try {
+    const body = {locations: stops.map(s=>({lat:+s.lat.toFixed(5), lon:+s.lng.toFixed(5)})), costing: VEHICLES[v].costing, units:"kilometers", alternates:2, directions_options:{units:"kilometers", narrative:false}};
+    if (VEHICLES[v].options) body.costing_options = VEHICLES[v].options;
+    const r = await fetch(`${VALHALLA}?json=${encodeURIComponent(JSON.stringify(body))}`); const j = await r.json();
+    if (!j.trip) throw new Error(j.error||"no route");
+    const conv = t => ({legs: t.legs.map(l=>({km:l.summary.length, s:l.summary.time, shape:decode6(l.shape)})), km:t.summary.length, s:t.summary.time, source:"road"});
+    ALTS.list = [conv(j.trip), ...(j.alternates||[]).map(a=>conv(a.trip))]; ALTS.status = "ok";
+  } catch(e){ ALTS.status = "error"; ALTS.err = String(e.message||e); }
+  renderRoute(); drawAlts();
+}
+const altLayer = L.layerGroup().addTo(map);
+function drawAlts(){
+  altLayer.clearLayers(); if (!ALTS || !ALTS.list.length || $("#pane-route").hidden) return;
+  ALTS.list.forEach((a,i)=>{ if (i===0) return; a.legs.forEach(l=>L.polyline(l.shape, {color: cssVar("--muted"), weight:4, opacity:.7, dashArray:"2 7"}).bindTooltip(`Alternative ${i}: ${fmtN(a.km)} km`, {sticky:true}).addTo(altLayer)); });
+}
+function permutations(arr){ if (arr.length<=1) return [arr.slice()]; const out=[]; arr.forEach((x,i)=>permutations([...arr.slice(0,i),...arr.slice(i+1)]).forEach(p=>out.push([x,...p]))); return out; }
+async function compareOrders(keepLast){
+  const stops = RS.stops.filter(Boolean); if (stops.length<3) return;
+  const first = stops[0], last = keepLast ? stops[stops.length-1] : null;
+  const mids = keepLast ? stops.slice(1,-1) : stops.slice(1);
+  if (mids.length>7){ PERMS = {status:"toomany"}; renderRoute(); return; }
+  const d = (a,b)=>hav([a.lat,a.lng],[b.lat,b.lng]);
+  const orders = permutations(mids).map(p=>{ const seq = [first, ...p, ...(last?[last]:[])]; let km=0; for (let i=1;i<seq.length;i++) km+=d(seq[i-1],seq[i]); return {seq, est:km}; }).sort((a,b)=>a.est-b.est);
+  const key = s => s.map(x=>x.lat.toFixed(4)+","+x.lng.toFixed(4)).join("|");
+  const current = {seq: stops, est: 0}; for (let i=1;i<stops.length;i++) current.est += d(stops[i-1],stops[i]);
+  const short = [current, ...orders.filter(o=>key(o.seq)!==key(stops))].slice(0, Math.min(5, orders.length+1));
+  PERMS = {status:"loading", total: orders.length, list: short.map(o=>({stops:o.seq, km:o.est*RS.circuity, s:o.est*RS.circuity/VEHICLES[RS.vehicle].speed*3600, source:"estimate", current: o===current}))};
+  renderRoute();
+  for (const item of PERMS.list){
+    try { const r = await roadRoute(item.stops, RS.vehicle); Object.assign(item, {km:r.km, s:r.s, source:"road"}); } catch(e){}
+    if (!$("#pane-route").hidden) renderRoute();
+    await new Promise(res=>setTimeout(res, 1100));
+  }
+  PERMS.status = "ok"; PERMS.list.sort((a,b)=>a.km-b.km); renderRoute();
+}
+function optionsBlock(R, stops){
+  let h = `<div class="card"><h3>Compare route options</h3><p class="small">Try different roads or stop orders, save the ones you like and compare their distance, time and costs side by side.</p><div class="btns">`;
+  if (stops.length===2) h += `<button class="btn ghost" type="button" id="altBtn">Alternative roads</button>`;
+  if (stops.length>=3) h += `<button class="btn ghost" type="button" id="permBtn">Compare stop orders</button><label class="small" style="display:flex;gap:6px;align-items:center"><input type="checkbox" id="permKeep" ${store.get("permKeep",true)?"checked":""}> Finish at the last stop</label>`;
+  h += `<button class="btn" type="button" id="saveOpt">Save this option</button></div>`;
+  const vlab = VEHICLES[RS.vehicle].label.toLowerCase();
+  if (ALTS && ALTS.vehicle===RS.vehicle && stops.length===2){
+    if (ALTS.status==="loading") h += `<p class="hint">Looking for other roads…</p>`;
+    else if (ALTS.status==="error") h += `<p class="hint">Alternative roads aren’t available right now (${esc(ALTS.err)}).</p>`;
+    else h += `<div class="tablewrap"><table><thead><tr><th>Road</th><th>km</th><th>Time</th><th>Fuel (pump)</th><th></th></tr></thead><tbody>${ALTS.list.map((a,i)=>{ const f = fuelCells(a.km, RS.vehicle); const on = R && Math.abs(R.km-a.km)<0.5; return `<tr${on?' style="font-weight:600"':""}><td>${i===0?"Fastest":"Alternative "+i}</td><td>${fmtN(a.km)}</td><td>${hm(withAllow(a.s,RS.vehicle))}</td><td>${naira(f.pump)}</td><td>${on?"in use":`<button class="iconbtn" type="button" data-alt="${i}">Use</button>`}</td></tr>`; }).join("")}</tbody></table></div><p class="hint">Grey dotted lines on the map are the alternatives, for the ${esc(vlab)}.</p>`;
+  }
+  if (PERMS && stops.length>=3){
+    if (PERMS.status==="toomany") h += `<p class="hint">Up to 7 stops in the middle can be compared; remove some to try every order.</p>`;
+    else {
+      h += `<p class="hint">${PERMS.total} possible orders checked; the ${PERMS.list.length} shortest are routed on the road network${PERMS.status==="loading"?" (working…)":""}.</p>`;
+      h += `<div class="tablewrap"><table><thead><tr><th>Order</th><th>km</th><th>Time</th><th>Fuel (pump)</th><th></th></tr></thead><tbody>${PERMS.list.map((o,i)=>{ const f = fuelCells(o.km, RS.vehicle); return `<tr><td style="white-space:normal;min-width:150px;font-family:var(--f-body)">${o.stops.map(s=>esc(s.name.replace(/ Market.*$/,"").replace(/^Point in /,""))).join(" → ")}${o.current?' <span class="tag">current</span>':""}</td><td>${fmtN(o.km)}${o.source==="road"?"":"*"}</td><td>${hm(withAllow(o.s,RS.vehicle))}</td><td>${naira(f.pump)}</td><td>${o.current?"":`<button class="iconbtn" type="button" data-perm="${i}">Use</button>`}</td></tr>`; }).join("")}</tbody></table></div>`;
+    }
+  }
+  if (SAVED.length){
+    h += `<h3 style="margin-top:6px">Saved options</h3><div class="tablewrap"><table><thead><tr><th>Option</th><th>km</th><th>Time</th><th>Fuel pump</th><th>Fuel black mkt</th><th>Haulage</th><th></th></tr></thead><tbody>${SAVED.map((o,i)=>`<tr><td style="white-space:normal;min-width:140px;font-family:var(--f-body)"><b>${esc(o.name)}</b><br><span class="hint">${esc(VEHICLES[o.vehicle].label)} · ${o.stops.map(s=>esc(s.name.replace(/ Market.*$/,""))).join(" → ")}</span></td><td>${fmtN(o.km)}</td><td>${hm(o.sAllow)}</td><td>${naira(o.fuelPump)}</td><td>${o.fuelBm!=null?naira(o.fuelBm):"–"}</td><td>${naira(o.haul)}</td><td style="white-space:nowrap"><button class="iconbtn" type="button" data-load="${i}">Load</button> <button class="iconbtn" type="button" data-unsave="${i}" aria-label="Delete">×</button></td></tr>`).join("")}</tbody></table></div>`;
+    const best = (k)=>SAVED.reduce((a,b)=>(b[k]!=null && (a==null || b[k]<a[k])) ? b : a, null);
+    const bk = best("km"), bt = best("sAllow"), bf = best("fuelPump");
+    h += `<p class="hint">Shortest: ${esc(bk.name)} · fastest: ${esc(bt.name)} · cheapest fuel: ${esc(bf.name)}.</p>`;
+  }
+  return h + `</div>`;
+}
+function wireOptions(R){
+  $("#altBtn") && ($("#altBtn").onclick = findAlternatives);
+  $("#permBtn") && ($("#permBtn").onclick = ()=>compareOrders($("#permKeep").checked));
+  $("#permKeep") && ($("#permKeep").onchange = e=>store.set("permKeep", e.target.checked));
+  document.querySelectorAll("[data-alt]").forEach(b=>b.onclick=()=>{ ROUTES[RS.vehicle] = ALTS.list[+b.dataset.alt]; drawTrip(); drawAlts(); renderRoute(); });
+  document.querySelectorAll("[data-perm]").forEach(b=>b.onclick=()=>{ const o = PERMS.list[+b.dataset.perm]; RS.stops = o.stops.slice(); PERMS.list.forEach(x=>x.current = (x===o)); saveRS(); computeRoutes().then(fitTrip); });
+  $("#saveOpt") && ($("#saveOpt").onclick = ()=>{
+    if (!R) return; const stops = RS.stops.filter(Boolean); const f = fuelCells(R.km, RS.vehicle); const hc = haulCost(R.km, stops.length);
+    SAVED.push({name:`Option ${SAVED.length+1}`, vehicle:RS.vehicle, stops:stops.map(s=>({...s})), km:R.km, sAllow:withAllow(R.s,RS.vehicle), fuelPump:f.pump, fuelBm:f.bm, haul:hc.total, source:R.source});
+    SAVED = SAVED.slice(-10); store.set("tripOptions", SAVED); renderRoute(); toast("Option saved");
+  });
+  document.querySelectorAll("[data-load]").forEach(b=>b.onclick=()=>{ const o = SAVED[+b.dataset.load]; RS.stops = o.stops.map(s=>({...s})); RS.vehicle = o.vehicle; saveRS(); computeRoutes().then(fitTrip); });
+  document.querySelectorAll("[data-unsave]").forEach(b=>b.onclick=()=>{ SAVED.splice(+b.dataset.unsave,1); store.set("tripOptions", SAVED); renderRoute(); });
+}
+
 // ----- the pane -----
 function renderSugOnly(){ const q = $("#stopQ"); if (!q) return; q.dispatchEvent(new CustomEvent("sugrefresh")); }
 function hm(s){ const h = Math.floor(s/3600), m = Math.round((s%3600)/60); return h ? `${h} h ${String(m).padStart(2,"0")} min` : `${m} min`; }
@@ -3002,11 +3293,13 @@ renderRoute = function(){
     const anyRoad = Object.values(ROUTES).some(r=>r.source==="road"), pend = Object.values(ROUTES).some(r=>r.pending);
     h += `<div class="card"><h3>${esc(stops[0].name)} → ${esc(stops[stops.length-1].name)}${stops.length>2?` · ${stops.length} stops`:""}</h3>
       <div class="stats"><div class="stat"><b>${fmtN(R.km)}</b><span>km by road${R.source==="road"?"":" (est.)"}</span></div><div class="stat"><b>${hm(withAllow(R.s, RS.vehicle)).replace(" min","m").replace(" h","h")}</b><span>${esc(VEHICLES[RS.vehicle].label.toLowerCase())} time</span></div><div class="stat"><b>${stops.length-1}</b><span>leg${stops.length>2?"s":""}</span></div></div>
-      <div class="tablewrap"><table><thead><tr><th>Vehicle</th><th>Distance</th><th>Driving</th><th>With delays</th></tr></thead><tbody>${Object.entries(VEHICLES).map(([k,v])=>{ const r = ROUTES[k]; return `<tr${k===RS.vehicle?' style="font-weight:600"':""}><td>${v.label}</td><td>${r?fmtN(r.km)+" km":"–"}</td><td>${r?hm(r.s):"–"}${r&&r.source!=="road"?"*":""}</td><td>${r?hm(withAllow(r.s,k)):"–"}</td></tr>`; }).join("")}</tbody></table></div>
+      <div class="tablewrap"><table><thead><tr><th>Vehicle</th><th>Distance</th><th>Driving</th><th>With delays</th><th>Fuel (pump)</th><th>Fuel (black mkt)</th></tr></thead><tbody>${Object.entries(VEHICLES).map(([k,v])=>{ const r = ROUTES[k]; const f = r ? fuelCells(r.km, k) : null; return `<tr${k===RS.vehicle?' style="font-weight:600"':""}><td>${v.label}</td><td>${r?fmtN(r.km)+" km":"–"}</td><td>${r?hm(r.s):"–"}${r&&r.source!=="road"?"*":""}</td><td>${r?hm(withAllow(r.s,k)):"–"}</td><td>${f?naira(f.pump):"–"}</td><td>${f&&f.bm!=null?naira(f.bm):"–"}</td></tr>`; }).join("")}</tbody></table></div>
+      <p class="hint">Fuel: ${(()=>{ const st=startState(); const ps=[["pms","petrol"],["ago","diesel"]].map(([p,n])=>{ const x=fuelPrice(p,"pump",st); const b=FS.black[p]?{price:+FS.black[p]}:fuelPrice(p,"black",st); return `${n} ${x?naira(x.price):"–"}/L pump${b?`, ${naira(b.price)}/L black market`:""}`; }).join("; "); return ps; })()}${startState()?" (prices for "+esc(startState())+")":""}. Car ${lpOf("car")} L/100 km petrol, bus ${lpOf("bus")} L/100 km petrol, articulated truck ${lpOf("truck")} L/100 km diesel${FS.roundTrip?", return trip":""}. Change prices and consumption in the Fuel tab.</p>
       <p class="hint">${pend ? "Finding road routes on the OpenStreetMap network…" : anyRoad ? "Road distances and driving times follow Nigeria’s OpenStreetMap road network (major and minor roads), with each vehicle’s own speeds and restrictions. " : ""}${Object.values(ROUTES).some(r=>r.source!=="road" && !r.pending) ? "* Road routing isn’t reachable here, so these are estimates: straight-line distance × "+RS.circuity+" at "+VEHICLES.car.speed+"/"+VEHICLES.bus.speed+"/"+VEHICLES.truck.speed+" km/h. " : ""}“With delays” adds ${RS.allow.car}% (car), ${RS.allow.bus}% (bus) and ${RS.allow.truck}% (articulated) for checkpoints, loading points and road condition.</p></div>`;
     if (stops.length>2){
       h += `<div class="tablewrap"><table><thead><tr><th>Leg</th><th>km</th><th>${esc(VEHICLES[RS.vehicle].label)}</th></tr></thead><tbody>${R.legs.map((l,i)=>`<tr><td style="white-space:normal">${LETTERS[i]}→${LETTERS[i+1]} ${esc(stops[i].name.replace(/ Market.*$/,""))} → ${esc(stops[i+1].name.replace(/ Market.*$/,""))}</td><td>${fmtN(l.km)}</td><td>${hm(withAllow(l.s,RS.vehicle))}</td></tr>`).join("")}</tbody></table></div>`;
     }
+    h += optionsBlock(R, stops);
     // haulage cost
     const tr = TRUCKS[RS.truck], trips = Math.max(1, Math.ceil(RS.tonnes / tr.cap));
     const legKm = R.km + (RS.emptyReturn ? hav([stops[0].lat,stops[0].lng],[stops[stops.length-1].lat,stops[stops.length-1].lng])*RS.circuity : 0);
@@ -3017,7 +3310,7 @@ renderRoute = function(){
       <div class="row3"><div class="field"><label for="rdi">Diesel ₦/L</label><input type="number" id="rdi" value="${Math.round(RS.diesel)}"></div><div class="field"><label for="rlp">L per 100 km</label><input type="number" id="rlp" value="${RS.lp100}"></div><div class="field"><label for="rpk">Other ₦/km</label><input type="number" id="rpk" value="${RS.perkm}"></div></div>
       <div class="row"><div class="field"><label for="rfx">Levies & loading ₦ per stop</label><input type="number" id="rfx" value="${RS.fixed}"></div><div class="field"><label>&nbsp;</label><label class="small" style="display:flex;gap:6px;align-items:center"><input type="checkbox" id="rer" ${RS.emptyReturn?"checked":""}> Truck returns empty</label></div></div>
       <dl class="kv"><dt>Truck trips</dt><dd>${trips}</dd><dt>Diesel (${fmtN(fuelL*trips)} L)</dt><dd>${naira(fuel*trips)}</dd><dt>Running costs</dt><dd>${naira(running*trips)}</dd><dt>Levies & loading</dt><dd>${naira(RS.fixed*(stops.length-1)*trips)}</dd><dt><b>Total</b></dt><dd><b>${naira(total)}</b></dd><dt>Per tonne</dt><dd>${naira(perT)}</dd><dt>Per 50 kg bag</dt><dd>${naira(perT/20)}</dd></dl>
-      <p class="hint">Uses the ${R.source==="road"?"road":"estimated"} distance for the ${esc(VEHICLES[RS.vehicle].label.toLowerCase())}. Diesel default is the NBS national average for ${fmtDate(DIESEL.date)}. All costs are editable assumptions.</p></div></details>`;
+      <p class="hint">Uses the ${R.source==="road"?"road":"estimated"} distance for the ${esc(VEHICLES[RS.vehicle].label.toLowerCase())}. Diesel default is the latest national pump average from the Fuel tab. All costs are editable assumptions.</p></div></details>`;
     // margin first → last stop
     const A = stops[0].id ? byId(stops[0].id) : null, B = stops[stops.length-1].id ? byId(stops[stops.length-1].id) : null;
     const ob = A ? bestPrice(RS.c, A) : null, db = B ? bestPrice(RS.c, B) : null;
@@ -3063,20 +3356,21 @@ renderRoute = function(){
     $("#dcCancel").onclick = ()=>{ DRAW_CANDS=null; drawLayer.clearLayers(); renderRoute(); };
   }
   el.querySelectorAll("[data-veh]").forEach(b=>b.onclick=()=>{ RS.vehicle=b.dataset.veh; saveRS(); drawTrip(); renderRoute(); });
+  wireOptions(R);
   $("#costDet") && ($("#costDet").ontoggle = e=>store.set("costOpen", e.target.open));
   $("#mgDet") && ($("#mgDet").ontoggle = e=>store.set("mgOpen", e.target.open));
   $("#rtr") && ($("#rtr").onchange = e=>{ RS.truck=e.target.value; RS.lp100=TRUCKS[RS.truck].lp100; saveRS(); renderRoute(); });
   $("#rer") && ($("#rer").onchange = e=>{ RS.emptyReturn=e.target.checked; saveRS(); renderRoute(); });
   $("#rc") && ($("#rc").onchange = e=>{ RS.c=e.target.value; RS.buy=null; RS.sell=null; saveRS(); renderRoute(); });
   [["#rt","tonnes"],["#rdi","diesel"],["#rlp","lp100"],["#rpk","perkm"],["#rfx","fixed"],["#rbuy","buy"],["#rsell","sell"]].forEach(([id,k])=>{ const n=$(id); if (!n) return;
-    n.onchange = ()=>{ const v = parseFloat(n.value); if (k==="buy"||k==="sell") RS[k] = isNaN(v)?null:v; else if (v>0) RS[k]=v; saveRS(); renderRoute(); $(id)?.focus(); }; });
+    n.onchange = ()=>{ const v = parseFloat(n.value); if (k==="buy"||k==="sell") RS[k] = isNaN(v)?null:v; else if (v>0){ RS[k]=v; if (k==="diesel") RS.dieselSet = true; } saveRS(); renderRoute(); $(id)?.focus(); }; });
   drawTrip();
 };
 
 // When the tab opens, route the current stops; leaving the tab hides the trip
 const _showTab = showTab;
 showTab = function(t){
-  if (t!=="route"){ setPick(false); if (DRAWING) setDraw(false); tripLayer.clearLayers(); drawLayer.clearLayers(); }
+  if (t!=="route"){ setPick(false); if (DRAWING) setDraw(false); tripLayer.clearLayers(); drawLayer.clearLayers(); altLayer.clearLayers(); }
   _showTab(t);
   if (t==="route"){ const k = JSON.stringify(RS.stops.filter(Boolean).map(s=>[s.lat.toFixed(4), s.lng.toFixed(4)])); if (k!==ROUTE_KEY) computeRoutes().then(()=>fitTrip()); else { drawTrip(); } }
 };
@@ -3095,16 +3389,70 @@ showTab = function(t){
 })();
 map.attributionControl.addAttribution('Routing <a href="https://valhalla.github.io/valhalla/" target="_blank" rel="noopener">Valhalla</a> · search <a href="https://photon.komoot.io" target="_blank" rel="noopener">Photon</a>');
 
+// ---------- Adjustable panel / map split ----------
+(function(){
+  const main = $(".main"), sp = $("#splitter");
+  const mobile = () => window.matchMedia("(max-width:820px)").matches;
+  let pw = store.get("panelW", 420), mh = store.get("mapH", 52), mode = store.get("splitMode", "both");
+  const clampW = w => Math.max(260, Math.min(window.innerWidth - 220, w));
+  const clampH = h => Math.max(20, Math.min(85, h));
+  function apply(){
+    main.style.setProperty("--pw", clampW(pw) + "px");
+    main.style.setProperty("--mh", clampH(mh) + "vh");
+    main.classList.toggle("panel-closed", mode==="map");
+    main.classList.toggle("map-closed", mode==="panel");
+    if (mode==="map") main.style.setProperty("--pw", "0px");
+    if (!mobile()) main.style.gridTemplateColumns = mode==="map" ? "0 10px minmax(0,1fr)" : mode==="panel" ? "minmax(0,1fr) 10px 0" : "";
+    else main.style.gridTemplateColumns = "";
+    if (mobile()) main.style.gridTemplateRows = mode==="panel" ? "0 14px auto" : mode==="map" ? "85vh 14px 0" : "";
+    else main.style.gridTemplateRows = "";
+    $("#splPanel").setAttribute("aria-label", mode==="map" ? "Show the panel" : "Widen the panel");
+    $("#splMap").setAttribute("aria-label", mode==="panel" ? "Show the map" : "Widen the map");
+    setTimeout(()=>map.invalidateSize(), 60);
+  }
+  function save(){ store.set("panelW", pw); store.set("mapH", mh); store.set("splitMode", mode); }
+  let dragging = false, startX = 0, startY = 0, startW = 0, startH = 0;
+  const pt = e => e.touches ? e.touches[0] : e;
+  sp.addEventListener("pointerdown", e=>{
+    if (e.target.closest(".splbtn")) return;
+    dragging = true; sp.classList.add("drag"); sp.setPointerCapture?.(e.pointerId);
+    startX = e.clientX; startY = e.clientY; startW = mode==="map" ? 0 : $("aside.panel").getBoundingClientRect().width; startH = $(".mapwrap").getBoundingClientRect().height / window.innerHeight * 100;
+    if (mode!=="both"){ mode = "both"; if (!mobile()) pw = Math.max(260, startW || 260); }
+    e.preventDefault();
+  });
+  window.addEventListener("pointermove", e=>{
+    if (!dragging) return;
+    if (mobile()){ mh = clampH(startH + (e.clientY - startY) / window.innerHeight * 100); }
+    else { pw = clampW((startW||260) + (e.clientX - startX)); }
+    apply();
+  });
+  window.addEventListener("pointerup", ()=>{ if (!dragging) return; dragging = false; sp.classList.remove("drag"); save(); map.invalidateSize(); });
+  sp.addEventListener("dblclick", e=>{ if (e.target.closest(".splbtn")) return; pw = 420; mh = 52; mode = "both"; apply(); save(); });
+  sp.addEventListener("keydown", e=>{
+    const step = e.shiftKey ? 80 : 30;
+    if (!mobile() && (e.key==="ArrowLeft" || e.key==="ArrowRight")){ mode="both"; pw = clampW(pw + (e.key==="ArrowRight" ? step : -step)); }
+    else if (mobile() && (e.key==="ArrowUp" || e.key==="ArrowDown")){ mode="both"; mh = clampH(mh + (e.key==="ArrowDown" ? 5 : -5)); }
+    else return;
+    e.preventDefault(); apply(); save();
+  });
+  // ‹ grows the panel (and finally hides the map); › grows the map (and finally hides the panel)
+  $("#splPanel").onclick = ()=>{ if (mode==="map"){ mode="both"; } else if (mobile()){ mh = clampH(mh - 15); if (mh<=20) mode="panel"; } else { const max = window.innerWidth - 220; if (pw >= max - 5) mode="panel"; else pw = clampW(pw + 160); } apply(); save(); };
+  $("#splMap").onclick = ()=>{ if (mode==="panel"){ mode="both"; } else if (mobile()){ mh = clampH(mh + 15); if (mh>=85) mode="map"; } else { if (pw <= 265) mode="map"; else pw = clampW(pw - 160); } apply(); save(); };
+  window.addEventListener("resize", ()=>apply());
+  apply();
+})();
+
 // ---------- Boot ----------
 drawLayerBox(); setCrumbs(); applyTheme(store.get("theme", null) || (()=>{ try { const t = localStorage.getItem("theme"); return t==="light"||t==="dark" ? t : null; } catch(e){ return null; } })());
 map.fitBounds(stateLayer.getBounds(), {padding:[10,10]});
 renderExplore(); renderTicker();
 $("#feedPill").textContent = "Snapshot · " + fmtDate(SNAPSHOT_DATE);
 const startTab = (location.hash||"").replace("#","");
-if (["explore","prices","tracker","calendar","route","data"].includes(startTab)) showTab(startTab);
+if (["explore","prices","tracker","calendar","route","fuel","data"].includes(startTab)) showTab(startTab);
 
 loadFeed();
 initCalendarStore();
+initFuelStore();
 
 </script>
 
