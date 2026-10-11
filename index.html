@@ -386,6 +386,9 @@ footer{align-items:center}
 .nums div span{font-size:12px;color:var(--muted)}
 .class-use{font-size:13.5px;color:var(--muted);border-left:2px solid var(--accent);padding-left:12px}
 .class-use b{color:var(--ink);font-weight:600}
+.res-doi{font-size:12.5px;color:var(--muted);margin:0}
+.res-doi a{color:inherit;font-family:var(--mono,ui-monospace,monospace);text-decoration:underline;text-decoration-color:var(--line,currentColor);text-underline-offset:2px}
+.res-doi a:hover{color:var(--accent)}
 .res-foot{margin-top:auto;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;padding-top:6px}
 .open-link{font-weight:600;font-size:14.5px;text-decoration:none;display:inline-flex;align-items:center;gap:6px}
 .open-link:hover{color:var(--accent)}
@@ -882,6 +885,7 @@ window.initSim=function(){
         (i.text?'<div class="md">'+md(i.text)+'</div>':'')+
         (arr(i.numbers).length?'<div class="nums">'+arr(i.numbers).map(function(n){return '<div><b>'+esc(n.value)+'</b><span>'+esc(n.label)+'</span></div>';}).join('')+'</div>':'')+
         (i.classroom?'<p class="class-use"><b>In class:</b> '+inline(i.classroom)+'</p>':'')+
+        (i.doi?'<p class="res-doi">Cite with DOI <a href="https://doi.org/'+esc(i.doi)+'" target="_blank" rel="noopener" title="Archived on Zenodo; this DOI always points to the latest version">'+esc(i.doi)+'</a></p>':'')+
         '<div class="res-foot">'+sdgs(i.sdgs)+(u?'<a class="open-link" '+u+'>'+esc(i.link_label||'Open tool')+' <span aria-hidden="true">→</span></a>':'')+'</div>'+
       '</article>';
     }).join('')+'</div><p class="res-empty" id="res-empty" hidden>Nothing here for that audience yet.</p>'+

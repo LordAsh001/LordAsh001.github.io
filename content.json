@@ -491,7 +491,8 @@
               "label": "published TEAs to benchmark"
             }
           ],
-          "classroom": "walk a class through costing a process plant and reading NPV and IRR."
+          "classroom": "walk a class through costing a process plant and reading NPV and IRR.",
+          "doi": "10.5281/zenodo.23291584"
         },
         {
           "name": "EIA Studio",
@@ -525,7 +526,8 @@
               "label": "legal frameworks"
             }
           ],
-          "classroom": "compare how different countries' laws handle the same project."
+          "classroom": "compare how different countries' laws handle the same project.",
+          "doi": "10.5281/zenodo.23291893"
         },
         {
           "name": "Symbiosis Workbench",
@@ -545,7 +547,8 @@
           ],
           "level": "Intermediate",
           "numbers": [],
-          "classroom": "have teams design an eco-industrial park and trade by-products."
+          "classroom": "have teams design an eco-industrial park and trade by-products.",
+          "doi": "10.5281/zenodo.23291398"
         },
         {
           "name": "The SustainaTable",
@@ -600,7 +603,8 @@
               "label": "winning essays analysed"
             }
           ],
-          "classroom": "walk a class through one scholarship guide before an application clinic."
+          "classroom": "walk a class through one scholarship guide before an application clinic.",
+          "doi": "10.5281/zenodo.23291741"
         },
         {
           "name": "Citadel",
@@ -624,7 +628,8 @@
               "label": "game levels"
             }
           ],
-          "classroom": "set a level as homework before the first written assignment."
+          "classroom": "set a level as homework before the first written assignment.",
+          "doi": "10.5281/zenodo.23291784"
         },
         {
           "name": "Nigeria Forest Reserves Atlas",
@@ -658,7 +663,8 @@
               "label": "official boundaries"
             }
           ],
-          "classroom": "have each group profile the reserves in their home state and compare what the records say with recent satellite imagery."
+          "classroom": "have each group profile the reserves in their home state and compare what the records say with recent satellite imagery.",
+          "doi": "10.5281/zenodo.23291853"
         },
         {
           "name": "Nigeria Water Resources Atlas",
@@ -692,7 +698,8 @@
               "label": "states covered"
             }
           ],
-          "classroom": "have each group pick a river basin, compare its water per person with the national figure, and check the flood watch during the rainy season."
+          "classroom": "have each group pick a river basin, compare its water per person with the national figure, and check the flood watch during the rainy season.",
+          "doi": "10.5281/zenodo.23291080"
         },
         {
           "name": "Nigeria Market Atlas",
@@ -726,7 +733,8 @@
               "label": "LGAs to explore"
             }
           ],
-          "classroom": "give each group a crop and two markets, look up both prices, and decide whether the price gap covers the cost of trucking it."
+          "classroom": "give each group a crop and two markets, look up both prices, and decide whether the price gap covers the cost of trucking it.",
+          "doi": "10.5281/zenodo.23294215"
         }
       ],
       "note": "Using one of these in a course or workshop? I'd love to hear how it went: [amool@unbc.ca](mailto:amool@unbc.ca). Free to use for teaching and learning."
