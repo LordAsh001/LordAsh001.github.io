@@ -13,6 +13,10 @@ on:
       end_year:
         description: "Last year to add"
         default: "1996"
+      check_only:
+        description: "Only compare 1997 with the archive (adds nothing)"
+        type: boolean
+        default: true
 
 permissions:
   contents: write
@@ -34,6 +38,7 @@ jobs:
           EWDS_API_KEY: ${{ secrets.EWDS_API_KEY }}
           BF_START: ${{ inputs.start_year }}
           BF_END: ${{ inputs.end_year }}
+          BF_CHECK_ONLY: ${{ inputs.check_only }}
         run: |
           python3 .github/scripts/water_atlas_glofas_backfill.py
           python3 -c "import importlib.util as u;s=u.spec_from_file_location('a','.github/scripts/water_atlas_archive.py');a=u.module_from_spec(s);s.loader.exec_module(a);a.catalogue()"
