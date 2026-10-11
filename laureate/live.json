@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-10",
+ "updated": "2026-10-11",
  "sources": [
   {
    "source": "Opportunities for Africans",
@@ -14,12 +14,12 @@
   {
    "source": "Opportunities Corners",
    "ok": true,
-   "items": 5
+   "items": 6
   },
   {
    "source": "Scholarship Region",
    "ok": true,
-   "items": 8
+   "items": 9
   },
   {
    "source": "Opportunities for Youth",
@@ -56,6 +56,28 @@
   }
  ],
  "items": [
+  {
+   "title": "AIxBio Research Fellowship 2027 in UK (Fully Funded)",
+   "link": "https://opportunitiescorners.com/aixbio-research-fellowship-2027/",
+   "date": "2026-10-11",
+   "source": "Opportunities Corners",
+   "official": false,
+   "ids": [],
+   "summary": "Applications are open for the AIxBio Research Fellowship 2027 in Cambridge, United Kingdom. ERA, in partnership with the Cambridge Biosecurity Hub, offers this 10-week, fully funded fellowship to res…",
+   "seen": "2026-10-11"
+  },
+  {
+   "title": "2027 France Government Eiffel Scholarship Program | Fully Funded",
+   "link": "https://www.scholarshipregion.com/france-government-eiffel-scholarship/",
+   "date": "2026-10-11",
+   "source": "Scholarship Region",
+   "official": false,
+   "ids": [
+    "eiffel"
+   ],
+   "summary": "The Eiffel Scholarship Program provides annual scholarships and trainings for future foreign decision-makers in the public and private sectors in degree programs at the Master’s and Doctoral levels. …",
+   "seen": "2026-10-11"
+  },
   {
    "title": "WomanKind Creative Grant 2027",
    "link": "https://opportunitydesk.org/2026/10/10/womankind-creative-grant-2027/",
@@ -117,6 +139,16 @@
    "ids": [],
    "summary": "The National Science Foundation Graduate Research Fellowship Program (NSF GRFP) is one of the United States’ major fellowship programs designed to support outstanding students pursuing advanced resea…",
    "seen": "2026-10-10"
+  },
+  {
+   "title": "University of Canberra Snow Scholarship Program Coordinator Job 2026: Part-Time University Opportunity in Australia Paying AUD $93,705–$100,871 Plus 17% Superannuation",
+   "link": "https://opportunitiesforyouth.org/2026/10/10/university-of-canberra-snow-scholarship-program-coordinator-job-2026/",
+   "date": "2026-10-10",
+   "source": "Opportunities for Youth",
+   "official": false,
+   "ids": [],
+   "summary": "The University of Canberra Snow Scholarship Program Coordinator Job 2026 is an opportunity for an experienced, empathetic, and impact-driven professional to contribute to a transformative scholarship…",
+   "seen": "2026-10-11"
   },
   {
    "title": "World Bank Group Government Analytics Fellowship 2027",
