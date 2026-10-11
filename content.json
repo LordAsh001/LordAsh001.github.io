@@ -693,6 +693,40 @@
             }
           ],
           "classroom": "have each group pick a river basin, compare its water per person with the national figure, and check the flood watch during the rainy season."
+        },
+        {
+          "name": "Nigeria Market Atlas",
+          "text": "Find Nigeria’s food markets on one map, from Dawanau to Mile 12, and drill down by state and LGA. Compare produce prices from NBS, Kasuwa, the Lagos State food price tracker and commodity exchanges, see which local markets meet on which day, and work out what it costs to truck a load from one market to another. Grain silos, warehouses and weighbridges are on the map too.",
+          "link_label": "Open tool",
+          "sdgs": [
+            2,
+            9
+          ],
+          "hidden": false,
+          "url": "/market-atlas/",
+          "kind": "Interactive map · free",
+          "audience": [
+            "Researchers",
+            "Practitioners",
+            "Educators",
+            "Students"
+          ],
+          "level": "All levels",
+          "numbers": [
+            {
+              "value": "133",
+              "label": "markets mapped"
+            },
+            {
+              "value": "47",
+              "label": "silos, warehouses and weighbridges"
+            },
+            {
+              "value": "774",
+              "label": "LGAs to explore"
+            }
+          ],
+          "classroom": "give each group a crop and two markets, look up both prices, and decide whether the price gap covers the cost of trucking it."
         }
       ],
       "note": "Using one of these in a course or workshop? I'd love to hear how it went: [amool@unbc.ca](mailto:amool@unbc.ca). Free to use for teaching and learning."
