@@ -2,7 +2,7 @@
 #   - re-downloads dams (Global Dam Watch), the national dam inventory, rivers and lakes (DIVA-GIS),
 #     water points (GRID3), flood-risk LGAs, Wikidata/Wikipedia/Commons entries and DHS water indicators
 #   - re-downloads major roads (expressways, trunk and primary roads) from OpenStreetMap
-#   - refreshes 40-year GloFAS river-flow records for the flood-watch gauges
+#   - refreshes 40-year GloFAS river-flow records for the flood-watch gauges and saves them as CSVs in water-atlas/archive/river_flow
 #   - rebuilds water-atlas/data/*.json from those files plus the hand-written profiles in water-atlas/data/curated.json
 # Runs every Monday, and on demand from the Actions tab ("Run workflow").
 name: Refresh Nigeria Water Resources Atlas
@@ -39,6 +39,11 @@ jobs:
           WA_STEPS: ${{ inputs.steps }}
         run: python3 .github/scripts/water_atlas_fetch.py /tmp/raw
 
+      - name: Update the 40-year river-flow archive
+        continue-on-error: true
+        run: |
+          if [ -f /tmp/raw/glofas_gauges.json ]; then python3 .github/scripts/water_atlas_archive.py --gauges /tmp/raw/glofas_gauges.json; fi
+
       - name: Rebuild atlas data
         env:
           WA_STEPS: ${{ inputs.steps }}
@@ -63,13 +68,13 @@ jobs:
 
       - name: Commit if anything changed
         run: |
-          if [ -z "$(git status --porcelain water-atlas/data)" ]; then
+          if [ -z "$(git status --porcelain water-atlas/data water-atlas/archive)" ]; then
             echo "Nothing to commit."
             exit 0
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add water-atlas/data
+          git add water-atlas/data water-atlas/archive
           git commit -m "Refresh Nigeria Water Resources Atlas data"
           git pull --rebase
           git push
