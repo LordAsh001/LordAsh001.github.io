@@ -20,6 +20,7 @@ var TOOL = /\/symbiosis\//.test(path) ? "symbiosis"
   : /citadel/.test(path) ? "citadel"
   : /\/forest-atlas\//.test(path) ? "forest-atlas"
   : /\/water-atlas\//.test(path) ? "water-atlas"
+  : /\/market-atlas\//.test(path) ? "market-atlas"
   : "website";
 
 /* ---------- analytics (GoatCounter: no cookies, no personal data) ---------- */
