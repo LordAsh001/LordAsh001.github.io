@@ -6,15 +6,15 @@
   {
    "id": "river_flow",
    "title": "Daily river flow at the flood-watch gauges",
-   "description": "Modelled daily river discharge (m³/s) at each of the atlas's flood-watch gauges, from the start of the record to yesterday, from the GloFAS v4 reanalysis and recent forecast runs. One CSV per gauge; gauges.csv lists the rivers, places, coordinates and the model grid cell used.",
+   "description": "Modelled daily river discharge (m³/s) at each of the atlas's flood-watch gauges, from the start of the record to yesterday, from the GloFAS v4 reanalysis and recent forecast runs. One CSV per gauge; gauges.csv lists the rivers, places, coordinates and the model grid cell used. Years before 1997 come from the GloFAS v4 consolidated reanalysis in the CEMS Early Warning Data Store, at the same model cell; later years come through the Open-Meteo Flood API.",
    "file": "river_flow/gauges.csv",
-   "source": "GloFAS v4, Copernicus Emergency Management Service, via the Open-Meteo Flood API",
+   "source": "GloFAS v4, Copernicus Emergency Management Service, via the CEMS Early Warning Data Store (before 1997) and the Open-Meteo Flood API",
    "licence": "CC BY 4.0",
    "update": "Weekly",
-   "rows": 217500,
-   "first": "1997-01-01",
+   "rows": 349000,
+   "first": "1979-01-01",
    "last": "2026-10-10",
-   "bytes": 3848026,
+   "bytes": 6183299,
    "fields": [
     {
      "name": "date",
@@ -31,161 +31,161 @@
      "id": "niger-lokoja",
      "name": "Niger at Lokoja (below the Benue confluence)",
      "file": "river_flow/niger-lokoja.csv",
-     "first": "1997-01-01",
+     "first": "1979-01-01",
      "last": "2026-10-10",
-     "days": 10875
+     "days": 17450
     },
     {
      "id": "niger-onitsha",
      "name": "Niger at Onitsha",
      "file": "river_flow/niger-onitsha.csv",
-     "first": "1997-01-01",
+     "first": "1979-01-01",
      "last": "2026-10-10",
-     "days": 10875
+     "days": 17450
     },
     {
      "id": "niger-aboh",
      "name": "Niger at Aboh (head of the Delta)",
      "file": "river_flow/niger-aboh.csv",
-     "first": "1997-01-01",
+     "first": "1979-01-01",
      "last": "2026-10-10",
-     "days": 10875
+     "days": 17450
     },
     {
      "id": "niger-baro",
      "name": "Niger at Baro",
      "file": "river_flow/niger-baro.csv",
-     "first": "1997-01-01",
+     "first": "1979-01-01",
      "last": "2026-10-10",
-     "days": 10875
+     "days": 17450
     },
     {
      "id": "niger-jebba",
      "name": "Niger at Jebba (below the dam)",
      "file": "river_flow/niger-jebba.csv",
-     "first": "1997-01-01",
+     "first": "1979-01-01",
      "last": "2026-10-10",
-     "days": 10875
+     "days": 17450
     },
     {
      "id": "niger-border",
      "name": "Niger at Benin–Niger border (inflow to Nigeria)",
      "file": "river_flow/niger-border.csv",
-     "first": "1997-01-01",
+     "first": "1979-01-01",
      "last": "2026-10-10",
-     "days": 10875
+     "days": 17450
     },
     {
      "id": "benue-makurdi",
      "name": "Benue at Makurdi",
      "file": "river_flow/benue-makurdi.csv",
-     "first": "1997-01-01",
+     "first": "1979-01-01",
      "last": "2026-10-10",
-     "days": 10875
+     "days": 17450
     },
     {
      "id": "benue-ibi",
      "name": "Benue at Ibi",
      "file": "river_flow/benue-ibi.csv",
-     "first": "1997-01-01",
+     "first": "1979-01-01",
      "last": "2026-10-10",
-     "days": 10875
+     "days": 17450
     },
     {
      "id": "benue-numan",
      "name": "Benue at Numan",
      "file": "river_flow/benue-numan.csv",
-     "first": "1997-01-01",
+     "first": "1979-01-01",
      "last": "2026-10-10",
-     "days": 10875
+     "days": 17450
     },
     {
      "id": "benue-yola",
      "name": "Benue at Jimeta–Yola",
      "file": "river_flow/benue-yola.csv",
-     "first": "1997-01-01",
+     "first": "1979-01-01",
      "last": "2026-10-10",
-     "days": 10875
+     "days": 17450
     },
     {
      "id": "benue-border",
      "name": "Benue at Cameroon border (below Lagdo)",
      "file": "river_flow/benue-border.csv",
-     "first": "1997-01-01",
+     "first": "1979-01-01",
      "last": "2026-10-10",
-     "days": 10875
+     "days": 17450
     },
     {
      "id": "kaduna-kaduna",
      "name": "Kaduna at Kaduna city",
      "file": "river_flow/kaduna-kaduna.csv",
-     "first": "1997-01-01",
+     "first": "1979-01-01",
      "last": "2026-10-10",
-     "days": 10875
+     "days": 17450
     },
     {
      "id": "rima-sokoto",
      "name": "Sokoto–Rima at Sokoto",
      "file": "river_flow/rima-sokoto.csv",
-     "first": "1997-01-01",
+     "first": "1979-01-01",
      "last": "2026-10-10",
-     "days": 10875
+     "days": 17450
     },
     {
      "id": "hadejia-hadejia",
      "name": "Hadejia at Hadejia",
      "file": "river_flow/hadejia-hadejia.csv",
-     "first": "1997-01-01",
+     "first": "1979-01-01",
      "last": "2026-10-10",
-     "days": 10875
+     "days": 17450
     },
     {
      "id": "yobe-gashua",
      "name": "Komadugu-Yobe at Gashua",
      "file": "river_flow/yobe-gashua.csv",
-     "first": "1997-01-01",
+     "first": "1979-01-01",
      "last": "2026-10-10",
-     "days": 10875
+     "days": 17450
     },
     {
      "id": "gongola-dadinkowa",
      "name": "Gongola at below Dadin Kowa Dam",
      "file": "river_flow/gongola-dadinkowa.csv",
-     "first": "1997-01-01",
+     "first": "1979-01-01",
      "last": "2026-10-10",
-     "days": 10875
+     "days": 17450
     },
     {
      "id": "katsinaala-town",
      "name": "Katsina-Ala at Katsina-Ala",
      "file": "river_flow/katsinaala-town.csv",
-     "first": "1997-01-01",
+     "first": "1979-01-01",
      "last": "2026-10-10",
-     "days": 10875
+     "days": 17450
     },
     {
      "id": "cross-ikom",
      "name": "Cross at Ikom",
      "file": "river_flow/cross-ikom.csv",
-     "first": "1997-01-01",
+     "first": "1979-01-01",
      "last": "2026-10-10",
-     "days": 10875
+     "days": 17450
     },
     {
      "id": "ogun-abeokuta",
      "name": "Ogun at Abeokuta",
      "file": "river_flow/ogun-abeokuta.csv",
-     "first": "1997-01-01",
+     "first": "1979-01-01",
      "last": "2026-10-10",
-     "days": 10875
+     "days": 17450
     },
     {
      "id": "anambra-otuocha",
      "name": "Anambra at Otuocha",
      "file": "river_flow/anambra-otuocha.csv",
-     "first": "1997-01-01",
+     "first": "1979-01-01",
      "last": "2026-10-10",
-     "days": 10875
+     "days": 17450
     }
    ]
   },
@@ -561,5 +561,5 @@
   }
  ],
  "citation": "Amool, S. H. (2026). Nigeria Water Resources Atlas: data archive [Data set]. https://shagbaor.com/water-atlas/archive/",
- "generated": "2026-10-11T18:54Z"
+ "generated": "2026-10-11T21:13Z"
 }
