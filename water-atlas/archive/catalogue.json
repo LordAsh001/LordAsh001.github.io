@@ -1,0 +1,354 @@
+{
+ "title": "Nigeria Water Resources Atlas: data archive",
+ "url": "https://shagbaor.com/water-atlas/archive/",
+ "started": "2026-10-10",
+ "datasets": [
+  {
+   "id": "flood_alerts_glofas.csv",
+   "title": "GloFAS flood alerts at reporting points, daily",
+   "description": "The official GloFAS flood-alert status of every reporting point in and around Nigeria, recorded once a day: alert level, the probability of exceeding the 2-, 5- and 20-year flood, onset and expected peak.",
+   "file": "flood_alerts_glofas.csv",
+   "source": "GloFAS, Copernicus Emergency Management Service",
+   "licence": "Copernicus licence; free with attribution",
+   "update": "Daily",
+   "rows": 84,
+   "first": "2026-10-10",
+   "last": "2026-10-11",
+   "bytes": 12104,
+   "fields": [
+    {
+     "name": "date",
+     "desc": ""
+    },
+    {
+     "name": "point_id",
+     "desc": ""
+    },
+    {
+     "name": "name",
+     "desc": ""
+    },
+    {
+     "name": "river",
+     "desc": ""
+    },
+    {
+     "name": "basin",
+     "desc": ""
+    },
+    {
+     "name": "country",
+     "desc": ""
+    },
+    {
+     "name": "state",
+     "desc": ""
+    },
+    {
+     "name": "lat",
+     "desc": ""
+    },
+    {
+     "name": "lon",
+     "desc": ""
+    },
+    {
+     "name": "upstream_area_km2",
+     "desc": ""
+    },
+    {
+     "name": "prob_2yr_pct",
+     "desc": ""
+    },
+    {
+     "name": "prob_5yr_pct",
+     "desc": ""
+    },
+    {
+     "name": "prob_20yr_pct",
+     "desc": ""
+    },
+    {
+     "name": "alert",
+     "desc": ""
+    },
+    {
+     "name": "onset",
+     "desc": ""
+    },
+    {
+     "name": "peak",
+     "desc": ""
+    },
+    {
+     "name": "forecast_date",
+     "desc": ""
+    }
+   ]
+  },
+  {
+   "id": "river_forecasts_geoglows.csv",
+   "title": "GEOGLOWS 15-day river forecasts at the gauges",
+   "description": "Each day's 15-day median river-flow forecast for the atlas gauges, with the flow on the issue day, the forecast peak and whether a return-period threshold is exceeded.",
+   "file": "river_forecasts_geoglows.csv",
+   "source": "GEOGLOWS, ECMWF",
+   "licence": "CC BY 4.0",
+   "update": "Daily",
+   "rows": 38,
+   "first": "2026-10-09",
+   "last": "2026-10-10",
+   "bytes": 6126,
+   "fields": [
+    {
+     "name": "issue_date",
+     "desc": ""
+    },
+    {
+     "name": "gauge_id",
+     "desc": ""
+    },
+    {
+     "name": "reach_id",
+     "desc": ""
+    },
+    {
+     "name": "flow_now_m3s",
+     "desc": ""
+    },
+    {
+     "name": "peak_flow_m3s",
+     "desc": ""
+    },
+    {
+     "name": "peak_date",
+     "desc": ""
+    },
+    {
+     "name": "return_period_flag",
+     "desc": ""
+    },
+    {
+     "name": "median_15day_m3s",
+     "desc": ""
+    }
+   ],
+   "note": "median_15day_m3s holds 15 values separated by semicolons, day 0 (the issue date) to day 14."
+  },
+  {
+   "id": "flood_events_gdacs.csv",
+   "title": "Flood events in Nigeria reported by GDACS",
+   "description": "Every GDACS flood event affecting Nigeria seen by the atlas, with dates, alert level, location and reported impacts. The atlas's flood history page also covers events back to 1985.",
+   "file": "flood_events_gdacs.csv",
+   "source": "GDACS, European Commission JRC and UN OCHA",
+   "licence": "Free with attribution",
+   "update": "Hourly",
+   "rows": 5,
+   "first": "2026-07-01",
+   "last": "2026-09-21",
+   "bytes": 1109,
+   "fields": [
+    {
+     "name": "event_id",
+     "desc": ""
+    },
+    {
+     "name": "episode",
+     "desc": ""
+    },
+    {
+     "name": "from_date",
+     "desc": ""
+    },
+    {
+     "name": "to_date",
+     "desc": ""
+    },
+    {
+     "name": "alert",
+     "desc": ""
+    },
+    {
+     "name": "state",
+     "desc": ""
+    },
+    {
+     "name": "lat",
+     "desc": ""
+    },
+    {
+     "name": "lon",
+     "desc": ""
+    },
+    {
+     "name": "deaths",
+     "desc": ""
+    },
+    {
+     "name": "missing",
+     "desc": ""
+    },
+    {
+     "name": "displaced",
+     "desc": ""
+    },
+    {
+     "name": "houses_damaged",
+     "desc": ""
+    },
+    {
+     "name": "other_impacts",
+     "desc": ""
+    },
+    {
+     "name": "regions",
+     "desc": ""
+    },
+    {
+     "name": "url",
+     "desc": ""
+    },
+    {
+     "name": "first_seen",
+     "desc": ""
+    },
+    {
+     "name": "last_seen",
+     "desc": ""
+    }
+   ]
+  },
+  {
+   "id": "weather_warnings_nimet.csv",
+   "title": "NiMet weather warnings",
+   "description": "Every warning published on the Nigerian Meteorological Agency's public CAP feed since the archive began, with severity, timing, area and advice. The cap_url links to the original warning, including its map polygon.",
+   "file": "weather_warnings_nimet.csv",
+   "source": "Nigerian Meteorological Agency (NiMet)",
+   "licence": "Public warnings; credit NiMet",
+   "update": "Hourly",
+   "rows": 7,
+   "first": "2026-09-25",
+   "last": "2026-10-10",
+   "bytes": 5223,
+   "fields": [
+    {
+     "name": "warning_id",
+     "desc": ""
+    },
+    {
+     "name": "sent",
+     "desc": ""
+    },
+    {
+     "name": "event",
+     "desc": ""
+    },
+    {
+     "name": "headline",
+     "desc": ""
+    },
+    {
+     "name": "severity",
+     "desc": ""
+    },
+    {
+     "name": "urgency",
+     "desc": ""
+    },
+    {
+     "name": "certainty",
+     "desc": ""
+    },
+    {
+     "name": "onset",
+     "desc": ""
+    },
+    {
+     "name": "expires",
+     "desc": ""
+    },
+    {
+     "name": "area",
+     "desc": ""
+    },
+    {
+     "name": "description",
+     "desc": ""
+    },
+    {
+     "name": "instruction",
+     "desc": ""
+    },
+    {
+     "name": "cap_url",
+     "desc": ""
+    },
+    {
+     "name": "first_seen",
+     "desc": ""
+    }
+   ]
+  },
+  {
+   "id": "weather_forecasts_nimet.csv",
+   "title": "NiMet 3-day station forecasts",
+   "description": "NiMet's 3-day forecasts for its forecast stations, one row per station, issue date and forecast day, with weather and day and night temperatures.",
+   "file": "weather_forecasts_nimet.csv",
+   "source": "Nigerian Meteorological Agency (NiMet) Weather API",
+   "licence": "Credit NiMet",
+   "update": "Daily",
+   "rows": 330,
+   "first": "2026-10-10",
+   "last": "2026-10-11",
+   "bytes": 29581,
+   "fields": [
+    {
+     "name": "issued",
+     "desc": ""
+    },
+    {
+     "name": "station",
+     "desc": ""
+    },
+    {
+     "name": "state",
+     "desc": ""
+    },
+    {
+     "name": "lga",
+     "desc": ""
+    },
+    {
+     "name": "lat",
+     "desc": ""
+    },
+    {
+     "name": "lon",
+     "desc": ""
+    },
+    {
+     "name": "day",
+     "desc": ""
+    },
+    {
+     "name": "day_label",
+     "desc": ""
+    },
+    {
+     "name": "weather",
+     "desc": ""
+    },
+    {
+     "name": "temp_day_c",
+     "desc": ""
+    },
+    {
+     "name": "temp_night_c",
+     "desc": ""
+    }
+   ]
+  }
+ ],
+ "snapshots": [],
+ "citation": "Amool, S. H. (2026). Nigeria Water Resources Atlas: data archive [Data set]. https://shagbaor.com/water-atlas/archive/",
+ "generated": "2026-10-11T08:08Z"
+}
