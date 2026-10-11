@@ -885,6 +885,10 @@ collections:
             label: How to use it in class (one line)
             widget: string
             required: false
+          - name: doi
+            label: DOI (Zenodo, all versions), e.g. 10.5281/zenodo.123
+            widget: string
+            required: false
           - name: sdgs
             label: UN Sustainable Development Goals (numbers 1–17)
             widget: list
