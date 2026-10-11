@@ -1,21 +1,21 @@
 gauge_id,river,place,lat,lon,model_cell_lat,model_cell_lon,first_date,last_date,days,file
-niger-lokoja,Niger,Lokoja (below the Benue confluence),7.79,6.75,7.7750015,6.725006,1984-01-01,2026-10-10,15624,river_flow/niger-lokoja.csv
-niger-onitsha,Niger,Onitsha,6.13,6.77,6.125,6.725006,1984-01-01,2026-10-10,15624,river_flow/niger-onitsha.csv
-niger-aboh,Niger,Aboh (head of the Delta),5.55,6.53,5.5250015,6.475006,1984-01-01,2026-10-10,15624,river_flow/niger-aboh.csv
-niger-baro,Niger,Baro,8.6,6.42,8.575005,6.3750153,1984-01-01,2026-10-10,15624,river_flow/niger-baro.csv
-niger-jebba,Niger,Jebba (below the dam),9.12,4.8,9.175003,4.825012,1984-01-01,2026-10-10,15624,river_flow/niger-jebba.csv
-niger-border,Niger,Benin–Niger border (inflow to Nigeria),11.7,3.62,11.675003,3.5750122,1984-01-01,2026-10-10,15624,river_flow/niger-border.csv
-benue-makurdi,Benue,Makurdi,7.74,8.53,7.7750015,8.475006,1984-01-01,2026-10-10,15624,river_flow/benue-makurdi.csv
-benue-ibi,Benue,Ibi,8.18,9.74,8.175003,9.675003,1984-01-01,2026-10-10,15624,river_flow/benue-ibi.csv
-benue-numan,Benue,Numan,9.47,12.03,9.475006,11.975006,1984-01-01,2026-10-10,15624,river_flow/benue-numan.csv
-benue-yola,Benue,Jimeta–Yola,9.28,12.43,9.325005,12.375015,1984-01-01,2026-10-10,15624,river_flow/benue-yola.csv
-benue-border,Benue,Cameroon border (below Lagdo),9.3,12.8,9.325005,12.875015,1984-01-01,2026-10-10,15624,river_flow/benue-border.csv
-kaduna-kaduna,Kaduna,Kaduna city,10.53,7.42,10.475006,7.3750153,1984-01-01,2026-10-10,15624,river_flow/kaduna-kaduna.csv
-rima-sokoto,Sokoto–Rima,Sokoto,13.06,5.22,13.125,5.175003,1984-01-01,2026-10-10,15624,river_flow/rima-sokoto.csv
-hadejia-hadejia,Hadejia,Hadejia,12.46,10.04,12.475006,10.025009,1984-01-01,2026-10-10,15624,river_flow/hadejia-hadejia.csv
-yobe-gashua,Komadugu-Yobe,Gashua,12.87,11.05,12.875,11.125015,1984-01-01,2026-10-10,15624,river_flow/yobe-gashua.csv
-gongola-dadinkowa,Gongola,below Dadin Kowa Dam,10.31,11.48,10.275002,11.525009,1984-01-01,2026-10-10,15624,river_flow/gongola-dadinkowa.csv
-katsinaala-town,Katsina-Ala,Katsina-Ala,7.17,9.28,7.225006,9.275009,1984-01-01,2026-10-10,15624,river_flow/katsinaala-town.csv
-cross-ikom,Cross,Ikom,5.96,8.72,5.925003,8.675003,1984-01-01,2026-10-10,15624,river_flow/cross-ikom.csv
-ogun-abeokuta,Ogun,Abeokuta,7.15,3.35,7.175003,3.3250122,1984-01-01,2026-10-10,15624,river_flow/ogun-abeokuta.csv
-anambra-otuocha,Anambra,Otuocha,6.33,6.83,6.2750015,6.775009,1984-01-01,2026-10-10,15624,river_flow/anambra-otuocha.csv
+niger-lokoja,Niger,Lokoja (below the Benue confluence),7.79,6.75,7.7750015,6.725006,1997-01-01,2026-10-10,10875,river_flow/niger-lokoja.csv
+niger-onitsha,Niger,Onitsha,6.13,6.77,6.125,6.725006,1997-01-01,2026-10-10,10875,river_flow/niger-onitsha.csv
+niger-aboh,Niger,Aboh (head of the Delta),5.55,6.53,5.5250015,6.475006,1997-01-01,2026-10-10,10875,river_flow/niger-aboh.csv
+niger-baro,Niger,Baro,8.6,6.42,8.575005,6.3750153,1997-01-01,2026-10-10,10875,river_flow/niger-baro.csv
+niger-jebba,Niger,Jebba (below the dam),9.12,4.8,9.175003,4.825012,1997-01-01,2026-10-10,10875,river_flow/niger-jebba.csv
+niger-border,Niger,Benin–Niger border (inflow to Nigeria),11.7,3.62,11.675003,3.5750122,1997-01-01,2026-10-10,10875,river_flow/niger-border.csv
+benue-makurdi,Benue,Makurdi,7.74,8.53,7.7750015,8.475006,1997-01-01,2026-10-10,10875,river_flow/benue-makurdi.csv
+benue-ibi,Benue,Ibi,8.18,9.74,8.175003,9.675003,1997-01-01,2026-10-10,10875,river_flow/benue-ibi.csv
+benue-numan,Benue,Numan,9.47,12.03,9.475006,11.975006,1997-01-01,2026-10-10,10875,river_flow/benue-numan.csv
+benue-yola,Benue,Jimeta–Yola,9.28,12.43,9.325005,12.375015,1997-01-01,2026-10-10,10875,river_flow/benue-yola.csv
+benue-border,Benue,Cameroon border (below Lagdo),9.3,12.8,9.325005,12.875015,1997-01-01,2026-10-10,10875,river_flow/benue-border.csv
+kaduna-kaduna,Kaduna,Kaduna city,10.53,7.42,10.475006,7.3750153,1997-01-01,2026-10-10,10875,river_flow/kaduna-kaduna.csv
+rima-sokoto,Sokoto–Rima,Sokoto,13.06,5.22,13.125,5.175003,1997-01-01,2026-10-10,10875,river_flow/rima-sokoto.csv
+hadejia-hadejia,Hadejia,Hadejia,12.46,10.04,12.475006,10.025009,1997-01-01,2026-10-10,10875,river_flow/hadejia-hadejia.csv
+yobe-gashua,Komadugu-Yobe,Gashua,12.87,11.05,12.875,11.125015,1997-01-01,2026-10-10,10875,river_flow/yobe-gashua.csv
+gongola-dadinkowa,Gongola,below Dadin Kowa Dam,10.31,11.48,10.275002,11.525009,1997-01-01,2026-10-10,10875,river_flow/gongola-dadinkowa.csv
+katsinaala-town,Katsina-Ala,Katsina-Ala,7.17,9.28,7.225006,9.275009,1997-01-01,2026-10-10,10875,river_flow/katsinaala-town.csv
+cross-ikom,Cross,Ikom,5.96,8.72,5.925003,8.675003,1997-01-01,2026-10-10,10875,river_flow/cross-ikom.csv
+ogun-abeokuta,Ogun,Abeokuta,7.15,3.35,7.175003,3.3250122,1997-01-01,2026-10-10,10875,river_flow/ogun-abeokuta.csv
+anambra-otuocha,Anambra,Otuocha,6.33,6.83,6.2750015,6.775009,1997-01-01,2026-10-10,10875,river_flow/anambra-otuocha.csv
