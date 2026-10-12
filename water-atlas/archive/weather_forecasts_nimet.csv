@@ -329,3 +329,168 @@ issued,station,state,lga,lat,lon,day,day_label,weather,temp_day_c,temp_night_c
 2026-10-11,Zaria,Kaduna,Zaria,11.09,7.7,1,Mon 12th,Thunderstorm with Rain,32.0,26.0
 2026-10-11,Zaria,Kaduna,Zaria,11.09,7.7,2,Tue 13th,Thunderstorm with Rain,32.0,27.0
 2026-10-11,Zaria,Kaduna,Zaria,11.09,7.7,3,Wed 14th,Thunderstorm with Rain,31.0,28.0
+2026-10-12,Abakaliki,Ebonyi,Abakaliki,6.33,8.11,1,Mon 12th,Thunderstorm with Rain,32.0,26.0
+2026-10-12,Abakaliki,Ebonyi,Abakaliki,6.33,8.11,2,Tue 13th,Thunderstorm with Rain,32.0,27.0
+2026-10-12,Abakaliki,Ebonyi,Abakaliki,6.33,8.11,3,Wed 14th,Thunderstorm with Rain,31.0,28.0
+2026-10-12,Abeokuta,Ogun,Abeokuta South,7.15,3.35,1,Mon 12th,Thunderstorm with Rain,32.0,26.0
+2026-10-12,Abeokuta,Ogun,Abeokuta South,7.15,3.35,2,Tue 13th,Thunderstorm with Rain,32.0,27.0
+2026-10-12,Abeokuta,Ogun,Abeokuta South,7.15,3.35,3,Wed 14th,Thunderstorm with Rain,31.0,28.0
+2026-10-12,Abuja,FCT,Abuja Municipal Area Council,9.06,7.49,1,Mon 12th,Thunderstorm with Rain,32.0,26.0
+2026-10-12,Abuja,FCT,Abuja Municipal Area Council,9.06,7.49,2,Tue 13th,Thunderstorm with Rain,32.0,27.0
+2026-10-12,Abuja,FCT,Abuja Municipal Area Council,9.06,7.49,3,Wed 14th,Thunderstorm with Rain,31.0,28.0
+2026-10-12,Ado-Ekiti,Ekiti,Ado Ekiti,7.62,5.22,1,Mon 12th,Thunderstorm with Rain,32.0,26.0
+2026-10-12,Ado-Ekiti,Ekiti,Ado Ekiti,7.62,5.22,2,Tue 13th,Thunderstorm with Rain,32.0,27.0
+2026-10-12,Ado-Ekiti,Ekiti,Ado Ekiti,7.62,5.22,3,Wed 14th,Thunderstorm with Rain,31.0,28.0
+2026-10-12,Akure,Ondo,Akure South,7.25,5.19,1,Mon 12th,Thunderstorm with Rain,32.0,26.0
+2026-10-12,Akure,Ondo,Akure South,7.25,5.19,2,Tue 13th,Thunderstorm with Rain,32.0,27.0
+2026-10-12,Akure,Ondo,Akure South,7.25,5.19,3,Wed 14th,Thunderstorm with Rain,31.0,28.0
+2026-10-12,Asaba,Delta,Oshimili South,6.2,6.73,1,Mon 12th,Thunderstorm with Rain,32.0,26.0
+2026-10-12,Asaba,Delta,Oshimili South,6.2,6.73,2,Tue 13th,Thunderstorm with Rain,32.0,27.0
+2026-10-12,Asaba,Delta,Oshimili South,6.2,6.73,3,Wed 14th,Thunderstorm with Rain,31.0,28.0
+2026-10-12,Awka,Anambra,Awka South,6.21,7.07,1,Mon 12th,Thunderstorm with Rain,32.0,26.0
+2026-10-12,Awka,Anambra,Awka South,6.21,7.07,2,Tue 13th,Thunderstorm with Rain,32.0,27.0
+2026-10-12,Awka,Anambra,Awka South,6.21,7.07,3,Wed 14th,Thunderstorm with Rain,31.0,28.0
+2026-10-12,Ayetoro Ondo,Ondo,Ilaje,6.1,4.75,1,Mon 12th,Thunderstorm with Rain,32.0,26.0
+2026-10-12,Ayetoro Ondo,Ondo,Ilaje,6.1,4.75,2,Tue 13th,Thunderstorm with Rain,32.0,27.0
+2026-10-12,Ayetoro Ondo,Ondo,Ilaje,6.1,4.75,3,Wed 14th,Thunderstorm with Rain,31.0,28.0
+2026-10-12,Badagry,Lagos,Badagry,6.42,2.88,1,Mon 12th,Thunderstorm with Rain,32.0,26.0
+2026-10-12,Badagry,Lagos,Badagry,6.42,2.88,2,Tue 13th,Thunderstorm with Rain,32.0,27.0
+2026-10-12,Badagry,Lagos,Badagry,6.42,2.88,3,Wed 14th,Thunderstorm with Rain,31.0,28.0
+2026-10-12,Bauchi,Bauchi,Bauchi,10.31,9.84,1,Mon 12th,Thunderstorm with Rain,32.0,26.0
+2026-10-12,Bauchi,Bauchi,Bauchi,10.31,9.84,2,Tue 13th,Thunderstorm with Rain,32.0,27.0
+2026-10-12,Bauchi,Bauchi,Bauchi,10.31,9.84,3,Wed 14th,Thunderstorm with Rain,31.0,28.0
+2026-10-12,Benin,Edo,Oredo,6.34,5.63,1,Mon 12th,Thunderstorm with Rain,32.0,26.0
+2026-10-12,Benin,Edo,Oredo,6.34,5.63,2,Tue 13th,Thunderstorm with Rain,32.0,27.0
+2026-10-12,Benin,Edo,Oredo,6.34,5.63,3,Wed 14th,Thunderstorm with Rain,31.0,28.0
+2026-10-12,Bida,Niger,Bida,9.08,6.01,1,Mon 12th,Thunderstorm with Rain,32.0,26.0
+2026-10-12,Bida,Niger,Bida,9.08,6.01,2,Tue 13th,Thunderstorm with Rain,32.0,27.0
+2026-10-12,Bida,Niger,Bida,9.08,6.01,3,Wed 14th,Thunderstorm with Rain,31.0,28.0
+2026-10-12,Calabar,Cross River,Calabar Municipal,4.96,8.33,1,Mon 12th,Thunderstorm with Rain,32.0,26.0
+2026-10-12,Calabar,Cross River,Calabar Municipal,4.96,8.33,2,Tue 13th,Thunderstorm with Rain,32.0,27.0
+2026-10-12,Calabar,Cross River,Calabar Municipal,4.96,8.33,3,Wed 14th,Thunderstorm with Rain,31.0,28.0
+2026-10-12,Calabar Marine,Cross River,Calabar Municipal,4.93,8.31,1,Mon 12th,Thunderstorm with Rain,32.0,26.0
+2026-10-12,Calabar Marine,Cross River,Calabar Municipal,4.93,8.31,2,Tue 13th,Thunderstorm with Rain,32.0,27.0
+2026-10-12,Calabar Marine,Cross River,Calabar Municipal,4.93,8.31,3,Wed 14th,Thunderstorm with Rain,31.0,28.0
+2026-10-12,Dutse,Jigawa,Dutse,11.76,9.34,1,Mon 12th,Thunderstorm with Rain,32.0,26.0
+2026-10-12,Dutse,Jigawa,Dutse,11.76,9.34,2,Tue 13th,Thunderstorm with Rain,32.0,27.0
+2026-10-12,Dutse,Jigawa,Dutse,11.76,9.34,3,Wed 14th,Thunderstorm with Rain,31.0,28.0
+2026-10-12,Eket Marine,Akwa Ibom,Eket,4.59,7.95,1,Mon 12th,Thunderstorm with Rain,32.0,26.0
+2026-10-12,Eket Marine,Akwa Ibom,Eket,4.59,7.95,2,Tue 13th,Thunderstorm with Rain,32.0,27.0
+2026-10-12,Eket Marine,Akwa Ibom,Eket,4.59,7.95,3,Wed 14th,Thunderstorm with Rain,31.0,28.0
+2026-10-12,Enugu,Enugu,Enugu North,6.44,7.49,1,Mon 12th,Thunderstorm with Rain,32.0,26.0
+2026-10-12,Enugu,Enugu,Enugu North,6.44,7.49,2,Tue 13th,Thunderstorm with Rain,32.0,27.0
+2026-10-12,Enugu,Enugu,Enugu North,6.44,7.49,3,Wed 14th,Thunderstorm with Rain,31.0,28.0
+2026-10-12,Gombe,Gombe,Gombe,10.29,11.17,1,Mon 12th,Thunderstorm with Rain,32.0,26.0
+2026-10-12,Gombe,Gombe,Gombe,10.29,11.17,2,Tue 13th,Thunderstorm with Rain,32.0,27.0
+2026-10-12,Gombe,Gombe,Gombe,10.29,11.17,3,Wed 14th,Thunderstorm with Rain,31.0,28.0
+2026-10-12,Gusau,Zamfara,Gusau,12.16,6.66,1,Mon 12th,Thunderstorm with Rain,32.0,26.0
+2026-10-12,Gusau,Zamfara,Gusau,12.16,6.66,2,Tue 13th,Thunderstorm with Rain,32.0,27.0
+2026-10-12,Gusau,Zamfara,Gusau,12.16,6.66,3,Wed 14th,Thunderstorm with Rain,31.0,28.0
+2026-10-12,Ibadan,Oyo,Ibadan North,7.38,3.9,1,Mon 12th,Thunderstorm with Rain,32.0,26.0
+2026-10-12,Ibadan,Oyo,Ibadan North,7.38,3.9,2,Tue 13th,Thunderstorm with Rain,32.0,27.0
+2026-10-12,Ibadan,Oyo,Ibadan North,7.38,3.9,3,Wed 14th,Thunderstorm with Rain,31.0,28.0
+2026-10-12,Ijebu-Ode,Ogun,Ijebu Ode,6.82,3.92,1,Mon 12th,Thunderstorm with Rain,32.0,26.0
+2026-10-12,Ijebu-Ode,Ogun,Ijebu Ode,6.82,3.92,2,Tue 13th,Thunderstorm with Rain,32.0,27.0
+2026-10-12,Ijebu-Ode,Ogun,Ijebu Ode,6.82,3.92,3,Wed 14th,Thunderstorm with Rain,31.0,28.0
+2026-10-12,Ikeja,Lagos,Ikeja,6.6,3.35,1,Mon 12th,Thunderstorm with Rain,32.0,26.0
+2026-10-12,Ikeja,Lagos,Ikeja,6.6,3.35,2,Tue 13th,Thunderstorm with Rain,32.0,27.0
+2026-10-12,Ikeja,Lagos,Ikeja,6.6,3.35,3,Wed 14th,Thunderstorm with Rain,31.0,28.0
+2026-10-12,Ikom,Cross River,Ikom,5.96,8.71,1,Mon 12th,Thunderstorm with Rain,32.0,26.0
+2026-10-12,Ikom,Cross River,Ikom,5.96,8.71,2,Tue 13th,Thunderstorm with Rain,32.0,27.0
+2026-10-12,Ikom,Cross River,Ikom,5.96,8.71,3,Wed 14th,Thunderstorm with Rain,31.0,28.0
+2026-10-12,Ilorin,Kwara,Ilorin South,8.5,4.55,1,Mon 12th,Thunderstorm with Rain,32.0,26.0
+2026-10-12,Ilorin,Kwara,Ilorin South,8.5,4.55,2,Tue 13th,Thunderstorm with Rain,32.0,27.0
+2026-10-12,Ilorin,Kwara,Ilorin South,8.5,4.55,3,Wed 14th,Thunderstorm with Rain,31.0,28.0
+2026-10-12,Iseyin,Oyo,Iseyin,7.97,3.6,1,Mon 12th,Thunderstorm with Rain,32.0,26.0
+2026-10-12,Iseyin,Oyo,Iseyin,7.97,3.6,2,Tue 13th,Thunderstorm with Rain,32.0,27.0
+2026-10-12,Iseyin,Oyo,Iseyin,7.97,3.6,3,Wed 14th,Thunderstorm with Rain,31.0,28.0
+2026-10-12,Jalingo,Taraba,Jalingo,8.89,11.36,1,Mon 12th,Thunderstorm with Rain,32.0,26.0
+2026-10-12,Jalingo,Taraba,Jalingo,8.89,11.36,2,Tue 13th,Thunderstorm with Rain,32.0,27.0
+2026-10-12,Jalingo,Taraba,Jalingo,8.89,11.36,3,Wed 14th,Thunderstorm with Rain,31.0,28.0
+2026-10-12,Jos,Plateau,Jos North,9.9,8.89,1,Mon 12th,Thunderstorm with Rain,32.0,26.0
+2026-10-12,Jos,Plateau,Jos North,9.9,8.89,2,Tue 13th,Thunderstorm with Rain,32.0,27.0
+2026-10-12,Jos,Plateau,Jos North,9.9,8.89,3,Wed 14th,Thunderstorm with Rain,31.0,28.0
+2026-10-12,Kaduna,Kaduna,Kaduna North,10.52,7.44,1,Mon 12th,Thunderstorm with Rain,32.0,26.0
+2026-10-12,Kaduna,Kaduna,Kaduna North,10.52,7.44,2,Tue 13th,Thunderstorm with Rain,32.0,27.0
+2026-10-12,Kaduna,Kaduna,Kaduna North,10.52,7.44,3,Wed 14th,Thunderstorm with Rain,31.0,28.0
+2026-10-12,Kano,Kano,Nassarawa,12.0,8.52,1,Mon 12th,Thunderstorm with Rain,32.0,26.0
+2026-10-12,Kano,Kano,Nassarawa,12.0,8.52,2,Tue 13th,Thunderstorm with Rain,32.0,27.0
+2026-10-12,Kano,Kano,Nassarawa,12.0,8.52,3,Wed 14th,Thunderstorm with Rain,31.0,28.0
+2026-10-12,Katsina,Katsina,Katsina,12.99,7.6,1,Mon 12th,Thunderstorm with Rain,32.0,26.0
+2026-10-12,Katsina,Katsina,Katsina,12.99,7.6,2,Tue 13th,Thunderstorm with Rain,32.0,27.0
+2026-10-12,Katsina,Katsina,Katsina,12.99,7.6,3,Wed 14th,Thunderstorm with Rain,31.0,28.0
+2026-10-12,Kebbi,Kebbi,Birnin Kebbi,12.45,4.2,1,Mon 12th,Thunderstorm with Rain,32.0,26.0
+2026-10-12,Kebbi,Kebbi,Birnin Kebbi,12.45,4.2,2,Tue 13th,Thunderstorm with Rain,32.0,27.0
+2026-10-12,Kebbi,Kebbi,Birnin Kebbi,12.45,4.2,3,Wed 14th,Thunderstorm with Rain,31.0,28.0
+2026-10-12,Koko,Delta,Warri North,6.0,5.47,1,Mon 12th,Thunderstorm with Rain,32.0,26.0
+2026-10-12,Koko,Delta,Warri North,6.0,5.47,2,Tue 13th,Thunderstorm with Rain,32.0,27.0
+2026-10-12,Koko,Delta,Warri North,6.0,5.47,3,Wed 14th,Thunderstorm with Rain,31.0,28.0
+2026-10-12,Lafia,Nasarawa,Lafia,8.49,8.52,1,Mon 12th,Thunderstorm with Rain,32.0,26.0
+2026-10-12,Lafia,Nasarawa,Lafia,8.49,8.52,2,Tue 13th,Thunderstorm with Rain,32.0,27.0
+2026-10-12,Lafia,Nasarawa,Lafia,8.49,8.52,3,Wed 14th,Thunderstorm with Rain,31.0,28.0
+2026-10-12,Lokoja,Kogi,Lokoja,7.8,6.74,1,Mon 12th,Thunderstorm with Rain,32.0,26.0
+2026-10-12,Lokoja,Kogi,Lokoja,7.8,6.74,2,Tue 13th,Thunderstorm with Rain,32.0,27.0
+2026-10-12,Lokoja,Kogi,Lokoja,7.8,6.74,3,Wed 14th,Thunderstorm with Rain,31.0,28.0
+2026-10-12,Maiduguri,Borno,Maiduguri,11.83,13.16,1,Mon 12th,Thunderstorm with Rain,32.0,26.0
+2026-10-12,Maiduguri,Borno,Maiduguri,11.83,13.16,2,Tue 13th,Thunderstorm with Rain,32.0,27.0
+2026-10-12,Maiduguri,Borno,Maiduguri,11.83,13.16,3,Wed 14th,Thunderstorm with Rain,31.0,28.0
+2026-10-12,Makurdi,Benue,Makurdi,7.73,8.54,1,Mon 12th,Thunderstorm with Rain,32.0,26.0
+2026-10-12,Makurdi,Benue,Makurdi,7.73,8.54,2,Tue 13th,Thunderstorm with Rain,32.0,27.0
+2026-10-12,Makurdi,Benue,Makurdi,7.73,8.54,3,Wed 14th,Thunderstorm with Rain,31.0,28.0
+2026-10-12,Minna,Niger,Chanchaga,9.61,6.55,1,Mon 12th,Thunderstorm with Rain,32.0,26.0
+2026-10-12,Minna,Niger,Chanchaga,9.61,6.55,2,Tue 13th,Thunderstorm with Rain,32.0,27.0
+2026-10-12,Minna,Niger,Chanchaga,9.61,6.55,3,Wed 14th,Thunderstorm with Rain,31.0,28.0
+2026-10-12,Nguru,Yobe,Nguru,12.88,10.45,1,Mon 12th,Thunderstorm with Rain,32.0,26.0
+2026-10-12,Nguru,Yobe,Nguru,12.88,10.45,2,Tue 13th,Thunderstorm with Rain,32.0,27.0
+2026-10-12,Nguru,Yobe,Nguru,12.88,10.45,3,Wed 14th,Thunderstorm with Rain,31.0,28.0
+2026-10-12,Niomr Lagos,Lagos,Eti-Osa,6.42,3.4,1,Mon 12th,Thunderstorm with Rain,32.0,26.0
+2026-10-12,Niomr Lagos,Lagos,Eti-Osa,6.42,3.4,2,Tue 13th,Thunderstorm with Rain,32.0,27.0
+2026-10-12,Niomr Lagos,Lagos,Eti-Osa,6.42,3.4,3,Wed 14th,Thunderstorm with Rain,31.0,28.0
+2026-10-12,Obudu,Cross River,Obudu,6.66,9.17,1,Mon 12th,Thunderstorm with Rain,32.0,26.0
+2026-10-12,Obudu,Cross River,Obudu,6.66,9.17,2,Tue 13th,Thunderstorm with Rain,32.0,27.0
+2026-10-12,Obudu,Cross River,Obudu,6.66,9.17,3,Wed 14th,Thunderstorm with Rain,31.0,28.0
+2026-10-12,Osogbo,Osun,Osogbo,7.77,4.56,1,Mon 12th,Thunderstorm with Rain,32.0,26.0
+2026-10-12,Osogbo,Osun,Osogbo,7.77,4.56,2,Tue 13th,Thunderstorm with Rain,32.0,27.0
+2026-10-12,Osogbo,Osun,Osogbo,7.77,4.56,3,Wed 14th,Thunderstorm with Rain,31.0,28.0
+2026-10-12,Owerri,Imo,Owerri Municipal,5.48,7.03,1,Mon 12th,Thunderstorm with Rain,32.0,26.0
+2026-10-12,Owerri,Imo,Owerri Municipal,5.48,7.03,2,Tue 13th,Thunderstorm with Rain,32.0,27.0
+2026-10-12,Owerri,Imo,Owerri Municipal,5.48,7.03,3,Wed 14th,Thunderstorm with Rain,31.0,28.0
+2026-10-12,Port Harcourt,Rivers,Port Harcourt,4.82,7.01,1,Mon 12th,Thunderstorm with Rain,32.0,26.0
+2026-10-12,Port Harcourt,Rivers,Port Harcourt,4.82,7.01,2,Tue 13th,Thunderstorm with Rain,32.0,27.0
+2026-10-12,Port Harcourt,Rivers,Port Harcourt,4.82,7.01,3,Wed 14th,Thunderstorm with Rain,31.0,28.0
+2026-10-12,Port Harcourt Marine,Rivers,Port Harcourt,4.77,7.03,1,Mon 12th,Thunderstorm with Rain,32.0,26.0
+2026-10-12,Port Harcourt Marine,Rivers,Port Harcourt,4.77,7.03,2,Tue 13th,Thunderstorm with Rain,32.0,27.0
+2026-10-12,Port Harcourt Marine,Rivers,Port Harcourt,4.77,7.03,3,Wed 14th,Thunderstorm with Rain,31.0,28.0
+2026-10-12,Potiskum,Yobe,Potiskum,11.71,11.07,1,Mon 12th,Thunderstorm with Rain,32.0,26.0
+2026-10-12,Potiskum,Yobe,Potiskum,11.71,11.07,2,Tue 13th,Thunderstorm with Rain,32.0,27.0
+2026-10-12,Potiskum,Yobe,Potiskum,11.71,11.07,3,Wed 14th,Thunderstorm with Rain,31.0,28.0
+2026-10-12,Shaki,Oyo,Shaki West,8.67,3.39,1,Mon 12th,Thunderstorm with Rain,32.0,26.0
+2026-10-12,Shaki,Oyo,Shaki West,8.67,3.39,2,Tue 13th,Thunderstorm with Rain,32.0,27.0
+2026-10-12,Shaki,Oyo,Shaki West,8.67,3.39,3,Wed 14th,Thunderstorm with Rain,31.0,28.0
+2026-10-12,Sokoto,Sokoto,Sokoto North,13.06,5.24,1,Mon 12th,Thunderstorm with Rain,32.0,26.0
+2026-10-12,Sokoto,Sokoto,Sokoto North,13.06,5.24,2,Tue 13th,Thunderstorm with Rain,32.0,27.0
+2026-10-12,Sokoto,Sokoto,Sokoto North,13.06,5.24,3,Wed 14th,Thunderstorm with Rain,31.0,28.0
+2026-10-12,Umuahia,Abia,Umuahia North,5.53,7.49,1,Mon 12th,Thunderstorm with Rain,32.0,26.0
+2026-10-12,Umuahia,Abia,Umuahia North,5.53,7.49,2,Tue 13th,Thunderstorm with Rain,32.0,27.0
+2026-10-12,Umuahia,Abia,Umuahia North,5.53,7.49,3,Wed 14th,Thunderstorm with Rain,31.0,28.0
+2026-10-12,Uyo,Akwa Ibom,Uyo,5.04,7.93,1,Mon 12th,Thunderstorm with Rain,32.0,26.0
+2026-10-12,Uyo,Akwa Ibom,Uyo,5.04,7.93,2,Tue 13th,Thunderstorm with Rain,32.0,27.0
+2026-10-12,Uyo,Akwa Ibom,Uyo,5.04,7.93,3,Wed 14th,Thunderstorm with Rain,31.0,28.0
+2026-10-12,Warri,Delta,Warri South,5.52,5.75,1,Mon 12th,Thunderstorm with Rain,32.0,26.0
+2026-10-12,Warri,Delta,Warri South,5.52,5.75,2,Tue 13th,Thunderstorm with Rain,32.0,27.0
+2026-10-12,Warri,Delta,Warri South,5.52,5.75,3,Wed 14th,Thunderstorm with Rain,31.0,28.0
+2026-10-12,Warri Npa,Delta,Warri South,5.51,5.73,1,Mon 12th,Thunderstorm with Rain,32.0,26.0
+2026-10-12,Warri Npa,Delta,Warri South,5.51,5.73,2,Tue 13th,Thunderstorm with Rain,32.0,27.0
+2026-10-12,Warri Npa,Delta,Warri South,5.51,5.73,3,Wed 14th,Thunderstorm with Rain,31.0,28.0
+2026-10-12,Yelwa,Kebbi,Yauri,10.84,4.75,1,Mon 12th,Thunderstorm with Rain,32.0,26.0
+2026-10-12,Yelwa,Kebbi,Yauri,10.84,4.75,2,Tue 13th,Thunderstorm with Rain,32.0,27.0
+2026-10-12,Yelwa,Kebbi,Yauri,10.84,4.75,3,Wed 14th,Thunderstorm with Rain,31.0,28.0
+2026-10-12,Yenagoa,Bayelsa,Yenagoa,4.93,6.26,1,Mon 12th,Thunderstorm with Rain,32.0,26.0
+2026-10-12,Yenagoa,Bayelsa,Yenagoa,4.93,6.26,2,Tue 13th,Thunderstorm with Rain,32.0,27.0
+2026-10-12,Yenagoa,Bayelsa,Yenagoa,4.93,6.26,3,Wed 14th,Thunderstorm with Rain,31.0,28.0
+2026-10-12,Yola,Adamawa,Yola South,9.21,12.46,1,Mon 12th,Thunderstorm with Rain,32.0,26.0
+2026-10-12,Yola,Adamawa,Yola South,9.21,12.46,2,Tue 13th,Thunderstorm with Rain,32.0,27.0
+2026-10-12,Yola,Adamawa,Yola South,9.21,12.46,3,Wed 14th,Thunderstorm with Rain,31.0,28.0
+2026-10-12,Zaria,Kaduna,Zaria,11.09,7.7,1,Mon 12th,Thunderstorm with Rain,32.0,26.0
+2026-10-12,Zaria,Kaduna,Zaria,11.09,7.7,2,Tue 13th,Thunderstorm with Rain,32.0,27.0
+2026-10-12,Zaria,Kaduna,Zaria,11.09,7.7,3,Wed 14th,Thunderstorm with Rain,31.0,28.0
