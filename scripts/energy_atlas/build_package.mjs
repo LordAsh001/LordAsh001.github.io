@@ -117,7 +117,7 @@ CSV files are UTF-8 (with BOM, so they open correctly in Excel). Coordinates are
 - The data are indicative and provided for education, research and planning discussion — not for engineering or investment decisions.
 
 ## Cite
-Amool, S. H. (2026). Nigeria Energy Atlas [Interactive web atlas and dataset]. https://shagbaor.com/energy-atlas/
+Amool, S. H. (2026). Nigeria Energy Atlas (Version 1.0) [Software and dataset]. Zenodo. https://doi.org/10.5281/zenodo.23307712 — live atlas: https://shagbaor.com/energy-atlas/
 `);
 add("LICENSE.txt", `Data and text: Creative Commons Attribution 4.0 International (CC BY 4.0)
 Copyright (c) 2026 Shagbaor Hycent Amool
@@ -135,6 +135,7 @@ authors:
     orcid: "https://orcid.org/0000-0001-8460-6744"
     affiliation: University of Northern British Columbia
 url: "https://shagbaor.com/energy-atlas/"
+doi: "10.5281/zenodo.23307712"
 license: CC-BY-4.0
 date-released: "${today}"
 `);
