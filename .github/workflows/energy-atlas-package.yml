@@ -1,0 +1,41 @@
+# Rebuilds the Nigeria Energy Atlas "Download all data" ZIP after manual edits to the atlas
+# (the data bots rebuild it themselves after each refresh). Run it by hand with a version
+# number to also build a release snapshot (application + data) for archiving on Zenodo.
+name: "Energy Atlas bot: data package"
+on:
+  push:
+    branches: [main]
+    paths:
+      - "energy-atlas/index.html"
+      - "energy-atlas/data/**"
+  workflow_dispatch:
+    inputs:
+      release:
+        description: "Also build a release snapshot with this version number (e.g. 1.0); leave empty for none"
+        type: string
+        default: ""
+permissions:
+  contents: write
+concurrency:
+  group: energy-atlas-data
+  cancel-in-progress: false
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: Build package
+        run: |
+          if [ -n "${{ inputs.release }}" ]; then node scripts/energy_atlas/build_package.mjs --release "${{ inputs.release }}"; else node scripts/energy_atlas/build_package.mjs; fi
+      - name: Commit if changed
+        run: |
+          git config user.name  "energy-atlas-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add energy-atlas/downloads energy-atlas/data/manifest.json
+          if git diff --cached --quiet; then echo "Nothing to commit."; exit 0; fi
+          git commit -m "Energy Atlas: rebuild data package ($(date -u +%Y-%m-%d))"
+          for i in 1 2 3; do git pull --rebase --quiet && git push --quiet && break || sleep 10; done
