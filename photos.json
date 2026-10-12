@@ -144,6 +144,13 @@
         "caption": "",
         "anchor": "Nigeria Market Atlas",
         "hidden": false
+      },
+      {
+        "src": "/images/tool-energy-atlas.jpg",
+        "alt": "Screenshot of the Nigeria Energy Atlas: a map of Nigeria shaded by solar resource, with hydropower, gas power plants, refineries, coal, pipelines and proposed projects, beside layer and colour controls.",
+        "caption": "",
+        "anchor": "Nigeria Energy Atlas",
+        "hidden": false
       }
     ]
   }
