@@ -21,6 +21,7 @@ var TOOL = /\/symbiosis\//.test(path) ? "symbiosis"
   : /\/forest-atlas\//.test(path) ? "forest-atlas"
   : /\/water-atlas\//.test(path) ? "water-atlas"
   : /\/market-atlas\//.test(path) ? "market-atlas"
+  : /\/energy-atlas\//.test(path) ? "energy-atlas"
   : "website";
 
 /* ---------- analytics (GoatCounter: no cookies, no personal data) ---------- */

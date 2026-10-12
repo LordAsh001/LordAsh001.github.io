@@ -17,7 +17,8 @@ var TOOLS = [
   { url: "/citadel.html",       name: "Citadel",                note: "Academic writing, made clear" },
   { url: "/forest-atlas/",      name: "Nigeria Forest Reserves Atlas", note: "Forest reserves, parks and wetlands, mapped" },
   { url: "/water-atlas/",       name: "Nigeria Water Resources Atlas", note: "Rivers, dams, groundwater and flood watch" },
-  { url: "/market-atlas/",      name: "Nigeria Market Atlas",   note: "Markets, produce prices and trucking costs" }
+  { url: "/market-atlas/",      name: "Nigeria Market Atlas",   note: "Markets, produce prices and trucking costs" },
+  { url: "/energy-atlas/", name: "Nigeria Energy Atlas", note: "Power plants, fuels, grid and energy security" }
 ];
 var HOME = "/#resources";
 var HOME_LABEL = "Shagbaor Hycent Amool";
