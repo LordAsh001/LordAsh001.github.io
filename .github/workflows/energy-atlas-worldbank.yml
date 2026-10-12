@@ -1,0 +1,25 @@
+# Monthly (3rd of the month, 06:41 UTC): access, clean cooking, consumption and loss indicators from the World Bank API.
+name: "Energy Atlas bot: World Bank indicators"
+on:
+  schedule:
+    - cron: "41 6 3 * *"
+  workflow_dispatch: {}
+permissions:
+  contents: write
+  issues: write
+concurrency:
+  group: energy-atlas-data
+  cancel-in-progress: false
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Run bot
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: bash scripts/energy_atlas/run_bot.sh fetch_wdi.py "World Bank indicators"

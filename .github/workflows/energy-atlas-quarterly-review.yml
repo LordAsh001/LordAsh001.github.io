@@ -1,0 +1,35 @@
+# Quarterly (1st of Jan/Apr/Jul/Oct, 08:07 UTC): opens a checklist issue for datasets that have
+# no machine-readable source and must be checked by hand.
+name: "Energy Atlas bot: quarterly review"
+on:
+  schedule:
+    - cron: "7 8 1 1,4,7,10 *"
+  workflow_dispatch: {}
+permissions:
+  issues: write
+jobs:
+  checklist:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Open review issue
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: |
+          cat > body.md <<'MD'
+          Quarterly check of the Nigeria Energy Atlas datasets that bots cannot read automatically.
+          Update the values in `energy-atlas/index.html` (data block) and note the source + date.
+
+          - [ ] **NERC quarterly report** — average available generation, energy (GWh), ATC&C losses, collection efficiency, DisCo losses table, grid collapses with dates/causes (`NERCQ`, `DISCO_ATCC`, `COLLAPSES`, `EVENTS`)
+          - [ ] **NERC monthly factsheets** — Grid watch headline figures (`GSTATS`)
+          - [ ] **State electricity markets** — any new NERC transfer orders (map regulator layer, `STATES[...].reg`)
+          - [ ] **Projects register** — refresh statuses older than 12 months (`PROJECTS`)
+          - [ ] **NUPRC reserves** — published each year around April (overview + security tiles)
+          - [ ] **Petrol import share (NMDPRA)** and **gas flaring (NOSDRA / World Bank GGFR)**
+          - [ ] **Indices** — WEF Energy Transition Index (June), WEC Trilemma (autumn), RISE, Tracking SDG7 (June), WEF Nexus Index (`INDICES`, `NEXUS`)
+          - [ ] Close any open bot issues that have been handled
+          MD
+          sed -i 's/^          //' body.md
+          gh label create energy-atlas --color 0f7a4a --description "Nigeria Energy Atlas data bots" 2>/dev/null || true
+          gh issue create --title "Energy Atlas: quarterly data review — $(date -u +%Y-%m)" --body-file body.md --label energy-atlas \
+            || gh issue create --title "Energy Atlas: quarterly data review — $(date -u +%Y-%m)" --body-file body.md

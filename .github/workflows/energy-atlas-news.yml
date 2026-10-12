@@ -1,0 +1,25 @@
+# Every 6 hours: news headlines about possible national grid collapses (GDELT), flagged for verification.
+name: "Energy Atlas bot: grid news radar"
+on:
+  schedule:
+    - cron: "37 */6 * * *"
+  workflow_dispatch: {}
+permissions:
+  contents: write
+  issues: write
+concurrency:
+  group: energy-atlas-data
+  cancel-in-progress: false
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Run bot
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: bash scripts/energy_atlas/run_bot.sh grid_news.py "grid news radar"

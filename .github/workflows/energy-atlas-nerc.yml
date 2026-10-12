@@ -1,0 +1,25 @@
+# Daily (07:11 UTC = 08:11 Lagos): new NERC factsheets, reports and orders.
+name: "Energy Atlas bot: NERC publications"
+on:
+  schedule:
+    - cron: "11 7 * * *"
+  workflow_dispatch: {}
+permissions:
+  contents: write
+  issues: write
+concurrency:
+  group: energy-atlas-data
+  cancel-in-progress: false
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Run bot
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: bash scripts/energy_atlas/run_bot.sh watch_nerc.py "NERC publications"
