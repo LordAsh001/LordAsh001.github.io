@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-11",
+ "updated": "2026-10-12",
  "sources": [
   {
    "source": "Opportunities for Africans",
@@ -9,7 +9,7 @@
   {
    "source": "Opportunity Desk",
    "ok": true,
-   "items": 5
+   "items": 6
   },
   {
    "source": "Opportunities Corners",
@@ -19,12 +19,12 @@
   {
    "source": "Scholarship Region",
    "ok": true,
-   "items": 9
+   "items": 8
   },
   {
    "source": "Opportunities for Youth",
    "ok": true,
-   "items": 5
+   "items": 8
   },
   {
    "source": "Commonwealth Scholarship Commission",
@@ -57,6 +57,156 @@
  ],
  "items": [
   {
+   "title": "Echidna Global Scholars Visiting Fellowship 2027 ($26,500 stipend)",
+   "link": "https://opportunitydesk.org/2026/10/12/echidna-global-scholars-visiting-fellowship-2027/",
+   "date": "2026-10-12",
+   "source": "Opportunity Desk",
+   "official": false,
+   "ids": [],
+   "summary": "Deadline: December 1, 2026 Applications are open for the Echidna Global Scholars Visiting Fellowship 2027. The Echidna Global Scholars Program at the Center for Universal Education (CUE) at Brookings…",
+   "seen": "2026-10-12"
+  },
+  {
+   "title": "Branco Weiss Fellowship – Society in Science 2027 (up to CHF600,000)",
+   "link": "https://opportunitydesk.org/2026/10/12/branco-weiss-fellowship-society-in-science-2027/",
+   "date": "2026-10-12",
+   "source": "Opportunity Desk",
+   "official": false,
+   "ids": [],
+   "summary": "Deadline: January 15, 2027 Applications are open for the Branco Weiss Fellowship – Society in Science 2027. The Branco Weiss Fellowship – Society in Science is a community of exceptional young scient…",
+   "seen": "2026-10-12"
+  },
+  {
+   "title": "UNICEF Venture Funding Opportunity for Femtech Solutions 2026 (up to $100,000)",
+   "link": "https://opportunitydesk.org/2026/10/12/unicef-venture-funding-opportunity-for-femtech-solutions-2026/",
+   "date": "2026-10-12",
+   "source": "Opportunity Desk",
+   "official": false,
+   "ids": [],
+   "summary": "Deadline: November 4, 2026 UNICEF Femtech Ventures is seeking applications to join its second annual cohort of companies using frontier technologies to build open-source solutions for the health, wel…",
+   "seen": "2026-10-12"
+  },
+  {
+   "title": "Falling Walls Foundation Female Science Talents Intensive Track 2027 (Fully-funded)",
+   "link": "https://opportunitydesk.org/2026/10/12/female-science-talents-intensive-track-2027/",
+   "date": "2026-10-12",
+   "source": "Opportunity Desk",
+   "official": false,
+   "ids": [],
+   "summary": "Deadline: November 15, 2026 Applications are invited for the Female Science Talents Intensive Track 2027. For 2027, they are looking for 20 exceptionally talented women in science from all discipline…",
+   "seen": "2026-10-12"
+  },
+  {
+   "title": "True Story Award 2027 for Journalists ($20,000 prize)",
+   "link": "https://opportunitydesk.org/2026/10/12/true-story-award-2027/",
+   "date": "2026-10-12",
+   "source": "Opportunity Desk",
+   "official": false,
+   "ids": [],
+   "summary": "Deadline: October 31, 2026 Applications are open for the True Story Award 2027. This international award for journalists from around the world is presented at the opening of the True Story Festival. …",
+   "seen": "2026-10-12"
+  },
+  {
+   "title": "Africa-China Post-Doctoral Fellowship 2027-2028 (Funded)",
+   "link": "https://opportunitydesk.org/2026/10/12/africa-china-post-doctoral-fellowship-2027-2028/",
+   "date": "2026-10-12",
+   "source": "Opportunity Desk",
+   "official": false,
+   "ids": [],
+   "summary": "Deadline: November 15, 2026 Applications for the Africa-China Post-Doctoral Fellowship 2027-2028 are now open. The Africa-China Initiative (ACI) at the Walsh School of Foreign Service (SFS) at George…",
+   "seen": "2026-10-12"
+  },
+  {
+   "title": "World Bank Government Analytics Fellowship 2027 (Fully Funded)",
+   "link": "https://opportunitiescorners.com/world-bank-government-analytics-fellowship-2027/",
+   "date": "2026-10-12",
+   "source": "Opportunities Corners",
+   "official": false,
+   "ids": [],
+   "summary": "Applications are now open for the World Bank Government Analytics Fellowship 2027, an international professional development opportunity for government officials seeking to improve public administrat…",
+   "seen": "2026-10-12"
+  },
+  {
+   "title": "2027 Palestine-Oxford Scholarship in UK | Fully Funded",
+   "link": "https://www.scholarshipregion.com/palestine-oxford-scholarship-in-geography/",
+   "date": "2026-10-12",
+   "source": "Scholarship Region",
+   "official": false,
+   "ids": [],
+   "summary": "The University of Oxford, through its School of Geography and the Environment (SoGE), is inviting applications for the Palestine-Oxford Scholarship in Geography and the Environment 2027. The award co…",
+   "seen": "2026-10-12"
+  },
+  {
+   "title": "2027 Ruth Titilayo Foundation Scholarship (RTEF) For Nigerians | How To Apply",
+   "link": "https://www.scholarshipregion.com/ruth-titilayo-foundation-scholarship/",
+   "date": "2026-10-12",
+   "source": "Scholarship Region",
+   "official": false,
+   "ids": [],
+   "summary": "The Ruth Titilayo Foundation Scholarship is aimed at breaking down barriers to education For underprivileged communities in Nigeria. The RTF Scholarships is specifically designed to pay for tuition f…",
+   "seen": "2026-10-12"
+  },
+  {
+   "title": "2027 VISTEC Scholarship For International Students in Thailand | Fully Funded",
+   "link": "https://www.scholarshipregion.com/vistec-scholarship/",
+   "date": "2026-10-12",
+   "source": "Scholarship Region",
+   "official": false,
+   "ids": [],
+   "summary": "International students worldwide are welcome to apply for the 2027 VISTEC Scholarships at the Vidyasirimedhi Institute of Science & Technology. The VISTEC University Scholarship is a fully financed s…",
+   "seen": "2026-10-12"
+  },
+  {
+   "title": "Novo Nordisk Foundation Postdoctoral Fellowships at the University of Oxford 2027: Apply for Up to DKK 3.6 Million in Research Funding",
+   "link": "https://opportunitiesforyouth.org/2026/10/12/novo-nordisk-foundation-postdoctoral-fellowships-at-the-university-of-oxford-2027-apply-for-up-to-dkk-3-6-million-in-research-funding/",
+   "date": "2026-10-12",
+   "source": "Opportunities for Youth",
+   "official": false,
+   "ids": [],
+   "summary": "Early-career researchers seeking to advance their academic careers through international research collaboration can explore the Novo Nordisk Foundation Postdoctoral Fellowships at the University of O…",
+   "seen": "2026-10-12"
+  },
+  {
+   "title": "5th IAFFE Feminist Economics School 2027 in Japan: Free Three-Day Training Programme with Travel Grants for Eligible Applicants",
+   "link": "https://opportunitiesforyouth.org/2026/10/12/iaffes-2nd-feminist-economics-school-call-for-applicationsfully-funded/",
+   "date": "2026-10-12",
+   "source": "Opportunities for Youth",
+   "official": false,
+   "ids": [],
+   "summary": "Overview of the 5th IAFFE Feminist Economics School 2027 Applications are invited for the 5th International Association for Feminist Economics (IAFFE) Feminist Economics School 2027, an intensive edu…",
+   "seen": "2026-10-12"
+  },
+  {
+   "title": "Gulbenkian Institute for Advanced Study Fellowships 2027/28 in Portugal: International Research Opportunity with Funding for 3-8 Months",
+   "link": "https://opportunitiesforyouth.org/2026/10/12/gulbenkian-institute-for-advanced-study-fellowships-2027-28-in-portugal-international-research-opportunity-with-funding-for-3-8-months/",
+   "date": "2026-10-12",
+   "source": "Opportunities for Youth",
+   "official": false,
+   "ids": [],
+   "summary": "Researchers, academics, independent scholars, and artists seeking an opportunity to advance their research in an international academic environment can now apply for the Gulbenkian Institute for Adva…",
+   "seen": "2026-10-12"
+  },
+  {
+   "title": "Echidna Global Scholars Program 2027–2028 at Brookings Institution: $26,500 Fellowship for Education, Gender Equality and Policy Research",
+   "link": "https://opportunitiesforyouth.org/2026/10/12/echidna-global-scholars-program-2025-now-open-for-applications/",
+   "date": "2026-10-12",
+   "source": "Opportunities for Youth",
+   "official": false,
+   "ids": [],
+   "summary": "The Echidna Global Scholars Program 2027–2028, hosted by the Center for Universal Education (CUE) at the Brookings Institution in Washington, D.C., United States, offers an opportunity for experience…",
+   "seen": "2026-10-12"
+  },
+  {
+   "title": "SHARE Fellowship 2027 at Arizona State University: Fully Funded Master of Global Management Scholarship in the USA",
+   "link": "https://opportunitiesforyouth.org/2026/10/12/share-fellowship-2027-at-arizona-state-university-fully-funded-master-of-global-management-scholarship-in-the-usa/",
+   "date": "2026-10-12",
+   "source": "Opportunities for Youth",
+   "official": false,
+   "ids": [],
+   "summary": "The SHARE Fellowship 2027 at Thunderbird School of Global Management, Arizona State University (ASU), offers an opportunity for experienced professionals from low- and middle-income countries to purs…",
+   "seen": "2026-10-12"
+  },
+  {
    "title": "AIxBio Research Fellowship 2027 in UK (Fully Funded)",
    "link": "https://opportunitiescorners.com/aixbio-research-fellowship-2027/",
    "date": "2026-10-11",
@@ -77,6 +227,38 @@
    ],
    "summary": "The Eiffel Scholarship Program provides annual scholarships and trainings for future foreign decision-makers in the public and private sectors in degree programs at the Master’s and Doctoral levels. …",
    "seen": "2026-10-11"
+  },
+  {
+   "title": "Branco Weiss Fellowship 2027: Up to CHF 600,000 for Outstanding Postdoctoral Researchers to Pursue Groundbreaking Research Worldwide",
+   "link": "https://opportunitiesforyouth.org/2026/10/11/branco-weiss-fellowship-eth-zurich-postdoctoral-fellowship/",
+   "date": "2026-10-11",
+   "source": "Opportunities for Youth",
+   "official": false,
+   "ids": [],
+   "summary": "The Branco Weiss Fellowship – Society in Science is inviting applications from exceptional early-career researchers worldwide who want to pursue original, ambitious and unconventional research projec…",
+   "seen": "2026-10-12"
+  },
+  {
+   "title": "University of Auckland Doctoral Scholarship 2026–2027: Receive NZ$35,468 Per Year, Tuition Fee Coverage and Health Insurance Support",
+   "link": "https://opportunitiesforyouth.org/2026/10/11/university-of-auckland-doctoral-scholarship-2026-2027-receive-nz35468-per-year-tuition-fee-coverage-and-health-insurance-support/",
+   "date": "2026-10-11",
+   "source": "Opportunities for Youth",
+   "official": false,
+   "ids": [],
+   "summary": "Introduction Are you looking for a doctoral scholarship in New Zealand to support your advanced studies and research career? The University of Auckland Doctoral Scholarship 2026–2027 offers eligible …",
+   "seen": "2026-10-12"
+  },
+  {
+   "title": "MSc in Health Professions Education 2026 at UGHE, Rwanda: Fully Funded Mastercard Foundation Scholars Program",
+   "link": "https://opportunitiesforyouth.org/2026/10/11/master-of-science-in-health-professions-education-fully-funded-by-mastercard-foundation-scholars-program/",
+   "date": "2026-10-11",
+   "source": "Opportunities for Youth",
+   "official": false,
+   "ids": [
+    "mastercard"
+   ],
+   "summary": "The Master of Science in Health Professions Education (MSc-HPE) 2026 at the University of Global Health Equity (UGHE), Rwanda, offers an advanced academic opportunity for young African health profess…",
+   "seen": "2026-10-12"
   },
   {
    "title": "WomanKind Creative Grant 2027",
