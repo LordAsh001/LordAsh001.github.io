@@ -1,53 +1,53 @@
 {
- "generated": "2026-10-11T11:27:17+00:00",
+ "generated": "2026-10-12T13:14:32+00:00",
  "sources": {
   "kasuwa_api": {
    "ok": false,
    "error": "robots.txt disallows https://agriarche-backend.onrender.com/prices/filtered",
-   "checked": "2026-10-11T11:26:44+00:00",
+   "checked": "2026-10-12T13:14:07+00:00",
    "last_success": "2026-10-11T06:17:21+00:00"
   },
   "lagos_tracker": {
    "ok": true,
    "records": 428,
-   "checked": "2026-10-11T11:26:51+00:00",
-   "last_success": "2026-10-11T11:26:51+00:00"
+   "checked": "2026-10-12T13:14:14+00:00",
+   "last_success": "2026-10-12T13:14:14+00:00"
   },
   "lcfe": {
    "ok": true,
    "records": 20,
-   "checked": "2026-10-11T11:26:52+00:00",
-   "last_success": "2026-10-11T11:26:52+00:00"
+   "checked": "2026-10-12T13:14:16+00:00",
+   "last_success": "2026-10-12T13:14:16+00:00"
   },
   "ncx_ticker": {
    "ok": true,
    "records": 15,
-   "checked": "2026-10-11T11:27:07+00:00",
-   "last_success": "2026-10-11T11:27:07+00:00"
+   "checked": "2026-10-12T13:14:17+00:00",
+   "last_success": "2026-10-12T13:14:17+00:00"
   },
   "commodity_ng": {
    "ok": true,
    "records": 9,
-   "checked": "2026-10-11T11:27:12+00:00",
-   "last_success": "2026-10-11T11:27:12+00:00"
+   "checked": "2026-10-12T13:14:27+00:00",
+   "last_success": "2026-10-12T13:14:27+00:00"
   },
   "avestack": {
    "ok": true,
    "records": 10,
-   "checked": "2026-10-11T11:27:12+00:00",
-   "last_success": "2026-10-11T11:27:12+00:00"
+   "checked": "2026-10-12T13:14:27+00:00",
+   "last_success": "2026-10-12T13:14:27+00:00"
   },
   "opaindex": {
    "ok": false,
    "error": "RuntimeError: page read, but no prices recognised (layout may have changed)",
-   "checked": "2026-10-11T11:27:13+00:00",
+   "checked": "2026-10-12T13:14:28+00:00",
    "last_success": null
   },
   "wfp_hdx": {
    "ok": true,
-   "records": 935,
-   "checked": "2026-10-11T11:27:17+00:00",
-   "last_success": "2026-10-11T11:27:17+00:00"
+   "records": 1171,
+   "checked": "2026-10-12T13:14:32+00:00",
+   "last_success": "2026-10-12T13:14:32+00:00"
   }
  }
 }
