@@ -1,0 +1,968 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nigeria Energy Atlas</title>
+<link rel="canonical" href="https://shagbaor.com/energy-atlas/">
+<meta property="og:title" content="Nigeria Energy Atlas">
+<meta property="og:description" content="Open map and data on Nigeria's energy: power plants, refineries, pipelines, renewable potential, grid collapses, energy security indices and power-sector projects.">
+<meta property="og:url" content="https://shagbaor.com/energy-atlas/">
+<meta property="og:type" content="website">
+<script>try{var t=localStorage.getItem("theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+<script src="/assets/traction.js" defer></script>
+<meta name="description" content="Interactive atlas of Nigeria's energy system: renewable and fossil resources, power plants, refineries, pipelines, state-level potential and electricity market structure.">
+<meta name="author" content="Shagbaor Hycent Amool">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f6f7f4;--panel:#ffffff;--ink:#16201b;--muted:#5d6a63;--line:#dfe4df;--accent:#0f7a4a;--accent-ink:#ffffff;--chip:#eef2ee;--shadow:0 1px 2px rgba(0,0,0,.06),0 4px 16px rgba(0,0,0,.05);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){--bg:#0f1412;--panel:#171e1b;--ink:#e6ece8;--muted:#9aa8a0;--line:#2a3430;--accent:#3cc486;--accent-ink:#06130c;--chip:#212a26;--shadow:0 1px 2px rgba(0,0,0,.4)}
+}
+:root[data-theme="dark"]{--bg:#0f1412;--panel:#171e1b;--ink:#e6ece8;--muted:#9aa8a0;--line:#2a3430;--accent:#3cc486;--accent-ink:#06130c;--chip:#212a26;--shadow:0 1px 2px rgba(0,0,0,.4)}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%}
+body{background:var(--bg);color:var(--ink);font:15px/1.5 Inter,system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
+a{color:var(--accent)}
+header{display:flex;align-items:center;gap:12px;padding:12px 20px;border-bottom:1px solid var(--line);background:var(--panel);position:relative;z-index:500}
+header .brand{display:flex;flex-direction:column;min-width:0}
+header h1{font-size:18px;margin:0;font-weight:700;letter-spacing:-.01em}
+header .sub{font-size:12.5px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+nav.tabs{display:flex;gap:4px;margin-left:auto;flex-wrap:wrap}
+nav.tabs button,.btn{font:inherit;font-size:13.5px;border:1px solid var(--line);background:var(--panel);color:var(--ink);padding:6px 12px;border-radius:8px;cursor:pointer}
+nav.tabs button[aria-selected="true"]{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+.icon-btn{width:34px;height:34px;padding:0;display:grid;place-items:center}
+main{max-width:1400px;margin:0 auto}
+section.view{display:none;padding:16px 20px 40px}
+section.view.active{display:block}
+/* Map view */
+#view-map{padding:0}
+.mapwrap{display:grid;grid-template-columns:320px 1fr;height:calc(100vh - 100px);min-height:520px}
+aside.side{background:var(--panel);border-right:1px solid var(--line);overflow:auto;padding:14px 16px}
+#map{height:100%;width:100%;background:var(--bg)}
+.side h3{font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin:16px 0 8px}
+.side h3:first-child{margin-top:0}
+.layer{display:flex;align-items:center;gap:8px;padding:4px 0;font-size:14px;cursor:pointer}
+.layer input{accent-color:var(--accent)}
+.sw{width:12px;height:12px;border-radius:50%;flex:none;border:2px solid rgba(255,255,255,.7);box-shadow:0 0 0 1px rgba(0,0,0,.15)}
+.sw.line{border-radius:2px;height:4px;width:16px;border:0}
+.layer .n{margin-left:auto;color:var(--muted);font-size:12px}
+select,input[type=search]{font:inherit;font-size:14px;width:100%;padding:7px 9px;border-radius:8px;border:1px solid var(--line);background:var(--bg);color:var(--ink)}
+.legend{margin-top:8px;font-size:12.5px}
+.legend .row{display:flex;align-items:center;gap:8px;margin:3px 0}
+.legend .box{width:16px;height:12px;border-radius:3px;border:1px solid var(--line)}
+.status-key{font-size:12.5px;color:var(--muted)}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px 16px;box-shadow:var(--shadow)}
+#stateCard{margin-top:12px;display:none}
+#stateCard h4{margin:0 0 4px;font-size:16px}
+.kv{display:grid;grid-template-columns:auto 1fr;gap:2px 10px;font-size:13px}
+.kv dt{color:var(--muted)}.kv dd{margin:0}
+ul.tight{margin:6px 0 0;padding-left:18px;font-size:13px}
+.leaflet-popup-content-wrapper,.leaflet-popup-tip{background:var(--panel);color:var(--ink)}
+.leaflet-popup-content{font:13px/1.45 Inter,system-ui,sans-serif;margin:12px 14px}
+.pop h5{margin:0 0 4px;font-size:14px}
+.pill{display:inline-block;font-size:11px;padding:1px 8px;border-radius:999px;background:var(--chip);color:var(--ink);margin-right:4px}
+.leaflet-container a.leaflet-popup-close-button{color:var(--muted)}
+.leaflet-control-attribution{font-size:10px}
+/* Overview */
+.grid{display:grid;gap:14px}
+.stats{grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
+.stat .v{font-size:26px;font-weight:700;letter-spacing:-.02em}
+.stat .l{font-size:13px;color:var(--muted)}
+.stat .s{font-size:11.5px;color:var(--muted);margin-top:4px}
+h2{font-size:20px;margin:22px 0 10px;letter-spacing:-.01em}
+h2:first-child{margin-top:4px}
+.two{grid-template-columns:1fr 1fr}
+.bars .bar{display:grid;grid-template-columns:190px 1fr 86px;gap:8px;align-items:center;font-size:13px;margin:5px 0}
+.bars .track{height:12px;background:var(--chip);border-radius:6px;overflow:hidden}
+.bars .fill{height:100%;border-radius:6px}
+.bars .val{text-align:right;color:var(--muted);font-variant-numeric:tabular-nums}
+.pot td,.pot th{padding:8px 10px;border-bottom:1px solid var(--line);text-align:left;font-size:13.5px;vertical-align:top}
+table{border-collapse:collapse;width:100%}
+.tablewrap{overflow:auto;border:1px solid var(--line);border-radius:12px;background:var(--panel)}
+#assetTable th{position:sticky;top:0;background:var(--panel);cursor:pointer;font-size:12.5px;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+#assetTable td,#assetTable th{padding:8px 10px;border-bottom:1px solid var(--line);font-size:13.5px;text-align:left;white-space:nowrap}
+#assetTable td.num{text-align:right;font-variant-numeric:tabular-nums}
+.toolbar{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 12px}
+.toolbar input,.toolbar select{width:auto;flex:1 1 180px}
+.note{font-size:13px;color:var(--muted)}
+.prose{max-width:820px}
+.prose li{margin:4px 0}
+footer{font-size:12px;color:var(--muted);padding:12px 20px;border-top:1px solid var(--line)}
+h3.ch{font-size:15px;margin:0 0 10px}
+.chart{margin:4px 0}
+.lg{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:12.5px;color:var(--muted);margin-top:6px}
+.lg i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:6px;vertical-align:-1px}
+.tick{position:absolute;top:-3px;width:2px;height:18px;background:var(--ink);opacity:.75}
+.links{grid-template-columns:repeat(auto-fit,minmax(230px,1fr));margin-top:10px}
+.linkcard{display:flex;flex-direction:column;gap:4px;padding:12px 14px;border:1px solid var(--line);border-radius:10px;text-decoration:none;color:var(--ink);background:var(--bg)}
+.linkcard:hover{border-color:var(--accent)}
+.linkcard b{color:var(--accent);font-size:14px}.linkcard span{font-size:13px;color:var(--muted)}
+.pill.t-total{background:#b33a3a;color:#fff}.pill.t-partial{background:#e2932e;color:#1b1206}.pill.t-collapse{background:#8a3b3b;color:#fff}
+.auto{font-size:11px;font-weight:500;color:var(--muted);background:var(--chip);border-radius:999px;padding:1px 8px;margin-left:6px;vertical-align:2px}
+.feed{list-style:none;margin:0;padding:0}.feed li{padding:7px 0;border-bottom:1px solid var(--line);font-size:13.5px;display:flex;flex-direction:column;gap:2px}.feed li:last-child{border-bottom:0}.feed li span{font-size:12px;color:var(--muted)}
+.prj{grid-template-columns:repeat(auto-fill,minmax(300px,1fr))}
+.prjcard h4{margin:8px 0 2px;font-size:15.5px}.prjcard p{font-size:13.5px;margin:8px 0}
+.prjcard .num{font-size:13px;font-weight:600;margin-top:6px}
+.prjfoot{display:flex;gap:14px;font-size:13px;margin-top:8px}
+.pill.s-delivered{background:#0f7a4a;color:#fff}.pill.s-inprogress{background:#2b7bd6;color:#fff}.pill.s-proposed{background:#8a929a;color:#fff}.pill.s-stalled{background:#b33a3a;color:#fff}
+@media (max-width:860px){
+  header{flex-wrap:wrap;padding:10px 16px}
+  nav.tabs{margin-left:0;width:100%}
+  .mapwrap{grid-template-columns:1fr;height:auto}
+  #map{height:62vh}
+  aside.side{order:2;border-right:0;border-top:1px solid var(--line)}
+  .two{grid-template-columns:1fr}
+  section.view{padding:14px 16px 32px}
+  .bars .bar{grid-template-columns:120px 1fr 80px}
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="brand">
+    <h1>Nigeria Energy Atlas</h1>
+    <div class="sub">Renewable &amp; fossil resources, infrastructure and potential — 36 states + FCT</div>
+  </div>
+  <nav class="tabs" role="tablist">
+    <button role="tab" aria-selected="true" data-view="map">Map</button>
+    <button role="tab" aria-selected="false" data-view="overview">Overview</button>
+    <button role="tab" aria-selected="false" data-view="history">History</button>
+    <button role="tab" aria-selected="false" data-view="grid">Grid watch</button>
+    <button role="tab" aria-selected="false" data-view="security">Security &amp; indices</button>
+    <button role="tab" aria-selected="false" data-view="projects">Projects</button>
+    <button role="tab" aria-selected="false" data-view="potential">Potential</button>
+    <button role="tab" aria-selected="false" data-view="data">Data</button>
+    <button role="tab" aria-selected="false" data-view="about">Sources &amp; method</button>
+  </nav>
+</header>
+<main>
+<section class="view active" id="view-map">
+  <div class="mapwrap">
+    <aside class="side">
+      <h3>Find a state or asset</h3>
+      <input type="search" id="search" placeholder="e.g. Kainji, Lagos, refinery" list="searchList">
+      <datalist id="searchList"></datalist>
+      <h3>Renewable</h3><div id="layers-Renewable"></div>
+      <h3>Fossil</h3><div id="layers-Fossil"></div>
+      <h3>Other &amp; networks</h3><div id="layers-Other"></div>
+      <label class="layer"><input type="checkbox" id="pipeToggle" checked><span class="sw line" style="background:#7a7f86"></span>Pipelines (schematic)<span class="n" id="pipeN"></span></label>
+      <label class="layer"><input type="checkbox" id="propToggle" checked>Show proposed / under construction</label>
+      <h3>Colour states by</h3>
+      <select id="choro">
+        <option value="none">None (outline only)</option>
+        <option value="solar" selected>Solar resource (indicative GHI)</option>
+        <option value="wind">Wind resource (qualitative)</option>
+        <option value="disco">Distribution company (DisCo)</option>
+        <option value="reg">Electricity market regulator</option>
+        <option value="zone">Geopolitical zone</option>
+      </select>
+      <div class="legend" id="legend"></div>
+      <p class="status-key">Marker size ∝ capacity. Hollow markers = proposed, under construction or stalled. Locations are approximate.</p>
+      <div class="card" id="stateCard"></div>
+    </aside>
+    <div id="map" role="region" aria-label="Map of Nigeria energy assets"></div>
+  </div>
+</section>
+
+<section class="view" id="view-overview">
+  <h2>Nigeria's energy system at a glance</h2>
+  <div class="grid stats" id="stats"></div>
+  <div class="grid two" style="margin-top:14px">
+    <div class="card"><h2 style="margin-top:0">Power plants in this atlas by technology</h2><div class="bars" id="techBars"></div><p class="note">Sum of nameplate capacity of mapped grid-scale plants (MW). Nameplate ≠ available capacity: grid output has peaked at about 5.8 GW.</p></div>
+    <div class="card"><h2 style="margin-top:0">Largest mapped power plants</h2><div class="bars" id="topBars"></div></div>
+  </div>
+  <div class="grid two" style="margin-top:14px">
+    <div class="card"><h2 style="margin-top:0">Refining capacity</h2><div class="bars" id="refBars"></div><p class="note">Barrels per day of crude distillation capacity. State-owned refineries have operated intermittently.</p></div>
+    <div class="card"><h2 style="margin-top:0">Key policy context</h2>
+      <ul class="tight" style="font-size:14px">
+        <li><b>Electricity Act 2023</b> lets states license and regulate their own electricity markets; NERC has been transferring oversight state by state.</li>
+        <li><b>Energy Transition Plan</b> sets a net-zero target for 2060, with gas as a transition fuel.</li>
+        <li><b>Petroleum Industry Act 2021</b> created NUPRC (upstream) and NMDPRA (mid/downstream) and commercialised NNPC Ltd.</li>
+        <li><b>Decade of Gas</b> and the AKK pipeline aim to extend gas to the north for power and industry.</li>
+        <li><b>Off-grid push:</b> the Rural Electrification Agency's Nigeria Electrification Project and DARES programme fund solar mini-grids and home systems.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="view" id="view-history">
+  <h2>Electricity generation, 2000–2025</h2>
+  <div class="grid two">
+    <div class="card"><h3 class="ch">Grid generation by source (TWh)</h3><div id="chGen" class="chart"></div><div class="lg" id="lgGen"></div><p class="note">Source: Our World in Data (Ember &amp; Energy Institute). 2025 hydro jumps with Zungeru's full operation. Coal, oil, wind and nuclear are zero in this series.</p></div>
+    <div class="card"><h3 class="ch">Share of generation (%)</h3><div id="chShare" class="chart"></div><div class="lg" id="lgShare"></div><p class="note">Derived from the series on the left. Gas has supplied 61–83% of grid electricity every year since 2000.</p></div>
+  </div>
+  <h2>Access &amp; consumption</h2>
+  <div class="grid two">
+    <div class="card"><h3 class="ch">Access to electricity (% of population)</h3><div id="chAccess" class="chart"></div><div class="lg" id="lgAccess"></div><p class="note">World Bank WDI. Rural figures are survey-based and vary year to year.</p></div>
+    <div class="card"><h3 class="ch">Electricity use per person (kWh/year)</h3><div id="chKwh" class="chart"></div><p class="note">World Bank WDI (EG.USE.ELEC.KH.PC). Peaked at 177 kWh in 2016; 141 kWh in 2024.</p></div>
+  </div>
+  <div class="grid two" style="margin-top:14px">
+    <div class="card"><h3 class="ch">Access to clean cooking (% of population)</h3><div id="chCook" class="chart"></div><p class="note">World Bank WDI (EG.CFT.ACCS.ZS).</p></div>
+    <div class="card"><h3 class="ch">Renewable share of final energy (%)</h3><div id="chRen" class="chart"></div><p class="note">World Bank WDI. High because traditional biomass (firewood, charcoal) dominates household energy — not a sign of modern renewables.</p></div>
+  </div>
+  <h2>Losses</h2>
+  <div class="grid two">
+    <div class="card"><h3 class="ch">DisCo ATC&amp;C losses vs regulatory target, Q1 2026 (%)</h3><div class="bars" id="discoBars"></div><p class="note">Aggregate technical, commercial &amp; collection loss. Bar = actual; tick = MYTO target. Source: NERC 2026 Q1 report, Table 9.</p></div>
+    <div class="card"><h3 class="ch">Grid performance by quarter (NERC)</h3>
+      <div class="tablewrap"><table class="pot"><thead><tr><th>Quarter</th><th>Avg available (MW)</th><th>Energy (GWh)</th><th>ATC&amp;C loss</th><th>Collection eff.</th></tr></thead><tbody id="nercBody"></tbody></table></div>
+      <p class="note">MYTO ATC&amp;C target: 20.54% (2025), 16.92% (2026). World Bank WDI lists transmission &amp; distribution losses at ~14% (2016–2024), a modelled estimate far below NERC's measured ATC&amp;C losses.</p></div>
+  </div>
+</section>
+
+<section class="view" id="view-grid">
+  <h2>Grid watch</h2>
+  <div class="grid stats" id="gridStats"></div>
+  <div class="card" style="margin-top:14px">
+    <h3 class="ch">Live &amp; near-live supply</h3>
+    <p class="prose" style="margin-top:4px">Nigeria's system operator (NISO) publishes real-time grid output on its own dashboard, but it offers no public data feed, and its site terms do not permit automated copying. This atlas therefore links to the live sources rather than copying them, and keeps a verified history from NERC reports.</p>
+    <div class="grid links" id="liveLinks"></div>
+  </div>
+  <div class="grid two" style="margin-top:14px">
+    <div class="card"><h3 class="ch">Latest NERC publications <span class="auto">auto-updated daily</span></h3><ul class="feed" id="nercFeed"><li class="note">Updates appear here once the data bots are running on the website.</li></ul><p class="note">New factsheets and reports are listed automatically; figures from them are checked by hand before entering the charts.</p></div>
+    <div class="card"><h3 class="ch">News radar — unverified <span class="auto">auto-updated every 6 h</span></h3><ul class="feed" id="newsFeed"><li class="note">Updates appear here once the data bots are running on the website.</li></ul><p class="note">Headlines mentioning a grid collapse or disturbance, collected automatically from the GDELT news index. Not verified — confirmed events are added to the timeline below.</p></div>
+  </div>
+  <h2>National grid collapses per year</h2>
+  <div class="card"><div id="chCollapse" class="chart"></div><div class="lg" id="lgCollapse"></div>
+    <p class="note">2010–2018: TCN System Operator records (via ICIR); 2019–2020: combined counts (ThisDay/TCN; no total/partial split); 2021 onward: NERC Annual Report 2025; 2026 is year to date. Sources disagree — hover a bar for notes. Cumulative: 206 collapses 2010–2019 (TCN data via ICIR); 222 to June 2022 (ThisDay).</p></div>
+  <h2>Recorded events, 2022–2026</h2>
+  <div class="tablewrap"><table class="pot"><thead><tr><th>Date</th><th>Type</th><th>Notes</th><th>Source</th></tr></thead><tbody id="eventBody"></tbody></table></div>
+</section>
+
+<section class="view" id="view-security">
+  <h2>Energy security scorecard</h2>
+  <div class="grid stats" id="secStats"></div>
+  <div class="grid two" style="margin-top:14px">
+    <div class="card"><h3 class="ch">Share of petrol supply imported, by month (%)</h3><div class="bars" id="petrolBars"></div><p class="note">NMDPRA data via ThisDay. Nov 2024–Nov 2025: 12.96 bn litres imported vs 7.39 bn litres local (63.7% imported).</p></div>
+    <div class="card"><h3 class="ch">Water–Energy–Food (WEF) Nexus Index, 2023</h3><div id="nexus" class="bars"></div>
+      <p class="note">Score 0–100 (higher = more secure). Rank among 165 scored countries. Source: <a href="https://wefnexusindex.org/trends" target="_blank" rel="noopener">wefnexusindex.org</a>; method: Simpson et al. (2022) <a href="https://doi.org/10.3389/frwa.2022.825854" target="_blank" rel="noopener">Frontiers in Water 4:825854</a>.</p></div>
+  </div>
+  <h2>Energy indices</h2>
+  <div class="tablewrap"><table class="pot"><thead><tr><th>Index</th><th>Edition</th><th>Nigeria</th><th>Notes</th><th>Source</th></tr></thead><tbody id="idxBody"></tbody></table></div>
+  <h2>World Bank RISE — policy &amp; regulation scores (0–100)</h2>
+  <div class="grid two" id="riseGrid"></div>
+  <p class="note">Regulatory Indicators for Sustainable Energy, <a href="https://rise.esmap.org/country/nigeria" target="_blank" rel="noopener">rise.esmap.org</a>. Strong on access frameworks; weak on efficiency and non-power renewables.</p>
+</section>
+
+<section class="view" id="view-projects">
+  <h2>Power sector projects &amp; programmes</h2>
+  <p class="note prose">A register of federal, state, private and development-partner projects aimed at improving generation, transmission, distribution and off-grid supply. Every entry links to its source; status is as of the date shown.</p>
+  <div class="toolbar">
+    <input type="search" id="prjSearch" placeholder="Search project, state, funder…">
+    <select id="prjLevel"><option value="">All levels</option></select>
+    <select id="prjType"><option value="">All types</option></select>
+    <select id="prjStatus"><option value="">All statuses</option></select>
+    <button class="btn" id="dlPrj">Download CSV</button>
+  </div>
+  <div class="grid prj" id="prjList"></div>
+  <p class="note" id="prjCount"></p>
+</section>
+
+<section class="view" id="view-potential">
+  <h2>Resource potential</h2>
+  <p class="note prose">National potential figures as commonly cited by the Energy Commission of Nigeria (ECN) and the Renewable Energy Master Plan, alongside proven fossil reserves reported by NUPRC. Treat renewable figures as planning-level estimates.</p>
+  <div class="tablewrap"><table class="pot"><thead><tr><th>Resource</th><th>Estimated potential / reserve</th><th>Where it is concentrated</th><th>Current use</th></tr></thead><tbody id="potBody"></tbody></table></div>
+  <h2>State profiles</h2>
+  <div class="toolbar"><input type="search" id="stateFilter" placeholder="Filter states…"></div>
+  <div class="tablewrap"><table class="pot"><thead><tr><th>State</th><th>Zone</th><th>Solar GHI*</th><th>Wind</th><th>DisCo</th><th>Regulator</th><th>Key energy resources &amp; assets</th></tr></thead><tbody id="stateBody"></tbody></table></div>
+  <p class="note">*Indicative annual-mean global horizontal irradiance band, kWh/m²/day, from the national north–south gradient (≈3.5 on the coast to ≈7.0 in the far north). For site design use the Global Solar Atlas or NASA POWER.</p>
+</section>
+
+<section class="view" id="view-data">
+  <h2>Asset data</h2>
+  <div class="toolbar">
+    <input type="search" id="tblSearch" placeholder="Search name, state, operator…">
+    <select id="tblCat"><option value="">All categories</option></select>
+    <select id="tblStatus"><option value="">All statuses</option></select>
+    <button class="btn" id="dlCsv">Download CSV</button>
+    <button class="btn" id="dlGeo">Download GeoJSON</button>
+    <button class="btn" id="dlAll">Download history &amp; indicators (JSON)</button>
+  </div>
+  <div class="tablewrap" style="max-height:70vh"><table id="assetTable"><thead><tr>
+    <th data-k="name">Name</th><th data-k="cat">Category</th><th data-k="state">State</th><th data-k="cap">Capacity</th><th data-k="status">Status</th><th data-k="notes">Notes</th><th data-k="lat">Lat</th><th data-k="lon">Lon</th>
+  </tr></thead><tbody></tbody></table></div>
+  <p class="note" id="tblCount"></p>
+</section>
+
+<section class="view" id="view-about">
+  <div class="prose">
+  <h2>About this atlas</h2>
+  <p>The Nigeria Energy Atlas brings Nigeria's renewable and fossil energy resources, the infrastructure built on them, and state-level potential into one open, map-based reference for students, researchers, planners and policy discussion. It sits alongside the Nigeria Forest Reserves, Water Resources and Market atlases.</p>
+  <h2>Method</h2>
+  <ul>
+    <li><b>Assets</b> were compiled from public operator, government and news sources. Coordinates are approximate site locations (typically within a few kilometres) and markers for basins, programmes and provinces are symbolic.</li>
+    <li><b>Capacities</b> are nameplate figures. Available capacity is often much lower because of gas supply, transmission and maintenance constraints.</li>
+    <li><b>Pipelines</b> are schematic routes, not surveyed alignments.</li>
+    <li><b>State solar bands</b> are indicative, derived from the documented north–south irradiance gradient; wind classes are qualitative.</li>
+    <li><b>Regulator status</b> reflects NERC transfer orders reported up to August 2025; check NERC for the latest position.</li>
+    <li><b>Boundaries</b>: state outlines derived from Natural Earth (public domain) via the Highcharts map collection, simplified for the web.</li>
+  </ul>
+  <h2>Key sources</h2>
+  <ul id="sourceList"></ul>
+  <h2>Cite this atlas</h2>
+  <p class="card" style="font-size:13.5px">Amool, S. H. (2026). <i>Nigeria Energy Atlas</i> [Interactive web atlas]. https://shagbaor.com/energy-atlas/</p>
+  <p class="note">Spotted an error or have better data? Corrections are welcome — this atlas is updated as new information becomes available. Last updated: <span id="updated"></span>. <span id="freshness"></span></p>
+  </div>
+</section>
+</main>
+<footer>© 2026 Shagbaor Hycent Amool · Data are indicative and provided for education, research and planning discussion — verify before engineering or investment use.</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script>
+// Asset records: [id, name, category, state, lat, lon, capacity, unit, status, operator/notes]
+// Coordinates are approximate (site-level, typically within a few km). Verify before engineering use.
+const ASSETS_RAW = [
+// ---------- Large & small hydropower ----------
+["H01","Kainji Hydropower Station","hydro","Niger",9.861,4.613,760,"MW","Operational","Mainstream Energy Solutions concession; River Niger"],
+["H02","Jebba Hydropower Station","hydro","Kwara/Niger",9.143,4.787,578.4,"MW","Operational","Mainstream Energy Solutions concession; River Niger"],
+["H03","Shiroro Hydropower Station","hydro","Niger",9.973,6.835,600,"MW","Operational","North South Power concession; Kaduna River"],
+["H04","Zungeru Hydropower Station","hydro","Niger",9.870,6.270,700,"MW","Operational","Commissioned in phases from 2023; Kaduna River; concessioned"],
+["H05","Dadin Kowa Hydropower","hydro","Gombe",10.320,11.480,40,"MW","Operational","Gongola River"],
+["H06","Kashimbila Hydropower","hydro","Taraba",7.090,9.840,40,"MW","Operational","Commissioned May 2023; only ~10 MW evacuated pending 132 kV line (Jan 2024)"],
+["H07","Tiga Dam Hydropower","hydro","Kano",11.430,8.380,10,"MW","Operational","Small hydro; Kano State / NSIA"],
+["H08","Challawa Gorge Hydropower","hydro","Kano",11.800,8.030,6,"MW","Operational","Small hydro; Kano State / NSIA"],
+["H09","Kurra Falls Hydropower","hydro","Plateau",9.380,8.720,8,"MW","Operational","Small hydro; NESCO, Jos Plateau"],
+["H10","Gurara Dam Hydropower","hydro","Kaduna",10.080,7.340,30,"MW","Proposed","Hydropower component of the Gurara inter-basin water transfer dam"],
+["H11","Mambilla Hydropower Project","hydro","Taraba",6.850,11.150,3050,"MW","Proposed","Largest planned hydro project; ICC ruled for Nigeria on US$3.38bn claim (Sept 2026); construction not started"],
+["H12","Ikere Gorge Dam Hydropower","hydro","Oyo",8.200,3.730,6,"MW","Proposed","Small hydro component of the Ikere Gorge dam"],
+// ---------- Gas-fired thermal ----------
+["G01","Egbin Power Station","gas","Lagos",6.561,3.617,1320,"MW","Operational","Largest thermal plant in Nigeria; Sahara Power Group"],
+["G02","Azura-Edo IPP","gas","Edo",6.395,5.705,461,"MW","Operational","Open-cycle gas turbine IPP near Benin City"],
+["G03","Ihovbor NIPP","gas","Edo",6.440,5.750,450,"MW","Operational","National Integrated Power Project (NIPP)"],
+["G04","Sapele Power Station","gas","Delta",5.920,5.665,1020,"MW","Operational","Legacy steam + gas units; much of the fleet degraded"],
+["G05","Sapele NIPP","gas","Delta",5.940,5.700,450,"MW","Operational","NIPP"],
+["G06","Transcorp Power (Ughelli)","gas","Delta",5.500,6.020,972,"MW","Operational","Formerly Delta Power Station"],
+["G07","Okpai IPP","gas","Delta",5.730,6.510,480,"MW","Operational","Agip/NAOC-led JV; Phase II (450 MW) added"],
+["G08","Afam IV–V & Afam VI","gas","Rivers",4.930,7.300,1376,"MW","Operational","Afam IV–V (726 MW) and Afam VI (650 MW); Transcorp"],
+["G09","Alaoji NIPP","gas","Abia",5.060,7.370,1074,"MW","Operational","NIPP; partially available"],
+["G10","Calabar (Odukpani) NIPP","gas","Cross River",5.070,8.350,561,"MW","Operational","NIPP"],
+["G11","Ibom Power","gas","Akwa Ibom",4.570,7.560,190,"MW","Operational","Akwa Ibom State-owned; Ikot Abasi"],
+["G12","Geregu I & II","gas","Kogi",7.550,6.670,869,"MW","Operational","Geregu I (435 MW) + Geregu II NIPP (434 MW)"],
+["G13","Omotosho I & II","gas","Ondo",6.730,4.720,835,"MW","Operational","Omotosho I (335 MW) + NIPP II (500 MW)"],
+["G14","Olorunsogo I & II","gas","Ogun",6.870,3.180,1085,"MW","Operational","Olorunsogo I (335 MW) + NIPP II (750 MW), Papalanto"],
+["G15","Gbarain NIPP","gas","Bayelsa",5.030,6.290,225,"MW","Operational","NIPP"],
+["G16","Omoku Power","gas","Rivers",5.340,6.650,150,"MW","Operational","Rivers State / private"],
+["G17","Trans-Amadi Power","gas","Rivers",4.810,7.040,136,"MW","Operational","Port Harcourt"],
+["G18","Rivers IPP (Eleme)","gas","Rivers",4.760,7.100,180,"MW","Operational","Port Harcourt area"],
+["G19","Maiduguri Emergency Power Project","gas","Borno",11.850,13.160,50,"MW","Operational","Built to supply Maiduguri after grid disruption; LNG/CNG-supplied"],
+["G20","Kaduna Dual-Fuel Power Plant","gas","Kaduna",10.470,7.480,215,"MW","Stalled","Kudenda plant ~80% complete; revival announced 2022; meant to use AKK gas"],
+// ---------- Solar ----------
+["S01","Kumbotso Solar Plant","solar","Kano",11.890,8.500,10,"MW","Operational","Grid-connected utility-scale PV"],
+["S02","Bayero University Kano solar hybrid","solar","Kano",11.980,8.480,7.1,"MW","Operational","Energizing Education Programme (REA)"],
+["S03","FUNAI solar hybrid (Ikwo)","solar","Ebonyi",6.070,8.120,2.8,"MW","Operational","Energizing Education Programme (REA)"],
+["S04","Energizing Education Programme sites (others)","solar","Multiple",9.060,7.490,null,"MW","Operational","Solar hybrid plants at federal universities & teaching hospitals; marker placed at Abuja for reference"],
+["S05","Nigeria Electrification Project mini-grids","solar","Multiple",8.500,8.000,null,"MW","Operational","Hundreds of solar mini-grids under REA/World Bank NEP and DARES; marker is symbolic"],
+// ---------- Wind ----------
+["W01","Katsina Wind Farm (Lambar Rimi)","wind","Katsina",12.820,7.470,10,"MW","Stalled","Nigeria's only wind farm; unfinished ~20 years, handover to Katsina State under negotiation (Apr 2025)"],
+// ---------- Nuclear & research ----------
+["N01","NIRR-1 research reactor (CERT, ABU Zaria)","nuclear","Kaduna",11.150,7.650,0.03,"MW","Operational","30 kW miniature neutron source research reactor (converted to LEU fuel)"],
+["N02","Proposed nuclear power site — Geregu","nuclear","Kogi",7.600,6.720,null,"MW","Proposed","Candidate site identified by Nigeria Atomic Energy Commission"],
+["N03","Proposed nuclear power site — Itu","nuclear","Akwa Ibom",5.200,7.980,null,"MW","Proposed","Candidate site identified by Nigeria Atomic Energy Commission"],
+// ---------- Refineries & gas processing ----------
+["R01","Dangote Petroleum Refinery","refinery","Lagos",6.430,4.030,700000,"b/d","Operational","Lekki Free Zone; capacity raised from 650,000 b/d in Feb 2026 (US EIA)"],
+["R02","Port Harcourt Refining Company","refinery","Rivers",4.783,7.146,210000,"b/d","Limited","Two plants (60k + 150k b/d); rehabilitated, operation intermittent"],
+["R03","Warri Refining & Petrochemical Co.","refinery","Delta",5.560,5.760,125000,"b/d","Limited","Rehabilitation; operation intermittent"],
+["R04","Kaduna Refining & Petrochemical Co.","refinery","Kaduna",10.430,7.430,110000,"b/d","Limited","Under rehabilitation"],
+["R05","Aradel (Ogbele) modular refinery","refinery","Rivers",4.970,6.850,11000,"b/d","Operational","Modular refinery"],
+["R06","Waltersmith modular refinery","refinery","Imo",5.490,7.180,5000,"b/d","Operational","Ibigwe; modular refinery"],
+["R07","Duport Midstream modular refinery","refinery","Edo",6.170,5.840,2500,"b/d","Operational","Modular refinery (approximate location)"],
+["L01","Nigeria LNG (Bonny Island)","lng","Rivers",4.420,7.160,22,"MTPA","Operational","Trains 1–6 (~22 MTPA); Train 7 expansion to ~30 MTPA under construction"],
+["L02","Escravos Gas-to-Liquids","lng","Delta",5.580,5.170,33000,"b/d","Operational","Chevron/NNPC GTL plant"],
+// ---------- Oil & gas discoveries / fields (indicative) ----------
+["O01","Niger Delta onshore/swamp oil & gas province","oil","Rivers/Bayelsa/Delta",5.050,6.300,null,"","Operational","Bulk of Nigeria's oil and gas production; symbolic marker"],
+["O02","Deepwater offshore fields (Bonga, Agbami, Egina, Erha…)","oil","Offshore",4.000,5.000,null,"","Operational","Deepwater production via FPSOs; symbolic marker"],
+["O03","Kolmani oil & gas discovery","oil","Bauchi/Gombe",10.130,10.900,null,"","Under development","First commercial discovery in the northern inland basins (Gongola/Upper Benue)"],
+["O04","Aje & Ogo (Dahomey Basin offshore)","oil","Lagos (offshore)",6.150,3.650,null,"","Operational","Lagos offshore discoveries/production"],
+["O05","Anambra Basin (Aguleri / Orient)","oil","Anambra",6.330,6.880,null,"","Under development","Onshore Anambra Basin oil and gas"],
+// ---------- Coal & bitumen ----------
+["C01","Okaba coal mine","coal","Kogi",7.470,7.730,null,"","Operational","Sub-bituminous coal"],
+["C02","Maiganga coal mine","coal","Gombe",9.970,11.180,null,"","Operational","Supplies Ashaka cement works"],
+["C03","Onyeama coal mine (Enugu)","coal","Enugu",6.450,7.450,null,"","Limited","Historic Enugu coalfield"],
+["C04","Lafia–Obi coal deposit","coal","Nasarawa",8.470,9.050,null,"","Proposed","Coking coal deposit"],
+["C05","Owukpa coal deposit","coal","Benue",7.180,7.620,null,"","Limited","Sub-bituminous coal"],
+["C06","Ogboyaga coal deposit","coal","Kogi",7.370,7.330,null,"","Proposed","Sub-bituminous coal"],
+["C07","Ondo bitumen / tar sands belt (Agbabu)","coal","Ondo/Ogun/Edo",6.600,4.830,null,"","Proposed","Large bitumen resource belt; not commercially produced"],
+];
+
+const CATS = {
+  hydro:   {label:"Hydropower", group:"Renewable", color:"#2b7bd6"},
+  solar:   {label:"Solar PV", group:"Renewable", color:"#e0a100"},
+  wind:    {label:"Wind", group:"Renewable", color:"#18a58a"},
+  nuclear: {label:"Nuclear & research", group:"Other", color:"#8a5cd1"},
+  gas:     {label:"Gas-fired power", group:"Fossil", color:"#e2632e"},
+  refinery:{label:"Refineries", group:"Fossil", color:"#b33a3a"},
+  lng:     {label:"LNG & gas processing", group:"Fossil", color:"#d0457f"},
+  oil:     {label:"Oil & gas provinces", group:"Fossil", color:"#6b4b3e"},
+  coal:    {label:"Coal & bitumen", group:"Fossil", color:"#55595f"},
+};
+
+// Pipelines: approximate schematic routes (not survey-grade)
+const PIPELINES = [
+  {name:"Ajaokuta–Kaduna–Kano (AKK) gas pipeline", status:"Under construction", length:"≈614 km", note:"40-inch gas pipeline to supply northern power and industry", coords:[[7.55,6.66],[8.3,7.0],[9.05,7.38],[9.8,7.42],[10.52,7.44],[11.3,8.0],[12.0,8.52]]},
+  {name:"Escravos–Lagos Pipeline System (ELPS)", status:"Operational", length:"≈ 340 km (plus loops)", note:"Main gas artery to western power plants", coords:[[5.58,5.17],[5.52,5.75],[6.0,5.82],[6.41,5.85],[6.6,4.8],[6.85,3.6],[6.87,3.25],[6.56,3.62]]},
+  {name:"Obiafu–Obrikom–Oben (OB3) gas pipeline", status:"Under construction", length:"≈127 km", note:"Links eastern gas supply to the western network across the Niger", coords:[[5.37,6.62],[5.8,6.3],[6.41,5.85]]},
+  {name:"West African Gas Pipeline (Nigerian section)", status:"Operational", length:"≈678 km total to Ghana", note:"Supplies gas to Benin, Togo and Ghana", coords:[[6.87,3.25],[6.7,3.1],[6.42,2.88],[6.39,2.70]]},
+  {name:"Trans-Niger Pipeline", status:"Operational", length:"≈180 km", note:"Crude trunk line to Bonny terminal", coords:[[5.05,6.6],[4.9,6.95],[4.42,7.15]]},
+  {name:"Trans-Forcados Pipeline", status:"Operational", length:"≈ 90 km", note:"Crude trunk line to Forcados terminal", coords:[[5.6,6.0],[5.5,5.7],[5.35,5.35]]},
+];
+
+// State profiles. solar: indicative annual-mean GHI band (kWh/m²/day); wind: qualitative.
+const DISCOS = {
+  "AEDC":"Abuja Electricity Distribution Co.","BEDC":"Benin Electricity Distribution Co.","EKEDC/IE":"Eko & Ikeja Electric",
+  "EEDC":"Enugu Electricity Distribution Co.","IBEDC":"Ibadan Electricity Distribution Co.","JED":"Jos Electricity Distribution",
+  "KAEDCO":"Kaduna Electric","KEDCO":"Kano Electricity Distribution Co.","PHED":"Port Harcourt Electricity Distribution",
+  "YEDC":"Yola Electricity Distribution Co."
+};
+const STATES = {
+"Abia":{zone:"South East",disco:"EEDC",reg:"NERC",solar:"4.0–4.5",wind:"Low",res:["Crude oil & gas (oil-producing)","Gas power (Alaoji)","Aba Power ring-fenced network"]},
+"Adamawa":{zone:"North East",disco:"YEDC",reg:"NERC",solar:"5.5–6.0",wind:"Moderate",res:["Solar","Small hydro potential","Uranium occurrences"]},
+"Akwa Ibom":{zone:"South South",disco:"PHED",reg:"Transfer ordered",solar:"3.5–4.0",wind:"Low (offshore moderate)",res:["Crude oil & gas — major offshore producer","Ibom Power","Proposed nuclear site (Itu)"]},
+"Anambra":{zone:"South East",disco:"EEDC",reg:"NERC",solar:"4.5–5.0",wind:"Low",res:["Oil & gas (Anambra Basin)","Coal & lignite","Biomass"]},
+"Bauchi":{zone:"North East",disco:"JED",reg:"NERC",solar:"5.5–6.0",wind:"Moderate",res:["Kolmani oil & gas discovery","Solar","Uranium occurrences"]},
+"Bayelsa":{zone:"South South",disco:"PHED",reg:"Transfer ordered",solar:"3.5–4.0",wind:"Low",res:["Crude oil & gas — core producer","Gbarain NIPP"]},
+"Benue":{zone:"North Central",disco:"JED",reg:"NERC",solar:"5.0–5.5",wind:"Low",res:["Coal (Owukpa)","Biomass & agro-residues","Hydro potential (Benue/Katsina-Ala)"]},
+"Borno":{zone:"North East",disco:"YEDC",reg:"NERC",solar:"6.0–7.0",wind:"Higher",res:["Chad Basin hydrocarbons (exploration)","Solar","Maiduguri gas plant"]},
+"Cross River":{zone:"South South",disco:"PHED",reg:"NERC",solar:"4.0–4.5",wind:"Low",res:["Oil & gas (oil-producing)","Calabar NIPP","Hydro potential"]},
+"Delta":{zone:"South South",disco:"BEDC",reg:"NERC",solar:"3.5–4.0",wind:"Low",res:["Crude oil & gas — core producer","Warri refinery","Largest cluster of gas power plants","Escravos GTL","Lignite"]},
+"Ebonyi":{zone:"South East",disco:"EEDC",reg:"NERC",solar:"4.5–5.0",wind:"Low",res:["Solar (EEP campus plant)","Lead-zinc & minerals","Biomass"]},
+"Edo":{zone:"South South",disco:"BEDC",reg:"State (ESERC)",solar:"4.0–4.5",wind:"Low",res:["Oil & gas (oil-producing)","Azura-Edo & Ihovbor","Bitumen","Modular refinery"]},
+"Ekiti":{zone:"South West",disco:"BEDC",reg:"State",solar:"4.5–5.0",wind:"Low",res:["Solar","Biomass","Small hydro potential"]},
+"Enugu":{zone:"South East",disco:"EEDC",reg:"State (EERC)",solar:"4.5–5.0",wind:"Low",res:["Coal (Enugu coalfield)","Solar"]},
+"FCT":{zone:"North Central",disco:"AEDC",reg:"NERC",solar:"5.0–5.5",wind:"Low",res:["AKK pipeline corridor","Solar"]},
+"Gombe":{zone:"North East",disco:"JED",reg:"NERC",solar:"5.5–6.0",wind:"Moderate",res:["Kolmani discovery (shared with Bauchi)","Coal (Maiganga)","Dadin Kowa hydro"]},
+"Imo":{zone:"South East",disco:"EEDC",reg:"State",solar:"4.0–4.5",wind:"Low",res:["Oil & gas (oil-producing)","Waltersmith modular refinery"]},
+"Jigawa":{zone:"North West",disco:"KEDCO",reg:"NERC",solar:"6.0–7.0",wind:"Higher",res:["Solar — very high resource","Wind"]},
+"Kaduna":{zone:"North West",disco:"KAEDCO",reg:"NERC",solar:"5.5–6.0",wind:"Moderate",res:["Kaduna refinery","NIRR-1 research reactor","Gurara hydro (planned)","AKK pipeline corridor"]},
+"Kano":{zone:"North West",disco:"KEDCO",reg:"NERC",solar:"6.0–7.0",wind:"Higher",res:["Utility solar (Kumbotso)","Small hydro (Tiga, Challawa)","AKK pipeline terminus"]},
+"Katsina":{zone:"North West",disco:"KEDCO",reg:"NERC",solar:"6.0–7.0",wind:"Higher",res:["Katsina wind farm","Solar — very high resource"]},
+"Kebbi":{zone:"North West",disco:"KAEDCO",reg:"NERC",solar:"6.0–7.0",wind:"Higher",res:["Solar","Sokoto Basin (exploration)"]},
+"Kogi":{zone:"North Central",disco:"AEDC",reg:"State",solar:"5.0–5.5",wind:"Low",res:["Coal (Okaba, Ogboyaga)","Geregu gas power","Proposed nuclear site (Geregu)","AKK pipeline start","Ajaokuta industrial hub"]},
+"Kwara":{zone:"North Central",disco:"IBEDC",reg:"NERC",solar:"5.0–5.5",wind:"Low",res:["Jebba hydro (shared with Niger)","Solar"]},
+"Lagos":{zone:"South West",disco:"EKEDC/IE",reg:"State (LASERC)",solar:"4.0–4.5",wind:"Low (offshore moderate)",res:["Dangote refinery","Egbin power station","Offshore oil (Aje, Ogo)","Bitumen fringe","WAGP"]},
+"Nasarawa":{zone:"North Central",disco:"AEDC",reg:"State",solar:"5.0–5.5",wind:"Low",res:["Coal (Lafia–Obi)","Lithium & solid minerals","Solar"]},
+"Niger":{zone:"North Central",disco:"AEDC",reg:"State",solar:"5.5–6.0",wind:"Low",res:["Kainji, Jebba, Shiroro & Zungeru hydro — Nigeria's hydro hub","Solar","Bida Basin (exploration)"]},
+"Ogun":{zone:"South West",disco:"IBEDC",reg:"State",solar:"4.0–4.5",wind:"Low",res:["Olorunsogo gas power","Bitumen","ELPS & WAGP corridor"]},
+"Ondo":{zone:"South West",disco:"BEDC",reg:"State",solar:"4.0–4.5",wind:"Low",res:["Oil & gas (oil-producing, offshore)","Bitumen belt (Agbabu)","Omotosho gas power"]},
+"Osun":{zone:"South West",disco:"IBEDC",reg:"NERC",solar:"4.5–5.0",wind:"Low",res:["Solar","Biomass","Small hydro potential"]},
+"Oyo":{zone:"South West",disco:"IBEDC",reg:"State",solar:"4.5–5.0",wind:"Low",res:["Ikere Gorge (small hydro planned)","Solar","Biomass"]},
+"Plateau":{zone:"North Central",disco:"JED",reg:"State",solar:"5.5–6.0",wind:"Higher (Jos Plateau)",res:["Small hydro (Kurra & NESCO stations)","Wind — Jos Plateau","Tin & solid minerals"]},
+"Rivers":{zone:"South South",disco:"PHED",reg:"NERC",solar:"3.5–4.0",wind:"Low (offshore moderate)",res:["Crude oil & gas — core producer","Nigeria LNG (Bonny)","Port Harcourt refinery","Afam gas power"]},
+"Sokoto":{zone:"North West",disco:"KAEDCO",reg:"NERC",solar:"6.0–7.0",wind:"Higher",res:["Solar — very high resource","Wind","Sokoto Basin (exploration)"]},
+"Taraba":{zone:"North East",disco:"YEDC",reg:"NERC",solar:"5.0–5.5",wind:"Moderate (Mambilla)",res:["Mambilla hydro (proposed)","Kashimbila hydro","Uranium occurrences"]},
+"Yobe":{zone:"North East",disco:"YEDC",reg:"NERC",solar:"6.0–7.0",wind:"Higher",res:["Solar — very high resource","Chad Basin (exploration)"]},
+"Zamfara":{zone:"North West",disco:"KAEDCO",reg:"NERC",solar:"6.0–7.0",wind:"Higher",res:["Solar","Solid minerals"]},
+};
+
+// ===================== HISTORY =====================
+// Electricity generation by source, TWh (Our World in Data, from Ember & Energy Institute Statistical Review)
+const GEN = { // year: [gas, hydro, solar, bioenergy]
+2000:[9.10,5.63,0,0.01],2001:[9.55,5.91,0,0.01],2002:[13.31,8.23,0,0.01],2003:[12.74,7.45,0,0.01],2004:[16.17,8.11,0,0.01],
+2005:[15.77,7.77,0,0.01],2006:[16.85,6.26,0,0.01],2007:[16.75,6.23,0,0.01],2008:[15.39,5.72,0,0.01],2009:[15.25,4.53,0,0.01],
+2010:[19.75,6.37,0,0.01],2011:[21.15,5.88,0,0.01],2012:[23.05,5.66,0.02,0.01],2013:[23.56,5.33,0.02,0.02],2014:[26.89,5.35,0.02,0.02],
+2015:[26.70,6.42,0.03,0.02],2016:[28.33,8.15,0.03,0.03],2017:[24.44,7.75,0.03,0.02],2018:[28.94,7.70,0.04,0.03],2019:[27.95,8.43,0.05,0.03],
+2020:[30.19,7.69,0.08,0.04],2021:[31.10,7.94,0.10,0.06],2022:[28.61,9.23,0.10,0.06],2023:[31.64,9.11,0.11,0.06],2024:[28.17,9.20,0.13,0.06],
+2025:[28.53,12.82,0.13,0.06]};
+// World Bank WDI series
+const WDI = {
+ access:{2000:43.2,2001:43.9,2002:44.6,2003:52.2,2004:46.1,2005:46.8,2006:47.6,2007:50.1,2008:50.3,2009:50.0,2010:48.0,2011:55.9,2012:53.0,2013:55.6,2014:54.2,2015:52.5,2016:59.3,2017:54.4,2018:56.5,2019:55.4,2020:55.4,2021:59.5,2022:60.5,2023:61.2,2024:62.5},
+ urban:{2000:83.8,2001:83.8,2002:83.8,2003:84.9,2004:83.8,2005:83.8,2006:83.9,2007:86.2,2008:84.8,2009:84.1,2010:79.8,2011:87.1,2012:84.5,2013:83.6,2014:84.7,2015:81.5,2016:86.0,2017:86.8,2018:81.7,2019:83.9,2020:83.9,2021:89.2,2022:89.0,2023:85.0,2024:85.5},
+ rural:{2000:21.5,2001:21.8,2002:22.1,2003:32.7,2004:22.8,2005:23.1,2006:23.5,2007:25.3,2008:25.6,2009:24.6,2010:23.5,2011:31.0,2012:27.0,2013:31.6,2014:27.1,2015:25.9,2016:34.0,2017:22.6,2018:31.0,2019:25.5,2020:24.6,2021:26.3,2022:27.0,2023:32.9,2024:23.5},
+ cooking:{2000:0.7,2001:0.7,2002:0.7,2003:0.8,2004:0.9,2005:0.9,2006:1.0,2007:1.1,2008:1.3,2009:1.5,2010:1.8,2011:2.2,2012:2.7,2013:3.4,2014:4.3,2015:5.7,2016:7.4,2017:9.7,2018:12.5,2019:15.7,2020:18.9,2021:21.85,2022:24.4,2023:26.2},
+ kwhpc:{2000:95.6,2001:97.4,2002:131.0,2003:119.7,2004:139.6,2005:132.1,2006:126.6,2007:131.3,2008:121.8,2009:111.5,2010:140.8,2011:142.9,2012:149.9,2013:159.9,2014:174.4,2015:173.8,2016:177.4,2017:138.2,2018:139.5,2019:138.3,2020:145.3,2021:153.0,2022:140.9,2023:144.2,2024:140.6},
+ renshare:{2000:86.0,2001:84.5,2002:84.5,2003:82.9,2004:84.0,2005:83.9,2006:85.8,2007:87.1,2008:85.7,2009:88.1,2010:86.0,2011:84.1,2012:83.9,2013:81.4,2014:79.9,2015:81.3,2016:81.1,2017:81.6,2018:80.8,2019:80.1,2020:81.8,2021:80.3},
+ tdloss:{2016:14.32,2017:13.94,2018:13.77,2019:14.04,2020:13.86,2021:13.92,2022:14.12,2023:14.15,2024:14.15},
+};
+// NERC quarterly reports
+const NERCQ = [ // quarter, avg available MW, energy GWh, ATC&C %, collection efficiency %
+ ["2025 Q1",5366.88,10304.47,39.61,74.39],["2025 Q2",5395.72,9830.31,37.92,76.07],["2025 Q3",5430.34,9227.57,33.27,80.70],
+ ["2025 Q4",5400.38,9831.58,34.90,79.36],["2026 Q1",4457.96,8883.47,37.44,78.95]];
+const DISCO_ATCC = [ // NERC 2026 Q1 report, Table 9: actual vs MYTO target (%)
+ ["Kaduna",69.66,18.18],["Jos",58.00,20.80],["Yola",56.36,29.00],["Ibadan",48.10,17.50],["Kano",45.08,17.45],["Enugu",42.71,18.08],
+ ["Benin",39.71,17.23],["Port Harcourt",35.99,16.67],["Abuja",31.92,16.97],["Ikeja",24.59,13.54],["Eko",20.24,14.19]];
+
+// ===================== GRID COLLAPSES =====================
+// [year, total, partial, combined-if-no-split, source key, note]
+const COLLAPSES = [
+ [2010,22,20,null,"icir"],[2011,13,6,null,"icir"],[2012,16,8,null,"icir"],[2013,22,2,null,"icir"],[2014,9,4,null,"icir"],
+ [2015,6,4,null,"icir"],[2016,22,6,null,"icir"],[2017,15,9,null,"icir","ThisDay analysis gives 21 combined"],[2018,12,1,null,"icir"],
+ [2019,null,null,11,"thisday","TCN statement (Sep 2023) gives 9"],[2020,null,null,4,"thisday","TCN gives 4"],
+ [2021,2,2,null,"nerc"],[2022,4,2,null,"nerc","Media counted up to 7; TCN 4"],[2023,3,0,null,"nerc"],
+ [2024,4,5,null,"nerc","Media counted 12 incl. disturbances"],[2025,1,1,null,"nerc","Government/TCN said none; media reported up to 5"],
+ [2026,1,2,null,"nerc+media","Year to date: NERC Q1 (1 total, 1 partial), Q2 none; partial collapse 22 Aug 2026 (media)"]];
+const COLLAPSE_SRC = {
+ icir:["ICIR / Daily Trust (TCN System Operator records)","https://www.icirnigeria.org/nigerias-power-grid-records-206-collapses-in-9-years-as-foreign-funded-investment-hits-n715bn/"],
+ thisday:["ThisDay analysis via TheCable","https://www.thecable.ng/?p=734706"],
+ nerc:["NERC Annual Report 2025, Table E","https://nerc.gov.ng/wp-content/uploads/2026/08/2025-Annual-Report_Pub.pdf"],
+ "nerc+media":["NERC 2026 Q1 report + ThisDay (22 Aug 2026)","https://nerc.gov.ng/wp-content/uploads/2026/07/2026_Q1-Report.pdf"]};
+// Notable events: [date ISO, type, notes, source url]
+const EVENTS = [
+ ["2022-06-12","Collapse","Reported as the 5th collapse of 2022","https://www.ripplesnigeria.com/blackout-national-grid-collapses-again-5th-time-in-2022/"],
+ ["2022-09-26","Collapse","Sudden frequency drop; reported as 7th of 2022","https://www.thisdaylive.com/2022/09/27/nigerias-erratic-power-grid-collapses-again-begins-recovery/"],
+ ["2023-09-14","Total","Shortly after TCN announced 400 days without major disruption","https://www.zikoko.com/?p=319260"],
+ ["2023-12-11","Collapse","Restored by 18:51","https://www.zikoko.com/?p=319260"],
+ ["2024-02-04","Partial","NERC classification","https://nerc.gov.ng/wp-content/uploads/2024/07/2024_Q1-Report_v1YA.pdf"],
+ ["2024-03-28","Total","NERC classification","https://nerc.gov.ng/wp-content/uploads/2024/07/2024_Q1-Report_v1YA.pdf"],
+ ["2024-04-15","Collapse","Frequency imbalance","https://guardian.ng/news/timeline-the-12-times-national-grid-collapsed-in-2024/"],
+ ["2024-07-06","Collapse","","https://guardian.ng/news/timeline-the-12-times-national-grid-collapsed-in-2024/"],
+ ["2024-08-05","Collapse","","https://guardian.ng/news/timeline-the-12-times-national-grid-collapsed-in-2024/"],
+ ["2024-10-14","Partial","NERC: partial; some media reported total","https://nerc.gov.ng/wp-content/uploads/2025/03/2024_Q4-Report.pdf"],
+ ["2024-10-19","Total","TCN cited precaution after explosion at Jebba substation","https://nerc.gov.ng/wp-content/uploads/2025/03/2024_Q4-Report.pdf"],
+ ["2024-10-22","Disturbance","17 northern states cut off after vandalism of transmission lines","https://guardian.ng/news/timeline-the-12-times-national-grid-collapsed-in-2024/"],
+ ["2024-11-05","Partial","Line and generator trippings","https://nerc.gov.ng/wp-content/uploads/2025/03/2024_Q4-Report.pdf"],
+ ["2024-11-07","Total","NERC classification","https://nerc.gov.ng/wp-content/uploads/2025/03/2024_Q4-Report.pdf"],
+ ["2024-12-11","Total","NERC classification","https://nerc.gov.ng/wp-content/uploads/2025/03/2024_Q4-Report.pdf"],
+ ["2025-02-12","Disputed","TCN called it a 'cascaded outage' (Omotosho–Ikeja West line trip)","https://dubawa.org/is-it-true-nigeria-has-not-witnessed-national-grid-collapse-in-2025/"],
+ ["2025-09-10","Total","11:20, restored 11:48; GenCo trip and frequency imbalance","https://nerc.gov.ng/wp-content/uploads/2026/01/2025_Q3-Report.pdf"],
+ ["2025-12-29","Partial","Circuit-breaker failure at Benin substation (NERC)","https://nerc.gov.ng/wp-content/uploads/2026/04/2025_Q4-Report.pdf"],
+ ["2026-01-23","Total","Busbar separation at Sapele substation","https://nerc.gov.ng/wp-content/uploads/2026/07/2026_Q1-Report.pdf"],
+ ["2026-01-27","Partial","Reactive power shortfall / voltage disturbance (Gombe)","https://nerc.gov.ng/wp-content/uploads/2026/07/2026_Q1-Report.pdf"],
+ ["2026-08-22","Partial","Generation fell to ~1,132 MW at 20:30; cause not explained","https://allafrica.com/stories/202608240731.html"]];
+
+// ===================== SECURITY & INDICES =====================
+const PETROL = [["Nov 24",66.8],["Dec 24",81.1],["Jan 25",56.4],["Mar 25",55.6],["Apr 25",57.2],["May 25",67.6],["Jun 25",64.3],["Jul 25",68.6],["Oct 25",62.8],["Nov 25",72.8]];
+const INDICES = [ // index, year, result, note, source
+ ["WEF Energy Transition Index","2023","Rank 108 of 120","","https://weforum.org/publications/fostering-effective-energy-transition-2023/in-full/nigeria"],
+ ["WEF Energy Transition Index","2025","Rank 61 of 118 · score 54.8","1st in Africa (reported)","https://www.ecofinagency.com/news/2406-47395-nigeria-ranks-first-in-africa-for-energy-transition-progress-says-wef"],
+ ["WEF Energy Transition Index","2026","Rank 80 of 120","8th of 22 African countries (reported)","https://www.ecofinagency.com/news/2006-56639-energy-transition-africas-top-performers-in-2026"],
+ ["WEC Energy Trilemma Index","2023","Rank 94 · score 39.2","Secondary source; verify on trilemma.worldenergy.org","https://worldpopulationreview.com/country-rankings/energy-trilemma-index"],
+ ["Tracking SDG7","2025 report","World's largest electricity access deficit — ~86.8 million people","3rd consecutive edition at the top of this list","https://trackingsdg7.esmap.org/"],
+];
+const RISE = [ // pillar, [indicator, score]
+ ["Electricity access",[["Planning & governance",90],["Grid framework",83],["Mini-grids",95],["Off-grid systems",100],["Affordability",83]]],
+ ["Renewable energy",[["Legal & governance",71],["Renewables in electricity",74],["Heating & cooling",0],["Transport",17],["Level playing field",0]]],
+ ["Energy efficiency",[["Governance",90],["Public sector",50],["Financing",50],["Min. performance standards",44],["Industrial & commercial",38],["Labelling",38],["Building codes",13],["Utility programmes",10],["Transport",0]]],
+ ["Clean cooking",[["Standards",63],["Scope",60],["Planning",58],["Incentives",33]]],
+];
+const NEXUS = {year:2023, overall:[51.4,116], water:[49.6,123], energy:[55.9,71], food:[48.6,120], of:165,
+ src:"https://wefnexusindex.org/trends", doi:"https://doi.org/10.3389/frwa.2022.825854"};
+
+// ===================== PROJECTS REGISTER =====================
+// [name, level, type, states, key numbers, start, status, status date, funder/implementer, description, source]
+const PROJECTS = [
+["Presidential Power Initiative (FGN–Siemens)","Federal","Transmission & distribution","National","10 transformers + 10 mobile substations (Phase 1); targets 7 GW → 11 GW → 25 GW",2019,"Ongoing","2025-11","FGN Power Company; Siemens Energy","Government-to-government programme to remove grid bottlenecks; 5 transformers and 3 mobile substations installed by Apr 2024","https://www.arise.tv/nigeria-reports-progress-in-siemens-power-project-as-5-transformers-3-mobile-substations-installed/"],
+["Zungeru Hydropower Station","Federal","Generation – hydro","Niger","700 MW; ~US$1.3bn",2013,"Operational","2024-01","FGN; China Exim Bank; concessionaire Mainstream (MESL)","Concessioned to Mainstream Energy Solutions in Jan 2024","https://guardian.ng/news/fg-hands-over-700mw-zungeru-to-mesl-may-stabilise-national-grid/"],
+["Kashimbila Hydropower Station","Federal","Generation – hydro","Taraba","40 MW (10 MW evacuated, Jan 2024)",null,"Partly stalled","2024-01","FMWR; TCN","Commissioned May 2023; 30 MW awaiting 132 kV evacuation line","https://gazettengr.com/electricity-were-working-to-evacuate-30mw-from-kashimbilla-says-fg/"],
+["Dadin Kowa Hydropower","Federal / Private (BOT)","Generation – hydro","Gombe","40 MW (2×20 MW)",null,"Operational","2023-05","Mabon Group (25-yr BOT)","Hydro plant at Dadin Kowa dam","https://renewafrica.biz/news/hydro/nigeria-commissions-40mw-dadin-kowa-hydropower-plant/"],
+["Mambilla Hydropower Project","Federal","Generation – hydro","Taraba","3,050 MW (a Sept 2026 presidential statement cites 3,960 MW)",1973,"Proposed / stalled","2026-09","Federal Ministry of Power","ICC tribunal rejected US$3.38bn Sunrise claim (Sept 2026); construction not started","https://nairametrics.com/2026/09/18/icc-tribunal-rules-in-nigerias-favour-rejects-3-38-billion-mambilla-claim/"],
+["Gurara Hydropower Plant","Federal (PPP)","Generation – hydro","Kaduna","30 MW; US$18.4m",2019,"Concessioned","2020-05","FMWR; ICRC","Concession signed May 2020; operation not confirmed","https://ppp.icrc.gov.ng/project/53/gurara-30mw-hydropowerdam-kaduna"],
+["Sustainable Power and Irrigation for Nigeria (SPIN)","Development partner","Generation – hydro / policy","National","US$500m; hydropower master plan + hydro PPP",2024,"Ongoing","2024-09","World Bank; FMWR","Dam safety, irrigation and hydropower PPP preparation","https://www.worldbank.org/en/news/press-release/2024/09/26/world-bank-approves-new-financing-for-nigeria-to-improve-health-outcomes-safety-of-dams-and-irrigation-services"],
+["National Integrated Power Project (NIPP)","Federal","Generation – gas","9 states","~5,000 MW design; 10 gas plants",2004,"Operational (most units)","2021-01","NDPHC; BPE","Federal-state-LGA owned plants incl. Calabar, Alaoji, Geregu II, Olorunsogo II","https://businessday.ng/energy/power/article/16-years-of-national-integrated-power-project-nipp-and-challenges-of-it-privatisation/"],
+["Light Up Nigeria (NDPHC)","Federal","Distribution / embedded gas","Ogun, Enugu, Abia","Industrial-cluster supply; pilot Agbara (Oct 2023)",2023,"Ongoing","2024-02","NDPHC with DisCos","Dedicated supply from NIPP/embedded plants to industrial clusters","https://www.arise.tv/shettima-light-up-nigeria-expected-solution-to-nigerias-energy-deficit/"],
+["Ajaokuta–Kaduna–Kano (AKK) gas pipeline","Federal","Gas supply","Kogi, FCT, Niger, Kaduna, Kano","Up to 2 bscf/d",2020,"Ongoing","2025-12","NNPC Ltd","Mainline welding completed Dec 2025; tie-ins in 2026","https://allafrica.com/stories/202512290142.html"],
+["Obiafu–Obrikom–Oben (OB3) gas pipeline","Federal","Gas supply","Rivers, Delta, Edo","~130 km; 2 bscf/d",null,"Ongoing","2026-04","NNPC Ltd / NGIC","River Niger crossing completed Apr 2026","https://nnpcgroup.com/insights/press-release-nnpc-limited-records-major-breakthrough-with-successful-river-niger-crossing-on-ob-3-gas-pipeline"],
+["Nigeria Electricity Transmission Project (NETAP)","Development partner","Transmission","National","US$486m",2018,"Ongoing","2026-03","World Bank; TCN","Strengthening critical lines and substations","https://www.worldbank.org/en/news/press-release/2018/02/15/nigeria-world-bank-approves-486-million-to-improve-nigeria-electricity-transmission-network-and-infrastructure"],
+["Nigeria Transmission Expansion Project (NTEP)","Development partner","Transmission","Kano, Kaduna, Delta, Edo, Anambra, Imo, Abia","US$210m",null,"Ongoing","2026-03","AfDB; TCN","Substation upgrades and new lines","https://www.thisdaylive.com/2026/03/05/tcn-over-1-3bn-transmission-projects-funded-by-multilateral-agencies-ongoing-nationwide/"],
+["Abuja Transmission Project","Development partner","Transmission","FCT","US$170m",null,"Ongoing","2026-03","AFD; TCN","Bulk-power evacuation and grid stability for Abuja","https://www.thisdaylive.com/2026/03/05/tcn-over-1-3bn-transmission-projects-funded-by-multilateral-agencies-ongoing-nationwide/"],
+["Northern Corridor Transmission Project","Development partner","Transmission","Northern states","US$200m",null,"Ongoing","2026-03","AFD; TCN","Reinforces bulk evacuation to northern load centres","https://www.thisdaylive.com/2026/03/05/tcn-over-1-3bn-transmission-projects-funded-by-multilateral-agencies-ongoing-nationwide/"],
+["Lagos–Ogun Power Transmission Project","Development partner","Transmission","Lagos, Ogun","US$235m",null,"Ongoing","2026-03","JICA; TCN","Supply reliability for the south-west hub","https://www.thisdaylive.com/2026/03/05/tcn-over-1-3bn-transmission-projects-funded-by-multilateral-agencies-ongoing-nationwide/"],
+["National Super Grid","Federal","Transmission","National","US$2bn loan under discussion",2025,"Proposed","2025-10","FGN; China Exim Bank","Planned new high-voltage backbone","https://globaltransmission.info/nigeria-in-talks-with-chinas-eximbank-for-usd2-billion-loan-for-super-grid"],
+["Grid Battery Energy Storage System","Development partner","Storage","National","US$500m AfDB facility pledged",2025,"Proposed","2026-06","AfDB; TCN","Feasibility study validated Jun 2026","https://www.intellinews.com/afdb-pledges-500mn-for-nigeria-s-battery-energy-storage-system-bess-364084"],
+["Nigeria Electrification Project (NEP)","Development partner","Off-grid / mini-grid","National","US$550m; 6.14m people served; 19 MW mini-grids; 46.4 MW SHS; 32 MW institutions",2018,"Completed","2024-12","World Bank, AfDB; REA","Mini-grids, solar home systems and university solar","https://documents1.worldbank.org/curated/en/099112125104530562/pdf/P161885-d9208814-a444-480e-a698-13fe0c0b751c.pdf"],
+["Energizing Education Programme (EEP)","Federal / Development partner","Off-grid / mini-grid","National","Solar hybrids at federal universities & teaching hospitals",2016,"Phase 2 ongoing","2025-08","REA","Phase 1 under NEP completed; more universities completed by Aug 2025","https://www.channelstv.com/2025/08/25/universities-powered-with-solar-mini-grids-says-rea-ceo"],
+["DARES — Distributed Access through Renewable Energy Scale-up","Development partner","Off-grid / mini-grid","National","US$750m IDA; 17.5m people targeted",2023,"Ongoing","2023-12","World Bank; REA","Successor to NEP scaling private mini-grids and stand-alone solar","https://www.worldbank.org/en/news/press-release/2023/12/15/nigeria-to-expand-access-to-clean-energy-for-17-5-million-people"],
+["Egume 20 MW mini-grid cluster","Federal / Development partner","Off-grid / mini-grid","Kogi","20 MW + smaller sites; >US$100m",2026,"Ongoing","2026-06","Ministry of Power; REA","Ground-breaking Jun 2026 in Kogi East","https://businessday.ng/uncategorized/article/fg-launches-100m-20mw-power-projects-in-kogi/"],
+["Solar Power Naija","Federal","Off-grid / mini-grid","National","5 million connections target",2020,"Launched (progress unverified)","2020-11","REA; CBN","Economic Sustainability Plan solar programme","https://rea.gov.ng/press-release-fg-launches-solar-power-naija-5-million-solar-connection-programme-off-grid-communities"],
+["Mission 300 — Nigeria National Energy Compact","Policy / Development partner","Policy & access","National","Universal access by 2030; US$32.8bn need",2025,"Ongoing","2025-07","FGN; World Bank, AfDB, SEforALL","Raise access growth from 4% to 9% a year","https://www.seforall.org/news/nigeria-mobilizes-investment-momentum-with-high-level-mission-300-energy-forum"],
+["Power Sector Recovery Programme","Policy / Development partner","Policy & reform","National","US$750m IDA (2020)",2017,"Completed","2020-06","FGN; World Bank","Financial viability, tariffs and service improvement","https://www.worldbank.org/en/news/press-release/2020/06/23/nigeria-to-keep-the-lights-on-and-power-its-economy"],
+["Distribution Sector Recovery Programme (DISREP)","Development partner","Distribution & metering","National","US$500m WB; 3.2m meters targeted",2021,"Ongoing","2025-04","World Bank; FMoP; DisCos","DisCo investment, loss reduction and metering","https://businessday.ng/news/article/fg-expects-3-2-million-meters-in-race-to-close-metering-gaps/"],
+["Presidential Metering Initiative","Federal","Metering","National","2m meters/yr for 5 years",2025,"Proposed / ongoing","2025-04","FGN","Close the metering gap (~55% of customers metered, Dec 2024)","https://businessday.ng/news/article/fg-expects-3-2-million-meters-in-race-to-close-metering-gaps/"],
+["National Mass Metering Programme (Phase 0)","Federal","Metering","National","962,832 meters procured of 1m target",2020,"Largely completed",null,"CBN; DisCos; MAPs","Free/financed meter rollout","https://www.cbn.gov.ng/DFD/energy/nmmp.html"],
+["Electricity Act 2023","Policy","Policy & reform","National","",2023,"In force","2023-06","FGN / National Assembly","Repealed EPSRA 2005; states can regulate own electricity markets","https://nairametrics.com/2023/06/09/president-bola-tinubu-signs-electricity-act-2023-into-law/"],
+["State electricity markets (NERC transfers)","State / Policy","Policy & reform","Multiple states","12+ states transferred; more ordered",2024,"Ongoing","2025-08","NERC; state regulators","Regulatory oversight handed to state commissions","https://www.icirnigeria.org/nerc-transfers-regulatory-oversight-to-bayelsa-electricity-commission/"],
+["Enugu electricity market (EERC / MainPower)","State","Policy & distribution","Enugu","",2024,"Operational","2024-10","EERC; MainPower","First state to assume full market regulation","https://www.thisdaylive.com/2024/10/23/in-historic-move-eerc-assumes-full-regulation-of-enugu-state-electricity-market/"],
+["Lagos electricity market (LASERC)","State","Policy & distribution","Lagos","2 state DisCo licences (Oct 2025)",2024,"Operational","2025-10","LASERC","Eko and Ikeja subsidiaries licensed under state law","https://nairametrics.com/2025/10/07/ikedc-ekedc-remain-as-lagos-licenses-new-discos/"],
+["Light-Up Ogun (Onijanganjangan 30 MW)","State (PPP)","Generation – gas / distribution","Ogun","30 MW Phase 1 of 100 MW; 4 MW Oke-Mosan",null,"Ongoing (~90%)","2026-05","Ogun State; private consortium","Embedded generation for Abeokuta","https://www.thisdaylive.com/2026/05/19/light-up-ogun-24-hour-electricity-moves-from-campaign-promise-to-reality/"],
+["Kano (Kumbotso) Solar Plant","Federal / State","Generation – solar","Kano","10 MWp; US$15m",2018,"Operational","2023-01","NSIA / Haske Solar","Largest grid-connected PV at commissioning","https://taiyangnews.info/markets/largest-utility-scale-solar-farm-in-nigeria-online/"],
+["Tiga & Challawa hydropower (Kano IPP)","State","Generation – hydro","Kano","35 MW combined (Tiga 10 MW)",2013,"Commissioning reported","2022-12","Kano State","Supplies water works and street lighting","https://gazettengr.com/kano-to-commission-10mw-hydropower-station-in-six-weeks-ganduje/"],
+["Katsina (Lambar Rimi) Wind Farm","Federal / State","Generation – wind","Katsina","10 MW",2005,"Stalled","2025-04","Ministry of Power; Vergnet","Unfinished ~20 years; handover to Katsina under negotiation","https://www.thisdaylive.com/2025/04/24/20-years-after-fg-katsina-begin-talks-on-handover-of-multi-billion-naira-10mw-wind-farm/"],
+["Kaduna (Kudenda) 215 MW power plant","Federal","Generation – gas","Kaduna","215 MW; ~80% complete",2012,"Stalled","2022-01","Ministry of Power","Dual-fuel plant meant to use AKK gas","https://gazettengr.com/fg-to-revive-215mw-kudenda-power-project-in-kaduna-minister/"],
+["Abuja (Gwagwalada) IPP","Federal (NNPC)","Generation – gas","FCT","350 MW Phase 1 (of 1,350 MW)",2023,"Under construction","2026-01","NNPC Ltd","First AKK-linked gas IPP; no completion date","https://www.ecofinagency.com/news-industry/0202-52495-nigeria-advances-350-mw-abuja-gas-power-project"],
+["Maiduguri Emergency Power Project","Federal (NNPC)","Generation – gas","Borno","50 MW",2021,"Operational","2023-03","NNPC Ltd; CMEC; GE","Restores supply to Maiduguri","https://thecable.ng/buhari-inaugurates-borno-gas-power-plant-says-it-will-aid-energy-security"],
+["Aba Integrated Power Project","Private","Generation – gas / distribution","Abia","141 MW (company); 188 MW in inauguration reports",null,"Operational","2024-02","Geometric Power","Integrated generation and ring-fenced distribution","https://geometricpower.com/projects/aba-integrated-power-project.php"],
+["Azura-Edo IPP","Private","Generation – gas","Edo","461 MW",2016,"Operational","2018","Azura Power; Africa50; World Bank/MIGA guarantees","First project-financed IPP after privatisation","https://africa50.com/investing-for-growth/projects-investments/azura-edo"],
+["Afam power plants sale","Federal / Private","Generation – gas","Rivers","966 MW; N105bn",2020,"Completed","2020-11","BPE; Transcorp","Privatisation of Afam plants to Transcorp","https://thecable.ng/transcorp-acquires-966mw-afam-genco"],
+["Geregu Power expansion","Private","Generation – gas","Kogi","435 MW → 1,200 MW target",2024,"Proposed","2024-05","Geregu Power; Siemens Energy","Upgrade + new Geregu 3","https://thewillnews.com/geregu-power-siemens-energy-partner-to-upgrade-generation-capacity-to-1200mw"],
+["Egbin Phase 2 expansion","Private","Generation – gas","Lagos","+~1,754 MW CCGT; US$1.8bn",2021,"Proposed","2021-06","Egbin Power (Sahara)","Planned doubling of Egbin","https://www.thisdaylive.com/2021/06/22/egbin-power-seeks-1-8bn-to-expand-output/"],
+["Nigerian Independent System Operator (NISO)","Federal / Policy","Policy & transmission","National","",2024,"Established","2024-04","NERC; BPE","System and market operation separated from TCN","https://www.ripplesnigeria.com/nigerian-govt-unbundles-tcn-new-system-operator-emerges"],
+["Power sector privatisation","Federal / Policy","Policy & reform","National","5 GenCos + 10 DisCos",2013,"Completed","2013-11","BPE / NCP","PHCN successor companies sold","https://www.bpe.gov.ng/pixpopup-item/distribution-companies-discos/"],
+];
+// Extra mapped assets from the projects register
+ASSETS_RAW.push(
+ ["G21","Abuja (Gwagwalada) IPP","gas","FCT",8.940,7.080,350,"MW","Under construction","NNPC Ltd; Phase 1 of 1,350 MW; first AKK-linked IPP"],
+ ["G22","Aba Integrated Power Project","gas","Abia",5.120,7.370,141,"MW","Operational","Geometric Power; ring-fenced Aba network (188 MW in some reports)"],
+ ["G23","Light-Up Ogun — Onijanganjangan","gas","Ogun",6.930,3.220,30,"MW","Under construction","Ogun State PPP; Phase 1 of 100 MW (~90% complete, May 2026)"],
+ ["S06","Egume mini-grid cluster","solar","Kogi",7.500,7.200,20,"MW","Under construction","REA / Ministry of Power; ground-breaking Jun 2026"]
+);
+
+const STATES_GEO = {"type":"FeatureCollection","features":[{"type":"Feature","properties":{"name":"Rivers"},"geometry":{"type":"MultiPolygon","coordinates":[[[[7.452,4.476],[7.584,4.485],[7.57,4.46],[7.45,4.436],[7.358,4.44],[7.346,4.478],[7.405,4.498],[7.452,4.476]]],[[[7.221,4.506],[7.333,4.492],[7.308,4.424],[7.182,4.382],[7.138,4.398],[7.221,4.506]]],[[[7.252,5.194],[7.266,5.11],[7.163,4.952],[7.177,4.874],[7.217,4.861],[7.339,4.878],[7.429,4.862],[7.496,4.817],[7.526,4.765],[7.531,4.601],[7.454,4.553],[7.312,4.607],[7.264,4.573],[7.328,4.536],[7.281,4.505],[7.19,4.612],[7.179,4.669],[7.137,4.662],[7.072,4.758],[7.098,4.662],[7.148,4.64],[7.179,4.502],[7.113,4.451],[7.044,4.437],[7.002,4.579],[7.023,4.615],[7.003,4.718],[6.956,4.683],[6.989,4.608],[6.975,4.485],[7.024,4.398],[6.97,4.374],[6.861,4.416],[6.823,4.518],[6.846,4.628],[6.803,4.65],[6.749,4.834],[6.715,4.834],[6.773,4.663],[6.825,4.601],[6.796,4.56],[6.838,4.393],[6.871,4.361],[6.775,4.339],[6.715,4.355],[6.723,4.592],[6.65,4.643],[6.627,4.712],[6.565,4.752],[6.451,4.717],[6.438,4.779],[6.385,4.818],[6.386,4.859],[6.448,4.978],[6.433,5.065],[6.49,5.202],[6.62,5.341],[6.586,5.384],[6.493,5.393],[6.476,5.437],[6.551,5.514],[6.606,5.723],[6.636,5.697],[6.669,5.694],[6.626,5.502],[6.705,5.487],[6.745,5.443],[6.724,5.305],[6.87,5.195],[7.011,5.185],[7.252,5.194]]]]}},{"type":"Feature","properties":{"name":"Katsina"},"geometry":{"type":"Polygon","coordinates":[[[7.063,12.996],[7.198,13.117],[7.324,13.103],[7.393,13.112],[7.755,13.327],[7.824,13.345],[8.078,13.31],[8.246,13.212],[8.397,13.075],[8.534,13.064],[8.679,12.924],[8.977,12.843],[8.915,12.75],[8.822,12.69],[8.728,12.681],[8.6,12.715],[8.536,12.83],[8.244,12.829],[8.137,12.814],[8.117,12.656],[8.17,12.624],[8.249,12.622],[8.282,12.57],[8.188,12.555],[8.131,12.417],[8.094,12.383],[7.918,12.318],[7.841,12.266],[7.833,11.914],[7.852,11.78],[7.894,11.651],[7.747,11.601],[7.715,11.564],[7.692,11.467],[7.708,11.417],[7.777,11.359],[7.741,11.307],[7.66,11.274],[7.54,11.355],[7.466,11.369],[7.404,11.333],[7.381,11.264],[7.242,11.264],[7.244,11.155],[7.186,11.112],[7.102,11.17],[6.993,11.21],[7.035,11.279],[7.005,11.336],[6.882,11.366],[6.91,11.525],[6.875,11.587],[6.913,11.767],[6.972,11.793],[7.066,11.78],[7.149,11.842],[7.172,11.892],[7.233,11.896],[7.221,11.955],[7.113,12.039],[7.157,12.154],[7.122,12.315],[7.095,12.367],[7.078,12.478],[7.046,12.89],[7.063,12.996]]]}},{"type":"Feature","properties":{"name":"Sokoto"},"geometry":{"type":"Polygon","coordinates":[[[4.121,13.211],[4.126,13.472],[4.248,13.494],[4.406,13.641],[4.507,13.694],[4.857,13.774],[4.925,13.733],[5.274,13.753],[5.375,13.855],[5.555,13.873],[6.12,13.654],[6.23,13.679],[6.369,13.627],[6.509,13.496],[6.673,13.321],[6.753,13.175],[6.626,13.093],[6.528,13.092],[6.431,13.115],[6.399,13.149],[6.294,13.163],[6.262,13.058],[6.125,13.058],[6.05,12.995],[6.068,12.824],[6.038,12.769],[5.966,12.743],[5.741,12.722],[5.69,12.683],[5.6,12.559],[5.553,12.527],[5.547,12.461],[5.571,12.309],[5.52,12.258],[5.215,12.245],[5.068,12.27],[5.031,12.15],[5.023,11.681],[4.876,11.692],[4.685,11.608],[4.607,11.539],[4.529,11.589],[4.538,11.685],[4.582,11.778],[4.616,11.934],[4.609,12.318],[4.645,12.381],[4.717,12.398],[4.785,12.376],[4.829,12.399],[4.834,12.474],[4.804,12.636],[4.826,12.783],[4.77,12.902],[4.818,13.107],[4.775,13.12],[4.741,13.07],[4.672,13.055],[4.603,13.094],[4.463,13.14],[4.341,13.228],[4.27,13.205],[4.121,13.211]]]}},{"type":"Feature","properties":{"name":"Zamfara"},"geometry":{"type":"Polygon","coordinates":[[[5.023,11.681],[5.031,12.15],[5.068,12.27],[5.215,12.245],[5.52,12.258],[5.571,12.309],[5.547,12.461],[5.553,12.527],[5.6,12.559],[5.69,12.683],[5.741,12.722],[5.966,12.743],[6.038,12.769],[6.068,12.824],[6.05,12.995],[6.125,13.058],[6.262,13.058],[6.294,13.163],[6.399,13.149],[6.431,13.115],[6.528,13.092],[6.626,13.093],[6.753,13.175],[6.838,13.063],[6.907,13.007],[7.063,12.996],[7.046,12.89],[7.078,12.478],[7.095,12.367],[7.122,12.315],[7.157,12.154],[7.113,12.039],[7.221,11.955],[7.233,11.896],[7.172,11.892],[7.149,11.842],[7.066,11.78],[6.972,11.793],[6.913,11.767],[6.875,11.587],[6.91,11.525],[6.882,11.366],[6.775,11.274],[6.724,11.128],[6.668,11.066],[6.474,11.01],[6.343,11.04],[6.228,10.93],[6.222,10.891],[6.162,10.863],[6.147,10.93],[6.028,11.112],[6.018,11.264],[5.942,11.384],[5.884,11.429],[5.914,11.573],[5.866,11.619],[5.754,11.643],[5.57,11.62],[5.424,11.67],[5.385,11.718],[5.262,11.72],[5.237,11.679],[5.143,11.655],[5.023,11.681]]]}},{"type":"Feature","properties":{"name":"Yobe"},"geometry":{"type":"Polygon","coordinates":[[[9.648,12.83],[9.819,13.029],[9.892,13.076],[9.93,13.146],[10.162,13.267],[10.675,13.375],[10.771,13.383],[10.953,13.362],[11.44,13.364],[11.743,13.289],[11.853,13.245],[12.058,13.116],[12.117,13.102],[12.202,13.125],[12.326,13.079],[12.386,13.079],[12.363,12.885],[12.381,12.822],[12.479,12.734],[12.487,12.672],[12.418,12.552],[12.308,12.45],[12.329,12.3],[12.283,11.964],[12.301,11.819],[12.236,11.663],[12.336,11.647],[12.388,11.542],[12.287,11.419],[12.197,11.284],[12.197,11.115],[12.167,11.047],[12.104,11.001],[11.868,10.919],[11.812,10.857],[11.794,10.659],[11.701,10.594],[11.593,10.598],[11.578,10.699],[11.59,10.928],[11.563,10.989],[11.354,11.216],[11.291,11.264],[11.152,11.33],[11.014,11.294],[10.939,11.337],[10.974,11.491],[10.968,11.575],[10.848,11.867],[10.817,12.027],[10.81,12.14],[10.77,12.21],[10.735,12.402],[10.61,12.502],[10.57,12.709],[10.511,12.793],[10.372,12.82],[10.262,12.807],[10.226,12.932],[10.16,12.984],[9.971,12.923],[9.884,12.882],[9.857,12.829],[9.77,12.792],[9.648,12.83]]]}},{"type":"Feature","properties":{"name":"Kebbi"},"geometry":{"type":"Polygon","coordinates":[[[5.023,11.681],[5.143,11.655],[5.237,11.679],[5.262,11.72],[5.385,11.718],[5.424,11.67],[5.57,11.62],[5.754,11.643],[5.866,11.619],[5.914,11.573],[5.884,11.429],[5.942,11.384],[6.018,11.264],[6.028,11.112],[5.961,11.129],[5.885,11.053],[5.816,11.042],[5.643,10.969],[5.477,10.958],[5.437,11.001],[5.442,11.117],[5.358,11.235],[5.344,11.309],[5.285,11.344],[5.213,11.347],[4.917,11.288],[4.779,11.227],[4.764,11.164],[4.899,11.087],[5.005,11.068],[5.055,11.033],[5.078,10.924],[5.03,10.864],[5.093,10.748],[4.928,10.675],[4.827,10.673],[4.81,10.607],[4.817,10.463],[4.894,10.335],[4.87,10.269],[4.807,10.238],[4.655,10.201],[4.632,10.1],[4.54,10.125],[4.561,10.271],[4.513,10.314],[4.5,10.46],[4.538,10.524],[4.655,10.589],[4.689,10.646],[4.723,10.904],[4.658,10.923],[4.536,11.002],[4.435,11.029],[4.331,11.013],[4.006,11.012],[3.805,11.118],[3.705,11.121],[3.663,11.143],[3.483,11.393],[3.467,11.443],[3.505,11.557],[3.575,11.673],[3.667,11.76],[3.61,11.848],[3.604,11.905],[3.654,11.987],[3.624,12.095],[3.652,12.269],[3.646,12.529],[3.865,12.689],[3.929,12.75],[4.089,12.996],[4.121,13.211],[4.27,13.205],[4.341,13.228],[4.463,13.14],[4.603,13.094],[4.672,13.055],[4.741,13.07],[4.775,13.12],[4.818,13.107],[4.77,12.902],[4.826,12.783],[4.804,12.636],[4.834,12.474],[4.829,12.399],[4.785,12.376],[4.717,12.398],[4.645,12.381],[4.609,12.318],[4.616,11.934],[4.582,11.778],[4.538,11.685],[4.529,11.589],[4.607,11.539],[4.685,11.608],[4.876,11.692],[5.023,11.681]]]}},{"type":"Feature","properties":{"name":"Adamawa"},"geometry":{"type":"Polygon","coordinates":[[[13.75,10.943],[13.567,10.679],[13.501,10.497],[13.435,10.153],[13.36,10.101],[13.248,10.079],[13.247,9.973],[13.213,9.87],[13.263,9.802],[13.224,9.613],[13.195,9.542],[12.983,9.475],[12.862,9.382],[12.899,9.302],[12.888,9.227],[12.822,9.096],[12.829,9.02],[12.806,8.832],[12.773,8.759],[12.72,8.756],[12.661,8.659],[12.558,8.606],[12.482,8.623],[12.369,8.61],[12.404,8.497],[12.343,8.433],[12.25,8.418],[12.227,8.386],[12.237,8.217],[12.188,8.118],[12.198,7.976],[12.055,7.784],[12.01,7.676],[12.025,7.597],[11.904,7.453],[11.866,7.558],[11.853,7.691],[11.805,7.807],[11.683,7.927],[11.616,7.929],[11.547,7.849],[11.516,7.852],[11.448,7.952],[11.404,8.059],[11.414,8.089],[11.534,8.211],[11.792,8.519],[11.859,8.574],[11.871,8.713],[11.971,8.919],[11.965,8.988],[11.86,9.069],[11.825,9.128],[11.83,9.198],[11.768,9.33],[11.71,9.382],[11.619,9.42],[11.526,9.591],[11.618,9.607],[11.702,9.644],[11.888,9.753],[11.94,9.825],[11.946,10.044],[12.107,10.036],[12.234,10.124],[12.337,10.258],[12.394,10.305],[12.548,10.33],[12.621,10.362],[12.667,10.428],[12.729,10.448],[12.841,10.563],[12.923,10.582],[13.077,10.541],[13.191,10.455],[13.259,10.44],[13.309,10.468],[13.346,10.601],[13.401,10.735],[13.422,10.931],[13.546,10.907],[13.75,10.943]]]}},{"type":"Feature","properties":{"name":"Borno"},"geometry":{"type":"Polygon","coordinates":[[[13.75,10.943],[13.546,10.907],[13.422,10.931],[13.401,10.735],[13.346,10.601],[13.309,10.468],[13.259,10.44],[13.191,10.455],[13.077,10.541],[12.923,10.582],[12.841,10.563],[12.729,10.448],[12.667,10.428],[12.621,10.362],[12.548,10.33],[12.394,10.305],[12.337,10.258],[12.234,10.124],[12.107,10.036],[11.946,10.044],[11.875,10.089],[11.807,10.197],[11.69,10.264],[11.637,10.345],[11.64,10.389],[11.713,10.507],[11.701,10.594],[11.794,10.659],[11.812,10.857],[11.868,10.919],[12.104,11.001],[12.167,11.047],[12.197,11.115],[12.197,11.284],[12.287,11.419],[12.388,11.542],[12.336,11.647],[12.236,11.663],[12.301,11.819],[12.283,11.964],[12.329,12.3],[12.308,12.45],[12.418,12.552],[12.487,12.672],[12.479,12.734],[12.381,12.822],[12.363,12.885],[12.386,13.079],[12.472,13.064],[12.535,13.145],[12.561,13.242],[12.724,13.322],[12.87,13.462],[12.842,13.489],[12.94,13.495],[13.029,13.54],[13.228,13.548],[13.266,13.638],[13.36,13.715],[13.607,13.704],[14.065,13.078],[14.178,12.546],[14.18,12.386],[14.217,12.359],[14.423,12.354],[14.515,12.323],[14.549,12.242],[14.616,12.179],[14.67,12.167],[14.605,12.031],[14.623,11.917],[14.59,11.784],[14.547,11.719],[14.621,11.63],[14.594,11.497],[14.446,11.411],[14.368,11.383],[14.279,11.302],[14.165,11.239],[13.982,11.276],[13.873,11.167],[13.82,11.069],[13.755,11.017],[13.75,10.943]]]}},{"type":"Feature","properties":{"name":"Akwa Ibom"},"geometry":{"type":"Polygon","coordinates":[[[7.496,4.817],[7.463,4.982],[7.518,5.051],[7.536,5.247],[7.525,5.305],[7.65,5.33],[7.621,5.375],[7.647,5.443],[7.641,5.511],[7.705,5.524],[7.789,5.437],[7.897,5.365],[7.869,5.333],[7.917,5.257],[8.001,5.26],[8.062,5.214],[8.055,5.091],[8.132,4.935],[8.249,4.812],[8.299,4.783],[8.357,4.626],[8.279,4.547],[8.032,4.559],[7.723,4.511],[7.559,4.525],[7.529,4.638],[7.533,4.703],[7.526,4.765],[7.496,4.817]]]}},{"type":"Feature","properties":{"name":"Abia"},"geometry":{"type":"Polygon","coordinates":[[[7.897,5.365],[7.789,5.437],[7.705,5.524],[7.641,5.511],[7.647,5.443],[7.621,5.375],[7.65,5.33],[7.525,5.305],[7.536,5.247],[7.518,5.051],[7.463,4.982],[7.496,4.817],[7.429,4.862],[7.339,4.878],[7.217,4.861],[7.177,4.874],[7.163,4.952],[7.266,5.11],[7.252,5.194],[7.324,5.405],[7.405,5.543],[7.382,5.67],[7.401,5.73],[7.388,5.842],[7.25,5.926],[7.297,5.985],[7.364,6.02],[7.468,6.022],[7.534,5.972],[7.526,5.851],[7.585,5.82],[7.731,5.819],[7.785,5.794],[7.808,5.728],[7.878,5.69],[7.908,5.484],[7.957,5.392],[7.897,5.365]]]}},{"type":"Feature","properties":{"name":"Imo"},"geometry":{"type":"Polygon","coordinates":[[[7.25,5.926],[7.388,5.842],[7.401,5.73],[7.382,5.67],[7.405,5.543],[7.324,5.405],[7.252,5.194],[7.011,5.185],[6.87,5.195],[6.724,5.305],[6.745,5.443],[6.705,5.487],[6.626,5.502],[6.669,5.694],[6.736,5.748],[6.813,5.769],[6.896,5.761],[6.949,5.884],[7.077,5.923],[7.168,5.904],[7.25,5.926]]]}},{"type":"Feature","properties":{"name":"Bayelsa"},"geometry":{"type":"Polygon","coordinates":[[[6.723,4.592],[6.702,4.542],[6.695,4.423],[6.675,4.533],[6.661,4.451],[6.695,4.347],[6.618,4.331],[6.596,4.482],[6.569,4.335],[6.52,4.323],[6.435,4.348],[6.415,4.322],[6.271,4.292],[6.247,4.321],[6.333,4.436],[6.23,4.388],[6.189,4.281],[6.096,4.278],[6.105,4.374],[6.043,4.416],[6.061,4.295],[5.997,4.319],[5.982,4.416],[5.947,4.335],[5.782,4.456],[5.595,4.636],[5.572,4.729],[5.528,4.757],[5.475,4.847],[5.391,5.137],[5.461,5.133],[5.641,5.029],[5.698,5.027],[5.769,5.07],[5.902,5.107],[5.948,5.16],[6.024,5.108],[6.096,5.152],[6.14,5.149],[6.216,5.193],[6.21,5.253],[6.289,5.264],[6.35,5.343],[6.479,5.362],[6.493,5.393],[6.586,5.384],[6.62,5.341],[6.49,5.202],[6.433,5.065],[6.448,4.978],[6.386,4.859],[6.385,4.818],[6.438,4.779],[6.451,4.717],[6.565,4.752],[6.627,4.712],[6.65,4.643],[6.723,4.592]]]}},{"type":"Feature","properties":{"name":"Benue"},"geometry":{"type":"Polygon","coordinates":[[[9.644,6.522],[9.603,6.515],[9.549,6.443],[9.488,6.418],[9.44,6.502],[9.321,6.642],[9.232,6.687],[9.075,6.658],[8.972,6.679],[8.957,6.79],[8.836,6.861],[8.696,6.892],[8.632,6.867],[8.61,6.769],[8.534,6.74],[8.411,6.746],[8.292,6.675],[8.249,6.773],[8.157,6.76],[8.119,6.71],[7.999,6.696],[7.974,6.579],[7.929,6.519],[7.861,6.561],[7.828,6.63],[7.862,6.723],[7.852,6.82],[7.784,6.88],[7.719,6.848],[7.641,6.862],[7.543,6.954],[7.494,7.075],[7.607,7.006],[7.652,7.099],[7.785,7.171],[7.827,7.24],[7.847,7.352],[7.879,7.416],[7.784,7.446],[7.756,7.604],[7.759,7.72],[7.735,7.792],[7.676,7.865],[7.666,8.025],[7.969,7.964],[8.293,7.856],[8.418,7.775],[8.424,7.826],[8.354,8.001],[8.37,8.071],[8.426,8.118],[8.557,8.134],[8.833,8.051],[8.979,8.055],[9.169,7.915],[9.114,7.833],[9.126,7.811],[9.265,7.855],[9.419,7.859],[9.572,7.843],[9.685,7.764],[9.775,7.653],[9.877,7.562],[9.921,7.447],[9.881,7.326],[9.874,7.209],[9.781,7.132],[9.709,7.024],[9.677,6.85],[9.669,6.618],[9.644,6.522]]]}},{"type":"Feature","properties":{"name":"Cross River"},"geometry":{"type":"Polygon","coordinates":[[[8.299,4.783],[8.249,4.812],[8.132,4.935],[8.055,5.091],[8.062,5.214],[8.001,5.26],[7.917,5.257],[7.869,5.333],[7.897,5.365],[7.957,5.392],[7.908,5.484],[7.878,5.69],[7.92,5.777],[7.917,5.824],[7.967,5.892],[7.974,5.993],[8.052,5.995],[8.072,5.95],[8.163,5.99],[8.191,6.031],[8.246,6.018],[8.282,6.119],[8.38,6.236],[8.376,6.366],[8.439,6.401],[8.399,6.517],[8.306,6.621],[8.292,6.675],[8.411,6.746],[8.534,6.74],[8.61,6.769],[8.632,6.867],[8.696,6.892],[8.836,6.861],[8.957,6.79],[8.972,6.679],[9.075,6.658],[9.232,6.687],[9.321,6.642],[9.44,6.502],[9.488,6.418],[9.422,6.339],[9.327,6.299],[9.273,6.203],[9.136,6.093],[8.989,5.937],[8.982,5.896],[8.922,5.904],[8.856,5.847],[8.862,5.753],[8.819,5.703],[8.893,5.622],[8.9,5.57],[8.851,5.513],[8.849,5.432],[8.815,5.343],[8.825,5.295],[8.799,5.159],[8.758,5.135],[8.708,5.037],[8.602,4.882],[8.612,4.832],[8.569,4.823],[8.519,4.704],[8.481,4.752],[8.409,4.749],[8.409,4.814],[8.358,4.797],[8.309,4.872],[8.23,4.934],[8.299,4.783]]]}},{"type":"Feature","properties":{"name":"Taraba"},"geometry":{"type":"Polygon","coordinates":[[[9.644,6.522],[9.669,6.618],[9.677,6.85],[9.709,7.024],[9.781,7.132],[9.874,7.209],[9.881,7.326],[9.921,7.447],[9.877,7.562],[9.775,7.653],[9.685,7.764],[9.572,7.843],[9.419,7.859],[9.265,7.855],[9.126,7.811],[9.114,7.833],[9.169,7.915],[9.37,8.058],[9.357,8.171],[9.304,8.238],[9.335,8.317],[9.548,8.282],[9.615,8.351],[9.745,8.353],[9.818,8.373],[9.94,8.481],[10.077,8.567],[10.229,8.747],[10.461,8.803],[10.619,8.88],[10.653,8.945],[10.645,9.105],[10.592,9.257],[10.589,9.396],[10.561,9.497],[10.614,9.53],[10.741,9.535],[10.864,9.591],[10.93,9.603],[11.175,9.578],[11.526,9.591],[11.619,9.42],[11.71,9.382],[11.768,9.33],[11.83,9.198],[11.825,9.128],[11.86,9.069],[11.965,8.988],[11.971,8.919],[11.871,8.713],[11.859,8.574],[11.792,8.519],[11.534,8.211],[11.414,8.089],[11.404,8.059],[11.448,7.952],[11.516,7.852],[11.547,7.849],[11.616,7.929],[11.683,7.927],[11.805,7.807],[11.853,7.691],[11.866,7.558],[11.904,7.453],[11.736,7.263],[11.78,7.241],[11.881,7.102],[11.809,7.072],[11.741,6.998],[11.688,6.987],[11.562,6.876],[11.538,6.824],[11.572,6.767],[11.51,6.613],[11.416,6.572],[11.389,6.474],[11.319,6.437],[11.14,6.431],[11.097,6.449],[11.06,6.573],[11.056,6.701],[11.003,6.768],[10.91,6.785],[10.877,6.816],[10.832,6.945],[10.603,7.058],[10.579,7.131],[10.538,6.952],[10.496,6.874],[10.239,6.871],[10.18,6.915],[10.165,6.989],[10.12,6.994],[9.874,6.788],[9.77,6.774],[9.693,6.531],[9.644,6.522]]]}},{"type":"Feature","properties":{"name":"Kwara"},"geometry":{"type":"Polygon","coordinates":[[[2.742,8.527],[2.723,8.773],[2.752,8.812],[2.75,8.906],[2.769,9.057],[2.86,9.052],[2.889,9.075],[2.984,9.061],[3.051,9.078],[3.091,9.127],[3.152,9.288],[3.128,9.43],[3.152,9.488],[3.244,9.584],[3.245,9.634],[3.299,9.634],[3.338,9.678],[3.317,9.782],[3.342,9.813],[3.453,9.853],[3.513,9.846],[3.599,9.969],[3.612,10.07],[3.664,10.129],[3.758,10.145],[3.918,10.151],[4.014,10.118],[4.35,9.725],[4.416,9.703],[4.432,9.636],[4.421,9.481],[4.453,9.426],[4.614,9.422],[4.625,9.325],[4.743,9.274],[4.753,9.168],[4.799,9.139],[4.979,9.2],[5.135,9.124],[5.197,9.016],[5.32,8.989],[5.387,8.993],[5.454,8.947],[5.538,8.929],[5.65,8.824],[5.746,8.811],[5.791,8.746],[5.926,8.738],[6.093,8.759],[6.161,8.719],[6.216,8.73],[6.173,8.676],[6.117,8.434],[6.087,8.381],[5.805,8.405],[5.606,8.465],[5.516,8.53],[5.357,8.348],[5.38,8.259],[5.462,8.17],[5.529,8.129],[5.536,8.069],[5.429,8.066],[5.371,8.03],[5.354,7.975],[5.23,7.976],[5.164,8.017],[5.101,7.998],[5.064,8.03],[4.992,8.026],[4.941,8.081],[4.686,8.03],[4.556,8.035],[4.51,8.068],[4.444,8.221],[4.359,8.311],[4.326,8.445],[4.29,8.498],[4.201,8.693],[4.201,8.814],[4.331,8.954],[4.314,8.993],[4.265,8.963],[4.165,8.979],[4.045,9.02],[3.963,9.076],[3.911,9.157],[3.818,9.173],[3.773,9.141],[3.738,9.026],[3.696,8.99],[3.49,8.886],[3.362,8.801],[3.244,8.748],[3.145,8.769],[2.919,8.594],[2.801,8.577],[2.742,8.527]]]}},{"type":"Feature","properties":{"name":"Lagos"},"geometry":{"type":"Polygon","coordinates":[[[4.342,6.37],[4.126,6.41],[3.87,6.432],[3.444,6.41],[3.385,6.445],[3.542,6.455],[3.571,6.51],[3.743,6.548],[3.763,6.585],[3.858,6.602],[3.774,6.622],[3.664,6.57],[3.515,6.527],[3.479,6.542],[3.481,6.602],[3.402,6.552],[3.369,6.45],[3.384,6.398],[3.215,6.397],[3.083,6.381],[2.928,6.39],[2.704,6.369],[2.712,6.475],[2.836,6.467],[2.892,6.526],[3.11,6.516],[3.169,6.524],[3.245,6.692],[3.277,6.705],[3.368,6.644],[3.424,6.646],[3.448,6.687],[4.032,6.69],[4.092,6.674],[4.048,6.604],[4.088,6.544],[4.149,6.58],[4.21,6.577],[4.211,6.534],[4.155,6.479],[4.236,6.434],[4.345,6.427],[4.342,6.37]]]}},{"type":"Feature","properties":{"name":"Niger"},"geometry":{"type":"Polygon","coordinates":[[[3.705,11.121],[3.805,11.118],[4.006,11.012],[4.331,11.013],[4.435,11.029],[4.536,11.002],[4.658,10.923],[4.723,10.904],[4.689,10.646],[4.655,10.589],[4.538,10.524],[4.5,10.46],[4.513,10.314],[4.561,10.271],[4.54,10.125],[4.632,10.1],[4.655,10.201],[4.807,10.238],[4.87,10.269],[4.894,10.335],[4.817,10.463],[4.81,10.607],[4.827,10.673],[4.928,10.675],[5.093,10.748],[5.03,10.864],[5.078,10.924],[5.055,11.033],[5.005,11.068],[4.899,11.087],[4.764,11.164],[4.779,11.227],[4.917,11.288],[5.213,11.347],[5.285,11.344],[5.344,11.309],[5.358,11.235],[5.442,11.117],[5.437,11.001],[5.477,10.958],[5.643,10.969],[5.816,11.042],[5.885,11.053],[5.961,11.129],[6.028,11.112],[6.147,10.93],[6.162,10.863],[6.113,10.807],[6.126,10.647],[6.094,10.483],[6.174,10.361],[6.208,10.366],[6.307,10.483],[6.426,10.573],[6.497,10.589],[6.568,10.535],[6.641,10.568],[6.718,10.568],[6.735,10.624],[6.835,10.623],[6.85,10.523],[6.901,10.529],[6.956,10.482],[6.966,10.345],[7.067,10.299],[7.041,10.233],[6.892,10.105],[6.936,10.047],[7.009,10.017],[7.231,10.011],[7.279,9.978],[7.296,9.781],[7.218,9.741],[7.295,9.686],[7.339,9.586],[7.219,9.417],[7.269,9.356],[7.261,9.295],[7.311,9.298],[7.17,9.099],[7.117,9.124],[7.023,9.213],[6.963,9.233],[6.778,9.225],[6.749,9.186],[6.759,8.472],[6.789,8.412],[6.835,8.407],[6.756,8.316],[6.691,8.207],[6.572,8.354],[6.466,8.432],[6.371,8.681],[6.278,8.737],[6.161,8.719],[6.093,8.759],[5.926,8.738],[5.791,8.746],[5.746,8.811],[5.65,8.824],[5.538,8.929],[5.454,8.947],[5.387,8.993],[5.32,8.989],[5.197,9.016],[5.135,9.124],[4.979,9.2],[4.799,9.139],[4.753,9.168],[4.743,9.274],[4.625,9.325],[4.614,9.422],[4.453,9.426],[4.421,9.481],[4.432,9.636],[4.416,9.703],[4.35,9.725],[4.014,10.118],[3.918,10.151],[3.758,10.145],[3.664,10.129],[3.665,10.162],[3.573,10.286],[3.652,10.436],[3.757,10.405],[3.837,10.6],[3.823,10.703],[3.783,10.717],[3.731,10.825],[3.754,10.907],[3.705,11.121]]]}},{"type":"Feature","properties":{"name":"FCT"},"geometry":{"type":"Polygon","coordinates":[[[6.934,8.405],[6.789,8.412],[6.759,8.472],[6.749,9.186],[6.778,9.225],[6.963,9.233],[7.023,9.213],[7.117,9.124],[7.17,9.099],[7.311,9.298],[7.406,9.308],[7.486,9.292],[7.54,9.351],[7.626,9.311],[7.583,9.227],[7.56,9.121],[7.561,8.961],[7.514,8.759],[7.471,8.639],[7.393,8.535],[7.264,8.472],[7.122,8.434],[6.934,8.405]]]}},{"type":"Feature","properties":{"name":"Ogun"},"geometry":{"type":"Polygon","coordinates":[[[4.493,6.321],[4.405,6.359],[4.342,6.37],[4.345,6.427],[4.236,6.434],[4.155,6.479],[4.211,6.534],[4.21,6.577],[4.149,6.58],[4.088,6.544],[4.048,6.604],[4.092,6.674],[4.032,6.69],[3.448,6.687],[3.424,6.646],[3.368,6.644],[3.277,6.705],[3.245,6.692],[3.169,6.524],[3.11,6.516],[2.892,6.526],[2.836,6.467],[2.712,6.475],[2.737,6.558],[2.732,6.642],[2.779,6.699],[2.775,6.745],[2.723,6.8],[2.737,6.863],[2.715,6.98],[2.776,7.031],[2.736,7.103],[2.762,7.162],[2.741,7.408],[2.783,7.42],[2.792,7.478],[2.721,7.587],[2.727,7.793],[2.672,7.893],[2.765,7.958],[2.861,7.955],[2.887,7.908],[2.892,7.796],[2.938,7.737],[2.962,7.833],[3.0,7.833],[3.005,7.746],[2.968,7.644],[2.989,7.571],[3.064,7.495],[3.109,7.413],[3.179,7.349],[3.29,7.333],[3.33,7.367],[3.37,7.467],[3.412,7.495],[3.495,7.402],[3.555,7.431],[3.654,7.429],[3.689,7.38],[3.691,7.307],[3.749,7.27],[3.777,7.144],[3.712,7.047],[3.896,7.06],[4.077,7.113],[4.148,7.146],[4.177,7.059],[4.302,7.09],[4.364,6.981],[4.546,7.008],[4.561,6.988],[4.538,6.858],[4.38,6.714],[4.355,6.618],[4.383,6.582],[4.483,6.567],[4.567,6.629],[4.595,6.485],[4.514,6.417],[4.466,6.406],[4.568,6.363],[4.555,6.317],[4.493,6.321]]]}},{"type":"Feature","properties":{"name":"Ondo"},"geometry":{"type":"Polygon","coordinates":[[[5.003,5.855],[4.886,6.006],[4.827,6.042],[4.718,6.164],[4.493,6.321],[4.555,6.317],[4.568,6.363],[4.466,6.406],[4.514,6.417],[4.595,6.485],[4.567,6.629],[4.483,6.567],[4.383,6.582],[4.355,6.618],[4.38,6.714],[4.538,6.858],[4.561,6.988],[4.599,7.008],[4.65,7.102],[4.732,7.146],[4.832,7.092],[4.869,7.098],[4.873,7.245],[4.898,7.339],[4.991,7.375],[4.992,7.415],[5.062,7.438],[5.28,7.435],[5.331,7.42],[5.376,7.302],[5.433,7.281],[5.538,7.369],[5.593,7.495],[5.624,7.619],[5.742,7.73],[5.812,7.756],[5.892,7.77],[5.966,7.641],[6.028,7.574],[5.934,7.492],[5.954,7.438],[5.953,7.299],[5.876,7.229],[5.827,7.076],[5.787,7.031],[5.789,6.918],[5.753,6.878],[5.733,6.789],[5.686,6.739],[5.613,6.76],[5.541,6.717],[5.515,6.783],[5.541,6.836],[5.496,6.872],[5.215,6.873],[5.08,6.684],[5.072,6.607],[5.121,6.514],[5.06,6.382],[5.013,6.362],[4.979,6.284],[5.053,6.205],[5.097,6.187],[5.115,6.127],[5.003,5.855]]]}},{"type":"Feature","properties":{"name":"Ekiti"},"geometry":{"type":"Polygon","coordinates":[[[5.064,8.03],[5.101,7.998],[5.164,8.017],[5.23,7.976],[5.354,7.975],[5.371,8.03],[5.429,8.066],[5.536,8.069],[5.518,8.0],[5.636,8.02],[5.668,7.985],[5.617,7.936],[5.624,7.851],[5.658,7.821],[5.812,7.756],[5.742,7.73],[5.624,7.619],[5.593,7.495],[5.538,7.369],[5.433,7.281],[5.376,7.302],[5.331,7.42],[5.28,7.435],[5.062,7.438],[4.992,7.415],[4.912,7.627],[4.926,7.843],[5.041,7.949],[5.064,8.03]]]}},{"type":"Feature","properties":{"name":"Osun"},"geometry":{"type":"Polygon","coordinates":[[[5.064,8.03],[5.041,7.949],[4.926,7.843],[4.912,7.627],[4.992,7.415],[4.991,7.375],[4.898,7.339],[4.873,7.245],[4.869,7.098],[4.832,7.092],[4.732,7.146],[4.65,7.102],[4.599,7.008],[4.561,6.988],[4.546,7.008],[4.364,6.981],[4.302,7.09],[4.177,7.059],[4.148,7.146],[4.077,7.113],[4.146,7.475],[4.082,7.586],[4.034,7.626],[4.086,7.848],[4.154,7.83],[4.264,7.954],[4.322,7.917],[4.359,7.859],[4.4,7.85],[4.561,7.966],[4.556,8.035],[4.686,8.03],[4.941,8.081],[4.992,8.026],[5.064,8.03]]]}},{"type":"Feature","properties":{"name":"Oyo"},"geometry":{"type":"Polygon","coordinates":[[[4.556,8.035],[4.561,7.966],[4.4,7.85],[4.359,7.859],[4.322,7.917],[4.264,7.954],[4.154,7.83],[4.086,7.848],[4.034,7.626],[4.082,7.586],[4.146,7.475],[4.077,7.113],[3.896,7.06],[3.712,7.047],[3.777,7.144],[3.749,7.27],[3.691,7.307],[3.689,7.38],[3.654,7.429],[3.555,7.431],[3.495,7.402],[3.412,7.495],[3.37,7.467],[3.33,7.367],[3.29,7.333],[3.179,7.349],[3.109,7.413],[3.064,7.495],[2.989,7.571],[2.968,7.644],[3.005,7.746],[3.0,7.833],[2.962,7.833],[2.938,7.737],[2.892,7.796],[2.887,7.908],[2.861,7.955],[2.765,7.958],[2.672,7.893],[2.688,7.934],[2.709,8.138],[2.735,8.212],[2.697,8.32],[2.704,8.418],[2.742,8.527],[2.801,8.577],[2.919,8.594],[3.145,8.769],[3.244,8.748],[3.362,8.801],[3.49,8.886],[3.696,8.99],[3.738,9.026],[3.773,9.141],[3.818,9.173],[3.911,9.157],[3.963,9.076],[4.045,9.02],[4.165,8.979],[4.265,8.963],[4.314,8.993],[4.331,8.954],[4.201,8.814],[4.201,8.693],[4.29,8.498],[4.326,8.445],[4.359,8.311],[4.444,8.221],[4.51,8.068],[4.556,8.035]]]}},{"type":"Feature","properties":{"name":"Anambra"},"geometry":{"type":"Polygon","coordinates":[[[7.364,6.02],[7.297,5.985],[7.25,5.926],[7.168,5.904],[7.077,5.923],[6.949,5.884],[6.896,5.761],[6.813,5.769],[6.736,5.748],[6.669,5.694],[6.636,5.697],[6.606,5.723],[6.626,5.819],[6.685,5.906],[6.704,6.076],[6.747,6.102],[6.761,6.167],[6.736,6.234],[6.681,6.474],[6.677,6.535],[6.759,6.534],[6.792,6.567],[6.838,6.712],[6.906,6.776],[6.914,6.716],[6.98,6.712],[7.1,6.668],[7.096,6.6],[7.04,6.541],[7.022,6.441],[7.085,6.419],[7.146,6.3],[7.128,6.238],[7.165,6.24],[7.265,6.042],[7.364,6.02]]]}},{"type":"Feature","properties":{"name":"Bauchi"},"geometry":{"type":"Polygon","coordinates":[[[11.068,9.586],[10.93,9.603],[10.864,9.591],[10.741,9.535],[10.614,9.53],[10.561,9.497],[10.362,9.612],[9.873,9.837],[9.813,9.797],[9.866,9.708],[9.856,9.676],[9.765,9.629],[9.736,9.567],[9.661,9.545],[9.503,9.536],[9.299,9.582],[9.22,9.694],[9.159,9.729],[9.203,9.845],[9.177,9.996],[9.113,10.019],[8.997,9.998],[8.961,10.023],[8.962,10.182],[8.937,10.287],[8.901,10.331],[8.785,10.335],[8.696,10.424],[8.741,10.549],[8.815,10.664],[8.809,10.733],[8.734,10.863],[8.738,11.022],[8.768,11.084],[8.863,11.104],[9.031,11.296],[9.13,11.309],[9.225,11.342],[9.286,11.341],[9.408,11.299],[9.534,11.304],[9.623,11.238],[9.81,11.261],[9.876,11.161],[9.868,11.032],[9.891,10.977],[9.949,10.954],[10.106,10.965],[10.179,10.933],[10.217,11.054],[10.327,11.097],[10.391,11.177],[10.073,11.234],[10.0,11.263],[9.863,11.46],[9.813,11.454],[9.798,11.515],[9.831,11.575],[9.814,11.681],[9.765,11.722],[9.668,11.701],[9.625,11.729],[9.646,11.804],[9.699,11.851],[9.784,11.858],[9.85,11.894],[10.155,12.009],[10.169,12.116],[10.265,12.403],[10.394,12.449],[10.477,12.417],[10.61,12.502],[10.735,12.402],[10.77,12.21],[10.81,12.14],[10.817,12.027],[10.848,11.867],[10.968,11.575],[10.974,11.491],[10.939,11.337],[11.014,11.294],[10.954,11.232],[10.86,11.178],[10.78,11.089],[10.674,11.042],[10.593,10.812],[10.538,10.711],[10.646,10.667],[10.688,10.519],[10.824,10.445],[10.844,10.386],[10.843,10.188],[10.729,10.13],[10.765,10.039],[10.971,9.887],[11.001,9.823],[11.025,9.695],[11.068,9.586]]]}},{"type":"Feature","properties":{"name":"Gombe"},"geometry":{"type":"Polygon","coordinates":[[[11.526,9.591],[11.175,9.578],[11.068,9.586],[11.025,9.695],[11.001,9.823],[10.971,9.887],[10.765,10.039],[10.729,10.13],[10.843,10.188],[10.844,10.386],[10.824,10.445],[10.688,10.519],[10.646,10.667],[10.538,10.711],[10.593,10.812],[10.674,11.042],[10.78,11.089],[10.86,11.178],[10.954,11.232],[11.014,11.294],[11.152,11.33],[11.291,11.264],[11.354,11.216],[11.563,10.989],[11.59,10.928],[11.578,10.699],[11.593,10.598],[11.701,10.594],[11.713,10.507],[11.64,10.389],[11.637,10.345],[11.69,10.264],[11.807,10.197],[11.875,10.089],[11.946,10.044],[11.94,9.825],[11.888,9.753],[11.702,9.644],[11.618,9.607],[11.526,9.591]]]}},{"type":"Feature","properties":{"name":"Delta"},"geometry":{"type":"Polygon","coordinates":[[[6.626,5.819],[6.551,5.514],[6.476,5.437],[6.493,5.393],[6.479,5.362],[6.35,5.343],[6.289,5.264],[6.21,5.253],[6.216,5.193],[6.14,5.149],[6.096,5.152],[6.024,5.108],[5.948,5.16],[5.902,5.107],[5.769,5.07],[5.698,5.027],[5.641,5.029],[5.461,5.133],[5.461,5.184],[5.364,5.171],[5.34,5.344],[5.454,5.369],[5.468,5.34],[5.529,5.387],[5.577,5.381],[5.537,5.431],[5.541,5.511],[5.485,5.412],[5.434,5.396],[5.263,5.437],[5.198,5.501],[5.188,5.544],[5.23,5.582],[5.393,5.56],[5.427,5.622],[5.51,5.601],[5.428,5.656],[5.379,5.597],[5.326,5.606],[5.332,5.724],[5.28,5.618],[5.179,5.582],[5.129,5.628],[5.089,5.709],[5.093,5.774],[5.147,5.781],[5.186,5.842],[5.267,5.872],[5.29,5.91],[5.12,5.824],[5.045,5.768],[5.003,5.855],[5.115,6.127],[5.185,6.094],[5.233,6.038],[5.231,5.921],[5.268,5.912],[5.326,5.962],[5.331,6.02],[5.464,6.019],[5.531,5.982],[5.601,6.038],[5.664,6.039],[5.78,5.976],[5.896,5.878],[5.871,5.807],[5.889,5.746],[6.022,5.762],[6.211,5.937],[6.222,6.014],[6.13,6.084],[6.053,6.264],[6.094,6.35],[6.173,6.287],[6.243,6.339],[6.546,6.493],[6.617,6.488],[6.677,6.535],[6.681,6.474],[6.736,6.234],[6.761,6.167],[6.747,6.102],[6.704,6.076],[6.685,5.906],[6.626,5.819]]]}},{"type":"Feature","properties":{"name":"Edo"},"geometry":{"type":"Polygon","coordinates":[[[5.115,6.127],[5.097,6.187],[5.053,6.205],[4.979,6.284],[5.013,6.362],[5.06,6.382],[5.121,6.514],[5.072,6.607],[5.08,6.684],[5.215,6.873],[5.496,6.872],[5.541,6.836],[5.515,6.783],[5.541,6.717],[5.613,6.76],[5.686,6.739],[5.733,6.789],[5.753,6.878],[5.789,6.918],[5.787,7.031],[5.827,7.076],[5.876,7.229],[5.953,7.299],[5.954,7.438],[5.934,7.492],[6.028,7.574],[6.111,7.527],[6.132,7.426],[6.264,7.463],[6.351,7.379],[6.432,7.384],[6.511,7.25],[6.628,7.279],[6.698,7.221],[6.72,7.149],[6.688,6.955],[6.65,6.844],[6.65,6.663],[6.677,6.535],[6.617,6.488],[6.546,6.493],[6.243,6.339],[6.173,6.287],[6.094,6.35],[6.053,6.264],[6.13,6.084],[6.222,6.014],[6.211,5.937],[6.022,5.762],[5.889,5.746],[5.871,5.807],[5.896,5.878],[5.78,5.976],[5.664,6.039],[5.601,6.038],[5.531,5.982],[5.464,6.019],[5.331,6.02],[5.326,5.962],[5.268,5.912],[5.231,5.921],[5.233,6.038],[5.185,6.094],[5.115,6.127]]]}},{"type":"Feature","properties":{"name":"Enugu"},"geometry":{"type":"Polygon","coordinates":[[[7.494,7.075],[7.543,6.954],[7.641,6.862],[7.719,6.848],[7.784,6.88],[7.852,6.82],[7.862,6.723],[7.828,6.63],[7.696,6.607],[7.735,6.479],[7.734,6.407],[7.691,6.274],[7.733,6.101],[7.688,6.044],[7.694,5.942],[7.666,5.928],[7.583,5.989],[7.534,5.972],[7.468,6.022],[7.364,6.02],[7.265,6.042],[7.165,6.24],[7.128,6.238],[7.146,6.3],[7.085,6.419],[7.022,6.441],[7.04,6.541],[7.096,6.6],[7.1,6.668],[6.98,6.712],[6.914,6.716],[6.906,6.776],[6.966,6.851],[7.021,6.779],[7.103,6.858],[7.237,6.962],[7.293,7.036],[7.412,7.108],[7.494,7.075]]]}},{"type":"Feature","properties":{"name":"Ebonyi"},"geometry":{"type":"Polygon","coordinates":[[[8.249,6.773],[8.306,6.621],[8.399,6.517],[8.439,6.401],[8.376,6.366],[8.38,6.236],[8.282,6.119],[8.246,6.018],[8.191,6.031],[8.163,5.99],[8.072,5.95],[8.052,5.995],[7.974,5.993],[7.967,5.892],[7.917,5.824],[7.92,5.777],[7.878,5.69],[7.808,5.728],[7.785,5.794],[7.731,5.819],[7.585,5.82],[7.526,5.851],[7.534,5.972],[7.583,5.989],[7.666,5.928],[7.694,5.942],[7.688,6.044],[7.733,6.101],[7.691,6.274],[7.734,6.407],[7.735,6.479],[7.696,6.607],[7.828,6.63],[7.861,6.561],[7.929,6.519],[7.974,6.579],[7.999,6.696],[8.119,6.71],[8.157,6.76],[8.249,6.773]]]}},{"type":"Feature","properties":{"name":"Kaduna"},"geometry":{"type":"Polygon","coordinates":[[[8.741,10.549],[8.696,10.424],[8.785,10.335],[8.772,10.273],[8.66,10.17],[8.642,10.095],[8.667,10.019],[8.629,9.888],[8.632,9.739],[8.559,9.627],[8.559,9.484],[8.685,9.323],[8.66,9.204],[8.565,9.046],[8.484,8.999],[8.387,9.117],[8.264,9.153],[8.179,9.048],[8.1,9.006],[8.063,9.218],[7.992,9.268],[7.951,9.346],[7.889,9.337],[7.817,9.251],[7.626,9.311],[7.54,9.351],[7.486,9.292],[7.406,9.308],[7.261,9.295],[7.269,9.356],[7.219,9.417],[7.339,9.586],[7.295,9.686],[7.218,9.741],[7.296,9.781],[7.279,9.978],[7.231,10.011],[7.009,10.017],[6.936,10.047],[6.892,10.105],[7.041,10.233],[7.067,10.299],[6.966,10.345],[6.956,10.482],[6.901,10.529],[6.85,10.523],[6.835,10.623],[6.735,10.624],[6.718,10.568],[6.641,10.568],[6.568,10.535],[6.497,10.589],[6.426,10.573],[6.307,10.483],[6.208,10.366],[6.174,10.361],[6.094,10.483],[6.126,10.647],[6.113,10.807],[6.162,10.863],[6.222,10.891],[6.228,10.93],[6.343,11.04],[6.474,11.01],[6.668,11.066],[6.724,11.128],[6.775,11.274],[6.882,11.366],[7.005,11.336],[7.035,11.279],[6.993,11.21],[7.102,11.17],[7.186,11.112],[7.244,11.155],[7.242,11.264],[7.381,11.264],[7.404,11.333],[7.466,11.369],[7.54,11.355],[7.66,11.274],[7.741,11.307],[7.777,11.359],[7.845,11.365],[7.962,11.451],[8.103,11.496],[8.139,11.479],[8.114,11.373],[8.167,11.319],[8.237,11.294],[8.295,11.236],[8.44,11.19],[8.542,11.082],[8.562,10.943],[8.542,10.866],[8.558,10.747],[8.48,10.671],[8.536,10.626],[8.616,10.616],[8.66,10.565],[8.741,10.549]]]}},{"type":"Feature","properties":{"name":"Kogi"},"geometry":{"type":"Polygon","coordinates":[[[7.494,7.075],[7.412,7.108],[7.293,7.036],[7.237,6.962],[7.103,6.858],[7.021,6.779],[6.966,6.851],[6.906,6.776],[6.838,6.712],[6.792,6.567],[6.759,6.534],[6.677,6.535],[6.65,6.663],[6.65,6.844],[6.688,6.955],[6.72,7.149],[6.698,7.221],[6.628,7.279],[6.511,7.25],[6.432,7.384],[6.351,7.379],[6.264,7.463],[6.132,7.426],[6.111,7.527],[6.028,7.574],[5.966,7.641],[5.892,7.77],[5.812,7.756],[5.658,7.821],[5.624,7.851],[5.617,7.936],[5.668,7.985],[5.636,8.02],[5.518,8.0],[5.536,8.069],[5.529,8.129],[5.462,8.17],[5.38,8.259],[5.357,8.348],[5.516,8.53],[5.606,8.465],[5.805,8.405],[6.087,8.381],[6.117,8.434],[6.173,8.676],[6.216,8.73],[6.278,8.737],[6.371,8.681],[6.466,8.432],[6.572,8.354],[6.691,8.207],[6.756,8.316],[6.835,8.407],[6.978,8.411],[6.945,8.313],[6.993,8.228],[6.981,8.016],[6.938,7.874],[7.084,7.96],[7.286,8.028],[7.495,8.016],[7.666,8.025],[7.676,7.865],[7.735,7.792],[7.759,7.72],[7.756,7.604],[7.784,7.446],[7.879,7.416],[7.847,7.352],[7.827,7.24],[7.785,7.171],[7.652,7.099],[7.607,7.006],[7.494,7.075]]]}},{"type":"Feature","properties":{"name":"Plateau"},"geometry":{"type":"Polygon","coordinates":[[[10.561,9.497],[10.589,9.396],[10.592,9.257],[10.645,9.105],[10.653,8.945],[10.619,8.88],[10.461,8.803],[10.229,8.747],[10.077,8.567],[9.94,8.481],[9.818,8.373],[9.745,8.353],[9.615,8.351],[9.579,8.403],[9.408,8.487],[9.345,8.488],[9.19,8.453],[9.096,8.455],[8.952,8.514],[8.928,8.646],[8.885,8.727],[8.951,8.835],[8.988,8.847],[9.053,8.926],[9.073,8.99],[9.028,9.031],[8.964,9.012],[8.83,9.024],[8.783,9.073],[8.766,9.141],[8.66,9.204],[8.685,9.323],[8.559,9.484],[8.559,9.627],[8.632,9.739],[8.629,9.888],[8.667,10.019],[8.642,10.095],[8.66,10.17],[8.772,10.273],[8.785,10.335],[8.901,10.331],[8.937,10.287],[8.962,10.182],[8.961,10.023],[8.997,9.998],[9.113,10.019],[9.177,9.996],[9.203,9.845],[9.159,9.729],[9.22,9.694],[9.299,9.582],[9.503,9.536],[9.661,9.545],[9.736,9.567],[9.765,9.629],[9.856,9.676],[9.866,9.708],[9.813,9.797],[9.873,9.837],[10.362,9.612],[10.561,9.497]]]}},{"type":"Feature","properties":{"name":"Nasarawa"},"geometry":{"type":"Polygon","coordinates":[[[8.66,9.204],[8.766,9.141],[8.783,9.073],[8.83,9.024],[8.964,9.012],[9.028,9.031],[9.073,8.99],[9.053,8.926],[8.988,8.847],[8.951,8.835],[8.885,8.727],[8.928,8.646],[8.952,8.514],[9.096,8.455],[9.19,8.453],[9.345,8.488],[9.408,8.487],[9.579,8.403],[9.615,8.351],[9.548,8.282],[9.335,8.317],[9.304,8.238],[9.357,8.171],[9.37,8.058],[9.169,7.915],[8.979,8.055],[8.833,8.051],[8.557,8.134],[8.426,8.118],[8.37,8.071],[8.354,8.001],[8.424,7.826],[8.418,7.775],[8.293,7.856],[7.969,7.964],[7.666,8.025],[7.495,8.016],[7.286,8.028],[7.084,7.96],[6.938,7.874],[6.981,8.016],[6.993,8.228],[6.945,8.313],[6.978,8.411],[7.122,8.434],[7.264,8.472],[7.393,8.535],[7.471,8.639],[7.514,8.759],[7.561,8.961],[7.56,9.121],[7.583,9.227],[7.626,9.311],[7.817,9.251],[7.889,9.337],[7.951,9.346],[7.992,9.268],[8.063,9.218],[8.1,9.006],[8.179,9.048],[8.264,9.153],[8.387,9.117],[8.484,8.999],[8.565,9.046],[8.66,9.204]]]}},{"type":"Feature","properties":{"name":"Jigawa"},"geometry":{"type":"Polygon","coordinates":[[[10.61,12.502],[10.477,12.417],[10.394,12.449],[10.265,12.403],[10.169,12.116],[10.155,12.009],[9.85,11.894],[9.784,11.858],[9.699,11.851],[9.646,11.804],[9.625,11.729],[9.668,11.701],[9.765,11.722],[9.814,11.681],[9.831,11.575],[9.798,11.515],[9.813,11.454],[9.863,11.46],[10.0,11.263],[10.073,11.234],[10.391,11.177],[10.327,11.097],[10.217,11.054],[10.179,10.933],[10.106,10.965],[9.949,10.954],[9.891,10.977],[9.868,11.032],[9.876,11.161],[9.81,11.261],[9.623,11.238],[9.534,11.304],[9.408,11.299],[9.286,11.341],[9.225,11.342],[9.253,11.453],[9.351,11.555],[9.292,11.587],[9.227,11.693],[9.129,11.716],[9.179,11.828],[9.208,11.942],[9.181,12.03],[9.037,12.012],[9.03,12.061],[8.956,12.05],[8.924,12.083],[8.947,12.129],[8.946,12.222],[8.904,12.273],[8.785,12.299],[8.766,12.391],[8.69,12.439],[8.678,12.539],[8.53,12.575],[8.421,12.538],[8.362,12.425],[8.249,12.622],[8.17,12.624],[8.117,12.656],[8.137,12.814],[8.244,12.829],[8.536,12.83],[8.6,12.715],[8.728,12.681],[8.822,12.69],[8.915,12.75],[8.977,12.843],[9.269,12.81],[9.378,12.826],[9.59,12.801],[9.648,12.83],[9.77,12.792],[9.857,12.829],[9.884,12.882],[9.971,12.923],[10.16,12.984],[10.226,12.932],[10.262,12.807],[10.372,12.82],[10.511,12.793],[10.57,12.709],[10.61,12.502]]]}},{"type":"Feature","properties":{"name":"Kano"},"geometry":{"type":"Polygon","coordinates":[[[8.741,10.549],[8.66,10.565],[8.616,10.616],[8.536,10.626],[8.48,10.671],[8.558,10.747],[8.542,10.866],[8.562,10.943],[8.542,11.082],[8.44,11.19],[8.295,11.236],[8.237,11.294],[8.167,11.319],[8.114,11.373],[8.139,11.479],[8.103,11.496],[7.962,11.451],[7.845,11.365],[7.777,11.359],[7.708,11.417],[7.692,11.467],[7.715,11.564],[7.747,11.601],[7.894,11.651],[7.852,11.78],[7.833,11.914],[7.841,12.266],[7.918,12.318],[8.094,12.383],[8.131,12.417],[8.188,12.555],[8.282,12.57],[8.362,12.425],[8.421,12.538],[8.53,12.575],[8.678,12.539],[8.69,12.439],[8.766,12.391],[8.785,12.299],[8.904,12.273],[8.946,12.222],[8.947,12.129],[8.924,12.083],[8.956,12.05],[9.03,12.061],[9.037,12.012],[9.181,12.03],[9.208,11.942],[9.179,11.828],[9.129,11.716],[9.227,11.693],[9.292,11.587],[9.351,11.555],[9.253,11.453],[9.225,11.342],[9.13,11.309],[9.031,11.296],[8.863,11.104],[8.768,11.084],[8.738,11.022],[8.734,10.863],[8.809,10.733],[8.815,10.664],[8.741,10.549]]]}}]};
+const UPDATED = "11 October 2026";
+</script>
+<script>
+(function(){
+// ---------- Theme ----------
+const root=document.documentElement;
+// The light/dark switch lives in the site bar (/assets/toolbar.js, shared "theme" key).
+// Keep an explicit data-theme so the map tiles and colours can follow it.
+function sysDark(){ return window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches }
+let saved=null; try{saved=localStorage.getItem('theme')}catch(e){}
+if(!root.getAttribute('data-theme')) root.setAttribute('data-theme',(saved==='dark'||saved==='light')?saved:(sysDark()?'dark':'light'));
+function applyTheme(){ if(window._tiles) setTiles(); if(window._geo) restyle(); }
+new MutationObserver(applyTheme).observe(root,{attributes:true,attributeFilter:['data-theme']});
+if(window.matchMedia) matchMedia('(prefers-color-scheme: dark)').addEventListener('change',e=>{ let s=null; try{s=localStorage.getItem('theme')}catch(_){} if(!s) root.setAttribute('data-theme',e.matches?'dark':'light'); });
+
+// ---------- Tabs ----------
+document.querySelectorAll('nav.tabs [data-view]').forEach(b=>b.onclick=()=>{
+  document.querySelectorAll('nav.tabs [data-view]').forEach(x=>x.setAttribute('aria-selected',x===b));
+  document.querySelectorAll('section.view').forEach(s=>s.classList.toggle('active',s.id==='view-'+b.dataset.view));
+  if(b.dataset.view==='map') setTimeout(()=>map.invalidateSize(),50);
+  try{history.replaceState(null,'','#'+b.dataset.view)}catch(e){}
+  try{window.SiteTrack&&window.SiteTrack('tab/'+b.dataset.view,'Opened tab: '+b.textContent.trim())}catch(e){}
+});
+const h=location.hash.slice(1); if(h){const b=document.querySelector(`nav.tabs [data-view="${h}"]`); if(b) setTimeout(()=>b.click(),0);}
+
+// ---------- Data ----------
+const ASSETS=ASSETS_RAW.map(r=>({id:r[0],name:r[1],cat:r[2],state:r[3],lat:r[4],lon:r[5],cap:r[6],unit:r[7],status:r[8],notes:r[9]}));
+const isProposed=a=>/Proposed|construction|development|Stalled/i.test(a.status);
+const fmt=n=>n==null?'—':n>=1000?n.toLocaleString('en-GB'):String(n);
+const capStr=a=>a.cap==null?'—':`${fmt(a.cap)} ${a.unit}`;
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+
+// ---------- Map ----------
+const map=L.map('map',{zoomControl:true,zoomSnap:0.25,minZoom:5,maxBounds:[[1,-1],[16,17]]}).fitBounds([[4.1,2.6],[13.9,14.7]],{padding:[10,10]});
+window.map=map;
+function setTiles(){
+  if(window._tiles) map.removeLayer(window._tiles);
+  const dark=root.getAttribute('data-theme')==='dark';
+  window._tiles=L.tileLayer(`https://{s}.basemaps.cartocdn.com/${dark?'dark_all':'light_all'}/{z}/{x}/{y}{r}.png`,{subdomains:'abcd',maxZoom:18,attribution:'&copy; OpenStreetMap contributors &copy; CARTO · Boundaries: Natural Earth'}).addTo(map);
+  window._tiles.bringToBack();
+}
+setTiles();
+
+// Choropleth palettes
+const solarCol={"3.5–4.0":"#fde9b0","4.0–4.5":"#fcd98a","4.5–5.0":"#f9c25e","5.0–5.5":"#f3a63b","5.5–6.0":"#e7832a","6.0–7.0":"#cf5a1e"};
+const windCol=w=>/^Higher/.test(w)?'#1f8f7a':/^Moderate/.test(w)?'#7cc4b1':'#d7ece6';
+const discoCol={"AEDC":"#4e79a7","BEDC":"#f28e2b","EKEDC/IE":"#e15759","EEDC":"#76b7b2","IBEDC":"#59a14f","JED":"#edc948","KAEDCO":"#b07aa1","KEDCO":"#ff9da7","PHED":"#9c755f","YEDC":"#bab0ac"};
+const regCol=r=>/^State/.test(r)?'#0f7a4a':/ordered/.test(r)?'#8fd0a9':'#c9cfd6';
+const zoneCol={"North West":"#8dd3c7","North East":"#bebada","North Central":"#fb8072","South West":"#80b1d3","South East":"#fdb462","South South":"#b3de69"};
+function fillFor(name){
+  const s=STATES[name]; const mode=document.getElementById('choro').value; if(!s||mode==='none') return null;
+  if(mode==='solar') return solarCol[s.solar]; if(mode==='wind') return windCol(s.wind);
+  if(mode==='disco') return discoCol[s.disco]; if(mode==='reg') return regCol(s.reg); if(mode==='zone') return zoneCol[s.zone];
+}
+function styleFor(f){
+  const dark=root.getAttribute('data-theme')==='dark'; const c=fillFor(f.properties.name);
+  return {color:dark?'#9aa8a0':'#6b7770',weight:1,fillColor:c||'transparent',fillOpacity:c?(dark?.45:.55):0};
+}
+window._geo=L.geoJSON(STATES_GEO,{style:styleFor,onEachFeature:(f,l)=>{
+  l.on({mouseover:e=>e.target.setStyle({weight:2.5}),mouseout:e=>window._geo.resetStyle(e.target),click:e=>{showState(f.properties.name);}});
+  l.bindTooltip(f.properties.name,{sticky:true,direction:'top',opacity:.9});
+}}).addTo(map);
+function restyle(){ window._geo.setStyle(styleFor); }
+
+function legend(){
+  const mode=document.getElementById('choro').value; const el=document.getElementById('legend'); let rows=[];
+  if(mode==='solar') rows=Object.entries(solarCol).map(([k,c])=>[c,k+' kWh/m²/day']);
+  if(mode==='wind') rows=[['#1f8f7a','Higher (far north, Jos Plateau)'],['#7cc4b1','Moderate'],['#d7ece6','Low']];
+  if(mode==='disco') rows=Object.entries(discoCol).map(([k,c])=>[c,k+' — '+DISCOS[k]]);
+  if(mode==='reg') rows=[['#0f7a4a','State regulator (oversight transferred)'],['#8fd0a9','Transfer ordered / in progress'],['#c9cfd6','NERC']];
+  if(mode==='zone') rows=Object.entries(zoneCol).map(([k,c])=>[c,k]);
+  el.innerHTML=rows.map(([c,t])=>`<div class="row"><span class="box" style="background:${c}"></span>${esc(t)}</div>`).join('');
+}
+document.getElementById('choro').onchange=()=>{restyle();legend();};
+legend();
+
+// Asset markers
+const groups={}; const markerById={};
+function radius(a){
+  if(a.cap==null) return 6;
+  if(a.unit==='MW') return Math.max(5,Math.min(22,3+Math.sqrt(a.cap)/2.2));
+  if(a.unit==='b/d') return Math.max(5,Math.min(22,3+Math.sqrt(a.cap)/45));
+  return 9;
+}
+ASSETS.forEach(a=>{
+  const c=CATS[a.cat].color; const prop=isProposed(a);
+  const m=L.circleMarker([a.lat,a.lon],{radius:radius(a),color:prop?c:'#ffffff',weight:prop?2.5:1.5,fillColor:c,fillOpacity:prop?.12:.85,dashArray:prop?'3 3':null});
+  m.bindPopup(`<div class="pop"><h5>${esc(a.name)}</h5><span class="pill">${esc(CATS[a.cat].label)}</span><span class="pill">${esc(a.status)}</span><div class="kv" style="margin-top:6px"><dt>Capacity</dt><dd>${esc(capStr(a))}</dd><dt>State</dt><dd>${esc(a.state)}</dd></div><p style="margin:6px 0 0">${esc(a.notes)}</p></div>`);
+  m._prop=prop;
+  (groups[a.cat]=groups[a.cat]||L.layerGroup()).addLayer(m); markerById[a.id]=m;
+});
+Object.entries(CATS).forEach(([k,c])=>{
+  const n=ASSETS.filter(a=>a.cat===k).length;
+  const box=document.getElementById('layers-'+c.group);
+  const lab=document.createElement('label'); lab.className='layer';
+  lab.innerHTML=`<input type="checkbox" checked data-cat="${k}"><span class="sw" style="background:${c.color}"></span>${esc(c.label)}<span class="n">${n}</span>`;
+  box.appendChild(lab); groups[k].addTo(map);
+  lab.querySelector('input').onchange=e=>{ e.target.checked?groups[k].addTo(map):map.removeLayer(groups[k]); };
+});
+document.getElementById('propToggle').onchange=e=>{
+  const show=e.target.checked;
+  Object.values(groups).forEach(g=>g.eachLayer(m=>{ if(m._prop){ if(show) m.setStyle({opacity:1,fillOpacity:.12}); else m.setStyle({opacity:0,fillOpacity:0}); m.options.interactive=show; }}));
+};
+// Pipelines
+const pipeGroup=L.layerGroup().addTo(map);
+PIPELINES.forEach(p=>{
+  const prop=/construction|Proposed/i.test(p.status);
+  L.polyline(p.coords,{color:prop?'#9a6dd8':'#7a7f86',weight:3,opacity:.85,dashArray:prop?'6 6':null})
+   .bindPopup(`<div class="pop"><h5>${esc(p.name)}</h5><span class="pill">Pipeline</span><span class="pill">${esc(p.status)}</span><div class="kv" style="margin-top:6px"><dt>Length</dt><dd>${esc(p.length)}</dd></div><p style="margin:6px 0 0">${esc(p.note)} Route shown is schematic.</p></div>`).addTo(pipeGroup);
+});
+document.getElementById('pipeN').textContent=PIPELINES.length;
+document.getElementById('pipeToggle').onchange=e=>e.target.checked?pipeGroup.addTo(map):map.removeLayer(pipeGroup);
+
+// State card
+function stateAssets(name){ return ASSETS.filter(a=>a.state.split('/').map(s=>s.trim()).some(s=>s===name||s.startsWith(name+' '))); }
+function showState(name){
+  const s=STATES[name]; if(!s) return; const el=document.getElementById('stateCard'); const as=stateAssets(name);
+  el.style.display='block';
+  el.innerHTML=`<h4>${esc(name)}</h4><div class="note" style="margin-bottom:6px">${esc(s.zone)}</div>
+  <dl class="kv"><dt>Solar GHI</dt><dd>${esc(s.solar)} kWh/m²/day (indicative)</dd><dt>Wind</dt><dd>${esc(s.wind)}</dd><dt>DisCo</dt><dd>${esc(DISCOS[s.disco]||s.disco)}</dd><dt>Regulator</dt><dd>${esc(s.reg)}</dd></dl>
+  <div style="margin-top:8px;font-size:13px;font-weight:600">Energy resources</div><ul class="tight">${s.res.map(r=>`<li>${esc(r)}</li>`).join('')}</ul>
+  ${as.length?`<div style="margin-top:8px;font-size:13px;font-weight:600">Mapped assets (${as.length})</div><ul class="tight">${as.map(a=>`<li><a href="#" data-id="${a.id}">${esc(a.name)}</a> — ${esc(capStr(a))}</li>`).join('')}</ul>`:''}`;
+  el.querySelectorAll('a[data-id]').forEach(x=>x.onclick=ev=>{ev.preventDefault();focusAsset(x.dataset.id)});
+  const lyr=window._geo.getLayers().find(l=>l.feature.properties.name===name); if(lyr) map.fitBounds(lyr.getBounds(),{padding:[30,30],maxZoom:8});
+  if(window.innerWidth<=860) el.scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+function focusAsset(id){ const m=markerById[id]; const a=ASSETS.find(x=>x.id===id);
+  const cb=document.querySelector(`input[data-cat="${a.cat}"]`); if(cb&&!cb.checked){cb.checked=true;groups[a.cat].addTo(map);}
+  map.setView(m.getLatLng(),9); setTimeout(()=>m.openPopup(),250);
+  if(window.innerWidth<=860) document.getElementById('map').scrollIntoView({behavior:'smooth'});
+}
+// Search
+const dl=document.getElementById('searchList');
+dl.innerHTML=[...Object.keys(STATES).map(s=>s+' (state)'),...ASSETS.map(a=>a.name)].map(v=>`<option value="${esc(v)}">`).join('');
+document.getElementById('search').addEventListener('change',e=>{
+  const v=e.target.value.trim().toLowerCase(); if(!v) return;
+  const st=Object.keys(STATES).find(s=>v===s.toLowerCase()+' (state)'||v===s.toLowerCase()); if(st){showState(st);return;}
+  const a=ASSETS.find(x=>x.name.toLowerCase()===v)||ASSETS.find(x=>x.name.toLowerCase().includes(v)||x.state.toLowerCase().includes(v)||x.notes.toLowerCase().includes(v));
+  if(a) focusAsset(a.id);
+});
+
+// ---------- Overview ----------
+const STATS=[
+ ["37.01 bn","barrels — proven crude oil & condensate reserves (~59 years at current output)","NUPRC, 1 Jan 2026"],
+ ["215.19 tcf","proven natural gas reserves (~85 years)","NUPRC, 1 Jan 2026"],
+ ["5,801.84 MW","record peak grid generation","TCN, 4 Mar 2025"],
+ ["62.5%","of the population with electricity access","World Bank WDI, 2024"],
+ ["700,000 b/d","Dangote refinery crude capacity — Africa's largest","US EIA, Aug 2026"],
+ ["3.5–7.0","kWh/m²/day solar irradiation, coast to far north","ECN / REMP"],
+];
+document.getElementById('stats').innerHTML=STATS.map(s=>`<div class="card stat"><div class="v">${s[0]}</div><div class="l">${s[1]}</div><div class="s">${s[2]}</div></div>`).join('');
+function bars(el,rows,unit){ const max=Math.max(...rows.map(r=>r[1]));
+  document.getElementById(el).innerHTML=rows.map(r=>`<div class="bar"><span>${esc(r[0])}</span><div class="track"><div class="fill" style="width:${(r[1]/max*100).toFixed(1)}%;background:${r[2]}"></div></div><span class="val">${fmt(Math.round(r[1]))}${unit}</span></div>`).join(''); }
+const mwOp=ASSETS.filter(a=>a.unit==='MW'&&a.cap!=null&&!isProposed(a)&&a.cat!=='nuclear');
+const byTech={}; mwOp.forEach(a=>byTech[a.cat]=(byTech[a.cat]||0)+a.cap);
+bars('techBars',Object.entries(byTech).sort((a,b)=>b[1]-a[1]).map(([k,v])=>[CATS[k].label,v,CATS[k].color]),' MW');
+bars('topBars',mwOp.sort((a,b)=>b.cap-a.cap).slice(0,10).map(a=>[a.name.replace(/ (Power Station|Hydropower Station)$/,''),a.cap,CATS[a.cat].color]),' MW');
+bars('refBars',ASSETS.filter(a=>a.cat==='refinery').sort((a,b)=>b.cap-a.cap).map(a=>[a.name.replace(/ (Petroleum Refinery|Refining Company|Refining & Petrochemical Co\.|modular refinery)$/,''),a.cap,CATS.refinery.color]),'');
+
+// ---------- Potential ----------
+const POT=[
+ ["Solar","3.5–7.0 kWh/m²/day; ~4–9 hours of sunshine daily","Highest across the far north (Sokoto, Kebbi, Katsina, Kano, Jigawa, Yobe, Borno)","Utility PV (Kumbotso), university hybrid plants, thousands of mini-grids & solar home systems"],
+ ["Large hydropower","≈11,000 MW technically exploitable (ECN)","Niger, Kaduna, Benue & Gongola river systems; Mambilla Plateau","≈2.7 GW installed (Kainji, Jebba, Shiroro, Zungeru)"],
+ ["Small hydropower","≈3,500 MW (ECN)","Plateau, Taraba, Kano, Kaduna, Cross River and upland river sites","Tiga, Challawa, Kurra and other small stations"],
+ ["Wind","≈2–4 m/s at 10 m in the south; stronger (≈4–7 m/s) in the far north, Jos Plateau and offshore","Sokoto, Katsina, Kano, Jigawa, Plateau, coastal/offshore","Katsina 10 MW wind farm; small water-pumping turbines"],
+ ["Biomass & bioenergy","Fuelwood, agricultural residues, animal waste, municipal solid waste","Countrywide; residue-rich farming belts in the north and middle belt","Fuelwood dominates household cooking; small biogas projects"],
+ ["Crude oil & condensate","37.01 billion barrels proven (NUPRC, 1 Jan 2026)","Niger Delta onshore, shallow and deep offshore; frontier basins (Kolmani, Anambra)","Africa's largest producer for much of the past decade"],
+ ["Natural gas","215.19 trillion cubic feet proven (NUPRC, 1 Jan 2026)","Niger Delta (associated & non-associated gas)","Power generation, NLNG exports, WAGP, industry; flaring persists"],
+ ["Coal","≈2 billion+ tonnes estimated (ECN; proven reserves much lower)","Enugu, Kogi, Benue, Nasarawa, Gombe, Anambra","Small-scale mining; cement & industrial use"],
+ ["Bitumen / tar sands","Very large in-place resource reported (Ondo–Ogun–Edo belt)","Agbabu and the south-western bitumen belt","Not yet commercially produced"],
+ ["Uranium & nuclear","Occurrences reported in the north-east and middle belt","Bauchi, Adamawa, Taraba, Plateau, Cross River","30 kW research reactor (NIRR-1, Zaria); NPP sites proposed"],
+];
+document.getElementById('potBody').innerHTML=POT.map(r=>`<tr><td><b>${r[0]}</b></td><td>${r[1]}</td><td>${r[2]}</td><td>${r[3]}</td></tr>`).join('');
+function renderStates(f=''){ f=f.toLowerCase();
+  document.getElementById('stateBody').innerHTML=Object.entries(STATES).filter(([n,s])=>!f||(n+' '+s.zone+' '+s.res.join(' ')).toLowerCase().includes(f)).map(([n,s])=>`<tr><td><a href="#" data-s="${esc(n)}"><b>${esc(n)}</b></a></td><td>${esc(s.zone)}</td><td>${esc(s.solar)}</td><td>${esc(s.wind)}</td><td>${esc(s.disco)}</td><td>${esc(s.reg)}</td><td>${esc(s.res.join('; '))}</td></tr>`).join('');
+  document.querySelectorAll('#stateBody a[data-s]').forEach(a=>a.onclick=e=>{e.preventDefault();document.querySelector('[data-view="map"]').click();setTimeout(()=>showState(a.dataset.s),80);});
+}
+renderStates(); document.getElementById('stateFilter').oninput=e=>renderStates(e.target.value);
+
+// ---------- Data table ----------
+const tc=document.getElementById('tblCat'), ts=document.getElementById('tblStatus');
+Object.entries(CATS).forEach(([k,c])=>tc.insertAdjacentHTML('beforeend',`<option value="${k}">${esc(c.label)}</option>`));
+[...new Set(ASSETS.map(a=>a.status))].sort().forEach(s=>ts.insertAdjacentHTML('beforeend',`<option>${esc(s)}</option>`));
+let sortK='cat',sortDir=1;
+function filtered(){ const q=document.getElementById('tblSearch').value.toLowerCase();
+  return ASSETS.filter(a=>(!tc.value||a.cat===tc.value)&&(!ts.value||a.status===ts.value)&&(!q||(a.name+' '+a.state+' '+a.notes).toLowerCase().includes(q)));
+}
+function renderTable(){
+  const rows=filtered().sort((a,b)=>{const x=a[sortK],y=b[sortK]; if(x==null)return 1; if(y==null)return -1; return (typeof x==='number'?x-y:String(x).localeCompare(String(y)))*sortDir;});
+  document.querySelector('#assetTable tbody').innerHTML=rows.map(a=>`<tr><td><a href="#" data-id="${a.id}">${esc(a.name)}</a></td><td>${esc(CATS[a.cat].label)}</td><td>${esc(a.state)}</td><td class="num">${esc(capStr(a))}</td><td>${esc(a.status)}</td><td style="white-space:normal;min-width:260px">${esc(a.notes)}</td><td class="num">${a.lat.toFixed(2)}</td><td class="num">${a.lon.toFixed(2)}</td></tr>`).join('');
+  document.querySelectorAll('#assetTable a[data-id]').forEach(x=>x.onclick=e=>{e.preventDefault();document.querySelector('[data-view="map"]').click();setTimeout(()=>focusAsset(x.dataset.id),80);});
+  document.getElementById('tblCount').textContent=`${rows.length} of ${ASSETS.length} records shown, plus ${PIPELINES.length} schematic pipelines.`;
+}
+document.querySelectorAll('#assetTable th').forEach(th=>th.onclick=()=>{const k=th.dataset.k; sortDir=(sortK===k)?-sortDir:1; sortK=k; renderTable();});
+['tblSearch','tblCat','tblStatus'].forEach(id=>document.getElementById(id).addEventListener('input',renderTable));
+renderTable();
+function download(name,text,type){ const b=new Blob([text],{type}); const u=URL.createObjectURL(b); const a=document.createElement('a'); a.href=u; a.download=name; document.body.appendChild(a); a.click(); a.remove(); setTimeout(()=>URL.revokeObjectURL(u),1000); }
+document.getElementById('dlCsv').onclick=()=>{ const cols=['id','name','cat','state','lat','lon','cap','unit','status','notes'];
+  const q=v=>v==null?'':/[",\n]/.test(String(v))?'"'+String(v).replace(/"/g,'""')+'"':String(v);
+  download('nigeria-energy-atlas-assets.csv',[cols.join(','),...filtered().map(a=>cols.map(c=>q(c==='cat'?CATS[a.cat].label:a[c])).join(','))].join('\n'),'text/csv'); };
+document.getElementById('dlGeo').onclick=()=>{ const fc={type:'FeatureCollection',metadata:{title:'Nigeria Energy Atlas — assets',author:'Shagbaor Hycent Amool',updated:UPDATED,note:'Coordinates approximate; pipelines schematic.'},features:[
+  ...filtered().map(a=>({type:'Feature',properties:{id:a.id,name:a.name,category:CATS[a.cat].label,state:a.state,capacity:a.cap,unit:a.unit,status:a.status,notes:a.notes},geometry:{type:'Point',coordinates:[a.lon,a.lat]}})),
+  ...PIPELINES.map(p=>({type:'Feature',properties:{name:p.name,category:'Pipeline',status:p.status,length:p.length,notes:p.note},geometry:{type:'LineString',coordinates:p.coords.map(c=>[c[1],c[0]])}}))]};
+  download('nigeria-energy-atlas.geojson',JSON.stringify(fc,null,1),'application/geo+json'); };
+
+// ---------- Chart helpers (inline SVG; theme-aware via CSS variables) ----------
+const SVGNS='http://www.w3.org/2000/svg';
+function niceMax(v){ const p=Math.pow(10,Math.floor(Math.log10(v))); const n=v/p; return (n<=1?1:n<=2?2:n<=2.5?2.5:n<=5?5:10)*p; }
+function chart(el,{x,series,stacked=false,bars=false,yMax=null,unit='',decimals=1,notes=null,wide=false}){
+  const W=wide?1100:640,H=wide?300:260,L=44,Rr=10,T=12,B=28,w=W-L-Rr,h=H-T-B;
+  const tot=x.map((_,i)=>stacked?series.reduce((s,se)=>s+(se.values[i]||0),0):Math.max(...series.map(se=>se.values[i]??0)));
+  const ymax=yMax||niceMax(Math.max(...tot)*1.05);
+  const n=x.length, bw=w/n, X=i=>L+(bars?bw*i+bw/2:(n===1?w/2:w*i/(n-1))), Y=v=>T+h-(v/ymax)*h;
+  let s=`<svg viewBox="0 0 ${W} ${H}" role="img" style="width:100%;height:auto;display:block">`;
+  const isNice=v=>{const p=Math.pow(10,Math.floor(Math.log10(v)));return [1,2,2.5,5].some(m=>Math.abs(v/p-m)<1e-9)};const dv=[5,4,3,6].find(d=>isNice(ymax/d))||4;
+  for(let k=0;k<=dv;k++){const v=ymax*k/dv,y=Y(v);s+=`<line x1="${L}" x2="${W-Rr}" y1="${y}" y2="${y}" style="stroke:var(--line)" stroke-width="1"/><text x="${L-6}" y="${y+4}" text-anchor="end" style="fill:var(--muted)" font-size="11">${+v.toFixed(v<10&&ymax<10?1:0)}</text>`;}
+  const step=Math.ceil(n/(window.innerWidth<600?6:12));
+  x.forEach((yr,i)=>{ if(i%step===0||(i===n-1&&(n-1)%step>=step/2)) s+=`<text x="${X(i)}" y="${H-8}" text-anchor="middle" style="fill:var(--muted)" font-size="11">${yr}</text>`; });
+  if(bars){
+    x.forEach((yr,i)=>{ let acc=0; series.forEach(se=>{ const v=se.values[i]; if(v==null||v===0) return; const y0=Y(acc),y1=Y(acc+v); acc+=stacked?v:0;
+      const tip=`${yr} · ${se.name}: ${(+v).toFixed(decimals)}${unit}${notes&&notes[i]?' — '+notes[i]:''}`;
+      s+=`<rect x="${X(i)-bw*0.36}" y="${stacked?y1:Y(v)}" width="${bw*0.72}" height="${stacked?y0-y1:Y(0)-Y(v)}" fill="${se.color}" rx="1.5"><title>${esc(tip)}</title></rect>`; }); });
+  } else if(stacked){
+    let base=x.map(()=>0);
+    series.forEach(se=>{ const top=base.map((b,i)=>b+(se.values[i]||0));
+      const pts=x.map((_,i)=>`${X(i)},${Y(top[i])}`).join(' ')+' '+x.map((_,i)=>`${X(n-1-i)},${Y(base[n-1-i])}`).join(' ');
+      s+=`<polygon points="${pts}" fill="${se.color}" fill-opacity=".85"><title>${esc(se.name)}</title></polygon>`; base=top; });
+    x.forEach((yr,i)=>{ s+=`<rect x="${X(i)-w/(2*(n-1))}" y="${T}" width="${w/(n-1)}" height="${h}" fill="transparent"><title>${esc(yr+': '+series.map(se=>se.name+' '+(+se.values[i]).toFixed(decimals)+unit).join(' · '))}</title></rect>`; });
+  } else {
+    series.forEach(se=>{ const pts=x.map((_,i)=>se.values[i]==null?null:`${X(i)},${Y(se.values[i])}`).filter(Boolean).join(' ');
+      s+=`<polyline points="${pts}" fill="none" stroke="${se.color}" stroke-width="2.25" stroke-linejoin="round" stroke-linecap="round"/>`;
+      x.forEach((yr,i)=>{ if(se.values[i]!=null) s+=`<circle cx="${X(i)}" cy="${Y(se.values[i])}" r="3.2" fill="${se.color}"><title>${esc(yr+' · '+se.name+': '+(+se.values[i]).toFixed(decimals)+unit)}</title></circle>`; }); });
+  }
+  document.getElementById(el).innerHTML=s+'</svg>';
+}
+function legendHTML(el,series){ document.getElementById(el).innerHTML=series.map(se=>`<span><i style="background:${se.color}"></i>${esc(se.name)}</span>`).join(''); }
+const C={gas:'#e2632e',hydro:'#2b7bd6',solar:'#e0a100',bio:'#18a58a',total:'#0f7a4a',urban:'#2b7bd6',rural:'#e0a100',red:'#b33a3a',orange:'#e2932e',grey:'#8a929a'};
+
+// ---------- History ----------
+let gy,genSeries,shareS;
+function renderHistory(){
+gy=Object.keys(GEN).map(Number);
+genSeries=[{name:'Gas',color:C.gas,values:gy.map(y=>GEN[y][0])},{name:'Hydro',color:C.hydro,values:gy.map(y=>GEN[y][1])},{name:'Solar',color:C.solar,values:gy.map(y=>GEN[y][2])},{name:'Bioenergy',color:C.bio,values:gy.map(y=>GEN[y][3])}];
+chart('chGen',{x:gy,series:genSeries,stacked:true,bars:true,unit:' TWh',decimals:2}); legendHTML('lgGen',genSeries);
+shareS=[{name:'Gas',color:C.gas,values:gy.map(y=>GEN[y][0]/GEN[y].reduce((a,b)=>a+b,0)*100)},{name:'Hydro',color:C.hydro,values:gy.map(y=>GEN[y][1]/GEN[y].reduce((a,b)=>a+b,0)*100)},{name:'Solar + bioenergy',color:C.bio,values:gy.map(y=>(GEN[y][2]+GEN[y][3])/GEN[y].reduce((a,b)=>a+b,0)*100)}];
+chart('chShare',{x:gy,series:shareS,yMax:100,unit:'%'}); legendHTML('lgShare',shareS);
+const wy=k=>Object.keys(WDI[k]).map(Number);
+const ay=wy('access'); const accS=[{name:'National',color:C.total,values:ay.map(y=>WDI.access[y])},{name:'Urban',color:C.urban,values:ay.map(y=>WDI.urban[y])},{name:'Rural',color:C.rural,values:ay.map(y=>WDI.rural[y])}];
+chart('chAccess',{x:ay,series:accS,yMax:100,unit:'%'}); legendHTML('lgAccess',accS);
+chart('chKwh',{x:wy('kwhpc'),series:[{name:'kWh per person',color:C.total,values:wy('kwhpc').map(y=>WDI.kwhpc[y])}],yMax:200,unit:' kWh'});
+chart('chCook',{x:wy('cooking'),series:[{name:'Clean cooking access',color:C.bio,values:wy('cooking').map(y=>WDI.cooking[y])}],yMax:30,unit:'%'});
+chart('chRen',{x:wy('renshare'),series:[{name:'Renewable share',color:C.bio,values:wy('renshare').map(y=>WDI.renshare[y])}],yMax:100,unit:'%'});
+}
+renderHistory();
+document.getElementById('discoBars').innerHTML=DISCO_ATCC.map(([d,a,t])=>`<div class="bar"><span>${esc(d)}</span><div class="track" style="position:relative"><div class="fill" style="width:${a}%;background:${C.red}"></div><div class="tick" style="left:${t}%" title="Target ${t}%"></div></div><span class="val">${a.toFixed(1)}%</span></div>`).join('');
+document.getElementById('nercBody').innerHTML=NERCQ.map(r=>`<tr><td>${r[0]}</td><td>${fmt(r[1])}</td><td>${fmt(r[2])}</td><td>${r[3]}%</td><td>${r[4]}%</td></tr>`).join('');
+
+// ---------- Grid watch ----------
+const daysSince=d=>Math.floor((Date.now()-new Date(d+'T12:00:00Z'))/86400000);
+const lastAny=EVENTS.filter(e=>/Total|Partial|Collapse/.test(e[1])).map(e=>e[0]).sort().pop();
+const lastTotal=EVENTS.filter(e=>e[1]==='Total').map(e=>e[0]).sort().pop();
+const dfmt=d=>new Date(d+'T12:00:00Z').toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'});
+const GSTATS=[
+ [daysSince(lastAny)+' days','since the last reported collapse','Partial collapse, '+dfmt(lastAny)+' · counter updates daily'],
+ [daysSince(lastTotal)+' days','since the last total collapse (NERC)',dfmt(lastTotal)],
+ ['4,758 MW','average available generation, Aug 2026','NERC monthly factsheet'],
+ ['5,801.84 MW','record peak grid generation','TCN, 4 Mar 2025'],
+ ['39,209 GWh','grid energy generated in 2025','NERC Annual Report 2025'],
+ ['2','grid collapses in 2025 (1 total, 1 partial)','NERC; media reported more'],
+];
+document.getElementById('gridStats').innerHTML=GSTATS.map(s=>`<div class="card stat"><div class="v">${s[0]}</div><div class="l">${s[1]}</div><div class="s">${s[2]}</div></div>`).join('');
+const LIVE=[
+ ['NIGGRID 24-hour grid dashboard','Official NISO dashboard — generation by plant, DisCo allocation, peak/off-peak.','https://niggrid.org/Dashboard'],
+ ['nationalgrid.ng','Independent live view built on NISO data — total MW, frequency, 24-hour trend.','https://www.nationalgrid.ng/'],
+ ['Nigeria Power Data','Independent dashboard with stored history of NISO grid data.','https://nigeriapowerdata.com/'],
+ ['NERC operational factsheets','Monthly verified figures — available capacity, load factor, energy.','https://nerc.gov.ng/resource-category/operational-performance-factsheet/'],
+ ['NERC quarterly report (2026 Q1)','Collapse list with causes, frequency statistics and DisCo losses.','https://nerc.gov.ng/wp-content/uploads/2026/07/2026_Q1-Report.pdf'],
+ ['Ember monthly electricity data','International monthly generation dataset (CSV).','https://ember-energy.org/data/monthly-electricity-data'],
+];
+document.getElementById('liveLinks').innerHTML=LIVE.map(l=>`<a class="linkcard" href="${l[2]}" target="_blank" rel="noopener"><b>${esc(l[0])} ↗</b><span>${esc(l[1])}</span></a>`).join('');
+const cy=COLLAPSES.map(c=>c[0]===2026?'2026*':c[0]);
+const colS=[{name:'Total collapse',color:C.red,values:COLLAPSES.map(c=>c[1])},{name:'Partial collapse',color:C.orange,values:COLLAPSES.map(c=>c[2])},{name:'Combined (no split reported)',color:C.grey,values:COLLAPSES.map(c=>c[3])}];
+chart('chCollapse',{x:cy,series:colS,stacked:true,bars:true,decimals:0,wide:true,notes:COLLAPSES.map(c=>COLLAPSE_SRC[c[4]][0]+(c[5]?'. '+c[5]:''))}); legendHTML('lgCollapse',colS);
+document.getElementById('eventBody').innerHTML=EVENTS.slice().reverse().map(e=>`<tr><td style="white-space:nowrap">${dfmt(e[0])}</td><td><span class="pill t-${e[1].toLowerCase()}">${esc(e[1])}</span></td><td>${esc(e[2]||'—')}</td><td><a href="${e[3]}" target="_blank" rel="noopener">${esc(new URL(e[3]).hostname.replace('www.',''))}</a></td></tr>`).join('');
+
+// ---------- Security & indices ----------
+const gasShare=()=>{const y=Math.max(...Object.keys(GEN).map(Number));const g=GEN[y];return [y,(g[0]/(g[0]+g[1]+g[2]+g[3])*100).toFixed(1)];};
+const SSTATS=[
+ ['~59 yrs','oil reserves-to-production life (37.01 bn bbl)','NUPRC, 1 Jan 2026'],
+ ['~85 yrs','gas reserves-to-production life (215.19 tcf)','NUPRC, 1 Jan 2026'],
+ ['<span id="gasShareV">'+gasShare()[1]+'%</span>','of grid electricity from gas (latest year) — gas and hydro supply >99%','<span id="gasYr">'+gasShare()[0]+'</span> · Our World in Data / Ember'],
+ ['63.7%','of petrol supply imported, Nov 2024–Nov 2025','NMDPRA via ThisDay'],
+ ['300.5 bscf','gas flared in 2024 (275.5 bscf in 2023)','NOSDRA via Sweetcrude'],
+ ['34.9%','DisCo ATC&C losses, Q4 2025 (target 20.54%)','NERC'],
+ ['141 kWh','electricity use per person, 2024','World Bank WDI'],
+ ['86.8 m','people without electricity — world\'s largest deficit','Tracking SDG7, 2025'],
+];
+document.getElementById('secStats').innerHTML=SSTATS.map(s=>`<div class="card stat"><div class="v">${s[0]}</div><div class="l">${esc(s[1])}</div><div class="s">${s[2]}</div></div>`).join('');
+const pmax=100; document.getElementById('petrolBars').innerHTML=PETROL.map(([m,v])=>`<div class="bar"><span>${m}</span><div class="track"><div class="fill" style="width:${v/pmax*100}%;background:${C.gas}"></div></div><span class="val">${v}%</span></div>`).join('');
+document.getElementById('nexus').innerHTML=[['WEF Nexus Index','overall','#0f7a4a'],['Water pillar','water','#2b7bd6'],['Energy pillar','energy','#e2632e'],['Food pillar','food','#e0a100']].map(([l,k,c])=>`<div class="bar"><span>${l}</span><div class="track"><div class="fill" style="width:${NEXUS[k][0]}%;background:${c}"></div></div><span class="val">${NEXUS[k][0]} · #${NEXUS[k][1]}</span></div>`).join('');
+document.getElementById('idxBody').innerHTML=INDICES.map(r=>`<tr><td><b>${esc(r[0])}</b></td><td>${esc(r[1])}</td><td>${esc(r[2])}</td><td>${esc(r[3]||'—')}</td><td><a href="${r[4]}" target="_blank" rel="noopener">${esc(new URL(r[4]).hostname.replace('www.',''))}</a></td></tr>`).join('')
+ +`<tr><td><b>WEF Nexus Index</b></td><td>2023</td><td>Score ${NEXUS.overall[0]} · rank ${NEXUS.overall[1]} of ${NEXUS.of}</td><td>Water ${NEXUS.water[0]} (#${NEXUS.water[1]}), energy ${NEXUS.energy[0]} (#${NEXUS.energy[1]}), food ${NEXUS.food[0]} (#${NEXUS.food[1]})</td><td><a href="${NEXUS.src}" target="_blank" rel="noopener">wefnexusindex.org</a></td></tr>`;
+document.getElementById('riseGrid').innerHTML=RISE.map(([p,rows])=>`<div class="card"><h3 class="ch">${esc(p)}</h3><div class="bars">${rows.map(([n,v])=>`<div class="bar"><span>${esc(n)}</span><div class="track"><div class="fill" style="width:${v}%;background:${v>=67?'#0f7a4a':v>=34?'#e0a100':'#b33a3a'}"></div></div><span class="val">${v}</span></div>`).join('')}</div></div>`).join('');
+
+// ---------- Projects ----------
+const PRJ_MAP={"Zungeru Hydropower Station":"H04","Kashimbila Hydropower Station":"H06","Dadin Kowa Hydropower":"H05","Mambilla Hydropower Project":"H11","Gurara Hydropower Plant":"H10","Kano (Kumbotso) Solar Plant":"S01","Tiga & Challawa hydropower (Kano IPP)":"H07","Katsina (Lambar Rimi) Wind Farm":"W01","Kaduna (Kudenda) 215 MW power plant":"G20","Abuja (Gwagwalada) IPP":"G21","Maiduguri Emergency Power Project":"G19","Aba Integrated Power Project":"G22","Azura-Edo IPP":"G02","Afam power plants sale":"G08","Geregu Power expansion":"G12","Egbin Phase 2 expansion":"G01","Light-Up Ogun (Onijanganjangan 30 MW)":"G23","Egume 20 MW mini-grid cluster":"S06"};
+const PRJ=PROJECTS.map(p=>({name:p[0],level:p[1],type:p[2],states:p[3],numbers:p[4],start:p[5],status:p[6],asof:p[7],who:p[8],desc:p[9],src:p[10]}));
+const statusGroup=s=>/Operational|Completed|In force|Established/i.test(s)?'Delivered':/Proposed|Launched/i.test(s)?'Proposed':/Stalled/i.test(s)?'Stalled':'In progress';
+const fill=(id,vals)=>{const el=document.getElementById(id);[...new Set(vals)].sort().forEach(v=>el.insertAdjacentHTML('beforeend',`<option>${esc(v)}</option>`));};
+fill('prjLevel',PRJ.map(p=>p.level)); fill('prjType',PRJ.map(p=>p.type)); fill('prjStatus',PRJ.map(p=>statusGroup(p.status)));
+function prjFiltered(){const q=document.getElementById('prjSearch').value.toLowerCase(),lv=document.getElementById('prjLevel').value,ty=document.getElementById('prjType').value,st=document.getElementById('prjStatus').value;
+  return PRJ.filter(p=>(!lv||p.level===lv)&&(!ty||p.type===ty)&&(!st||statusGroup(p.status)===st)&&(!q||Object.values(p).join(' ').toLowerCase().includes(q)));}
+function renderPrj(){const rows=prjFiltered();
+  document.getElementById('prjList').innerHTML=rows.map(p=>{const g=statusGroup(p.status);const a=PRJ_MAP[p.name]?ASSETS.find(x=>x.id===PRJ_MAP[p.name]):null;
+   return `<div class="card prjcard"><div class="prjhead"><span class="pill s-${g.toLowerCase().replace(' ','')}">${g}</span><span class="pill">${esc(p.level)}</span></div><h4>${esc(p.name)}</h4><div class="note">${esc(p.type)} · ${esc(p.states)}</div>${p.numbers?`<div class="num">${esc(p.numbers)}</div>`:''}<p>${esc(p.desc)}</p><dl class="kv"><dt>Status</dt><dd>${esc(p.status)}${p.asof?' ('+esc(p.asof)+')':''}</dd>${p.start?`<dt>Started</dt><dd>${p.start}</dd>`:''}<dt>Who</dt><dd>${esc(p.who)}</dd></dl><div class="prjfoot"><a href="${p.src}" target="_blank" rel="noopener">Source ↗</a>${a?`<a href="#" data-id="${a.id}">Show on map</a>`:''}</div></div>`;}).join('');
+  document.querySelectorAll('#prjList a[data-id]').forEach(x=>x.onclick=e=>{e.preventDefault();document.querySelector('[data-view="map"]').click();setTimeout(()=>focusAsset(x.dataset.id),80);});
+  document.getElementById('prjCount').textContent=`${rows.length} of ${PRJ.length} projects shown.`;}
+['prjSearch','prjLevel','prjType','prjStatus'].forEach(id=>document.getElementById(id).addEventListener('input',renderPrj)); renderPrj();
+const csvq=v=>v==null?'':/[",\n]/.test(String(v))?'"'+String(v).replace(/"/g,'""')+'"':String(v);
+document.getElementById('dlPrj').onclick=()=>{const cols=['name','level','type','states','numbers','start','status','asof','who','desc','src'];download('nigeria-power-projects.csv',[cols.join(','),...prjFiltered().map(p=>cols.map(c=>csvq(p[c])).join(','))].join('\n'),'text/csv');};
+document.getElementById('dlAll').onclick=()=>download('nigeria-energy-atlas-datasets.json',JSON.stringify({title:'Nigeria Energy Atlas — historical & indicator datasets',author:'Shagbaor Hycent Amool',updated:UPDATED,generation_TWh_gas_hydro_solar_bio:GEN,world_bank_wdi:WDI,nerc_quarterly:NERCQ,disco_atcc_q1_2026:DISCO_ATCC,grid_collapses:COLLAPSES,grid_collapse_sources:COLLAPSE_SRC,grid_events:EVENTS,petrol_import_share:PETROL,indices:INDICES,rise:RISE,wef_nexus_index:NEXUS,projects:PROJECTS},null,1),'application/json');
+// Re-draw charts on resize (axis label density)
+// ---------- Bot-refreshed data (loaded from data/*.json when hosted; embedded values are the fallback) ----------
+(async function loadLive(){
+  if(location.protocol==='file:') return;
+  const get=n=>fetch('data/'+n,{cache:'no-cache'}).then(r=>r.ok?r.json():null).catch(()=>null);
+  const [gen,wdi,docs,news,man]=await Promise.all(['generation.json','wdi.json','nerc_docs.json','grid_news.json','manifest.json'].map(get));
+  let redraw=false;
+  if(gen&&gen.years&&Object.keys(gen.years).length>=20){ Object.keys(GEN).forEach(k=>delete GEN[k]); Object.entries(gen.years).forEach(([y,v])=>GEN[y]=v.slice(0,4)); redraw=true; }
+  if(wdi&&wdi.series){ Object.entries(wdi.series).forEach(([k,s])=>{ const v=Object.fromEntries(Object.entries(s.values||{}).filter(([y])=>+y>=2000)); if(Object.keys(v).length>=5) WDI[k]=v; }); redraw=true; }
+  if(redraw){ renderHistory(); const [y,s]=gasShare(); const a=document.getElementById('gasShareV'),b=document.getElementById('gasYr'); if(a)a.textContent=s+'%'; if(b)b.textContent=y; }
+  const d10=s=>s?new Date(s).toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'}):'';
+  if(docs&&docs.documents){ const L=docs.documents.slice(0,8); document.getElementById('nercFeed').innerHTML=L.length?L.map(d=>`<li><a href="${esc(d.url)}" target="_blank" rel="noopener">${esc(d.title)}</a><span>${esc(d.category)} · seen ${d10(d.first_seen)}</span></li>`).join(''):'<li class="note">No documents found yet.</li>'; }
+  if(news&&news.items){ const L=news.items.slice(0,8); document.getElementById('newsFeed').innerHTML=L.length?L.map(i=>`<li><a href="${esc(i.url)}" target="_blank" rel="noopener">${esc(i.title)}</a><span>${esc(i.domain)} · ${d10(i.seen)}</span></li>`).join(''):'<li class="note">No grid-collapse headlines in the last 90 days.</li>'; }
+  if(man&&man.datasets){ const nm={'generation.json':'generation','wdi.json':'World Bank','nerc_docs.json':'NERC watch','grid_news.json':'news radar'}; document.getElementById('freshness').textContent='Automated data last changed — '+Object.entries(nm).filter(([f])=>man.datasets[f]&&man.datasets[f].updated).map(([f,l])=>l+': '+d10(man.datasets[f].updated)).join(' · ')+'.'; }
+})();
+let rt; window.addEventListener('resize',()=>{clearTimeout(rt);rt=setTimeout(()=>{chart('chGen',{x:gy,series:genSeries,stacked:true,bars:true,unit:' TWh',decimals:2});chart('chShare',{x:gy,series:shareS,yMax:100,unit:'%'});chart('chCollapse',{x:cy,series:colS,stacked:true,bars:true,decimals:0,wide:true,notes:COLLAPSES.map(c=>COLLAPSE_SRC[c[4]][0]+(c[5]?'. '+c[5]:''))});},250);});
+
+// ---------- Sources ----------
+const SOURCES=[
+ ["NUPRC — oil and gas reserves as at 1 January 2026 (Nairametrics report)","https://nairametrics.com/2026/04/02/nuprc-declares-37-billion-barrels-oil-215tcf-gas-reserves-as-of-january-2026/"],
+ ["Our World in Data — electricity production by source, Nigeria (Ember & Energy Institute)","https://ourworldindata.org/grapher/electricity-production-by-source?country=~NGA"],
+ ["World Bank WDI API — access, clean cooking, consumption per capita, T&D losses, renewable share","https://data.worldbank.org/country/nigeria"],
+ ["NERC — quarterly reports, annual report 2025 and monthly operational factsheets","https://nerc.gov.ng/resource-category/operational-performance-factsheet/"],
+ ["WEF Nexus Index — Nigeria 2023 values (wefnexusindex.org, accessed 11 Oct 2026); method: Simpson et al. 2022, Frontiers in Water","https://doi.org/10.3389/frwa.2022.825854"],
+ ["World Bank RISE — Nigeria country scores","https://rise.esmap.org/country/nigeria"],
+ ["NMDPRA petrol supply data (ThisDay, Jan 2026)","https://www.thisdaylive.com/2026/01/06/nigeria-imports-12-96bn-litres-of-petrol-gets-7-4bn-litres-local-supply-in-13-months/"],
+ ["NOSDRA gas flaring 2023–2024 (Sweetcrude report)","https://sweetcrudereports.com/nigeria-lost-n1-7trn-to-gas-flaring-in-2024"],
+ ["Transmission Company of Nigeria — record peak generation, March 2025 (Channels TV report)","https://www.channelstv.com/2025/03/06/tcn-announces-peak-in-power-generation-to-5801-84mw"],
+ ["US Energy Information Administration — Today in Energy on Dangote refinery capacity (Aug 2026)","https://www.eia.gov/todayinenergy/detail.php?id=68004"],
+ ["World Bank World Development Indicators — access to electricity (% of population)","https://data.worldbank.org/indicator/EG.ELC.ACCS.ZS?locations=NG"],
+ ["Tracking SDG7 (IEA, IRENA, UNSD, World Bank, WHO) — Nigeria country data","https://trackingsdg7.esmap.org/"],
+ ["Nigerian Electricity Regulatory Commission — transfer of regulatory oversight to state regulators (ICIR report, Aug 2025)","https://www.icirnigeria.org/nerc-transfers-regulatory-oversight-to-bayelsa-electricity-commission/"],
+ ["Zungeru Hydroelectric Power Station — commissioning (Enerdata)","https://www.enerdata.net/publications/daily-energy-news/nigeria-fully-commissions-700-mw-zungeru-hydropower-project.html"],
+ ["Energy Commission of Nigeria — National Energy Policy and Renewable Energy Master Plan (resource potential estimates)","https://www.energy.gov.ng/"],
+ ["Rural Electrification Agency — Nigeria Electrification Project, Energizing Education Programme, DARES","https://rea.gov.ng/"],
+ ["Nigeria Energy Transition Plan","https://energytransition.gov.ng/"],
+ ["Global Solar Atlas (World Bank / Solargis) — site-level solar resource","https://globalsolaratlas.info/map?c=9.1,8.7,6"],
+ ["Global Wind Atlas (DTU / World Bank)","https://globalwindatlas.info/"],
+ ["Natural Earth — Admin-1 boundaries (public domain)","https://www.naturalearthdata.com/"],
+];
+document.getElementById('sourceList').innerHTML=SOURCES.map(s=>`<li><a href="${s[1]}" target="_blank" rel="noopener">${esc(s[0])}</a></li>`).join('');
+document.getElementById('updated').textContent=UPDATED;
+})();
+</script>
+</body>
+</html>
