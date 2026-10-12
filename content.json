@@ -93,6 +93,13 @@
     "news": [
       {
         "date": "Oct 2026",
+        "iso": "2026-10-11",
+        "text": "Launched the [Nigeria Energy Atlas](/energy-atlas/), an open map and dataset of Nigeria's power plants, fuels and grid, with a record of national grid collapses and energy-security indicators.",
+        "url": "",
+        "hidden": false
+      },
+      {
+        "date": "Oct 2026",
         "iso": "2026-10-08",
         "text": "Launched the [Nigeria Water Resources Atlas](/water-atlas/), an open map and dataset of Nigeria's dams, rivers, lakes, wetlands and groundwater, with a river flood watch.",
         "url": "",
@@ -735,6 +742,40 @@
           ],
           "classroom": "give each group a crop and two markets, look up both prices, and decide whether the price gap covers the cost of trucking it.",
           "doi": "10.5281/zenodo.23294215"
+        },
+        {
+          "name": "Nigeria Energy Atlas",
+          "text": "See Nigeria's energy system on one map: power stations, refineries, pipelines, LNG, coal and the solar and wind resource of every state, with distribution companies and state electricity regulators. Follow electricity generation, access and losses since 2000, the record of national grid collapses, energy-security and index scores (including the Water–Energy–Food Nexus Index) and a register of 44 power-sector projects. Every figure links to its source, and the data downloads as CSV, GeoJSON or JSON.",
+          "link_label": "Open tool",
+          "sdgs": [
+            7,
+            13
+          ],
+          "hidden": false,
+          "url": "/energy-atlas/",
+          "kind": "Interactive map · free",
+          "audience": [
+            "Researchers",
+            "Practitioners",
+            "Educators",
+            "Students"
+          ],
+          "level": "All levels",
+          "numbers": [
+            {
+              "value": "66",
+              "label": "energy sites and assets mapped"
+            },
+            {
+              "value": "44",
+              "label": "power projects tracked"
+            },
+            {
+              "value": "2010–2026",
+              "label": "grid-collapse record"
+            }
+          ],
+          "classroom": "give each group a state, compare its solar resource and mapped power plants with its distribution company's losses, and argue for the next power project the state needs."
         }
       ],
       "note": "Using one of these in a course or workshop? I'd love to hear how it went: [amool@unbc.ca](mailto:amool@unbc.ca). Free to use for teaching and learning."
