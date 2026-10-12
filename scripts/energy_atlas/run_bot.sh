@@ -7,10 +7,12 @@ SCRIPT="$1"; LABEL="$2"
 export ATLAS_ISSUE_FILE="${RUNNER_TEMP:-/tmp}/atlas-issue-$$.md"
 : > "$ATLAS_ISSUE_FILE"
 python "scripts/energy_atlas/$SCRIPT"
+# rebuild the "Download all data" package when anything it contains changed
+node scripts/energy_atlas/build_package.mjs || echo "WARN: data package build failed"
 
 git config user.name  "energy-atlas-bot"
 git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-git add energy-atlas/data
+git add energy-atlas/data energy-atlas/downloads
 if ! git diff --cached --quiet; then
   git commit -m "Energy Atlas: ${LABEL} ($(date -u +%Y-%m-%d))"
   for i in 1 2 3; do git pull --rebase --quiet && git push --quiet && break || sleep 10; done
