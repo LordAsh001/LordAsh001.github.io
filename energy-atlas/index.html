@@ -645,7 +645,7 @@ window.map=map;
 function setTiles(){
   if(window._tiles) map.removeLayer(window._tiles);
   const dark=root.getAttribute('data-theme')==='dark';
-  window._tiles=L.tileLayer(`https://{s}.basemaps.cartocdn.com/${dark?'dark_all':'light_all'}/{z}/{x}/{y}{r}.png`,{subdomains:'abcd',maxZoom:18,attribution:'&copy; OpenStreetMap contributors &copy; CARTO · Boundaries: Natural Earth'}).addTo(map);
+  window._tiles=L.tileLayer(`https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/${dark?'World_Dark_Gray_Base':'World_Light_Gray_Base'}/MapServer/tile/{z}/{y}/{x}`,{maxZoom:16,attribution:'Basemap &copy; Esri, HERE, Garmin, &copy; OpenStreetMap contributors · Boundaries: Natural Earth'}).addTo(map);
   window._tiles.bringToBack();
 }
 setTiles();
