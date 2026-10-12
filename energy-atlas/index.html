@@ -9,10 +9,16 @@
 <meta property="og:description" content="Open map and data on Nigeria's energy: power plants, refineries, pipelines, renewable potential, grid collapses, energy security indices and power-sector projects.">
 <meta property="og:url" content="https://shagbaor.com/energy-atlas/">
 <meta property="og:type" content="website">
+<meta property="og:image" content="https://shagbaor.com/images/tool-energy-atlas.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#0f7a4a">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230f7a4a'/%3E%3Cpath d='M36 8 18 36h12l-4 20 20-30H34Z' fill='%23fff'/%3E%3C/svg%3E">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"Nigeria Energy Atlas","description":"Free, source-linked map and dataset of Nigeria's energy system: power plants, refineries, pipelines, renewable resource by state, electricity generation and access history, national grid collapses, energy-security indicators and power-sector projects.","url":"https://shagbaor.com/energy-atlas/","creator":{"@type":"Person","name":"Shagbaor Hycent Amool","affiliation":"University of Northern British Columbia"},"spatialCoverage":"Nigeria","isAccessibleForFree":true}</script>
 <script>try{var t=localStorage.getItem("theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
 <script src="/assets/traction.js" defer></script>
 <meta name="description" content="Interactive atlas of Nigeria's energy system: renewable and fossil resources, power plants, refineries, pipelines, state-level potential and electricity market structure.">
 <meta name="author" content="Shagbaor Hycent Amool">
+<meta name="color-scheme" content="light dark">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -110,6 +116,8 @@ h3.ch{font-size:15px;margin:0 0 10px}
 .prjcard .num{font-size:13px;font-weight:600;margin-top:6px}
 .prjfoot{display:flex;gap:14px;font-size:13px;margin-top:8px}
 .pill.s-delivered{background:#0f7a4a;color:#fff}.pill.s-inprogress{background:#2b7bd6;color:#fff}.pill.s-proposed{background:#8a929a;color:#fff}.pill.s-stalled{background:#b33a3a;color:#fff}
+/* shared site bar (added by /assets/toolbar.js): keep it above Leaflet panes */
+.sitebar{z-index:1100!important}
 @media (max-width:860px){
   header{flex-wrap:wrap;padding:10px 16px}
   nav.tabs{margin-left:0;width:100%}
