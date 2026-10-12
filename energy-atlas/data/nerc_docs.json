@@ -1,5 +1,384 @@
 {
  "source": "Nigerian Electricity Regulatory Commission (nerc.gov.ng)",
- "checked": "2026-10-11T12:00:00+00:00",
- "documents": []
+ "checked": "2026-10-12T01:54:09+00:00",
+ "documents": [
+  {
+   "url": "https://nerc.gov.ng/wp-content/uploads/2026/09/YEDC_HOLDCO_YSS_September_2026_098.pdf",
+   "title": "YEDC HOLDCO YSS September 2026 098",
+   "category": "Order",
+   "first_seen": "2026-10-12"
+  },
+  {
+   "url": "https://nerc.gov.ng/wp-content/uploads/2026/09/PHED_HOLDCO_YSS_September_2026_097.pdf",
+   "title": "PHED HOLDCO YSS September 2026 097",
+   "category": "Order",
+   "first_seen": "2026-10-12"
+  },
+  {
+   "url": "https://nerc.gov.ng/wp-content/uploads/2026/09/Order-1.jpg",
+   "title": "Order 1",
+   "category": "Operational performance factsheet",
+   "first_seen": "2026-10-12"
+  },
+  {
+   "url": "https://nerc.gov.ng/wp-content/uploads/2026/09/Operational_Factsheet_Aug-2026-updated-scaled.png",
+   "title": "Operational Factsheet Aug 2026 updated scaled",
+   "category": "Operational performance factsheet",
+   "first_seen": "2026-10-12"
+  },
+  {
+   "url": "https://nerc.gov.ng/wp-content/uploads/2026/09/Metering-Factsheet-May-June-2026-Updated-scaled.png",
+   "title": "Metering Factsheet May June 2026 Updated scaled",
+   "category": "Metering factsheet",
+   "first_seen": "2026-10-12"
+  },
+  {
+   "url": "https://nerc.gov.ng/wp-content/uploads/2026/09/KEDCO_HOLDCO_YSS_Septmeber_2026_096.pdf",
+   "title": "KEDCO HOLDCO YSS Septmeber 2026 096",
+   "category": "Order",
+   "first_seen": "2026-10-12"
+  },
+  {
+   "url": "https://nerc.gov.ng/wp-content/uploads/2026/09/KAEDC_HOLDCO_YSS_September_2026_095.pdf",
+   "title": "KAEDC HOLDCO YSS September 2026 095",
+   "category": "Order",
+   "first_seen": "2026-10-12"
+  },
+  {
+   "url": "https://nerc.gov.ng/wp-content/uploads/2026/09/JED_HOLDCO_YSS_September_2026_094.pdf",
+   "title": "JED HOLDCO YSS September 2026 094",
+   "category": "Order",
+   "first_seen": "2026-10-12"
+  },
+  {
+   "url": "https://nerc.gov.ng/wp-content/uploads/2026/09/IE_HOLDCO_YSS_September_2026_093.pdf",
+   "title": "IE HOLDCO YSS September 2026 093",
+   "category": "Order",
+   "first_seen": "2026-10-12"
+  },
+  {
+   "url": "https://nerc.gov.ng/wp-content/uploads/2026/09/IBEDC_HOLDCO_YSS_September_2026_092.pdf",
+   "title": "IBEDC HOLDCO YSS September 2026 092",
+   "category": "Order",
+   "first_seen": "2026-10-12"
+  },
+  {
+   "url": "https://nerc.gov.ng/wp-content/uploads/2026/09/EKEDP_HOLDCO_YSS_September_2026_091.pdf",
+   "title": "EKEDP HOLDCO YSS September 2026 091",
+   "category": "Order",
+   "first_seen": "2026-10-12"
+  },
+  {
+   "url": "https://nerc.gov.ng/wp-content/uploads/2026/09/EEDC_HOLDCO_YSS_September_2026_090.pdf",
+   "title": "EEDC HOLDCO YSS September 2026 090",
+   "category": "Order",
+   "first_seen": "2026-10-12"
+  },
+  {
+   "url": "https://nerc.gov.ng/wp-content/uploads/2026/09/Commercial-Factsheet_July-2026-scaled.png",
+   "title": "Commercial Factsheet July 2026 scaled",
+   "category": "Commercial performance factsheet",
+   "first_seen": "2026-10-12"
+  },
+  {
+   "url": "https://nerc.gov.ng/wp-content/uploads/2026/09/Amended-order-on-nonadmin-opex_04092026171143.pdf",
+   "title": "Amended order on nonadmin opex 04092026171143",
+   "category": "Order",
+   "first_seen": "2026-10-12"
+  },
+  {
+   "url": "https://nerc.gov.ng/wp-content/uploads/2026/09/2026_Q2_Report.pdf",
+   "title": "2026 Q2 Report",
+   "category": "NERC report (quarterly/annual)",
+   "first_seen": "2026-10-12"
+  },
+  {
+   "url": "https://nerc.gov.ng/wp-content/uploads/2026/09/1-scaled.jpg",
+   "title": "1 scaled",
+   "category": "Operational performance factsheet",
+   "first_seen": "2026-10-12"
+  },
+  {
+   "url": "https://nerc.gov.ng/wp-content/uploads/2026/08/WhatsApp-Image-2026-08-20-at-11.54.33-AM.jpeg",
+   "title": "WhatsApp Image 2026 08 20 at 11.54.33 AM",
+   "category": "Operational performance factsheet",
+   "first_seen": "2026-10-12"
+  },
+  {
+   "url": "https://nerc.gov.ng/wp-content/uploads/2026/08/Metering-Factsheet_MarApr-2026-scaled.png",
+   "title": "Metering Factsheet MarApr 2026 scaled",
+   "category": "Metering factsheet",
+   "first_seen": "2026-10-12"
+  },
+  {
+   "url": "https://nerc.gov.ng/wp-content/uploads/2026/08/Commercial-Factsheet_May-2026-scaled.png",
+   "title": "Commercial Factsheet May 2026 scaled",
+   "category": "Commercial performance factsheet",
+   "first_seen": "2026-10-12"
+  },
+  {
+   "url": "https://nerc.gov.ng/wp-content/uploads/2026/08/6Y6A9847-scaled.jpg",
+   "title": "6Y6A9847 scaled",
+   "category": "Operational performance factsheet",
+   "first_seen": "2026-10-12"
+  },
+  {
+   "url": "https://nerc.gov.ng/wp-content/uploads/2026/08/6Y6A9221.JPG-scaled.jpeg",
+   "title": "6Y6A9221.JPG scaled",
+   "category": "Operational performance factsheet",
+   "first_seen": "2026-10-12"
+  },
+  {
+   "url": "https://nerc.gov.ng/wp-content/uploads/2026/08/4-scaled.jpg",
+   "title": "4 scaled",
+   "category": "Operational performance factsheet",
+   "first_seen": "2026-10-12"
+  },
+  {
+   "url": "https://nerc.gov.ng/wp-content/uploads/2026/08/2025-Annual-Report_Pub.pdf",
+   "title": "2025 Annual Report Pub",
+   "category": "NERC report (quarterly/annual)",
+   "first_seen": "2026-10-12"
+  },
+  {
+   "url": "https://nerc.gov.ng/wp-content/uploads/2026/07/2026_Q1-Report.pdf",
+   "title": "2026 Q1 Report",
+   "category": "NERC report (quarterly/annual)",
+   "first_seen": "2026-10-12"
+  },
+  {
+   "url": "https://nerc.gov.ng/wp-content/uploads/2026/06/Operational-Performance-Factsheet-Nov-2025_2.pdf",
+   "title": "Operational Performance Factsheet Nov 2025 2",
+   "category": "Operational performance factsheet",
+   "first_seen": "2026-10-12"
+  },
+  {
+   "url": "https://nerc.gov.ng/wp-content/uploads/2026/06/Operational-Performance-Factsheet-Nov-2025_1.pdf",
+   "title": "Operational Performance Factsheet Nov 2025 1",
+   "category": "Operational performance factsheet",
+   "first_seen": "2026-10-12"
+  },
+  {
+   "url": "https://nerc.gov.ng/wp-content/uploads/2026/06/Operational-Performance-Factsheet-Dec-2025_2.pdf",
+   "title": "Operational Performance Factsheet Dec 2025 2",
+   "category": "Statistics & performance data",
+   "first_seen": "2026-10-12"
+  },
+  {
+   "url": "https://nerc.gov.ng/wp-content/uploads/2026/06/Operational-Performance-Factsheet-Dec-2025_1.pdf",
+   "title": "Operational Performance Factsheet Dec 2025 1",
+   "category": "Operational performance factsheet",
+   "first_seen": "2026-10-12"
+  },
+  {
+   "url": "https://nerc.gov.ng/wp-content/uploads/2026/06/NERC-Commercial-Factsheet-March-2026.pdf",
+   "title": "NERC Commercial Factsheet March 2026",
+   "category": "Commercial performance factsheet",
+   "first_seen": "2026-10-12"
+  },
+  {
+   "url": "https://nerc.gov.ng/wp-content/uploads/2026/06/Metering-Factsheet-May-and-Jun-2025.pdf",
+   "title": "Metering Factsheet May and Jun 2025",
+   "category": "Metering factsheet",
+   "first_seen": "2026-10-12"
+  },
+  {
+   "url": "https://nerc.gov.ng/wp-content/uploads/2026/06/Metering-Factsheet-Jul-and-Aug-2025.pdf",
+   "title": "Metering Factsheet Jul and Aug 2025",
+   "category": "Metering factsheet",
+   "first_seen": "2026-10-12"
+  },
+  {
+   "url": "https://nerc.gov.ng/wp-content/uploads/2026/06/Metering-Factsheet-Apr-2025.pdf",
+   "title": "Metering Factsheet Apr 2025",
+   "category": "Metering factsheet",
+   "first_seen": "2026-10-12"
+  },
+  {
+   "url": "https://nerc.gov.ng/wp-content/uploads/2026/06/Commercial-Performance-Factsheet-Nov-2025.pdf",
+   "title": "Commercial Performance Factsheet Nov 2025",
+   "category": "Commercial performance factsheet",
+   "first_seen": "2026-10-12"
+  },
+  {
+   "url": "https://nerc.gov.ng/wp-content/uploads/2026/06/Commercial-Performance-Factsheet-May-2025.pdf",
+   "title": "Commercial Performance Factsheet May 2025",
+   "category": "Commercial performance factsheet",
+   "first_seen": "2026-10-12"
+  },
+  {
+   "url": "https://nerc.gov.ng/wp-content/uploads/2026/06/Commercial-Performance-Factsheet-Jul-2025.pdf",
+   "title": "Commercial Performance Factsheet Jul 2025",
+   "category": "Commercial performance factsheet",
+   "first_seen": "2026-10-12"
+  },
+  {
+   "url": "https://nerc.gov.ng/wp-content/uploads/2026/06/Commercial-Performance-Factsheet-Dec-2025.pdf",
+   "title": "Commercial Performance Factsheet Dec 2025",
+   "category": "Commercial performance factsheet",
+   "first_seen": "2026-10-12"
+  },
+  {
+   "url": "https://nerc.gov.ng/wp-content/uploads/2026/06/Commercial-Performance-Factsheet-Aug-2025.pdf",
+   "title": "Commercial Performance Factsheet Aug 2025",
+   "category": "Commercial performance factsheet",
+   "first_seen": "2026-10-12"
+  },
+  {
+   "url": "https://nerc.gov.ng/wp-content/uploads/2026/05/Operational-Factsheet-April-2026.pdf.pdf",
+   "title": "Operational Factsheet April 2026",
+   "category": "Operational performance factsheet",
+   "first_seen": "2026-10-12"
+  },
+  {
+   "url": "https://nerc.gov.ng/wp-content/uploads/2026/04/Operational-Factsheet_March-2026-merged.pdf",
+   "title": "Operational Factsheet March 2026 merged",
+   "category": "Operational performance factsheet",
+   "first_seen": "2026-10-12"
+  },
+  {
+   "url": "https://nerc.gov.ng/wp-content/uploads/2026/04/Commercial_Factsheet_Jan-2026-merged.pdf",
+   "title": "Commercial Factsheet Jan 2026 merged",
+   "category": "Commercial performance factsheet",
+   "first_seen": "2026-10-12"
+  },
+  {
+   "url": "https://nerc.gov.ng/wp-content/uploads/2026/04/2025_Q4-Report.pdf",
+   "title": "2025 Q4 Report",
+   "category": "NERC report (quarterly/annual)",
+   "first_seen": "2026-10-12"
+  },
+  {
+   "url": "https://nerc.gov.ng/wp-content/uploads/2026/03/Operational-Performance-Factsheet-January-2026.pdf",
+   "title": "Operational Performance Factsheet January 2026",
+   "category": "Operational performance factsheet",
+   "first_seen": "2026-10-12"
+  },
+  {
+   "url": "https://nerc.gov.ng/wp-content/uploads/2026/03/Operational-Performance-Factsheet-February-2026.pdf",
+   "title": "Operational Performance Factsheet February 2026",
+   "category": "Operational performance factsheet",
+   "first_seen": "2026-10-12"
+  },
+  {
+   "url": "https://nerc.gov.ng/wp-content/uploads/2026/03/Metering-Factsheet-Nov_Dec-2025-scaled.png",
+   "title": "Metering Factsheet Nov Dec 2025 scaled",
+   "category": "Metering factsheet",
+   "first_seen": "2026-10-12"
+  },
+  {
+   "url": "https://nerc.gov.ng/wp-content/uploads/2026/02/Operational-performance-factsheet_2-Oct-2025.pdf",
+   "title": "Operational performance factsheet 2 Oct 2025",
+   "category": "Operational performance factsheet",
+   "first_seen": "2026-10-12"
+  },
+  {
+   "url": "https://nerc.gov.ng/wp-content/uploads/2026/02/Operational-performance-factsheet_1-Oct-2025.pdf",
+   "title": "Operational performance factsheet 1 Oct 2025",
+   "category": "Operational performance factsheet",
+   "first_seen": "2026-10-12"
+  },
+  {
+   "url": "https://nerc.gov.ng/wp-content/uploads/2026/02/Metering-Factsheet-Sep-Oct-2025.pdf",
+   "title": "Metering Factsheet Sep Oct 2025",
+   "category": "Metering factsheet",
+   "first_seen": "2026-10-12"
+  },
+  {
+   "url": "https://nerc.gov.ng/wp-content/uploads/2026/02/Consumer-Affairs-factsheet-July-2024-updated_converted.pdf",
+   "title": "Consumer Affairs factsheet July 2024 updated converted",
+   "category": "Metering factsheet",
+   "first_seen": "2026-10-12"
+  },
+  {
+   "url": "https://nerc.gov.ng/wp-content/uploads/2026/02/Consumer-Affairs-factsheet-August-2024_converted.pdf",
+   "title": "Consumer Affairs factsheet August 2024 converted",
+   "category": "Metering factsheet",
+   "first_seen": "2026-10-12"
+  },
+  {
+   "url": "https://nerc.gov.ng/wp-content/uploads/2026/02/Consumer-Affairs-September-2024_converted.pdf",
+   "title": "Consumer Affairs September 2024 converted",
+   "category": "Metering factsheet",
+   "first_seen": "2026-10-12"
+  },
+  {
+   "url": "https://nerc.gov.ng/wp-content/uploads/2026/02/Commercial-Performance-Factsheet_October-2025.pdf",
+   "title": "Commercial Performance Factsheet October 2025",
+   "category": "Commercial performance factsheet",
+   "first_seen": "2026-10-12"
+  },
+  {
+   "url": "https://nerc.gov.ng/wp-content/uploads/2026/01/2025_Q3-Report.pdf",
+   "title": "2025 Q3 Report",
+   "category": "NERC report (quarterly/annual)",
+   "first_seen": "2026-10-12"
+  },
+  {
+   "url": "https://nerc.gov.ng/wp-content/uploads/2025/10/2025_Q2-Report.pdf",
+   "title": "2025 Q2 Report",
+   "category": "NERC report (quarterly/annual)",
+   "first_seen": "2026-10-12"
+  },
+  {
+   "url": "https://nerc.gov.ng/wp-content/uploads/2025/09/2022_Annual_Report.pdf",
+   "title": "2022 Annual Report",
+   "category": "NERC report (quarterly/annual)",
+   "first_seen": "2026-10-12"
+  },
+  {
+   "url": "https://nerc.gov.ng/wp-content/uploads/2025/07/2025_Q1_Report.pdf",
+   "title": "2025 Q1 Report",
+   "category": "NERC report (quarterly/annual)",
+   "first_seen": "2026-10-12"
+  },
+  {
+   "url": "https://nerc.gov.ng/wp-content/uploads/2025/07/2024-Annual-Report-1.pdf",
+   "title": "2024 Annual Report 1",
+   "category": "NERC report (quarterly/annual)",
+   "first_seen": "2026-10-12"
+  },
+  {
+   "url": "https://nerc.gov.ng/wp-content/uploads/2025/03/2024_Q4-Report.pdf",
+   "title": "2024 Q4 Report",
+   "category": "NERC report (quarterly/annual)",
+   "first_seen": "2026-10-12"
+  },
+  {
+   "url": "https://nerc.gov.ng/wp-content/uploads/2023/12/favicon-32x32-1.png",
+   "title": "favicon 32x32 1",
+   "category": "Operational performance factsheet",
+   "first_seen": "2026-10-12"
+  },
+  {
+   "url": "https://nerc.gov.ng/wp-content/uploads/2021/01/Nov-2020 Meter Deployment Status.pdf",
+   "title": "Nov 2020 Meter Deployment Status",
+   "category": "Statistics & performance data",
+   "first_seen": "2026-10-12"
+  },
+  {
+   "url": "https://nerc.gov.ng/wp-content/uploads/2020/07/Harmonized Report for Friday, June 19 to Thursday, June 25, 2020.pdf",
+   "title": "Harmonized Report for Friday, June 19 to Thursday, June 25, 2020",
+   "category": "Statistics & performance data",
+   "first_seen": "2026-10-12"
+  },
+  {
+   "url": "https://nerc.gov.ng/wp-content/uploads/2020/07/Harmonized Report for Friday, June 12 to Thursday, June 18, 2020.pdf",
+   "title": "Harmonized Report for Friday, June 12 to Thursday, June 18, 2020",
+   "category": "Statistics & performance data",
+   "first_seen": "2026-10-12"
+  },
+  {
+   "url": "https://nerc.gov.ng/wp-content/uploads/2020/07/Guidelines on filing applications for competition transition charge by electricity distribution and trading licenses (1).pdf",
+   "title": "Guidelines on filing applications for competition transition charge by electricity distribution and trading licenses (1)",
+   "category": "Statistics & performance data",
+   "first_seen": "2026-10-12"
+  },
+  {
+   "url": "https://nerc.gov.ng/wp-content/uploads/2020/06/Harmonized Report for Friday, June 05 to Thursday, June 11, 2020.pdf",
+   "title": "Harmonized Report for Friday, June 05 to Thursday, June 11, 2020",
+   "category": "Statistics & performance data",
+   "first_seen": "2026-10-12"
+  }
+ ]
 }
