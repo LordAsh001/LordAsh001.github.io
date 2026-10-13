@@ -410,6 +410,12 @@ for rv in CUR["rivers"]:
          "geomsrc": "Natural Earth" if rv.get("ne") and any(NE_NAMED.get(n + " River") or NE_NAMED.get(n) for n in rv["ne"]) else "DIVA-GIS (Digital Chart of the World)"}
     add(f)
 
+# rivers known only from published studies: a point at the study area, no line
+for rv in CUR.get("studied_rivers", []):
+    add({"i": "riv-" + rv["id"], "n": rv["n"], "c": 7, "la": rv["la"], "lo": rv["lo"], "q": "study", "states": rv.get("states"),
+         "mouth": rv.get("mouth"), "loc_note": rv.get("loc_note"), "notes": rv.get("notes"), "thr": rv.get("thr"), "res": rv.get("res"),
+         "src": list(rv.get("src", [])), "ref": rv.get("ref"), "v": "B"})
+
 # ---------------------------------------------------------------- 6. lakes and water areas (polygons for the map)
 LAKES = []
 diva_a = raw("diva_areas.json")
