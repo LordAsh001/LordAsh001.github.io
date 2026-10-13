@@ -904,27 +904,287 @@
       "note": "Commissioned on 13 February 1988, according to an MTech thesis (Olaseni, Federal University of Technology Minna, 2018) that also names the operator. No published measured volume was found: Global Dam Watch’s 47.8 million m³ is a modelled estimate from the reservoir’s area, and FAO’s 22 million m³ is not defined further."
     }
   },
-  "studied_rivers_note": "Rivers known from published studies but not named in the open river datasets. They are shown as a point at the study area, with no line.",
+  "studied_rivers_note": "Rivers known from published studies but missing from the open river datasets. Lines are digitised from published maps where one exists; otherwise the river is a point at the study area.",
   "studied_rivers": [
     {
       "id": "ivo",
       "n": "Ivo River",
       "la": 5.917,
-      "lo": 7.533,
+      "lo": 7.571,
+      "q": "line",
+      "ln": [
+        [
+          [
+            7.42,
+            5.997
+          ],
+          [
+            7.421,
+            5.989
+          ],
+          [
+            7.426,
+            5.988
+          ],
+          [
+            7.432,
+            5.98
+          ],
+          [
+            7.435,
+            5.979
+          ],
+          [
+            7.451,
+            5.964
+          ],
+          [
+            7.451,
+            5.955
+          ],
+          [
+            7.455,
+            5.951
+          ],
+          [
+            7.457,
+            5.937
+          ],
+          [
+            7.461,
+            5.932
+          ],
+          [
+            7.462,
+            5.926
+          ],
+          [
+            7.471,
+            5.919
+          ],
+          [
+            7.477,
+            5.905
+          ],
+          [
+            7.483,
+            5.903
+          ],
+          [
+            7.489,
+            5.904
+          ],
+          [
+            7.493,
+            5.895
+          ],
+          [
+            7.497,
+            5.89
+          ],
+          [
+            7.507,
+            5.891
+          ],
+          [
+            7.511,
+            5.887
+          ],
+          [
+            7.517,
+            5.887
+          ],
+          [
+            7.518,
+            5.892
+          ],
+          [
+            7.526,
+            5.895
+          ],
+          [
+            7.533,
+            5.901
+          ],
+          [
+            7.545,
+            5.902
+          ],
+          [
+            7.546,
+            5.905
+          ],
+          [
+            7.551,
+            5.907
+          ],
+          [
+            7.555,
+            5.913
+          ],
+          [
+            7.561,
+            5.913
+          ],
+          [
+            7.565,
+            5.911
+          ],
+          [
+            7.571,
+            5.917
+          ],
+          [
+            7.574,
+            5.922
+          ],
+          [
+            7.585,
+            5.926
+          ],
+          [
+            7.587,
+            5.936
+          ],
+          [
+            7.597,
+            5.941
+          ],
+          [
+            7.601,
+            5.948
+          ],
+          [
+            7.617,
+            5.952
+          ],
+          [
+            7.624,
+            5.959
+          ],
+          [
+            7.632,
+            5.955
+          ],
+          [
+            7.639,
+            5.959
+          ],
+          [
+            7.644,
+            5.959
+          ],
+          [
+            7.648,
+            5.965
+          ],
+          [
+            7.652,
+            5.966
+          ],
+          [
+            7.655,
+            5.969
+          ],
+          [
+            7.672,
+            5.973
+          ],
+          [
+            7.676,
+            5.972
+          ],
+          [
+            7.676,
+            5.967
+          ],
+          [
+            7.682,
+            5.961
+          ],
+          [
+            7.687,
+            5.962
+          ],
+          [
+            7.689,
+            5.971
+          ],
+          [
+            7.696,
+            5.972
+          ],
+          [
+            7.708,
+            5.973
+          ],
+          [
+            7.714,
+            5.968
+          ],
+          [
+            7.722,
+            5.966
+          ],
+          [
+            7.726,
+            5.966
+          ],
+          [
+            7.73,
+            5.969
+          ],
+          [
+            7.744,
+            5.966
+          ],
+          [
+            7.746,
+            5.969
+          ],
+          [
+            7.761,
+            5.97
+          ]
+        ]
+      ],
+      "geomsrc": "digitised by the atlas from the Ivo River Basin map in Asiegbu (2018), PhD research, University of Port Harcourt, and checked against the GPS readings in Oyediran et al. (2023); accurate to about 1 km",
       "states": [
         "Abia",
         "Ebonyi",
         "Enugu"
       ],
-      "mouth": "Ezeaku River (Cross River system)",
-      "loc_note": "The marker sits at the centre of the basin as given in the study (5°51′–5°59′ N, 7°24′–7°40′ E). The river’s course is not drawn because none of the open river datasets the atlas uses names it.",
-      "notes": "The Ivo River Basin covers over 450 km² of low-lying land, 70–140 m above sea level, in the Benue Trough. The Aku (the head stream) and streams such as the Nwaomaiyi and Obe rise on the Okigwe Cuesta, and the Ivo is the main tributary of the Ezeaku River in the Cross River plains. The study followed it for about 62 km, from Ngada-Umuelem Isuochi in Abia State to Okpanku Ikoli in Enugu State. Towns in the basin include Ishiagu, Lokpaukwu, Lokpanta and Lekwesi, with fewer than 200,000 people. Flow measured at five points in September 2007 and February 2008 ranged from about 820 to 10,800 litres a minute; the study’s average of about 6.7 million litres a day is the mean across those points, not the flow at the mouth.",
-      "thr": "Over 50 years of lead-zinc mining and stone quarrying. In samples taken in 2007–08 the river met WHO drinking-water guidelines for 20 parameters, but manganese exceeded US EPA and EU standards at almost all sampling points, and pollution was highest downstream of the mines at Lokpaukwu, Okue (Ishiagu) and Okpanku Ikoli. Limestone and dolomite in the bedrock appear to keep heavy metals out of the water by settling them into the sediments.",
-      "res": "The river is the only regular dry-season water source for Ishiagu and the main source of drinking water for Lekwesi and Lokpaukwu. Groundwater in the area is often hard, salty or contaminated with metals. The study estimates that, with basic treatment, the river could supply about 133% of average and 84% of peak community demand.",
+      "mouth": "Cross River system",
+      "notes": "The Ivo rises near Umuelem Lekwesi in Abia State, flows south-east past Lokpaukwu to the Afikpo road, then north-east through Ishiagu, Amaobiriba and Mpu to Amagu, on the Ebonyi–Enugu border; the mapped channel is about 52 km long. Ezekwe et al. (2012) describe a basin of over 450 km² of low-lying land, 70–140 m above sea level, in the Benue Trough, with the Aku as the head stream and the Nwaomaiyi and Obe among streams rising on the Okigwe Cuesta. They name the Ezeaku River as the river it joins, in the Cross River plains. Towns in the basin include Ishiagu, Lokpaukwu, Lokpanta and Lekwesi, with fewer than 200,000 people. Flow measured at five points in September 2007 and February 2008 ranged from about 820 to 10,800 litres a minute; the study’s average of about 6.7 million litres a day is the mean across those points, not the flow at the mouth.",
+      "thr": "Over 50 years of lead-zinc mining and stone quarrying. In samples taken in 2007–08 the river met WHO drinking-water guidelines for 20 parameters, but manganese exceeded US EPA and EU standards at almost all sampling points, and pollution was highest downstream of the mines at Lokpaukwu, Okue (Ishiagu) and Okpanku Ikoli (Ezekwe et al. 2012). Limestone and dolomite in the bedrock appear to keep heavy metals out of the water by settling them into the sediments. The river is also impounded at Mpu, where an abandoned dam project has turned it from flowing to still water; a 2018 survey found no bottom-dwelling molluscs in the reservoir and few in the river, which the authors link to mining, farm chemicals and quarry waste (Oyediran et al. 2023).",
+      "res": "The river is the only regular dry-season water source for Ishiagu and the main source of drinking water for Lekwesi and Lokpaukwu, and it is fished at Ishiagu, Mpu and Okpanku. Groundwater in the area is often hard, salty or contaminated with metals. Ezekwe et al. (2012) estimate that, with basic treatment, the river could supply about 133% of average and 84% of peak community demand.",
       "src": [
         "https://doi.org/10.1007/s11707-011-0201-2"
       ],
-      "ref": "Ezekwe, I. C., Aisubeogun, A. O., Chima, G. N. and Odubo, E. (2012). TDS-Eh graph analysis: a new water quality index and rural water supply implications of a river affected by mining in south-eastern Nigeria. Frontiers of Earth Science 6(1): 66–74."
+      "ref": [
+        "Ezekwe, I. C., Aisubeogun, A. O., Chima, G. N. and Odubo, E. (2012). TDS-Eh graph analysis: a new water quality index and rural water supply implications of a river affected by mining in south-eastern Nigeria. Frontiers of Earth Science 6(1): 66–74.",
+        "Oyediran, A. G., Olaoti, K. S., Azuine, U. A., Falana, O. and Emerue, E. P. (2023). Diversity and abundance of benthic molluscs in Ivo River, Ishiagu, Ebonyi State, Nigeria. Proceedings of the 38th Annual Conference of the Fisheries Society of Nigeria (FISON), Yenagoa: 647–652.",
+        "Asiegbu, V. (2018). Map of the Ivo River Basin, PhD research, University of Port Harcourt (data: OSGOF 2011; produced by UniqueMappers Team, UNIPORT)."
+      ]
+    }
+  ],
+  "studied_sites_note": "Dams and other sites known only from published studies, with the study’s own location.",
+  "studied_sites": [
+    {
+      "id": "mpu-dam",
+      "n": "Mpu Dam",
+      "c": 0,
+      "la": 5.959,
+      "lo": 7.639,
+      "q": "gps",
+      "river": "Ivo",
+      "s": "Enugu",
+      "loc_note": "Location from the GPS reading of the Mpu Dam sampling station in Oyediran et al. (2023).",
+      "notes": "An impoundment on the Ivo River at Mpu, Enugu State, described by Oyediran et al. (2023) as an abandoned impoundment project. It has turned this stretch of the river from flowing to still water. In monthly samples from March to July 2018 no bottom-dwelling molluscs were found in the reservoir, while the flowing river above and below it had some; the authors class the reservoir as polluted, pointing to run-off, erosion and mining and farm waste collecting behind the dam. No published capacity, height or operator was found.",
+      "ref": [
+        "Oyediran, A. G., Olaoti, K. S., Azuine, U. A., Falana, O. and Emerue, E. P. (2023). Diversity and abundance of benthic molluscs in Ivo River, Ishiagu, Ebonyi State, Nigeria. Proceedings of the 38th Annual Conference of the Fisheries Society of Nigeria (FISON), Yenagoa: 647–652."
+      ],
+      "v": "C"
     }
   ]
 }
