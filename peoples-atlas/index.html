@@ -2138,7 +2138,7 @@ function targetName(t){if(!t)return "";if(t.startsWith("f:")){const f=ALLF.find(
 function subsHtml(){
   const kl=Object.fromEntries(KINDS);const secl=Object.fromEntries(SECTIONS);
   const all=[...subs.map(s=>({...s,ph:false})),...photoSubs.map(s=>({...s,ph:true}))].sort((a,b)=>String(b.d.createdAt).localeCompare(String(a.d.createdAt)));
-  if(!all.length)return `<p class="muted">${dbState==="ready"?"No submissions yet. Yours could be the first.":`Submissions are reviewed openly on <a class="ext" href="https://github.com/lordash001/lordash001.github.io/issues?q=label%3Apeoples-atlas" target="_blank" rel="noopener">GitHub ↗</a>.`}</p>`;
+  if(!all.length)return `<p class="muted">${dbState==="ready"?"No submissions yet. Yours could be the first.":`Submissions are reviewed by the atlas editor before they appear.`}</p>`;
   return all.slice(0,60).map(s=>{const d=s.d;const st=d.status||"pending";const tn=targetName(d.target);
     return `<div class="sub"><div class="h"><b>${esc(s.ph?(d.caption||"Photo of "+tn):(d.name||tn||"Untitled"))}</b><span class="badge ${st==="approved"?"b-ok":st==="declined"?"b-none":"b-warn"}">${esc(st)}</span></div>
     <div class="muted small">${s.ph?"Photograph":esc(kl[d.kind]||d.kind)}${d.section&&d.kind==="profile"?" · "+esc(secl[d.section]||""):""}${tn&&(s.ph||d.name)?" · "+esc(tn):""}${d.state?" · "+esc(d.state):""}${d.lga?" · "+esc(d.lga):""}${d.locality?" · "+esc(d.locality):""}${d.who?" · by "+esc(d.who):""}</div>
@@ -2198,19 +2198,26 @@ const h=(location.hash||"").slice(1);if(["festivals","contribute"].includes(h))s
 <script>
 /* Website version: submissions go to GitHub issues for review; data downloads directly. */
 const ISSUES_REPO="lordash001/lordash001.github.io";
+const TALLY_FORM_URL="https://tally.so/r/kdDBOJ";
 window.dbNotice=function(){
   if(dbState==="ready")return "";
-  return `<div class="callout">When you submit, a pre-filled GitHub issue opens in a new tab for the atlas editor to review. You need a free GitHub account. To share a photograph, drag it into the issue before you press <b>Submit new issue</b>.</div>`;
+  return `<div class="callout">When you submit, a short form opens in a new tab with your details already attached. Add a photo there if you have one, then press <b>Submit</b>. No account is needed, and every contribution is reviewed before it appears.</div>`;
 };
 window.showCopy=function(rec){
-  const kl=Object.fromEntries(KINDS);const tn=targetName(rec.target)||(rec.target?"":"");
-  const lines=Object.entries(rec).filter(([k,v])=>v&&!["status","createdAt","by"].includes(k)).map(([k,v])=>`**${k}:** ${v}`);
-  const title=`[peoples-atlas] ${rec.kind==="photo"?"Photo":(kl[rec.kind]||rec.kind)}: ${rec.name||tn||"untitled"}`;
-  const body=`Submitted from the Nigeria Peoples & Cultures Atlas (${location.href.split("#")[0]}).\n\n${lines.join("\n")}${rec.target?`\n**about:** ${tn}`:""}\n\n${rec.kind==="photo"?"_Drag your photo into this box before submitting._\n":""}`;
-  const url=`https://github.com/${ISSUES_REPO}/issues/new?labels=peoples-atlas&title=${encodeURIComponent(title)}&body=${encodeURIComponent(body)}`;
+  const kl=Object.fromEntries(KINDS);const tn=targetName(rec.target)||"";
+  const kind=rec.kind==="photo"?"A cultural photograph":(kl[rec.kind]||rec.kind);
+  const subject=[rec.name,tn&&tn!==rec.name?tn:""].filter(Boolean).join(" · ")||"Untitled";
+  const place=[rec.locality,rec.lga,rec.state].filter(Boolean).join(", ");
+  const skip=["status","createdAt","by","kind","name","state","lga","locality","target"];
+  const labels={alt:"Other names",lang:"Language",month:"Month",section:"Section",popEstimate:"Population estimate",popYear:"Year of estimate",start:"First day",end:"Last day",about:"Text",source:"Source",who:"Contributor",caption:"Photo caption",credit:"Photo credit",consent:"Photo permission"};
+  const details=Object.entries(rec).filter(([k,v])=>v&&!skip.includes(k)).map(([k,v])=>`${labels[k]||k}: ${k==="month"?MONTHS_L[v-1]:v}`).join("\n");
+  const page=location.href.split("#")[0];
+  const q=new URLSearchParams({kind,subject,place,details,page});
+  const url=TALLY_FORM_URL+"?"+q.toString();
+  const body=`${kind}\n${subject}${place?"\n"+place:""}\n\n${details}\n\nFrom: ${page}`;
+  const gh=`https://github.com/${ISSUES_REPO}/issues/new?labels=peoples-atlas&title=${encodeURIComponent("[peoples-atlas] "+kind+": "+subject)}&body=${encodeURIComponent(body)}`;
   const out=panel.querySelector("#c-out");
-  out.innerHTML=`<div class="callout"><b>Almost done.</b> Your submission is ready to send for review. <p style="margin:8px 0"><a class="btn earth" href="${url}" target="_blank" rel="noopener">Open it on GitHub ↗</a></p><details><summary class="small">No GitHub account? Copy the text instead</summary><pre class="copy" id="c-txt">${esc(body)}</pre><button class="btn sm" id="c-copy">Copy</button></details></div>`;
-  out.querySelector("#c-copy").onclick=async()=>{try{await navigator.clipboard.writeText(body);toast("Copied");}catch{toast("Select the text and copy it.");}};
+  out.innerHTML=`<div class="callout"><b>Almost done.</b> Finish your submission in the form that has opened${rec.kind==="photo"?", and attach your photo there":""}. <p style="margin:8px 0"><a class="btn earth" href="${url}" target="_blank" rel="noopener">Open the submission form ↗</a></p><p class="small muted" style="margin:0">Prefer GitHub? <a class="ext" href="${gh}" target="_blank" rel="noopener">Send it as a GitHub issue</a>.</p></div>`;
   try{window.open(url,"_blank","noopener");}catch(e){}
 };
 if(!window.claude){
