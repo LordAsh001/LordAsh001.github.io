@@ -821,6 +821,87 @@
         }
       ],
       "note": "No published survey or inspection that measures this reservoir's volume was found. Wikipedia gives a dam height of 9 m but marks it as disputed, so the atlas does not use it."
+    },
+    "g377": {
+      "op": {
+        "n": "North South Power Company Ltd (concessionaire of the power station)",
+        "u": "https://northsouthpower.com/assets/shiroro-hydroelectric-power-station/"
+      },
+      "caps": [
+        {
+          "v": 7000,
+          "by": "North South Power Company (operator)",
+          "date": "accessed October 2026",
+          "u": "https://northsouthpower.com/assets/shiroro-hydroelectric-power-station/",
+          "what": "Not stated (“reservoir”)"
+        },
+        {
+          "v": 7000,
+          "by": "Infrastructure Concession Regulatory Commission (ICRC) project page",
+          "date": "2020",
+          "u": "https://ppp.icrc.gov.ng/project/220/shiroro-hydro-electric-power-plant",
+          "what": "Not stated (“reservoir of 7bM3”)"
+        }
+      ],
+      "faox": "FAO lists 7 million m³. The operator and the federal concession regulator both give 7 billion m³, so FAO’s figure is almost certainly 7 km³ entered in the wrong unit. It is not counted as a disagreement."
+    },
+    "g1949": {
+      "faox": "FAO lists 6,519 million m³. For a 14 m dam with FAO’s own reservoir area of 16.6 km², that would need an average depth of about 390 m, so it is almost certainly 65.19 with the decimal point lost, close to Global Dam Watch’s 65. It is not counted as a disagreement.",
+      "note": "No operator or official capacity figure for Jakara Dam was found in a published source."
+    },
+    "g10425": {
+      "caps": [
+        {
+          "v": 40,
+          "by": "Katsina State Government, Information on Infrastructural Facilities in Katsina State",
+          "date": "January 2024",
+          "u": "https://katsinastate.gov.ng/wp-content/uploads/2024/01/Information-on-Infrastructural-Facilities-in-Katsina-State.pdf",
+          "what": "Not stated"
+        },
+        {
+          "v": 30.6,
+          "by": "News report by Francis Sardauna (AllAfrica)",
+          "date": "May 2025",
+          "u": "https://allafrica.com/stories/202505020344.html",
+          "what": "“Storage capacity”"
+        }
+      ],
+      "note": "Global Dam Watch’s 130.2 million m³ is a modelled estimate from the reservoir’s area; the published figures (FAO, the state government and a 2025 news report) all fall between about 30 and 40 million m³. Built by the Federal Government: the contract was first awarded in 1997, re-awarded in 2009, and the Federal Executive Council approved funds to complete the dam in October 2017 (TheCable). No published source names the body that runs it."
+    },
+    "g10435": {
+      "op": {
+        "n": "Katsina State Government (water supply for Katsina city)",
+        "u": "https://dailytrust.com/govt-to-complete-50m-litre-ajiwa-dam-in-2022/"
+      },
+      "caps": [
+        {
+          "v": 45,
+          "by": "Katsina State Government, Information on Infrastructural Facilities in Katsina State",
+          "date": "January 2024",
+          "u": "https://katsinastate.gov.ng/wp-content/uploads/2024/01/Information-on-Infrastructural-Facilities-in-Katsina-State.pdf",
+          "what": "Given as a range, 40–50; the midpoint is shown"
+        }
+      ],
+      "note": "FAO places this dam in Kaduna State; it is in Katsina State. The “50 million litres” in news headlines is the daily output of the water treatment plant, not the reservoir’s volume. Global Dam Watch’s 63.3 million m³ is a modelled estimate from the reservoir’s area."
+    },
+    "g5196": {
+      "caps": [
+        {
+          "v": 5,
+          "by": "Decrown Nigeria project page (Swashi diversion earthfill dam)",
+          "date": "accessed October 2026",
+          "u": "https://decrown-ng.com/?mgt_portfolio=swashi-dam-and-irrigation-project",
+          "what": "“Reservoir capacity”"
+        }
+      ],
+      "note": "The Swashi dam and irrigation project, completed for the Federal Government in 1992, has two dams according to the project page: the Swashi diversion earthfill dam (5 million m³) and the Kubli concrete gravity dam (70 million m³). It is not clear which of these Global Dam Watch’s 16 million m³ refers to. No published source names the body that runs it."
+    },
+    "g10546": {
+      "op": {
+        "n": "Upper Niger River Basin Development Authority (UNRBDA)",
+        "u": "https://www.academia.edu/101485512/IMPACT_ASSESSMENT_OF_TUNGAN_KAWO_IRRIGATION_SCHEME_ON_LIVELIHOOD_AND_PHYSICAL_DEVELOPMENT_OF_WUSHISHI_LOCAL_GOVERNMENT_AREA_OF_NIGER_STATE_NIGERIA"
+      },
+      "note": "Commissioned on 13 February 1988, according to an MTech thesis (Olaseni, Federal University of Technology Minna, 2018) that also names the operator. No published measured volume was found: Global Dam Watch’s 47.8 million m³ is a modelled estimate from the reservoir’s area, and FAO’s 22 million m³ is not defined further."
     }
   }
 }
