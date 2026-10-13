@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-12",
+ "updated": "2026-10-13",
  "sources": [
   {
    "source": "Opportunities for Africans",
@@ -9,22 +9,22 @@
   {
    "source": "Opportunity Desk",
    "ok": true,
-   "items": 6
+   "items": 7
   },
   {
    "source": "Opportunities Corners",
    "ok": true,
-   "items": 6
+   "items": 4
   },
   {
    "source": "Scholarship Region",
    "ok": true,
-   "items": 8
+   "items": 5
   },
   {
    "source": "Opportunities for Youth",
    "ok": true,
-   "items": 8
+   "items": 7
   },
   {
    "source": "Commonwealth Scholarship Commission",
@@ -56,6 +56,108 @@
   }
  ],
  "items": [
+  {
+   "title": "Global Investigative Journalism Conference (GIJC) Fellowship 2027 (Funded)",
+   "link": "https://opportunitydesk.org/2026/10/13/global-investigative-journalism-conference-fellowship-2027/",
+   "date": "2026-10-13",
+   "source": "Opportunity Desk",
+   "official": false,
+   "ids": [],
+   "summary": "Deadline: January 31, 2027 Applications are open for the Global Investigative Journalism Conference (GIJC) Fellowship 2027. The 15th Global Investigative Journalism Conference (GIJC) will be held in …",
+   "seen": "2026-10-13"
+  },
+  {
+   "title": "United Nations Regional Course in International Law for Africa 2027 (Funding available)",
+   "link": "https://opportunitydesk.org/2026/10/13/united-nations-regional-course-in-international-law-for-africa-2027/",
+   "date": "2026-10-13",
+   "source": "Opportunity Desk",
+   "official": false,
+   "ids": [],
+   "summary": "Deadline: October 30, 2026 Applications are open for the United Nations Regional Course in International Law for Africa 2027. The United Nations Regional Course in International Law for Africa is org…",
+   "seen": "2026-10-13"
+  },
+  {
+   "title": "2027 Erasmus Mundus AFEPA Scholarship Programme in Germany, Sweden, Italy, Belgium (Fully Funded)",
+   "link": "https://www.scholarshipregion.com/erasmus-mundus-afepa-scholarship/",
+   "date": "2026-10-13",
+   "source": "Scholarship Region",
+   "official": false,
+   "ids": [
+    "erasmus"
+   ],
+   "summary": "The Erasmus Mundus AFEPA Scholarship is the European Master’s programme in Agricultural, Food, and Environmental Policy Analysis (AFEPA). The Erasmus Mundus AFEPA Scholarship is fully funded covering…",
+   "seen": "2026-10-13"
+  },
+  {
+   "title": "2027 Beahrs Environmental Leadership Program at UC Berkeley: Apply for Environmental Leadership Training and Scholarship Opportunities",
+   "link": "https://opportunitiesforyouth.org/2026/10/13/2027-beahrs-environmental-leadership-program-at-uc-berkeley-apply-for-environmental-leadership-training-and-scholarship-opportunities/",
+   "date": "2026-10-13",
+   "source": "Opportunities for Youth",
+   "official": false,
+   "ids": [],
+   "summary": "The University of California, Berkeley, through the Rausser College of Natural Resources, is inviting applications for the 2027 Beahrs Environmental Leadership Program (ELP). This programme offers an…",
+   "seen": "2026-10-13"
+  },
+  {
+   "title": "Trinity College Dublin PhD Researcher in Sociology Scholarship 2027: Fully Funded PhD in Ireland with €25,000 Annual Stipend",
+   "link": "https://opportunitiesforyouth.org/2026/10/13/trinity-college-dublin-phd-researcher-in-sociology-scholarship-2027-fully-funded-phd-in-ireland-with-e25000-annual-stipend/",
+   "date": "2026-10-13",
+   "source": "Opportunities for Youth",
+   "official": false,
+   "ids": [],
+   "summary": "Are you a postgraduate graduate with a background in Sociology, Social Policy, Sociology of Health, or a related social science discipline looking for a fully funded PhD opportunity in Europe? Trinit…",
+   "seen": "2026-10-13"
+  },
+  {
+   "title": "Youth Investment Council 2026–2027: Paid Youth Leadership Opportunity to Shape Major Community Funding in New Bedford, Massachusetts",
+   "link": "https://opportunitiesforyouth.org/2026/10/13/youth-investment-council-2026-2027-paid-youth-leadership-opportunity-to-shape-major-community-funding-in-new-bedford-massachusetts/",
+   "date": "2026-10-13",
+   "source": "Opportunities for Youth",
+   "official": false,
+   "ids": [],
+   "summary": "The Youth Investment Council is giving young people in New Bedford, Massachusetts, an opportunity to take part in something much bigger than a traditional youth leadership program. Selected Council m…",
+   "seen": "2026-10-13"
+  },
+  {
+   "title": "AWC Predoctoral and Postdoctoral Fellowships 2027–28 at Duke, Johns Hopkins SAIS and UT Austin: Fully Funded Research Fellowship Opportunity for Doctoral Scholars",
+   "link": "https://opportunitiesforyouth.org/2026/10/13/awc-predoctoral-and-postdoctoral-fellowships-2027-28-at-duke-johns-hopkins-sais-and-ut-austin-fully-funded-research-fellowship-opportunity-for-doctoral-scholars/",
+   "date": "2026-10-13",
+   "source": "Opportunities for Youth",
+   "official": false,
+   "ids": [],
+   "summary": "The America in the World Consortium (AWC) Predoctoral and Postdoctoral Fellowships 2027–28 offer an important research opportunity for scholars whose work examines American grand strategy, U.S. forei…",
+   "seen": "2026-10-13"
+  },
+  {
+   "title": "2027–2028 IWA & Grundfos Youth Action for SDG 6 Fellowship",
+   "link": "https://opportunitiesforyouth.org/2026/10/13/call-for-applications-fellowship-in-the-water-sector/",
+   "date": "2026-10-13",
+   "source": "Opportunities for Youth",
+   "official": false,
+   "ids": [],
+   "summary": "Young water professionals who are developing innovative solutions to water challenges have an opportunity to strengthen their work through the 2027–2028 IWA & Grundfos Youth Action for SDG 6 Fellowsh…",
+   "seen": "2026-10-13"
+  },
+  {
+   "title": "Toronto Metropolitan University Bridging Divides Graduate Student Scholarships 2027: Up to $45,000 Annually for Master’s and PhD Students",
+   "link": "https://opportunitiesforyouth.org/2026/10/13/toronto-metropolitan-university-bridging-divides-graduate-student-scholarships-2027-up-to-45000-annually-for-masters-and-phd-students/",
+   "date": "2026-10-13",
+   "source": "Opportunities for Youth",
+   "official": false,
+   "ids": [],
+   "summary": "Introduction Graduate students looking to pursue advanced research in migration, social divisions, and related interdisciplinary fields have an opportunity to receive substantial financial support th…",
+   "seen": "2026-10-13"
+  },
+  {
+   "title": "The Atlantic Editorial Fellowship 2027–2028: $60,000 Salary, Journalism Training and Mentorship in Washington, D.C.",
+   "link": "https://opportunitiesforyouth.org/2026/10/13/the-atlantic-editorial-fellowship-2027-2028-60000-salary-journalism-training-and-mentorship-in-washington-d-c/",
+   "date": "2026-10-13",
+   "source": "Opportunities for Youth",
+   "official": false,
+   "ids": [],
+   "summary": "The Atlantic is inviting recent college graduates and early-career journalists to apply for its Editorial Fellowship, a full-time opportunity designed to develop emerging journalism professionals thr…",
+   "seen": "2026-10-13"
+  },
   {
    "title": "Echidna Global Scholars Visiting Fellowship 2027 ($26,500 stipend)",
    "link": "https://opportunitydesk.org/2026/10/12/echidna-global-scholars-visiting-fellowship-2027/",
@@ -205,6 +307,70 @@
    "ids": [],
    "summary": "The SHARE Fellowship 2027 at Thunderbird School of Global Management, Arizona State University (ASU), offers an opportunity for experienced professionals from low- and middle-income countries to purs…",
    "seen": "2026-10-12"
+  },
+  {
+   "title": "The Echidna Global Scholars Program 2027 at Brookings Institution, Washington D.C USA ($26,500 USD Stipend & Fully Funded)",
+   "link": "https://www.opportunitiesforafricans.com/the-echidna-global-scholars-program-2027-at-brookings-institution/",
+   "date": "2026-10-12",
+   "source": "Opportunities for Africans",
+   "official": false,
+   "ids": [],
+   "summary": "Application Deadline: December 1, 2026. Applications are now open for the 2027 Echidna Global Scholars Program. The Echidna Global Scholars Program at the Center for Universal Education (CUE) at Broo…",
+   "seen": "2026-10-13"
+  },
+  {
+   "title": "Niger Delta Development Commission (NDDC) Local Postgraduate Scholarship Programme 2026/2027 for Nigerian Students.",
+   "link": "https://www.opportunitiesforafricans.com/niger-delta-development-commission-nddc-local-postgraduate-scholarship-programme-2026-2027-for-nigerian-students/",
+   "date": "2026-10-12",
+   "source": "Opportunities for Africans",
+   "official": false,
+   "ids": [
+    "nddc"
+   ],
+   "summary": "Application Deadline: November 8, 2026 Applications are now open for the 2026/2027 Niger Delta Development Commission (NDDC) Local Postgraduate Scholarship Programme. The Niger Delta Development Comm…",
+   "seen": "2026-10-13"
+  },
+  {
+   "title": "6 Organisations That Fund African Students to Study Abroad",
+   "link": "https://www.scholarshipregion.com/organisations-that-fund-african-students-to-study-abroad/",
+   "date": "2026-10-12",
+   "source": "Scholarship Region",
+   "official": false,
+   "ids": [],
+   "summary": "Studying abroad is expensive, with tuition, accommodation, living expenses, travel, health insurance and visa fees adding up quickly. However, scholarships, grants and fellowships from governments, c…",
+   "seen": "2026-10-13"
+  },
+  {
+   "title": "Auburn University Scholarships 2027 in USA | Fully Funded",
+   "link": "https://www.scholarshipregion.com/auburn-university-scholarship/",
+   "date": "2026-10-12",
+   "source": "Scholarship Region",
+   "official": false,
+   "ids": [],
+   "summary": "The Auburn University Scholarship is a fully funded graduate assistantship for intending students seeking to study in the United States of America (USA). The Auburn State University Scholarship offer…",
+   "seen": "2026-10-13"
+  },
+  {
+   "title": "2027 Dr Gabriel Olubunmi Fakeye Scholarship & Bursary Award | How To Apply",
+   "link": "https://www.scholarshipregion.com/dr-gabriel-olubunmi-fakeye-scholarship/",
+   "date": "2026-10-12",
+   "source": "Scholarship Region",
+   "official": false,
+   "ids": [],
+   "summary": "The Pro. Dr. Gabriel Olubunmi Fakeye (GOF) Scholarship & Bursary Award is now open for applications from eligible indigent Nigerians. The scholarship offers awards and bursaries worth up to ₦4.6m to …",
+   "seen": "2026-10-13"
+  },
+  {
+   "title": "Institute of Science Tokyo MEXT Scholarship by Japan Government 2027 | Fully Funded",
+   "link": "https://www.scholarshipregion.com/institute-of-science-tokyo-mext-scholarship/",
+   "date": "2026-10-12",
+   "source": "Scholarship Region",
+   "official": false,
+   "ids": [
+    "mext"
+   ],
+   "summary": "The Institute of Science Tokyo is inviting applications from international students for the 2027 MEXT Scholarship by Japan Government. The Institute of Science Tokyo MEXT Scholarship covers tuition f…",
+   "seen": "2026-10-13"
   },
   {
    "title": "AIxBio Research Fellowship 2027 in UK (Fully Funded)",
