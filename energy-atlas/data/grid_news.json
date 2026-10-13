@@ -1,6 +1,7 @@
 {
  "source": "GDELT 2.0 DOC API (news index)",
+ "query": "(\"national grid\" OR \"power grid\") (collapse OR collapsed OR disturbance OR blackout) (Nigeria OR TCN OR NISO OR NERC)",
  "note": "Automatically collected headlines; not verified.",
- "checked": "2026-10-11T12:00:00+00:00",
+ "checked": "2026-10-13T23:05:25+00:00",
  "items": []
 }
