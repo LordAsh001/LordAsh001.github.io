@@ -1395,7 +1395,7 @@ function select(f,fromMap){
   const facts=[];const F2=(k,v,w,raw)=>{if(v!=null&&v!=='')facts.push([k,v,w,raw])};
   F2(f.c===7?'States crossed (approx.)':'State',f.s||'Not established',f.c===7);
   if(f.c===0||f.c===9||f.c===1){F2('River',f.river);F2('Basin',[f.basin,f.sub].filter(Boolean).join(' › '));F2('Completed',f.y);F2('Main use',f.use);F2('Dam height',nfmt(f.hgt,'m'));F2('Crest length',nfmt(f.len,'m'));
-    F2('Storage capacity',f.cap!=null?nfmt(f.cap,'million m³',1):null);F2('Reservoir area',nfmt(f.akm,'km²',1));F2('Mean depth',nfmt(f.dep,'m',1));F2('Average inflow',f.dis!=null?nfmt(f.dis,'m³/s',1):null);
+    F2('Storage capacity',f.cap!=null?nfmt(f.cap,'million m³',1)+' ('+capSrc(f)+')':null);if(f.facts&&f.facts.op){const o=f.facts.op;F2('Run by',`${esc(o.n)} <a href="${esc(o.u)}" target="_blank" rel="noopener" style="font-size:12px">source</a>`,0,1)}F2('Reservoir area',nfmt(f.akm,'km²',1));F2('Mean depth',nfmt(f.dep,'m',1));F2('Average inflow',f.dis!=null?nfmt(f.dis,'m³/s',1):null);
     F2('Upstream catchment',nfmt(f.catch,'km²'));F2('Installed power',nfmt(f.mw,'MW'));F2('Degree of regulation',f.dor!=null?nfmt(f.dor,'% of annual flow',1):null);F2('Elevation',nfmt(f.elev,'m a.s.l.'));F2('Nearest town',f.city);
     if(f.uses&&f.uses.length)F2('Uses',f.uses.join(', '),1);if(f.inv)F2('Name in UNICEF dam list',f.inv)}
   if(f.c===7){F2('Length (whole river)',f.rlen?nfmt(f.rlen,'km'):null);F2('Flows into',f.mouth);F2('Line drawn from',f.geomsrc,1)}
@@ -1406,7 +1406,7 @@ function select(f,fromMap){
   h+=`<dl class="facts">${facts.map(([k,v,w,raw])=>`<div class="fact${w?' w':''}"><dt>${k}</dt><dd>${raw?v:esc(v)}</dd></div>`).join('')}</dl>`;
   if(f.wt)h+=`<div class="sec"><h3>About</h3><p class="wiki">${esc(f.wt.t)}</p><div class="wiki-src">From <a href="${esc(f.wt.u)}" target="_blank" rel="noopener">Wikipedia, “${esc(f.wt.title)}”</a> (CC BY-SA 4.0), retrieved ${esc(DATA.meta.refreshed)}.</div></div>`;
   const sec=(t,v)=>v?`<div class="sec"><h3>${t}</h3><p>${esc(v)}</p></div>`:'';
-  h+='<div id="repbox"></div><div id="faobox"></div>';
+  h+='<div id="repbox"></div><div id="capbox"></div><div id="faobox"></div>';
   h+=sec('Notes',f.notes)+sec('Vegetation',f.veg)+sec('Wildlife',f.fauna)+sec('Resources',f.res)+sec('Tourism',f.tour)+sec('Threats',f.thr);
   if(f.c===6&&f.forest_id)h+=`<div class="callout">This wetland also appears in the <a href="${CONFIG.forestUrl}#${esc(f.forest_id)}">Nigeria Forest Reserves Atlas</a>, with its biodiversity records.</div>`;
   if(f.c===7){const onr=F.filter(x=>x!==f&&(x.c===0||x.c===8)&&x.river&&f.n.toLowerCase().startsWith(x.river.toLowerCase().split(/[–-]/)[0])).sort((a,b)=>(b.cap||b.qmean||0)-(a.cap||a.qmean||0)).slice(0,12);
@@ -1428,7 +1428,7 @@ function select(f,fromMap){
   if(f.w)srcs.push(`UNEP-WCMC &amp; IUCN, World Database on Protected Areas, WDPA ID <span class="mono">${f.w}</span>`);
   h+=`<div class="sec"><h3>Sources</h3><ul class="srcs">${srcs.map(s=>`<li>${s}</li>`).join('')}${(f.src||[]).map(u=>`<li><a href="${esc(u)}" target="_blank" rel="noopener">${esc(u.replace(/^https?:\/\/(www\.)?/,'').slice(0,80))}</a></li>`).join('')}</ul></div>`;
   h+=`<div class="sec"><h3>Cite this record</h3><pre class="cite">${esc(citeText(f))}</pre></div>`;
-  $('#sh-body').innerHTML=h;$('#sh-body').scrollTop=0;$('#sheet').hidden=false;fillReports(f);fillFao(f);
+  $('#sh-body').innerHTML=h;$('#sh-body').scrollTop=0;$('#sheet').hidden=false;fillReports(f);fillCap(f);fillFao(f);
   $$('#sh-body [data-go]').forEach(a=>a.onclick=()=>goSite(a.dataset.go));
   const setCap=i=>{const p=f.pics[i],c=$('#galcap');if(c)c.innerHTML=`${esc(capOf(p))}${p[2]?' · '+esc(p[2]):''}, <a href="${pageUrl(p)}" target="_blank" rel="noopener">${esc(p[3])} via Wikimedia Commons</a>`};
   if($('#gal')){setCap(0);$$('#gal .galrow button').forEach(bt=>bt.onclick=()=>{const i=+bt.dataset.g,p=f.pics[i],im=$('#gal>img');if(im){im.dataset.f='';im.dataset.alt=imgUrl(p,500);im.src=imgUrl(p,960)}else{$('#gal').insertAdjacentHTML('afterbegin',imgTag(p,960,500))}setCap(i);$$('#gal .galrow button').forEach(x=>x.classList.toggle('on',x===bt))})}
@@ -1957,7 +1957,7 @@ function renderWatch(){const el=$('#watch');if(!el)return;const w=watchlist().ma
   if($('#dl-watch'))$('#dl-watch').onclick=()=>saveFile('watchlist.csv',toCSV(w.map(exportRow)),'text/csv');}
 
 /* ---------- data & sources ---------- */
-function exportRow(f){return{id:f.i,name:f.n,type:CATN(f),state:f.s||'',lat:f.la??'',lon:f.lo??'',river:f.river||'',basin:f.basin||'',year_completed:f.y||'',dam_height_m:f.hgt??'',crest_length_m:f.len??'',capacity_million_m3:f.cap??'',reservoir_area_km2:f.akm??'',mean_depth_m:f.dep??'',average_inflow_m3s:f.dis??'',catchment_km2:f.catch??'',power_mw:f.mw??'',main_use:f.use||'',uses:(f.uses||[]).join('; '),river_length_km:f.rlen??'',gdw_id:f.gdw||'',grand_id:f.grand||'',wikidata:f.wd||'',wdpa_id:f.w||'',verification_level:f.v,location_basis:f.q||'',location_note:f.loc_note||'',wikipedia:f.wt?f.wt.u:'',sources:(f.src||[]).join(' | ')}}
+function exportRow(f){return{id:f.i,name:f.n,type:CATN(f),state:f.s||'',lat:f.la??'',lon:f.lo??'',river:f.river||'',basin:f.basin||'',year_completed:f.y||'',dam_height_m:f.hgt??'',crest_length_m:f.len??'',capacity_million_m3:f.cap??'',capacity_source:f.cap!=null?capSrc(f):'',capacity_fao_million_m3:faoCap(f)??'',capacity_other:((f.facts&&f.facts.caps)||[]).map(c=>`${c.v} (${c.by}, ${c.date})`).join(' | '),capacity_figures_disagree:capConflict(f),operator:f.facts&&f.facts.op?f.facts.op.n:'',operator_source:f.facts&&f.facts.op?f.facts.op.u:'',reservoir_area_km2:f.akm??'',mean_depth_m:f.dep??'',average_inflow_m3s:f.dis??'',catchment_km2:f.catch??'',power_mw:f.mw??'',main_use:f.use||'',uses:(f.uses||[]).join('; '),river_length_km:f.rlen??'',gdw_id:f.gdw||'',grand_id:f.grand||'',wikidata:f.wd||'',wdpa_id:f.w||'',verification_level:f.v,location_basis:f.q||'',location_note:f.loc_note||'',wikipedia:f.wt?f.wt.u:'',sources:(f.src||[]).join(' | ')}}
 function buildData(){
   const dsCite=`Nigeria Water Resources Atlas (2026). Nigeria dams, reservoirs, rivers, lakes and wetlands dataset, version ${DATA.meta.version} [Data set]. ${CONFIG.siteUrl}. Includes data from Global Dam Watch v1.0 (Lehner, B. et al., 2024, Scientific Data 11:1069), DIVA-GIS/Digital Chart of the World, Wikidata, GRID3 Nigeria, the DHS Program and GloFAS (Copernicus EMS).`;
   const SRC=[
@@ -2026,7 +2026,7 @@ function buildData(){
   <h3>Corrections</h3><p>Water agencies, RBDAs, researchers and community monitors can send corrections through the Community hub (choose “Data correction”) or on <a href="https://github.com/${CONFIG.issuesRepo}/issues" target="_blank" rel="noopener">GitHub</a>. Please include a source.</p>`;
   addReportSources();
   renderArchive();
-  $('#dl-csv').onclick=()=>saveFile('nigeria_water_atlas.csv',toCSV(F.map(exportRow)),'text/csv');
+  $('#dl-csv').onclick=async()=>{await x9('fao_dams.json');saveFile('nigeria_water_atlas.csv',toCSV(F.map(exportRow)),'text/csv')};
   $('#dl-geo').onclick=()=>saveFile('nigeria_water_atlas.geojson',JSON.stringify({type:'FeatureCollection',features:F.map(f=>({type:'Feature',properties:exportRow(f),geometry:f.ln?{type:'MultiLineString',coordinates:f.ln}:f.g?{type:'MultiPolygon',coordinates:f.g}:f.la!=null?{type:'Point',coordinates:[f.lo,f.la]}:null}))}),'application/geo+json');
   $('#dl-cite').onclick=()=>copy(dsCite);
 }
@@ -2520,6 +2520,18 @@ async function addX9Basins(){
 
 /* ---------- FAO AQUASTAT record in dam profiles ---------- */
 const FAOP=[['Irrigation','Irrigation'],['Water supply','Water supply'],['Flood control','Flood control'],['Hydroelectricity (MW)','Hydropower'],['Navigation','Navigation'],['Recreation','Recreation'],['Livestock rearing','Livestock'],['Other','Other']];
+/* ---------- capacity: every published figure side by side ---------- */
+const capSrc=f=>f.gdw?('Global Dam Watch'+(f.osrc&&f.osrc!=='GRanD'?', estimated from reservoir area':'')):f.q==='wikidata'?'Wikidata':'source not recorded';
+const faoRec=f=>{const D=X9['fao_dams.json'];return D?D.dams.find(x=>x.atlas===f.i):null};
+const faoCap=f=>{const d=faoRec(f);const v=d&&d['Reservoir capacity (million m3)'];return typeof v==='number'?v:null};
+function capFigures(f){const L=[];
+  if(f.cap!=null)L.push({v:f.cap,by:capSrc(f),u:f.gdw?'https://www.globaldamwatch.org':'',what:f.gdw&&f.osrc&&f.osrc!=='GRanD'?'Modelled total volume':'Not stated'});
+  const fc=faoCap(f);if(fc!=null)L.push({v:fc,by:'FAO AQUASTAT dams database',u:'https://www.fao.org/aquastat/en/databases/dams',what:'“Reservoir capacity”, not defined further'});
+  ((f.facts&&f.facts.caps)||[]).forEach(c=>L.push({v:c.v,by:c.by+(c.date?', '+c.date:''),u:c.u,what:c.what||'Not stated'}));return L}
+function capConflict(f){const v=capFigures(f).map(x=>x.v).filter(x=>x>0);if(v.length<2)return'';return Math.max(...v)/Math.min(...v)>1.25?'yes':'no'}
+async function fillCap(f){const box=$('#capbox');if(!box||![0,1].includes(f.c))return;await x9('fao_dams.json');if(state.sel!==f)return;
+  const L=capFigures(f);if(L.length<2&&!(f.facts&&f.facts.caps)){box.innerHTML='';return}const bad=capConflict(f)==='yes';
+  box.innerHTML=`<div class="box"><h3>Storage capacity: ${bad?'the sources disagree':'what each source says'}</h3><div class="tbl-wrap" style="max-height:none"><table class="dt"><thead><tr><th>Source</th><th class="n">Million m³</th><th>What it measures</th></tr></thead><tbody>${L.map(x=>`<tr><td>${x.u?`<a href="${esc(x.u)}" target="_blank" rel="noopener">${esc(x.by)}</a>`:esc(x.by)}</td><td class="n">${fmt1.format(x.v)}</td><td>${esc(x.what)}</td></tr>`).join('')}</tbody></table></div><p class="sm-note" style="margin:8px 0 0">${bad?'The figures differ by more than a quarter. ':''}Sources rarely say whether a figure is gross storage, live storage or volume at full supply level, so check before comparing them. All figures, with their sources, are in the CSV export.</p>${f.facts&&f.facts.note?`<p class="sm-note" style="margin:6px 0 0">${esc(f.facts.note)}</p>`:''}</div>`}
 async function fillFao(f){
   const box=$('#faobox');if(!box||![0,1].includes(f.c))return;const D=await x9('fao_dams.json');if(!D||state.sel!==f)return;
   const d=D.dams.find(x=>x.atlas===f.i);if(!d){box.innerHTML='';return}
