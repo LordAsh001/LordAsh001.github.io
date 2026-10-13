@@ -667,6 +667,11 @@ if jw:
             f = lambda k: round(float(d[k]), 1) if d.get(k) not in (None, "") else None
             WW["ng"] = {"prod": f("WWp_million_m3_yr"), "coll": f("WWc_million_m3_yr"), "treat": f("WWt_million_m3_yr"), "reuse": f("WWr_million_m3_yr")}
 
+# hand-checked facts for individual dams (operator, extra capacity figures, caveats), from curated.json
+DF = {k: v for k, v in CUR.get("dam_facts", {}).items() if not k.startswith("_")}
+for f in F:
+    if f["i"] in DF: f["facts"] = DF[f["i"]]
+
 meta = {"version": "1.0", "compiled": PREV.get("meta", {}).get("compiled", TODAY), "refreshed": TODAY,
         "sources_ok": sorted(p.name for p in RAW.glob("*.json"))}
 atlas = {"meta": meta, "cats": CATS, "f": F, "st": [{"n": s["n"], "c": s["c"], "t": s["t"], "g": s["g"], "km2": s.get("km2")} for s in ST],
