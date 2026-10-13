@@ -280,10 +280,10 @@
    "source": "GEOGLOWS, ECMWF",
    "licence": "CC BY 4.0",
    "update": "Daily",
-   "rows": 76,
+   "rows": 95,
    "first": "2026-10-09",
-   "last": "2026-10-12",
-   "bytes": 12106,
+   "last": "2026-10-13",
+   "bytes": 15084,
    "fields": [
     {
      "name": "issue_date",
@@ -411,10 +411,10 @@
    "source": "Nigerian Meteorological Agency (NiMet)",
    "licence": "Public warnings; credit NiMet",
    "update": "Hourly",
-   "rows": 8,
+   "rows": 9,
    "first": "2026-09-25",
-   "last": "2026-10-11",
-   "bytes": 5874,
+   "last": "2026-10-13",
+   "bytes": 6619,
    "fields": [
     {
      "name": "warning_id",
@@ -561,5 +561,5 @@
   }
  ],
  "citation": "Amool, S. H. (2026). Nigeria Water Resources Atlas: data archive [Data set]. https://shagbaor.com/water-atlas/archive/",
- "generated": "2026-10-13T09:38Z"
+ "generated": "2026-10-13T17:44Z"
 }
