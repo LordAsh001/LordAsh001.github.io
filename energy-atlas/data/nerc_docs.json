@@ -1,7 +1,13 @@
 {
  "source": "Nigerian Electricity Regulatory Commission (nerc.gov.ng)",
- "checked": "2026-10-12T01:54:09+00:00",
+ "checked": "2026-10-13T14:59:25+00:00",
  "documents": [
+  {
+   "url": "https://nerc.gov.ng/wp-content/uploads/2026/10/NERC_Metering_Factsheet_14Oct2026-5.pdf",
+   "title": "NERC Metering Factsheet 14Oct2026 5",
+   "category": "Metering factsheet",
+   "first_seen": "2026-10-13"
+  },
   {
    "url": "https://nerc.gov.ng/wp-content/uploads/2026/09/YEDC_HOLDCO_YSS_September_2026_098.pdf",
    "title": "YEDC HOLDCO YSS September 2026 098",
