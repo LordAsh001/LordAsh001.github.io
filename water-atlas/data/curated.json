@@ -1186,5 +1186,1653 @@
       ],
       "v": "C"
     }
-  ]
+  ],
+  "dam_status_note": "Who runs each dam and its condition, researched by hand from public sources (October 2026). op.b = confirmed (a source names the operator) or inferred (a source points to it without saying so outright; see note). st.v = working, breached or failed, under repair, out of use or unknown; st.d = date of the latest report used. insp = latest public safety inspection or rehabilitation. A missing field means no public record was found.",
+  "dam_status": {
+    "g7670": {
+      "op": {
+        "n": "Chad Basin Development Authority (CBDA)",
+        "b": "confirmed",
+        "u": "https://gazettengr.com/alau-dam-agency-to-release-excess-water-from-dam-warn-maiduguri-residents/",
+        "note": "An Aug 2021 report says CBDA manages the dam and controls its gates. In Oct 2023 NAN reported CBDA leading the rehabilitation (https://nannews.ng/goronyo-commends-rehabilitation-drive-to-restore-collapsed-alau-dam/). The 2025 reconstruction is run by the Federal Ministry of Water Resources and Sanitation."
+      },
+      "yr": {
+        "v": 1986,
+        "u": "https://en.wikipedia.org/wiki/Alau_Dam",
+        "note": "Built 1984-1986. ICIR also gives 1986 (https://www.icirnigeria.org/?p=230734). GDW has no year."
+      },
+      "h": null,
+      "st": {
+        "v": "under repair",
+        "d": "2025-08",
+        "u": "https://thewhistler.ng/alau-dam-reconstruction-on-track-fg-assures/",
+        "note": "The dam failed in the Sept 2024 Maiduguri flood. A N80bn federal reconstruction began in Mar 2025: phase 1 (flood mitigation) ran to Sept 2025 and phase 2 (full rebuild) runs Oct 2025 to Mar 2027. In Aug 2025 the minister said work was on track and the contractor was reinforcing the cofferdam. No 2026 progress report was found."
+      },
+      "insp": {
+        "d": "2025-08",
+        "what": "Water Resources Minister Utsev inspected the reconstruction site and the main gated spillway, and ordered gate adjustments for controlled releases in the rainy season.",
+        "u": "https://nannews.ng/n80b-alau-dam-upgrade-on-track-fg/"
+      },
+      "x": [
+        {
+          "t": "The dam failed on 10 Sept 2024 after heavy rain, flooding a large part of Maiduguri. At least 150 people died and hundreds of thousands were displaced.",
+          "u": "https://en.wikipedia.org/wiki/Alau_Dam"
+        },
+        {
+          "t": "The reconstruction scope includes rebuilding dykes 1A and 1B as one dam with a new auxiliary spillway and intake, rehabilitating dykes 1C, 2 and 3, and replacing the control gates.",
+          "u": "https://www.dailytrustfoundation.org/flood-fg-begins-reconstruction-upgrade-of-alau-dam-in-borno/"
+        },
+        {
+          "t": "In May 2025 HumAngle found the breach still open, with only a makeshift sand barrier and no visible work under way.",
+          "u": "https://www.humanglemedia.com/borno-communities-fear-repeat-floods-as-alau-dam-remains-unrepaired"
+        },
+        {
+          "t": "In June 2025 Governor Zulum and the Shehu of Borno said the work was not progressing as expected.",
+          "u": "https://nannews.ng/zulum-shehu-urge-fg-to-fast-track-alau-dam-project-to-avert-looming-disaster/"
+        },
+        {
+          "t": "Between 2018 and 2024 the federal government paid about N231 million for Alau Dam repairs to several small contractors.",
+          "u": "https://www.icirnigeria.org/?p=230734"
+        },
+        {
+          "t": "Part of the dam also collapsed in 1994, flooding parts of Maiduguri.",
+          "u": "https://gazettengr.com/alau-dam-agency-to-release-excess-water-from-dam-warn-maiduguri-residents/"
+        },
+        {
+          "t": "Wikipedia gives a height of 9 m but marks it as disputed, so it is not used here. Reservoir capacity is about 112 million m3.",
+          "u": "https://en.wikipedia.org/wiki/Alau_Dam"
+        }
+      ],
+      "chk": "October 2026"
+    },
+    "g60": {
+      "op": {
+        "n": "Mainstream Energy Solutions Limited (MESL)",
+        "b": "confirmed",
+        "u": "https://www.hs-alliance.org/published-assessments/kainji-jebba",
+        "note": "Hydropower concessionaire since 2013. The ICRC has said MESL is responsible for the dam structure (https://thewillnews.com/kainji-dam-power-plant-intact-fully-operational-icrc-mainstream/). The Federal Government owns the dam."
+      },
+      "yr": {
+        "v": 1968,
+        "u": "https://en.wikipedia.org/wiki/Kainji_Dam",
+        "note": "Construction 1964-1968 by Impregilo. Agrees with GDW."
+      },
+      "h": {
+        "v": 79,
+        "u": "https://www.globaldamwatch.org",
+        "note": "GDW value. Wikipedia gives 65 m for the concrete centre section."
+      },
+      "st": {
+        "v": "working",
+        "d": "2026-03",
+        "u": "https://www.hs-alliance.org/published-assessments/kainji-jebba",
+        "note": "A 2026 Hydropower Sustainability Standard assessment (Operation stage) found the dams in good condition. Kainji was releasing water in Oct 2025 (https://guardian.ng/news/niger-residents-urged-to-seek-safer-grounds-over-dam-water-release/)."
+      },
+      "insp": {
+        "d": "2026-03",
+        "what": "Hydropower Sustainability Standard assessment of Kainji and Jebba (site work Feb and Mar 2026). It found the dams in good condition with no gaps against HSS minimum requirements. Public consultation on the draft report runs Aug to Oct 2026.",
+        "u": "https://www.hs-alliance.org/published-assessments/kainji-jebba"
+      },
+      "x": [
+        {
+          "t": "MESL finished a further turbine rehabilitation in early 2025, raising Kainji's installed capacity to 600 MW.",
+          "u": "https://www.africa-energy.com/live-data/article/nigeria-kainji-hydro-turbine-rehabilitation-complete"
+        },
+        {
+          "t": "In June 2025 the Water Resources Minister said the deadly Mokwa flood was not caused by releases from Kainji or Jebba, and that both dams were intact and fully operational.",
+          "u": "https://nannews.ng/fg-dismisses-claims-linking-mokwa-flood-to-dam-failure/"
+        },
+        {
+          "t": "In Sept 2020 the ICRC and MESL rejected reports of a burst dam and said Kainji was only carrying out a controlled annual spill.",
+          "u": "https://thewillnews.com/kainji-dam-power-plant-intact-fully-operational-icrc-mainstream/"
+        },
+        {
+          "t": "Water releases from Kainji in 1998 and 1999 flooded about 60 villages downstream.",
+          "u": "https://en.wikipedia.org/wiki/Kainji_Dam"
+        }
+      ],
+      "chk": "October 2026"
+    },
+    "g379": {
+      "op": {
+        "n": "Mainstream Energy Solutions Limited (MESL)",
+        "b": "confirmed",
+        "u": "https://www.hs-alliance.org/published-assessments/kainji-jebba",
+        "note": "Runs the plant under an operation and maintenance concession from the Federal Government (https://en.wikipedia.org/wiki/Jebba_Hydroelectric_Power_Station)."
+      },
+      "yr": {
+        "v": 1984,
+        "u": "https://www.globaldamwatch.org",
+        "note": "GDW value. Wikipedia says the plant was commissioned in April 1985, with generation from 1983 (https://en.wikipedia.org/wiki/Jebba_Hydroelectric_Power_Station)."
+      },
+      "h": {
+        "v": 40,
+        "u": "https://www.globaldamwatch.org",
+        "note": "GDW value. No other source found."
+      },
+      "st": {
+        "v": "working",
+        "d": "2026-03",
+        "u": "https://www.hs-alliance.org/published-assessments/kainji-jebba",
+        "note": "A 2026 HSS operation-stage assessment found the dams in good condition. Jebba was releasing water in Oct 2025 (https://guardian.ng/news/niger-residents-urged-to-seek-safer-grounds-over-dam-water-release/)."
+      },
+      "insp": {
+        "d": "2026-03",
+        "what": "Hydropower Sustainability Standard assessment of Kainji and Jebba (Feb and Mar 2026). It found the dams in good condition with no gaps against minimum requirements.",
+        "u": "https://www.hs-alliance.org/published-assessments/kainji-jebba"
+      },
+      "x": [
+        {
+          "t": "In Feb 2025 NEMA reported that a water release from Jebba flooded irrigated rice farms in Mokwa LGA. It damaged 1,097 ha and affected 544 farmers in 32 communities.",
+          "u": "https://nema.gov.ng/flash-flood-in-mokwa-lga-niger-state-caused-by-water-release-from-jebba-dam/"
+        },
+        {
+          "t": "ANDRITZ is modernising Jebba's generating units 2G5 and 2G6 for MESL. Unit 2G6 had been out of service since a 2009 fire.",
+          "u": "https://www.renewableenergyworld.com/power-grid/grid-modernization/andritz-to-modernize-second-unit-at-578-4-mw-jebba-hydropower-in-nigeria/"
+        },
+        {
+          "t": "In June 2025 the federal government denied that the May 2025 Mokwa flood came from Jebba or Kainji releases.",
+          "u": "https://nannews.ng/fg-dismisses-claims-linking-mokwa-flood-to-dam-failure/"
+        }
+      ],
+      "chk": "October 2026"
+    },
+    "g377": {
+      "op": {
+        "n": "North South Power Company Limited (NSPCL)",
+        "b": "confirmed",
+        "u": "https://nannews.ng/flooding-shiroro-power-station-sensitises-niger-communities/",
+        "note": "Concessionaire operating since 2013 (https://ppp.icrc.gov.ng/project/220/shiroro-hydro-electric-power-plant)."
+      },
+      "yr": {
+        "v": 1984,
+        "u": "https://www.globaldamwatch.org",
+        "note": "GDW value. Wikipedia is inconsistent: it says the station began operating in 1990 but lists 1999 as the commission date."
+      },
+      "h": {
+        "v": 125,
+        "u": "https://www.globaldamwatch.org",
+        "note": "GDW value. The ICRC project page gives 115 m for the concrete-faced rockfill dam (https://ppp.icrc.gov.ng/project/220/shiroro-hydro-electric-power-plant)."
+      },
+      "st": {
+        "v": "working",
+        "d": "2026-09-10",
+        "u": "https://gazettengr.com/?p=500905",
+        "note": "NSPCL announced a controlled water release for late Sept 2026 because of high inflows. It held its annual flood-awareness forum in July 2026."
+      },
+      "insp": null,
+      "x": [
+        {
+          "t": "In May 2023 the National Security Adviser said Kainji and Shiroro faced terrorist threats.",
+          "u": "https://nairametrics.com/tag/kainji-dam/"
+        },
+        {
+          "t": "In July 2026 NSPCL warned flood-prone communities that it may have to release water whenever the reservoir exceeds safe levels.",
+          "u": "https://nannews.ng/flooding-shiroro-power-station-sensitises-niger-communities/"
+        }
+      ],
+      "chk": "October 2026"
+    },
+    "xzungeru": {
+      "op": {
+        "n": "Penstock Limited (subsidiary of Mainstream Energy Solutions Limited)",
+        "b": "confirmed",
+        "u": "https://bpe.gov.ng/?p=4421",
+        "note": "Handed over by BPE on 23 Jan 2024. MESL was preferred bidder in Feb 2023 for a reported 30-year concession. The ICRC named Penstock Limited as concessionaire in Oct 2026 (https://nairametrics.com/2026/10/09/icrc-demands-full-capacity-operation-of-700mw-zungeru-hydropower-plant/)."
+      },
+      "yr": {
+        "v": 2023,
+        "u": "https://thecable.ng/zungeru-hydroelectric-plant-completed-says-power-minister",
+        "note": "The power minister declared the 700 MW plant complete and on the grid on 25 May 2023."
+      },
+      "h": {
+        "v": 101,
+        "u": "https://www.power-technology.com/projects/zungeru-hydropower-project/",
+        "note": "Maximum height of the roller-compacted concrete (RCC) dam. Wikipedia also gives 101 m."
+      },
+      "st": {
+        "v": "working",
+        "d": "2026-10-09",
+        "u": "https://nairametrics.com/2026/10/09/icrc-demands-full-capacity-operation-of-700mw-zungeru-hydropower-plant/",
+        "note": "Operating at about 350 MW, half its 700 MW capacity. The ICRC has demanded full-capacity operation and is reviewing unspecified legal and operational issues."
+      },
+      "insp": null,
+      "x": [
+        {
+          "t": "Zungeru was among the Niger State dams releasing water in Oct 2025, when residents were told to move to higher ground.",
+          "u": "https://guardian.ng/news/niger-residents-urged-to-seek-safer-grounds-over-dam-water-release/"
+        }
+      ],
+      "chk": "October 2026"
+    },
+    "g376": {
+      "op": {
+        "n": "Upper Benue River Basin Development Authority (dam); Mabon (hydropower plant)",
+        "b": "inferred",
+        "u": "https://nannews.ng/dadin-kowa-dam-secure-fully-functional-fg/",
+        "note": "In Sept 2024 the Upper Benue RBDA acting MD gave the dam's technical figures, but no source seen says outright that the RBDA runs it. Mabon Energy / Mabon Generating Company operates the 40 MW hydropower plant under a 25-year BOT concession (https://von.gov.ng/reps-summon-water-resources-minister-over-delays-in-hydropower-project/)."
+      },
+      "yr": {
+        "v": 1988,
+        "u": "https://www.globaldamwatch.org",
+        "note": "GDW value. Wikipedia says the federal government completed the dam in 1984 (https://en.wikipedia.org/wiki/Dadin_Kowa_Dam)."
+      },
+      "h": {
+        "v": 42,
+        "u": "https://www.globaldamwatch.org",
+        "note": "GDW value. No other source found."
+      },
+      "st": {
+        "v": "working",
+        "d": "2025-11",
+        "u": "https://von.gov.ng/reps-summon-water-resources-minister-over-delays-in-hydropower-project/",
+        "note": "The hydropower concessionaire reports supplying power to the grid since 2021, but the House of Representatives is probing delays and unclear responsibilities in the concession. The Sept 2024 federal inspection found the dam functional."
+      },
+      "insp": {
+        "d": "2024-09",
+        "what": "Water Resources Minister Utsev inspected the dam with experts after a warning that it might collapse. He said the spillway and penstock were working and the dam had no integrity issues.",
+        "u": "https://nannews.ng/dadin-kowa-dam-secure-fully-functional-fg/"
+      },
+      "x": [
+        {
+          "t": "In Sept 2024 the N-HYPPADEC MD warned that the dam faced imminent collapse from flooding. The federal inspection rejected this.",
+          "u": "https://www.arise.tv/dadinkowa-dam-in-gombe-faces-imminent-collapse-due-to-flooding-warns-n-hyppadec-md"
+        },
+        {
+          "t": "In Sept 2024 Yobe State warned nine LGAs of possible flooding from Dadinkowa dam releases.",
+          "u": "https://gazettengr.com/?p=317589"
+        }
+      ],
+      "chk": "October 2026"
+    },
+    "g7412": {
+      "op": {
+        "n": "KP Hydro Limited (power station operation and maintenance concession)",
+        "b": "confirmed",
+        "u": "https://dailytrust.com/ty-danjumas-company-takes-over-taraba-power-station/",
+        "note": "Handed over in Oct 2024 to KP Hydro, owned by Gen. T.Y. Danjuma (rtd). The dam is a federal asset under the Ministry of Water Resources. In May 2023 BusinessDay had named Damcrest Energy, a Mainstream subsidiary, as concessionaire (https://businessday.ng/news/article/fg-commissions-kashimbila-dam-40mw-hydropower-plant/), but the later 2024 reports name KP Hydro."
+      },
+      "yr": {
+        "v": 2018,
+        "u": "https://www.globaldamwatch.org",
+        "note": "GDW value. Wikipedia gives commercial commissioning in Dec 2019. BusinessDay reports a formal federal commissioning of the dam and 40 MW plant in May 2023."
+      },
+      "h": {
+        "v": 35,
+        "u": "https://www.globaldamwatch.org",
+        "note": "GDW value. No other source found."
+      },
+      "st": {
+        "v": "working",
+        "d": "2025-05",
+        "u": "https://www.arise.tv/kashimbila-dam-expected-to-be-operational-by-august-taraba-is-open-for-investment-says-governor-kefas",
+        "note": "Only partly working. In Jan 2024 all four turbines worked, but only 10 MW reached the grid for lack of transmission (https://gazettengr.com/electricity-were-working-to-evacuate-30mw-from-kashimbilla-says-fg/). In May 2025 the Taraba governor said the plant should be fully operational by Aug 2025. No later confirmation was found."
+      },
+      "insp": null,
+      "x": [
+        {
+          "t": "The multipurpose dam was conceived partly as protection against a possible failure of Lake Nyos in Cameroon. It also serves flood control, water supply and irrigation.",
+          "u": "https://guardian.ng/energy/concessioning-t-y-danjuma-takes-over-kashimbilla-hydropower-station/"
+        }
+      ],
+      "chk": "October 2026"
+    },
+    "g40402": {
+      "op": {
+        "n": "Federal Ministry of Water Resources (owner)",
+        "b": "confirmed",
+        "u": "https://ppp.icrc.gov.ng/project/53/gurara-30mw-hydropowerdam-kaduna",
+        "note": "The ICRC lists the ministry as owner. In 2019 the minister said the dam remains state property and only the hydropower component would be concessioned (https://afrik21.africa/en/nigeria-state-chooses-partial-concession-for-gurara-dam). No day-to-day operating body was found."
+      },
+      "yr": {
+        "v": 2007,
+        "u": "https://www.renewableenergyworld.com/hydro-power/dams-civil-structures/nigeria-president-commissions-30-mw-gurara-dams-water-project/",
+        "note": "Commissioned 26 Apr 2007; hydro and irrigation works were still ongoing then. Wikipedia says the 30 MW hydro plant was completed in 2014."
+      },
+      "h": {
+        "v": 52.5,
+        "u": "https://webuildgroup.com/en/projects/dams-hydroelectric-plants/gurara-dam-electric-power-station",
+        "note": "Webuild (Salini, the builder) gives 52.5 m. The ICRC project page gives a maximum height of 54 m."
+      },
+      "st": {
+        "v": "working",
+        "d": "2026-01-16",
+        "u": "https://dailytrust.com/?p=1854058",
+        "note": "The dam is in place but transfers have shrunk. Raw-water transfers to Lower Usuma Dam (Abuja) fell from monthly to about once a year, with none since Oct 2025, according to a water expert quoted in Jan 2026."
+      },
+      "insp": null,
+      "x": [
+        {
+          "t": "In May 2023 the FEC approved a 30-year operate-and-manage concession for the Gurara II multipurpose dam and 360 MW hydropower plant, with CGCOC Group named.",
+          "u": "https://www.icrc.gov.ng/fec-approves-management-concession-for-gurara-ii-kashimbilla-power-plants-others-targets-400mw-power-n647-7bn-revenue-icrc/"
+        },
+        {
+          "t": "Gurara feeds the Lower Usuma Dam through a 75 km pipeline to raise Abuja's water supply.",
+          "u": "https://en.wikipedia.org/wiki/Gurara_Dam"
+        }
+      ],
+      "chk": "October 2026"
+    },
+    "g371": {
+      "op": {
+        "n": "Hadejia-Jama'are River Basin Development Authority (HJRBDA)",
+        "b": "confirmed",
+        "u": "https://dailytrust.com/fg-orders-closure-of-bridge-at-tiga/",
+        "note": "In Sept 2022 the Water Resources Minister told HJRBDA to keep up routine maintenance of Tiga and Bagauda dams; Wikipedia also says HJRBDA reopened the dam in April 2022."
+      },
+      "yr": {
+        "v": 1974,
+        "u": "https://en.wikipedia.org/wiki/Tiga_Dam",
+        "note": "Built 1971-1974; matches GDW."
+      },
+      "h": {
+        "v": 48,
+        "u": "https://www.globaldamwatch.org",
+        "note": "GDW value; no other source checked gave a height."
+      },
+      "st": {
+        "v": "working",
+        "d": "2022-09",
+        "u": "https://dailytrust.com/fg-orders-closure-of-bridge-at-tiga/",
+        "note": "After the Sept 2022 overflow and downstream flooding, the minister said the spillway was working and the dam itself was not affected; federal rehabilitation and expansion has since been contracted (see inspection), but no source confirms works are underway at Tiga."
+      },
+      "insp": {
+        "d": "2026-09",
+        "what": "Federal N95 billion contract reported for expansion and rehabilitation of the Tiga, Challawa Goje and Kafinciri dams (FEC approved N11.83bn for Tiga rehabilitation and expansion in May 2025); no progress figure given for Tiga.",
+        "u": "https://blueprint.ng/?p=843760"
+      },
+      "x": [
+        {
+          "t": "Tiga Dam was closed on 1 Nov 2021 for repairs under the World Bank-funded TRIMING project and reopened in April 2022.",
+          "u": "https://en.wikipedia.org/wiki/Tiga_Dam"
+        },
+        {
+          "t": "Tiga overflowed around 8 Sept 2022, destroying farmland, roads and houses downstream; the minister ordered the Gadar Sarkin Kogi bridge at Tiga closed for safety.",
+          "u": "https://gazettengr.com/?p=127101"
+        },
+        {
+          "t": "In May 2025 the Federal Executive Council approved N11.83 billion for rehabilitation and expansion of Tiga Dam.",
+          "u": "https://allafrica.com/stories/202505060062.html"
+        },
+        {
+          "t": "In Jan 2025 the federal Ecological Project Office led a stakeholder/site visit to Tiga, Challawa and Kafin Chiri dams ahead of a rehabilitation intervention.",
+          "u": "https://fmino.gov.ng/perm-sec-epo-inspects-kano-irrigation-project-sites-says-no-part-of-this-country-will-be-neglected/"
+        },
+        {
+          "t": "The Federal Ministry of Water Resources sought consultants to supervise an 18-month Tiga Dam Phase II embankment rehabilitation (tender notice, undated).",
+          "u": "https://constructafrica.com/projects-and-tenders/nigeria-seeks-consultants-tiga-dam-phase-ii"
+        },
+        {
+          "t": "Kano State's KHEDCO built a roughly 7.2-10 MW hydropower plant at Tiga; it was reported 95% complete in July 2020 and construction complete in Jan 2023, but no source seen confirms commissioning.",
+          "u": "https://www.africa-energy.com/news-centre/article/nigeria-tiga-hep-set-commissioning"
+        }
+      ],
+      "chk": "October 2026"
+    },
+    "g1951": {
+      "op": {
+        "n": "Hadejia-Jama'are River Basin Development Authority (HJRBDA)",
+        "b": "confirmed",
+        "u": "https://blueprint.ng/?p=843760",
+        "note": "Sept 2026 report says HJRBDA owns the dam and keeps regulatory control of its water; Wikipedia also says HJRBDA owns and operates it."
+      },
+      "yr": {
+        "v": 1992,
+        "u": "https://en.wikipedia.org/wiki/Challawa_Gorge_Dam",
+        "note": "Built 1990-1992 by Julius Berger; matches GDW."
+      },
+      "h": {
+        "v": 42,
+        "u": "https://en.wikipedia.org/wiki/Challawa_Gorge_Dam",
+        "note": "Matches GDW."
+      },
+      "st": {
+        "v": "under repair",
+        "d": "2026-09",
+        "u": "https://blueprint.ng/?p=843760",
+        "note": "A presidential aide said federal rehabilitation and expansion work on Challawa Goje (Gorge) Dam was about 40% complete."
+      },
+      "insp": {
+        "d": "2026-09",
+        "what": "Federal rehabilitation and expansion under a N95 billion contract covering Challawa, Tiga and Kafinciri; Challawa work reported about 40% complete (FEC approved about N7.47bn for this dam in May 2025).",
+        "u": "https://blueprint.ng/?p=843760"
+      },
+      "x": [
+        {
+          "t": "In Sept 2026 HJRBDA was weighing a PPP proposal from Al-Qaryah Agro Allied for a large aquaculture and irrigation hub at the dam, with HJRBDA keeping ownership.",
+          "u": "https://blueprint.ng/?p=843760"
+        },
+        {
+          "t": "The Kano State Government (via KHEDCO) is building a small hydropower scheme at the dam; in July 2026 it was said to be at an advanced stage.",
+          "u": "https://fmino.gov.ng/fgs-irrigation-project-kano-hydropower-scheme/"
+        },
+        {
+          "t": "In May 2023 the Federal Ministry of Environment disclosed the ESIA and resettlement plan for a Challawa Gorge watershed management project proposed by the Hadejia-Jama'are-Komadugu-Yobe Basin Trust Fund.",
+          "u": "https://ead.gov.ng/public-disclosure-of-esia-rap-for-challawa-gorge-dam-project/"
+        },
+        {
+          "t": "Catchment erosion may be silting the reservoir and the Challawa River, and the dam has reduced downstream wetlands.",
+          "u": "https://en.wikipedia.org/wiki/Challawa_Gorge_Dam"
+        }
+      ],
+      "chk": "October 2026"
+    },
+    "g1945": {
+      "op": null,
+      "yr": {
+        "v": 1980,
+        "u": "https://www.globaldamwatch.org",
+        "note": "GDW value only."
+      },
+      "h": {
+        "v": 22,
+        "u": "https://www.globaldamwatch.org",
+        "note": "GDW value only."
+      },
+      "st": {
+        "v": "unknown",
+        "d": null,
+        "u": null,
+        "note": "No dated report on the dam itself was found."
+      },
+      "insp": null,
+      "x": [
+        {
+          "t": "In Nov 2025 the federal water ministry handed over consultancy work to strengthen Water Users Associations on the Gari Irrigation Project (Kano and Jigawa), with HJRBDA as partner; the release does not name the scheme's water source, so the link to this dam is not confirmed.",
+          "u": "https://fmino.gov.ng/?p=43419"
+        }
+      ],
+      "chk": "October 2026"
+    },
+    "g1948": {
+      "op": {
+        "n": "Kano State Government",
+        "b": "confirmed",
+        "u": "https://en.wikipedia.org/wiki/Watari_Dam",
+        "note": "Wikipedia lists Kano State Government as owner; the 2021-2023 rehabilitation was run by the state's Kano State Agro-Pastoral Development Project (KSADP). No source names a day-to-day operator."
+      },
+      "yr": {
+        "v": 1980,
+        "u": "https://en.wikipedia.org/wiki/Watari_Dam",
+        "note": "Built 1977-1980; Wikipedia infobox also gives an opening date of 1988."
+      },
+      "h": {
+        "v": 20,
+        "u": "https://www.globaldamwatch.org",
+        "note": "GDW value only."
+      },
+      "st": {
+        "v": "working",
+        "d": "2023-03",
+        "u": "https://www.isdb.org/news/transforming-lives-and-livelihoods-how-the-watari-dam-revitalization-is-enhancing-food-security-and-alleviating-poverty-in-kano-nigeria",
+        "note": "IsDB said repairs were complete and the dam supplies wet- and dry-season irrigation on over 2,600 ha."
+      },
+      "insp": {
+        "d": "2023-03",
+        "what": "KSADP rehabilitation (IsDB / Lives and Livelihoods Fund, about N315m, contractor Hajaig) completed: reservoir desilting, embankment and canal repairs, gully erosion control.",
+        "u": "https://www.isdb.org/news/transforming-lives-and-livelihoods-how-the-watari-dam-revitalization-is-enhancing-food-security-and-alleviating-poverty-in-kano-nigeria"
+      },
+      "x": [
+        {
+          "t": "In Jan 2021 the dam was reported to have gone over 40 years without repair, with an eroded embankment and blocked canals.",
+          "u": "https://von.gov.ng/ksadp-moves-to-revamp-watari-dam-to-boost-irrigation-agriculture/"
+        },
+        {
+          "t": "Water releases were halted for repairs and resumed in April 2021 with the work about 40% done.",
+          "u": "https://von.gov.ng/irrigation-kano-releases-water-from-watari-dam/"
+        },
+        {
+          "t": "A separate federal Bagwai irrigation project on Watari Dam (Dantata & Sawoe) was reported stalled in Nov 2024, with two sectors suspended.",
+          "u": "https://thecable.ng/the-suspended-bagwai-irrigation-project-debacle"
+        }
+      ],
+      "chk": "October 2026"
+    },
+    "g1949": {
+      "op": null,
+      "yr": {
+        "v": 1976,
+        "u": "https://www.globaldamwatch.org",
+        "note": "GDW value only."
+      },
+      "h": {
+        "v": 14,
+        "u": "https://www.globaldamwatch.org",
+        "note": "GDW value only."
+      },
+      "st": {
+        "v": "unknown",
+        "d": null,
+        "u": null,
+        "note": "No dated report on the dam's condition was found; an Oct 2023 Kano report mentions a Jakara irrigation scheme but not the dam."
+      },
+      "insp": null,
+      "x": [
+        {
+          "t": "Wikipedia's list of Nigerian dams gives Jakara (Jekara) a capacity of 54.4 million m3 for water supply and irrigation.",
+          "u": "https://en.wikipedia.org/wiki/List_of_dams_and_reservoirs_in_Nigeria"
+        },
+        {
+          "t": "In Oct 2023 the Kano governor said most of the state's roughly 21 dams were old and structurally defective and asked for federal help; Jakara is named only as an irrigation scheme.",
+          "u": "https://thesun.ng/help-us-to-rehabilitate-our-dilapidated-dams-kano-begs-fg/"
+        }
+      ],
+      "chk": "October 2026"
+    },
+    "g5169": {
+      "op": {
+        "n": "Hadejia-Jama'are River Basin Development Authority (HJRBDA)",
+        "b": "confirmed",
+        "u": "https://dailytrust.com/fg-orders-closure-of-bridge-at-tiga/",
+        "note": "In Sept 2022 the minister told HJRBDA to continue routine maintenance of Tiga and Bagauda dams."
+      },
+      "yr": {
+        "v": 1970,
+        "u": "https://www.globaldamwatch.org",
+        "note": "GDW value only."
+      },
+      "h": {
+        "v": 20,
+        "u": "https://www.globaldamwatch.org",
+        "note": "GDW value only."
+      },
+      "st": {
+        "v": "working",
+        "d": "2022-09",
+        "u": "https://dailytrust.com/fg-orders-closure-of-bridge-at-tiga/",
+        "note": "After a joint inspection, the minister said Bagauda's spillway was functioning and the dam was not affected by the Sept 2022 floods."
+      },
+      "insp": {
+        "d": "2022-09",
+        "what": "Joint assessment visit by the federal Minister of Water Resources and Kano State's deputy governor after the Tiga overflow; spillway reported working.",
+        "u": "https://dailytrust.com/fg-orders-closure-of-bridge-at-tiga/"
+      },
+      "x": [],
+      "chk": "October 2026"
+    },
+    "w6346124": {
+      "op": {
+        "n": "Hadejia-Jama'are River Basin Development Authority (HJRBDA), as project developer",
+        "b": "inferred",
+        "u": "https://gazettengr.com/?p=459526",
+        "note": "The dam was never completed. In April 2026 HJRBDA, with Bauchi State, announced it would resume construction; nobody operates a working dam."
+      },
+      "yr": null,
+      "h": null,
+      "st": {
+        "v": "unknown",
+        "d": "2026-04",
+        "u": "https://gazettengr.com/?p=459526",
+        "note": "Never completed: work started and stopped several times from the late 1970s and the project was abandoned for decades. HJRBDA said in April 2026 that construction would restart (NAN report)."
+      },
+      "insp": null,
+      "x": [
+        {
+          "t": "Contracts were awarded to Julius Berger, then terminated (1984), reinstated (1992) and terminated again (1994); in 2008 Bauchi State gave a restart contract to the Dangote Group.",
+          "u": "https://en.wikipedia.org/wiki/Kafin_Zaki_Dam"
+        },
+        {
+          "t": "In Nov 2013 the federal government said the design was under review; plans included 15 MW of hydropower and about 125,000 ha of irrigation.",
+          "u": "https://sweetcrudereports.com/nigerias-kafin-zaki-dam-to-generate-15mw-of-power/"
+        },
+        {
+          "t": "Downstream groups in Borno and Yobe have opposed the dam over fears for the Komadugu-Yobe wetlands.",
+          "u": "https://en.wikipedia.org/wiki/Kafin_Zaki_Dam"
+        }
+      ],
+      "chk": "October 2026"
+    },
+    "g5199": {
+      "op": {
+        "n": "Bauchi State Water and Sewerage Corporation (state water board)",
+        "b": "inferred",
+        "u": "https://home.bauchistate.gov.ng/bauchi-gov-mourns-tragic-loss-of-four-water-corporation-staff/",
+        "note": "A Bauchi State Government release says state water corporation staff work at the Gubi Dam water treatment plant; no source says outright that the corporation runs the dam."
+      },
+      "yr": null,
+      "h": {
+        "v": 27,
+        "u": "https://afrik21.africa/en/nigeria-bauchi-state-starts-water-supply-extension-project",
+        "note": "Matches GDW. The same article places the dam on the Gongola River, which is doubtful for its location near Bauchi city."
+      },
+      "st": {
+        "v": "working",
+        "d": "2025-04",
+        "u": "https://home.bauchistate.gov.ng/bauchi-gov-mourns-tragic-loss-of-four-water-corporation-staff/",
+        "note": "In April 2025 four water corporation staff died during routine maintenance at the Gubi Dam water treatment plant, showing the supply scheme was in service. No direct report on the dam structure was found."
+      },
+      "insp": {
+        "d": null,
+        "what": "A World Bank-backed Bauchi water supply project (US$65.5m credit) included desilting the Gubi reservoir and rehabilitating its 90,000 m3/day treatment plant; the article is undated, says completion was expected in Dec 2021, and gives no completion report.",
+        "u": "https://afrik21.africa/en/nigeria-bauchi-state-starts-water-supply-extension-project"
+      },
+      "x": [
+        {
+          "t": "Four Bauchi water corporation staff died at the Gubi Dam treatment plant in April 2025; the state ordered an investigation.",
+          "u": "https://home.bauchistate.gov.ng/bauchi-gov-mourns-tragic-loss-of-four-water-corporation-staff/"
+        },
+        {
+          "t": "Gubi is a drinking-water dam holding about 38.4 million m3; sediment has built up since the 1990s.",
+          "u": "https://afrik21.africa/en/nigeria-bauchi-state-starts-water-supply-extension-project"
+        }
+      ],
+      "chk": "October 2026"
+    },
+    "g365": {
+      "op": {
+        "n": "Sokoto Rima River Basin Development Authority (SRRBDA)",
+        "b": "inferred",
+        "u": "https://allafrica.com/stories/202512230081.html",
+        "note": "The Dec 2025 report quotes the SRRBDA managing director on the dam's problems and says SRRBDA staff lived at the Goronyo staff colony, but it does not explicitly name SRRBDA as operator."
+      },
+      "yr": {
+        "v": 1984,
+        "u": "https://en.wikipedia.org/wiki/Goronyo_Dam",
+        "note": "Wikipedia says completed 1984 and commissioned 1992; GDW gives 1983."
+      },
+      "h": {
+        "v": 21,
+        "u": "https://en.wikipedia.org/wiki/Goronyo_Dam",
+        "note": "GDW gives 20 m."
+      },
+      "st": {
+        "v": "working",
+        "d": "2025-12-22",
+        "u": "https://allafrica.com/stories/202512230081.html",
+        "note": "Dam still supplies drinking water to much of Sokoto State, but insecurity has stalled irrigation and halted contractor work since about June 2025; the authority says it needs urgent desilting it cannot fund."
+      },
+      "insp": {
+        "d": "2024-06",
+        "what": "Minister inspected ongoing TRIMING (World Bank) dam rehabilitation, river training and dyke works by Sinohydro, including fixing a gate fault at the Rima main canal intake.",
+        "u": "https://fmino.gov.ng/goronyo-reaffirms-fgs-commitment-to-boost-food-production/"
+      },
+      "x": [
+        {
+          "t": "In September 2010 the reservoir filled to dangerous levels; gate releases flooded downstream Kagara and the spillway was reported to have failed on 8 September 2010.",
+          "u": "https://en.wikipedia.org/wiki/Goronyo_Dam"
+        },
+        {
+          "t": "Reservoir capacity is reported as about 947 million cubic metres, while peak-season inflows can exceed 2 billion cubic metres.",
+          "u": "https://allafrica.com/stories/202512230081.html"
+        }
+      ],
+      "chk": "October 2026"
+    },
+    "g1943": {
+      "op": {
+        "n": "Sokoto Rima River Basin Development Authority (SRRBDA)",
+        "b": "inferred",
+        "u": "https://leadership.ng/?p=182859",
+        "note": "A Leadership report lists the Bakolori irrigation project among SRRBDA projects inspected by the minister; no source seen names the current dam operator explicitly. ICRC lists the Federal Ministry of Power as the agency for the 3.2 MW hydropower PPP."
+      },
+      "yr": {
+        "v": 1978,
+        "u": "https://en.wikipedia.org/wiki/Bakolori_Dam",
+        "note": "Construction 1974-1978; canals finished 1983. ICRC page says commissioned 1982."
+      },
+      "h": {
+        "v": 48,
+        "u": "https://ppp.icrc.gov.ng/project/47/bakalori-dam",
+        "note": "Same value on Wikipedia and GDW."
+      },
+      "st": {
+        "v": "unknown",
+        "d": "2026-07-10",
+        "u": "https://gazettengr.com/?p=484488",
+        "note": "Recorded as unknown: no report on the dam itself was found. A July 2026 report about birds damaging crops on the Bakolori Irrigation Scheme shows the scheme was being farmed. Indirect evidence only: a July 2026 report describes crops of farmers under the Bakalori Irrigation Scheme being destroyed by birds, implying the scheme fed by the dam is in use; no source directly reports the dam's condition."
+      },
+      "insp": {
+        "d": "2022",
+        "what": "World Bank-financed TRIMING contract for rehabilitation and improvement works on Bakolori and Zobe dams awarded to Ric Rock Construction Nigeria Ltd (about USD 12.7 million); completion not confirmed.",
+        "u": "https://allbusiness.africa/contract-awards/ng-contract-for-rehabilitation-and-improvement-works-for-bakolori-and-zobe-dams-in-zamfara-and-katsina-states-nigeria-450"
+      },
+      "x": [
+        {
+          "t": "The dam's original hydropower units have been out of service since 1987; a 3.2 MW rehabilitate-operate-transfer hydropower PPP has been in procurement with ICRC.",
+          "u": "https://ppp.icrc.gov.ng/project/47/bakalori-dam"
+        },
+        {
+          "t": "In April 1980 police fired on farmers protesting displacement by the project, killing dozens to hundreds of people according to different accounts.",
+          "u": "https://en.wikipedia.org/wiki/Bakolori_Dam"
+        }
+      ],
+      "chk": "October 2026"
+    },
+    "g6582": {
+      "op": {
+        "n": "Zamfara State Water Board (now Zamfara State Water Corporation)",
+        "b": "confirmed",
+        "u": "https://en.wikipedia.org/wiki/Gusau_Dam",
+        "note": "Wikipedia names the Zamfara Water Board in its account of the 2006 collapse; a 2026 report says the State Water Corporation will run the rehabilitated Gusau water supply scheme (https://21stcenturychronicle.com/zamfara-govt-approves-n3-8-billion-for-gusau-water-project/)."
+      },
+      "yr": null,
+      "h": {
+        "v": 22,
+        "u": "https://www.globaldamwatch.org",
+        "note": "GDW value; no other source found."
+      },
+      "st": {
+        "v": "unknown",
+        "d": "2026-04-29",
+        "u": "https://21stcenturychronicle.com/zamfara-govt-approves-n3-8-billion-for-gusau-water-project/",
+        "note": "Recent reports (2022, 2026) cover funding to rehabilitate the Gusau water supply scheme but say nothing about the dam itself; no post-2019 report on the dam's condition was found."
+      },
+      "insp": {
+        "d": "2007-03",
+        "what": "Federal government released N2.4 billion to rehabilitate the dam after its 2006 collapse; no later public safety assessment found.",
+        "u": "https://en.wikipedia.org/wiki/Gusau_Dam"
+      },
+      "x": [
+        {
+          "t": "The dam failed on 30 September 2006 after heavy flooding when sluice gates failed, killing about 40 people and destroying around 500 homes.",
+          "u": "https://en.wikipedia.org/wiki/Gusau_Dam"
+        },
+        {
+          "t": "In April 2026 Zamfara approved about N3.8 billion in the 2026 budget for immediate rehabilitation of Phase I of the Gusau water supply scheme.",
+          "u": "https://21stcenturychronicle.com/zamfara-govt-approves-n3-8-billion-for-gusau-water-project/"
+        }
+      ],
+      "chk": "October 2026"
+    },
+    "g1947": {
+      "op": {
+        "n": "Sokoto Rima RBDA (irrigation scheme); Katsina State Water Board (water treatment and supply)",
+        "b": "inferred",
+        "u": "https://www.eyemark.ng/project/operation-and-maintenance-of-zobe-irrigation-scheme-dutsin-ma-katsina-state-ergp5140219",
+        "note": "Federal budget line for operation and maintenance of the Zobe irrigation scheme is implemented by Sokoto Rima RBDA; a Nov 2025 report says the Katsina State Water Board handles treatment and distribution (https://leadership.ng/zobe-reborn-how-gov-radda-is-restoring-katstinas-long-lost-water-hope/). No source names the dam operator directly."
+      },
+      "yr": {
+        "v": 1983,
+        "u": "https://en.wikipedia.org/wiki/Zobe_Dam",
+        "note": "Matches GDW."
+      },
+      "h": {
+        "v": 19,
+        "u": "https://www.globaldamwatch.org",
+        "note": "Wikipedia text also says 19 m, but its infobox says 48 m (inconsistent)."
+      },
+      "st": {
+        "v": "working",
+        "d": "2026-06-22",
+        "u": "https://katsinastate.gov.ng/2026/06/22/governor-radda-inspects-kafin-soli-zobe-water-plant-booster-station/",
+        "note": "Water from the dam feeds a treatment plant finished in July 2022 (40-45 million litres/day); the N31.8bn Phase 1B distribution project was under construction in June 2026. The dam was long described as never meeting its intended purpose."
+      },
+      "insp": {
+        "d": "2022",
+        "what": "World Bank-financed TRIMING contract for rehabilitation and improvement works on Zobe and Bakolori dams awarded to Ric Rock Construction Nigeria Ltd; completion not confirmed.",
+        "u": "https://allbusiness.africa/contract-awards/ng-contract-for-rehabilitation-and-improvement-works-for-bakolori-and-zobe-dams-in-zamfara-and-katsina-states-nigeria-450"
+      },
+      "x": [
+        {
+          "t": "A 2004 safety review noted past seepage and recommended close monitoring and works to intercept foundation seepage.",
+          "u": "https://en.wikipedia.org/wiki/Zobe_Dam"
+        },
+        {
+          "t": "Heavy rains in September 1999 caused the reservoir to overflow and damage crops.",
+          "u": "https://en.wikipedia.org/wiki/Zobe_Dam"
+        }
+      ],
+      "chk": "October 2026"
+    },
+    "g1937": {
+      "op": null,
+      "yr": {
+        "v": 1989,
+        "u": "https://en.wikipedia.org/wiki/Jibiya_Dam",
+        "note": "GDW gives 1990."
+      },
+      "h": {
+        "v": 23.5,
+        "u": "https://en.wikipedia.org/wiki/Jibiya_Dam",
+        "note": "GDW gives 22 m."
+      },
+      "st": {
+        "v": "unknown",
+        "d": "2017-04",
+        "u": "https://www.infrapppworld.com/project/jibiya-dam-hydropower-ppp-project-in-katsina",
+        "note": "No report on the dam's condition after 2019 found; in 2007 irrigation had stopped for lack of pump fuel, and a hydropower PPP was listed in 2017."
+      },
+      "insp": {
+        "d": "2004",
+        "what": "Dam assessment rated condition good but found no instrument readings had been taken since 1994 due to untrained operators.",
+        "u": "https://en.wikipedia.org/wiki/Jibiya_Dam"
+      },
+      "x": [
+        {
+          "t": "A hydropower PPP for the dam was listed by the Federal Ministry of Power, Works and Housing, with the last public update in April 2017.",
+          "u": "https://www.infrapppworld.com/project/jibiya-dam-hydropower-ppp-project-in-katsina"
+        }
+      ],
+      "chk": "October 2026"
+    },
+    "g10425": {
+      "op": {
+        "n": "Sokoto Rima River Basin Development Authority (irrigation); Katsina State Government (water supply)",
+        "b": "inferred",
+        "u": "https://fmino.gov.ng/address-by-the-honorable-minister-of-water-resources-engr-suleiman-h-adamu-fnse-at-the-commissioning-of-sabke-dutsi-and-mashi-water-supply-schemes-katsina-state/",
+        "note": "At the May 2018 commissioning, the water supply scheme was handed to Katsina State and handover of the irrigation scheme to SRRBDA was said to be in process; no later source confirms who runs it."
+      },
+      "yr": {
+        "v": 2018,
+        "u": "https://fmino.gov.ng/address-by-the-honorable-minister-of-water-resources-engr-suleiman-h-adamu-fnse-at-the-commissioning-of-sabke-dutsi-and-mashi-water-supply-schemes-katsina-state/",
+        "note": "Sabke water supply and irrigation schemes commissioned 28 May 2018 after FEC completion funding in Oct 2017; GDW gives 2000. Project dates to the 1997-98 PTF era."
+      },
+      "h": null,
+      "st": {
+        "v": "unknown",
+        "d": "2025-05-02",
+        "u": "https://allafrica.com/stories/202505020344.html",
+        "note": "A 2025 report says the federal government decided to revive the Sabke Dam Irrigation Project and the governor would support its resuscitation, implying the irrigation scheme is not functioning; the dam's own condition is not reported."
+      },
+      "insp": null,
+      "x": [
+        {
+          "t": "FEC approved about N236 million in October 2017 to complete the project, which had been abandoned around 2012 at about 95% and partly vandalised.",
+          "u": "https://www.thecable.ng/?p=209727"
+        },
+        {
+          "t": "Reported reservoir storage is 30.6 million cubic metres; the scheme was designed for 1,200 ha of irrigation and a 1 MGD treatment plant serving Daura and Mai'adua.",
+          "u": "https://allafrica.com/stories/202505020344.html"
+        }
+      ],
+      "chk": "October 2026"
+    },
+    "g5187": {
+      "op": {
+        "n": "Kaduna State Ministry of Public Works and Infrastructure",
+        "b": "confirmed",
+        "u": "https://dailytrust.com/?p=1943219",
+        "note": "Kaduna State statement (Aug 2026) says the ministry carries out routine monitoring and maintenance of the dam."
+      },
+      "yr": {
+        "v": 1977,
+        "u": "https://www.globaldamwatch.org",
+        "note": "GDW value; no other source found."
+      },
+      "h": {
+        "v": 19,
+        "u": "https://www.globaldamwatch.org",
+        "note": "GDW value; no other source found."
+      },
+      "st": {
+        "v": "working",
+        "d": "2026-08-21",
+        "u": "https://dailytrust.com/?p=1943219",
+        "note": "After Niger State's emergency agency warned of cracks (19 Aug 2026), Kaduna State said there is no evidence of active structural failure, that circulating images date from 2015/16 problems fixed by emergency works, and that full rehabilitation is being budgeted."
+      },
+      "insp": {
+        "d": "2026-08",
+        "what": "Joint technical inspection by the Federal Ministry of Water Resources and Sanitation and Kaduna State scheduled for August 2026; water-level gauges, sirens and telemetry being procured. Results not yet public.",
+        "u": "https://dailytrust.com/?p=1943219"
+      },
+      "x": [
+        {
+          "t": "In August 2026 the Niger State Emergency Management Agency raised alarm over reported cracks and structural distress at the dam and called for urgent technical and downstream flood-risk assessments.",
+          "u": "https://dailytrust.com/?p=1942121"
+        },
+        {
+          "t": "In January 2018 six nearby communities reported a crack with water seeping out of the dam since about October 2017.",
+          "u": "https://dailytrust.com/kaduna-communities-raise-alarm-over-appearance-of-cracks-on-kangimi-dam/"
+        }
+      ],
+      "chk": "October 2026"
+    },
+    "g1960": {
+      "op": {
+        "n": "Upper Benue River Basin Development Authority (UBRBDA)",
+        "b": "inferred",
+        "u": "https://www.vanguardngr.com/2016/11/frc-commences-verification-fgs-projects-north-east/amp/",
+        "note": "A 2016 report presents Kiri as a Federal Government dam for which UBRBDA is responsible: the UBRBDA MD spoke at the site, and UBRBDA sells irrigation water to Savannah Sugar (Dangote). No source names the current operator outright."
+      },
+      "yr": {
+        "v": 1982,
+        "u": "https://en.wikipedia.org/wiki/Kiri_Dam",
+        "note": "Wikipedia says it was mainly completed in 1982, which matches GDW."
+      },
+      "h": {
+        "v": 20,
+        "u": "https://en.wikipedia.org/wiki/Kiri_Dam",
+        "note": "Zoned earth-fill embankment about 1.2 km long. Matches GDW."
+      },
+      "st": {
+        "v": "working",
+        "d": "2024-08-20",
+        "u": "https://reliefweb.int/report/nigeria/north-east-nigeria-adamawa-state-flood-update-22-august-2024",
+        "note": "OCHA reported that the dam 'breached its banks' on 20 Aug 2024 and flooded Numan LGA communities. The wording most likely means it overflowed and spilled rather than failed structurally, but the source does not say which. The dam is still in service supplying irrigation water to the Savannah Sugar estate."
+      },
+      "insp": {
+        "d": "2016-11",
+        "what": "The Fiscal Responsibility Commission verified the project with UBRBDA. It found an abandoned N800m canal contract and said the dam needs funding for safety and maintenance.",
+        "u": "https://www.vanguardngr.com/2016/11/frc-commences-verification-fgs-projects-north-east/amp/"
+      },
+      "x": [
+        {
+          "t": "In August 2015, heavy outflow from Kiri Dam flooded seven or more communities in Demsa and Numan LGAs and left thousands homeless. No deaths were reported.",
+          "u": "https://pmnewsnigeria.com/2015/08/31/7-villages-flooded-in-adamawa-as-kiri-dam-overflows/"
+        },
+        {
+          "t": "In August 2024 the dam overflowed or breached its banks and flooded Kwakwambe, Lure, Imburu and other communities in Numan LGA.",
+          "u": "https://reliefweb.int/report/nigeria/north-east-nigeria-adamawa-state-flood-update-22-august-2024"
+        },
+        {
+          "t": "Humangle reported that the dam's spillway was opened during heavy rains in an August flood season and that this made flooding in Adamawa worse. The article is undated, but it is probably about 2024.",
+          "u": "https://humanglemedia.com/excess-water-from-dams-increases-severity-of-floods-in-adamawa"
+        },
+        {
+          "t": "A 2004 assessment cited by Wikipedia rated the dam's condition as good.",
+          "u": "https://en.wikipedia.org/wiki/Kiri_Dam"
+        }
+      ],
+      "chk": "October 2026"
+    },
+    "g5206": {
+      "op": {
+        "n": "Gombe State Government",
+        "b": "confirmed",
+        "u": "https://von.gov.ng/gombe-to-harness-potentials-of-its-3-dams-to-boost-economy/",
+        "note": "In Feb 2021 the state Commissioner for Water Resources described Balanga as one of Gombe State's three dams. No RBDA role was found."
+      },
+      "yr": {
+        "v": 1987,
+        "u": "https://www.globaldamwatch.org",
+        "note": "GDW value. No other source was found."
+      },
+      "h": {
+        "v": 41,
+        "u": "https://www.globaldamwatch.org",
+        "note": "GDW value. No other source was found."
+      },
+      "st": {
+        "v": "unknown",
+        "d": "2025-08",
+        "u": "https://www.thisdaylive.com/2025/08/02/gombe-gov-launches-620kw-hydropower-solar-hybrid-system-in-balanga-lga/",
+        "note": "In Jan 2023 farmers said most of the irrigation facilities had broken down and the canals were silted, so there had been no dry-season farming for about four years. In Aug 2025 the state launched a 620 kW small hydropower-solar hybrid scheme at the dam with UNIDO, the EU, GEF and REA, with the hydro part due by Jan 2026. The reservoir still exists, but no source confirms that the irrigation works are operating."
+      },
+      "insp": null,
+      "x": [
+        {
+          "t": "In Jan 2023, farmers asked the government to rehabilitate the dam. They said the canals were blocked by mud and promised repairs had not happened.",
+          "u": "https://nannews.ng/gombe-farmers-seek-rehabilitation-of-balanga-dam/"
+        },
+        {
+          "t": "Work on a 620 kW hydropower-solar hybrid plant using the dam's water began in August 2025. It is funded by the EU and GEF, implemented by UNIDO, and backed by Gombe State.",
+          "u": "https://allafrica.com/stories/202508140334.html"
+        }
+      ],
+      "chk": "October 2026"
+    },
+    "g6596": {
+      "op": {
+        "n": "Upper Benue River Basin Development Authority (UBRBDA)",
+        "b": "confirmed",
+        "u": "https://ubrbda.gov.ng/wayadam.php",
+        "note": "UBRBDA built the dam and publishes it as its own project. Federal budget lines for rehabilitating the dam and its irrigation project are listed under UBRBDA."
+      },
+      "yr": {
+        "v": 1999,
+        "u": "https://ubrbda.gov.ng/wayadam.php",
+        "note": "UBRBDA says construction ran from Nov 1992 until 1999, when it stopped for lack of funds. 1999 is therefore the year work stopped, not a formal completion. GDW also gives 1999."
+      },
+      "h": {
+        "v": 19,
+        "u": "https://ubrbda.gov.ng/wayadam.php",
+        "note": "UBRBDA gives 19 m, with a 400 m earth-fill embankment and 30 million m3 of storage. GDW says 23 m."
+      },
+      "st": {
+        "v": "unknown",
+        "d": "2024",
+        "u": "https://www.eyemark.ng/project/waya-dam-irrigation-project-bauchi-state-ergp20244925",
+        "note": "No recent report describes the dam operating. The 2024 federal budget has a N52m line for the Waya Dam & Irrigation Project under UBRBDA, marked not started. A separate N406.66m rehabilitation line shows 0% progress."
+      },
+      "insp": null,
+      "x": [
+        {
+          "t": "2024: Federal budget line (ERGP20244925, N52m, UBRBDA) for the Waya Dam & Irrigation Project, listed as not started. Another line (ERGP1112733) covers rehabilitating the dam and irrigation project, N406.66m, 0% progress.",
+          "u": "https://www.eyemark.ng/project/waya-dam-irrigation-project-bauchi-state-ergp1112733"
+        },
+        {
+          "t": "In 2010, a UNIDO-supported small hydropower pilot at Waya Dam supplied electricity to about 336 households in Kimni, Gilliri and Runde. FG-funded rehabilitation of the embankment and spillway was part of that project.",
+          "u": "https://dailytrust.com/two-bauchi-communities-see-the-light/"
+        }
+      ],
+      "chk": "October 2026"
+    },
+    "g5208": {
+      "op": null,
+      "yr": {
+        "v": 1964,
+        "u": "https://www.globaldamwatch.org",
+        "note": "GDW value. No other source was found."
+      },
+      "h": {
+        "v": 26,
+        "u": "https://www.globaldamwatch.org",
+        "note": "GDW value. No other source was found."
+      },
+      "st": {
+        "v": "unknown",
+        "d": null,
+        "u": null,
+        "note": "No public report about this dam was found. GDW links it to NESCO hydro (Jos), but no source confirms that NESCO operates it now or that it is in service."
+      },
+      "insp": null,
+      "x": [],
+      "chk": "October 2026"
+    },
+    "g6602": {
+      "op": {
+        "n": "Plateau State Water Board (now Jos Water Services Corporation)",
+        "b": "confirmed",
+        "u": "https://gazettengr.com/plateau-govt-signs-n13-5-billion-contract-to-rehabilitate-water-treatment-plants/",
+        "note": "In 2022 the Plateau State Water Board described the Yakubu Gowon dam as its facility. In 2025 the MD of Jos Water Services Corporation spoke for the plant. The change of name is inferred from those two sources."
+      },
+      "yr": {
+        "v": 1981,
+        "u": "https://thisdaylive.com/index.php/2022/10/30/plateau-secures-50m-french-grant-to-expand-water-project",
+        "note": "Phase 1 was built in 1981 and phase 2 in 2001. Matches GDW."
+      },
+      "h": {
+        "v": 35,
+        "u": "https://www.globaldamwatch.org",
+        "note": "GDW value. No other source was found."
+      },
+      "st": {
+        "v": "working",
+        "d": "2025-10-31",
+        "u": "https://gazettengr.com/plateau-govt-signs-n13-5-billion-contract-to-rehabilitate-water-treatment-plants/",
+        "note": "In Oct 2025 the Yakubu Gowon water scheme was supplying about 80% of the water for Jos and nearby areas. Rehabilitation of its treatment plant was contracted at that time. No report says the dam itself is under repair."
+      },
+      "insp": null,
+      "x": [
+        {
+          "t": "2025-10: The state signed a N13.5bn contract with China Geo-Engineering Corporation to rehabilitate the Yakubu Gowon and Laminga water treatment plants, due Dec 2026. The work is AFD-funded and covers the treatment works, not the dam embankment. AFD engineers had inspected the site in 2022.",
+          "u": "https://gazettengr.com/plateau-govt-signs-n13-5-billion-contract-to-rehabilitate-water-treatment-plants/"
+        },
+        {
+          "t": "The scheme can produce 90 million gallons a day. A $50m AFD grant secured in 2022 funds its upgrade.",
+          "u": "https://thisdaylive.com/index.php/2022/10/30/plateau-secures-50m-french-grant-to-expand-water-project"
+        }
+      ],
+      "chk": "October 2026"
+    },
+    "g6612": {
+      "op": {
+        "n": "Cross River Basin Development Authority",
+        "b": "inferred",
+        "u": "https://dailytrust.com/fg-world-bank-rehabilitate-obudu-dam/",
+        "note": "The Authority built and commissioned the dam in 1999 and supervised the 2013 rehabilitation for the Federal Ministry of Water Resources. No source says who runs it today."
+      },
+      "yr": {
+        "v": 1999,
+        "u": "https://en.wikipedia.org/wiki/Obudu_Dam",
+        "note": "Commissioned in 1999 according to Wikipedia and Daily Trust. GDW gives 1996."
+      },
+      "h": {
+        "v": 15,
+        "u": "https://en.wikipedia.org/wiki/Obudu_Dam",
+        "note": "Crest length 425 m and storage 4.2 million m3. Matches GDW."
+      },
+      "st": {
+        "v": "unknown",
+        "d": "2013-10",
+        "u": "https://dailytrust.com/fg-world-bank-rehabilitate-obudu-dam/",
+        "note": "The latest report found is from 2013, when the FG and World Bank announced rehabilitation of the draw-off and spillway. No report after 2019 was found."
+      },
+      "insp": {
+        "d": "2013-10",
+        "what": "World Bank-funded rehabilitation announced: a 12-month works contract to build a draw-off point and an effective spillway for reservoir safety. It was supervised by the Cross River Basin Development Authority.",
+        "u": "https://dailytrust.com/fg-world-bank-rehabilitate-obudu-dam/"
+      },
+      "x": [
+        {
+          "t": "In July 2003, a heavy storm damaged the spillway and flooded the area. A 2004 safety review called for urgent spillway restoration, estimated at N272m.",
+          "u": "https://en.wikipedia.org/wiki/Obudu_Dam"
+        }
+      ],
+      "chk": "October 2026"
+    },
+    "w129775183": {
+      "op": {
+        "n": "Federal Ministry of Water Resources and Sanitation",
+        "b": "inferred",
+        "u": "https://fmino.gov.ng/water-and-sanitation-minister-inspects-otukpo-multipurpose-dam-assures-residents-of-federal-governments-timely-completion/",
+        "note": "This is a federal project that the Minister inspected and pledged to complete. It is not finished, so it has no operator yet, and no source names an RBDA or contractor."
+      },
+      "yr": null,
+      "h": {
+        "v": 22,
+        "u": "https://www.vanguardngr.com/2026/01/fg-ll-complete-otukpo-multipurpose-dam-minister/",
+        "note": "Design height of the earth-fill embankment, which is 2,468.64 m long. The dam is not complete."
+      },
+      "st": {
+        "v": "unknown",
+        "d": "2026-01-22",
+        "u": "https://www.vanguardngr.com/2026/01/fg-ll-complete-otukpo-multipurpose-dam-minister/",
+        "note": "The dam is still under construction and incomplete. In Jan 2026 the Minister inspected the outstanding works so that completion could begin. None of the brief's status categories fits, so it is marked unknown."
+      },
+      "insp": {
+        "d": "2026-01",
+        "what": "The Minister of Water Resources and Sanitation inspected the unfinished Otukpo (Otobi Akpa) dam. Planned components are a 130 million m3 reservoir, a 3.3 MW hydro plant, potable water supply and 2,000 ha of irrigation.",
+        "u": "https://fmino.gov.ng/water-and-sanitation-minister-inspects-otukpo-multipurpose-dam-assures-residents-of-federal-governments-timely-completion/"
+      },
+      "x": [],
+      "chk": "October 2026"
+    },
+    "g5220": {
+      "op": {
+        "n": "Lower Benue River Basin Development Authority (LBRBDA)",
+        "b": "inferred",
+        "u": "https://fmino.gov.ng/lbrbda-partners-firm-to-develop-doma-dam-irrigation-area-in-nasarawa/",
+        "note": "IWMI (2023) says LBRBDA controls the Doma Irrigation Scheme. In 2025 LBRBDA partnered with a firm to supply irrigation water from the dam. No source states outright who operates the dam."
+      },
+      "yr": {
+        "v": 1988,
+        "u": "https://www.globaldamwatch.org",
+        "note": "GDW value. IWMI says the irrigation scheme was set up in the 1980s. ICRC describes the dam and reservoir as complete."
+      },
+      "h": {
+        "v": 16,
+        "u": "https://www.globaldamwatch.org",
+        "note": "GDW value. ICRC gives a 520 m main dam and a 320 m saddle dam, with no height."
+      },
+      "st": {
+        "v": "unknown",
+        "d": "2025-10-15",
+        "u": "https://fmino.gov.ng/lbrbda-partners-firm-to-develop-doma-dam-irrigation-area-in-nasarawa/",
+        "note": "IWMI (Oct 2023) says the reservoir holds about 30 million m3 live storage, but its irrigation and power purposes were never realised and the irrigation scheme was abandoned. In 2025 LBRBDA announced a deal to irrigate 1,000 ha from the dam. In May 2024 the FG called Doma an ongoing project to be completed. No source clearly shows the dam operating."
+      },
+      "insp": null,
+      "x": [
+        {
+          "t": "A 1 MW BOOT hydropower plant at the dam received FEC outline approval in 2016 but was still at procurement stage in 2018. IWMI says planned hydropower was never built.",
+          "u": "https://ppp.icrc.gov.ng/project/105"
+        },
+        {
+          "t": "In May 2024, the Water Resources Minister listed Doma as a priority dam project still to be completed for water supply, hydropower and irrigation.",
+          "u": "https://newtelegraphng.com/fg-pledges-completion-of-doma-fari-ruwa-dams-projects/"
+        },
+        {
+          "t": "IWMI (2023) reports that the Doma irrigation scheme of about 2,500 ha, shared with Rutu, was never completed and has long been abandoned.",
+          "u": "https://www.iwmi.cgiar.org/Publications/Other/PDF/situational_analysis_of_the_doma-rutu_socio-ecological_landscape_in_nasarawa_state_nigeria.pdf"
+        }
+      ],
+      "chk": "October 2026"
+    },
+    "g1966": {
+      "op": {
+        "n": "Ogun-Osun River Basin Development Authority (dam); hydropower plant concessioned to Quaint Power and Infrastructure Nigeria Ltd (Feb 2026)",
+        "b": "confirmed",
+        "u": "https://dailytrust.com/how-fg-abandoned-multi-million-naira-electricity-turbines-since-1982/",
+        "note": "Daily Trust (Feb 2018) says the dam is managed by OORBDA; Voice of Nigeria (Feb 2026) reports the federal government handed the 6 MW hydropower plant to Quaint Power under a PPP concession: https://von.gov.ng/nigeria-gives-ikere-gorge-dam-for-hydro-power-project/"
+      },
+      "yr": {
+        "v": 1995,
+        "u": "https://www.globaldamwatch.org",
+        "note": "GDW value. Wikipedia says construction began in 1983 (https://en.wikipedia.org/wiki/Ikere_Gorge_Dam), and NAN (May 2026) says it was started in 1983 and stayed largely uncompleted, so the completion year is uncertain."
+      },
+      "h": {
+        "v": 48,
+        "u": "https://www.globaldamwatch.org",
+        "note": "GDW value; no other source found."
+      },
+      "st": {
+        "v": "unknown",
+        "d": "2026-05-05",
+        "u": "https://nannews.ng/stakeholders-seek-accelerated-delivery-of-ikere-gorge-hydropower-project/",
+        "note": "Recorded as unknown rather than out of use: the reservoir holds water, but its irrigation scheme and hydropower plant were never fully commissioned. The reservoir holds water, but its planned irrigation and 6 MW hydropower were never put into service (ICIR 2021, Daily Trust 2018); in May 2026 stakeholders were urging faster delivery of the hydropower project after the Feb 2026 concession, so the dam's main functions remain idle. Status is a judgement call."
+      },
+      "insp": null,
+      "x": [
+        {
+          "t": "ICIR (March 2021) found the Middle Ogun irrigation scheme linked to the dam not working, with rusty pipes and idle generators.",
+          "u": "https://www.icirnigeria.org/how-failed-water-projects-worsen-food-insecurity-in-southwest-nigeria/"
+        },
+        {
+          "t": "Turbines bought in 1982 for the hydropower plant were never installed and were reported obsolete and decaying in 2018.",
+          "u": "https://dailytrust.com/how-fg-abandoned-multi-million-naira-electricity-turbines-since-1982/"
+        },
+        {
+          "t": "In February 2026 the federal government handed the 6 MW Ikere hydropower plant to Quaint Power and Infrastructure Nigeria Ltd under a PPP.",
+          "u": "https://von.gov.ng/nigeria-gives-ikere-gorge-dam-for-hydro-power-project/"
+        },
+        {
+          "t": "In July 2025 OORBDA said it was working with Ogun State to restore power generation at the Ikere Gorge and Oyan dams.",
+          "u": "https://businessday.ng/opinion/article/one-year-in-ogun-oshun-river-basin-chief-showcases-flood-relief-greenhouse-expansion-and-energy-revival/"
+        }
+      ],
+      "chk": "October 2026"
+    },
+    "g1973": {
+      "op": {
+        "n": "Ogun-Osun River Basin Development Authority (OORBDA)",
+        "b": "confirmed",
+        "u": "https://www.thisdaylive.com/2024/10/18/ogun-river-flooding-relocate-in-your-own-interest-lagos-warns-residents/",
+        "note": "Named as the authority carrying out water releases from the dam in Oct 2024."
+      },
+      "yr": {
+        "v": 1983,
+        "u": "https://www.globaldamwatch.org",
+        "note": "GDW value; BusinessDay (2025) says it was built in the early 1980s, which agrees."
+      },
+      "h": {
+        "v": 30,
+        "u": "https://www.globaldamwatch.org",
+        "note": "GDW value."
+      },
+      "st": {
+        "v": "working",
+        "d": "2024-10-18",
+        "u": "https://www.thisdaylive.com/2024/10/18/ogun-river-flooding-relocate-in-your-own-interest-lagos-warns-residents/",
+        "note": "In Oct 2024 OORBDA was making staggered releases, at about 208 m3/s through two of four radial gates. Officials said 62.1% of flood-control capacity remained and the dam was not under threat."
+      },
+      "insp": null,
+      "x": [
+        {
+          "t": "Lagos State warned Ogun River bank residents to relocate before the October 2024 Oyan releases; about 1,484 million m3 had been released by 12 Oct 2024.",
+          "u": "https://gazettengr.com/oyan-dam-lagos-government-advises-ogun-riverbank-residents-to-relocate/"
+        },
+        {
+          "t": "In July 2025 OORBDA said it was working with Ogun State to restore the dam's idle hydropower potential.",
+          "u": "https://businessday.ng/opinion/article/one-year-in-ogun-oshun-river-basin-chief-showcases-flood-relief-greenhouse-expansion-and-energy-revival/"
+        }
+      ],
+      "chk": "October 2026"
+    },
+    "g1968": {
+      "op": {
+        "n": "Osun State Water Corporation",
+        "b": "confirmed",
+        "u": "https://en.wikipedia.org/wiki/Erinle_River",
+        "note": "Wikipedia, citing Oladejo & Ofoezie (2006), says the corporation owns and operates it. That source is old."
+      },
+      "yr": {
+        "v": 1989,
+        "u": "https://en.wikipedia.org/wiki/Erinle_River",
+        "note": "Agrees with GDW. An older Erinle dam at Ido-Osun dates from 1954."
+      },
+      "h": {
+        "v": 27,
+        "u": "https://en.wikipedia.org/wiki/Erinle_River",
+        "note": "Agrees with GDW; crest length is 677 m."
+      },
+      "st": {
+        "v": "unknown",
+        "d": "2023-07-11",
+        "u": "https://thisdaylive.com/index.php/2023/07/11/osun-water-works-under-rehabilitation",
+        "note": "No recent report on the dam itself was found; in 2023 the Osun government said the Ede waterworks, which the scheme supplies, were being rehabilitated."
+      },
+      "insp": null,
+      "x": [
+        {
+          "t": "In April 2023 Osun State approved replacing old asbestos-cement pipes with HDPE pipes at the Ede and Osogbo waterworks.",
+          "u": "https://thisdaylive.com/index.php/2023/04/17/rehabilitation-of-selected-water-schemes-commences-in-osun"
+        }
+      ],
+      "chk": "October 2026"
+    },
+    "g5225": {
+      "op": {
+        "n": "Water Corporation of Oyo State",
+        "b": "inferred",
+        "u": "https://primetimereporters.com/2023/10/oyo-state-government-kicks-against-destruction-of-water-facilities",
+        "note": "In Oct 2023 the corporation's chairman said it was doing works at the dam and that the state had begun maintaining the Asejire and Eleyele dams. The article does not call the corporation the operator in so many words."
+      },
+      "yr": {
+        "v": 1969,
+        "u": "https://www.globaldamwatch.org",
+        "note": "GDW value. Wikipedia says the reservoir was built in the late 1960s and the water supply project was completed in 1972 (https://en.wikipedia.org/wiki/Asejire_Reservoir)."
+      },
+      "h": {
+        "v": 26,
+        "u": "https://www.globaldamwatch.org",
+        "note": "GDW value."
+      },
+      "st": {
+        "v": "working",
+        "d": "2023-10-25",
+        "u": "https://primetimereporters.com/2023/10/oyo-state-government-kicks-against-destruction-of-water-facilities",
+        "note": "The reservoir feeds the Asejire and Osegere treatment plants for Ibadan. In Oct 2023 the state said maintenance works were going on at the dam."
+      },
+      "insp": {
+        "d": "2023-10",
+        "what": "The Oyo State Water Corporation began maintenance works at the dam. Separately, a Chinese contractor proposed rehabilitating the Asejire and Eleyele water schemes, but this was an expression of interest, not a signed contract (https://constructionreviewonline.com/oyo-state-government-partners-with-china-construction-for-asejire-water-dam-rehabilitation/).",
+        "u": "https://primetimereporters.com/2023/10/oyo-state-government-kicks-against-destruction-of-water-facilities"
+      },
+      "x": [
+        {
+          "t": "About 37.8 ha of land at the dam was leased to agro-processing firms in 2023, and the corporation invited power firms to use the dam's hydropower potential.",
+          "u": "https://primetimereporters.com/2023/10/oyo-state-government-kicks-against-destruction-of-water-facilities"
+        }
+      ],
+      "chk": "October 2026"
+    },
+    "g5223": {
+      "op": {
+        "n": "Ekiti State Government / Ekiti State Water Corporation",
+        "b": "confirmed",
+        "u": "https://www.icirnigeria.org/?p=121507",
+        "note": "ICIR (2021) says Ekiti State owns the dam and its Water Corporation runs the waterworks. There was a plan to move ownership to Ekiti Water and Sewerage Company Ltd."
+      },
+      "yr": {
+        "v": 1985,
+        "u": "https://www.icirnigeria.org/?p=121507",
+        "note": "ICIR says it was commissioned in 1985; GDW gives 1987."
+      },
+      "h": {
+        "v": 22,
+        "u": "https://www.globaldamwatch.org",
+        "note": "GDW value."
+      },
+      "st": {
+        "v": "working",
+        "d": "2021-05-23",
+        "u": "https://www.icirnigeria.org/?p=121507",
+        "note": "The state said in March 2021 that the dam was fully rehabilitated and pumping at its original capacity, but some communities along the pipeline still reported no water. No report from 2022 or later was found."
+      },
+      "insp": null,
+      "x": [
+        {
+          "t": "2020-11: Rehabilitation financed by the World Bank under the Third National Urban Water Sector Reform Project, about 2018–Nov 2020. The work replaced low- and high-lift pumps and installed new generators.",
+          "u": "https://www.icirnigeria.org/?p=121507"
+        },
+        {
+          "t": "In 2018 the World Bank and Ekiti State agreed a N3.7bn rehabilitation of Ero Dam, its treatment plant and its pipelines.",
+          "u": "https://thisdaylive.com/index.php/2018/11/24/world-bank-ekiti-govt-to-invest-n3-7b-on-ero-dam"
+        }
+      ],
+      "chk": "October 2026"
+    },
+    "w127461459": {
+      "op": {
+        "n": "Benin-Owena River Basin Development Authority",
+        "b": "inferred",
+        "u": "https://dailytrust.com/?p=1252590",
+        "note": "In June 2023 the BORBDA managing director talked about deploying the Owena multipurpose dam as the authority's own, but did not say it operates it. Ondo State is responsible for the water supply part."
+      },
+      "yr": null,
+      "h": null,
+      "st": {
+        "v": "working",
+        "d": "2025-12-10",
+        "u": "https://newtelegraphng.com/aiyedatiwa-flags-off-rehabilitation-of-owena-dam/",
+        "note": "The reservoir is fully impounded and used for aquaculture (Daily Trust, June 2023). The water supply side has long stalled, and in Dec 2025 an AfDB-funded project was flagged off to rehabilitate the Owena treatment plant and pipelines."
+      },
+      "insp": null,
+      "x": [
+        {
+          "t": "2025-12-09: Ondo State flagged off the AfDB/AGTF-funded Urban Water Supply Project. It covers rehabilitating the Owena water treatment plant, about 44.7 km of transmission lines and new reservoirs; the dam structure itself is not named in the scope.",
+          "u": "https://newtelegraphng.com/aiyedatiwa-flags-off-rehabilitation-of-owena-dam/"
+        },
+        {
+          "t": "In June 2023 the dam was said to have been completed 'nearly 30 years ago', with a hydropower part being considered under a PPP.",
+          "u": "https://dailytrust.com/?p=1252590"
+        },
+        {
+          "t": "The Guardian (Dec 2025) described the 2009 Owena water project as never reaching its potential.",
+          "u": "https://guardian.ng/news/aiyedatiwa-revives-decades-of-stalled-running-tap-water-in-ondo/"
+        }
+      ],
+      "chk": "October 2026"
+    },
+    "g5219": {
+      "op": {
+        "n": "Kwara State Ministry of Water Resources",
+        "b": "confirmed",
+        "u": "https://dailytrust.com/kwara-moves-to-stop-fishing-activities-around-dam/",
+        "note": "In Feb 2022 the ministry issued directives as manager of the reservoir and waterworks that supply Ilorin."
+      },
+      "yr": null,
+      "h": {
+        "v": 27,
+        "u": "https://www.globaldamwatch.org",
+        "note": "GDW value."
+      },
+      "st": {
+        "v": "working",
+        "d": "2024-06-13",
+        "u": "https://gazettengr.com/?p=291476",
+        "note": "The dam still supplies raw water to Ilorin (2022), but in June 2024 water hyacinth covered it, its facilities were described as dilapidated, and fish farming was polluting it. A revitalisation backed by ACReSAL was promised but had not started."
+      },
+      "insp": null,
+      "x": [
+        {
+          "t": "In 2022 Kwara State moved to stop fishing and effluent discharge at Asa Dam, warning that damage could disrupt water supply to most of Ilorin.",
+          "u": "https://dailytrust.com/kwara-moves-to-stop-fishing-activities-around-dam/"
+        },
+        {
+          "t": "In June 2024 the World Bank-funded ACReSAL said it was ready to invest in revitalising Asa Dam for drinking water and irrigation.",
+          "u": "https://gazettengr.com/?p=291476"
+        }
+      ],
+      "chk": "October 2026"
+    },
+    "g1965": {
+      "op": null,
+      "yr": {
+        "v": 1995,
+        "u": "https://www.globaldamwatch.org",
+        "note": "GDW value. BusinessDay (2016) says the federal government built it in the 1970s, and its headline says 33 years after construction (about 1983), so the dates conflict."
+      },
+      "h": {
+        "v": 42,
+        "u": "https://www.globaldamwatch.org",
+        "note": "GDW value."
+      },
+      "st": {
+        "v": "unknown",
+        "d": "2016-07-29",
+        "u": "https://businessday.ng/agriculture/article/graduate-farmers-scheme-revives-omi-dam-33-years-after-construction/",
+        "note": "The latest report found (2016) describes a federal dam left largely unused, with irrigation systems still to be developed. No report from after 2019 was found."
+      },
+      "insp": null,
+      "x": [
+        {
+          "t": "The ICRC PPP portal lists an Omi-Kampe dam hydropower project in Kogi, which would use the dam's water for power.",
+          "u": "https://ppp.icrc.gov.ng/project/107/omi-kampe-dam"
+        }
+      ],
+      "chk": "October 2026"
+    },
+    "g5201": {
+      "op": null,
+      "yr": null,
+      "h": {
+        "v": 32,
+        "u": "https://www.globaldamwatch.org",
+        "note": "GDW value only. No other source found."
+      },
+      "st": {
+        "v": "unknown",
+        "d": "2011-03",
+        "u": "https://dailytrust.com/how-emir-survived-on-local-well-for-36-years/",
+        "note": "Latest dam-specific report found is from 2011. It said the reservoir was full, but the pumps could not run well because of weak power supply. A dam manager was interviewed but no operating body was named."
+      },
+      "insp": null,
+      "x": [
+        {
+          "t": "In 2011 the dam's water works could supply up to about two million litres a day to Kontagora, but its link to the Yauri-Koko power line was too weak to run the pumps.",
+          "u": "https://dailytrust.com/how-emir-survived-on-local-well-for-36-years/"
+        }
+      ],
+      "chk": "October 2026"
+    },
+    "g6594": {
+      "op": null,
+      "yr": {
+        "v": 1992,
+        "u": "https://www.globaldamwatch.org",
+        "note": "GDW value only. No other source found."
+      },
+      "h": {
+        "v": 17,
+        "u": "https://www.globaldamwatch.org",
+        "note": "GDW value only."
+      },
+      "st": {
+        "v": "unknown",
+        "d": null,
+        "u": null,
+        "note": "No report on this dam was found online."
+      },
+      "insp": null,
+      "x": [],
+      "chk": "October 2026"
+    },
+    "g5209": {
+      "op": {
+        "n": "Niger State Water Board",
+        "b": "confirmed",
+        "u": "https://www.mdpi.com/2673-7418/1/2/14/htm",
+        "note": "A 2021 peer-reviewed paper says the dam is in the care of the Niger State Water Board. It was built by a state agency, the Niger State Water Resources and Engineering Construction Agency."
+      },
+      "yr": {
+        "v": 1978,
+        "u": "https://www.mdpi.com/2673-7418/1/2/14/htm",
+        "note": "Matches GDW."
+      },
+      "h": {
+        "v": 25,
+        "u": "https://www.globaldamwatch.org",
+        "note": "GDW value. The 2021 paper reports a maximum water depth of about 20.8 m but does not give the dam height."
+      },
+      "st": {
+        "v": "working",
+        "d": "2026-03",
+        "u": "https://von.gov.ng/governor-appeals-for-patience-on-water-shortage-in-niger-state/",
+        "note": "In 2026 the dam is still Minna's main raw-water source. The state plans to desilt it because silt has reduced storage, and Minna has water shortages that are blamed mainly on old pipes. Some press reports spell the name Togwai or Twaguwai."
+      },
+      "insp": null,
+      "x": [
+        {
+          "t": "2021-05: A bathymetric (depth) survey published in an academic paper found heavy sedimentation and reduced storage. It modelled options for restoring capacity. This was a research survey, not an official safety inspection.",
+          "u": "https://www.mdpi.com/2673-7418/1/2/14/htm"
+        },
+        {
+          "t": "In February 2026 the Niger State governor ordered joint action on water scarcity in Minna, including desilting of the dam with Arab Contractors.",
+          "u": "https://nannews.ng/bago-directs-joint-action-on-water-scarcity-in-minna/"
+        },
+        {
+          "t": "The 2021 survey measured a current reservoir volume of about 93 million cubic metres and an area of about 302 ha.",
+          "u": "https://www.mdpi.com/2673-7418/1/2/14/htm"
+        }
+      ],
+      "chk": "October 2026"
+    },
+    "g5215": {
+      "op": null,
+      "yr": {
+        "v": 1995,
+        "u": "https://www.globaldamwatch.org",
+        "note": "GDW value only. No other source found."
+      },
+      "h": {
+        "v": 28,
+        "u": "https://www.globaldamwatch.org",
+        "note": "GDW value only."
+      },
+      "st": {
+        "v": "unknown",
+        "d": "2019-03",
+        "u": "https://blueprint.ng/as-niger-state-govt-reactivates-abandoned-water-schemes/",
+        "note": "No report on the dam itself was found. A 2019 report says the Suleja water works (not the dam) was overhauled from 20% to 60% performance."
+      },
+      "insp": null,
+      "x": [
+        {
+          "t": "In 2016 the Niger State water ministry opened bidding to rehabilitate water works, including the Suleja treatment plant.",
+          "u": "https://www.channelstv.com/2016/10/19/niger-govt-opens-bidding-to-end-water-scarcity-in-minna/"
+        }
+      ],
+      "chk": "October 2026"
+    },
+    "g10550": {
+      "op": {
+        "n": "FCT Water Board",
+        "b": "confirmed",
+        "u": "https://von.gov.ng/disruption-fct-water-board-gives-reasons-in-delay-restoring-supply/",
+        "note": "The FCT Water Board runs the treatment plants and intake pipes at the dam (VON 2021). A 2025 Daily Trust report also describes the Board running the plants supplied by the dam. No source names a separate body that manages the dam itself."
+      },
+      "yr": {
+        "v": 1990,
+        "u": "https://www.fcta.gov.ng/ova_por/lower-usuma-dam/",
+        "note": "The FCTA page says the dam was built in 1990. GDW has no year."
+      },
+      "h": null,
+      "st": {
+        "v": "working",
+        "d": "2025-11",
+        "u": "https://allafrica.com/stories/202511120027.html",
+        "note": "In November 2025 the dam was still supplying raw water to Abuja. Only one of the four treatment plants was running, because of a chemical shortage that led to rationing."
+      },
+      "insp": null,
+      "x": [
+        {
+          "t": "In August 2025 the FCT minister opened the rehabilitated phase 2 water treatment plant at the dam (about N50 billion). Phases 1, 3 and 4 have also been awarded. This work was on the treatment plants, not the dam structure.",
+          "u": "https://gazettengr.com/wike-inaugurates-n50-billion-usuma-dam-water-treatment-plant-in-abuja/"
+        },
+        {
+          "t": "The reservoir holds about 120 million cubic metres of raw water (FCTA).",
+          "u": "https://www.fcta.gov.ng/ova_por/lower-usuma-dam/"
+        },
+        {
+          "t": "In March 2021 a leaking 1,800 mm pipe from the dam to the treatment plant cut supply to several districts while it was replaced.",
+          "u": "https://von.gov.ng/disruption-fct-water-board-gives-reasons-in-delay-restoring-supply/"
+        }
+      ],
+      "chk": "October 2026"
+    },
+    "g5216": {
+      "op": null,
+      "yr": {
+        "v": 1982,
+        "u": "https://www.globaldamwatch.org",
+        "note": "GDW value only. Wikipedia and FCTA give no year."
+      },
+      "h": {
+        "v": 15,
+        "u": "https://www.globaldamwatch.org",
+        "note": "GDW value only."
+      },
+      "st": {
+        "v": "unknown",
+        "d": "2026-02",
+        "u": "https://nannews.ng/fcta-firms-sign-mou-to-transform-jabi-lake-to-recreational-hub/",
+        "note": "The reservoir (Jabi Lake) still exists and is being redeveloped for recreation under a 2026 FCTA agreement. No report on the dam structure itself was found."
+      },
+      "insp": null,
+      "x": [
+        {
+          "t": "Jabi Lake is an earth-dam reservoir first built to supply Abuja water for about 100,000 people. Since Lower Usuma Dam was built, it has been used mainly for fishing and tourism.",
+          "u": "https://en.wikipedia.org/wiki/Jabi_Lake"
+        },
+        {
+          "t": "In February 2026 the FCTA signed an agreement with two private firms to develop Jabi Lake as a recreation hub.",
+          "u": "https://nannews.ng/fcta-firms-sign-mou-to-transform-jabi-lake-to-recreational-hub/"
+        }
+      ],
+      "chk": "October 2026"
+    },
+    "g5196": {
+      "op": null,
+      "yr": {
+        "v": 1992,
+        "u": "https://www.globaldamwatch.org",
+        "note": "GDW value only. No other source found."
+      },
+      "h": {
+        "v": 9,
+        "u": "https://www.globaldamwatch.org",
+        "note": "GDW value only."
+      },
+      "st": {
+        "v": "unknown",
+        "d": null,
+        "u": null,
+        "note": "No report on this dam was found online."
+      },
+      "insp": null,
+      "x": [],
+      "chk": "October 2026"
+    }
+  }
 }
