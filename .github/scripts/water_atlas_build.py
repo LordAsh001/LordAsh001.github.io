@@ -410,11 +410,13 @@ for rv in CUR["rivers"]:
          "geomsrc": "Natural Earth" if rv.get("ne") and any(NE_NAMED.get(n + " River") or NE_NAMED.get(n) for n in rv["ne"]) else "DIVA-GIS (Digital Chart of the World)"}
     add(f)
 
-# rivers known only from published studies: a point at the study area, no line
+# rivers and sites known only from published studies (curated by hand, with their sources)
 for rv in CUR.get("studied_rivers", []):
-    add({"i": "riv-" + rv["id"], "n": rv["n"], "c": 7, "la": rv["la"], "lo": rv["lo"], "q": "study", "states": rv.get("states"),
-         "mouth": rv.get("mouth"), "loc_note": rv.get("loc_note"), "notes": rv.get("notes"), "thr": rv.get("thr"), "res": rv.get("res"),
-         "src": list(rv.get("src", [])), "ref": rv.get("ref"), "v": "B"})
+    add({"i": "riv-" + rv["id"], "n": rv["n"], "c": 7, "la": rv["la"], "lo": rv["lo"], "q": rv.get("q", "study"), "ln": rv.get("ln"),
+         "geomsrc": rv.get("geomsrc"), "states": rv.get("states"), "mouth": rv.get("mouth"), "loc_note": rv.get("loc_note"),
+         "notes": rv.get("notes"), "thr": rv.get("thr"), "res": rv.get("res"), "src": list(rv.get("src", [])), "ref": rv.get("ref"), "v": "B"})
+for st_ in CUR.get("studied_sites", []):
+    add({**{k: v for k, v in st_.items() if k != "id"}, "i": st_["id"], "src": list(st_.get("src", []))})
 
 # ---------------------------------------------------------------- 6. lakes and water areas (polygons for the map)
 LAKES = []
