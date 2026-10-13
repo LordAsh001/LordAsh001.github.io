@@ -732,7 +732,7 @@ nav.views a[aria-current="page"]{background:var(--ink);color:var(--panel)}
 main{min-height:0;position:relative}
 .view{height:100%;overflow:auto}
 .view[hidden]{display:none!important}
-#v-map{display:grid;grid-template-columns:minmax(300px,370px) 1fr;overflow:hidden}
+#v-map{display:grid;grid-template-columns:var(--railw,minmax(300px,370px)) 10px 1fr;overflow:hidden}
 aside.rail{border-right:1px solid var(--line);background:var(--panel);display:flex;flex-direction:column;min-height:0;min-width:0}
 .filters{padding:14px 16px 10px;display:grid;gap:10px;border-bottom:1px solid var(--line)}
 .search{position:relative;display:block}
@@ -930,8 +930,10 @@ textarea{min-height:90px;resize:vertical}
   .app{display:block}
   .view{height:auto;overflow:visible}
   #v-map{display:flex;flex-direction:column}
-  .mapwrap{height:62vh;min-height:360px;order:1}
-  aside.rail{order:2;border-right:0;border-top:1px solid var(--line)}
+  .mapwrap{height:var(--maph,62vh);min-height:220px;order:1}
+  .split{order:2;width:auto;height:18px;cursor:row-resize;border-left:0;border-right:0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .split span{width:44px;height:4px}
+  aside.rail{order:3;border-right:0;border-top:1px solid var(--line)}
   .listwrap{overflow:visible}
   nav.views{margin-left:0;width:100%;overflow-x:auto;flex-wrap:nowrap}
   .sheet{position:fixed;top:auto;left:0;right:0;bottom:0;width:100%;height:80vh;border-left:0;border-top:1px solid var(--line);border-radius:14px 14px 0 0;padding-bottom:env(safe-area-inset-bottom,0px)}
@@ -949,6 +951,16 @@ body{margin:0;display:flex;flex-direction:column}
 .sitebar{z-index:1100!important}
 .app{flex:1;min-height:0;height:auto}
 @media (max-width:860px){body{display:block}}
+/* ---------- adjustable map size (drag the divider) ---------- */
+.split{position:relative;z-index:5;background:var(--panel);border-left:1px solid var(--line);border-right:1px solid var(--line);cursor:col-resize;touch-action:none;display:flex;align-items:center;justify-content:center;user-select:none;-webkit-user-select:none}
+.split span{display:block;width:4px;height:44px;border-radius:4px;background:var(--line);transition:background .15s}
+.split:hover span,.split:focus-visible span,.split.drag span{background:var(--river)}
+.split:focus-visible{outline:2px solid var(--river);outline-offset:-2px}
+body.resizing,body.resizing *{cursor:col-resize!important;user-select:none!important}
+body.resizing.vert,body.resizing.vert *{cursor:row-resize!important}
+.rail.collapsed{visibility:hidden;overflow:hidden}
+@media (max-width:860px){.split{cursor:row-resize;border-left:0;border-right:0}.split span{width:44px;height:4px}}
+@media print{.split{display:none}}
 /* ---------- flowing-water backdrop (behind every page; the map itself stays clear) ---------- */
 body{background:var(--bg);background:linear-gradient(180deg,var(--bg) 0%,color-mix(in srgb,var(--bg) 88%,var(--lake)) 100%) fixed}
 body::before,body::after{content:"";position:fixed;left:0;pointer-events:none;z-index:-1;will-change:transform}
@@ -1070,6 +1082,7 @@ ol.refs li{margin:0 0 6px}
         <div class="resbar"><span id="count"></span><button id="reset" class="linkbtn" type="button">Reset filters</button></div>
         <div class="listwrap"><ul class="list" id="list"></ul><button class="btn more" id="more" type="button" hidden>Show more</button></div>
       </aside>
+      <div class="split" id="split" role="separator" tabindex="0" aria-controls="map" aria-label="Resize the map. Drag, or use the arrow keys. Double-click to reset." title="Drag to make the map bigger or smaller (double-click to reset)"><span></span></div>
       <div class="mapwrap">
         <div id="map" role="region" aria-label="Map of Nigeria's water resources"></div>
         <div class="maptools">
@@ -2735,6 +2748,54 @@ async function buildWq(){
   host.innerHTML=h;cards.forEach(c=>c.mount());
   $$('#wq [data-k]').forEach(b=>b.onclick=()=>{const k=b.dataset.k;location.hash='map';setTimeout(()=>{if(!ovl[k])toggleOverlay(k)},150)});
 }
+</script>
+<script>
+/* Adjustable map size: drag the divider (side-by-side on wide screens, map height on phones) */
+(function(){
+  const sp=document.getElementById('split'),root=document.getElementById('v-map'),rail=root&&root.querySelector('.rail'),wrap=root&&root.querySelector('.mapwrap');
+  if(!sp||!root||!rail||!wrap)return;
+  const narrow=()=>matchMedia('(max-width:860px)').matches;
+  const store=(k,v)=>{try{v==null?localStorage.removeItem(k):localStorage.setItem(k,String(v))}catch(e){}};
+  const load=k=>{try{return localStorage.getItem(k)}catch(e){return null}};
+  let raf=0;const refresh=()=>{cancelAnimationFrame(raf);raf=requestAnimationFrame(()=>{try{map&&map.invalidateSize()}catch(e){}})};
+  const maxW=()=>Math.min(760,Math.round(root.clientWidth*0.7));
+  function setW(w,save){
+    if(w==null){root.style.removeProperty('--railw');rail.classList.remove('collapsed');if(save)store('wa-railw',null);refresh();aria();return}
+    w=w<140?0:Math.max(240,Math.min(maxW(),Math.round(w)));
+    root.style.setProperty('--railw',w+'px');rail.classList.toggle('collapsed',w===0);
+    if(save)store('wa-railw',w);refresh();aria()}
+  function setH(h,save){
+    if(h==null){root.style.removeProperty('--maph');if(save)store('wa-maph',null);refresh();aria();return}
+    h=Math.max(220,Math.min(Math.round(innerHeight*0.92),Math.round(h)));
+    root.style.setProperty('--maph',h+'px');if(save)store('wa-maph',h);refresh();aria()}
+  function aria(){
+    if(narrow()){sp.setAttribute('aria-orientation','horizontal');sp.setAttribute('aria-valuenow',Math.round(wrap.getBoundingClientRect().height))}
+    else{sp.setAttribute('aria-orientation','vertical');sp.setAttribute('aria-valuenow',Math.round(root.clientWidth-rail.getBoundingClientRect().width))}}
+  const w0=load('wa-railw'),h0=load('wa-maph');
+  if(w0!=null&&!isNaN(+w0))setW(+w0,false);
+  if(h0!=null&&!isNaN(+h0))setH(+h0,false);
+  sp.addEventListener('pointerdown',e=>{
+    if(e.button!==0)return;e.preventDefault();sp.setPointerCapture(e.pointerId);
+    const v=narrow(),r0=root.getBoundingClientRect(),top0=wrap.getBoundingClientRect().top;
+    sp.classList.add('drag');document.body.classList.add('resizing');document.body.classList.toggle('vert',v);
+    const mv=ev=>{v?setH(ev.clientY-top0,false):setW(ev.clientX-r0.left,false)};
+    const up=()=>{sp.removeEventListener('pointermove',mv);sp.removeEventListener('pointerup',up);sp.removeEventListener('pointercancel',up);
+      sp.classList.remove('drag');document.body.classList.remove('resizing','vert');
+      if(v)store('wa-maph',parseInt(root.style.getPropertyValue('--maph'))||null);
+      else{const w=root.style.getPropertyValue('--railw');store('wa-railw',w?parseInt(w):null)}};
+    sp.addEventListener('pointermove',mv);sp.addEventListener('pointerup',up);sp.addEventListener('pointercancel',up)});
+  sp.addEventListener('dblclick',()=>{narrow()?setH(null,true):setW(null,true)});
+  sp.addEventListener('keydown',e=>{
+    const step=e.shiftKey?120:40;
+    if(narrow()){const h=wrap.getBoundingClientRect().height;
+      if(e.key==='ArrowUp'){setH(h-step,true);e.preventDefault()}else if(e.key==='ArrowDown'){setH(h+step,true);e.preventDefault()}
+      else if(e.key==='Home'||e.key==='Enter'){setH(null,true);e.preventDefault()}}
+    else{const w=rail.classList.contains('collapsed')?0:rail.getBoundingClientRect().width;
+      if(e.key==='ArrowLeft'){setW(w===240?0:w-step,true);e.preventDefault()}else if(e.key==='ArrowRight'){setW(w===0?240:w+step,true);e.preventDefault()}
+      else if(e.key==='Home'||e.key==='Enter'){setW(null,true);e.preventDefault()}}});
+  addEventListener('resize',()=>{const w=root.style.getPropertyValue('--railw');if(w&&parseInt(w)>maxW())setW(maxW(),false);aria()});
+  aria();
+})();
 </script>
 </body>
 </html>
