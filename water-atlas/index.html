@@ -1427,7 +1427,7 @@ function select(f,fromMap){
   if(f.c===8){F2('River',f.river);F2('Average modelled flow, 1997–present',nfmt(f.qmean,'m³/s'));if(f.rec)F2('Highest modelled daily flow',`${fmt.format(f.rec[1])} m³/s on ${new Date(f.rec[2]).toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'})}`,1)}
   if(f.c===6){F2('Area',f.a?ha(f.a):f.ar?ha(f.ar):null);F2('Designated',f.y);F2('Managed by',f.auth,1)}
   if(f.c===10)F2('Headquarters',f.hq);
-  F2('Coordinates',f.la!=null?`<span class="mono">${f.la.toFixed(3)}° N, ${f.lo.toFixed(3)}° E</span> · ${({gdw:'Global Dam Watch dam point',inventory:'UNICEF dam list (rounded)',wikidata:'Wikidata',wikipedia:'Wikipedia',line:'middle of the mapped river line',glofas:'GloFAS model cell (≈5 km)',hq:'headquarters town',wdpa:'WDPA boundary centre',study:'centre of the study area'})[f.q]||'published point'}`:null,1,1);
+  F2('Coordinates',f.la!=null?`<span class="mono">${f.la.toFixed(3)}° N, ${f.lo.toFixed(3)}° E</span> · ${({gdw:'Global Dam Watch dam point',inventory:'UNICEF dam list (rounded)',wikidata:'Wikidata',wikipedia:'Wikipedia',line:'middle of the mapped river line',glofas:'GloFAS model cell (≈5 km)',hq:'headquarters town',wdpa:'WDPA boundary centre',study:'centre of the study area',gps:'GPS reading in a published study'})[f.q]||'published point'}`:null,1,1);
   h+=`<dl class="facts">${facts.map(([k,v,w,raw])=>`<div class="fact${w?' w':''}"><dt>${k}</dt><dd>${raw?v:esc(v)}</dd></div>`).join('')}</dl>`;
   if(f.wt)h+=`<div class="sec"><h3>About</h3><p class="wiki">${esc(f.wt.t)}</p><div class="wiki-src">From <a href="${esc(f.wt.u)}" target="_blank" rel="noopener">Wikipedia, “${esc(f.wt.title)}”</a> (CC BY-SA 4.0), retrieved ${esc(DATA.meta.refreshed)}.</div></div>`;
   const sec=(t,v)=>v?`<div class="sec"><h3>${t}</h3><p>${esc(v)}</p></div>`:'';
@@ -1448,8 +1448,8 @@ function select(f,fromMap){
   h+=`<div class="sec" id="sh-reports"></div>`;
   const srcs=[];if(f.gdw)srcs.push(`Global Dam Watch v1.0 (Lehner et al. 2024), GDW ID <span class="mono">${f.gdw}</span>${f.osrc?' · original record: '+esc(USE_SRC[f.osrc]||f.osrc):''}${f.grand?' · GRanD ID '+f.grand:''}${f.qual?' · data quality '+esc(f.qual):''}`);
   if(f.c===1||f.inv)srcs.push('Nigeria dam list published by UNICEF Nigeria GIS (Nigeria Dams layer, ArcGIS Online)');
-  if(f.ref)srcs.push(esc(f.ref));
-  if(f.c===7&&f.ln)srcs.push(f.geomsrc==='Natural Earth'?'River line: Natural Earth 1:10m rivers (public domain)':'River line: DIVA-GIS inland water (Digital Chart of the World)');
+  if(f.ref)[].concat(f.ref).forEach(r=>srcs.push(esc(r)));
+  if(f.c===7&&f.ln)srcs.push(f.geomsrc==='Natural Earth'?'River line: Natural Earth 1:10m rivers (public domain)':f.geomsrc&&!/DIVA/.test(f.geomsrc)?'River line: '+esc(f.geomsrc):'River line: DIVA-GIS inland water (Digital Chart of the World)');
   if(f.c===8)srcs.push('GloFAS river discharge (Copernicus Emergency Management Service) via the Open-Meteo Flood API');
   if(f.w)srcs.push(`UNEP-WCMC &amp; IUCN, World Database on Protected Areas, WDPA ID <span class="mono">${f.w}</span>`);
   h+=`<div class="sec"><h3>Sources</h3><ul class="srcs">${srcs.map(s=>`<li>${s}</li>`).join('')}${(f.src||[]).map(u=>`<li><a href="${esc(u)}" target="_blank" rel="noopener">${esc(u.replace(/^https?:\/\/(www\.)?/,'').slice(0,80))}</a></li>`).join('')}</ul></div>`;
