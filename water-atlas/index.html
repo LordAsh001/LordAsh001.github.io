@@ -961,6 +961,15 @@ body.resizing.vert,body.resizing.vert *{cursor:row-resize!important}
 .rail.collapsed{visibility:hidden;overflow:hidden}
 @media (max-width:860px){.split{cursor:row-resize;border-left:0;border-right:0}.split span{width:44px;height:4px}}
 @media print{.split{display:none}}
+/* ---------- dam operator and condition box ---------- */
+.cond .ctab th{width:36%;text-align:left;font-weight:600;vertical-align:top;font-size:12.5px}
+.cond .ctab td{vertical-align:top;font-size:13px}
+.ctag{display:inline-block;font-size:11px;line-height:1.5;padding:0 7px;border-radius:9px;border:1px solid var(--line);color:var(--muted);margin-left:2px;white-space:nowrap}
+.ctag.confirmed{color:var(--g6);border-color:currentColor}
+.cst{font-weight:700;color:var(--c)}
+.cnote{font-size:12px;color:var(--muted);margin-top:3px}
+.cond .muted{color:var(--muted)}
+.cmore{margin-top:8px;font-size:13px}.cmore summary{cursor:pointer;font-weight:600}
 /* ---------- flowing-water backdrop (behind every page; the map itself stays clear) ---------- */
 body{background:var(--bg);background:linear-gradient(180deg,var(--bg) 0%,color-mix(in srgb,var(--bg) 88%,var(--lake)) 100%) fixed}
 body::before,body::after{content:"";position:fixed;left:0;pointer-events:none;z-index:-1;will-change:transform}
@@ -1077,6 +1086,10 @@ ol.refs li{margin:0 0 6px}
           <div class="row2">
             <div><div class="lbl" style="margin-bottom:4px">Verification</div><select id="lvl" aria-label="Verification level"><option value="">All levels</option><option value="A">A · documented</option><option value="AB">A–B · sourced</option><option value="D">D · location uncertain</option></select></div>
             <div><div class="lbl" style="margin-bottom:4px">Sort</div><select id="sort" aria-label="Sort"><option value="size">Largest first</option><option value="doc">Best documented</option><option value="year">Newest first</option><option value="name">A–Z</option></select></div>
+          </div>
+          <div class="row2">
+            <div><div class="lbl" style="margin-bottom:4px">Dam status</div><select id="dst" aria-label="Dam operating status"><option value="">Everything</option><option value="any">All dams</option><option value="working">Working</option><option value="breached or failed">Breached or failed</option><option value="under repair">Under repair</option><option value="out of use">Out of use</option><option value="unknown">Status unknown</option><option value="not yet checked">Not yet checked</option></select></div>
+            <div><div class="lbl" style="margin-bottom:4px">Dam operator</div><select id="dop" aria-label="Dam operator record"><option value="">Any</option><option value="confirmed">Confirmed by a source</option><option value="inferred">Inferred</option><option value="none">No public record found</option><option value="unchecked">Not yet checked</option></select></div>
           </div>
         </div>
         <div class="resbar"><span id="count"></span><button id="reset" class="linkbtn" type="button">Reset filters</button></div>
@@ -1340,12 +1353,16 @@ function initFilters(){
   $('#state').onchange=()=>{state.st=$('#state').value;state.limit=120;update();zoomState(state.st)};
   $('#basin').onchange=()=>{state.basin=$('#basin').value;update()};
   $('#lvl').onchange=()=>{state.lvl=$('#lvl').value;update()};
+  $('#dst').onchange=()=>{state.dst=$('#dst').value;update()};
+  $('#dop').onchange=()=>{state.dop=$('#dop').value;update()};
   $('#sort').onchange=()=>{state.sort=$('#sort').value;update()};
   $('#more').onclick=()=>{state.limit+=150;renderList()};
-  $('#reset').onclick=()=>{Object.assign(state,{q:'',groups:new Set(DEFAULT_GROUPS),st:'',basin:'',lvl:'',limit:120});$('#q').value='';$('#state').value='';$('#basin').value='';$('#lvl').value='';update();zoomState('')};
+  $('#reset').onclick=()=>{Object.assign(state,{q:'',groups:new Set(DEFAULT_GROUPS),st:'',basin:'',lvl:'',dst:'',dop:'',limit:120});$('#q').value='';$('#state').value='';$('#basin').value='';$('#lvl').value='';$('#dst').value='';$('#dop').value='';update();zoomState('')};
 }
 function pass(f,ig){
-  if(!ig&&!state.groups.has(f.gp))return false;
+  const dfil=state.dst||state.dop;
+  if(dfil){if(!isDam(f))return false;if(state.dst&&state.dst!=='any'&&dstat(f)!==state.dst)return false;if(state.dop&&dop(f)!==state.dop)return false}
+  if(!ig&&!dfil&&!state.groups.has(f.gp))return false;
   if(state.st&&!f.st.includes(state.st))return false;
   if(state.basin&&f.bn!==state.basin)return false;
   if(state.lvl&&!state.lvl.includes(f.v))return false;
@@ -1420,7 +1437,7 @@ function select(f,fromMap){
   const facts=[];const F2=(k,v,w,raw)=>{if(v!=null&&v!=='')facts.push([k,v,w,raw])};
   F2(f.c===7?'States crossed (approx.)':'State',f.s||'Not established',f.c===7);
   if(f.c===0||f.c===9||f.c===1){F2('River',f.river);F2('Basin',[f.basin,f.sub].filter(Boolean).join(' › '));F2('Completed',f.y);F2('Main use',f.use);F2('Dam height',nfmt(f.hgt,'m'));F2('Crest length',nfmt(f.len,'m'));
-    F2('Storage capacity',f.cap!=null?nfmt(f.cap,'million m³',1)+' ('+capSrc(f)+')':null);if(f.facts&&f.facts.op){const o=f.facts.op;F2('Run by',`${esc(o.n)} <a href="${esc(o.u)}" target="_blank" rel="noopener" style="font-size:12px">source</a>`,0,1)}F2('Reservoir area',nfmt(f.akm,'km²',1));F2('Mean depth',nfmt(f.dep,'m',1));F2('Average inflow',f.dis!=null?nfmt(f.dis,'m³/s',1):null);
+    F2('Storage capacity',f.cap!=null?nfmt(f.cap,'million m³',1)+' ('+capSrc(f)+')':null);if(f.facts&&f.facts.op&&!f.cond){const o=f.facts.op;F2('Run by',`${esc(o.n)} <a href="${esc(o.u)}" target="_blank" rel="noopener" style="font-size:12px">source</a>`,0,1)}F2('Reservoir area',nfmt(f.akm,'km²',1));F2('Mean depth',nfmt(f.dep,'m',1));F2('Average inflow',f.dis!=null?nfmt(f.dis,'m³/s',1):null);
     F2('Upstream catchment',nfmt(f.catch,'km²'));F2('Installed power',nfmt(f.mw,'MW'));F2('Degree of regulation',f.dor!=null?nfmt(f.dor,'% of annual flow',1):null);F2('Elevation',nfmt(f.elev,'m a.s.l.'));F2('Nearest town',f.city);
     if(f.uses&&f.uses.length)F2('Uses',f.uses.join(', '),1);if(f.inv)F2('Name in UNICEF dam list',f.inv)}
   if(f.c===7){F2('Length (whole river)',f.rlen?nfmt(f.rlen,'km'):null);F2('Flows into',f.mouth);F2('Line drawn from',f.geomsrc,1)}
@@ -1431,7 +1448,7 @@ function select(f,fromMap){
   h+=`<dl class="facts">${facts.map(([k,v,w,raw])=>`<div class="fact${w?' w':''}"><dt>${k}</dt><dd>${raw?v:esc(v)}</dd></div>`).join('')}</dl>`;
   if(f.wt)h+=`<div class="sec"><h3>About</h3><p class="wiki">${esc(f.wt.t)}</p><div class="wiki-src">From <a href="${esc(f.wt.u)}" target="_blank" rel="noopener">Wikipedia, “${esc(f.wt.title)}”</a> (CC BY-SA 4.0), retrieved ${esc(DATA.meta.refreshed)}.</div></div>`;
   const sec=(t,v)=>v?`<div class="sec"><h3>${t}</h3><p>${esc(v)}</p></div>`:'';
-  h+='<div id="repbox"></div><div id="capbox"></div><div id="faobox"></div>';
+  h+=condBox(f)+'<div id="repbox"></div><div id="capbox"></div><div id="faobox"></div>';
   h+=sec('Notes',f.notes)+sec('Vegetation',f.veg)+sec('Wildlife',f.fauna)+sec('Resources',f.res)+sec('Tourism',f.tour)+sec('Threats',f.thr);
   if(f.c===6&&f.forest_id)h+=`<div class="callout">This wetland also appears in the <a href="${CONFIG.forestUrl}#${esc(f.forest_id)}">Nigeria Forest Reserves Atlas</a>, with its biodiversity records.</div>`;
   if(f.c===7){const onr=F.filter(x=>x!==f&&(x.c===0||x.c===8)&&x.river&&f.n.toLowerCase().startsWith(x.river.toLowerCase().split(/[–-]/)[0])).sort((a,b)=>(b.cap||b.qmean||0)-(a.cap||a.qmean||0)).slice(0,12);
@@ -1868,7 +1885,11 @@ function buildStats(){
     sm?[fmt1.format(last(sm)[1])+'%','with safely managed drinking water',`WHO/UNICEF JMP · ${last(sm)[0]}`]:null,
     pc?[fmt.format(Math.round(last(pc)[1]))+' m³','renewable internal freshwater per person',`FAO AQUASTAT via World Bank · ${last(pc)[0]}`]:null,
     (()=>{const x=sdgS('ER_H2O_STRESS','Activity=TOTAL');return x?[fmt1.format(x.data[x.data.length-1][1])+'%','water stress (withdrawals ÷ available water)',`SDG 6.4.2, FAO · ${x.data[x.data.length-1][0]}`]:null})()].filter(Boolean);
+  const D0=dams,chk=D0.filter(f=>f.cond),ins=D0.filter(f=>f.cond&&f.cond.insp),opk=D0.filter(f=>f.cond&&f.cond.op&&f.cond.op.b==='confirmed');
+  kp.splice(1,0,[`${fmt.format(ins.length)} of ${fmt.format(D0.length)}`,'dams with any public safety inspection or rehabilitation record','Atlas research, '+((chk[0]||{}).cond||{}).chk+` (${chk.length} dams checked so far)`],[`${fmt.format(opk.length)} of ${fmt.format(D0.length)}`,'dams whose operator is confirmed by a public source','Atlas research; see each dam’s “Who runs it” box']);
   const cards=[];
+  const sts=['working','breached or failed','under repair','out of use','unknown','not yet checked'].map(s=>({l:s[0].toUpperCase()+s.slice(1),v:D0.filter(f=>dstat(f)===s).length,on:()=>{location.hash='map';setTimeout(()=>{state.dst=s;$('#dst').value=s;update()},80)}}));
+  cards.push(card({t:'Dam operating status',s:`What the latest public report says about each of the ${D0.length} mapped dams. ${chk.length} have been checked so far, starting with Alau and the large federal and hydropower dams. Click a bar to show those dams on the map.`,src:'Atlas research from news, government, RBDA and project documents (each dam links its source)',file:'dam_operating_status',draw:el=>hbar(el,sts,{lw:150}),rows:()=>D0.map(f=>({dam:f.n,state:f.s,operating_status:dstat(f),latest_report:f.cond?(f.cond.st.d||''):'',operator:f.cond?(f.cond.op?f.cond.op.n:'No public record found'):'not yet checked',last_inspection_or_rehabilitation:f.cond?(f.cond.insp?(f.cond.insp.d||'')+' '+f.cond.insp.what:'No public record found'):'not yet checked'}))}));
   const byB={};gdw.forEach(f=>{const b=f.bn||f.basin||'Not assigned';byB[b]=byB[b]||{n:0,cap:0};byB[b].n++;byB[b].cap+=f.cap||0});const bb=Object.entries(byB).map(([l,v])=>({l,v:Math.round(v.cap),t:`${v.n} dams`})).sort((a,b)=>b.v-a.v);
   cards.push(card({t:'Reservoir storage by major basin',s:'Million m³ of storage capacity. Kainji, Shiroro and Jebba alone hold most of the Niger basin’s total.',src:'Global Dam Watch v1.0 (Lehner et al. 2024)',file:'storage_by_basin',draw:el=>hbar(el,bb,{lw:250,f:v=>fmt.format(v)+' Mm³'}),rows:()=>bb.map(r=>({basin:r.l,capacity_million_m3:r.v,dams:+r.t.split(' ')[0]}))}));
   const top=gdw.filter(f=>f.cap).sort((a,b)=>b.cap-a.cap).slice(0,15);
@@ -1983,7 +2004,7 @@ function renderWatch(){const el=$('#watch');if(!el)return;const w=watchlist().ma
   if($('#dl-watch'))$('#dl-watch').onclick=()=>saveFile('watchlist.csv',toCSV(w.map(exportRow)),'text/csv');}
 
 /* ---------- data & sources ---------- */
-function exportRow(f){return{id:f.i,name:f.n,type:CATN(f),state:f.s||'',lat:f.la??'',lon:f.lo??'',river:f.river||'',basin:f.basin||'',year_completed:f.y||'',dam_height_m:f.hgt??'',crest_length_m:f.len??'',capacity_million_m3:f.cap??'',capacity_source:f.cap!=null?capSrc(f):'',capacity_definition:f.cap==null?'':f.gdw&&f.osrc&&f.osrc!=='GRanD'?'modelled total volume, estimated from reservoir area':'not stated',capacity_fao_million_m3:faoCap(f)??'',capacity_fao_definition:faoCap(f)==null?'':'not stated',capacity_fao_note:f.facts&&f.facts.faox||'',capacity_other:((f.facts&&f.facts.caps)||[]).map(c=>`${c.v} (${c.by}${c.date?', '+c.date:''}; measures: ${(c.what||'not stated').replace(/^Not stated/,'not stated')})`).join(' | '),capacity_figures_disagree:capConflict(f),operator:f.facts&&f.facts.op?f.facts.op.n:'',operator_source:f.facts&&f.facts.op?f.facts.op.u:'',reservoir_area_km2:f.akm??'',mean_depth_m:f.dep??'',average_inflow_m3s:f.dis??'',catchment_km2:f.catch??'',power_mw:f.mw??'',main_use:f.use||'',uses:(f.uses||[]).join('; '),river_length_km:f.rlen??'',gdw_id:f.gdw||'',grand_id:f.grand||'',wikidata:f.wd||'',wdpa_id:f.w||'',verification_level:f.v,location_basis:f.q||'',location_note:f.loc_note||'',wikipedia:f.wt?f.wt.u:'',sources:(f.src||[]).join(' | ')}}
+function exportRow(f){return{id:f.i,name:f.n,type:CATN(f),state:f.s||'',lat:f.la??'',lon:f.lo??'',river:f.river||'',basin:f.basin||'',year_completed:(f.cond&&f.cond.yr?f.cond.yr.v:f.y)||'',dam_height_m:(f.cond&&f.cond.h?f.cond.h.v:f.hgt)??'',crest_length_m:f.len??'',capacity_million_m3:f.cap??'',capacity_source:f.cap!=null?capSrc(f):'',capacity_definition:f.cap==null?'':f.gdw&&f.osrc&&f.osrc!=='GRanD'?'modelled total volume, estimated from reservoir area':'not stated',capacity_fao_million_m3:faoCap(f)??'',capacity_fao_definition:faoCap(f)==null?'':'not stated',capacity_fao_note:f.facts&&f.facts.faox||'',capacity_other:((f.facts&&f.facts.caps)||[]).map(c=>`${c.v} (${c.by}${c.date?', '+c.date:''}; measures: ${(c.what||'not stated').replace(/^Not stated/,'not stated')})`).join(' | '),capacity_figures_disagree:capConflict(f),operator:f.cond?(f.cond.op?f.cond.op.n:'No public record found'):(f.facts&&f.facts.op?f.facts.op.n:(isDam(f)?'not yet checked':'')),operator_basis:f.cond&&f.cond.op?(f.cond.op.b==='confirmed'?'confirmed by a source':'inferred'):(f.facts&&f.facts.op?'confirmed by a source':''),operator_source:f.cond?(f.cond.op&&f.cond.op.u||''):(f.facts&&f.facts.op?f.facts.op.u:''),year_completed_source:f.cond&&f.cond.yr?f.cond.yr.u:(f.y&&f.gdw?GDWU:''),dam_height_source:f.cond&&f.cond.h?f.cond.h.u:(f.hgt&&f.gdw?GDWU:''),operating_status:isDam(f)?dstat(f):'',status_latest_report:f.cond?(f.cond.st.d||''):'',status_source:f.cond?(f.cond.st.u||''):'',status_note:f.cond?f.cond.st.note:'',last_inspection_or_rehabilitation:f.cond?(f.cond.insp?f.cond.insp.what:'No public record found'):(isDam(f)?'not yet checked':''),last_inspection_date:f.cond&&f.cond.insp?(f.cond.insp.d||''):'',last_inspection_source:f.cond&&f.cond.insp?f.cond.insp.u:'',condition_checked:f.cond?f.cond.chk:'',reservoir_area_km2:f.akm??'',mean_depth_m:f.dep??'',average_inflow_m3s:f.dis??'',catchment_km2:f.catch??'',power_mw:f.mw??'',main_use:f.use||'',uses:(f.uses||[]).join('; '),river_length_km:f.rlen??'',gdw_id:f.gdw||'',grand_id:f.grand||'',wikidata:f.wd||'',wdpa_id:f.w||'',verification_level:f.v,location_basis:f.q||'',location_note:f.loc_note||'',wikipedia:f.wt?f.wt.u:'',sources:(f.src||[]).join(' | ')}}
 function buildData(){
   const dsCite=`Nigeria Water Resources Atlas (2026). Nigeria dams, reservoirs, rivers, lakes and wetlands dataset, version ${DATA.meta.version} [Data set]. ${CONFIG.siteUrl}. Includes data from Global Dam Watch v1.0 (Lehner, B. et al., 2024, Scientific Data 11:1069), DIVA-GIS/Digital Chart of the World, Wikidata, GRID3 Nigeria, the DHS Program and GloFAS (Copernicus EMS).`;
   const SRC=[
@@ -1995,6 +2016,7 @@ function buildData(){
    ['Wikidata and Wikipedia','Lakes, waterfalls, springs, extra dams, river lengths, descriptions and photographs (Wikimedia Commons)','Profiles and photos','https://www.wikidata.org','CC0 (Wikidata); CC BY-SA (text); per-file licences (photos)'],
    ['Ramsar Sites Information Service and WDPA, via the Nigeria Forest Reserves Atlas','Ramsar wetland boundaries and profiles','Wetlands',CONFIG.forestUrl,'Per source'],
    ['GloFAS v4 river discharge (Copernicus EMS) via the Open-Meteo Flood API','Daily modelled river flow since 1997 and ensemble forecasts','Flood watch and river-flow charts','https://open-meteo.com/en/docs/flood-api','CC BY 4.0'],
+   ['Dam operator and condition records: news reports, federal, state and River Basin Development Authority announcements, World Bank, IsDB and AfDB project documents, OCHA/ReliefWeb, the Hydropower Sustainability Alliance and Wikipedia','Who runs each dam, its operating status and date of the latest report, the last public inspection or rehabilitation, and sourced year and height','“Who runs it and its condition” box, dam status filter, Statistics page and CSV','data/curated.json','Each fact links to its own source on the dam page and in the CSV'],
    ['National Water Resources Master Plan 2013 (Federal Ministry of Water Resources and JICA)','Hydrological areas, renewable water, recharge, population, demand','Basins page','https://openjicareport.jica.go.jp/pdf/12146585.pdf','Government report'],
    ['British Geological Survey, Africa Groundwater Atlas','Aquifer types, yields, borehole statistics','Groundwater','https://earthwise.bgs.ac.uk/index.php/Hydrogeology_of_Nigeria','© BGS / UKRI'],
    ['Nigeria DHS 2023–24 and 2018 (NPC and ICF), DHS Program API','Drinking water sources, time to water, sanitation by state','Statistics','https://api.dhsprogram.com','Public API; cite the DHS Program'],
@@ -2547,6 +2569,34 @@ async function addX9Basins(){
 
 /* ---------- FAO AQUASTAT record in dam profiles ---------- */
 const FAOP=[['Irrigation','Irrigation'],['Water supply','Water supply'],['Flood control','Flood control'],['Hydroelectricity (MW)','Hydropower'],['Navigation','Navigation'],['Recreation','Recreation'],['Livestock rearing','Livestock'],['Other','Other']];
+/* ---------- dam operator and condition ---------- */
+const isDam=f=>f.c===0||f.c===1;
+const NOREC='No public record found';
+const dstat=f=>f.cond?f.cond.st.v:'not yet checked';
+const dop=f=>!f.cond?'unchecked':f.cond.op?f.cond.op.b:'none';
+const MON=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+const fdate=d=>{if(!d)return'';const p=String(d).split('-');return p.length===3?`${+p[2]} ${MON[+p[1]-1]} ${p[0]}`:p.length===2?`${MON[+p[1]-1]} ${p[0]}`:p[0]};
+const srcA=(u,t)=>u?` <a class="rcite" href="${esc(u)}" target="_blank" rel="noopener">${esc(t||'source')}</a>`:'';
+const cnote=n=>n?`<div class="cnote">${esc(n)}</div>`:'';
+const GDWU='https://www.globaldamwatch.org';
+function condBox(f){
+  if(!isDam(f))return'';const c=f.cond;
+  const row=(k,v)=>`<tr><th scope="row">${k}</th><td>${v}</td></tr>`;
+  const gd=(v,u)=>v!=null?`${esc(String(v))}${u}${srcA(f.gdw?GDWU:'',f.gdw?'Global Dam Watch':'')}`:null;
+  let rows;
+  if(!c){const nc='<span class="muted">Not yet checked by the atlas</span>';
+    rows=row('Operator',nc)+row('Year completed',gd(f.y,'')||nc)+row('Dam height',gd(f.hgt,' m')||nc)+row('Operating status',nc)+row('Last public inspection or rehabilitation',nc);}
+  else{
+    const op=c.op?`${esc(c.op.n)} <span class="ctag ${c.op.b}">${c.op.b==='confirmed'?'confirmed by a source':'inferred, not stated outright'}</span>${srcA(c.op.u)}${cnote(c.op.note)}`:NOREC;
+    const yr=c.yr?`${c.yr.v}${srcA(c.yr.u)}${cnote(c.yr.note)}`:(gd(f.y,'')||NOREC);
+    const ht=c.h?`${c.h.v} m${srcA(c.h.u)}${cnote(c.h.note)}`:(gd(f.hgt,' m')||NOREC);
+    const st=`<span class="cst" style="--c:${DSTC[c.st.v]||'var(--muted)'}">${esc(c.st.v[0].toUpperCase()+c.st.v.slice(1))}</span>${c.st.d?` · latest report ${fdate(c.st.d)}`:' · '+NOREC.toLowerCase()}${srcA(c.st.u)}${cnote(c.st.note)}`;
+    const ins=c.insp?`${c.insp.d?fdate(c.insp.d)+': ':''}${esc(c.insp.what)}${srcA(c.insp.u)}`:NOREC;
+    rows=row('Operator',op)+row('Year completed',yr)+row('Dam height',ht)+row('Operating status',st)+row('Last public inspection or rehabilitation',ins);}
+  const ex=c&&c.x&&c.x.length?`<details class="cmore"><summary>More from the record (${c.x.length})</summary><ul class="rfacts">${c.x.map(x=>`<li>${esc(x.t)}${srcA(x.u)}</li>`).join('')}</ul></details>`:'';
+  return`<div class="box cond"><h3>Who runs it and its condition</h3><table class="dt ctab"><tbody>${rows}</tbody></table>${ex}<p class="sm-note" style="margin:8px 0 0">${c?`Checked by the atlas in ${esc(c.chk)} from public sources; “${NOREC}” means a search found nothing, not that nothing exists.`:'This dam has not been researched yet; year and height, where shown, come from Global Dam Watch.'} The A–D level above shows how well the record is documented. It is not a safety rating.</p></div>`;
+}
+const DSTC={'working':'var(--g6)','breached or failed':'var(--s1)','under repair':'var(--s2)','out of use':'var(--muted)','unknown':'var(--muted)'};
 /* ---------- capacity: every published figure side by side ---------- */
 const capSrc=f=>f.gdw?('Global Dam Watch'+(f.osrc&&f.osrc!=='GRanD'?', estimated from reservoir area':'')):f.q==='wikidata'?'Wikidata':'source not recorded';
 const faoRec=f=>{const D=X9['fao_dams.json'];return D?D.dams.find(x=>x.atlas===f.i):null};
