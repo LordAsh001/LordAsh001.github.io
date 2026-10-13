@@ -803,5 +803,24 @@
     "Q128634091": "a bridge, not a dam",
     "Q127961963": "unclear label ('Dam peak'), no description",
     "Q137573578": "project entry without location"
+  },
+  "dam_facts": {
+    "_note": "Facts about individual dams from named sources, keyed by atlas id. op = operator; caps = extra capacity figures (million m3) with who gave them, when, and what they measure if stated; note = caveats shown on the dam page.",
+    "g7670": {
+      "op": {
+        "n": "Chad Basin Development Authority (CBDA)",
+        "u": "https://nannews.ng/goronyo-commends-rehabilitation-drive-to-restore-collapsed-alau-dam/"
+      },
+      "caps": [
+        {
+          "v": 112,
+          "by": "Chad Basin Development Authority (Managing Director, quoted by News Agency of Nigeria)",
+          "date": "13 October 2023",
+          "u": "https://nannews.ng/goronyo-commends-rehabilitation-drive-to-restore-collapsed-alau-dam/",
+          "what": "Not stated"
+        }
+      ],
+      "note": "No published survey or inspection that measures this reservoir's volume was found. Wikipedia gives a dam height of 9 m but marks it as disputed, so the atlas does not use it."
+    }
   }
 }
