@@ -158,7 +158,7 @@
     "metrics_title": "By the numbers",
     "metrics": [
       {
-        "value": "10",
+        "value": "11",
         "label": "free interactive tools for learning and research",
         "hidden": false
       },
@@ -777,6 +777,40 @@
           ],
           "classroom": "give each group a state, compare its solar resource and mapped power plants with its distribution company's losses, and argue for the next power project the state needs.",
           "doi": "10.5281/zenodo.23307712"
+        },
+        {
+          "name": "Nigeria Peoples & Cultures Atlas",
+          "text": "Explore Nigeria's peoples and languages state by state and LGA by LGA, with 2006 census and 2022 projected population for all 774 LGAs. Each people has a profile covering origins and history, language and greetings, traditional institutions, culture and the festivals they celebrate. A festival calendar runs month by month and year by year, and a heritage view maps Nigeria's UNESCO World Heritage sites and intangible heritage. Anyone can suggest a missing people, language, festival, photograph or correction.",
+          "link_label": "Open tool",
+          "sdgs": [
+            4,
+            11
+          ],
+          "hidden": false,
+          "url": "/peoples-atlas/",
+          "kind": "Interactive map · free",
+          "audience": [
+            "Researchers",
+            "Practitioners",
+            "Educators",
+            "Students"
+          ],
+          "level": "All levels",
+          "numbers": [
+            {
+              "value": "105",
+              "label": "peoples and languages mapped"
+            },
+            {
+              "value": "774",
+              "label": "LGAs with population figures"
+            },
+            {
+              "value": "33",
+              "label": "festivals in the calendar"
+            }
+          ],
+          "classroom": "give each group a state, list the peoples and languages recorded there, and write the missing profile section for one of them using a cited source."
         }
       ],
       "note": "Using one of these in a course or workshop? I'd love to hear how it went: [amool@unbc.ca](mailto:amool@unbc.ca). Free to use for teaching and learning."
