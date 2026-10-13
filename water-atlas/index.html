@@ -948,7 +948,19 @@ textarea{min-height:90px;resize:vertical}
 body{margin:0;display:flex;flex-direction:column}
 .sitebar{z-index:1100!important}
 .app{flex:1;min-height:0;height:auto}
-@media (max-width:860px){body{display:block}}</style>
+@media (max-width:860px){body{display:block}}
+/* ---------- flowing-water backdrop (behind every page; the map itself stays clear) ---------- */
+body{background:var(--bg);background:linear-gradient(180deg,var(--bg) 0%,color-mix(in srgb,var(--bg) 88%,var(--lake)) 100%) fixed}
+body::before,body::after{content:"";position:fixed;left:0;pointer-events:none;z-index:-1;will-change:transform}
+body::before{top:0;height:100vh;width:calc(100vw + 2400px);background:var(--river);opacity:.07;-webkit-mask:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22240%22%20height%3D%22120%22%3E%3Cg%20fill%3D%22none%22%20stroke%3D%22%23000%22%20stroke-width%3D%221.3%22%20stroke-linecap%3D%22round%22%3E%3Cpath%20d%3D%22M0%2030%20Q30%2022%2060%2030%20T120%2030%20T180%2030%20T240%2030%22%2F%3E%3Cpath%20d%3D%22M-30%2090%20Q0%2082%2030%2090%20T90%2090%20T150%2090%20T210%2090%20T270%2090%22%20stroke-width%3D%221%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E") repeat;mask:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22240%22%20height%3D%22120%22%3E%3Cg%20fill%3D%22none%22%20stroke%3D%22%23000%22%20stroke-width%3D%221.3%22%20stroke-linecap%3D%22round%22%3E%3Cpath%20d%3D%22M0%2030%20Q30%2022%2060%2030%20T120%2030%20T180%2030%20T240%2030%22%2F%3E%3Cpath%20d%3D%22M-30%2090%20Q0%2082%2030%2090%20T90%2090%20T150%2090%20T210%2090%20T270%2090%22%20stroke-width%3D%221%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E") repeat;animation:waFlow 90s linear infinite}
+body::after{bottom:0;height:24vh;width:calc(100vw + 2400px);background:linear-gradient(180deg,var(--lake),var(--river));opacity:.16;-webkit-mask:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%221200%22%20height%3D%22200%22%20preserveAspectRatio%3D%22none%22%20viewBox%3D%220%200%201200%20200%22%3E%3Cpath%20d%3D%22M0%20110%20C150%2070%20300%20150%20600%20110%20C900%2070%201050%20150%201200%20110%20V200%20H0Z%22%20fill-opacity%3D%22.45%22%2F%3E%3Cpath%20d%3D%22M0%20150%20C200%20120%20400%20180%20600%20150%20C800%20120%201000%20180%201200%20150%20V200%20H0Z%22%2F%3E%3C%2Fsvg%3E") repeat-x bottom/1200px 100%;mask:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%221200%22%20height%3D%22200%22%20preserveAspectRatio%3D%22none%22%20viewBox%3D%220%200%201200%20200%22%3E%3Cpath%20d%3D%22M0%20110%20C150%2070%20300%20150%20600%20110%20C900%2070%201050%20150%201200%20110%20V200%20H0Z%22%20fill-opacity%3D%22.45%22%2F%3E%3Cpath%20d%3D%22M0%20150%20C200%20120%20400%20180%20600%20150%20C800%20120%201000%20180%201200%20150%20V200%20H0Z%22%2F%3E%3C%2Fsvg%3E") repeat-x bottom/1200px 100%;animation:waFlow 55s linear infinite}
+@keyframes waFlow{from{transform:translate3d(0,0,0)}to{transform:translate3d(-2400px,0,0)}}
+:root[data-theme="dark"] body::before{opacity:.09}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) body::before{opacity:.09}}
+.top{background:color-mix(in srgb,var(--panel) 84%,transparent);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+@media (prefers-reduced-motion:reduce){body::before,body::after{animation:none}}
+@media print{body::before,body::after{display:none}body{background:#fff}}
+</style>
 <style>
 /* water-atlas additions */
 .status{display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;border:1px solid currentColor;border-radius:999px;padding:2px 8px 2px 6px;white-space:nowrap}
