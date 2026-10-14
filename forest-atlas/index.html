@@ -8,14 +8,14 @@
 <meta name="color-scheme" content="light dark">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Nigeria Forest Reserves Atlas">
-<meta property="og:description" content="Free, source-linked atlas of 1,176 forest reserves, national parks, game reserves, sanctuaries, Ramsar wetlands and biosphere reserves across Nigeria's 36 states and the FCT, with statistics, a visit planner, an NGO field-report hub and open data downloads.">
+<meta property="og:description" content="Free, source-linked atlas of 1,176 forest reserves, national parks, game reserves, sanctuaries, Ramsar wetlands and biosphere reserves across Nigeria's 36 states and the FCT, with statistics, satellite land-change profiles (forest loss, desertification, land cover), a visit planner, an NGO field-report hub and open data downloads.">
 <meta property="og:url" content="https://shagbaor.com/forest-atlas/">
 <meta property="og:image" content="https://shagbaor.com/images/tool-forest-atlas.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#1d6b3c">
 <link rel="canonical" href="https://shagbaor.com/forest-atlas/">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231d6b3c'/%3E%3Cpath d='M32 10C20 24 19 36 32 54C45 36 44 24 32 10Z' fill='%23fff'/%3E%3C/svg%3E">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"Nigeria Forest Reserves Atlas","description":"Free, source-linked atlas of 1,176 forest reserves, national parks, game reserves, sanctuaries, Ramsar wetlands and biosphere reserves across Nigeria's 36 states and the FCT, with statistics, a visit planner, an NGO field-report hub and open data downloads.","url":"https://shagbaor.com/forest-atlas/","creator":{"@type":"Person","name":"Shagbaor Hycent Amool","affiliation":"University of Northern British Columbia"},"spatialCoverage":"Nigeria","isAccessibleForFree":true,"distribution":[{"@type":"DataDownload","encodingFormat":"text/csv","contentUrl":"https://shagbaor.com/forest-atlas/data/nigeria_protected_areas.csv"},{"@type":"DataDownload","encodingFormat":"application/geo+json","contentUrl":"https://shagbaor.com/forest-atlas/data/nigeria_protected_areas.geojson"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"Nigeria Forest Reserves Atlas","description":"Free, source-linked atlas of 1,176 forest reserves, national parks, game reserves, sanctuaries, Ramsar wetlands and biosphere reserves across Nigeria's 36 states and the FCT, with statistics, satellite land-change profiles (forest loss, desertification, land cover), a visit planner, an NGO field-report hub and open data downloads.","url":"https://shagbaor.com/forest-atlas/","creator":{"@type":"Person","name":"Shagbaor Hycent Amool","affiliation":"University of Northern British Columbia"},"spatialCoverage":"Nigeria","isAccessibleForFree":true,"distribution":[{"@type":"DataDownload","encodingFormat":"text/csv","contentUrl":"https://shagbaor.com/forest-atlas/data/nigeria_protected_areas.csv"},{"@type":"DataDownload","encodingFormat":"application/geo+json","contentUrl":"https://shagbaor.com/forest-atlas/data/nigeria_protected_areas.geojson"}]}</script>
 <script>try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t);}catch(e){}</script>
 <script src="/assets/traction.js" defer></script>
 
@@ -953,6 +953,37 @@ aside.rail{background:color-mix(in srgb,var(--panel) 93%,transparent)}
 .bgbtn{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);background:var(--bg);border-radius:8px;padding:6px 10px;font-size:12.5px;font-weight:600;color:var(--muted);cursor:pointer}
 .bgbtn svg{width:16px;height:16px}
 .bgbtn[aria-pressed="true"]{color:var(--ink)}
+/* land change */
+.chg .chgseg{display:flex;margin:2px 0 10px;box-shadow:none}
+.chg .chgseg button{flex:1}
+.chgb .chart{margin:6px 0 4px}
+.chgb .kv b{font-size:15px}
+.note2{font-size:12px;color:var(--muted);margin:8px 0 0}
+.src2{font-size:11.5px;color:var(--muted);margin:6px 0 0;font-style:italic}
+.chgmore{margin:8px 0 0;font-size:12.5px}
+.ari{display:grid;grid-template-columns:auto 1fr;gap:2px 10px;align-items:center;border-left:5px solid var(--c);background:color-mix(in srgb,var(--c) 10%,var(--panel));border-radius:6px;padding:8px 10px;margin-bottom:8px}
+.ari b{font-family:var(--f-display);font-size:16px}
+.ari span{font-size:12.5px;color:var(--muted)}
+.ari em{grid-column:1/-1;font-style:normal;font-size:11.5px;font-weight:700;color:var(--c)}
+ul.sig{list-style:none;margin:0 0 6px;padding:0;display:grid;gap:4px;font-size:13px}
+ul.sig li{display:grid;grid-template-columns:18px 1fr;gap:6px;align-items:start;color:var(--muted)}
+ul.sig li i{font-style:normal;font-weight:800;text-align:center;border-radius:50%;width:18px;height:18px;line-height:18px;font-size:12px;background:var(--chip)}
+ul.sig li.on{color:var(--ink)}
+ul.sig li.on i{background:#cc4c02;color:#fff}
+.lgd{display:flex;flex-wrap:wrap;gap:4px 12px;font-size:11.5px;color:var(--muted);margin-top:4px}
+.lgd span{display:inline-flex;align-items:center;gap:5px}
+.lgd i{width:10px;height:10px;border-radius:2px;display:inline-block}
+table.lct{margin-top:8px;font-size:12.5px}
+table.lct td small{display:block;color:var(--muted);font-size:11px}
+table.lct .sw{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:6px;vertical-align:-1px}
+.subnav{display:flex;gap:6px;flex-wrap:wrap;margin:6px 0 18px}
+.subnav a{text-decoration:none;font-weight:600;font-size:13px;border:1px solid var(--line);border-radius:999px;padding:6px 12px;color:var(--ink);background:var(--panel)}
+.subnav a:hover{border-color:var(--accent)}
+.h3x{font-family:var(--f-display);font-size:24px;margin:30px 0 12px;scroll-margin-top:12px}
+#change section:first-of-type .h3x{margin-top:6px}
+.ovn{max-width:300px}
+.ovn select{width:auto;padding:3px 6px;margin-left:6px}
+.ovn small{display:block;color:var(--muted);margin-top:4px}
 /* resizable panels */
 aside.rail{position:relative}
 #v-map{grid-template-columns:var(--railw,minmax(300px,370px)) 1fr}
@@ -1002,6 +1033,7 @@ body{margin:0;display:flex;flex-direction:column}
     <nav class="views" aria-label="Sections">
       <a href="#map" data-v="map">Map</a>
       <a href="#stats" data-v="stats">Statistics</a>
+      <a href="#change" data-v="change">Land change</a>
       <a href="#visit" data-v="visit">Visit</a>
       <a href="#ngo" data-v="ngo">NGO hub</a>
       <a href="#data" data-v="data">Data &amp; sources</a>
@@ -1035,6 +1067,8 @@ body{margin:0;display:flex;flex-direction:column}
           <div class="seg" id="ovl" aria-label="Overlays"></div>
           <button type="button" class="btn sm legbtn" id="legbtn">Legend</button>
           <div class="note" id="tilenote" hidden></div>
+          <div class="note ovn" id="lcnote" hidden></div>
+          <div class="note ovn" id="arinote" hidden></div>
         </div>
         <div class="legend" id="legend"></div>
         <section class="sheet" id="sheet" hidden aria-label="Site profile">
@@ -1045,6 +1079,7 @@ body{margin:0;display:flex;flex-direction:column}
       </div>
     </section>
     <section class="view" id="v-stats" hidden><div class="page" id="stats"></div></section>
+    <section class="view" id="v-change" hidden><div class="page" id="change"></div></section>
     <section class="view" id="v-visit" hidden><div class="page" id="visit"></div></section>
     <section class="view" id="v-ngo" hidden><div class="page" id="ngo"></div></section>
     <section class="view" id="v-data" hidden><div class="page prose" id="data"></div></section>
@@ -1057,7 +1092,7 @@ body{margin:0;display:flex;flex-direction:column}
 const CONFIG={
   issuesRepo:'lordash001/lordash001.github.io',      // GitHub repo that receives field reports and corrections
   siteUrl:'https://shagbaor.com/forest-atlas/',
-  dataUrl:'data/atlas.json'
+  dataUrl:'data/atlas.json',chgUrl:'data/change.json'
 };
 let DATA=/*DATA*/null;
 const CATS=['National Park','Game Reserve','Wildlife Sanctuary','Strict Nature Reserve','Forest Reserve','Community Forest','Conservation Area','Ramsar Site','Biosphere Reserve','Other'];
@@ -1123,7 +1158,7 @@ function init(){
 }
 
 /* ---------- routing ---------- */
-const VIEWS=['map','stats','visit','ngo','data'];const built={};
+const VIEWS=['map','stats','change','visit','ngo','data'];const built={};
 function route(){
   let h=location.hash.slice(1)||'map';let site=null;
   if(!VIEWS.includes(h)){if(BY[h]){site=BY[h];h='map'}else h='map'}
@@ -1131,7 +1166,7 @@ function route(){
   $$('nav.views a').forEach(a=>{if(a.dataset.v===h)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current')});
   if(h==='map'){setTimeout(()=>map.invalidateSize(),50);if(site)select(site,false)}
   track('view/'+h,'Opened section: '+h);
-  if(!built[h]){built[h]=1;({stats:buildStats,visit:buildVisit,ngo:buildNgo,data:buildData}[h]||(()=>{}))()}
+  if(!built[h]){built[h]=1;({stats:buildStats,change:buildChange,visit:buildVisit,ngo:buildNgo,data:buildData}[h]||(()=>{}))()}
 }
 function goSite(id){location.hash=id}
 
@@ -1145,7 +1180,7 @@ const BASES={
   nasa:{n:'NASA daily',u:()=>`https://gibs.earthdata.nasa.gov/wmts/epsg3857/best/VIIRS_SNPP_CorrectedReflectance_TrueColor/default/${new Date(Date.now()-864e5*2).toISOString().slice(0,10)}/GoogleMapsCompatible_Level9/{z}/{y}/{x}.jpg`,a:'Imagery: NASA GIBS / VIIRS SNPP corrected reflectance (2 days ago)',mz:9}
 };
 const isDark=()=>document.documentElement.dataset.theme==='dark'||(document.documentElement.dataset.theme!=='light'&&matchMedia('(prefers-color-scheme: dark)').matches);
-const OVERLAYS={loss:{n:'Forest loss 2001–2024',u:'https://storage.googleapis.com/earthenginepartners-hansen/tiles/gfc_v1.12/loss_alpha/{z}/{x}/{y}.png',a:'Forest loss: Hansen et al. / UMD / Google / USGS / NASA, GFC v1.12',mz:12}};
+const OVERLAYS={lc:{n:'Land cover',fn:on=>lcOverlay(on)},ari:{n:'Aridity',off:1,fn:on=>ariOverlay(on)},loss:{n:'Forest loss 2001–2024',u:'https://storage.googleapis.com/earthenginepartners-hansen/tiles/gfc_v1.12/loss_alpha/{z}/{x}/{y}.png',a:'Forest loss: Hansen et al. / UMD / Google / USGS / NASA, GFC v1.12',mz:12}};
 function stateStyle(hi){const onTile=!!tile;return onTile?{color:'#ffffff',weight:hi?2.5:1,fillOpacity:0,opacity:.75}:{color:css('--land-line'),weight:hi?2:.8,fillColor:hi?css('--land-hi'):css('--land'),fillOpacity:1,opacity:1}}
 function initMap(){
   map=L.map('map',{preferCanvas:true,zoomSnap:.25,minZoom:5,maxZoom:17}).fitBounds([[4.1,2.6],[13.95,14.7]]);
@@ -1167,7 +1202,7 @@ function initMap(){
   // basemap buttons
   const b=$('#base');b.innerHTML=Object.entries(BASES).map(([k,v])=>`<button type="button" data-b="${k}" aria-pressed="false" ${k!=='outline'&&!LIVE?'disabled title="Loads on the hosted site"':''}>${v.n}</button>`).join('');
   $$('#base button').forEach(x=>x.onclick=()=>setBase(x.dataset.b));
-  $('#ovl').innerHTML=Object.entries(OVERLAYS).map(([k,v])=>`<button type="button" data-o="${k}" aria-pressed="false" ${!LIVE?'disabled title="Loads on the hosted site"':''}>${v.n}</button>`).join('');
+  $('#ovl').innerHTML=Object.entries(OVERLAYS).map(([k,v])=>`<button type="button" data-o="${k}" aria-pressed="false" ${!LIVE&&!v.off?'disabled title="Loads on the hosted site"':''}>${v.n}</button>`).join('');
   $$('#ovl button').forEach(x=>x.onclick=()=>toggleOverlay(x.dataset.o));
   if(!LIVE){const n=$('#tilenote');n.hidden=false;n.textContent='Satellite, terrain, NASA daily imagery and the forest-loss layer could not be reached from here, so the atlas is showing its built-in outline map.'}
   setBase(store('base')&&LIVE?store('base'):(LIVE?'map':'outline'));
@@ -1188,14 +1223,15 @@ function setBase(k){
     tile=L.layerGroup(lab?[base,lab]:[base]).addTo(map);base.bringToBack();tile._key=k;
     // if a tile service stops answering, fall back to the built-in outline map
     let ok=0,bad=0;base.on('tileload',()=>ok++);base.on('tileerror',()=>{bad++;if(bad>=4&&ok===0&&tile&&tile._key===k){setBase('outline');const n=$('#tilenote');n.hidden=false;n.textContent=BASES[k].n+' tiles did not load, so the atlas switched to its built-in outline map.';setTimeout(()=>n.hidden=true,6000)}})}
-  statesLayer.setStyle(stateStyle(false));if(hiState)hiState.setStyle(stateStyle(true));
+  if(ariOn)ariOverlay(true);else statesLayer.setStyle(stateStyle(false));if(hiState)hiState.setStyle(stateStyle(true));
   store('base',k);
 }
 function toggleOverlay(k){
   const on=!ovl[k];$$('#ovl button').forEach(x=>{if(x.dataset.o===k)x.setAttribute('aria-pressed',on)});
+  const O0=OVERLAYS[k];if(O0.fn){if(k==='ari')ovl.ari=on;O0.fn(on);return}
   if(on){const O=OVERLAYS[k];ovl[k]=L.tileLayer(O.u,{attribution:O.a,maxNativeZoom:O.mz,maxZoom:17,opacity:.85}).addTo(map)}else{map.removeLayer(ovl[k]);ovl[k]=null}
 }
-function recolor(){if(tile&&tile._key==='map')setBase('map');statesLayer.setStyle(stateStyle(false));F.forEach(f=>{const c=gcol(f.gp);if(f.poly)f.poly.setStyle({color:c,fillColor:c});if(f.mk)f.mk.setStyle({fillColor:c,color:css('--panel')})});if(built.stats){built.stats=0;if(!$('#v-stats').hidden){built.stats=1;buildStats()}}}
+function recolor(){if(tile&&tile._key==='map')setBase('map');if(ariOn)ariOverlay(true);else statesLayer.setStyle(stateStyle(false));F.forEach(f=>{const c=gcol(f.gp);if(f.poly)f.poly.setStyle({color:c,fillColor:c});if(f.mk)f.mk.setStyle({fillColor:c,color:css('--panel')})});if(built.stats){built.stats=0;if(!$('#v-stats').hidden){built.stats=1;buildStats()}}}
 function renderLegend(){$('#legend').innerHTML=`<div class="t">Designation</div>`+GROUPS.map((g,i)=>`<div class="k"><span class="sw" style="--c:var(--g${i})"></span>${g}</div>`).join('')+`<div class="sm">Shapes are WDPA boundaries; dots mark centres. Dashed dots are placed at the nearest town.</div>`}
 
 /* ---------- filters + list ---------- */
@@ -1317,6 +1353,7 @@ function select(f,fromMap){
   h+=`<dl class="facts">${facts.map(([k,v,w,raw])=>`<div class="fact${w?' w':''}"><dt>${k}</dt><dd>${raw?v:esc(v)}</dd></div>`).join('')}</dl>`;
   const areas=[];if(f.a)areas.push(['From WDPA boundary (GIS)',ha(f.a)]);if(f.ar)areas.push(['Reported / gazetted',ha(f.ar)]);if(f.fh)areas.push([`FAO 1998 inventory${f.fm?' · '+f.fm:''}`,ha(f.fh)]);
   if(areas.length)h+=`<div class="box"><h3>Area <small>figures differ by source and date</small></h3><dl>${areas.map(([k,v])=>`<dt>${k}</dt><dd class="mono">${v}</dd>`).join('')}</dl></div>`;
+  h+=changeBox(f);
   if(f.ds&&f.ds.length)h+=`<div class="desigs">${f.ds.map(d=>`<span>${esc(d)}</span>`).join('')}</div>`;
   const sec=(t,v)=>v?`<div class="sec"><h3>${t}</h3><p>${esc(v)}</p></div>`:'';
   h+=sec('Vegetation',f.veg)+sec('Flora · notable plants',f.flora)+sec('Fauna · notable animals and birds',f.fauna)+sec('Resources',f.res)+sec('Tourism potential',f.tour)+sec('Threats',f.thr)+sec('Notes',f.notes);
@@ -1340,7 +1377,7 @@ function select(f,fromMap){
   const setCap=i=>{const p=f.pics[i],c=$('#galcap');if(c)c.innerHTML=`${esc(capOf(p))} · ${esc(p[2]||'Unknown author')}, <a href="${pageUrl(p)}" target="_blank" rel="noopener">${esc(p[3])} via Wikimedia Commons</a>${p[4]==='G'?' · geotagged inside the reserve’s bounding box':''}`};
   if($('#gal')){setCap(0);$$('#gal .galrow button').forEach(b=>b.onclick=()=>{const i=+b.dataset.g,p=f.pics[i],im=$('#gal>img');if(im){im.dataset.f='';im.dataset.alt=imgUrl(p,500);im.src=imgUrl(p,960)}else{$('#gal').insertAdjacentHTML('afterbegin',imgTag(p,960,500))}setCap(i);$$('#gal .galrow button').forEach(x=>x.classList.toggle('on',x===b))})}
   $$('#list button').forEach(x=>x.classList.toggle('on',x.dataset.id===f.i));
-  renderSiteReports(f);
+  renderSiteReports(f);mountChange(f);
   if(LIVE)loadLive(f,b);
 }
 function closeSheet(){$('#sheet').hidden=true;const p=state.sel;if(p){if(p.poly)p.poly.setStyle({weight:1.2});if(p.mk)p.mk.setStyle({weight:1,color:css('--panel')})}state.sel=null;$$('#list button.on').forEach(b=>b.classList.remove('on'));if(location.hash.length>1&&BY[location.hash.slice(1)])history.replaceState(null,'','#map')}
@@ -1466,6 +1503,188 @@ function buildStats(){
   cards.forEach(c=>c.mount());
 }
 
+/* ---------- land change: forest loss, desertification, land cover ---------- */
+let CHG=/*CHG*/null,chgP=null;
+function loadChg(){if(CHG)return Promise.resolve(CHG);if(!chgP)chgP=fetch(CONFIG.chgUrl).then(r=>{if(!r.ok)throw new Error(r.status);return r.json()}).then(j=>CHG=j).catch(e=>{chgP=null;throw e});return chgP}
+const LC_CLS=[[1,'Water','#419bdf'],[2,'Trees','#397d49'],[4,'Flooded vegetation','#7a87c6'],[5,'Crops','#e49635'],[7,'Built area','#c4281b'],[8,'Bare ground','#a59b8f'],[11,'Rangeland','#c9bd7f']];
+const LC_YEARS=[2017,2018,2019,2020,2021,2022,2023,2024,2025];
+const LC_SVC='https://ic.imagery1.arcgis.com/arcgis/rest/services/Sentinel2_10m_LandCover/ImageServer';
+const ARI=[[0.05,'Hyper-arid','#8c2d04'],[0.2,'Arid','#cc4c02'],[0.5,'Semi-arid','#ec7014'],[0.65,'Dry sub-humid','#d9b44a'],[99,'Humid','#3f8f5a']];
+const ariClass=v=>ARI.find(a=>v<a[0]);
+const sum=a=>a.reduce((x,y)=>x+y,0),mean=a=>a.length?sum(a)/a.length:0;
+function slope(xs,ys){const mx=mean(xs),my=mean(ys);let n=0,d=0;xs.forEach((x,i)=>{n+=(x-mx)*(ys[i]-my);d+=(x-mx)**2});return d?n/d:0}
+const sgn=(v,f)=>(v>0?'+':v<0?'−':'')+f(Math.abs(v));
+const haf=v=>v>=100?fmt.format(Math.round(v)):fmt1.format(v);
+/* state-level desertification metrics from CHIRPS rainfall and Hargreaves PET */
+function dzState(n){const s=CHG&&CHG.dz.st[n];if(!s||!s.p)return null;const P=s.p,E=s.pet;const py0=CHG.dz.p0,ey0=CHG.dz.e0;
+  const yrs=P.map((_,i)=>py0+i);const pe=y=>E[y-ey0];
+  const ai=yrs.map((y,i)=>P[i]/pe(y));const win=(a,b)=>yrs.map((y,i)=>[y,i]).filter(([y])=>y>=a&&y<=b).map(([,i])=>i);
+  const base=win(1991,2020),rec=win(2015,yrs[yrs.length-1]);
+  const aiB=sum(base.map(i=>P[i]))/sum(base.map(i=>pe(yrs[i]))),aiR=sum(rec.map(i=>P[i]))/sum(rec.map(i=>pe(yrs[i])));
+  return{n,yrs,P,ai,aiB,aiR,cls:ariClass(aiB),clsR:ariClass(aiR),pB:mean(base.map(i=>P[i])),pR:mean(rec.map(i=>P[i])),pSlope:slope(yrs,P)*10,eSlope:slope(yrs,yrs.map(pe))*10,ggw:CHG.dz.ggw.includes(n)}}
+function lcState(n){const s=CHG&&CHG.lc.st[n];if(!s)return null;return s}
+function lcNational(){const out=LC_YEARS.map(()=>LC_CLS.map(()=>0));let tot=0;DATA.st.forEach(st=>{const s=CHG.lc.st[st.n];if(!s)return;tot+=st.km2;s.forEach((row,yi)=>row.slice(0,LC_CLS.length).forEach((v,ci)=>out[yi][ci]+=v/1000*st.km2))});return out.map(r=>r.map(v=>v/tot*100))}
+/* charts */
+function mline(el,years,series,o={}){
+  const W=560,H=230,pl=46,pb=24,pt=10,iw=W-pl-14,ih=H-pb-pt;const all=series.flatMap(s=>s.v.filter(v=>v!=null));const lo=o.min??Math.min(0,...all),hi=o.max??Math.max(...all)*1.1;
+  const X=i=>pl+i/(years.length-1||1)*iw,Y=v=>pt+ih-(v-lo)/(hi-lo||1)*ih;
+  let s=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="${esc(o.title||'')}">`;
+  niceTicks(lo,hi,4).forEach(t=>{s+=`<line class="gridl" x1="${pl}" x2="${W-14}" y1="${Y(t)}" y2="${Y(t)}"/><text x="${pl-6}" y="${Y(t)+4}" text-anchor="end">${o.tf?o.tf(t):fmt.format(t)}</text>`});
+  const step=Math.ceil(years.length/9);years.forEach((y,i)=>{if(i%step===0&&(years.length-1-i>=step/2||i===years.length-1)||i===years.length-1)s+=`<text x="${X(i)}" y="${H-6}" text-anchor="middle">${y}</text>`});
+  series.forEach(se=>{const d=se.v.map((v,i)=>v==null?'':(i&&se.v[i-1]!=null?'L':'M')+X(i)+' '+Y(v)).join(' ');s+=`<path d="${d}" fill="none" stroke="${se.c}" stroke-width="${se.w||2}" ${se.dash?`stroke-dasharray="${se.dash}"`:''}/>`});
+  years.forEach((y,i)=>{s+=`<rect x="${X(i)-iw/years.length/2}" y="${pt}" width="${iw/years.length}" height="${ih}" fill="transparent" data-i="${i}"/>`});
+  el.innerHTML=s+'</svg>'+(o.legend!==false?`<div class="lgd">${series.map(se=>`<span><i style="background:${se.c}"></i>${esc(se.n)}</span>`).join('')}</div>`:'');
+  el.querySelectorAll('rect[data-i]').forEach(r=>{const i=+r.dataset.i;r.onmousemove=e=>{const bb=el.getBoundingClientRect();tip(el,`<b>${years[i]}</b><br>${series.map(se=>se.v[i]==null?'':`${esc(se.n)}: ${o.f?o.f(se.v[i]):fmt1.format(se.v[i])}`).filter(Boolean).join('<br>')}`,e.clientX-bb.left,e.clientY-bb.top)};r.onmouseleave=hideTip});
+}
+function stack100(el,labels,rows,o={}){/* rows[i] = array of {n,c,v} (percent) */
+  const W=560,rh=22,lw=44,H=labels.length*rh+6,iw=W-lw-8;let s=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="${esc(o.title||'')}">`;
+  rows.forEach((parts,i)=>{let x=lw;const y=i*rh+3;s+=`<text x="${lw-6}" y="${y+rh/2+1}" text-anchor="end" class="lab">${labels[i]}</text>`;const t=sum(parts.map(p=>p.v))||1;
+    parts.forEach((p,j)=>{const w=p.v/t*iw;if(w>0)s+=`<rect x="${x}" y="${y+2}" width="${w}" height="${rh-6}" fill="${p.c}" data-i="${i}" data-j="${j}"/>`;x+=w})});
+  el.innerHTML=s+'</svg>'+`<div class="lgd">${rows[0].map(p=>`<span><i style="background:${p.c}"></i>${esc(p.n)}</span>`).join('')}</div>`;
+  el.querySelectorAll('rect[data-i]').forEach(r=>{const p=rows[+r.dataset.i][+r.dataset.j];r.onmousemove=e=>{const bb=el.getBoundingClientRect();tip(el,`<b>${labels[+r.dataset.i]}</b> · ${esc(p.n)}: ${fmt1.format(p.v)}%${p.ha!=null?` (${haf(p.ha)} ha)`:''}`,e.clientX-bb.left,e.clientY-bb.top)};r.onmouseleave=hideTip});
+}
+function dbar(el,rows,o={}){/* diverging bars around zero */
+  const W=560,lw=o.lw||110,rh=o.rh||17,H=rows.length*rh+8,iw=W-lw-70,mx=Math.max(...rows.map(r=>Math.abs(r.v)))||1,z=lw+30+iw/2,sc=(iw/2)/mx;
+  let s=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="${esc(o.title||'')}"><line x1="${z}" x2="${z}" y1="0" y2="${H}" class="gridl"/>`;
+  rows.forEach((r,i)=>{const y=i*rh+4,w=Math.max(1,Math.abs(r.v)*sc),x=r.v<0?z-w:z;s+=`<g data-i="${i}"><rect x="0" y="${y-2}" width="${W}" height="${rh}" fill="transparent"/><text x="${lw-8}" y="${y+rh/2+2}" text-anchor="end" class="lab">${esc(r.l)}</text><rect x="${x}" y="${y+3}" width="${w}" height="${rh-8}" rx="3" fill="${r.v<0?(o.neg||'#cc4c02'):(o.pos||'#2a78d6')}"/><text x="${r.v<0?x-5:x+w+5}" y="${y+rh/2+2}" text-anchor="${r.v<0?'end':'start'}">${o.f?o.f(r.v):fmt.format(r.v)}</text></g>`});
+  el.innerHTML=s+'</svg>';
+  el.querySelectorAll('g[data-i]').forEach(g=>{const r=rows[+g.dataset.i];g.onmousemove=e=>{const bb=el.getBoundingClientRect();tip(el,`<b>${esc(r.l)}</b> · ${o.f?o.f(r.v):fmt.format(r.v)}${r.t?'<br>'+r.t:''}`,e.clientX-bb.left,e.clientY-bb.top)};g.onmouseleave=hideTip});
+}
+/* ---- live land cover for one site (Esri / Impact Observatory 10 m) ---- */
+const lcCache={};
+async function siteRings(f){
+  if(f.w&&LIVE){try{const u=`https://services9.arcgis.com/IkktFdUAcY3WrH25/arcgis/rest/services/WDPA_Terrestrial_Simplification50/FeatureServer/0/query?where=WDPAID%3D${f.w}&outFields=WDPAID&returnGeometry=true&outSR=4326&geometryPrecision=5&f=json`;const j=await jget(u);const g=j.features&&j.features[0]&&j.features[0].geometry;if(g&&g.rings)return{rings:g.rings,kind:'boundary'}}catch(e){}}
+  if(f.g)return{rings:f.g.flat(),kind:'boundary'};
+  if(f.la!=null&&f.q==='published'){const r=[];for(let k=0;k<=48;k++){const t=k/48*2*Math.PI;r.push([f.lo+3000*Math.cos(t)/(111320*Math.cos(f.la*Math.PI/180)),f.la+3000*Math.sin(t)/110574])}return{rings:[r],kind:'buffer'}}
+  return null}
+async function siteLC(f){
+  if(lcCache[f.i])return lcCache[f.i];
+  const sg=await siteRings(f);if(!sg)return null;
+  let b=[999,999,-999,-999];sg.rings.forEach(r=>r.forEach(([x,y])=>{b[0]=Math.min(b[0],x);b[1]=Math.min(b[1],y);b[2]=Math.max(b[2],x);b[3]=Math.max(b[3],y)}));
+  const ext=Math.max((b[2]-b[0])*111320,(b[3]-b[1])*111320*1.02);const ps=Math.max(10,Math.ceil(ext/2500));
+  const one=async y=>{const p=new URLSearchParams({geometry:JSON.stringify({rings:sg.rings,spatialReference:{wkid:4326}}),geometryType:'esriGeometryPolygon',time:String(Date.UTC(y,6,1)),renderingRule:JSON.stringify({rasterFunction:'None'}),pixelSize:JSON.stringify({x:ps,y:ps,spatialReference:{wkid:3857}}),f:'json'});
+    for(let t=0;t<3;t++){try{const j=await (await fetch(LC_SVC+'/computeHistograms',{method:'POST',body:p})).json();const h=j.histograms&&j.histograms[0];if(!h)throw new Error('none');const o={};h.counts.forEach((c,i)=>{if(c)o[Math.round(h.min+i+.5)]=c});return o}catch(e){await new Promise(z=>setTimeout(z,800*(t+1)))}}return null};
+  const res=await Promise.all(LC_YEARS.map(one));
+  const area=sg.kind==='buffer'?Math.PI*300*300:(f.a||(f.ar)||null);/* ha */
+  const rows=res.map(o=>{if(!o)return null;const tot=sum(LC_CLS.map(([k])=>o[k]||0));const cl=o[10]||0;return{pct:LC_CLS.map(([k])=>tot?(o[k]||0)/tot*100:0),cloud:cl/(tot+cl)*100}});
+  return lcCache[f.i]={rows,kind:sg.kind,area,ps}}
+/* ---- profile box ---- */
+function changeBox(f){
+  return `<div class="box chg" id="chg"><h3>Change over time <small>satellite-derived</small></h3><div class="seg chgseg" role="tablist" aria-label="Change profile">${[['fl','Forest loss'],['dz','Desertification'],['lc','Land cover']].map(([k,n],i)=>`<button type="button" role="tab" data-k="${k}" aria-selected="${i?'false':'true'}" aria-pressed="${i?'false':'true'}">${n}</button>`).join('')}</div><div id="chg-b" class="chgb"><p class="loading">Loading…</p></div><p class="chgmore"><a href="#change">Open the national land-change view →</a></p></div>`}
+function mountChange(f){
+  const box=$('#chg');if(!box)return;const show=k=>{$$('#chg .chgseg button').forEach(b=>{const on=b.dataset.k===k;b.setAttribute('aria-selected',on);b.setAttribute('aria-pressed',on)});store('chgtab',k);
+    const el=$('#chg-b');el.innerHTML='<p class="loading">Loading…</p>';loadChg().then(()=>{if(state.sel!==f)return;({fl:renderFL,dz:renderDZ,lc:renderLC}[k])(f,el)}).catch(()=>{el.innerHTML='<p class="gap">The land-change data file could not be loaded.</p>'})};
+  $$('#chg .chgseg button').forEach(b=>b.onclick=()=>show(b.dataset.k));show(store('chgtab')||'fl')}
+function renderFL(f,el){
+  const d=CHG.fl[f.i];
+  if(!d){el.innerHTML=`<p class="gap" style="margin:0">${f.la==null?'This reserve has not been located yet, so no satellite statistics can be computed.':f.q==='approx_town'?'This reserve is only placed at the nearest town, so the atlas does not compute forest loss for it: the numbers would describe the town, not the reserve.':'No forest-loss statistics are available for this record.'}</p>`;return}
+  const [tc,ar,...L]=d;const tot=sum(L),pk=L.indexOf(Math.max(...L));const early=mean(L.slice(0,5)),late=mean(L.slice(-5));
+  const buf=CHG.fl_buf.includes(f.i);
+  el.innerHTML=`<div class="kv"><div><b>${haf(tc)} ha</b><span>tree cover in 2000 (${ar?fmt.format(Math.round(tc/ar*100)):'–'}% of ${buf?'the area':'the reserve'})</span></div><div><b>${haf(tot)} ha</b><span>lost 2001–${CHG.fl_y1} (${tc?fmt1.format(tot/tc*100):'0'}% of 2000 cover)</span></div><div><b>${tot?CHG.fl_y0+pk:'–'}</b><span>worst year${tot?` · ${haf(L[pk])} ha`:''}</span></div></div>
+   <div class="chart" id="fl-ch"></div>
+   <p class="note2">${tot?`Average loss ${haf(early)} ha a year in 2001–2005 and ${haf(late)} ha a year in ${CHG.fl_y1-4}–${CHG.fl_y1} (${late>early*1.2?'rising':late<early*.8?'falling':'roughly steady'}). `:''}Tree cover means canopy above 30% in 2000; loss is stand-replacing disturbance detected by Landsat (logging, clearing, fire, storms), not net deforestation, and it does not count regrowth. ${buf?'<b>No boundary is published for this site, so figures cover a 3 km radius around its published point.</b>':'Computed inside the WDPA boundary (simplified to about 50 m).'}</p>
+   <p class="src2">Source: Hansen et al. (2013) Science 342:850, Global Forest Change v1.12 (UMD/Google/USGS/NASA), 30 m; zonal statistics computed by this atlas.</p>`;
+  cols($('#fl-ch'),L.map((v,i)=>({l:String(CHG.fl_y0+i),v})),{c:'var(--loss)',f:v=>haf(v)+' ha',tf:v=>fmt.format(v),title:'Tree cover loss per year'})}
+function renderDZ(f,el){
+  const sts=(f.st||[]).filter(s=>CHG.dz.st[s]&&CHG.dz.st[s].p);if(!sts.length){el.innerHTML='<p class="gap" style="margin:0">No state is recorded for this site.</p>';return}
+  const z=dzState(sts[0]);if(!z){el.innerHTML='<p class="gap" style="margin:0">Rainfall data for this state are not available yet.</p>';return}const lc=lcState(sts[0]);const a=lc?lc[0]:null,b=lc?lc[lc.length-1]:null;const av=(rs,ci)=>mean(rs.map(r=>r[ci]))/10;
+  const bare0=lc?av(lc.slice(0,2),5):0,bare1=lc?av(lc.slice(-2),5):0,rng0=lc?av(lc.slice(0,2),6):0,rng1=lc?av(lc.slice(-2),6):0,tr0=lc?av(lc.slice(0,2),1):0,tr1=lc?av(lc.slice(-2),1):0;
+  const sig=[[z.aiB<0.65,`${esc(z.n)} is a dryland (aridity index ${z.aiB.toFixed(2)}, <b>${z.cls[1].toLowerCase()}</b>)`,`${esc(z.n)} is humid (aridity index ${z.aiB.toFixed(2)}), outside the drylands where desertification is defined`],
+    [z.pSlope<-20,`Rainfall falling by ${fmt.format(Math.round(-z.pSlope))} mm per decade (1991–${z.yrs[z.yrs.length-1]})`,`Rainfall trend ${sgn(Math.round(z.pSlope),fmt.format)} mm per decade (1991–${z.yrs[z.yrs.length-1]})`],
+    [z.eSlope>15,`Evaporative demand rising by ${fmt.format(Math.round(z.eSlope))} mm per decade`,`Evaporative demand ${sgn(Math.round(z.eSlope),fmt.format)} mm per decade`],
+    [bare1-bare0>0.3||rng1-rng0>3,`Bare ground ${sgn(+(bare1-bare0).toFixed(1),fmt1.format)} and rangeland ${sgn(+(rng1-rng0).toFixed(1),fmt1.format)} percentage points, 2017–18 to 2024–25`,`Bare ground ${sgn(+(bare1-bare0).toFixed(1),fmt1.format)} and rangeland ${sgn(+(rng1-rng0).toFixed(1),fmt1.format)} percentage points, 2017–18 to 2024–25`],
+    [tr1-tr0<-3,`Tree-covered land ${sgn(+(tr1-tr0).toFixed(1),fmt1.format)} percentage points over the same period`,`Tree-covered land ${sgn(+(tr1-tr0).toFixed(1),fmt1.format)} percentage points over the same period`]];
+  el.innerHTML=`<div class="ari" style="--c:${z.cls[2]}"><b>${z.cls[1]}</b><span>${esc(z.n)} State · aridity index ${z.aiB.toFixed(2)} (1991–2020) → ${z.aiR.toFixed(2)} (2015–${z.yrs[z.yrs.length-1]})</span>${z.ggw?'<em>Great Green Wall frontline state</em>':''}</div>
+   <ul class="sig">${sig.map(([on,t,o])=>`<li class="${on?'on':''}"><i aria-hidden="true">${on?'!':'·'}</i><span>${on?t:o}</span></li>`).join('')}</ul>
+   <div class="chart" id="dz-ch"></div>
+   <p class="note2">Desertification is land degradation in drylands (UNCCD). These are <b>state-level</b> signals, not a verdict on this reserve: the aridity index divides CHIRPS rainfall by potential evapotranspiration (Hargreaves method, NASA POWER temperatures), and land-cover shares come from the 10 m Esri/Impact Observatory maps. The land-cover tab shows this reserve on its own. Nationally, Nigeria reported ${CHG.dz.sdg.map(([y,v])=>`${fmt1.format(v)}% of land degraded in ${y}`).join(' and ')} (SDG 15.3.1).</p>
+   <p class="src2">Sources: CHIRPS v2 (Funk et al. 2015) via NASA/USAID SERVIR ClimateSERV; NASA POWER; Esri/Impact Observatory/Microsoft; UN SDG Global Database; Federal Ministry of Information on Great Green Wall states.</p>`;
+  mline($('#dz-ch'),z.yrs,[{n:'Rainfall (mm)',c:'#2a78d6',v:z.P},{n:'Potential evapotranspiration (mm)',c:'#e0701f',v:z.yrs.map(y=>CHG.dz.st[z.n].pet[y-CHG.dz.e0])}],{title:'Rainfall and evaporative demand',f:v=>fmt.format(Math.round(v))+' mm'})}
+async function renderLC(f,el){
+  if(!LIVE){el.innerHTML='<p class="gap" style="margin:0">Land-cover statistics for each reserve are computed live from 10 m satellite maps on the hosted site. The national view has state-level figures.</p>';return}
+  el.innerHTML='<p class="loading">Reading 10 m land-cover maps for 2017–2025…</p>';
+  let r;try{r=await siteLC(f)}catch(e){r=null}
+  if(state.sel!==f)return;
+  if(!r){el.innerHTML=`<p class="gap" style="margin:0">${f.q==='approx_town'?'This reserve is only placed at the nearest town, so land cover is not computed for it.':'No boundary or published point is available to measure land cover.'}</p>`;return}
+  const ok=r.rows.map((x,i)=>x?i:-1).filter(i=>i>=0);if(!ok.length){el.innerHTML='<p class="gap" style="margin:0">The land-cover service did not respond. Try again later.</p>';return}
+  const A=r.area;const f2=ok.slice(0,2),l2=ok.slice(-2);const avg=(ix,ci)=>mean(ix.map(i=>r.rows[i].pct[ci]));
+  const tb=LC_CLS.map(([k,n,c],ci)=>{const a=avg(f2,ci),b=avg(l2,ci);return{n,c,a,b,d:b-a}}).filter(x=>x.a>0.05||x.b>0.05);
+  el.innerHTML=`<div class="chart" id="lc-ch"></div>
+   <table class="dt lct"><thead><tr><th>Class</th><th class="n">${LC_YEARS[f2[0]]}–${String(LC_YEARS[f2[f2.length-1]]).slice(2)}</th><th class="n">${LC_YEARS[l2[0]]}–${String(LC_YEARS[l2[l2.length-1]]).slice(2)}</th><th class="n">Change</th></tr></thead><tbody>${tb.map(x=>`<tr><td><i class="sw" style="background:${x.c}"></i>${x.n}</td><td class="n">${fmt1.format(x.a)}%</td><td class="n">${fmt1.format(x.b)}%</td><td class="n">${sgn(+x.d.toFixed(1),fmt1.format)} pts${A?`<small>${sgn(Math.round(x.d/100*A),fmt.format)} ha</small>`:''}</td></tr>`).join('')}</tbody></table>
+   <p class="note2">Share of the ${r.kind==='buffer'?'3 km circle around the published point':'reserve boundary'} in each class, from annual 10 m Sentinel-2 maps (pixels resampled to ${r.ps} m for this query; clouds excluded). Two-year averages smooth classification noise; single-year jumps of a few points are often model error rather than real change. In the savanna north the model labels much fallow and seasonal farmland as rangeland.</p>
+   <p class="src2">Source: Esri, Impact Observatory and Microsoft, “Sentinel-2 10 m Land Use/Land Cover Time Series” (Karra et al. 2021), queried live.</p>`;
+  stack100($('#lc-ch'),ok.map(i=>String(LC_YEARS[i])),ok.map(i=>LC_CLS.map(([k,n,c],ci)=>({n,c,v:r.rows[i].pct[ci],ha:A?r.rows[i].pct[ci]/100*A:null}))),{title:'Land cover by year'})}
+/* ---- map overlays: land cover tiles and aridity ---- */
+const LCLayer=L.TileLayer.extend({getTileUrl(c){const z=c.z,n=2**z,R=20037508.342789244,s=2*R/n,x0=-R+c.x*s,y1=R-c.y*s;return `${LC_SVC}/exportImage?bbox=${x0},${y1-s},${x0+s},${y1}&bboxSR=3857&imageSR=3857&size=256,256&format=png32&transparent=true&time=${Date.UTC(this.options.year,6,1)}&renderingRule=${encodeURIComponent(JSON.stringify({rasterFunction:'Cartographic Renderer for Visualization and Analysis'}))}&f=image`}});
+let lcYear=2025,ariOn=false;
+function lcOverlay(on){const n=$('#lcnote');if(ovl.lc){map.removeLayer(ovl.lc);ovl.lc=null}
+  if(on){ovl.lc=new LCLayer('',{year:lcYear,opacity:.75,maxZoom:17,attribution:'Land cover: Esri / Impact Observatory / Microsoft (Sentinel-2, 10 m)'}).addTo(map);
+    n.hidden=false;n.innerHTML=`<label>Land cover <select id="lcy">${LC_YEARS.map(y=>`<option ${y===lcYear?'selected':''}>${y}</option>`).join('')}</select></label><div class="lgd">${LC_CLS.map(([k,nm,c])=>`<span><i style="background:${c}"></i>${nm}</span>`).join('')}</div>`;
+    $('#lcy').onchange=e=>{lcYear=+e.target.value;lcOverlay(true)}}else n.hidden=true}
+function ariOverlay(on){ariOn=on;const n=$('#arinote');if(!on){n.hidden=true;statesLayer.setStyle(stateStyle(false));return}
+  loadChg().then(()=>{if(!ariOn)return;statesLayer.setStyle(ft=>{const z=dzState(ft.properties.n);return{color:'#fff',weight:1,fillColor:z?z.cls[2]:'#999',fillOpacity:.55,opacity:.8}});
+    n.hidden=false;n.innerHTML=`<b>Aridity, 1991–2020</b><div class="lgd">${ARI.map(a=>`<span><i style="background:${a[2]}"></i>${a[1]}</span>`).join('')}</div><small>CHIRPS rainfall ÷ potential evapotranspiration, by state</small>`}).catch(()=>{n.hidden=false;n.textContent='Aridity data could not be loaded.'})}
+/* ---- national land-change view ---- */
+function buildChange(){
+  const el=$('#change');el.innerHTML='<p class="loading">Loading land-change data…</p>';
+  loadChg().then(()=>drawChange(el)).catch(()=>{el.innerHTML='<p class="gap">The land-change data file could not be loaded.</p>'})}
+function drawChange(el){
+  const Y0=CHG.fl_y0,Y1=CHG.fl_y1,NY=Y1-Y0+1,yrs=[...Array(NY)].map((_,i)=>Y0+i);
+  const stL=DATA.st.map(s=>({n:s.n,d:CHG.fl['S:'+s.n],km2:s.km2})).filter(x=>x.d);
+  const natTC=sum(stL.map(x=>x.d[0])),natL=yrs.map((_,i)=>sum(stL.map(x=>x.d[2+i]))),natTot=sum(natL);
+  const seen=new Set();const sites=F.filter(f=>CHG.fl[f.i]&&!CHG.fl_buf.includes(f.i)).sort((a,b)=>{const P=[2,0,1,5,6,3,4];return P[a.gp]-P[b.gp]||(a.v<b.v?-1:a.v>b.v?1:0)}).filter(f=>{const d=CHG.fl[f.i];const k=Math.round(d[1]/50)+'|'+Math.round(d[0]/50)+'|'+Math.round(sum(d.slice(2))/20);if(seen.has(k))return false;seen.add(k);return true});
+  /* union-free estimate: sum over sites can double count overlapping designations, so dedupe by preferring WDPA records only */
+  const pa=sites.filter(f=>f.w&&f.gp!==3&&f.gp!==4);const paL=yrs.map((_,i)=>sum(pa.map(f=>CHG.fl[f.i][2+i])));const paTC=sum(pa.map(f=>CHG.fl[f.i][0]));
+  const rank=sites.map(f=>{const d=CHG.fl[f.i];const t=sum(d.slice(2));return{f,t,tc:d[0],p:d[0]>50?t/d[0]*100:null,r5:sum(d.slice(-5))}});
+  const top=[...rank].sort((a,b)=>b.t-a.t).slice(0,15),topP=rank.filter(r=>r.p!=null&&r.tc>=500).sort((a,b)=>b.p-a.p).slice(0,15);
+  const byS=stL.map(x=>({l:x.n,v:sum(x.d.slice(2)),tc:x.d[0]})).sort((a,b)=>b.v-a.v);
+  const dz=DATA.st.map(s=>dzState(s.n)).filter(Boolean).sort((a,b)=>a.aiB-b.aiB);
+  const nat=lcNational();
+  const cru=CHG.dz.cru;const cruY=cru.map(r=>r[0]),cruP=cru.map(r=>r[1]),cru10=cruP.map((_,i)=>i<9?null:mean(cruP.slice(i-9,i+1)));
+  const lcS=DATA.st.map(s=>{const r=CHG.lc.st[s.n];if(!r)return null;const av=(rs,ci)=>mean(rs.map(x=>x[ci]))/10;return{n:s.n,km2:s.km2,bu0:av(r.slice(0,2),4),bu1:av(r.slice(-2),4),tr0:av(r.slice(0,2),1),tr1:av(r.slice(-2),1),cr0:av(r.slice(0,2),3),cr1:av(r.slice(-2),3),ba0:av(r.slice(0,2),5),ba1:av(r.slice(-2),5),rg0:av(r.slice(0,2),6),rg1:av(r.slice(-2),6)}}).filter(Boolean);
+  const C=[];
+  /* forest loss */
+  const cF=[card({t:`Tree cover loss in Nigeria, ${Y0}–${Y1}`,s:'Hectares per year: whole country (sum of states) and inside protected areas with a WDPA boundary.',src:'Hansen et al. / UMD Global Forest Change v1.12; zonal statistics by this atlas',file:'tree_cover_loss_nigeria_and_pas',
+      draw:e=>mline(e,yrs,[{n:'All Nigeria',c:'var(--loss)',v:natL},{n:'Inside protected areas',c:'#2f7d4c',v:paL}],{f:v=>fmt.format(Math.round(v))+' ha',tf:v=>fmt.format(v/1000)+'k'}),rows:()=>yrs.map((y,i)=>({year:y,nigeria_loss_ha:Math.round(natL[i]),protected_areas_loss_ha:Math.round(paL[i])}))}),
+    card({t:'Where tree cover was lost',s:`Total loss ${Y0}–${Y1} by state (ha). Click a bar to see the state on the map.`,src:'Hansen GFC v1.12; geoBoundaries ADM1 (simplified)',file:'tree_cover_loss_by_state',
+      draw:e=>hbar(e,byS.map(r=>({l:r.l,v:Math.round(r.v),t:`${fmt1.format(r.tc?r.v/r.tc*100:0)}% of 2000 tree cover`,c:'var(--loss)',on:()=>{location.hash='map';setTimeout(()=>{state.st=r.l;$('#state').value=r.l;update();zoomState(r.l)},80)}})),{rh:17,f:v=>fmt.format(v)}),rows:()=>byS.map(r=>({state:r.l,tree_cover_2000_ha:Math.round(r.tc),loss_ha:Math.round(r.v),loss_pct_of_2000:+(r.tc?r.v/r.tc*100:0).toFixed(2)}))}),
+    card({t:'Reserves that lost the most tree cover',s:`Hectares lost ${Y0}–${Y1} inside the boundary. Click to open the profile.`,src:'Hansen GFC v1.12 within WDPA boundaries',file:'reserves_most_loss',
+      draw:e=>hbar(e,top.map(r=>({l:r.f.n.length>26?r.f.n.slice(0,25)+'…':r.f.n,v:Math.round(r.t),t:`${esc(r.f.s||'')} · ${fmt1.format(r.tc?r.t/r.tc*100:0)}% of 2000 cover`,c:`var(--g${r.f.gp})`,on:()=>goSite(r.f.i)})),{lw:190}),rows:()=>top.map(r=>({site:r.f.n,state:r.f.s,tree_cover_2000_ha:Math.round(r.tc),loss_ha:Math.round(r.t)}))}),
+    card({t:'Reserves that lost the largest share of their forest',s:`Loss ${Y0}–${Y1} as % of tree cover in 2000, reserves with at least 500 ha of tree cover.`,src:'Hansen GFC v1.12 within WDPA boundaries',file:'reserves_share_lost',
+      draw:e=>hbar(e,topP.map(r=>({l:r.f.n.length>26?r.f.n.slice(0,25)+'…':r.f.n,v:+r.p.toFixed(1),t:`${haf(r.t)} of ${haf(r.tc)} ha`,c:`var(--g${r.f.gp})`,on:()=>goSite(r.f.i)})),{lw:190,f:v=>fmt1.format(v)+'%'}),rows:()=>topP.map(r=>({site:r.f.n,state:r.f.s,tree_cover_2000_ha:Math.round(r.tc),loss_ha:Math.round(r.t),loss_pct:+r.p.toFixed(2)}))})];
+  /* desertification */
+  const cD=[card({t:'Aridity by state',s:'Aridity index = rainfall ÷ potential evapotranspiration, 1991–2020. Below 0.65 is dryland (UNEP classes).',src:'CHIRPS v2 via ClimateSERV; NASA POWER (Hargreaves PET); calculated by this atlas',file:'aridity_by_state',
+      draw:e=>hbar(e,dz.map(z=>({l:z.n,v:+z.aiB.toFixed(2),c:z.cls[2],t:`${z.cls[1]}${z.ggw?' · Great Green Wall frontline':''} · rainfall ${fmt.format(Math.round(z.pB))} mm/yr`})),{rh:17,f:v=>v.toFixed(2)}),rows:()=>dz.map(z=>({state:z.n,aridity_index_1991_2020:+z.aiB.toFixed(3),aridity_index_2015_recent:+z.aiR.toFixed(3),class:z.cls[1],rain_mm_1991_2020:Math.round(z.pB),rain_trend_mm_per_decade:Math.round(z.pSlope),pet_trend_mm_per_decade:Math.round(z.eSlope),great_green_wall_frontline:z.ggw?'yes':'no'}))}),
+    card({t:'Rainfall trend by state, 1991–'+dz[0].yrs[dz[0].yrs.length-1],s:'Linear trend in annual CHIRPS rainfall, mm per decade. Negative values mean drying.',src:'CHIRPS v2 (UCSB Climate Hazards Center) via NASA/USAID SERVIR ClimateSERV',file:'rainfall_trend_by_state',
+      draw:e=>{const r=[...dz].sort((a,b)=>a.pSlope-b.pSlope);dbar(e,r.map(z=>({l:z.n,v:Math.round(z.pSlope),t:`${fmt.format(Math.round(z.pB))} mm/yr on average, 1991–2020`})),{f:v=>sgn(v,fmt.format)})},rows:()=>dz.map(z=>({state:z.n,rain_trend_mm_per_decade:Math.round(z.pSlope)}))}),
+    card({t:'Nigeria’s rainfall since 1901',s:'National average annual rainfall (mm) with a 10-year running mean. The 1970s–80s Sahel drought is visible.',src:`<a href="https://climateknowledgeportal.worldbank.org/country/nigeria" target="_blank" rel="noopener">World Bank Climate Change Knowledge Portal</a>, CRU TS 4.07`,file:'nigeria_rainfall_cru',
+      draw:e=>mline(e,cruY,[{n:'Annual',c:'#9cc3ea',v:cruP,w:1.2},{n:'10-year mean',c:'#2a78d6',v:cru10,w:2.5}],{f:v=>fmt.format(Math.round(v))+' mm',min:700}),rows:()=>cru.map(r=>({year:r[0],rain_mm:r[1],temp_c:r[2]}))}),
+    card({t:'Bare ground and rangeland in dryland states',s:'Share of state area, average of 2017–18 vs 2024–25 (percentage points of change in the tooltip).',src:'Esri / Impact Observatory 10 m land cover; calculated by this atlas',file:'bare_rangeland_change',
+      draw:e=>{const r=lcS.filter(x=>{const z=dzState(x.n);return z&&z.aiB<0.65}).sort((a,b)=>(b.rg1+b.ba1)-(a.rg1+a.ba1));hbar(e,r.map(x=>({l:x.n,v:+(x.rg1+x.ba1).toFixed(1),c:'#c9bd7f',t:`rangeland ${sgn(+(x.rg1-x.rg0).toFixed(1),fmt1.format)} pts · bare ${sgn(+(x.ba1-x.ba0).toFixed(1),fmt1.format)} pts · trees ${sgn(+(x.tr1-x.tr0).toFixed(1),fmt1.format)} pts`})),{rh:17,f:v=>fmt1.format(v)+'%'})},rows:()=>lcS.map(x=>({state:x.n,rangeland_pct_2017_18:+x.rg0.toFixed(1),rangeland_pct_2024_25:+x.rg1.toFixed(1),bare_pct_2017_18:+x.ba0.toFixed(1),bare_pct_2024_25:+x.ba1.toFixed(1),trees_pct_2017_18:+x.tr0.toFixed(1),trees_pct_2024_25:+x.tr1.toFixed(1)}))})];
+  /* land cover */
+  const cL=[card({t:'What covers Nigeria’s land',s:'National share by class, 2017–2025 (area-weighted from state statistics). Annual maps are noisy; read trends, not single years.',src:'Esri / Impact Observatory / Microsoft Sentinel-2 10 m LULC; calculated by this atlas',file:'land_cover_nigeria',
+      draw:e=>mline(e,LC_YEARS,LC_CLS.map(([k,n,c],ci)=>({n,c,v:nat.map(r=>r[ci])})),{f:v=>fmt1.format(v)+'%',tf:v=>v+'%',min:0}),rows:()=>LC_YEARS.map((y,yi)=>Object.fromEntries([['year',y],...LC_CLS.map(([k,n],ci)=>[n.toLowerCase().replace(/ /g,'_')+'_pct',+nat[yi][ci].toFixed(2)])]))}),
+    card({t:'Growth of built-up land by state',s:'Built area as % of state land, 2017–18 average vs 2024–25 average.',src:'Esri / Impact Observatory 10 m land cover',file:'built_area_by_state',
+      draw:e=>{const r=[...lcS].sort((a,b)=>(b.bu1-b.bu0)-(a.bu1-a.bu0));hbar(e,r.map(x=>({l:x.n,v:+(x.bu1-x.bu0).toFixed(2),c:'#c4281b',t:`${fmt1.format(x.bu0)}% → ${fmt1.format(x.bu1)}% (≈ ${fmt.format(Math.round((x.bu1-x.bu0)/100*x.km2))} km²)`})),{rh:17,f:v=>'+'+fmt1.format(v)+' pts'})},rows:()=>lcS.map(x=>({state:x.n,built_pct_2017_18:+x.bu0.toFixed(2),built_pct_2024_25:+x.bu1.toFixed(2),built_km2_added:Math.round((x.bu1-x.bu0)/100*x.km2)}))}),
+    card({t:'Change in tree-covered land by state',s:'Percentage points, 2017–18 average to 2024–25 average.',src:'Esri / Impact Observatory 10 m land cover',file:'tree_cover_change_lulc_by_state',
+      draw:e=>{const r=[...lcS].sort((a,b)=>(a.tr1-a.tr0)-(b.tr1-b.tr0));dbar(e,r.map(x=>({l:x.n,v:+(x.tr1-x.tr0).toFixed(1),t:`${fmt1.format(x.tr0)}% → ${fmt1.format(x.tr1)}% of state land`})),{pos:'#397d49',f:v=>sgn(v,fmt1.format)+' pts'})},rows:()=>lcS.map(x=>({state:x.n,trees_pct_2017_18:+x.tr0.toFixed(2),trees_pct_2024_25:+x.tr1.toFixed(2)}))}),
+    card({t:'Cropland share by state',s:'Crops as % of state land, 2024–25 average. Savanna farmland is often mapped as rangeland, so northern values are low.',src:'Esri / Impact Observatory 10 m land cover',file:'cropland_by_state',
+      draw:e=>{const r=[...lcS].sort((a,b)=>b.cr1-a.cr1);hbar(e,r.map(x=>({l:x.n,v:+x.cr1.toFixed(1),c:'#e49635',t:`${fmt1.format(x.cr0)}% in 2017–18`})),{rh:17,f:v=>fmt1.format(v)+'%'})},rows:()=>lcS.map(x=>({state:x.n,crops_pct_2017_18:+x.cr0.toFixed(2),crops_pct_2024_25:+x.cr1.toFixed(2)}))})];
+  const dry=dz.filter(z=>z.aiB<0.65);const n0=nat[0],n1=nat[nat.length-1];const avN=(a,b,ci)=>(a[ci]+b[ci])/2;const nA=[nat[0],nat[1]],nB=[nat[nat.length-2],nat[nat.length-1]];
+  el.innerHTML=`<h2 class="title">Land change</h2><p class="lede">How Nigeria’s land is changing, measured from satellites: where tree cover has been lost since 2000, which states sit in the drylands and are drying, and how farmland, towns, rangeland and forest have shifted since 2017. Open any reserve on the map for its own change profile.</p>
+  <nav class="subnav" aria-label="Land change sections"><a href="#change" data-s="cf">Forest loss</a><a href="#change" data-s="cd">Desertification</a><a href="#change" data-s="cl">Land cover</a></nav>
+  <section id="cf"><h3 class="h3x">Forest loss</h3><div class="kpis"><div class="kpi"><b>${fmt1.format(natTC/1e6)} M ha</b><span>tree cover in 2000 (canopy above 30%)</span><small>Hansen GFC v1.12, summed over states</small></div><div class="kpi"><b>${fmt1.format(natTot/1e6)} M ha</b><span>lost ${Y0}–${Y1} (${fmt1.format(natTot/natTC*100)}% of 2000 cover)</span><small>Stand-replacing loss, 30 m</small></div><div class="kpi"><b>${fmt.format(Math.round(sum(paL)/1000))}k ha</b><span>lost inside protected areas (${fmt1.format(sum(paL)/paTC*100)}% of their 2000 cover)</span><small>${fmt.format(pa.length)} WDPA boundaries; Ramsar and biosphere areas, which overlap other designations, excluded</small></div><div class="kpi"><b>${yrs[natL.indexOf(Math.max(...natL))]}</b><span>worst year nationally</span><small>${fmt.format(Math.round(Math.max(...natL)))} ha</small></div></div>
+   <div class="grid2">${cF.map(c=>c.html).join('')}</div></section>
+  <section id="cd"><h3 class="h3x">Desertification</h3><div class="kpis"><div class="kpi"><b>${dry.length} of ${dz.length}</b><span>states are drylands (aridity index below 0.65)</span><small>CHIRPS ÷ PET, 1991–2020</small></div><div class="kpi"><b>${CHG.dz.ggw.length}</b><span>Great Green Wall frontline states</span><small>Federal Ministry of Information</small></div><div class="kpi"><b>${fmt1.format(CHG.dz.sdg[CHG.dz.sdg.length-1][1])}%</b><span>of land degraded (${CHG.dz.sdg[CHG.dz.sdg.length-1][0]}), up from ${fmt1.format(CHG.dz.sdg[0][1])}% in ${CHG.dz.sdg[0][0]}</span><small>SDG 15.3.1, reported by Federal Ministry of Environment</small></div><div class="kpi"><b>${dz.filter(z=>z.pSlope<0).length}</b><span>states with a drying rainfall trend since 1991</span><small>CHIRPS v2</small></div></div>
+   <div class="grid2">${cD.map(c=>c.html).join('')}</div>
+   <p class="note2">Desertification is land degradation in arid, semi-arid and dry sub-humid areas. No single satellite number measures it, so this section shows the drivers and symptoms side by side: dryness, rainfall trends, rising evaporative demand and shifts from trees to rangeland and bare ground. The aridity index here uses the Hargreaves temperature method; values are close to, but not identical with, the CGIAR Global Aridity Index (Penman–Monteith).</p></section>
+  <section id="cl"><h3 class="h3x">Land cover</h3><div class="kpis"><div class="kpi"><b>${fmt1.format(avN(...nA,1))}% → ${fmt1.format(avN(...nB,1))}%</b><span>trees, 2017–18 to 2024–25</span><small>Share of national land</small></div><div class="kpi"><b>${fmt1.format(avN(...nA,4))}% → ${fmt1.format(avN(...nB,4))}%</b><span>built area</span><small>≈ ${fmt.format(Math.round((avN(...nB,4)-avN(...nA,4))/100*sum(DATA.st.map(s=>s.km2))))} km² added</small></div><div class="kpi"><b>${fmt1.format(avN(...nA,3))}% → ${fmt1.format(avN(...nB,3))}%</b><span>crops</span><small>See note on savanna farmland</small></div><div class="kpi"><b>${fmt1.format(avN(...nA,6))}% → ${fmt1.format(avN(...nB,6))}%</b><span>rangeland</span><small>Grass and shrub, incl. fallow</small></div></div>
+   <div class="grid2">${cL.map(c=>c.html).join('')}</div>
+   <p class="note2">Turn on <b>Land cover</b> in the map’s overlay buttons to see the 10 m map for any year from 2017 to 2025, and <b>Aridity</b> to colour states by dryness. State figures were computed at 250 m from the 10 m maps; reserve figures in each profile are computed live.</p></section>`;
+  [...cF,...cD,...cL].forEach(c=>c.mount());
+  $$('.subnav a').forEach(a=>a.onclick=e=>{e.preventDefault();$('#'+a.dataset.s).scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'})});
+}
+
 /* ---------- visit view ---------- */
 function buildVisit(){
   const sites=F.filter(f=>f.la!=null&&(f.vis||f.tour||f.pics.length||[0,1,2,7,8].includes(f.c)||f.c===9));
@@ -1562,6 +1781,11 @@ function buildData(){
    ['State forestry laws and schedules, theses, journal papers, news reports','Reserve names, areas, gazettement years, species, threats','Cited on each profile','#map','Per source'],
    ['GBIF.org occurrence API','Biodiversity record and species counts per site (snapshot) and live species lists','All mapped sites','https://www.gbif.org','Per dataset licence (CC0 / CC BY / CC BY-NC)'],
    ['FAO FRA 2025 / UN SDG Global Database; Global Forest Watch (Hansen/UMD); Protected Planet country statistics','National forest area, tree cover loss, protected-area coverage','Statistics page','https://unstats.un.org/sdgs/dataportal','Per source'],
+   ['Hansen et al. (2013), Global Forest Change v1.12 (UMD / Google / USGS / NASA)','30 m tree cover in 2000 and annual stand-replacing loss 2001–2024','Forest-loss profiles: zonal statistics computed by this atlas inside each WDPA boundary, each state and a 3 km radius around published points','https://glad.earthengine.app/view/global-forest-change','CC BY 4.0'],
+   ['CHIRPS v2 rainfall (UCSB Climate Hazards Center) via NASA/USAID SERVIR ClimateSERV','Daily rainfall 1991–2024 averaged over each state','Desertification profiles: rainfall, trends, aridity index','https://climateserv.servirglobal.net','Public domain (CHIRPS)'],
+   ['NASA POWER (MERRA-2)','Monthly temperature, daily temperature range and top-of-atmosphere radiation 1984–2024','Potential evapotranspiration (Hargreaves method) for the aridity index','https://power.larc.nasa.gov','NASA open data'],
+   ['Esri, Impact Observatory and Microsoft, Sentinel-2 10 m Land Use/Land Cover Time Series','Annual 10 m land cover 2017–2025 (water, trees, flooded vegetation, crops, built area, bare ground, rangeland)','Land-cover profiles (live per reserve), state and national shares (computed at 250 m), map overlay','https://www.arcgis.com/home/item.html?id=cfcb7609de5f478eb7666240902d4d3d','CC BY 4.0'],
+   ['World Bank Climate Change Knowledge Portal (CRU TS 4.07); UN SDG Global Database; Federal Ministry of Information','National rainfall since 1901; SDG 15.3.1 share of degraded land; Great Green Wall frontline states','Desertification context','https://climateknowledgeportal.worldbank.org/country/nigeria','Per source'],
    ['Live services on the hosted site','iNaturalist (species photos), Wikimedia Commons (photos), Open-Meteo (weather), CARTO / Esri / OpenTopoMap / NASA GIBS (basemaps), Hansen GFC v1.12 (forest-loss tiles)','On demand','https://www.inaturalist.org','Per service terms']];
   $('#data').innerHTML=`<h2 class="title">Data, sources and method</h2><p class="lede">This atlas joins the official global protected-area register with national inventories, state laws, scientific literature and field reports, and records where every fact came from. It is built to be checked, cited and corrected.</p>
   <h3>Download the dataset</h3><p>${fmt.format(F.length)} records, version ${esc(DATA.meta.version)}, compiled ${esc(DATA.meta.compiled)}. CSV opens in Excel or R; GeoJSON opens in QGIS, ArcGIS and most web maps.</p>
@@ -1575,7 +1799,10 @@ function buildData(){
    <li>Areas are shown side by side: calculated from the WDPA polygon, as gazetted or reported, and as listed by FAO in 1998. Differences are normal and reflect survey dates and excisions.</li>
    <li>Ecological zones are inferred from location and the main highland blocks. Zone text is labelled as inferred and never replaces site-specific evidence.</li>
    <li>GBIF counts use each site’s bounding box, so they can include records just outside irregular boundaries. They show where data exist, not true species richness.</li>
-   <li>Boundaries are simplified to about 1 km for display. Use the WDPA originals for area statistics in publications.</li></ul>
+   <li>Boundaries are simplified to about 1 km for display. Use the WDPA originals for area statistics in publications.</li>
+   <li>Forest loss: every 30 m Hansen pixel whose centre falls inside a boundary is counted, with pixel area from its latitude. Tree cover means canopy above 30% in 2000 (the Global Forest Watch default). Boundaries are the WDPA polygons simplified to about 50 m; state totals use simplified geoBoundaries outlines and may differ slightly from Global Forest Watch dashboards.</li>
+   <li>Desertification: aridity index = annual CHIRPS rainfall ÷ Hargreaves potential evapotranspiration, classed with UNEP thresholds (hyper-arid &lt; 0.05, arid &lt; 0.20, semi-arid &lt; 0.50, dry sub-humid &lt; 0.65). Trends are ordinary least-squares slopes. These are state-level indicators, shown alongside land-cover signals, not a desertification verdict for any one site.</li>
+   <li>Land cover: annual 10 m maps are queried for each reserve when its profile opens; state shares were computed once at 250 m. Clouds are excluded. Two-year averages are used to compare start and end because single-year maps contain classification noise.</li></ul>
   <h3>Updates</h3><p>On the hosted website, species lists, photographs, weather, NASA daily imagery and the forest-loss layer are fetched live each time a profile opens. The core dataset is rebuilt by a scheduled job that re-reads the WDPA and GBIF, and field reports are reviewed before corrections are merged. Each release is versioned; cite the version you used.</p>
   <h3>Known gaps</h3><p>Published counts suggest some states have more reserves than appear here: Benue reports about 52, Nasarawa about 41, Gombe 32 (state committee, 2026) and Enugu about 20. Imo, Abia and Lagos lists are thin. These ${unm.length} names are recorded but not yet located:</p>
   <div class="gaplist">${Object.entries(byS).sort().map(([s,ns])=>`<b>${esc(s)}</b>${ns.map(esc).join(' · ')}`).join('')}</div>
