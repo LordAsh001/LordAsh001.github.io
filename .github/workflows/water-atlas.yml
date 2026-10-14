@@ -4,6 +4,7 @@
 #   - re-downloads major roads (expressways, trunk and primary roads) from OpenStreetMap
 #   - refreshes 40-year GloFAS river-flow records for the flood-watch gauges and saves them as CSVs in water-atlas/archive/river_flow
 #   - rebuilds water-atlas/data/*.json from those files plus the hand-written profiles in water-atlas/data/curated.json
+#   - rebuilds the groundwater layer (water-atlas/data/groundwater.json) from the BGS grids and the river-flow archive
 # Runs every Monday, and on demand from the Actions tab ("Run workflow").
 name: Refresh Nigeria Water Resources Atlas
 
@@ -50,6 +51,10 @@ jobs:
         run: |
           if [ -n "$WA_STEPS" ]; then echo "Partial download ($WA_STEPS): data left unchanged."; exit 0; fi
           python3 .github/scripts/water_atlas_build.py /tmp/raw
+
+      - name: Groundwater layer (BGS maps, GOD vulnerability, recharge, baseflow at gauges)
+        continue-on-error: true
+        run: python3 .github/scripts/water_atlas_groundwater.py
 
       - name: Major roads (OpenStreetMap)
         if: ${{ inputs.steps == '' || inputs.steps == null || contains(inputs.steps, 'roads') }}
