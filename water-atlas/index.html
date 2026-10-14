@@ -986,6 +986,8 @@ body.resizing.vert,body.resizing.vert *{cursor:row-resize!important}
 .gx-warn{color:var(--s1)}
 .gx-drawbar{position:absolute;left:50%;bottom:24px;transform:translateX(-50%);z-index:1100;display:flex;gap:8px;align-items:center;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:8px 10px;box-shadow:var(--shadow);font-size:13px}
 .gx-drawbar[hidden]{display:none}
+.gw-img{image-rendering:pixelated;image-rendering:crisp-edges}
+.gw-ctl{display:flex;flex-wrap:wrap;gap:10px 22px;align-items:center;font-size:13px;margin:0 0 10px}.gw-ctl input[type=range]{vertical-align:middle;width:160px}
 .maptools{pointer-events:none}.maptools>*{pointer-events:auto}.maptools>div:not(.seg):not(.note){pointer-events:none}.maptools>div:not(.seg):not(.note)>*{pointer-events:auto}
 .gx-drawing .leaflet-interactive{pointer-events:none!important}
 .gx-drawing,.gx-drawing .leaflet-interactive{cursor:crosshair!important}
@@ -1277,6 +1279,11 @@ const OVERLAYS={
   oilspill:{n:'Oil spills',fl:1},
   wpfunc:{n:'Broken water points',fl:1},
   ecoli:{n:'E. coli in drinking water',fl:1},
+  gwgod:{n:'Aquifer vulnerability',fl:1},
+  gwrch:{n:'Groundwater recharge',fl:1},
+  gwdtw:{n:'Depth to groundwater',fl:1},
+  gwprod:{n:'Aquifer productivity',fl:1},
+  gwstor:{n:'Groundwater storage',fl:1},
   hotspots:{n:'Pollution hotspots',fl:1},
   wp:{n:'Water points'},
   satflood:{n:'Satellite floods',tile:()=>`https://gibs.earthdata.nasa.gov/wmts/epsg3857/best/VIIRS_Combined_Flood_3-Day/default/${gibsDay(1)}/GoogleMapsCompatible_Level9/{z}/{y}/{x}.png`,a:'Flood mapping: NASA LANCE / VIIRS combined flood product (3-day composite), via NASA GIBS',mz:9,live:1},
@@ -1343,7 +1350,7 @@ async function toggleOverlay(k){
   if(k==='net')ovl[k]=netLayer.addTo(map);
   else if(k==='lakes')ovl[k]=lakeLayer.addTo(map);
   else if(k==='basins'){const g=L.layerGroup();(DATA.bas||[]).forEach(b=>{const p=L.polygon(b.g.map(p=>p.map(r=>r.map(c=>[c[1],c[0]]))),{renderer:canvas,color:css('--accent'),weight:1.6,fill:true,fillOpacity:.04,dashArray:'6 4',interactive:true});p.bindTooltip(`<b>${esc(b.name||'Basin '+b.pf)}</b><br>${fmt.format(b.kmng)} km² in Nigeria${b.endo?' · drains inland (endorheic)':''}`,{className:'tip',sticky:true});p.addTo(g)});ovl[k]=g.addTo(map)}
-  else if(k==='flood'){btn.classList.add('busy');try{const d=await loadJSON('flood_lga.json');const FHX=await x9('flood_health.json');const g=L.layerGroup();d.f.forEach(x=>{const c=FLOODC[x.r[0]];if(!c)return;const p=L.polygon(x.g.map(p=>p.map(r=>r.map(c=>[c[1],c[0]]))),{renderer:canvas,color:css(c),weight:.5,fillColor:css(c),fillOpacity:x.r[0]==='H'?.45:.3});p.bindTooltip(`<b>${esc(x.n)}</b>, ${esc(x.s)}<br>Overall flood risk: ${riskName(x.r[0])}<br>Riverine ${riskName(x.r[1])} · flash ${riskName(x.r[2])} · coastal ${riskName(x.r[3])}${x.cm?'<br>'+esc(x.cm):''}${fhLine(x.s==='Federal Capital Territory'?'FCT':x.s,FHX)}`,{className:'tip',sticky:true});p.addTo(g)});ovl[k]=g.addTo(map);if(state.sel)siteLayer.bringToFront&&0}catch(e){toast('Flood-risk layer could not be loaded');btn.setAttribute('aria-pressed',false)}btn.classList.remove('busy')}
+  else if(k==='flood'){btn.classList.add('busy');try{const d=await loadJSON('flood_lga.json');const FHX=await x9('flood_health.json');const GWX=await x9('groundwater.json');const g=L.layerGroup();d.f.forEach(x=>{const c=FLOODC[x.r[0]];if(!c)return;const p=L.polygon(x.g.map(p=>p.map(r=>r.map(c=>[c[1],c[0]]))),{renderer:canvas,color:css(c),weight:.5,fillColor:css(c),fillOpacity:x.r[0]==='H'?.45:.3});p.bindTooltip(`<b>${esc(x.n)}</b>, ${esc(x.s)}<br>Overall flood risk: ${riskName(x.r[0])}<br>Riverine ${riskName(x.r[1])} · flash ${riskName(x.r[2])} · coastal ${riskName(x.r[3])}${x.cm?'<br>'+esc(x.cm):''}${fhLine(x.s==='Federal Capital Territory'?'FCT':x.s,FHX)}${gwLgaLine(GWX,x.s,x.n)}`,{className:'tip',sticky:true});p.addTo(g)});ovl[k]=g.addTo(map);if(state.sel)siteLayer.bringToFront&&0}catch(e){toast('Flood-risk layer could not be loaded');btn.setAttribute('aria-pressed',false)}btn.classList.remove('busy')}
   else if(k==='roads'){btn.classList.add('busy');try{const d=await loadJSON('roads.json');const g=L.layerGroup();const r=L.canvas({padding:.3,pane:'roads',tolerance:5});const W=[2.6,1.9,1.1],CN=['Expressway','Trunk road','Primary road'];
     d.r.forEach(x=>{const p=L.polyline(x.g.map(l=>l.map(c=>[c[1],c[0]])),{renderer:r,rc:x.c,color:css('--road'+x.c),weight:W[x.c],opacity:x.c===2?.8:.95,lineCap:'round',lineJoin:'round'});p.bindTooltip(x.ref||x.n?`<b>${esc(x.ref?x.ref.replace(/ \/ /g,', '):x.n[0])}</b> · ${CN[x.c]}`:CN[x.c],{className:'tip',sticky:true});p.addTo(g)});
     ovl[k]=g.addTo(map);map.attributionControl.addAttribution(ROADS_ATTR)}catch(e){toast('Road layer could not be loaded');btn.setAttribute('aria-pressed',false)}btn.classList.remove('busy')}
@@ -1381,6 +1388,7 @@ function renderLegend(){
   if(ovl.aquifers)h+=`<div class="t" style="margin-top:6px">Aquifer productivity (BGS)</div><div class="k"><span class="sq" style="--c:#08306b"></span>High to very high</div><div class="k"><span class="sq" style="--c:#2171b5"></span>High</div><div class="k"><span class="sq" style="--c:#4292c6"></span>Moderate to high</div><div class="k"><span class="sq" style="--c:#6baed6"></span>Moderate</div><div class="k"><span class="sq" style="--c:#9ecae1"></span>Low to moderate (sedimentary)</div><div class="k"><span class="sq" style="--c:#deebf7"></span>Low to moderate (basement, igneous)</div>`;
   if(ovl.wstress)h+=`<div class="t" style="margin-top:6px">Baseline water stress (Aqueduct)</div><div class="k"><span class="sq" style="--c:#ffff99"></span>Low</div><div class="k"><span class="sq" style="--c:#ffe600"></span>Low–medium</div><div class="k"><span class="sq" style="--c:#ff9900"></span>Medium–high</div><div class="k"><span class="sq" style="--c:#ff1900"></span>High</div><div class="k"><span class="sq" style="--c:#990000"></span>Extremely high</div>`;
   if(ovl.oilspill)h+=`<div class="t" style="margin-top:6px">Oil spills (NOSDRA), by cause</div>`+['sab','eqf','cor','ome','ytd','other'].map(k=>`<div class="k"><span class="sw" style="--c:${SPC[k][1]}"></span>${SPC[k][0]}</div>`).join('')+`<div class="k" style="font-size:11px">Larger dots: 10+ and 100+ barrels</div>`;
+  h+=gwLegend();
   if(ovl.ecoli)h+=`<div class="t" style="margin-top:6px">Drinking water at very high <i>E. coli</i> risk (MICS 2016-17)</div>`+['Under 30%','30–45%','45–60%','60–75%','75% or more'].map((l,i)=>`<div class="k"><span class="sq" style="--c:${ECK[i]}"></span>${l}</div>`).join('');
   if(ovl.hotspots)h+=`<div class="t" style="margin-top:6px">Pollution hotspots</div>`+Object.keys(HSN).map(k=>`<div class="k"><span class="sw" style="--c:${HSC[k]};border-radius:50%;width:8px;height:8px"></span>${HSN[k]}</div>`).join('');
   if(ovl.wpfunc)h+=`<div class="t" style="margin-top:6px">Water points not working (WPDx)</div>`+['Under 12.5%','12.5–25%','25–37.5%','37.5–50%','50% or more'].map((l,i)=>`<div class="k"><span class="sq" style="--c:${WPK[i]}"></span>${l}</div>`).join('');
@@ -1618,7 +1626,7 @@ function line(el,series,o={}){
   const lo=o.min??0,hi=o.max??Math.max(...series.flatMap(s=>s.pts.map(p=>p.v)))*1.08;const X=x=>pl+(x-x0)/(x1-x0||1)*iw,Y=v=>pt+ih-(v-lo)/(hi-lo)*ih;
   let s=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="${esc(o.title||'')}">`;
   niceTicks(lo,hi,4).forEach(t=>{s+=`<line class="gridl" x1="${pl}" x2="${W-16}" y1="${Y(t)}" y2="${Y(t)}"/><text x="${pl-6}" y="${Y(t)+4}" text-anchor="end">${o.tf?o.tf(t):fmt.format(t)}</text>`});
-  const yrs=[...new Set(xs)].sort((a,b)=>a-b);const step=Math.ceil(yrs.length/8);yrs.forEach((x,i)=>{if((i%step===0&&(yrs.length-1-i>=step/2||i===0))||i===yrs.length-1)s+=`<text x="${X(x)}" y="${H-6}" text-anchor="middle">${x}</text>`});
+  const yrs=[...new Set(xs)].sort((a,b)=>a-b);const step=Math.ceil(yrs.length/8);yrs.forEach((x,i)=>{if((i%step===0&&(yrs.length-1-i>=step/2||i===0))||i===yrs.length-1)s+=`<text x="${X(x)}" y="${H-6}" text-anchor="middle">${o.xf?o.xf(x):x}</text>`});
   series.forEach((S,si)=>{const d=S.pts.map((p,i)=>(i?'L':'M')+X(p.x)+' '+Y(p.v)).join(' ');
     if(series.length===1)s+=`<path d="${d} L${X(S.pts[S.pts.length-1].x)} ${Y(lo)} L${X(S.pts[0].x)} ${Y(lo)} Z" fill="${S.c}" opacity=".12"/>`;
     s+=`<path d="${d}" fill="none" stroke="${S.c}" stroke-width="2"/>`;
@@ -1710,7 +1718,7 @@ function buildBasins(){
   <h3 class="sh">Groundwater</h3><p class="lede" style="margin-bottom:12px">Most Nigerians drink groundwater from boreholes and wells. What a borehole yields depends on the rock beneath it. Source: <a href="${esc(DATA.gw_src.url)}" target="_blank" rel="noopener">${esc(DATA.gw_src.label)}</a>.</p>
   <div class="tbl-wrap" style="max-height:none"><table class="dt"><thead><tr><th>Aquifer setting</th><th>Where</th><th>What to expect</th></tr></thead><tbody>${(DATA.gw||[]).map(g=>`<tr><td><b>${esc(g.name)}</b></td><td>${esc(g.where)}</td><td>${esc(g.aquifer)}</td></tr>`).join('')}</tbody></table></div>
   <div class="tbl-wrap" style="max-height:none;margin-top:12px"><table class="dt"><thead><tr><th>Fact</th><th>Value</th><th>Source</th></tr></thead><tbody>${(DATA.gw_facts||[]).map(g=>`<tr><td>${esc(g.label)}</td><td>${esc(g.value)}</td><td>${esc(g.src)}</td></tr>`).join('')}</tbody></table></div>
-  <div id="x9-gw"></div><div id="x9-aq"></div>
+  <div id="x9-gw"></div><div id="x9-aq"></div><div id="gw-sub"></div>
   <h3 class="sh">National water figures</h3><div class="tbl-wrap" style="max-height:none"><table class="dt"><thead><tr><th>Indicator</th><th class="n">Value</th><th>Unit</th></tr></thead><tbody>${(N.national||[]).map(x=>`<tr><td>${esc(x.label)}</td><td class="n">${fmt1.format(x.value)}</td><td>${esc(x.unit)}</td></tr>`).join('')}</tbody></table></div><p style="font-size:12.5px;color:var(--muted)">${esc(N.title)}, ${esc(N.by)}, ${esc(N.date)}. <a href="${esc(N.url)}" target="_blank" rel="noopener">Read the report ↗</a>. The report gives demand figures from different tables that cover different sectors; they are shown as published.</p>
   <div id="basin-reports"></div>
   <div id="x9-pol"></div>
@@ -1718,7 +1726,7 @@ function buildBasins(){
   cards.forEach(c=>c.mount());
   $$('#basins tr.click').forEach(tr=>tr.onclick=()=>goSite(tr.dataset.id));
   $('#show-bas').onclick=()=>{location.hash='map';setTimeout(()=>{if(!ovl.basins)toggleOverlay('basins')},120)};
-  addBasinReports();addX9Basins();
+  addBasinReports();addX9Basins();buildGwSub();
 }
 </script>
 <script>
@@ -2068,6 +2076,8 @@ function buildData(){
    ['Nigeria Centre for Disease Control and Prevention (NCDC), cholera situation reports','Suspected cholera cases and deaths by state: full years 2021–2023 and January–September 2024','Floods and public health','https://ncdc.gov.ng/diseases/sitreps','Government reports'],
    ['National Emergency Management Agency (NEMA), flood situation reports','People affected, displaced and killed by floods (national totals)','Floods and public health','https://nema.gov.ng','Government reports'],
    ['Pollution hotspot studies: UNEP, MSF, Amnesty International and peer-reviewed papers (each linked on the Pollution & health page)','Documented contamination of water at named places','Pollution hotspots table and map layer','#wq','Per source'],
+   ['BGS quantitative groundwater maps of Africa (MacDonald, Bonsor, Ó Dochartaigh & Taylor 2023)','Depth to groundwater, aquifer productivity and groundwater storage on a 5 km grid','Groundwater layers, GOD vulnerability, Basins page and GIS export','https://doi.org/10.5285/e37d09e7-6388-494b-99c8-10958d6d78c4','Open Government Licence v3 (contains data supplied by permission of NERC)'],
+   ['BGS groundwater recharge map of Africa (MacDonald et al. 2021)','Long-term average annual recharge 1970–2019, about 30 km cells','Recharge layer and state recharge totals','https://doi.org/10.5285/45d2b71c-d413-44d4-8b4b-6190527912ff','Open Government Licence v2 (contains data supplied by permission of NERC)'],
    ['National Water Resources Master Plan 2013 (Federal Ministry of Water Resources and JICA)','Hydrological areas, renewable water, recharge, population, demand','Basins page','https://openjicareport.jica.go.jp/pdf/12146585.pdf','Government report'],
    ['British Geological Survey, Africa Groundwater Atlas','Aquifer types, yields, borehole statistics','Groundwater','https://earthwise.bgs.ac.uk/index.php/Hydrogeology_of_Nigeria','© BGS / UKRI'],
    ['Nigeria DHS 2023–24 and 2018 (NPC and ICF), DHS Program API','Drinking water sources, time to water, sanitation by state','Statistics','https://api.dhsprogram.com','Public API; cite the DHS Program'],
@@ -2287,6 +2297,7 @@ async function floodOverlay(k){
   if(k==='wstress')return stressOverlay();
   if(k==='oilspill')return spillOverlay();
   if(k==='ecoli')return ecoliOverlay();
+  if(GWK[k])return gwOverlay(k);
   if(k==='hotspots')return hotspotOverlay();
   if(k==='wpfunc')return wpFuncOverlay();
   if(k==='glofas'){await fwData();const g=L.layerGroup();
@@ -2958,6 +2969,89 @@ async function buildWq(){
 })();
 </script>
 <script>
+/* ---------- groundwater: vulnerability (GOD), recharge, productivity, storage, depth; river-aquifer links ---------- */
+const GWK={
+  gwdtw:{f:'dtw',n:'Depth to groundwater',col:{a:'#08519c',b:'#3182bd',c:'#6baed6',d:'#bdd7e7',e:'#e3ecf7',f:'#f7fbff'},lab:{a:'0–7 m',b:'7–25 m',c:'25–50 m',d:'50–100 m',e:'100–250 m',f:'over 250 m'}},
+  gwgod:{f:'god',n:'Aquifer vulnerability (GOD)',col:{a:'#d9f0d3',b:'#1a9850',c:'#fee08b',d:'#d73027',e:'#7f0000'},lab:{a:'Negligible',b:'Low',c:'Moderate',d:'High',e:'Extreme'}},
+  gwrch:{f:'rch',n:'Groundwater recharge'},
+  gwprod:{f:'prod',n:'Aquifer productivity',col:{a:'#08306b',b:'#2171b5',c:'#6baed6',d:'#c6dbef',e:'#efedf5',f:'#ffffff'},lab:{a:'over 20 L/s',b:'5–20 L/s',c:'1–5 L/s',d:'0.5–1 L/s',e:'0.1–0.5 L/s',f:'under 0.1 L/s'}},
+  gwstor:{f:'stor',n:'Groundwater storage',col:{a:'#3f007d',b:'#6a51a3',c:'#9e9ac8',d:'#cbc9e2',e:'#efedf5',f:'#ffffff'},lab:{a:'over 50 m of water',b:'25–50 m',c:'10–25 m',d:'1–10 m',e:'under 1 m',f:'none'}}
+};
+const B62='0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+const RCHR=['#fff7bc','#d9f0a3','#addd8e','#78c679','#31a354','#006837'],rchCol=v=>RCHR[Math.min(5,Math.floor(v/50))];
+const rchOf=ch=>ch==='.'||ch==null?null:B62.indexOf(ch)*5;
+function gwCell(G,lat,lng){const g=G.grid,i=Math.round((lng-g.x0)/g.step),j=Math.round((g.y0_north-lat)/g.step);if(i<0||j<0||i>=g.nx||j>=g.ny)return null;const k=j*g.nx+i;if(g.dtw[k]==='.')return null;return k}
+function gwDescribe(G,k){const g=G.grid,c=g.codes,K=G.keys;const d=c.dtw[g.dtw[k]],p=c.prod[g.prod[k]],s=c.stor[g.stor[k]],v=c.god[g.god[k]],aq=c.aq[g.aq[k]],r=rchOf(g.rch[k]),gv=g.godv[k]==='?'?null:B62.indexOf(g.godv[k])/61;
+  const A=aq&&G.aquifers[aq]?G.aquifers[aq].label:null;
+  return `<b>Groundwater here</b> (5 km cell)<br>Depth to water: ${d?esc(K.dtw[d]+(d==='VS'?'':' m')):'–'}<br>Aquifer: ${A?esc(A):'–'}<br>Productivity: ${p?esc(K.prod[p]):'–'} · storage: ${s?esc(K.stor[s]):'–'}<br>Recharge: ${r!=null?r+'–'+(r+5)+' mm/yr':'–'}<br>Vulnerability (GOD): <b>${v?esc(v):'–'}</b>${gv!=null?' ('+fmt.format(Math.round(gv*100)/100)+')':''}<br><span style="font-size:11px;opacity:.75">BGS Africa groundwater maps; screening level</span>`}
+async function gwOverlay(key){const G=await x9('groundwater.json');const grp=L.layerGroup();if(!G){toast('Groundwater data could not be loaded');return grp}
+  const g=G.grid,def=GWK[key],str=g[def.f],cv=document.createElement('canvas');cv.width=g.nx;cv.height=g.ny;const cx=cv.getContext('2d'),im=cx.createImageData(g.nx,g.ny);
+  const hex=h=>[parseInt(h.slice(1,3),16),parseInt(h.slice(3,5),16),parseInt(h.slice(5,7),16)];const cache={};
+  for(let k=0;k<str.length;k++){const ch=str[k];if(ch==='.'||ch==='?')continue;const col=key==='gwrch'?rchCol(rchOf(ch)):def.col[ch];if(!col)continue;const rgb=cache[col]||(cache[col]=hex(col));im.data.set([rgb[0],rgb[1],rgb[2],215],4*k)}
+  cx.putImageData(im,0,0);const h=g.step/2;
+  L.imageOverlay(cv.toDataURL(),[[g.y0_north-(g.ny-1)*g.step-h,g.x0-h],[g.y0_north+h,g.x0+(g.nx-1)*g.step+h]],{opacity:.78,className:'gw-img',interactive:false}).addTo(grp);
+  if(!window.__gwTip){window.__gwTip=L.tooltip({className:'tip',direction:'top',offset:[0,-8]});let last=0;
+    map.on('mousemove',e=>{if(!Object.keys(GWK).some(k=>ovl[k])||window.__gxDrawing){map.closeTooltip(window.__gwTip);return}const now=Date.now();if(now-last<80)return;last=now;const G2=X9['groundwater.json'];if(!G2)return;const k=gwCell(G2,e.latlng.lat,e.latlng.lng);if(k==null){map.closeTooltip(window.__gwTip);return}window.__gwTip.setLatLng(e.latlng).setContent(gwDescribe(G2,k));if(!map.hasLayer(window.__gwTip))window.__gwTip.addTo(map)});
+    map.on('mouseout',()=>map.closeTooltip(window.__gwTip))}
+  toast(def.n+' loaded (BGS, 5 km cells). Hover for values.');return grp}
+function gwLegend(){let h='';for(const[k,d]of Object.entries(GWK)){if(!ovl[k])continue;h+=`<div class="t" style="margin-top:6px">${esc(d.n)}${k==='gwgod'?' — screening level':''}</div>`;
+  if(k==='gwrch')h+=['0–50','50–100','100–150','150–200','200–250','250+'].map((l,i)=>`<div class="k"><span class="sq" style="--c:${RCHR[i]}"></span>${l} mm/yr</div>`).join('');
+  else h+=Object.entries(d.lab).filter(([c])=>k!=='gwgod'||c!=='a'&&c!=='e').map(([c,l])=>`<div class="k"><span class="sq" style="--c:${d.col[c]}"></span>${esc(l)}</div>`).join('')}return h}
+function gwLgaLine(G,s,n){if(!G)return'';const x=G.lgas[s+'|'+n];if(!x)return'';const hi=(x.god_share||{}).high,sh=(x.dtw_share||{}).VS;
+  return `<br><span style="font-size:11.5px">Groundwater: recharge ${x.recharge_mm!=null?fmt.format(Math.round(x.recharge_mm))+' mm/yr':'–'} · water table within 7 m under ${sh!=null?fmt.format(Math.round(sh)):'–'}% of the LGA · high aquifer vulnerability on ${hi!=null?fmt.format(Math.round(hi)):'–'}%</span>`}
+
+/* ---------- Basins page: groundwater section ---------- */
+async function buildGwSub(){const host=$('#gw-sub');if(!host)return;const G=await x9('groundwater.json');if(!G){host.innerHTML='';return}
+  const N=G.national,S=G.states,ST=Object.keys(S).sort(),M=G.method,srcB=`<a href="${esc(G.sources.quantitative_maps.doi)}" target="_blank" rel="noopener">BGS quantitative groundwater maps of Africa (MacDonald et al. 2023)</a>`,srcR=`<a href="${esc(G.sources.recharge.doi)}" target="_blank" rel="noopener">BGS recharge map of Africa (MacDonald et al. 2021)</a>`;
+  const bfis=G.gauges.map(x=>x.bfi).filter(v=>v!=null).sort((a,b)=>a-b),med=a=>a.length?a[Math.floor(a.length/2)]:null;
+  const btn=(k,t)=>`<button class="btn sm" type="button" data-gwk="${k}">${t}</button>`;
+  const cards=[];const mk=o=>{const c=card(Object.assign({page:'basins'},o));cards.push(c);return c.html};
+  const vul=ST.map(s=>({l:s,v:(S[s].god_share||{}).high||0,t:`moderate ${(S[s].god_share||{}).moderate||0}% · low ${(S[s].god_share||{}).low||0}%`})).sort((a,b)=>b.v-a.v);
+  const rch=ST.map(s=>({l:s,v:S[s].recharge_mm||0,t:fmt.format(Math.round(S[s].recharge_mm3||0))+' million m³ a year'})).sort((a,b)=>b.v-a.v);
+  const AQ=Object.entries(G.aquifers).filter(([k])=>k!=='n/a').sort((a,b)=>b[1].area_km2-a[1].area_km2);
+  let h=`<h3 class="sh">Groundwater: vulnerability, recharge and links to rivers</h3>
+  <p class="lede" style="margin-bottom:12px">Most Nigerians drink groundwater, so what happens below ground matters as much as rivers and dams. This section uses the British Geological Survey’s maps of depth to groundwater, aquifer productivity, storage and long-term recharge (5 km and about 30 km cells) to show where aquifers are most exposed to pollution, how much water reaches them each year, and how much river flow is sustained by slow, groundwater-fed flow. All results are screening level and say how they were worked out. ${btn('gwgod','Vulnerability map')} ${btn('gwrch','Recharge map')} ${btn('gwdtw','Depth to water map')} ${btn('gwprod','Productivity map')} ${btn('gwstor','Storage map')}</p>
+  <div class="kpis"><div class="kpi"><b>${fmt.format(Math.round(N.recharge_mm))} mm</b><span>average groundwater recharge a year across Nigeria</span><small>about ${fmt.format(Math.round(N.recharge_mm3/1000))} billion m³ a year; BGS 1970–2019</small></div>
+   <div class="kpi"><b>${fmt.format(Math.round(N.dtw_share.VS))}%</b><span>of the land has the water table within 7 m of the surface</span><small>BGS depth to groundwater</small></div>
+   <div class="kpi"><b>${fmt.format(Math.round(N.god_share.high))}%</b><span>of the land has aquifers rated highly vulnerable to pollution</span><small>GOD method, screening level</small></div>
+   <div class="kpi"><b>${bfis.length?fmt.format(Math.round(med(bfis)*100)):'–'}%</b><span>of river flow is slow, sustained flow (median baseflow index, ${G.gauges.length} gauges)</span><small>Lyne–Hollick filter on GloFAS daily flow, ${G.gauges[0].years[0]}–${G.gauges[0].years[1]}</small></div></div>
+  <div class="grid2">${mk({t:'Aquifers highly vulnerable to pollution, by state',s:'% of each state’s land rated high on the GOD index (groundwater confinement × overlying strata × depth to water). No area reaches “extreme” at this map scale. Shallow, unconfined sand aquifers in the south and along river valleys score highest.',src:srcB+' and the BGS Nigeria hydrogeology map; GOD method (Foster et al. 2002)',file:'gw_vulnerability_by_state',draw:el=>hbar(el,vul,{rh:17,f:v=>fmt1.format(v)+'%'}),rows:()=>ST.map(s=>Object.assign({state:s,god_mean:S[s].god_mean},Object.fromEntries(Object.entries(S[s].god_share).map(([k,v])=>[k+'_pct',v]))))})}
+   ${mk({t:'Groundwater recharge by state',s:'Long-term average recharge in mm a year (area-weighted). Recharge is highest in the wet south and lowest in the north-east, where aquifers refill slowly.',src:srcR,file:'gw_recharge_by_state',draw:el=>hbar(el,rch,{rh:17,f:v=>fmt.format(Math.round(v))+' mm'}),rows:()=>ST.map(s=>({state:s,recharge_mm_per_year:S[s].recharge_mm,recharge_million_m3_per_year:S[s].recharge_mm3,area_km2:S[s].area_km2}))})}</div>
+  <div class="tbl-wrap" style="max-height:none;margin-top:12px"><table class="dt"><thead><tr><th>Aquifer type (BGS map)</th><th class="n">Area km²</th><th class="n">Recharge mm/yr</th><th class="n">Mean GOD</th><th>G and O used</th></tr></thead><tbody>${AQ.map(([k,a])=>`<tr><td>${esc(a.label)}</td><td class="n">${fmt.format(a.area_km2)}</td><td class="n">${a.recharge_mm!=null?fmt.format(Math.round(a.recharge_mm)):'–'}</td><td class="n">${a.god_mean!=null?a.god_mean.toFixed(2):'–'}</td><td><span class="cnote">${a.god_g_o?esc(a.god_g_o[2]):''}</span></td></tr>`).join('')}</tbody></table></div>
+  <div class="box" style="margin-top:14px"><h3>Recharge and sustainable abstraction, state by state</h3>
+   <p class="sm-note" style="margin:0 0 8px">Groundwater development stress compares what is pumped with what is replaced each year (abstraction ÷ recharge, IGRAC). No national abstraction data exist, so the atlas estimates <b>domestic use only</b>: people × share using groundwater × litres per person per day. Irrigation, industry and evaporation losses are not counted, so real stress is higher, and recharge in one place cannot all be captured by boreholes.</p>
+   <div class="gw-ctl"><label>Litres per person per day <input type="range" id="gw-lpd" min="15" max="120" step="5" value="20"> <b id="gw-lpdv">20</b></label>
+    <label>Share using groundwater <select id="gw-share"><option value="dhs">Boreholes, by state (DHS ${esc(G.dhs_survey.slice(2,6))})</option><option value="60">60% everywhere (WHO/UNICEF JMP 2018 national estimate)</option><option value="100">Everyone (upper bound)</option></select></label></div>
+   <div class="tbl-wrap" style="max-height:480px"><table class="dt" id="gw-tab"><thead><tr><th data-c="s">State</th><th class="n" data-c="r">Recharge, million m³/yr</th><th class="n" data-c="pp">Recharge per person, m³/yr</th><th class="n" data-c="sh">Share using groundwater</th><th class="n" data-c="a">Domestic use, million m³/yr</th><th class="n" data-c="g">Use ÷ recharge</th></tr></thead><tbody></tbody></table></div>
+   <p class="sm-note" style="margin:8px 0 0">Population: ${esc(G.pop_src)}. Share using boreholes: Nigeria DHS (household population whose main drinking water is a tubewell or borehole; wells and piped water fed by boreholes are not included). <button class="linkbtn" id="gw-csv" type="button">Download this table (CSV)</button></p></div>
+  <h3 class="sh">How aquifers feed rivers</h3>
+  <p class="lede" style="margin-bottom:12px">Each river’s daily flow (GloFAS, ${G.gauges[0].years[0]}–${G.gauges[0].years[1]}) is split into quick flow and slow, sustained flow with the Lyne–Hollick filter. The <b>baseflow index</b> is the slow share of all flow; the <b>share at the flood peak</b> shows how much of each year’s highest flow was already slow flow; and the last column tests whether rivers with more water stored at the end of the dry season (April baseflow) went on to bigger floods that year (+1 = always, 0 = no link). On big rivers, slow flow includes floodplains, wetlands and reservoirs, not only groundwater.</p>
+  <div class="tbl-wrap" style="max-height:none"><table class="dt"><thead><tr><th>River and place</th><th class="n">Baseflow index</th><th class="n">Slow-flow share at the annual peak (median)</th><th class="n">April baseflow vs peak (Spearman rho)</th></tr></thead><tbody>${G.gauges.slice().sort((a,b)=>b.bfi-a.bfi).map(x=>`<tr class="click" data-g="${esc(x.id)}"><td>${esc(x.river)} at ${esc(x.place)}</td><td class="n">${x.bfi!=null?x.bfi.toFixed(2):'–'}</td><td class="n">${x.peak_base_share_median!=null?fmt.format(Math.round(x.peak_base_share_median))+'%':'–'}</td><td class="n">${x.rho_april_base_vs_peak!=null?x.rho_april_base_vs_peak.toFixed(2):'–'}</td></tr>`).join('')}</tbody></table></div>
+  <p class="sm-note">With ${G.gauges[0].years[1]-G.gauges[0].years[0]+1} years of data, ρ above about 0.29 is unlikely to be chance (5% level). Most rivers show weak links: in this record, how full aquifers are at the end of the dry season says little about the size of that year’s flood, which is driven mainly by rainfall during the season. Click a river to see its monthly pattern.</p>
+  <div class="grid2"><div id="gw-reg"></div></div>
+  <div class="box" style="margin-top:14px"><h3>Method and limits</h3><ul class="rfacts">
+   <li><b>Vulnerability.</b> ${esc(M.god.formula)} Depth classes from BGS were matched to GOD depth bands, taking the shallower band where a class spans two. ${esc(M.god.limits)} <span class="cnote">${esc(M.god.ref)}</span></li>
+   <li><b>Recharge.</b> ${esc(M.recharge.limits)} <span class="cnote">${esc(M.recharge.ref)}</span></li>
+   <li><b>Abstraction stress.</b> ${esc(M.stress.limits)} <span class="cnote">${esc(M.stress.ref)}</span></li>
+   <li><b>River links.</b> ${esc(M.baseflow.limits)} <span class="cnote">${esc(M.baseflow.ref)}</span></li>
+   <li><b>Not modelled.</b> A full surface–groundwater model (for example MODFLOW coupled to a river model) needs borehole water levels, aquifer tests and river stage records that are not openly available for Nigeria. These indicators are a starting point, not a substitute.</li>
+   <li>${esc(G.sources.quantitative_maps.ack)}. BGS data: ${esc(G.sources.quantitative_maps.licence)} and ${esc(G.sources.recharge.licence)}.</li></ul></div>`;
+  host.innerHTML=h;cards.forEach(c=>c.mount());
+  host.querySelectorAll('[data-gwk]').forEach(b=>b.onclick=()=>{const k=b.dataset.gwk;location.hash='map';setTimeout(()=>{if(!ovl[k])toggleOverlay(k)},150)});
+  /* stress table */
+  let key='g',dir=-1;const rows=()=>{const lpd=+$('#gw-lpd').value,sh=$('#gw-share').value;return ST.map(s=>{const x=S[s],share=sh==='dhs'?x.borehole_pct:+sh,a=x.pop&&share!=null?x.pop*share/100*lpd*365/1e9:null;return{s,r:x.recharge_mm3,pp:x.recharge_m3_per_person,sh:share,a:a!=null?Math.round(a*10)/10:null,g:a!=null&&x.recharge_mm3?Math.round(a/x.recharge_mm3*1000)/10:null}})};
+  const draw=()=>{$('#gw-lpdv').textContent=$('#gw-lpd').value;const R=rows().sort((p,q)=>key==='s'?dir*p.s.localeCompare(q.s):dir*((p[key]??-1)-(q[key]??-1)));
+    $('#gw-tab tbody').innerHTML=R.map(r=>`<tr><td>${esc(r.s)}</td><td class="n">${r.r!=null?fmt.format(Math.round(r.r)):'–'}</td><td class="n">${r.pp!=null?fmt.format(r.pp):'–'}</td><td class="n">${r.sh!=null?fmt1.format(r.sh)+'%':'no data'}</td><td class="n">${r.a!=null?fmt1.format(r.a):'–'}</td><td class="n"><b style="color:${r.g==null?'inherit':r.g>=50?'var(--s1)':r.g>=20?'var(--s2)':'inherit'}">${r.g!=null?fmt1.format(r.g)+'%':'–'}</b></td></tr>`).join('')};
+  $$('#gw-tab th').forEach(th=>th.onclick=()=>{const k=th.dataset.c;dir=k===key?-dir:(k==='s'?1:-1);key=k;draw()});$('#gw-lpd').oninput=draw;$('#gw-share').onchange=draw;draw();
+  $('#gw-csv').onclick=()=>saveFile('groundwater_recharge_and_domestic_use_by_state.csv',toCSV(rows().map(r=>({state:r.s,recharge_million_m3_per_year:r.r,recharge_m3_per_person:r.pp,share_using_groundwater_pct:r.sh,litres_per_person_per_day:+$('#gw-lpd').value,domestic_use_million_m3_per_year:r.a,use_as_pct_of_recharge:r.g}))),'text/csv');
+  /* monthly regime chart */
+  const showG=id=>{const x=G.gauges.find(g=>g.id===id)||G.gauges[0];const MN=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];const ser=[{name:'All flow',c:'var(--bar)',pts:x.monthly.map((m,i)=>({x:i+1,v:m[0]}))},{name:'Slow (baseflow)',c:'var(--g6)',pts:x.monthly.map((m,i)=>({x:i+1,v:m[1]}))}];
+    const c=card({t:`${x.river} at ${x.place}: average flow by month`,s:`Mean daily flow in m³/s, ${x.years[0]}–${x.years[1]}, split into slow (baseflow) and total. Baseflow index ${x.bfi.toFixed(2)}.`,src:'GloFAS v4 (Copernicus EMS) via Open-Meteo; Lyne–Hollick filter',file:'gw_baseflow_regime_'+x.id,page:'basins',draw:el=>line(el,ser,{min:0,f:v=>fmt.format(Math.round(v))+' m³/s',xf:v=>MN[v-1]||v}),rows:()=>x.monthly.map((m,i)=>({month:MN[i],total_m3s:m[0],baseflow_m3s:m[1]}))});
+    $('#gw-reg').innerHTML=c.html;c.mount()};
+  host.querySelectorAll('tr[data-g]').forEach(tr=>tr.onclick=()=>showG(tr.dataset.g));showG('niger-lokoja');
+}
+</script>
+<script>
 /* ---------- GIS export by region of interest (ROI): Shapefile ZIP or GeoJSON, built in the browser ---------- */
 (function(){
 const GX={};
@@ -3079,6 +3173,12 @@ const L_=[
  {k:'state_water_health',n:'States: unsafe water, cholera and flood risk',g:'Poly',src:'MICS 2016-17 (NBS and UNICEF) Tables WQ.1–WQ.2; NCDC cholera situation reports; UNICEF flood risk analysis 2024; state boundaries from geoBoundaries',lic:'Published statistics with citations; geoBoundaries CC BY 4.0.',
   get:async()=>{const H=await x9('flood_health.json');if(!H)return[];const C=H.cholera;return(DATA.st||[]).map(s=>{const e=H.ecoli.hh[s.n]||[],o=H.ecoli.src_st[s.n]||[],fr=H.floodrisk.st[s.n]||[];const cc=y=>(C[y].states[s.n]||[])[0]??'';
     return{g:[s.t,s.g],a:{state:s.n,hh_water_ecoli_pct_2016_17:isNum(e[0])?Math.round((100-e[0])*10)/10:'',hh_very_high_risk_pct:isNum(e[3])?e[3]:'',source_water_ecoli_pct:isNum(o[0])?Math.round((100-o[0])*10)/10:'',cholera_cases_2021:cc('2021'),cholera_cases_2022:cc('2022'),cholera_cases_2023:cc('2023'),cholera_cases_2024_to_sep:cc('2024'),lgas_high_flood_risk:isNum(fr[0])?fr[0]:'',lgas_total:isNum(fr[1])?fr[1]:'',source:'MICS 2016-17; NCDC; UNICEF flood risk 2024'}}})}}
+,
+ {k:'groundwater_by_state',n:'Groundwater by state: recharge and vulnerability',g:'Poly',src:'BGS quantitative groundwater maps of Africa (MacDonald et al. 2023) and recharge map (MacDonald et al. 2021); GOD vulnerability computed by the atlas; state boundaries from geoBoundaries',lic:'BGS data: Open Government Licence (contains data supplied by permission of NERC). geoBoundaries: CC BY 4.0.',
+  get:async()=>{const G=await x9('groundwater.json');if(!G)return[];return(DATA.st||[]).map(s=>{const x=G.states[s.n]||{};const gs=x.god_share||{},ds=x.dtw_share||{};return{g:[s.t,s.g],a:{state:s.n,recharge_mm_yr:x.recharge_mm??'',recharge_mm3_yr:x.recharge_mm3??'',recharge_m3_per_person:x.recharge_m3_per_person??'',god_mean:x.god_mean??'',god_low_pct:gs.low??'',god_moderate_pct:gs.moderate??'',god_high_pct:gs.high??'',water_table_0_7m_pct:ds.VS??'',water_table_7_25m_pct:ds.S??'',borehole_users_pct:x.borehole_pct??'',population:x.pop??'',method:'GOD (Foster et al. 2002) on BGS maps; screening level',source:'BGS; atlas analysis'}}})}},
+ {k:'groundwater_grid',n:'Groundwater 5 km grid (depth, productivity, storage, recharge, vulnerability)',g:'Point',src:'BGS quantitative groundwater maps of Africa (5 km) and recharge map (about 30 km); GOD vulnerability computed by the atlas',lic:'BGS data: Open Government Licence (contains data supplied by permission of NERC).',
+  get:async()=>{const G=await x9('groundwater.json');if(!G)return[];const g=G.grid,c=g.codes,K=G.keys,out=[];for(let k=0;k<g.dtw.length;k++){if(g.dtw[k]==='.')continue;const i=k%g.nx,j=Math.floor(k/g.nx);const r=rchOf(g.rch[k]);const aq=c.aq[g.aq[k]];
+    out.push({g:['Point',[Math.round((g.x0+i*g.step)*1e4)/1e4,Math.round((g.y0_north-j*g.step)*1e4)/1e4]],a:{depth_class:c.dtw[g.dtw[k]]||'',depth_m:K.dtw[c.dtw[g.dtw[k]]]||'',productivity:K.prod[c.prod[g.prod[k]]]||'',storage:K.stor[c.stor[g.stor[k]]]||'',recharge_mm_min:r??'',recharge_mm_max:r!=null?r+5:'',aquifer:aq&&G.aquifers[aq]?G.aquifers[aq].label:'',god_index:g.godv[k]==='?'?'':Math.round(B62.indexOf(g.godv[k])/61*100)/100,god_class:c.god[g.god[k]]||''}})}return out}}
 ];
 GX.layers=L_;
 /* ---- ROI sources ---- */
