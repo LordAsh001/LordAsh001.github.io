@@ -784,6 +784,9 @@ ul.list li button:hover,ul.list li button.on{background:var(--chip)}
 .legend .sm{font-size:11px;color:var(--muted);margin-top:4px;max-width:300px}
 .leaflet-tooltip.tip{background:var(--panel);color:var(--ink);border:1px solid var(--line);box-shadow:var(--shadow);font-family:var(--f-body);font-size:12px;padding:4px 8px;border-radius:6px}
 .leaflet-tooltip.tip:before{display:none}
+.wp-popup .leaflet-popup-content-wrapper,.wp-popup .leaflet-popup-tip{background:var(--panel);color:var(--ink);border:1px solid var(--line);box-shadow:var(--shadow)}
+.wp-popup .leaflet-popup-content{font-family:var(--f-body);font-size:12.5px;line-height:1.45;margin:10px 12px}
+.wp-popup a{color:var(--accent)}
 .st-label{font-family:var(--f-display);font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--label);white-space:nowrap;text-shadow:0 0 3px var(--land),0 0 3px var(--land);pointer-events:none}
 .leaflet-control-zoom a{background:var(--panel)!important;color:var(--ink)!important;border-color:var(--line)!important}
 .leaflet-control-attribution{background:color-mix(in srgb,var(--panel) 85%,transparent)!important;color:var(--muted)!important;max-width:70%}
@@ -1279,13 +1282,13 @@ const OVERLAYS={
   oilspill:{n:'Oil spills',fl:1},
   wpfunc:{n:'Broken water points',fl:1},
   ecoli:{n:'E. coli in drinking water',fl:1},
+  wp:{n:'Boreholes and wells'},
   gwgod:{n:'Aquifer vulnerability',fl:1},
   gwrch:{n:'Groundwater recharge',fl:1},
   gwdtw:{n:'Depth to groundwater',fl:1},
   gwprod:{n:'Aquifer productivity',fl:1},
   gwstor:{n:'Groundwater storage',fl:1},
   hotspots:{n:'Pollution hotspots',fl:1},
-  wp:{n:'Water points'},
   satflood:{n:'Satellite floods',tile:()=>`https://gibs.earthdata.nasa.gov/wmts/epsg3857/best/VIIRS_Combined_Flood_3-Day/default/${gibsDay(1)}/GoogleMapsCompatible_Level9/{z}/{y}/{x}.png`,a:'Flood mapping: NASA LANCE / VIIRS combined flood product (3-day composite), via NASA GIBS',mz:9,live:1},
   imerg:{n:'Rain yesterday',tile:()=>`https://gibs.earthdata.nasa.gov/wmts/epsg3857/best/IMERG_Precipitation_Rate/default/${gibsDay(2)}/GoogleMapsCompatible_Level6/{z}/{y}/{x}.png`,a:'Precipitation: NASA GPM IMERG daily precipitation rate, via NASA GIBS',mz:6,live:1},
   gsw:{n:'Water 1984–2021',tile:'https://storage.googleapis.com/global-surface-water/tiles2021/occurrence/{z}/{x}/{y}.png',a:'Surface water: EC JRC / Google, Global Surface Water (Pekel et al. 2016)',mz:13,live:1}
@@ -1310,12 +1313,12 @@ function initMap(){
   siteLayer=L.layerGroup().addTo(map);
   F.forEach(f=>{
     const col=gcol(f.gp);
-    if(f.ln){f.line=L.polyline(f.ln.map(l=>l.map(c=>[c[1],c[0]])),{renderer:canvas,color:col,weight:2.6,opacity:.85});f.line.on('click',()=>select(f,true));f.line.bindTooltip(f.n,{className:'tip',sticky:true})}
+    if(f.ln){f.line=L.polyline(f.ln.map(l=>l.map(c=>[c[1],c[0]])),{renderer:canvas,color:col,weight:2.6,opacity:.85});f.line._isSite=1;f.line.on('click',()=>select(f,true));f.line.bindTooltip(f.n,{className:'tip',sticky:true})}
     else if(f.g){f.poly=L.polygon(f.g.map(p=>p.map(r=>r.map(c=>[c[1],c[0]]))),{renderer:canvas,color:col,weight:1.2,fillColor:col,fillOpacity:.3,opacity:.9});
-      f.poly.on('click',()=>select(f,true));f.poly.bindTooltip(f.n,{className:'tip',sticky:true})}
+      f.poly._isSite=1;f.poly.on('click',()=>select(f,true));f.poly.bindTooltip(f.n,{className:'tip',sticky:true})}
     if(f.la!=null&&!f.ln){const sz=f.c===8?6:f.c===10?5:Math.max(3.4,Math.min(10,3+Math.sqrt(Math.max(1,f.size))/6));
       f.mk=L.circleMarker([f.la,f.lo],{renderer:canvas,radius:(innerWidth<700?.75:1)*sz,color:css('--panel'),weight:f.c===8?2:1,fillColor:col,fillOpacity:f.v==='D'?.55:.95,dashArray:f.v==='D'?'2 2':null});
-      f.mk.on('click',()=>select(f,true));f.mk.bindTooltip(f.n+(f.v==='D'?' (location uncertain)':''),{className:'tip',direction:'top',offset:[0,-4]})}
+      f.mk._isSite=1;f.mk.on('click',()=>select(f,true));f.mk.bindTooltip(f.n+(f.v==='D'?' (location uncertain)':''),{className:'tip',direction:'top',offset:[0,-4]})}
   });
   const b=$('#base');b.innerHTML=Object.entries(BASES).map(([k,v])=>`<button type="button" data-b="${k}" aria-pressed="false" ${k!=='outline'&&!LIVE?'disabled title="Loads on the hosted site"':''}>${v.n}</button>`).join('');
   $$('#base button').forEach(x=>x.onclick=()=>setBase(x.dataset.b));
@@ -1354,7 +1357,7 @@ async function toggleOverlay(k){
   else if(k==='roads'){btn.classList.add('busy');try{const d=await loadJSON('roads.json');const g=L.layerGroup();const r=L.canvas({padding:.3,pane:'roads',tolerance:5});const W=[2.6,1.9,1.1],CN=['Expressway','Trunk road','Primary road'];
     d.r.forEach(x=>{const p=L.polyline(x.g.map(l=>l.map(c=>[c[1],c[0]])),{renderer:r,rc:x.c,color:css('--road'+x.c),weight:W[x.c],opacity:x.c===2?.8:.95,lineCap:'round',lineJoin:'round'});p.bindTooltip(x.ref||x.n?`<b>${esc(x.ref?x.ref.replace(/ \/ /g,', '):x.n[0])}</b> · ${CN[x.c]}`:CN[x.c],{className:'tip',sticky:true});p.addTo(g)});
     ovl[k]=g.addTo(map);map.attributionControl.addAttribution(ROADS_ATTR)}catch(e){toast('Road layer could not be loaded');btn.setAttribute('aria-pressed',false)}btn.classList.remove('busy')}
-  else if(k==='wp'){btn.classList.add('busy');try{const d=await loadJSON('waterpoints.json');const g=L.layerGroup();const r=L.canvas({padding:.2});const c=css('--g0');d.p.forEach(p=>{L.circleMarker([p[1],p[0]],{renderer:r,radius:1.8,stroke:false,fillColor:c,fillOpacity:.6,interactive:false}).addTo(g)});ovl[k]=g.addTo(map);toast(fmt.format(d.p.length)+' water points loaded (GRID3, 2020)')}catch(e){toast('Water-point layer could not be loaded');btn.setAttribute('aria-pressed',false)}btn.classList.remove('busy')}
+  else if(k==='wp'){btn.classList.add('busy');try{ovl[k]=(await wpOverlay()).addTo(map)}catch(e){toast('Borehole and well layer could not be loaded');btn.setAttribute('aria-pressed',false)}btn.classList.remove('busy')}
   else if(O.fl){btn.classList.add('busy');try{const g=await floodOverlay(k);if(ovl[k]===undefined||ovl[k]===null)ovl[k]=g.addTo(map)}catch(e){toast(O.n+' could not be loaded');btn.setAttribute('aria-pressed',false)}btn.classList.remove('busy');startFloodTimer()}
   else if(O.wms){ovl[k]=L.tileLayer.wms(GLOFAS_WMS,{layers:O.wms,format:'image/png',transparent:true,version:'1.3.0',opacity:.7,attribution:O.a}).addTo(map)}
   else if(O.tile){ovl[k]=L.tileLayer(typeof O.tile==='function'?O.tile():O.tile,{attribution:O.a,maxNativeZoom:O.mz,maxZoom:17,opacity:.85}).addTo(map)}
@@ -1392,7 +1395,7 @@ function renderLegend(){
   if(ovl.ecoli)h+=`<div class="t" style="margin-top:6px">Drinking water at very high <i>E. coli</i> risk (MICS 2016-17)</div>`+['Under 30%','30–45%','45–60%','60–75%','75% or more'].map((l,i)=>`<div class="k"><span class="sq" style="--c:${ECK[i]}"></span>${l}</div>`).join('');
   if(ovl.hotspots)h+=`<div class="t" style="margin-top:6px">Pollution hotspots</div>`+Object.keys(HSN).map(k=>`<div class="k"><span class="sw" style="--c:${HSC[k]};border-radius:50%;width:8px;height:8px"></span>${HSN[k]}</div>`).join('');
   if(ovl.wpfunc)h+=`<div class="t" style="margin-top:6px">Water points not working (WPDx)</div>`+['Under 12.5%','12.5–25%','25–37.5%','37.5–50%','50% or more'].map((l,i)=>`<div class="k"><span class="sq" style="--c:${WPK[i]}"></span>${l}</div>`).join('');
-  if(ovl.wp)h+=`<div class="k"><span class="sw" style="--c:var(--g0);border-radius:50%;width:6px;height:6px"></span>Water point (GRID3, 2020)</div>`;
+  if(ovl.wp&&window.__WP)h+=`<div class="t" style="margin-top:6px">Boreholes and wells (GRID3, 2020) — click a dot</div>`+WPT.map((t,i)=>`<div class="k"><span class="sw" style="--c:${t.c};border-radius:50%;width:8px;height:8px"></span>${t.n} (${fmt.format(window.__WP.n[i])})</div>`).join('');
   h+=`<div class="sm">Dot size follows reservoir capacity or lake area. Dashed dots: location uncertain.</div>`;
   $('#legend').innerHTML=h;
 }
@@ -3000,6 +3003,38 @@ function gwLegend(){let h='';for(const[k,d]of Object.entries(GWK)){if(!ovl[k])co
 function gwLgaLine(G,s,n){if(!G)return'';const x=G.lgas[s+'|'+n];if(!x)return'';const hi=(x.god_share||{}).high,sh=(x.dtw_share||{}).VS;
   return `<br><span style="font-size:11.5px">Groundwater: recharge ${x.recharge_mm!=null?fmt.format(Math.round(x.recharge_mm))+' mm/yr':'–'} · water table within 7 m under ${sh!=null?fmt.format(Math.round(sh)):'–'}% of the LGA · high aquifer vulnerability on ${hi!=null?fmt.format(Math.round(hi)):'–'}%</span>`}
 
+/* ---------- Boreholes and wells (GRID3) : visible, clickable points ---------- */
+const WPT=[{n:'Borehole',c:'#1f6fd1'},{n:'Hand-dug well',c:'#b5651d'},{n:'Waterworks',c:'#7b3fb5'},{n:'Tap or public water point',c:'#0f9d8a'}];
+function wpType(raw){const r=String(raw||'').toLowerCase();if(r.startsWith('bor'))return 0;if(r.startsWith('well'))return 1;if(r.startsWith('waterwork'))return 2;return 3}
+function wpRad(){const z=map.getZoom();return z<7?1.6:z<9?2.6:z<11?4:5.5}
+async function wpOverlay(){const d=await loadJSON('waterpoints.json');const grp=L.layerGroup();
+  if(!map.getPane('wpts')){map.createPane('wpts');const pn=map.getPane('wpts');pn.style.zIndex=398;pn.style.pointerEvents='none'}
+  const r=L.canvas({padding:.2,pane:'wpts'}),n=[0,0,0,0],idx={},P=[];
+  d.p.forEach((p,i)=>{const t=wpType(d.types[p[2]]);n[t]++;const m=L.circleMarker([p[1],p[0]],{renderer:r,radius:wpRad(),weight:.6,color:'#ffffff',opacity:.8,fillColor:WPT[t].c,fillOpacity:.85,interactive:false}).addTo(grp);
+    P.push({lo:p[0],la:p[1],t,raw:d.types[p[2]],m});const key=Math.floor(p[0]*10)+'_'+Math.floor(p[1]*10);(idx[key]||(idx[key]=[])).push(P.length-1)});
+  window.__WP={P,idx,n};
+  if(!window.__wpWired){window.__wpWired=1;
+    map.on('zoomend',()=>{if(!ovl.wp||!window.__WP)return;const rr=wpRad();window.__WP.P.forEach(q=>q.m.setRadius(rr))});
+    map.on('click',e=>{if(!ovl.wp||!window.__WP||window.__gxDrawing)return;if(e.sourceTarget&&e.sourceTarget._isSite)return;const q=wpNearest(e.latlng);if(q)wpPopup(q)})}
+  toast(fmt.format(d.p.length)+' boreholes, wells and taps loaded (GRID3, 2020). Click a dot for details.');return grp}
+function wpNearest(ll){const W=window.__WP,pt=map.latLngToContainerPoint(ll),tol=Math.max(7,wpRad()+4);let best=null,bd=1e9;
+  const gx=Math.floor(ll.lng*10),gy=Math.floor(ll.lat*10);
+  const deg=(map.containerPointToLatLng([pt.x+tol,pt.y]).lng-ll.lng),sp=Math.max(1,Math.ceil(deg*10));
+  for(let x=gx-sp;x<=gx+sp;x++)for(let y=gy-sp;y<=gy+sp;y++)(W.idx[x+'_'+y]||[]).forEach(i=>{const q=W.P[i],c=map.latLngToContainerPoint([q.la,q.lo]),dd=Math.hypot(c.x-pt.x,c.y-pt.y);if(dd<bd){bd=dd;best=q}});
+  return bd<=tol?best:null}
+function wpState(q){const x=q.lo,y=q.la;const inR=r=>{let c=false;for(let i=0,j=r.length-1;i<r.length;j=i++){const a=r[i],b=r[j];if((a[1]>y)!==(b[1]>y)&&x<(b[0]-a[0])*(y-a[1])/(b[1]-a[1])+a[0])c=!c}return c};
+  for(const s of DATA.st){const polys=s.t==='Polygon'?[s.g]:s.g;for(const pg of polys){if(inR(pg[0])&&!pg.slice(1).some(inR))return s.n}}return null}
+async function wpPopup(q){const st=wpState(q);const G=await x9('groundwater.json');const W=await x9('wpdx.json');
+  const k=G?gwCell(G,q.la,q.lo):null;const w=W&&st?W.st[st==='Federal Capital Territory'?'FCT':st]||W.st[st]:null;
+  const la=q.la.toFixed(5),lo=q.lo.toFixed(5);
+  let h=`<div class="wp-pop"><b style="font-size:14px">${esc(WPT[q.t].n)}</b>${WPT[q.t].n.toLowerCase()!==String(q.raw).toLowerCase()?` <span style="opacity:.7">(recorded as “${esc(q.raw)}”)</span>`:''}<br>${st?esc(st==='FCT'?'Federal Capital Territory':st+' State')+' · ':''}${la}, ${lo}`;
+  h+=`<div style="margin-top:6px">${k!=null?gwDescribe(G,k):'<i>No BGS groundwater values for this spot.</i>'}</div>`;
+  if(w){const kn=w.y+w.n;h+=`<div style="margin-top:6px"><b>Water points in ${esc(st==='FCT'?'the FCT':st+' State')} (WPDx)</b><br>${kn?fmt1.format(100*w.n/kn)+'% of those with a known status were not working when last visited':'No status recorded'}<br><span style="font-size:11px;opacity:.75">State-wide figure, mostly 2015–2018 surveys; not about this point.</span></div>`}
+  h+=`<div style="margin-top:6px;font-size:12px">GRID3 records the location and type only. It has no depth, yield, water level, or whether this point works.</div>`;
+  h+=`<div style="margin-top:6px;font-size:11.5px">Source: <a href="https://grid3.gov.ng" target="_blank" rel="noopener">GRID3 Nigeria Water Points</a> (eHealth Africa and Proxy Logics, 2020), CC BY 4.0. Groundwater: BGS, OGL. Contains data supplied by permission of the Natural Environment Research Council [2026].</div>`;
+  h+=`<div style="margin-top:6px"><a href="https://www.google.com/maps/@${la},${lo},18z/data=!3m1!1e3" target="_blank" rel="noopener">Satellite view ↗</a> · <a href="https://www.openstreetmap.org/?mlat=${la}&mlon=${lo}#map=17/${la}/${lo}" target="_blank" rel="noopener">OpenStreetMap ↗</a></div></div>`;
+  L.popup({maxWidth:320,className:'wp-popup',autoPanPaddingTopLeft:[20,190],autoPanPaddingBottomRight:[20,20]}).setLatLng([q.la,q.lo]).setContent(h).openOn(map)}
+
 /* ---------- Basins page: groundwater section ---------- */
 async function buildGwSub(){const host=$('#gw-sub');if(!host)return;const G=await x9('groundwater.json');if(!G){host.innerHTML='';return}
   const N=G.national,S=G.states,ST=Object.keys(S).sort(),M=G.method,srcB=`<a href="${esc(G.sources.quantitative_maps.doi)}" target="_blank" rel="noopener">BGS quantitative groundwater maps of Africa (MacDonald et al. 2023)</a>`,srcR=`<a href="${esc(G.sources.recharge.doi)}" target="_blank" rel="noopener">BGS recharge map of Africa (MacDonald et al. 2021)</a>`;
@@ -3010,7 +3045,7 @@ async function buildGwSub(){const host=$('#gw-sub');if(!host)return;const G=awai
   const rch=ST.map(s=>({l:s,v:S[s].recharge_mm||0,t:fmt.format(Math.round(S[s].recharge_mm3||0))+' million m³ a year'})).sort((a,b)=>b.v-a.v);
   const AQ=Object.entries(G.aquifers).filter(([k])=>k!=='n/a').sort((a,b)=>b[1].area_km2-a[1].area_km2);
   let h=`<h3 class="sh">Groundwater: vulnerability, recharge and links to rivers</h3>
-  <p class="lede" style="margin-bottom:12px">Most Nigerians drink groundwater, so what happens below ground matters as much as rivers and dams. This section uses the British Geological Survey’s maps of depth to groundwater, aquifer productivity, storage and long-term recharge (5 km and about 30 km cells) to show where aquifers are most exposed to pollution, how much water reaches them each year, and how much river flow is sustained by slow, groundwater-fed flow. All results are screening level and say how they were worked out. ${btn('gwgod','Vulnerability map')} ${btn('gwrch','Recharge map')} ${btn('gwdtw','Depth to water map')} ${btn('gwprod','Productivity map')} ${btn('gwstor','Storage map')}</p>
+  <p class="lede" style="margin-bottom:12px">Most Nigerians drink groundwater, so what happens below ground matters as much as rivers and dams. This section uses the British Geological Survey’s maps of depth to groundwater, aquifer productivity, storage and long-term recharge (5 km and about 30 km cells) to show where aquifers are most exposed to pollution, how much water reaches them each year, and how much river flow is sustained by slow, groundwater-fed flow. All results are screening level and say how they were worked out. ${btn('gwgod','Vulnerability map')} ${btn('gwrch','Recharge map')} ${btn('gwdtw','Depth to water map')} ${btn('gwprod','Productivity map')} ${btn('gwstor','Storage map')} ${btn('wp','Boreholes and wells map')}</p>
   <div class="kpis"><div class="kpi"><b>${fmt.format(Math.round(N.recharge_mm))} mm</b><span>average groundwater recharge a year across Nigeria</span><small>about ${fmt.format(Math.round(N.recharge_mm3/1000))} billion m³ a year; BGS 1970–2019</small></div>
    <div class="kpi"><b>${fmt.format(Math.round(N.dtw_share.VS))}%</b><span>of the land has the water table within 7 m of the surface</span><small>BGS depth to groundwater</small></div>
    <div class="kpi"><b>${fmt.format(Math.round(N.god_share.high))}%</b><span>of the land has aquifers rated highly vulnerable to pollution</span><small>GOD method, screening level</small></div>
@@ -3165,7 +3200,7 @@ const L_=[
  {k:'aquifers',n:'Aquifer types (hydrogeology)',g:'Poly',src:'Africa Groundwater Atlas country hydrogeology map, Nigeria v1.0 (British Geological Survey)',lic:'CC BY-SA (BGS). Derived files must keep the same licence.',
   get:async()=>{const d=await x9('aquifers.json');return(d?d.f:[]).map(x=>({g:[x.t,x.g],a:{code:x.c,description:(d.codes[x.c]||[]).join(' – '),geology:x.geo||'',source:d.src}}))}},
  {k:'water_points',n:'Water points (GRID3, 2020)',g:'Point',src:'eHealth Africa and Proxy Logics (2020), Water Points in Nigeria, GRID3 Nigeria',lic:'CC BY 4.0 (GRID3); check the GRID3 data portal for terms.',
-  get:async()=>{const d=await x9('waterpoints.json');return(d?d.p:[]).map(p=>({g:['Point',[p[0],p[1]]],a:{type:d.types[p[2]]||'',source:'GRID3 Nigeria (2020)'}}))}},
+  get:async()=>{const d=await x9('waterpoints.json');return(d?d.p:[]).map(p=>({g:['Point',[p[0],p[1]]],a:{type:d.types[p[2]]||'',type_group:WPT[wpType(d.types[p[2]])].n,source:'GRID3 Nigeria (2020)'}}))}},
  {k:'oil_spills',n:'Oil spills (NOSDRA register)',g:'Point',src:'NOSDRA oil spill incident register via Nigerian Oil Spill Monitor (oilspillmonitor.ng)',lic:'Public register',
   get:async()=>{const O=await x9('oilspills.json');return(O?O.inc:[]).map(p=>({g:['Point',[p[1],p[0]]],a:{year:p[2]||'',cause:(SPC[p[3]]||SPC.other)[0],contaminant:SPK[p[4]]||'',barrels:isNum(p[5])?p[5]:'',habitat:SPH[p[6]]||'',state:p[7]||'',company:O.comp[p[8]]||'',source:O.src}}))}},
  {k:'pollution_hotspots',n:'Pollution hotspots',g:'Point',src:'Studies and assessments linked in each record (UNEP, MSF, Amnesty International, peer-reviewed papers)',lic:'Facts with citations; see each source.',
