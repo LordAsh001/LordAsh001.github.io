@@ -1015,7 +1015,7 @@ table.lct .sw{display:inline-block;width:10px;height:10px;border-radius:2px;marg
 .tlswipe .tg{position:absolute;top:12px;font-family:var(--f-display);font-weight:800;font-size:15px;color:#fff;background:rgba(0,0,0,.55);padding:3px 8px;border-radius:6px}
 .tlswipe .a{right:calc(100% + 10px)}
 .tlswipe .b{left:10px}
-@media (max-width:860px){.tlpanel{left:6px;right:6px;width:auto;bottom:6px;max-height:70%}}
+@media (max-width:860px){.tlpanel{position:static;width:auto;max-height:none;margin:8px;order:2}#v-map aside.rail{order:3}.tlswipe .tg{font-size:13px}}
 /* resizable panels */
 aside.rail{position:relative}
 #v-map{grid-template-columns:var(--railw,minmax(300px,370px)) 1fr}
@@ -1729,7 +1729,7 @@ function imgSrc(y){if(EOXY.includes(y))return{u:`https://tiles.maps.eox.at/wmts/
 const LossLayer=L.GridLayer.extend({createTile(c,done){const t=document.createElement('canvas');t.width=t.height=256;const o=this.options;
   let z=c.z,x=c.x,y=c.y,sx=0,sy=0,sw=512;if(z>12){const k=2**(z-12);x=Math.floor(c.x/k);y=Math.floor(c.y/k);sw=512/k;sx=(c.x%k)*sw;sy=(c.y%k)*sw;z=12}
   const im=new Image();im.crossOrigin='anonymous';im.onload=()=>{const g=t.getContext('2d');g.imageSmoothingEnabled=false;g.drawImage(im,sx,sy,sw,sw,0,0,256,256);const d=g.getImageData(0,0,256,256),p=d.data,yy=o.year-2000;
-    for(let i=0;i<p.length;i+=4){const b=p[i+2],r=p[i];let a=0;if(b===yy){p[i]=255;p[i+1]=32;p[i+2]=110;a=Math.min(255,60+Math.sqrt(r/255)*230)}else if(o.early&&b>0&&b<yy){p[i]=246;p[i+1]=170;p[i+2]=60;a=Math.min(190,30+Math.sqrt(r/255)*170)}p[i+3]=a}
+    for(let i=0;i<p.length;i+=4){const b=p[i+2],r=p[i];let a=0;if(b===yy){p[i]=255;p[i+1]=32;p[i+2]=110;a=Math.min(255,60+Math.sqrt(r/255)*230)}else if(o.early&&b>0&&b<yy){p[i]=246;p[i+1]=170;p[i+2]=60;a=Math.min(140,25+Math.sqrt(r/255)*120)}p[i+3]=a}
     g.putImageData(d,0,0);done(null,t)};im.onerror=()=>done(null,t);im.src=`https://tiles.globalforestwatch.org/umd_tree_cover_loss/v1.12/tcd_30/${z}/${x}/${y}.png`;return t}});
 /* state values per year */
 function stV(theme,n,y){if(!CHG)return null;const s=CHG.dz.st[n];
@@ -1793,6 +1793,7 @@ function initTime(){
    <div class="tl-leg lgd"></div><p class="tl-note"></p>
    <div class="tl-row tl-act"><button type="button" class="btn sm primary" id="tl-save">Save map image</button><button type="button" class="btn sm" id="tl-series">Save year series</button><button type="button" class="btn sm" id="tl-sum" aria-expanded="false">Year summary</button></div>
    <div class="tl-sumb" id="tl-sumb" hidden></div></section>`);
+  const place=()=>{const p=$('#tlpanel'),w=$('.mapwrap');if(matchMedia('(max-width:860px)').matches){if(p.parentElement===w)w.after(p)}else if(p.parentElement!==w)w.appendChild(p)};place();matchMedia('(max-width:860px)').addEventListener('change',place);
   $('#tl-x').onclick=()=>tlOpen(false);
   $('#tl-th').value=TL.theme;$('#tl-th').onchange=e=>{TL.theme=e.target.value;tlRender()};
   $('#tl-img').onchange=e=>{TL.img=e.target.value;tlRender()};
@@ -1809,7 +1810,7 @@ function initTime(){
   const sw=$('#tlswipe'),hd=sw.querySelector('.hd');const mv=x=>{const r=mw.getBoundingClientRect();TL.div=Math.max(.05,Math.min(.95,(x-r.left)/r.width));hd.setAttribute('aria-valuenow',Math.round(TL.div*100));tlClip()};
   hd.addEventListener('pointerdown',e=>{e.preventDefault();hd.setPointerCapture(e.pointerId);const m=ev=>mv(ev.clientX),u=()=>{hd.removeEventListener('pointermove',m);hd.removeEventListener('pointerup',u)};hd.addEventListener('pointermove',m);hd.addEventListener('pointerup',u)});
   hd.addEventListener('keydown',e=>{if(e.key==='ArrowLeft'||e.key==='ArrowRight'){e.preventDefault();TL.div=Math.max(.05,Math.min(.95,TL.div+(e.key==='ArrowLeft'?-.05:.05)));hd.setAttribute('aria-valuenow',Math.round(TL.div*100));tlClip()}});
-  L.DomEvent.disableClickPropagation($('#tlpanel'));L.DomEvent.disableScrollPropagation($('#tlpanel'));L.DomEvent.disableClickPropagation(sw);
+  L.DomEvent.disableClickPropagation(sw);
   document.addEventListener('change',e=>{if(TL.on&&TL.sum&&(e.target.id==='state'))setTimeout(tlSummary,50)})}
 /* ---- summary for the selected year(s) and area ---- */
 function areaStats(a,y){const o={y};if(!CHG)return o;const sts=a.k==='nat'?DATA.st.map(s=>s.n):[a.st].filter(Boolean);
