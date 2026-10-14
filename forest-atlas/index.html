@@ -1016,6 +1016,45 @@ table.lct .sw{display:inline-block;width:10px;height:10px;border-radius:2px;marg
 .tlswipe .a{right:calc(100% + 10px)}
 .tlswipe .b{left:10px}
 @media (max-width:860px){.tlpanel{position:static;width:auto;max-height:none;margin:8px;order:2}#v-map aside.rail{order:3}.tlswipe .tg{font-size:13px}}
+/* compare years grid */
+body.cmp-open{overflow:hidden}
+.cmpv{position:fixed;inset:0;z-index:100000;background:var(--bg);display:flex;flex-direction:column;min-height:0}
+.cmpv[hidden]{display:none!important}
+.cmp-h{display:flex;align-items:center;gap:12px;padding:10px 16px;border-bottom:1px solid var(--line);background:var(--panel)}
+.cmp-h h2{font-family:var(--f-display);font-size:20px;margin:0;margin-right:auto}
+.cmp-area{display:flex;align-items:center;gap:6px;font-size:12px;font-weight:600;color:var(--muted)}
+.cmp-area select{width:auto;max-width:260px}
+.cmp-ctl{display:grid;grid-template-columns:1fr 1fr;gap:10px 18px;padding:10px 16px;border-bottom:1px solid var(--line);background:var(--panel)}
+.cmp-step{display:grid;grid-template-columns:26px 1fr;gap:8px;align-items:start}
+.cmp-step .n{width:24px;height:24px;border-radius:50%;background:var(--accent);color:var(--accent-ink,#fff);font-weight:800;display:grid;place-items:center;font-size:13px}
+.cmp-step .lbl{margin-bottom:5px}
+.cmp-step .chips{display:flex;flex-wrap:wrap;gap:6px}
+.cmp-step .chip.on{background:var(--accent);color:var(--accent-ink,#fff);border-color:var(--accent)}
+.cmp-opts{display:flex;gap:14px;flex-wrap:wrap;margin-top:6px;font-size:12.5px}
+.ychips{display:flex;flex-wrap:wrap;gap:4px}
+.ychip{border:1px solid var(--line);background:var(--bg);border-radius:6px;padding:3px 7px;font-size:12px;font-family:var(--f-mono);cursor:pointer;color:var(--ink)}
+.ychip.on{background:var(--accent);border-color:var(--accent);color:var(--accent-ink,#fff);font-weight:700}
+.cmp-grid{flex:1;min-height:0;display:grid;grid-template-columns:repeat(var(--cols),minmax(0,1fr));grid-template-rows:repeat(var(--rows),minmax(0,1fr));gap:8px;padding:8px 16px}
+.cmp-card{position:relative;display:flex;flex-direction:column;min-height:0;min-width:0;background:var(--panel);border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.cmp-card header{display:flex;align-items:center;gap:8px;padding:5px 8px;border-bottom:1px solid var(--line);font-size:12px}
+.cmp-card header .ck{display:inline-flex;align-items:center;gap:6px;cursor:pointer}
+.cmp-card header b{font-family:var(--f-display);font-size:16px}
+.cmp-card .kv1{color:var(--muted);flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cmp-card .acts{display:flex;gap:4px}
+.cmp-card .btn.sm{padding:3px 8px}
+.cmp-map{flex:1;min-height:120px;background:var(--sea)}
+.cmp-card .pick{display:none}
+.cmp-grid.focus{grid-template-columns:minmax(0,1fr) 200px;grid-template-rows:none;grid-auto-rows:150px;overflow:auto}
+.cmp-grid.focus .cmp-card.big{grid-column:1;grid-row:1 / span 40;position:sticky;top:0;max-height:calc(100vh - 320px);min-height:300px}
+.cmp-grid.focus .cmp-card.mini{grid-column:2}
+.cmp-grid.focus .cmp-card.mini .kv1,.cmp-grid.focus .cmp-card.mini .cx,.cmp-grid.focus .cmp-card.mini .leaflet-control-zoom{display:none}
+.cmp-grid.focus .cmp-card.mini .pick{display:block;position:absolute;inset:32px 0 0 0;background:transparent;border:0;cursor:pointer;z-index:900}
+.cmp-grid.focus .cmp-card.mini .pick:hover,.cmp-grid.focus .cmp-card.mini .pick:focus-visible{background:color-mix(in srgb,var(--accent) 18%,transparent)}
+.cmp-f{border-top:1px solid var(--line);background:var(--panel);padding:8px 16px;display:grid;gap:6px;max-height:45vh;overflow:auto}
+.cmp-f .lgd small{flex-basis:100%;font-size:10.5px}
+.cmp-dl{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.cmp-dl .lbl{margin-right:4px}
+@media (max-width:860px){.cmp-ctl{grid-template-columns:1fr}.cmpv{overflow:auto}.cmp-grid{flex:none;grid-template-columns:1fr;grid-template-rows:none;grid-auto-rows:300px}.cmp-grid.focus{grid-template-columns:1fr;grid-auto-rows:220px}.cmp-grid.focus .cmp-card.big{grid-row:auto;grid-column:1;position:static;max-height:none;min-height:420px;order:-1}.cmp-grid.focus .cmp-card.mini{grid-column:1}.cmp-h{flex-wrap:wrap}.cmp-f{max-height:none}}
 /* resizable panels */
 aside.rail{position:relative}
 #v-map{grid-template-columns:var(--railw,minmax(300px,370px)) 1fr}
@@ -1212,7 +1251,7 @@ const BASES={
   nasa:{n:'NASA daily',u:()=>`https://gibs.earthdata.nasa.gov/wmts/epsg3857/best/VIIRS_SNPP_CorrectedReflectance_TrueColor/default/${new Date(Date.now()-864e5*2).toISOString().slice(0,10)}/GoogleMapsCompatible_Level9/{z}/{y}/{x}.jpg`,a:'Imagery: NASA GIBS / VIIRS SNPP corrected reflectance (2 days ago)',mz:9}
 };
 const isDark=()=>document.documentElement.dataset.theme==='dark'||(document.documentElement.dataset.theme!=='light'&&matchMedia('(prefers-color-scheme: dark)').matches);
-const OVERLAYS={time:{n:'Time explorer',off:1,fn:on=>tlOpen(on)},loss:{n:'Forest loss 2001–2024 (all years)',u:'https://storage.googleapis.com/earthenginepartners-hansen/tiles/gfc_v1.12/loss_alpha/{z}/{x}/{y}.png',a:'Forest loss: Hansen et al. / UMD / Google / USGS / NASA, GFC v1.12',mz:12}};
+const OVERLAYS={time:{n:'Time explorer',off:1,fn:on=>tlOpen(on)},cmp:{n:'Compare years',off:1,fn:()=>{ovl.cmp=false;$$('#ovl button[data-o=cmp]').forEach(b=>b.setAttribute('aria-pressed','false'));cmpOpen()}},loss:{n:'Forest loss 2001–2024 (all years)',u:'https://storage.googleapis.com/earthenginepartners-hansen/tiles/gfc_v1.12/loss_alpha/{z}/{x}/{y}.png',a:'Forest loss: Hansen et al. / UMD / Google / USGS / NASA, GFC v1.12',mz:12}};
 function stateStyle(hi){const onTile=!!tile;if(typeof TL!=='undefined'&&TL.on&&(TL.theme!=='none'||TL.img!=='none'))return{color:onTile?'#ffffff':css('--land-line'),weight:hi?2.5:1,fillOpacity:0,opacity:.8};return onTile?{color:'#ffffff',weight:hi?2.5:1,fillOpacity:0,opacity:.75}:{color:css('--land-line'),weight:hi?2:.8,fillColor:hi?css('--land-hi'):css('--land'),fillOpacity:1,opacity:1}}
 function initMap(){
   map=L.map('map',{preferCanvas:true,zoomSnap:.25,minZoom:5,maxZoom:17}).fitBounds([[4.1,2.6],[13.95,14.7]]);
@@ -1243,7 +1282,7 @@ function initMap(){
   new MutationObserver(re).observe(document.documentElement,{attributes:true,attributeFilter:['data-theme']});
   $('#legbtn').onclick=()=>$('#legend').classList.toggle('open');
   $('#close').onclick=closeSheet;
-  initResize();initBg();initTime();
+  initResize();initBg();initTime();initCompare();
   document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!$('#sheet').hidden)closeSheet()});
 }
 function setBase(k){
@@ -1712,9 +1751,10 @@ function drawChange(el){
    <p class="note2">Desertification is land degradation in arid, semi-arid and dry sub-humid areas. No single satellite number measures it, so this section shows the drivers and symptoms side by side: dryness, rainfall trends, rising evaporative demand and shifts from trees to rangeland and bare ground. The aridity index here uses the Hargreaves temperature method; values are close to, but not identical with, the CGIAR Global Aridity Index (Penman–Monteith).</p></section>
   <section id="cl"><h3 class="h3x">Land cover</h3><div class="kpis"><div class="kpi"><b>${fmt1.format(avN(...nA,1))}% → ${fmt1.format(avN(...nB,1))}%</b><span>trees, 2017–18 to 2024–25</span><small>Share of national land</small></div><div class="kpi"><b>${fmt1.format(avN(...nA,4))}% → ${fmt1.format(avN(...nB,4))}%</b><span>built area</span><small>≈ ${fmt.format(Math.round((avN(...nB,4)-avN(...nA,4))/100*sum(DATA.st.map(s=>s.km2))))} km² added</small></div><div class="kpi"><b>${fmt1.format(avN(...nA,3))}% → ${fmt1.format(avN(...nB,3))}%</b><span>crops</span><small>See note on savanna farmland</small></div><div class="kpi"><b>${fmt1.format(avN(...nA,6))}% → ${fmt1.format(avN(...nB,6))}%</b><span>rangeland</span><small>Grass and shrub, incl. fallow</small></div></div>
    <div class="grid2">${cL.map(c=>c.html).join('')}</div>
-   <p class="note2">Open the map’s <b>Time explorer</b> to pick a year, play the years in sequence, compare two years side by side, save map images or a year-by-year sheet, and get a written summary for Nigeria, a state or a reserve. State figures were computed at 250 m from the 10 m maps; reserve figures in each profile are computed live.</p>
-  <p><a class="btn primary" href="#map" id="go-time">Open the Time explorer on the map</a></p></section>`;
+   <p class="note2">Use <b>Compare years</b> to see several years as a grid of maps, enlarge any one, and download them together or one at a time. The <b>Time explorer</b> steps through single years on the main map and gives a written summary for Nigeria, a state or a reserve. State figures were computed at 250 m from the 10 m maps; reserve figures in each profile are computed live.</p>
+  <p style="display:flex;gap:8px;flex-wrap:wrap"><a class="btn primary" href="#map" id="go-cmp">Compare years in a grid of maps</a><a class="btn" href="#map" id="go-time">Open the Time explorer on the map</a></p></section>`;
   [...cF,...cD,...cL].forEach(c=>c.mount());
+  $('#go-cmp').onclick=e=>{e.preventDefault();location.hash='map';setTimeout(cmpOpen,150)};
   $('#go-time').onclick=e=>{e.preventDefault();location.hash='map';setTimeout(()=>{if(!TL.on)toggleOverlay('time')},120)};
   $$('.subnav a').forEach(a=>a.onclick=e=>{e.preventDefault();$('#'+a.dataset.s).scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'})});
 }
@@ -1775,13 +1815,13 @@ function tlPanel(){const el=$('#tlpanel');if(!el)return;const ys=tlYears(),T=THE
   el.querySelector('.tl-y').textContent=TL.cmp?`${TL.y} | ${TL.yB}`:TL.y;
   const s=el.querySelector('#tl-yr');s.min=ys[0];s.max=ys[ys.length-1];s.value=TL.y;s.setAttribute('aria-valuetext',String(TL.y));
   el.querySelector('#tl-ticks').innerHTML=`<span>${ys[0]}</span><span>${ys[ys.length-1]}</span>`;
-  el.querySelector('#tl-b').innerHTML=ys.map(y=>`<option ${y===TL.yB?'selected':''}>${y}</option>`).join('');
+
   el.querySelector('#tl-early').closest('label').hidden=TL.theme!=='loss';
   const notes=[];if(T.kind==='tile'&&!LIVE)notes.push('This layer loads on the hosted site.');if(TL.img==='sat'){const s=imgSrc(clampY(IMGS.sat.yrs,TL.y));notes.push('Imagery: '+s.n+(TL.cmp?' · right side: '+imgSrc(clampY(IMGS.sat.yrs,TL.yB)).n:''));if(!LIVE)notes.push('Satellite images load on the hosted site.')}
   if(TL.theme!=='none'&&TL.lyr.A&&TL.lyr.A.ty!==TL.y)notes.push(`${T.n} is available for ${T.yrs[0]}–${T.yrs[T.yrs.length-1]}; showing ${TL.lyr.A.ty}.`);
   el.querySelector('.tl-leg').innerHTML=leg.map(([c,n])=>`<span><i style="background:${c}"></i>${esc(n)}</span>`).join('')+(TL.theme==='none'?'':`<small>${esc(T.src)}</small>`);
   el.querySelector('.tl-note').textContent=notes.join(' ');el.querySelector('.tl-note').hidden=!notes.length}
-function tlOpen(on){TL.on=on;ovl.time=on;$$('#ovl button').forEach(x=>{if(x.dataset.o==='time')x.setAttribute('aria-pressed',on)});$('#tlpanel').hidden=!on;$('#legend').classList.toggle('tl-hide',on);if(!on){tlStop();TL.cmp=false;$('#tl-cmp').checked=false}track('time/'+(on?'open':'close'),'Time explorer');tlRender()}
+function tlOpen(on){TL.on=on;ovl.time=on;$$('#ovl button').forEach(x=>{if(x.dataset.o==='time')x.setAttribute('aria-pressed',on)});$('#tlpanel').hidden=!on;$('#legend').classList.toggle('tl-hide',on);if(!on){tlStop();TL.cmp=false}track('time/'+(on?'open':'close'),'Time explorer');tlRender()}
 function tlStop(){if(TL.play){clearInterval(TL.play);TL.play=null;$('#tl-play').textContent='▶ Play';$('#tl-play').setAttribute('aria-pressed','false')}}
 function initTime(){
   const mw=$('.mapwrap');
@@ -1789,9 +1829,9 @@ function initTime(){
   <section class="tlpanel" id="tlpanel" hidden aria-label="Time explorer"><div class="tl-h"><b>Time explorer</b><span class="tl-y"></span><button type="button" class="x" id="tl-x" aria-label="Close time explorer">×</button></div>
    <div class="tl-row"><label>Layer<select id="tl-th">${Object.entries(THEMES).map(([k,v])=>`<option value="${k}">${v.n}</option>`).join('')}</select></label><label>Imagery<select id="tl-img">${Object.entries(IMGS).map(([k,v])=>`<option value="${k}">${v.n}</option>`).join('')}</select></label></div>
    <div class="tl-row tl-sl"><button type="button" class="btn sm" id="tl-prev" aria-label="Previous year">◀</button><div class="tl-s"><input type="range" id="tl-yr" step="1" aria-label="Year"><div id="tl-ticks" class="tl-ticks"></div></div><button type="button" class="btn sm" id="tl-next" aria-label="Next year">▶</button><button type="button" class="btn sm" id="tl-play" aria-pressed="false">▶ Play</button></div>
-   <div class="tl-row tl-opts"><label class="toggle"><input type="checkbox" id="tl-cmp"> Compare with</label><select id="tl-b" aria-label="Comparison year"></select><label class="toggle"><input type="checkbox" id="tl-early" checked> Show earlier loss</label></div>
+   <div class="tl-row tl-opts"><label class="toggle"><input type="checkbox" id="tl-early" checked> Show earlier loss</label></div>
    <div class="tl-leg lgd"></div><p class="tl-note"></p>
-   <div class="tl-row tl-act"><button type="button" class="btn sm primary" id="tl-save">Save map image</button><button type="button" class="btn sm" id="tl-series">Save year series</button><button type="button" class="btn sm" id="tl-sum" aria-expanded="false">Year summary</button></div>
+   <div class="tl-row tl-act"><button type="button" class="btn sm primary" id="tl-save">Save map image</button><button type="button" class="btn sm" id="tl-grid">Compare years side by side</button><button type="button" class="btn sm" id="tl-sum" aria-expanded="false">Year summary</button></div>
    <div class="tl-sumb" id="tl-sumb" hidden></div></section>`);
   const place=()=>{const p=$('#tlpanel'),w=$('.mapwrap');if(matchMedia('(max-width:860px)').matches){if(p.parentElement===w)w.after(p)}else if(p.parentElement!==w)w.appendChild(p)};place();matchMedia('(max-width:860px)').addEventListener('change',place);
   $('#tl-x').onclick=()=>tlOpen(false);
@@ -1801,10 +1841,9 @@ function initTime(){
   const step=d=>{const ys=tlYears();const i=ys.indexOf(TL.y);set(ys[Math.max(0,Math.min(ys.length-1,i+d))])};$('#tl-prev').onclick=()=>step(-1);$('#tl-next').onclick=()=>step(1);
   $('#tl-play').onclick=()=>{if(TL.play){tlStop();return}const ys=tlYears();if(TL.y===ys[ys.length-1])TL.y=ys[0];$('#tl-play').textContent='❚❚ Pause';$('#tl-play').setAttribute('aria-pressed','true');tlRender();
     TL.play=setInterval(()=>{const ys=tlYears();const i=ys.indexOf(TL.y);if(i>=ys.length-1){tlStop();return}set(ys[i+1])},matchMedia('(prefers-reduced-motion: reduce)').matches?3000:1800)};
-  $('#tl-cmp').onchange=e=>{TL.cmp=e.target.checked;if(TL.cmp&&TL.yB===TL.y){const ys=tlYears();TL.yB=ys[0]===TL.y?ys[ys.length-1]:ys[0]}tlRender()};
-  $('#tl-b').onchange=e=>{TL.yB=+e.target.value;tlRender()};
+
   $('#tl-early').onchange=e=>{TL.early=e.target.checked;tlRender()};
-  $('#tl-save').onclick=()=>tlExport();$('#tl-series').onclick=()=>tlSeries();
+  $('#tl-save').onclick=()=>tlExport();$('#tl-grid').onclick=()=>cmpOpen();
   $('#tl-sum').onclick=()=>{TL.sum=!TL.sum;$('#tl-sum').setAttribute('aria-expanded',TL.sum);$('#tl-sumb').hidden=!TL.sum;if(TL.sum)tlSummary()};
   // swipe divider
   const sw=$('#tlswipe'),hd=sw.querySelector('.hd');const mv=x=>{const r=mw.getBoundingClientRect();TL.div=Math.max(.05,Math.min(.95,(x-r.left)/r.width));hd.setAttribute('aria-valuenow',Math.round(TL.div*100));tlClip()};
@@ -1860,7 +1899,7 @@ function frame(mapCanvas,o){/* o:{title,sub,leg,credits,summary} */
   g.font='800 22px system-ui,sans-serif';g.fillText(o.title,pad,pad+22);g.font='13px system-ui,sans-serif';g.fillStyle='#56655b';g.fillText(o.sub,pad,pad+44);
   let y=pad+60;const mx=(W-mw)/2;g.drawImage(mapCanvas,mx,y,mw,mh);g.strokeStyle='#d3dccf';g.strokeRect(mx+.5,y+.5,mw-1,mh-1);
   // scale bar and north arrow
-  const ctr=map.getSize().y/2,m=map.distance(map.containerPointToLatLng([0,ctr]),map.containerPointToLatLng([100,ctr]))/100;const len=niceLen(m*120),px=len/m;
+  const M=o.m||map,ctr=M.getSize().y/2,m=M.distance(M.containerPointToLatLng([0,ctr]),M.containerPointToLatLng([100,ctr]))/100;const len=niceLen(m*120),px=len/m;
   g.fillStyle='rgba(255,255,255,.85)';g.fillRect(mx+10,y+mh-34,px+20,24);g.fillStyle='#15231a';g.fillRect(mx+20,y+mh-16,px,3);g.font='11px system-ui,sans-serif';g.fillText(len>=1000?fmt.format(len/1000)+' km':fmt.format(len)+' m',mx+20,y+mh-20);
   g.fillStyle='rgba(255,255,255,.85)';g.fillRect(mx+mw-34,y+10,24,30);g.fillStyle='#15231a';g.beginPath();g.moveTo(mx+mw-22,y+14);g.lineTo(mx+mw-28,y+30);g.lineTo(mx+mw-16,y+30);g.fill();g.font='700 10px system-ui,sans-serif';g.textAlign='center';g.fillText('N',mx+mw-22,y+39);g.textAlign='left';
   y+=mh+12;
@@ -1891,6 +1930,115 @@ async function tlSeries(){if(TL.busy)return;const ys0=tlYears();const step=Math.
     g.font='11px system-ui,sans-serif';g.fillStyle='#56655b';crL.forEach(l=>{g.fillText(l,pad,y+11);y+=15});g.font='700 11px system-ui,sans-serif';g.fillStyle='#1d6b3c';g.fillText(`Nigeria Forest Reserves Atlas · ${CONFIG.siteUrl.replace(/^https?:\/\//,'')} · made ${today}`,pad,y+14);
     await toPng(c,`nigeria_atlas_${TL.theme}_${ys[0]}-${ys[ys.length-1]}.png`);track('time/series','Saved year series')}
   catch(e){toast('The series could not be created: '+(e.message||e))}finally{TL.y=keep.y;TL.cmp=keep.cmp;$('#tl-cmp').checked=keep.cmp;tlRender();TL.busy=false;btn.disabled=false;btn.textContent='Save year series'}}
+
+/* ---------- compare years: a grid of synced maps, expand one, download any combination ---------- */
+const CMP={theme:'lc',sat:false,years:[],focus:null,sel:new Set(),maps:{},area:null,sync:false,open:false};
+const CMP_MAX=12;
+function cmpYearsFor(){const T=THEMES[CMP.theme];return T.yrs||IMGS.sat.yrs}
+function cmpDefaultYears(){const ys=cmpYearsFor();if(ys.length<=4)return[...ys];return[0,1/3,2/3,1].map(t=>ys[Math.round(t*(ys.length-1))]).filter((y,i,a)=>a.indexOf(y)===i)}
+function cmpAreas(){const o=[{k:'nat',n:'Nigeria'}];if(state.sel&&!$('#sheet').hidden)o.push({k:'site',f:state.sel,n:state.sel.n,st:(state.sel.st||[])[0]});STATES.forEach(s=>o.push({k:'state',n:s,st:s}));return o}
+function cmpAreaBounds(a){if(a.k==='site'){const b=bbox(a.f);if(b)return L.latLngBounds([b[1],b[0]],[b[3],b[2]]).pad(.25);if(a.f.la!=null)return L.latLng(a.f.la,a.f.lo).toBounds(12000)}
+  if(a.k==='state'){let bb=null;statesLayer.eachLayer(l=>{if(l.feature.properties.n===a.n)bb=l.getBounds()});if(bb)return bb.pad(.05)}return L.latLngBounds([[4.1,2.6],[13.95,14.7]])}
+function cmpTarget(bb){const ab=cmpAreaBounds(CMP.area);return !bb||bb.contains(ab)?ab:bb}
+function cmpKey(y){if(!CHG||!CMP.area)return'';const o=areaStats(CMP.area,y),t=CMP.theme;
+  if((t==='loss'||t==='sloss')&&o.loss!=null)return`${fmt.format(Math.round(o.loss))} ha lost`;
+  if(t==='rain'&&o.rain!=null)return`${fmt.format(Math.round(o.rain))} mm · ${sgn(Math.round((o.rain/o.rainN-1)*100),fmt.format)}%`;
+  if(t==='ari'&&o.ai!=null)return`AI ${o.ai.toFixed(2)} · ${ariClass(o.ai)[1]}`;
+  if(t==='lc'){const v=o.lcSite||o.lc;if(v)return`trees ${fmt1.format(v[1])}% · built ${fmt1.format(v[4])}%`}
+  if(t==='built'){const v=o.lcSite||o.lc;if(v)return`built-up ${fmt1.format(v[4])}%`}
+  return''}
+function cmpOpen(){if(!CHG){loadChg().then(cmpOpen).catch(()=>toast('Land-change data could not be loaded'));return}
+  CMP.open=true;CMP.bounds=null;if(TL.on&&TL.theme!=='none')CMP.theme=TL.theme;CMP.sat=TL.on&&TL.img==='sat'&&LIVE;CMP.area=tlArea();
+  if(!CMP.years.length||!CMP.years.every(y=>cmpYearsFor().includes(y)))CMP.years=cmpDefaultYears();CMP.sel=new Set(CMP.years);CMP.focus=null;
+  const v=$('#cmpv');v.hidden=false;document.body.classList.add('cmp-open');cmpControls();cmpBuild();track('compare/open','Compare years');setTimeout(()=>$('#cmp-x').focus(),50)}
+function cmpClose(){CMP.open=false;$('#cmpv').hidden=true;document.body.classList.remove('cmp-open');Object.values(CMP.maps).forEach(m=>m.remove());CMP.maps={};$('#cmp-grid').innerHTML='';setTimeout(()=>map.invalidateSize(),50)}
+function cmpControls(){
+  $('#cmp-th').innerHTML=Object.entries(THEMES).filter(([k])=>k!=='none').map(([k,v])=>`<button type="button" class="chip${k===CMP.theme?' on':''}" data-k="${k}" aria-pressed="${k===CMP.theme}">${esc(v.n)}</button>`).join('')+`<button type="button" class="chip${CMP.theme==='none'?' on':''}" data-k="none" aria-pressed="${CMP.theme==='none'}">Satellite images only</button>`;
+  $$('#cmp-th .chip').forEach(b=>b.onclick=()=>{CMP.theme=b.dataset.k;if(CMP.theme==='none')CMP.sat=true;const ys=cmpYearsFor();CMP.years=CMP.years.filter(y=>ys.includes(y));if(!CMP.years.length)CMP.years=cmpDefaultYears();CMP.sel=new Set(CMP.years);cmpControls();cmpBuild()});
+  $('#cmp-sat').checked=CMP.sat;$('#cmp-sat').disabled=!LIVE||CMP.theme==='none';$('#cmp-sat').closest('label').title=LIVE?'':'Satellite images load on the hosted site';
+  $('#cmp-early').closest('label').hidden=CMP.theme!=='loss';$('#cmp-early').checked=TL.early;
+  const ys=cmpYearsFor();$('#cmp-ys').innerHTML=ys.map(y=>`<button type="button" class="ychip${CMP.years.includes(y)?' on':''}" data-y="${y}" aria-pressed="${CMP.years.includes(y)}">${y}</button>`).join('');
+  $$('#cmp-ys .ychip').forEach(b=>b.onclick=()=>{const y=+b.dataset.y;if(CMP.years.includes(y)){if(CMP.years.length===1)return;CMP.years=CMP.years.filter(x=>x!==y);CMP.sel.delete(y)}else{if(CMP.years.length>=CMP_MAX){toast(`Up to ${CMP_MAX} years at a time`);return}CMP.years.push(y);CMP.years.sort((a,b)=>a-b);CMP.sel.add(y)}if(CMP.focus&&!CMP.years.includes(CMP.focus))CMP.focus=null;cmpControls();cmpBuild()});
+  $('#cmp-n').textContent=`${CMP.years.length} map${CMP.years.length>1?'s':''}`;
+  const A=cmpAreas();$('#cmp-area').innerHTML=A.map((a,i)=>`<option value="${i}" ${a.k===CMP.area.k&&a.n===CMP.area.n?'selected':''}>${a.k==='site'?'Reserve: ':''}${esc(a.n)}${a.k==='state'?' State':''}</option>`).join('');
+  $('#cmp-area').onchange=e=>{CMP.area=A[+e.target.value];const b=cmpAreaBounds(CMP.area);CMP.bounds=b;const m=Object.values(CMP.maps)[0];if(m){CMP.sync=true;Object.values(CMP.maps).forEach(x=>x.fitBounds(b,{animate:false}));CMP.sync=false}cmpHeads();cmpSummary()};
+  const T=THEMES[CMP.theme];$('#cmp-leg').innerHTML=(CMP.theme==='none'?[]:T.leg(CMP.years[CMP.years.length-1])).map(([c,n])=>`<span><i style="background:${c}"></i>${esc(n)}</span>`).join('')+`<small>${esc(CMP.theme==='none'?'Sentinel-2 cloudless (EOX) for 2016 and 2018–2025; MODIS Terra (NASA GIBS) for other years':T.src)}</small>`;
+  cmpSelBar()}
+function cmpSelBar(){const n=[...CMP.sel].filter(y=>CMP.years.includes(y)).length;$('#cmp-dl1').textContent=`Download ${n===CMP.years.length?'all':n} as one image`;$('#cmp-dl1').disabled=!n;$('#cmp-dln').textContent=`Download ${n===1?'it':'each'} separately`;$('#cmp-dln').disabled=!n}
+function cmpLayout(){const g=$('#cmp-grid'),n=CMP.years.length;g.classList.toggle('focus',!!CMP.focus);
+  const cols=n<=1?1:n<=4?2:n<=9?3:4;g.style.setProperty('--cols',cols);g.style.setProperty('--rows',Math.ceil(n/cols));
+  $$('#cmp-grid .cmp-card').forEach(c=>{const y=+c.dataset.y;c.classList.toggle('big',CMP.focus===y);c.classList.toggle('mini',!!CMP.focus&&CMP.focus!==y);const b=c.querySelector('.cx');b.textContent=CMP.focus===y?'Back to grid':'Expand';b.setAttribute('aria-pressed',CMP.focus===y)});
+  const bb=CMP.bounds||(Object.values(CMP.maps)[0]&&Object.values(CMP.maps)[0].getBounds());
+  setTimeout(()=>{CMP.sync=true;const t=cmpTarget(bb);Object.values(CMP.maps).forEach(m=>{m.invalidateSize();m.fitBounds(t,{animate:false})});CMP.bounds=t;CMP.sync=false},80)}
+function cmpHeads(){$$('#cmp-grid .cmp-card').forEach(c=>{const y=+c.dataset.y;c.querySelector('.kv1').textContent=cmpKey(y);const ck=c.querySelector('input');ck.checked=CMP.sel.has(y)})}
+function cmpMakeMap(el,y){const m=L.map(el,{zoomControl:true,attributionControl:false,zoomSnap:.25,minZoom:3,maxZoom:16,preferCanvas:true});
+  const T=THEMES[CMP.theme];const dark=isDark();
+  if(LIVE){if(CMP.sat){const s=imgSrc(clampY(IMGS.sat.yrs,y));L.tileLayer(s.u,{maxNativeZoom:s.mz,maxZoom:16,crossOrigin:'anonymous'}).addTo(m);m._cmpImg=s}
+    else L.tileLayer(dark?'https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}':'https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}',{maxNativeZoom:16,maxZoom:16,crossOrigin:'anonymous'}).addTo(m)}
+  const r=L.canvas({padding:.3});const gj=()=>({type:'FeatureCollection',features:DATA.st.map(s=>({type:'Feature',properties:{n:s.n},geometry:{type:s.t,coordinates:s.g}}))});
+  if(!LIVE)L.geoJSON(gj(),{renderer:r,interactive:false,style:()=>({stroke:false,fillColor:css('--land'),fillOpacity:1})}).addTo(m);
+  if(CMP.theme!=='none'){const ty=clampY(T.yrs,y);if(T.kind==='tile'&&LIVE)(CMP.theme==='loss'?new LossLayer({year:ty,early:TL.early,maxZoom:16}):new LCLayer('',{year:ty,opacity:.85,maxZoom:16,crossOrigin:'anonymous'})).addTo(m);
+    if(T.kind==='state')L.geoJSON(gj(),{renderer:r,interactive:false,style:ft=>{const v=stV(CMP.theme,ft.properties.n,ty);return v?{stroke:false,fillColor:T.col(v.v),fillOpacity:.85}:{stroke:false,fillOpacity:0}}}).addTo(m)}
+  L.geoJSON(gj(),{renderer:r,interactive:false,style:()=>({color:CMP.sat?'#ffffff':dark?'#9aaa9f':'#56655b',weight:.9,opacity:.8,fill:false})}).addTo(m);
+  const polys=F.filter(f=>f.g);L.layerGroup(polys.map(f=>L.polygon(f.g.map(p=>p.map(r2=>r2.map(c=>[c[1],c[0]]))),{renderer:r,interactive:false,color:CMP.sat?'#ffffff':'#1d6b3c',weight:.8,opacity:.7,fill:false}))).addTo(m);
+  if(CMP.area&&CMP.area.k==='site'&&CMP.area.f.poly)L.polygon(CMP.area.f.poly.getLatLngs(),{renderer:r,interactive:false,color:'#ffd400',weight:2.5,fill:false}).addTo(m);
+  m.on('move',()=>{if(CMP.sync)return;if(CMP.focus&&+m.getContainer().id.slice(5)!==CMP.focus)return;CMP.sync=true;const c=m.getCenter(),z=m.getZoom(),bb=m.getBounds();CMP.bounds=bb;Object.values(CMP.maps).forEach(o=>{if(o===m)return;if(CMP.focus)o.fitBounds(cmpTarget(bb),{animate:false});else o.setView(c,z,{animate:false})});CMP.sync=false});
+  return m}
+function cmpBuild(){const g=$('#cmp-grid');const view=Object.values(CMP.maps)[0];const c0=view?{c:view.getCenter(),z:view.getZoom()}:null;
+  if(view)CMP.bounds=view.getBounds();Object.values(CMP.maps).forEach(m=>m.remove());CMP.maps={};
+  g.innerHTML=CMP.years.map(y=>`<article class="cmp-card" data-y="${y}"><header><label class="ck"><input type="checkbox" ${CMP.sel.has(y)?'checked':''} aria-label="Include ${y} in downloads"><b>${y}</b></label><span class="kv1"></span><span class="acts"><button type="button" class="btn sm cx" aria-pressed="false">Expand</button><button type="button" class="btn sm cd" aria-label="Download the ${y} map">⬇</button></span></header><div class="cmp-map" id="cmpm-${y}"></div><button type="button" class="pick" aria-label="Show ${y} large"></button></article>`).join('');
+  cmpLayout();
+  requestAnimationFrame(()=>{CMP.years.forEach(y=>{CMP.maps[y]=cmpMakeMap($('#cmpm-'+y),y)});
+    CMP.sync=true;Object.values(CMP.maps).forEach(m=>{m.invalidateSize();m.fitBounds(CMP.bounds||cmpAreaBounds(CMP.area),{animate:false})});CMP.sync=false;cmpHeads();cmpSummary()});
+  $$('#cmp-grid .cmp-card').forEach(c=>{const y=+c.dataset.y;
+    c.querySelector('.cx').onclick=()=>{CMP.focus=CMP.focus===y?null:y;cmpLayout()};
+    c.querySelector('.pick').onclick=()=>{CMP.focus=y;cmpLayout()};
+    c.querySelector('input').onchange=e=>{if(e.target.checked)CMP.sel.add(y);else CMP.sel.delete(y);cmpSelBar()};
+    c.querySelector('.cd').onclick=()=>cmpDownload([y],false)})}
+function capLeaflet(m,S){const ct=m.getContainer(),R=ct.getBoundingClientRect(),W=R.width,H=R.height;const c=document.createElement('canvas');c.width=W*S;c.height=H*S;const g=c.getContext('2d');g.scale(S,S);g.fillStyle=css('--sea')||'#dfe8ee';g.fillRect(0,0,W,H);
+  const op=el=>{let o=1,n=el;while(n&&n!==ct){const v=parseFloat(getComputedStyle(n).opacity);if(!isNaN(v))o*=v;n=n.parentElement}return o};
+  const P=Object.entries(m.getPanes()).filter(([k])=>k!=='mapPane'&&k!=='tooltipPane'&&k!=='popupPane').map(([k,p])=>[p,+getComputedStyle(p).zIndex||0]).sort((a,b)=>a[1]-b[1]);
+  P.forEach(([p])=>p.querySelectorAll('img,canvas').forEach(el=>{if(el.tagName==='IMG'&&!(el.complete&&el.naturalWidth))return;const r=el.getBoundingClientRect();if(!r.width||r.right<R.left||r.left>R.right||r.bottom<R.top||r.top>R.bottom)return;g.globalAlpha=op(el);try{g.drawImage(el,r.left-R.left,r.top-R.top,r.width,r.height)}catch(e){}}));
+  g.globalAlpha=1;return c}
+function cmpWait(ms){const ls=[];Object.values(CMP.maps).forEach(m=>m.eachLayer(l=>{if(l.isLoading&&l.isLoading())ls.push(l)}));return Promise.race([Promise.all(ls.map(l=>new Promise(r=>l.once('load',r)))),new Promise(r=>setTimeout(r,ms))]).then(()=>new Promise(r=>setTimeout(r,200)))}
+function cmpCredits(){const c=new Set();if(LIVE&&!CMP.sat)c.add('Basemap © Esri, HERE, Garmin');if(CMP.sat)c.add('Imagery: Sentinel-2 cloudless – s2maps.eu by EOX IT Services GmbH (contains modified Copernicus Sentinel data) and NASA GIBS / MODIS Terra');if(CMP.theme!=='none')c.add(THEMES[CMP.theme].src);c.add('Boundaries: geoBoundaries; protected areas: UNEP-WCMC & IUCN WDPA');return'Sources: '+[...c].join(' · ')}
+const cmpAreaName=()=>CMP.area.k==='site'?CMP.area.n+(CMP.area.st?', '+CMP.area.st+' State':''):CMP.area.k==='state'?CMP.area.n+' State':'Nigeria';
+const cmpTitle=()=>CMP.theme==='none'?'Satellite imagery':THEMES[CMP.theme].n;
+async function cmpDownload(ys,sheet){ys=ys.filter(y=>CMP.maps[y]).sort((a,b)=>a-b);if(!ys.length)return;const bs=$$('#cmpv .cmp-f button');bs.forEach(b=>b.disabled=true);toast('Preparing image…');
+  try{await cmpWait(9000);const leg=CMP.theme==='none'?[]:THEMES[CMP.theme].leg(ys[ys.length-1]);
+    if(!sheet){for(const y of ys){const m=CMP.maps[y];const img=m._cmpImg?' · '+m._cmpImg.n:'';const key=cmpKey(y);
+        const c=frame(capLeaflet(m,2),{m,title:`${cmpTitle()} · ${y}`,sub:cmpAreaName()+img,leg:CMP.theme==='none'?[]:THEMES[CMP.theme].leg(y),credits:cmpCredits(),summary:key?`${cmpAreaName()}, ${y}: ${key}.`:''});
+        await toPng(c,`nigeria_atlas_${CMP.theme}_${y}.png`);await new Promise(r=>setTimeout(r,400))}}
+    else{const shots=ys.map(y=>[y,capLeaflet(CMP.maps[y],2)]);const n=ys.length,cols=n<=1?1:n<=4?2:n<=9?3:4,rows=Math.ceil(n/cols);const S=2,tw=shots[0][1].width/S,th=shots[0][1].height/S,sc=Math.min(1,(cols>2?380:520)/tw),pw=tw*sc,ph=th*sc,gap=12,pad=22,lab=22;
+      const W=Math.max(pad*2+cols*pw+(cols-1)*gap,760);const crL=wrapLines(cmpCredits(),W-pad*2,11);const sS=ys.map(y=>areaStats(CMP.area,y));const sumL=wrapLines(sumText(CMP.area,sS[sS.length-1],sS.length>1?sS[0]:null),W-pad*2,13);
+      const H=pad+62+rows*(ph+lab+gap)+(leg.length?30:0)+(sumL.length?sumL.length*18+8:0)+crL.length*15+pad+16;
+      const c=document.createElement('canvas');c.width=W*S;c.height=H*S;const g=c.getContext('2d');g.scale(S,S);g.fillStyle='#fff';g.fillRect(0,0,W,H);
+      g.fillStyle='#15231a';g.font='800 22px system-ui,sans-serif';g.fillText(`${cmpTitle()}, ${ys.length===2?ys.join(' and '):ys[0]+'–'+ys[ys.length-1]}`,pad,pad+22);g.font='13px system-ui,sans-serif';g.fillStyle='#56655b';g.fillText(cmpAreaName()+(ys.length>2?` · ${ys.join(', ')}`:''),pad,pad+44);
+      shots.forEach(([y,s],i)=>{const x=pad+(i%cols)*(pw+gap),yy=pad+62+Math.floor(i/cols)*(ph+lab+gap);g.fillStyle='#15231a';g.font='800 15px system-ui,sans-serif';g.fillText(y,x,yy+15);const k=cmpKey(y);if(k){g.font='12px system-ui,sans-serif';g.fillStyle='#56655b';g.fillText(k,x+44,yy+15)}g.drawImage(s,x,yy+lab,pw,ph);g.lineWidth=1;g.strokeStyle='#d3dccf';g.strokeRect(x+.5,yy+lab+.5,pw-1,ph-1)});
+      let y=pad+62+rows*(ph+lab+gap);if(leg.length){let x=pad;g.font='12px system-ui,sans-serif';leg.forEach(([col,nm])=>{const w=g.measureText(nm).width;if(x+w+30>W-pad){x=pad;y+=16}g.fillStyle=col;g.fillRect(x,y+4,12,12);g.strokeStyle='rgba(0,0,0,.25)';g.strokeRect(x+.5,y+4.5,11,11);g.fillStyle='#15231a';g.fillText(nm,x+17,y+14);x+=w+32});y+=30}
+      if(sumL.length){g.font='13px system-ui,sans-serif';g.fillStyle='#15231a';sumL.forEach(l=>{g.fillText(l,pad,y+12);y+=18});y+=8}
+      g.font='11px system-ui,sans-serif';g.fillStyle='#56655b';crL.forEach(l=>{g.fillText(l,pad,y+11);y+=15});g.font='700 11px system-ui,sans-serif';g.fillStyle='#1d6b3c';g.fillText(`Nigeria Forest Reserves Atlas · ${CONFIG.siteUrl.replace(/^https?:\/\//,'')} · made ${today}`,pad,y+14);
+      await toPng(c,`nigeria_atlas_${CMP.theme}_${ys.join('_')}.png`)}
+    track('compare/download','Downloaded comparison')}
+  catch(e){toast('The image could not be created: '+(e.message||e))}finally{bs.forEach(b=>b.disabled=false);cmpSelBar()}}
+function cmpSummary(){const el=$('#cmp-sum');if(!el||!CHG||!CMP.area)return;const ys=[...CMP.years].sort((a,b)=>a-b);const S=ys.map(y=>areaStats(CMP.area,y));const a=CMP.area;
+  const rows=[['Tree cover lost in the year (ha)',x=>x.loss!=null?fmt.format(Math.round(x.loss)):'–'],['Lost since 2001 (ha)',x=>x.cum!=null?fmt.format(Math.round(x.cum)):'–'],['Rainfall (mm)'+(a.k==='site'?', state':''),x=>x.rain!=null?fmt.format(Math.round(x.rain)):'–'],['Rainfall vs 1991–2020',x=>x.rain!=null?sgn(Math.round((x.rain/x.rainN-1)*100),fmt.format)+'%':'–'],['Aridity index',x=>x.ai!=null?x.ai.toFixed(2):'–'],
+    ...[[1,'Trees'],[3,'Crops'],[6,'Rangeland'],[4,'Built-up'],[5,'Bare ground']].map(([ci,n])=>[n+' %',x=>{const v=x.lcSite||x.lc;return v?fmt1.format(v[ci]):'–'}])];
+  CMP.sumRows=rows.map(([k,f])=>Object.fromEntries([['indicator',k],...S.map(s=>[String(s.y),f(s)])]));CMP.sumTxt=sumText(a,S[S.length-1],S.length>1?S[0]:null);
+  el.innerHTML=`<div class="tbl-wrap" style="max-height:none"><table class="dt"><thead><tr><th>${esc(cmpAreaName())}</th>${ys.map(y=>`<th class="n">${y}</th>`).join('')}</tr></thead><tbody>${rows.map(([k,f])=>`<tr><td>${esc(k)}</td>${S.map(s=>`<td class="n">${f(s)}</td>`).join('')}</tr>`).join('')}</tbody></table></div><p class="tl-txt">${esc(CMP.sumTxt)}</p><div class="tl-row"><button type="button" class="btn sm" id="cmp-copy">Copy summary</button><button type="button" class="btn sm" id="cmp-csv">Download table (CSV)</button></div>`;
+  $('#cmp-copy').onclick=()=>copy(CMP.sumTxt+` Source: Nigeria Forest Reserves Atlas, ${CONFIG.siteUrl} (accessed ${today}).`);$('#cmp-csv').onclick=()=>saveFile(`summary_${cmpAreaName().toLowerCase().replace(/\W+/g,'_')}_${ys.join('_')}.csv`,toCSV(CMP.sumRows),'text/csv')}
+function initCompare(){document.body.insertAdjacentHTML('beforeend',`<section class="cmpv" id="cmpv" hidden role="dialog" aria-modal="true" aria-labelledby="cmp-title">
+  <header class="cmp-h"><h2 id="cmp-title">Compare years</h2><label class="cmp-area">Area <select id="cmp-area"></select></label><button type="button" class="btn sm" id="cmp-x">Close ✕</button></header>
+  <div class="cmp-ctl"><div class="cmp-step"><span class="n" aria-hidden="true">1</span><div><div class="lbl">What to show</div><div class="chips" id="cmp-th"></div><div class="cmp-opts"><label class="toggle"><input type="checkbox" id="cmp-sat"> Satellite image of each year underneath</label><label class="toggle"><input type="checkbox" id="cmp-early"> Show earlier loss in orange</label></div></div></div>
+   <div class="cmp-step"><span class="n" aria-hidden="true">2</span><div><div class="lbl">Years to compare <span id="cmp-n"></span> · click to add or remove (up to ${CMP_MAX})</div><div class="ychips" id="cmp-ys"></div></div></div></div>
+  <div class="cmp-grid" id="cmp-grid"></div>
+  <div class="cmp-f" role="group" aria-label="Legend and downloads"><div class="lgd" id="cmp-leg"></div><div class="cmp-dl"><span class="lbl">Tick the maps you want, then</span><button type="button" class="btn sm primary" id="cmp-dl1">Download as one image</button><button type="button" class="btn sm" id="cmp-dln">Download each separately</button><button type="button" class="btn sm" id="cmp-all">Tick all</button><button type="button" class="btn sm" id="cmp-sumb" aria-expanded="false">Summary table</button></div><div id="cmp-sum" hidden></div></div></section>`);
+  $('#cmp-x').onclick=cmpClose;document.addEventListener('keydown',e=>{if(e.key==='Escape'&&CMP.open){if(CMP.focus){CMP.focus=null;cmpLayout()}else cmpClose()}});
+  $('#cmp-sat').onchange=e=>{CMP.sat=e.target.checked;cmpBuild()};$('#cmp-early').onchange=e=>{TL.early=e.target.checked;cmpBuild()};
+  $('#cmp-dl1').onclick=()=>cmpDownload([...CMP.sel].filter(y=>CMP.years.includes(y)),true);$('#cmp-dln').onclick=()=>cmpDownload([...CMP.sel].filter(y=>CMP.years.includes(y)),false);
+  $('#cmp-all').onclick=()=>{const all=CMP.years.every(y=>CMP.sel.has(y));CMP.sel=new Set(all?[]:CMP.years);$('#cmp-all').textContent=all?'Tick all':'Untick all';cmpHeads();cmpSelBar()};
+  $('#cmp-sumb').onclick=()=>{const s=$('#cmp-sum');s.hidden=!s.hidden;$('#cmp-sumb').setAttribute('aria-expanded',!s.hidden);cmpLayout()};
+  addEventListener('resize',()=>{if(CMP.open){clearTimeout(CMP.rt);CMP.rt=setTimeout(cmpLayout,200)}})}
 
 /* ---------- visit view ---------- */
 function buildVisit(){
