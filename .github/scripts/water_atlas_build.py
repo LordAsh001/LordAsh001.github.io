@@ -693,6 +693,29 @@ atlas = {"meta": meta, "cats": CATS, "f": F, "st": [{"n": s["n"], "c": s["c"], "
          "dhs": DHS, "wb": WB, "wp": WP, "fl": FL, "ev": EV or PREV.get("ev"), "wiki": {k: v for k, v in EXTRA.items() if v} or PREV.get("wiki"),
          "rain": RAIN, "sdg": SDG, "ww": WW,
          "gauges": [{k: g[k] for k in ("id", "river", "place", "la", "lo", "mean", "record")} for g in GAUGES_OUT] if GAUGES_OUT else PREV.get("gauges")}
+# ---------------------------------------------------------------- repair invalid polygons (needed for clean GIS exports)
+import shapely as _shp
+def _valid_mp(c):
+    try:
+        g = shape({"type": "MultiPolygon", "coordinates": c})
+        if g.is_valid: return c
+        g = _shp.set_precision(_shp.make_valid(g), 0.001)
+        out, stack = [], [g]
+        while stack:
+            x = stack.pop()
+            if x.geom_type == "Polygon" and not x.is_empty and x.area > 0: out.append(x)
+            elif hasattr(x, "geoms"): stack.extend(x.geoms)
+        if not out: return None
+        return [[[[round(px, 3), round(py, 3)] for px, py in ring.coords] for ring in [p.exterior, *p.interiors]] for p in out]
+    except Exception:
+        return c
+for _f in atlas["f"]:
+    if _f.get("g"):
+        _g = _valid_mp(_f["g"])
+        if _g is None: _f.pop("g")   # degenerate outline: keep the dam point only
+        else: _f["g"] = _g
+for _k in ("lakes", "bas"):
+    for _x in (atlas.get(_k) or []): _x["g"] = _valid_mp(_x["g"]) or _x["g"]
 (OUT / "atlas.json").write_text(json.dumps(atlas, separators=(",", ":"), ensure_ascii=False))
 if GAUGES_OUT: (OUT / "gauges.json").write_text(json.dumps({"refreshed": TODAY, "base": "1991–2020", "g": GAUGES_OUT}, separators=(",", ":")))
 if WPTS: (OUT / "waterpoints.json").write_text(json.dumps(WPTS, separators=(",", ":")))
