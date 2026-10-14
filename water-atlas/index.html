@@ -970,6 +970,25 @@ body.resizing.vert,body.resizing.vert *{cursor:row-resize!important}
 .cnote{font-size:12px;color:var(--muted);margin-top:3px}
 .cond .muted{color:var(--muted)}
 .cmore{margin-top:8px;font-size:13px}.cmore summary{cursor:pointer;font-weight:600}
+/* ---------- GIS export dialog ---------- */
+.gx-dlg{width:min(640px,calc(100vw - 32px));max-height:calc(100vh - 40px);border:1px solid var(--line);border-radius:14px;background:var(--panel);color:var(--ink);padding:18px 20px;box-shadow:var(--shadow)}
+.gx-dlg::backdrop{background:rgba(0,0,0,.35)}
+.gx-head{display:flex;align-items:center;justify-content:space-between;gap:10px}.gx-head h2{margin:0;font-size:20px}
+.gx-dlg fieldset{border:1px solid var(--line);border-radius:10px;margin:12px 0;padding:10px 12px}
+.gx-dlg legend{font-weight:700;font-size:13px;padding:0 4px}
+.gx-radios{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:4px 12px;font-size:13.5px;margin-bottom:8px}
+.gx-dlg select{width:100%}
+.gx-layers{display:grid;gap:6px;max-height:240px;overflow:auto}
+.gx-l{display:flex;gap:8px;align-items:flex-start;font-size:13.5px}.gx-l small{display:block;color:var(--muted);font-size:11.5px}
+.gx-sum{font-size:13px;background:var(--bg);border-radius:8px;padding:10px 12px;margin-top:4px}
+.gx-list{margin:4px 0 6px;padding-left:18px}
+.gx-foot{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:12px}
+.gx-warn{color:var(--s1)}
+.gx-drawbar{position:absolute;left:50%;bottom:24px;transform:translateX(-50%);z-index:1100;display:flex;gap:8px;align-items:center;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:8px 10px;box-shadow:var(--shadow);font-size:13px}
+.gx-drawbar[hidden]{display:none}
+.maptools{pointer-events:none}.maptools>*{pointer-events:auto}.maptools>div:not(.seg):not(.note){pointer-events:none}.maptools>div:not(.seg):not(.note)>*{pointer-events:auto}
+.gx-drawing .leaflet-interactive{pointer-events:none!important}
+.gx-drawing,.gx-drawing .leaflet-interactive{cursor:crosshair!important}
 /* ---------- flowing-water backdrop (behind every page; the map itself stays clear) ---------- */
 body{background:var(--bg);background:linear-gradient(180deg,var(--bg) 0%,color-mix(in srgb,var(--bg) 88%,var(--lake)) 100%) fixed}
 body::before,body::after{content:"";position:fixed;left:0;pointer-events:none;z-index:-1;will-change:transform}
@@ -1101,10 +1120,11 @@ ol.refs li{margin:0 0 6px}
         <div class="maptools">
           <div class="seg" id="base" aria-label="Basemap"></div>
           <div class="seg" id="ovl" aria-label="Layers"></div>
-          <div style="display:flex;gap:6px"><button type="button" class="btn sm legbtn" id="laybtn" aria-expanded="false">Layers</button><button type="button" class="btn sm legbtn" id="legbtn">Legend</button></div>
+          <div style="display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end"><button type="button" class="btn sm gx-btn" data-gisexport title="Download map layers for a state, basin, LGA or your own area as Shapefile or GeoJSON">⤓ Download GIS data</button><button type="button" class="btn sm legbtn" id="laybtn" aria-expanded="false">Layers</button><button type="button" class="btn sm legbtn" id="legbtn">Legend</button></div>
           <div class="note" id="tilenote" hidden></div>
         </div>
         <div class="legend" id="legend"></div>
+        <div class="gx-drawbar" id="gx-drawbar" hidden role="toolbar" aria-label="Draw an area"><span class="gx-n">Click the map to add corner points</span><button type="button" class="btn sm" id="gx-undo">Undo</button><button type="button" class="btn sm primary" id="gx-fin" disabled>Finish area</button><button type="button" class="btn sm" id="gx-cancel">Cancel</button></div>
         <section class="sheet" id="sheet" hidden aria-label="Profile">
           <div class="sheet-h"><div id="sh-head"></div><button class="x" id="close" type="button" aria-label="Close profile">×</button><div class="actions" id="sh-act"></div></div>
           <div class="sheet-b" id="sh-body"></div>
@@ -1122,6 +1142,28 @@ ol.refs li{margin:0 0 6px}
     <section class="view" id="v-data" hidden><div class="page prose" id="data"></div></section>
   </main>
 </div>
+<dialog class="gx-dlg" id="gisdlg" aria-labelledby="gx-h">
+  <div class="gx-head"><h2 id="gx-h">Download GIS data</h2><button class="x" id="gx-close" type="button" aria-label="Close">×</button></div>
+  <p class="sm-note" style="margin-top:0">Choose an area, the layers you want and a file format. Files open in QGIS, ArcGIS and most GIS software. Everything is prepared in your browser.</p>
+  <fieldset><legend>1. Area of interest</legend>
+    <div class="gx-radios">
+      <label><input type="radio" name="gx-roi" value="state" checked> A state</label>
+      <label><input type="radio" name="gx-roi" value="basin"> A river basin</label>
+      <label><input type="radio" name="gx-roi" value="lga"> A local government area</label>
+      <label><input type="radio" name="gx-roi" value="draw"> Draw on the map</label>
+      <label><input type="radio" name="gx-roi" value="upload"> Upload a boundary</label>
+      <label><input type="radio" name="gx-roi" value="all"> All of Nigeria</label>
+    </div>
+    <div id="gx-pickrow"><select id="gx-pick" aria-label="Area"></select></div>
+    <div id="gx-drawrow" hidden><button type="button" class="btn sm" id="gx-draw">Draw an area on the map</button> <span class="sm-note">Click to add corners, then press Finish.</span></div>
+    <div id="gx-uprow" hidden><input type="file" id="gx-file" accept=".geojson,.json,.zip,application/geo+json,application/zip"> <div class="sm-note">GeoJSON, or a zipped shapefile, with polygons in WGS 84 (EPSG:4326).</div></div>
+  </fieldset>
+  <fieldset><legend>2. Layers <button type="button" class="linkbtn" id="gx-all">select all / none</button></legend><div class="gx-layers" id="gx-layers"></div></fieldset>
+  <fieldset><legend>3. Format</legend><select id="gx-fmt" aria-label="File format"><option value="shp">ESRI Shapefile (ZIP)</option><option value="geojson">GeoJSON (ZIP)</option></select></fieldset>
+  <div class="gx-sum" id="gx-sum" aria-live="polite"></div>
+  <div class="gx-foot"><span class="sm-note" id="gx-msg" aria-live="polite"></span><button type="button" class="btn primary" id="gx-go" disabled>Download</button></div>
+  <p class="sm-note" style="margin:10px 0 0">Features that touch the area are included whole (not clipped). Coordinates are WGS 84 (EPSG:4326). The ZIP includes a README with each layer’s source, licence and retrieval date. Ramsar wetlands are exported as points because WDPA boundaries may not be redistributed. GeoPackage is not offered yet.</p>
+</dialog>
 <div class="toast" id="toast" hidden></div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.js"></script>
 <script>
@@ -1414,6 +1456,7 @@ function watchlist(){return store('watch')||[]}
 function toggleWatch(f){let w=watchlist();w=w.includes(f.i)?w.filter(x=>x!==f.i):[...w,f.i];store('watch',w);return w.includes(f.i)}
 const nfmt=(v,u,d)=>v==null?null:(d?fmt1:fmt).format(v)+(u?' '+u:'');
 function select(f,fromMap){
+  if(window.__gxDrawing)return;
   if(!f)return;
   if($('#v-map').hidden){location.hash=f.i;return}
   const p=state.sel;if(p&&p!==f)unhi(p);
@@ -2062,7 +2105,7 @@ function buildData(){
   const unnamed=F.filter(f=>/^Unnamed/.test(f.n)).length;
   $('#data').innerHTML=`<h2 class="title">Data, sources and method</h2><p class="lede">This atlas joins global scientific databases with Nigerian government plans, national surveys and open encyclopaedias, and records where every fact came from. It is built to be checked, cited and corrected.</p>
   <h3>Download the dataset</h3><p>${fmt.format(F.length)} records, version ${esc(DATA.meta.version)}, refreshed ${esc(DATA.meta.refreshed)}. CSV opens in Excel or R; GeoJSON opens in QGIS, ArcGIS and most web maps. The full build files (river network, roads, water points, flood-risk LGAs, gauge climatologies) are in the <a href="data/atlas.json">data folder</a>. The floods and public health figures (E. coli by state, cholera by state and year, flood-risk counts and pollution hotspots, each with its source) are in <a href="data/flood_health.json">flood_health.json</a>, and every dam’s operator and condition record, with sources, is in the CSV above and in <a href="data/curated.json">curated.json</a>.</p>
-  <div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn primary" id="dl-csv" type="button">Download CSV</button><button class="btn" id="dl-geo" type="button">Download GeoJSON</button><button class="btn" id="dl-cite" type="button">Copy dataset citation</button></div>
+  <div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn primary" id="dl-csv" type="button">Download CSV</button><button class="btn" id="dl-geo" type="button">Download GeoJSON</button><button class="btn" type="button" data-gisexport>Download GIS data for an area (Shapefile)</button><button class="btn" id="dl-cite" type="button">Copy dataset citation</button></div>
   <pre class="cite" style="margin-top:10px">${esc(dsCite)}</pre>
   <p class="sm-note">Dam capacity in the CSV: every figure comes with its source and a definition column. Where the source does not say what the figure measures (gross storage, live storage or volume at full supply level), the definition reads <b>not stated</b>. A blank means there is no figure, never that the definition was skipped. <code>capacity_figures_disagree</code> is <b>yes</b> when usable figures differ by more than a quarter; FAO figures the atlas rejects as unit or typing errors are explained in <code>capacity_fao_note</code> and left out of that check.</p>
   <h3 id="archive">Historical data archive</h3><div id="archive-body"><p class="muted">Loading the archive catalogue…</p></div>
@@ -2084,8 +2127,9 @@ function buildData(){
   addReportSources();
   renderArchive();
   $('#dl-csv').onclick=async()=>{await x9('fao_dams.json');saveFile('nigeria_water_atlas.csv',toCSV(F.map(exportRow)),'text/csv')};
-  $('#dl-geo').onclick=()=>saveFile('nigeria_water_atlas.geojson',JSON.stringify({type:'FeatureCollection',features:F.map(f=>({type:'Feature',properties:exportRow(f),geometry:f.ln?{type:'MultiLineString',coordinates:f.ln}:f.g?{type:'MultiPolygon',coordinates:f.g}:f.la!=null?{type:'Point',coordinates:[f.lo,f.la]}:null}))}),'application/geo+json');
+  $('#dl-geo').onclick=()=>saveFile('nigeria_water_atlas.geojson',JSON.stringify({type:'FeatureCollection',features:F.map(f=>({type:'Feature',properties:exportRow(f),geometry:f.ln?{type:'MultiLineString',coordinates:f.ln}:f.g&&f.c!==6?{type:'MultiPolygon',coordinates:f.g}:f.la!=null?{type:'Point',coordinates:[f.lo,f.la]}:null}))}),'application/geo+json');
   $('#dl-cite').onclick=()=>copy(dsCite);
+  document.querySelectorAll('#data [data-gisexport]').forEach(b=>b.onclick=()=>window.openGisExport&&window.openGisExport());
 }
 </script>
 <script>
@@ -2911,6 +2955,231 @@ async function buildWq(){
       else if(e.key==='Home'||e.key==='Enter'){setW(null,true);e.preventDefault()}}});
   addEventListener('resize',()=>{const w=root.style.getPropertyValue('--railw');if(w&&parseInt(w)>maxW())setW(maxW(),false);aria()});
   aria();
+})();
+</script>
+<script>
+/* ---------- GIS export by region of interest (ROI): Shapefile ZIP or GeoJSON, built in the browser ---------- */
+(function(){
+const GX={};
+/* ---- byte helpers ---- */
+const enc=new TextEncoder();
+const CRC=(()=>{const t=new Uint32Array(256);for(let n=0;n<256;n++){let c=n;for(let k=0;k<8;k++)c=c&1?0xEDB88320^(c>>>1):c>>>1;t[n]=c>>>0}return t})();
+const crc32=b=>{let c=0xFFFFFFFF;for(let i=0;i<b.length;i++)c=CRC[(c^b[i])&255]^(c>>>8);return(c^0xFFFFFFFF)>>>0};
+function zipStore(files){/* files: [{name,data:Uint8Array}] -> Uint8Array (stored, no compression; UTF-8 names) */
+  const parts=[],cd=[];let off=0;const d=new Date(),dt=((d.getFullYear()-1980)<<9)|((d.getMonth()+1)<<5)|d.getDate(),tm=(d.getHours()<<11)|(d.getMinutes()<<5)|(d.getSeconds()>>1);
+  for(const f of files){const nm=enc.encode(f.name),c=crc32(f.data),h=new DataView(new ArrayBuffer(30));
+    h.setUint32(0,0x04034b50,true);h.setUint16(4,20,true);h.setUint16(6,0x0800,true);h.setUint16(8,0,true);h.setUint16(10,tm,true);h.setUint16(12,dt,true);h.setUint32(14,c,true);h.setUint32(18,f.data.length,true);h.setUint32(22,f.data.length,true);h.setUint16(26,nm.length,true);h.setUint16(28,0,true);
+    parts.push(new Uint8Array(h.buffer),nm,f.data);
+    const e=new DataView(new ArrayBuffer(46));e.setUint32(0,0x02014b50,true);e.setUint16(4,20,true);e.setUint16(6,20,true);e.setUint16(8,0x0800,true);e.setUint16(10,0,true);e.setUint16(12,tm,true);e.setUint16(14,dt,true);e.setUint32(16,c,true);e.setUint32(20,f.data.length,true);e.setUint32(24,f.data.length,true);e.setUint16(28,nm.length,true);e.setUint32(42,off,true);
+    cd.push(new Uint8Array(e.buffer),nm);off+=30+nm.length+f.data.length}
+  const cdLen=cd.reduce((a,b)=>a+b.length,0),end=new DataView(new ArrayBuffer(22));end.setUint32(0,0x06054b50,true);end.setUint16(8,files.length,true);end.setUint16(10,files.length,true);end.setUint32(12,cdLen,true);end.setUint32(16,off,true);
+  return cat([...parts,...cd,new Uint8Array(end.buffer)])}
+function cat(arr){const n=arr.reduce((a,b)=>a+b.length,0),o=new Uint8Array(n);let p=0;for(const a of arr){o.set(a,p);p+=a.length}return o}
+async function unzip(buf){/* minimal reader: stored or deflated entries */
+  const v=new DataView(buf),u8=new Uint8Array(buf);let e=-1;for(let i=buf.byteLength-22;i>=Math.max(0,buf.byteLength-65557);i--)if(v.getUint32(i,true)===0x06054b50){e=i;break}
+  if(e<0)throw new Error('This is not a valid ZIP file.');
+  const n=v.getUint16(e+10,true);let p=v.getUint32(e+16,true);const out={};
+  for(let i=0;i<n;i++){const method=v.getUint16(p+10,true),csz=v.getUint32(p+20,true),nl=v.getUint16(p+28,true),xl=v.getUint16(p+30,true),cl=v.getUint16(p+32,true),lo=v.getUint32(p+42,true);
+    const name=new TextDecoder().decode(u8.subarray(p+46,p+46+nl));p+=46+nl+xl+cl;
+    const ds=lo+30+v.getUint16(lo+26,true)+v.getUint16(lo+28,true),raw=u8.subarray(ds,ds+csz);
+    if(method===0)out[name]=raw.slice();else if(method===8){if(typeof DecompressionStream==='undefined')throw new Error('This browser cannot unpack compressed ZIP files.');out[name]=new Uint8Array(await new Response(new Blob([raw]).stream().pipeThrough(new DecompressionStream('deflate-raw'))).arrayBuffer())}}
+  return out}
+/* ---- geometry ---- */
+const ringArea=r=>{let s=0;for(let i=0,j=r.length-1;i<r.length;j=i++)s+=(r[j][0]*r[i][1]-r[i][0]*r[j][1]);return s/2};/* >0 = counter-clockwise */
+const closeRing=r=>{const a=r[0],b=r[r.length-1];return a[0]===b[0]&&a[1]===b[1]?r:r.concat([a])};
+function toParts(g){/* normalise to {t:'Point'|'Line'|'Poly', c} with c: [x,y] | [[[x,y]...]...] | [[[[x,y]...]...]...] */
+  const[t,c]=g;if(t==='Point')return{t:'Point',c};if(t==='LineString')return{t:'Line',c:[c]};if(t==='MultiLineString')return{t:'Line',c};if(t==='Polygon')return{t:'Poly',c:[c]};if(t==='MultiPolygon')return{t:'Poly',c};throw new Error('Unsupported geometry '+t)}
+function bboxOf(p){let a=[1e9,1e9,-1e9,-1e9];const f=q=>{a[0]=Math.min(a[0],q[0]);a[1]=Math.min(a[1],q[1]);a[2]=Math.max(a[2],q[0]);a[3]=Math.max(a[3],q[1])};
+  if(p.t==='Point')f(p.c);else if(p.t==='Line')p.c.forEach(l=>l.forEach(f));else p.c.forEach(pl=>pl.forEach(r=>r.forEach(f)));return a}
+const bbHit=(a,b)=>a[0]<=b[2]&&a[2]>=b[0]&&a[1]<=b[3]&&a[3]>=b[1];
+function inRing(r,x,y){let ins=false;for(let i=0,j=r.length-1;i<r.length;j=i++){const xi=r[i][0],yi=r[i][1],xj=r[j][0],yj=r[j][1];if(((yi>y)!==(yj>y))&&(x<(xj-xi)*(y-yi)/(yj-yi)+xi))ins=!ins}return ins}
+const inPoly=(pl,x,y)=>inRing(pl[0],x,y)&&!pl.slice(1).some(h=>inRing(h,x,y));
+const inMulti=(mp,x,y)=>mp.some(pl=>inPoly(pl,x,y));
+function segX(a,b,c,d){const o=(p,q,r)=>Math.sign((q[0]-p[0])*(r[1]-p[1])-(q[1]-p[1])*(r[0]-p[0]));const o1=o(a,b,c),o2=o(a,b,d),o3=o(c,d,a),o4=o(c,d,b);return o1!==o2&&o3!==o4}
+function makeROI(mp,name,how){/* mp: MultiPolygon coordinates (lon,lat) */
+  mp=mp.map(pl=>pl.map(closeRing));const P={t:'Poly',c:mp},bb=bboxOf(P),segs=[];
+  mp.forEach(pl=>pl.forEach(r=>{for(let i=0;i<r.length-1;i++){const a=r[i],b=r[i+1];segs.push([a,b,Math.min(a[0],b[0]),Math.min(a[1],b[1]),Math.max(a[0],b[0]),Math.max(a[1],b[1])])}}));
+  let km=0;mp.forEach(pl=>pl.forEach((r,i)=>{const lat0=r.reduce((s,q)=>s+q[1],0)/r.length,k=Math.cos(lat0*Math.PI/180);const a=Math.abs(ringArea(r.map(q=>[q[0]*111.32*k,q[1]*110.57])));km+=i?-a:a}));
+  return{mp,bb,segs,name,how,km}}
+function hits(roi,p){const b=bboxOf(p);if(!bbHit(b,roi.bb))return false;
+  if(p.t==='Point')return inMulti(roi.mp,p.c[0],p.c[1]);
+  const lines=p.t==='Line'?p.c:p.c.flat(1);
+  for(const l of lines)for(const q of l)if(inMulti(roi.mp,q[0],q[1]))return true;
+  if(p.t==='Poly'){const r0=roi.mp[0][0][0];if(inMulti(p.c,r0[0],r0[1]))return true}
+  for(const l of lines)for(let i=0;i<l.length-1;i++){const a=l[i],c=l[i+1],x0=Math.min(a[0],c[0]),x1=Math.max(a[0],c[0]),y0=Math.min(a[1],c[1]),y1=Math.max(a[1],c[1]);
+    for(const s of roi.segs){if(s[2]>x1||s[4]<x0||s[3]>y1||s[5]<y0)continue;if(segX(a,c,s[0],s[1]))return true}}
+  return false}
+function selfCrosses(r){const n=r.length-1;for(let i=0;i<n;i++)for(let j=i+2;j<n;j++){if(i===0&&j===n-1)continue;if(segX(r[i],r[i+1],r[j],r[j+1]))return true}return false}
+/* ---- shapefile writer ---- */
+const SHPT={Point:1,Line:3,Poly:5};
+const PRJ='GEOGCS["GCS_WGS_1984",DATUM["D_WGS_1984",SPHEROID["WGS_1984",6378137.0,298.257223563]],PRIMEM["Greenwich",0.0],UNIT["Degree",0.0174532925199433]]';
+function shpPack(rows,type){/* rows: [{p:parts}] all same type */
+  const recs=rows.map(r=>{const p=r.p;if(type==='Point'){const b=new DataView(new ArrayBuffer(20));b.setInt32(0,1,true);b.setFloat64(4,p.c[0],true);b.setFloat64(12,p.c[1],true);return new Uint8Array(b.buffer)}
+    let parts;if(type==='Line')parts=p.c;else parts=p.c.flatMap(pl=>pl.map((r,i)=>{r=closeRing(r);const ccw=ringArea(r)>0;return(i===0?ccw:!ccw)?r.slice().reverse():r}));/* outer rings clockwise, holes counter-clockwise */
+    const np=parts.reduce((a,l)=>a+l.length,0),bb=bboxOf({t:'Line',c:parts}),b=new DataView(new ArrayBuffer(44+4*parts.length+16*np));
+    b.setInt32(0,SHPT[type],true);[0,1,2,3].forEach(i=>b.setFloat64(4+8*i,bb[i],true));b.setInt32(36,parts.length,true);b.setInt32(40,np,true);
+    let k=0,o=44+4*parts.length;parts.forEach((l,i)=>{b.setInt32(44+4*i,k,true);l.forEach(q=>{b.setFloat64(o,q[0],true);b.setFloat64(o+8,q[1],true);o+=16});k+=l.length});return new Uint8Array(b.buffer)});
+  const all=rows.length?rows.map(r=>bboxOf(r.p)).reduce((a,b)=>[Math.min(a[0],b[0]),Math.min(a[1],b[1]),Math.max(a[2],b[2]),Math.max(a[3],b[3])]):[0,0,0,0];
+  const head=len=>{const h=new DataView(new ArrayBuffer(100));h.setInt32(0,9994,false);h.setInt32(24,len/2,false);h.setInt32(28,1000,true);h.setInt32(32,SHPT[type],true);all.forEach((v,i)=>h.setFloat64(36+8*i,v,true));return new Uint8Array(h.buffer)};
+  const shpParts=[],shx=new DataView(new ArrayBuffer(8*recs.length));let off=100;
+  recs.forEach((c,i)=>{const rh=new DataView(new ArrayBuffer(8));rh.setInt32(0,i+1,false);rh.setInt32(4,c.length/2,false);shpParts.push(new Uint8Array(rh.buffer),c);shx.setInt32(8*i,off/2,false);shx.setInt32(8*i+4,c.length/2,false);off+=8+c.length});
+  return{shp:cat([head(off),...shpParts]),shx:cat([head(100+8*recs.length),new Uint8Array(shx.buffer)])}}
+const SN0={"year_completed": "year_built", "dam_height_m": "height_m", "crest_length_m": "crest_m", "capacity_million_m3": "cap_mm3", "capacity_source": "cap_src", "capacity_definition": "cap_def", "capacity_fao_million_m3": "cap_fao", "capacity_fao_definition": "cap_fao_df", "capacity_fao_note": "cap_fao_nt", "capacity_other": "cap_other", "capacity_figures_disagree": "cap_differ", "operator_basis": "op_basis", "operator_source": "op_source", "year_completed_source": "year_src", "dam_height_source": "height_src", "operating_status": "status", "status_latest_report": "status_dt", "status_source": "status_src", "status_note": "status_nt", "last_inspection_or_rehabilitation": "last_insp", "last_inspection_date": "insp_date", "last_inspection_source": "insp_src", "condition_checked": "checked", "reservoir_area_km2": "area_km2", "mean_depth_m": "depth_m", "average_inflow_m3s": "inflow_m3s", "river_length_km": "river_km", "verification_level": "verif_lvl", "location_basis": "loc_basis", "location_note": "loc_note", "hh_water_ecoli_pct_2016_17": "ecoli_hh", "hh_very_high_risk_pct": "ecoli_vhi", "source_water_ecoli_pct": "ecoli_src", "cholera_cases_2021": "chol_2021", "cholera_cases_2022": "chol_2022", "cholera_cases_2023": "chol_2023", "cholera_cases_2024_to_sep": "chol_2024", "lgas_high_flood_risk": "lga_hi_fl", "lgas_total": "lga_total", "area_km2_nigeria": "area_km2", "drains_inland": "endorheic", "second_source": "source2", "protected_planet": "pp_link", "headquarters": "hq"};
+function shortNames(keys){const used=new Set(),m={};for(const k of keys){if(SN0[k]&&!used.has(SN0[k].toUpperCase())){used.add(SN0[k].toUpperCase());m[k]=SN0[k];continue}let b=k.replace(/[^A-Za-z0-9_]/g,'_');let s=b.length<=10?b:b.split('_').filter(Boolean).map((w,i,a)=>w.slice(0,Math.max(1,Math.floor(10/a.length)))).join('_').slice(0,10);s=s.replace(/_+$/,'')||'f';let t=s,n=1;while(used.has(t.toUpperCase())){const suf=String(n++);t=s.slice(0,10-suf.length)+suf}used.add(t.toUpperCase());m[k]=t}return m}
+function dbf(rows,keys){/* rows: [{a:attrs}] -> {bytes, fields:[{k,short,type,len,dec}], truncated} */
+  const sn=shortNames(keys);let truncated=0;
+  const fields=keys.map(k=>{const vals=rows.map(r=>r.a[k]).filter(v=>v!==''&&v!=null);const num=vals.length>0&&vals.every(v=>typeof v==='number'&&isFinite(v));
+    if(num){const dec=Math.min(6,Math.max(0,...vals.map(v=>{const s=String(v);return s.includes('e')?6:(s.split('.')[1]||'').length})));const L=Math.max(1,...vals.map(v=>v.toFixed(dec).length));if(L<=19)return{k,short:sn[k],type:'N',len:L,dec}}
+    const len=Math.min(254,Math.max(1,...vals.map(v=>enc.encode(typeof v==='boolean'?(v?'yes':'no'):String(v)).length)));return{k,short:sn[k],type:'C',len,dec:0}});
+  const recLen=1+fields.reduce((a,f)=>a+f.len,0),hl=32+32*fields.length+1,out=new Uint8Array(hl+recLen*rows.length+1),v=new DataView(out.buffer),d=new Date();
+  out[0]=3;out[1]=d.getFullYear()-1900;out[2]=d.getMonth()+1;out[3]=d.getDate();v.setUint32(4,rows.length,true);v.setUint16(8,hl,true);v.setUint16(10,recLen,true);
+  fields.forEach((f,i)=>{const o=32+32*i;enc.encode(f.short).forEach((b,j)=>out[o+j]=b);out[o+11]=f.type.charCodeAt(0);out[o+16]=f.len;out[o+17]=f.dec});out[hl-1]=0x0D;
+  let o=hl;rows.forEach(r=>{out[o++]=0x20;fields.forEach(f=>{let val=r.a[f.k];let b;
+    if(f.type==='N'){const s=val===''||val==null||typeof val!=='number'?'':val.toFixed(f.dec);b=enc.encode(s.padStart(f.len,' '))}
+    else{let s=val==null?'':typeof val==='boolean'?(val?'yes':'no'):String(val);b=enc.encode(s);if(b.length>f.len){truncated++;let cut=f.len;while(cut>0&&(b[cut]&0xC0)===0x80)cut--;b=b.subarray(0,cut)}const pad=new Uint8Array(f.len).fill(0x20);pad.set(b);b=pad}
+    out.set(b,o);o+=f.len})});out[o]=0x1A;
+  return{bytes:out,fields,truncated}}
+/* ---- layers ---- */
+const isNum=v=>typeof v==='number'&&isFinite(v);
+const clean=o=>{const r={};for(const[k,v]of Object.entries(o))r[k]=v==null?'':Array.isArray(v)?v.join('; '):v;return r};
+const ptOf=f=>['Point',[f.lo,f.la]];
+const L_=[
+ {k:'dams',n:'Dams and reservoirs',g:'Point',src:'Global Dam Watch v1.0 (Lehner et al. 2024); FAO AQUASTAT; Wikidata; atlas operator and condition research (each record lists its sources)',lic:'Global Dam Watch: CC BY 4.0. Wikidata: CC0. Other fields: see the sources column of each record.',
+  get:async()=>{await x9('fao_dams.json');return F.filter(f=>f.c===0&&f.la!=null).map(f=>({g:ptOf(f),a:clean(exportRow(f))}))}},
+ {k:'reservoir_outlines',n:'Reservoir outlines',g:'Poly',src:'Global Dam Watch v1.0 reservoir polygons (Lehner et al. 2024)',lic:'CC BY 4.0',
+  get:async()=>F.filter(f=>f.c===0&&f.g&&f.gdw).map(f=>({g:['MultiPolygon',f.g],a:clean({id:f.i,name:f.n,state:f.s,river:f.river,capacity_million_m3:f.cap,reservoir_area_km2:f.akm,gdw_id:f.gdw,source:'Global Dam Watch v1.0'})}))},
+ {k:'unicef_dam_list',n:'Dams in the UNICEF list only',g:'Point',src:'Nigeria Dams layer, UNICEF Nigeria GIS (ArcGIS Online)',lic:'No licence stated by UNICEF. Check with UNICEF Nigeria before republishing. Coordinates are rounded to the nearest minute.',
+  get:async()=>{await x9('fao_dams.json');return F.filter(f=>f.c===1&&f.la!=null).map(f=>({g:ptOf(f),a:clean(exportRow(f))}))}},
+ {k:'rivers_named',n:'Named rivers',g:'Line',src:'Natural Earth 1:10m rivers; DIVA-GIS inland water; Ivo River digitised by the atlas (see geomsrc)',lic:'Natural Earth: public domain. DIVA-GIS: free for non-commercial use.',
+  get:async()=>F.filter(f=>f.c===7&&f.ln).map(f=>({g:['MultiLineString',f.ln],a:clean({id:f.i,name:f.n,states:f.s,length_km:f.rlen,flows_into:f.mouth,line_source:f.geomsrc,wikidata:f.wd||'',wikipedia:f.wt?f.wt.u:'',verification_level:f.v,sources:(f.src||[]).join(' | ')})}))},
+ {k:'river_network',n:'River network (all streams)',g:'Line',src:'DIVA-GIS inland water lines (Digital Chart of the World)',lic:'Free for non-commercial use (DIVA-GIS).',
+  get:async()=>[['p','perennial'],['i','intermittent']].flatMap(([k,t])=>((DATA.net||{})[k]||[]).map(l=>({g:['LineString',l],a:{flow:t,source:'DIVA-GIS / Digital Chart of the World'}})))},
+ {k:'water_bodies',n:'Lakes, reservoirs and swamps (areas)',g:'Poly',src:'DIVA-GIS inland water areas (Digital Chart of the World)',lic:'Free for non-commercial use (DIVA-GIS).',
+  get:async()=>(DATA.lakes||[]).map(l=>({g:['MultiPolygon',l.g],a:{name:l.n||'',type:l.t||'',source:'DIVA-GIS / Digital Chart of the World'}}))},
+ {k:'lakes_falls_springs',n:'Lakes, lagoons, waterfalls and springs (points)',g:'Point',src:'Wikidata and Wikipedia',lic:'Wikidata: CC0. Wikipedia text: CC BY-SA.',
+  get:async()=>{await x9('fao_dams.json');return F.filter(f=>[2,3,4,5,9].includes(f.c)&&f.la!=null).map(f=>({g:ptOf(f),a:clean(exportRow(f))}))}},
+ {k:'ramsar_sites',n:'Ramsar wetlands (points)',g:'Point',src:'Ramsar Sites Information Service; WDPA id where known',lic:'Points only. The official boundaries come from WDPA, whose terms do not allow redistribution; get them from protectedplanet.net.',
+  get:async()=>F.filter(f=>f.c===6&&f.la!=null).map(f=>({g:ptOf(f),a:clean({id:f.i,name:f.n,state:f.s,area_ha:f.a||f.ar||'',wdpa_id:f.w||'',protected_planet:f.w?'https://www.protectedplanet.net/'+f.w:'',verification_level:f.v,sources:(f.src||[]).join(' | ')})}))},
+ {k:'flood_gauges',n:'Flood-watch gauges',g:'Point',src:'GloFAS v4 (Copernicus EMS) model points used by the atlas flood watch',lic:'CC BY 4.0',
+  get:async()=>F.filter(f=>f.c===8&&f.la!=null).map(f=>({g:ptOf(f),a:clean({id:f.i,name:f.n,river:f.river,state:f.s,source:'GloFAS v4 via Open-Meteo Flood API'})}))},
+ {k:'rbda_headquarters',n:'River Basin Development Authority headquarters',g:'Point',src:'River Basin Development Authorities Act (Cap. R9); Wikipedia',lic:'Public information',
+  get:async()=>F.filter(f=>f.c===10&&f.la!=null).map(f=>({g:ptOf(f),a:clean({id:f.i,name:f.n,headquarters:f.hq,notes:f.notes,source:(f.src||[]).join(' | ')})}))},
+ {k:'river_basins',n:'River basins (HydroBASINS level 4, clipped to Nigeria)',g:'Poly',src:'HydroBASINS level 4 (Lehner & Grill 2013); names assigned by the atlas',lic:'Free to use with attribution (HydroSHEDS licence).',
+  get:async()=>(DATA.bas||[]).map(b=>({g:['MultiPolygon',b.g],a:clean({basin:b.name||'Basin '+b.pf,pfaf_id:b.pf,hybas_id:b.id,area_km2_nigeria:b.kmng,drains_inland:b.endo?'yes':'no',source:'HydroBASINS level 4'})}))},
+ {k:'flood_risk_lga',n:'Flood risk by LGA (2024)',g:'Poly',src:'UNICEF Nigeria, 2024 Nigeria Flood Risk Analysis (ArcGIS Online layer, LGA level)',lic:'No licence stated by UNICEF. Check with UNICEF Nigeria before republishing.',
+  get:async()=>{const d=await loadJSON('flood_lga.json');const R={H:'high',M:'medium',L:'low',N:'none'};return d.f.map(x=>({g:['MultiPolygon',x.g],a:{lga:x.n,state:x.s,overall_risk:R[x.r[0]]||'not rated',riverine:R[x.r[1]]||'',flash:R[x.r[2]]||'',coastal:R[x.r[3]]||'',comment:x.cm||'',source:d.src}}))}},
+ {k:'aquifers',n:'Aquifer types (hydrogeology)',g:'Poly',src:'Africa Groundwater Atlas country hydrogeology map, Nigeria v1.0 (British Geological Survey)',lic:'CC BY-SA (BGS). Derived files must keep the same licence.',
+  get:async()=>{const d=await x9('aquifers.json');return(d?d.f:[]).map(x=>({g:[x.t,x.g],a:{code:x.c,description:(d.codes[x.c]||[]).join(' – '),geology:x.geo||'',source:d.src}}))}},
+ {k:'water_points',n:'Water points (GRID3, 2020)',g:'Point',src:'eHealth Africa and Proxy Logics (2020), Water Points in Nigeria, GRID3 Nigeria',lic:'CC BY 4.0 (GRID3); check the GRID3 data portal for terms.',
+  get:async()=>{const d=await x9('waterpoints.json');return(d?d.p:[]).map(p=>({g:['Point',[p[0],p[1]]],a:{type:d.types[p[2]]||'',source:'GRID3 Nigeria (2020)'}}))}},
+ {k:'oil_spills',n:'Oil spills (NOSDRA register)',g:'Point',src:'NOSDRA oil spill incident register via Nigerian Oil Spill Monitor (oilspillmonitor.ng)',lic:'Public register',
+  get:async()=>{const O=await x9('oilspills.json');return(O?O.inc:[]).map(p=>({g:['Point',[p[1],p[0]]],a:{year:p[2]||'',cause:(SPC[p[3]]||SPC.other)[0],contaminant:SPK[p[4]]||'',barrels:isNum(p[5])?p[5]:'',habitat:SPH[p[6]]||'',state:p[7]||'',company:O.comp[p[8]]||'',source:O.src}}))}},
+ {k:'pollution_hotspots',n:'Pollution hotspots',g:'Point',src:'Studies and assessments linked in each record (UNEP, MSF, Amnesty International, peer-reviewed papers)',lic:'Facts with citations; see each source.',
+  get:async()=>{const H=await x9('flood_health.json');return(H?H.hotspots:[]).filter(x=>x.la!=null).map(x=>({g:['Point',[x.lo,x.la]],a:clean({name:x.n,type:HSN[x.type]||x.type,state:x.s,place:x.place,finding:x.fact,year:x.year,location_basis:x.loc_basis,source:x.u,second_source:x.u2})}))}},
+ {k:'state_water_health',n:'States: unsafe water, cholera and flood risk',g:'Poly',src:'MICS 2016-17 (NBS and UNICEF) Tables WQ.1–WQ.2; NCDC cholera situation reports; UNICEF flood risk analysis 2024; state boundaries from geoBoundaries',lic:'Published statistics with citations; geoBoundaries CC BY 4.0.',
+  get:async()=>{const H=await x9('flood_health.json');if(!H)return[];const C=H.cholera;return(DATA.st||[]).map(s=>{const e=H.ecoli.hh[s.n]||[],o=H.ecoli.src_st[s.n]||[],fr=H.floodrisk.st[s.n]||[];const cc=y=>(C[y].states[s.n]||[])[0]??'';
+    return{g:[s.t,s.g],a:{state:s.n,hh_water_ecoli_pct_2016_17:isNum(e[0])?Math.round((100-e[0])*10)/10:'',hh_very_high_risk_pct:isNum(e[3])?e[3]:'',source_water_ecoli_pct:isNum(o[0])?Math.round((100-o[0])*10)/10:'',cholera_cases_2021:cc('2021'),cholera_cases_2022:cc('2022'),cholera_cases_2023:cc('2023'),cholera_cases_2024_to_sep:cc('2024'),lgas_high_flood_risk:isNum(fr[0])?fr[0]:'',lgas_total:isNum(fr[1])?fr[1]:'',source:'MICS 2016-17; NCDC; UNICEF flood risk 2024'}}})}}
+];
+GX.layers=L_;
+/* ---- ROI sources ---- */
+const stMP=s=>s.t==='Polygon'?[s.g]:s.g;
+async function roiFromUpload(file){
+  const name=file.name;let polys=[];
+  if(/\.zip$/i.test(name)){const z=await unzip(await file.arrayBuffer());const shpN=Object.keys(z).find(n=>/\.shp$/i.test(n));if(!shpN)throw new Error('No .shp file found in the ZIP.');
+    const prjN=Object.keys(z).find(n=>/\.prj$/i.test(n));const prj=prjN?new TextDecoder().decode(z[prjN]):'';
+    if(/PROJCS/i.test(prj))throw new Error('This shapefile uses a projected coordinate system. Please save it in WGS 84 (EPSG:4326) and try again.');
+    const b=z[shpN],v=new DataView(b.buffer,b.byteOffset,b.byteLength);let p=100;
+    while(p+8<=b.length){const len=v.getInt32(p+4,false)*2,t=v.getInt32(p+8,true);if(t===5||t===15||t===25){const np=v.getInt32(p+44,true),npt=v.getInt32(p+48,true),parts=[];for(let i=0;i<np;i++)parts.push(v.getInt32(p+52+4*i,true));const base=p+52+4*np;const rings=parts.map((s,i)=>{const e=i+1<np?parts[i+1]:npt,r=[];for(let k=s;k<e;k++)r.push([v.getFloat64(base+16*k,true),v.getFloat64(base+16*k+8,true)]);return r});
+        /* group: clockwise rings are outer, counter-clockwise rings are holes of the previous outer */
+        rings.forEach(r=>{if(ringArea(r)<=0||!polys.length)polys.push([r]);else polys[polys.length-1].push(r)})}p+=8+len}
+    if(!polys.length)throw new Error('The shapefile has no polygons. Upload a polygon boundary.');}
+  else{let j;try{j=JSON.parse(await file.text())}catch(e){throw new Error('The file is not valid GeoJSON.')}
+    const take=g=>{if(!g)return;if(g.type==='Polygon')polys.push(g.coordinates);else if(g.type==='MultiPolygon')polys.push(...g.coordinates);else if(g.type==='GeometryCollection')g.geometries.forEach(take)};
+    if(j.type==='FeatureCollection')j.features.forEach(f=>take(f.geometry));else if(j.type==='Feature')take(j.geometry);else take(j);
+    if(!polys.length)throw new Error('No Polygon or MultiPolygon found in the file.');}
+  const pts=polys.flat(2);if(pts.some(q=>!isFinite(q[0])||!isFinite(q[1])||Math.abs(q[0])>180||Math.abs(q[1])>90))throw new Error('Coordinates are not in longitude/latitude. Please save the boundary in WGS 84 (EPSG:4326).');
+  const roi=makeROI(polys.map(pl=>pl.map(r=>r.map(q=>[q[0],q[1]]))),name.replace(/\.(zip|geojson|json)$/i,''),'uploaded boundary');
+  if(!bbHit(roi.bb,[2.6,4.2,14.7,13.9]))throw new Error('The boundary does not overlap Nigeria.');return roi}
+GX.makeROI=makeROI;GX.hits=hits;GX.roiFromUpload=roiFromUpload;GX.stMP=stMP;GX.selfCrosses=selfCrosses;GX.toParts=toParts;GX.unzip=unzip;
+/* ---- build export ---- */
+GX.collect=async(roi,keys,onStep)=>{const out=[];for(const L0 of L_.filter(l=>keys.includes(l.k))){onStep&&onStep(L0.n);const all=await L0.get();const fs=[];let bad=0;
+  for(const f of all){let p;try{p=toParts(f.g)}catch(e){bad++;continue}if(!roi||hits(roi,p))fs.push({p,a:f.a,g:f.g})}out.push({L:L0,fs,bad,total:all.length})}return out};
+const today=()=>new Date().toISOString().slice(0,10);
+function readme(roi,res,fmtName,trunc){const L=[];L.push('Nigeria Water Resources Atlas: GIS export','https://shagbaor.com/water-atlas/','');
+  L.push('Area of interest: '+(roi?roi.name+' ('+roi.how+', about '+Math.round(roi.km).toLocaleString('en')+' km²)':'All of Nigeria'));
+  L.push('Exported: '+today()+' · atlas data refreshed: '+DATA.meta.refreshed+' · atlas version '+DATA.meta.version,'Format: '+fmtName,'Coordinate reference system: WGS 84, geographic longitude/latitude (EPSG:4326). Shapefiles include a .prj and a .cpg (UTF-8).','');
+  L.push('Selection rule: a feature is included if any part of it lies inside or touches the area. Lines and polygons are kept whole, not clipped, so some extend beyond the area.','');
+  L.push('LAYERS');res.forEach(r=>{L.push('','* '+r.L.k+' — '+r.L.n,'  Features: '+r.fs.length+(r.bad?' ('+r.bad+' skipped: unsupported geometry)':''),'  Source: '+r.L.src,'  Licence / terms: '+r.L.lic)});
+  if(trunc)L.push('','Note: '+trunc+' text value(s) were longer than the 254-character limit of shapefile attributes and were shortened. The GeoJSON export keeps the full text.');
+  L.push('','Field names: shapefile field names are limited to 10 characters; fields.csv gives the full name of each field.','','Cite as: Nigeria Water Resources Atlas ('+new Date().getFullYear()+'). '+CONFIG.siteUrl+' (accessed '+today()+'), plus the original source of each layer listed above.','','Verification levels (A–D) describe how well a record is documented, not dam safety. "No public record found" means a search found nothing, not that nothing exists.');
+  return L.join('\r\n')}
+GX.build=async(roi,res,format)=>{const files=[],stem=s=>s.replace(/[^A-Za-z0-9_-]+/g,'_');let trunc=0;const fieldRows=[['layer','shapefile_field','full_name','type']];
+  for(const r of res){if(!r.fs.length)continue;
+    if(format==='geojson'){files.push({name:stem(r.L.k)+'.geojson',data:enc.encode(JSON.stringify({type:'FeatureCollection',name:r.L.k,crs:{type:'name',properties:{name:'urn:ogc:def:crs:OGC:1.3:CRS84'}},features:r.fs.map(f=>({type:'Feature',properties:Object.fromEntries(Object.entries(f.a).map(([k,v])=>[k,v===''?null:v])),geometry:{type:f.g[0],coordinates:f.g[1]}}))}))});continue}
+    const keys=[...new Set(r.fs.flatMap(f=>Object.keys(f.a)))];const rows=r.fs.map(f=>({p:f.p,a:f.a}));
+    const s=shpPack(rows,r.L.g),d=dbf(rows,keys);trunc+=d.truncated;d.fields.forEach(f=>fieldRows.push([r.L.k,f.short,f.k,f.type==='N'?'number':'text']));
+    const nm=stem(r.L.k);files.push({name:nm+'.shp',data:s.shp},{name:nm+'.shx',data:s.shx},{name:nm+'.dbf',data:d.bytes},{name:nm+'.prj',data:enc.encode(PRJ)},{name:nm+'.cpg',data:enc.encode('UTF-8')})}
+  if(roi){const P={t:'Poly',c:roi.mp};if(format==='geojson')files.push({name:'area_of_interest.geojson',data:enc.encode(JSON.stringify({type:'FeatureCollection',features:[{type:'Feature',properties:{name:roi.name,how:roi.how},geometry:{type:'MultiPolygon',coordinates:roi.mp}}]}))});
+    else{const s=shpPack([{p:P}],'Poly'),d=dbf([{a:{name:roi.name,how:roi.how}}],['name','how']);files.push({name:'area_of_interest.shp',data:s.shp},{name:'area_of_interest.shx',data:s.shx},{name:'area_of_interest.dbf',data:d.bytes},{name:'area_of_interest.prj',data:enc.encode(PRJ)},{name:'area_of_interest.cpg',data:enc.encode('UTF-8')})}}
+  if(format!=='geojson')files.push({name:'fields.csv',data:enc.encode(fieldRows.map(r=>r.map(x=>/[",]/.test(x)?'"'+x.replace(/"/g,'""')+'"':x).join(',')).join('\r\n'))});
+  files.unshift({name:'README.txt',data:enc.encode(readme(roi,res,format==='geojson'?'GeoJSON (one file per layer)':'ESRI Shapefile (one set of .shp/.shx/.dbf/.prj/.cpg per layer)',trunc))});
+  return zipStore(files)};
+window.GX=GX;
+})();
+
+/* ---------- GIS export: dialog and map drawing ---------- */
+(function(){
+const dlg=document.getElementById('gisdlg');if(!dlg)return;
+let roi=null,drawPts=[],drawLayer=null,roiLayer=null,counting=0;
+const $d=s=>dlg.querySelector(s);
+const kind=()=>$d('input[name=gx-roi]:checked').value;
+function showRoi(){if(roiLayer){map.removeLayer(roiLayer);roiLayer=null}if(!roi)return;roiLayer=L.geoJSON({type:'MultiPolygon',coordinates:roi.mp},{style:{color:css('--accent'),weight:2.5,fill:true,fillOpacity:.06,dashArray:'6 4'},interactive:false}).addTo(map)}
+function setRoi(r){roi=r;showRoi();if(r){try{map.fitBounds([[r.bb[1],r.bb[0]],[r.bb[3],r.bb[2]]],{padding:[30,30]})}catch(e){}}refresh()}
+async function pickFromSelect(){const k=kind(),v=$d('#gx-pick').value;$d('#gx-msg').textContent='';
+  if(k==='all'){setRoi(null);return}
+  if(!v){roi=null;showRoi();refresh();return}
+  if(k==='state'){const s=DATA.st.find(x=>x.n===v);setRoi(GX.makeROI(GX.stMP(s),s.n+' State','state boundary, geoBoundaries'))}
+  else if(k==='basin'){const b=DATA.bas.find(x=>String(x.pf)===v);setRoi(GX.makeROI(b.g,b.name||'Basin '+b.pf,'river basin, HydroBASINS level 4'))}
+  else if(k==='lga'){const d=await loadJSON('flood_lga.json');const x=d.f.find(x=>x.s+'|'+x.n===v);setRoi(GX.makeROI(x.g,x.n+' LGA, '+x.s,'LGA boundary, UNICEF flood risk layer'))}}
+async function fillPick(){const k=kind(),sel=$d('#gx-pick');$d('#gx-pickrow').hidden=!['state','basin','lga'].includes(k);$d('#gx-drawrow').hidden=k!=='draw';$d('#gx-uprow').hidden=k!=='upload';
+  if(k==='state')sel.innerHTML='<option value="">Choose a state…</option>'+DATA.st.map(s=>s.n).sort().map(n=>`<option>${esc(n)}</option>`).join('');
+  else if(k==='basin')sel.innerHTML='<option value="">Choose a river basin…</option>'+DATA.bas.slice().sort((a,b)=>(a.name||'').localeCompare(b.name||'')).map(b=>`<option value="${b.pf}">${esc(b.name||'Basin '+b.pf)}</option>`).join('');
+  else if(k==='lga'){sel.innerHTML='<option value="">Loading LGAs…</option>';const d=await loadJSON('flood_lga.json');sel.innerHTML='<option value="">Choose an LGA…</option>'+d.f.slice().sort((a,b)=>(a.s+a.n).localeCompare(b.s+b.n)).map(x=>`<option value="${esc(x.s+'|'+x.n)}">${esc(x.s)} — ${esc(x.n)}</option>`).join('')}
+  if(k==='all')setRoi(null);else{roi=null;showRoi();refresh()}}
+async function refresh(){const id=++counting;const keys=[...dlg.querySelectorAll('input[name=gx-l]:checked')].map(i=>i.value);const sum=$d('#gx-sum'),go=$d('#gx-go');
+  const area=kind()==='all'?'All of Nigeria':roi?`${esc(roi.name)} · about ${fmt.format(Math.round(roi.km))} km²`:'';
+  if(kind()!=='all'&&!roi){sum.innerHTML='<span class="muted">Choose an area first.</span>';go.disabled=true;return}
+  if(!keys.length){sum.innerHTML=`<b>Area:</b> ${area}<br><span class="muted">Choose at least one layer.</span>`;go.disabled=true;return}
+  sum.innerHTML=`<b>Area:</b> ${area}<br>Counting features…`;go.disabled=true;
+  try{const res=await GX.collect(kind()==='all'?null:roi,keys);if(id!==counting)return;const tot=res.reduce((a,r)=>a+r.fs.length,0);
+    sum.innerHTML=`<b>Area:</b> ${area}<ul class="gx-list">${res.map(r=>`<li>${esc(r.L.n)}: <b>${fmt.format(r.fs.length)}</b>${r.fs.length?'':' <span class="muted">(none in this area)</span>'}</li>`).join('')}</ul>`+
+      (tot?`<b>${fmt.format(tot)}</b> features in ${res.filter(r=>r.fs.length).length} layer(s), plus a README with sources and licences${$d('#gx-fmt').value==='shp'?' and fields.csv':''}.${tot>150000?' <span class="muted">This is a large export and may take a little while.</span>':''}`:'<span class="gx-warn">No features from the chosen layers fall in this area. Try a larger area or other layers.</span>');
+    go.disabled=!tot;dlg._res=res}catch(e){sum.innerHTML='<span class="gx-warn">Could not count features: '+esc(e.message||String(e))+'</span>'}}
+async function download(){const res=dlg._res,fmtv=$d('#gx-fmt').value,go=$d('#gx-go');if(!res)return;go.disabled=true;const old=go.textContent;go.textContent='Preparing…';
+  try{const zip=await GX.build(kind()==='all'?null:roi,res,fmtv);const nm='nigeria_water_atlas_'+(kind()==='all'?'nigeria':(roi.name||'area')).toLowerCase().replace(/[^a-z0-9]+/g,'_').replace(/^_|_$/g,'')+'_'+(fmtv==='shp'?'shapefile':'geojson')+'.zip';
+    await saveFile(nm,zip,'application/zip');$d('#gx-msg').textContent='Download started: '+nm+' ('+(zip.length<1048576?fmt.format(Math.ceil(zip.length/1024))+' KB':fmt1.format(zip.length/1048576)+' MB')+').'}
+  catch(e){$d('#gx-msg').innerHTML='<span class="gx-warn">The export could not be completed: '+esc(e.message||String(e))+'. Try fewer layers or a smaller area.</span>'}
+  go.textContent=old;go.disabled=false}
+/* drawing */
+const bar=document.getElementById('gx-drawbar');
+function startDraw(){dlg.close();drawPts=[];window.__gxDrawing=1;map.getContainer().classList.add('gx-drawing');if(drawLayer)map.removeLayer(drawLayer);drawLayer=L.layerGroup().addTo(map);bar.hidden=false;map.getContainer().style.cursor='crosshair';map.on('click',addPt);map.doubleClickZoom.disable();updDraw()}
+function addPt(e){drawPts.push([+e.latlng.lng.toFixed(5),+e.latlng.lat.toFixed(5)]);updDraw()}
+function updDraw(){drawLayer.clearLayers();if(drawPts.length)L.polygon(drawPts.map(q=>[q[1],q[0]]),{color:css('--accent'),weight:2,fillOpacity:.08,dashArray:'4 4',interactive:false}).addTo(drawLayer);drawPts.forEach(q=>L.circleMarker([q[1],q[0]],{radius:4,color:css('--accent'),fillOpacity:1,interactive:false}).addTo(drawLayer));
+  bar.querySelector('.gx-n').textContent=drawPts.length?drawPts.length+' point'+(drawPts.length>1?'s':''):'Click the map to add corner points';bar.querySelector('#gx-fin').disabled=drawPts.length<3}
+function endDraw(ok){window.__gxDrawing=0;map.getContainer().classList.remove('gx-drawing');map.off('click',addPt);map.doubleClickZoom.enable();map.getContainer().style.cursor='';bar.hidden=true;if(drawLayer){map.removeLayer(drawLayer);drawLayer=null}
+  if(ok){const r=drawPts.concat([drawPts[0]]);dlg.showModal();if(GX.selfCrosses(r)){$d('#gx-msg').innerHTML='<span class="gx-warn">The drawn shape crosses itself. Draw it again, adding corners in order around the edge.</span>';roi=null;showRoi();refresh()}else{$d('#gx-msg').textContent='';setRoi(GX.makeROI([[r]],'Drawn area','drawn on the map'))}}else dlg.showModal()}
+bar.querySelector('#gx-fin').onclick=()=>endDraw(true);bar.querySelector('#gx-undo').onclick=()=>{drawPts.pop();updDraw()};bar.querySelector('#gx-cancel').onclick=()=>endDraw(false);
+document.addEventListener('keydown',e=>{if(!bar.hidden&&e.key==='Escape')endDraw(false);if(!bar.hidden&&e.key==='Enter'&&drawPts.length>=3)endDraw(true)});
+/* wiring */
+$d('#gx-layers').innerHTML=GX.layers.map(l=>`<label class="gx-l"><input type="checkbox" name="gx-l" value="${l.k}"${['dams','rivers_named'].includes(l.k)?' checked':''}> <span>${esc(l.n)}<small>${esc(l.lic)}</small></span></label>`).join('');
+dlg.querySelectorAll('input[name=gx-roi]').forEach(r=>r.onchange=fillPick);$d('#gx-pick').onchange=pickFromSelect;
+dlg.querySelectorAll('input[name=gx-l]').forEach(c=>c.onchange=refresh);$d('#gx-fmt').onchange=refresh;
+$d('#gx-draw').onclick=startDraw;$d('#gx-go').onclick=download;$d('#gx-close').onclick=()=>dlg.close();
+$d('#gx-all').onclick=()=>{const on=[...dlg.querySelectorAll('input[name=gx-l]')].some(c=>!c.checked);dlg.querySelectorAll('input[name=gx-l]').forEach(c=>c.checked=on);refresh()};
+$d('#gx-file').onchange=async e=>{const f=e.target.files[0];if(!f)return;$d('#gx-msg').textContent='Reading '+f.name+'…';try{setRoi(await GX.roiFromUpload(f));$d('#gx-msg').textContent='Boundary loaded from '+f.name+'.'}catch(err){roi=null;showRoi();refresh();$d('#gx-msg').innerHTML='<span class="gx-warn">'+esc(err.message||String(err))+'</span>'}e.target.value=''};
+dlg.addEventListener('close',()=>{});
+window.openGisExport=()=>{const vm=document.getElementById('v-map');if(vm&&vm.hidden)location.hash='map';setTimeout(()=>{dlg.showModal();if(!dlg._init){dlg._init=1;fillPick()}else refresh()},60)};
+document.querySelectorAll('[data-gisexport]').forEach(b=>b.onclick=window.openGisExport);
 })();
 </script>
 </body>
