@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-13",
+ "updated": "2026-10-14",
  "sources": [
   {
    "source": "Opportunities for Africans",
@@ -9,17 +9,17 @@
   {
    "source": "Opportunity Desk",
    "ok": true,
-   "items": 7
+   "items": 5
   },
   {
    "source": "Opportunities Corners",
    "ok": true,
-   "items": 4
+   "items": 3
   },
   {
    "source": "Scholarship Region",
    "ok": true,
-   "items": 5
+   "items": 6
   },
   {
    "source": "Opportunities for Youth",
@@ -56,6 +56,26 @@
   }
  ],
  "items": [
+  {
+   "title": "UK Data Service Data Impact Fellows 2027–28: £3,500 Award and Professional Development Support for Early Career Researchers and Data Analysts.",
+   "link": "https://opportunitiesforyouth.org/2026/10/14/uk-data-service-data-impact-fellows-2027-28-3500-award-and-professional-development-support-for-early-career-researchers-and-data-analysts/",
+   "date": "2026-10-14",
+   "source": "Opportunities for Youth",
+   "official": false,
+   "ids": [],
+   "summary": "The UK Data Service Data Impact Fellows 2027–28 scheme is inviting applications from early career researchers and data analysts working in the UK academic or voluntary, community and social enterpris…",
+   "seen": "2026-10-14"
+  },
+  {
+   "title": "AI, Ethics and Climate Governance Fellowship 2026: Apply for an Eight-Week Online Programme for Emerging African Researchers and Policy Thinkers.",
+   "link": "https://opportunitiesforyouth.org/2026/10/14/ai-ethics-and-climate-governance-fellowship-2026-apply-for-an-eight-week-online-programme-for-emerging-african-researchers-and-policy-thinkers/",
+   "date": "2026-10-14",
+   "source": "Opportunities for Youth",
+   "official": false,
+   "ids": [],
+   "summary": "The AI, Ethics and Climate Governance Fellowship 2026 is an eight-week online fellowship designed for emerging African researchers, practitioners, advocates, journalists, policy professionals and oth…",
+   "seen": "2026-10-14"
+  },
   {
    "title": "Global Investigative Journalism Conference (GIJC) Fellowship 2027 (Funded)",
    "link": "https://opportunitydesk.org/2026/10/13/global-investigative-journalism-conference-fellowship-2027/",
@@ -157,6 +177,98 @@
    "ids": [],
    "summary": "The Atlantic is inviting recent college graduates and early-career journalists to apply for its Editorial Fellowship, a full-time opportunity designed to develop emerging journalism professionals thr…",
    "seen": "2026-10-13"
+  },
+  {
+   "title": "2027 Sabanci University Scholarship in Turkey | Fully Funded",
+   "link": "https://www.scholarshipregion.com/sabanci-university-scholarship/",
+   "date": "2026-10-13",
+   "source": "Scholarship Region",
+   "official": false,
+   "ids": [],
+   "summary": "International students can now apply for the 2027 Sabanci University Scholarship for a golden opportunity to study in the beautiful European country of Turkey. The Sabanci University Scholarship pres…",
+   "seen": "2026-10-14"
+  },
+  {
+   "title": "Amsterdam Merit Scholarship in Netherlands 2027 | How To Apply",
+   "link": "https://www.scholarshipregion.com/university-of-amsterdam-merit-scholarship/",
+   "date": "2026-10-13",
+   "source": "Scholarship Region",
+   "official": false,
+   "ids": [],
+   "summary": "The University of Amsterdam (UvA) aims to attract the world’s brightest students to its international classrooms through the Amsterdam Merit Scholarships. The Amsterdam Merit Scholarships offer up to…",
+   "seen": "2026-10-14"
+  },
+  {
+   "title": "United Nations Regional Course in International Law for Africa (Fully Funded)",
+   "link": "https://www.scholarshipregion.com/united-nations-regional-course-in-international-law-for-africa/",
+   "date": "2026-10-13",
+   "source": "Scholarship Region",
+   "official": false,
+   "ids": [],
+   "summary": "Applications are now open for the 2027 United Nations Regional Course in International Law for Africa. The program provides a fully funded fellowship for selected participants that will cover a month…",
+   "seen": "2026-10-14"
+  },
+  {
+   "title": "2027 ALCHE Mastercard Foundation Scholars Program For Africans | Fully Funded",
+   "link": "https://www.scholarshipregion.com/alche-mastercard-foundation-scholars-program/",
+   "date": "2026-10-13",
+   "source": "Scholarship Region",
+   "official": false,
+   "ids": [
+    "mastercard"
+   ],
+   "summary": "ALCHE, in partnership with the Mastercard Foundation, is proud to offer the Mastercard Foundation Scholars Program, which provides fully funded scholarships to exceptionally deserving and talented st…",
+   "seen": "2026-10-14"
+  },
+  {
+   "title": "UCL Child Health Research PhD Studentships 2027/28: Fully Funded Doctoral Research Opportunities at a World-Leading Institution",
+   "link": "https://opportunitiesforyouth.org/2026/10/13/ucl-child-health-research-phd-studentships-2027-28-fully-funded-doctoral-research-opportunities-at-a-world-leading-institution/",
+   "date": "2026-10-13",
+   "source": "Opportunities for Youth",
+   "official": false,
+   "ids": [],
+   "summary": "The University College London (UCL) Great Ormond Street Institute of Child Health (GOS ICH) has launched its Child Health Research PhD Project Portfolio for the 2027/28 academic year. This prestigiou…",
+   "seen": "2026-10-14"
+  },
+  {
+   "title": "Dorothy Hodgkin Fellowship 2027: Up to £1.9 Million for Early-Career Researchers Seeking Flexible Support for Independent Scientific Careers",
+   "link": "https://opportunitiesforyouth.org/2026/10/13/dorothy-hodgkin-fellowship-2027-up-to-1-9-million-for-early-career-researchers-seeking-flexible-support-for-independent-scientific-careers/",
+   "date": "2026-10-13",
+   "source": "Opportunities for Youth",
+   "official": false,
+   "ids": [],
+   "summary": "The Dorothy Hodgkin Fellowship 2027, offered by the Royal Society, is one of the United Kingdom’s most prestigious opportunities for outstanding early-career researchers who are ready to transition i…",
+   "seen": "2026-10-14"
+  },
+  {
+   "title": "Fortis Society Fellowship 2027: Apply for a Fully Funded Global Leadership Fellowship in Medellín, Colombia",
+   "link": "https://opportunitiesforyouth.org/2026/10/13/fortis-society-fellowship-2027/",
+   "date": "2026-10-13",
+   "source": "Opportunities for Youth",
+   "official": false,
+   "ids": [],
+   "summary": "The Fortis Society Fellowship 2027 is an international leadership and professional development opportunity for ambitious individuals from humble beginnings who want to create meaningful, positive cha…",
+   "seen": "2026-10-14"
+  },
+  {
+   "title": "Indigenous Leaders Conference Scholarship in Australia: Travel Funding for Indigenous Leaders, Youth and Changemakers",
+   "link": "https://opportunitiesforyouth.org/2026/10/13/indigenous-leaders-scholarship-in-australia/",
+   "date": "2026-10-13",
+   "source": "Opportunities for Youth",
+   "official": false,
+   "ids": [],
+   "summary": "The Indigenous Leaders Conference Scholarship is an international conference funding opportunity for Indigenous leaders, community members and changemakers from Africa, Asia and the Pacific, and Lati…",
+   "seen": "2026-10-14"
+  },
+  {
+   "title": "Lilly Endowment Serving Neighbors Grant 2027: Apply for Planning Grants of Up to $50,000 and Implementation Grants of Up to $5 Million",
+   "link": "https://opportunitiesforyouth.org/2026/10/13/lilly-endowment-serving-neighbors-grant-2027-apply-for-planning-grants-of-up-to-50000-and-implementation-grants-of-up-to-5-million-2/",
+   "date": "2026-10-13",
+   "source": "Opportunities for Youth",
+   "official": false,
+   "ids": [],
+   "summary": "Charitable organisations working with Christian congregations to address community needs have an opportunity to access substantial funding through the Serving Neighbors Through Congregational Collabo…",
+   "seen": "2026-10-14"
   },
   {
    "title": "Echidna Global Scholars Visiting Fellowship 2027 ($26,500 stipend)",
