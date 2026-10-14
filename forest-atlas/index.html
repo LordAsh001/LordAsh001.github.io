@@ -1762,9 +1762,19 @@ function drawChange(el){
 /* ---------- time explorer: year slider, compare swipe, image export, year summary ---------- */
 const rng=(a,b)=>[...Array(b-a+1)].map((_,i)=>a+i);
 const TL={on:false,theme:'lc',img:'none',y:2024,yB:2018,cmp:false,early:true,div:.5,lyr:{},busy:false};
+const MODB={"2001":["T","2001-01-27"],"2002":["T","2002-11-21"],"2003":["A","2003-01-01"],"2004":["T","2004-01-11"],"2005":["T","2005-12-31"],"2006":["A","2006-12-27"],"2007":["A","2007-01-21"],"2008":["A","2008-01-15"],"2009":["A","2009-01-01"],"2010":["T","2010-12-13"],"2011":["A","2011-12-09"],"2012":["A","2012-12-27"],"2013":["T","2013-01-03"],"2014":["A","2014-12-17"],"2015":["T","2015-12-27"],"2017":["A","2017-02-24"]};
 const EOXY=[2016,2018,2019,2020,2021,2022,2023,2024,2025];
 function imgSrc(y){if(EOXY.includes(y))return{u:`https://tiles.maps.eox.at/wmts/1.0.0/${y===2016?'s2cloudless_3857':'s2cloudless-'+y+'_3857'}/default/g/{z}/{y}/{x}.jpg`,mz:15,n:`Sentinel-2 cloudless ${y} (10 m annual mosaic)`,a:`Sentinel-2 cloudless ${y} – s2maps.eu by EOX IT Services GmbH (contains modified Copernicus Sentinel data ${y})`};
-  return{u:`https://gibs.earthdata.nasa.gov/wmts/epsg3857/best/MODIS_Terra_CorrectedReflectance_TrueColor/default/${y}-12-01/GoogleMapsCompatible_Level9/{z}/{y}/{x}.jpg`,mz:9,n:`MODIS Terra, 1 December ${y} (250 m, single day)`,a:`NASA GIBS / MODIS Terra corrected reflectance, ${y}-12-01`}}
+  const b=MODB[y]||['T',y+'-12-15'],dl=new Date(b[1]+'T00:00:00Z').toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric',timeZone:'UTC'});
+  return{modis:{date:b[1],first:b[0]},mz:9,n:`MODIS ${b[0]==='A'?'Aqua':'Terra'}, ${dl} (250 m; clearest dry-season day, gaps filled from ${b[0]==='A'?'Terra':'Aqua'})`,a:`NASA GIBS / MODIS Terra and Aqua corrected reflectance, ${b[1]}`}}
+/* daily MODIS has orbit gaps (black): draw the other satellite underneath and make black pixels transparent */
+const ModisLayer=L.GridLayer.extend({createTile(c,done){const t=document.createElement('canvas');t.width=t.height=256;const g=t.getContext('2d');const o=this.options;
+  const u=p=>`https://gibs.earthdata.nasa.gov/wmts/epsg3857/best/MODIS_${p}_CorrectedReflectance_TrueColor/default/${o.date}/GoogleMapsCompatible_Level9/${c.z}/${c.y}/${c.x}.jpg`;
+  const ld=s=>new Promise(r=>{const i=new Image();i.crossOrigin='anonymous';i.onload=()=>r(i);i.onerror=()=>r(null);i.src=s});
+  const P=o.first==='A'?['Aqua','Terra']:['Terra','Aqua'];const second=o.date>='2002-07-04'?ld(u(P[1])):Promise.resolve(null);
+  Promise.all([ld(u(P[0])),second]).then(([a,b])=>{const key=im=>{const k=document.createElement('canvas');k.width=k.height=256;const x=k.getContext('2d');x.drawImage(im,0,0);const d=x.getImageData(0,0,256,256),p=d.data;for(let i=0;i<p.length;i+=4)if(p[i]+p[i+1]+p[i+2]<18)p[i+3]=0;x.putImageData(d,0,0);return k};
+    if(b)g.drawImage(key(b),0,0);if(a)g.drawImage(key(a),0,0);done(null,t)}).catch(()=>done(null,t));return t}});
+function imgLayer(s,opt){return s.modis?new ModisLayer(Object.assign({date:s.modis.date,first:s.modis.first,maxNativeZoom:9},opt)):L.tileLayer(s.u,Object.assign({maxNativeZoom:s.mz,crossOrigin:'anonymous'},opt))}
 /* forest-loss tiles from Global Forest Watch: blue channel = loss year − 2000, red = intensity */
 const LossLayer=L.GridLayer.extend({createTile(c,done){const t=document.createElement('canvas');t.width=t.height=256;const o=this.options;
   let z=c.z,x=c.x,y=c.y,sx=0,sy=0,sw=512;if(z>12){const k=2**(z-12);x=Math.floor(c.x/k);y=Math.floor(c.y/k);sw=512/k;sx=(c.x%k)*sw;sy=(c.y%k)*sw;z=12}
@@ -1800,7 +1810,7 @@ function tlPanes(){if(map.getPane('tlA'))return;[['tlA',250],['tlB',251],['tlAv'
   TL.chA=mk(TL.rA);TL.chB=mk(TL.rB);map.on('move zoom resize viewreset',tlClip)}
 function tlSide(side,y){const L0=TL.lyr[side]||{};['img','th'].forEach(k=>{if(L0[k]){map.removeLayer(L0[k])}});const ch=side==='A'?TL.chA:TL.chB;if(map.hasLayer(ch))map.removeLayer(ch);TL.lyr[side]={};
   if(!TL.on||(side==='B'&&!TL.cmp))return;const pane=side==='A'?'tlA':'tlB';
-  if(TL.img==='sat'&&LIVE){const s=imgSrc(clampY(IMGS.sat.yrs,y));TL.lyr[side].img=L.tileLayer(s.u,{pane,maxNativeZoom:s.mz,maxZoom:17,crossOrigin:'anonymous',attribution:s.a}).addTo(map);TL.lyr[side].imgN=s.n;TL.lyr[side].imgA=s.a}
+  if(TL.img==='sat'&&LIVE){const s=imgSrc(clampY(IMGS.sat.yrs,y));TL.lyr[side].img=imgLayer(s,{pane,maxZoom:17,attribution:s.a}).addTo(map);TL.lyr[side].imgN=s.n;TL.lyr[side].imgA=s.a}
   const T=THEMES[TL.theme];if(TL.theme==='none')return;const ty=clampY(T.yrs,y);TL.lyr[side].ty=ty;
   if(T.kind==='tile'&&LIVE){TL.lyr[side].th=T.make(ty,pane).addTo(map)}
   if(T.kind==='state'){ch.setStyle(ft=>{const v=stV(TL.theme,ft.properties.n,ty);return v?{stroke:false,fillColor:T.col(v.v),fillOpacity:.82}:{stroke:false,fillOpacity:0}});ch.addTo(map)}}
@@ -1962,7 +1972,7 @@ function cmpControls(){
   $('#cmp-n').textContent=`${CMP.years.length} map${CMP.years.length>1?'s':''}`;
   const A=cmpAreas();$('#cmp-area').innerHTML=A.map((a,i)=>`<option value="${i}" ${a.k===CMP.area.k&&a.n===CMP.area.n?'selected':''}>${a.k==='site'?'Reserve: ':''}${esc(a.n)}${a.k==='state'?' State':''}</option>`).join('');
   $('#cmp-area').onchange=e=>{CMP.area=A[+e.target.value];const b=cmpAreaBounds(CMP.area);CMP.bounds=b;const m=Object.values(CMP.maps)[0];if(m){CMP.sync=true;Object.values(CMP.maps).forEach(x=>x.fitBounds(b,{animate:false}));CMP.sync=false}cmpHeads();cmpSummary()};
-  const T=THEMES[CMP.theme];$('#cmp-leg').innerHTML=(CMP.theme==='none'?[]:T.leg(CMP.years[CMP.years.length-1])).map(([c,n])=>`<span><i style="background:${c}"></i>${esc(n)}</span>`).join('')+`<small>${esc(CMP.theme==='none'?'Sentinel-2 cloudless (EOX) for 2016 and 2018–2025; MODIS Terra (NASA GIBS) for other years':T.src)}</small>`;
+  const T=THEMES[CMP.theme];$('#cmp-leg').innerHTML=(CMP.theme==='none'?[]:T.leg(CMP.years[CMP.years.length-1])).map(([c,n])=>`<span><i style="background:${c}"></i>${esc(n)}</span>`).join('')+`<small>${esc(CMP.theme==='none'?'Sentinel-2 cloudless 10 m (EOX) for 2016 and 2018–2025; for other years, the clearest dry-season day from MODIS Terra/Aqua 250 m (NASA GIBS)':T.src)}</small>`;
   cmpSelBar()}
 function cmpSelBar(){const n=[...CMP.sel].filter(y=>CMP.years.includes(y)).length;$('#cmp-dl1').textContent=`Download ${n===CMP.years.length?'all':n} as one image`;$('#cmp-dl1').disabled=!n;$('#cmp-dln').textContent=`Download ${n===1?'it':'each'} separately`;$('#cmp-dln').disabled=!n}
 function cmpLayout(){const g=$('#cmp-grid'),n=CMP.years.length;g.classList.toggle('focus',!!CMP.focus);
@@ -1973,7 +1983,7 @@ function cmpLayout(){const g=$('#cmp-grid'),n=CMP.years.length;g.classList.toggl
 function cmpHeads(){$$('#cmp-grid .cmp-card').forEach(c=>{const y=+c.dataset.y;c.querySelector('.kv1').textContent=cmpKey(y);const ck=c.querySelector('input');ck.checked=CMP.sel.has(y)})}
 function cmpMakeMap(el,y){const m=L.map(el,{zoomControl:true,attributionControl:false,zoomSnap:.25,minZoom:3,maxZoom:16,preferCanvas:true});
   const T=THEMES[CMP.theme];const dark=isDark();
-  if(LIVE){if(CMP.sat){const s=imgSrc(clampY(IMGS.sat.yrs,y));L.tileLayer(s.u,{maxNativeZoom:s.mz,maxZoom:16,crossOrigin:'anonymous'}).addTo(m);m._cmpImg=s}
+  if(LIVE){if(CMP.sat){const s=imgSrc(clampY(IMGS.sat.yrs,y));imgLayer(s,{maxZoom:16}).addTo(m);m._cmpImg=s}
     else L.tileLayer(dark?'https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}':'https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}',{maxNativeZoom:16,maxZoom:16,crossOrigin:'anonymous'}).addTo(m)}
   const r=L.canvas({padding:.3});const gj=()=>({type:'FeatureCollection',features:DATA.st.map(s=>({type:'Feature',properties:{n:s.n},geometry:{type:s.t,coordinates:s.g}}))});
   if(!LIVE)L.geoJSON(gj(),{renderer:r,interactive:false,style:()=>({stroke:false,fillColor:css('--land'),fillOpacity:1})}).addTo(m);
@@ -2001,7 +2011,7 @@ function capLeaflet(m,S){const ct=m.getContainer(),R=ct.getBoundingClientRect(),
   P.forEach(([p])=>p.querySelectorAll('img,canvas').forEach(el=>{if(el.tagName==='IMG'&&!(el.complete&&el.naturalWidth))return;const r=el.getBoundingClientRect();if(!r.width||r.right<R.left||r.left>R.right||r.bottom<R.top||r.top>R.bottom)return;g.globalAlpha=op(el);try{g.drawImage(el,r.left-R.left,r.top-R.top,r.width,r.height)}catch(e){}}));
   g.globalAlpha=1;return c}
 function cmpWait(ms){const ls=[];Object.values(CMP.maps).forEach(m=>m.eachLayer(l=>{if(l.isLoading&&l.isLoading())ls.push(l)}));return Promise.race([Promise.all(ls.map(l=>new Promise(r=>l.once('load',r)))),new Promise(r=>setTimeout(r,ms))]).then(()=>new Promise(r=>setTimeout(r,200)))}
-function cmpCredits(){const c=new Set();if(LIVE&&!CMP.sat)c.add('Basemap © Esri, HERE, Garmin');if(CMP.sat)c.add('Imagery: Sentinel-2 cloudless – s2maps.eu by EOX IT Services GmbH (contains modified Copernicus Sentinel data) and NASA GIBS / MODIS Terra');if(CMP.theme!=='none')c.add(THEMES[CMP.theme].src);c.add('Boundaries: geoBoundaries; protected areas: UNEP-WCMC & IUCN WDPA');return'Sources: '+[...c].join(' · ')}
+function cmpCredits(){const c=new Set();if(LIVE&&!CMP.sat)c.add('Basemap © Esri, HERE, Garmin');if(CMP.sat)c.add('Imagery: Sentinel-2 cloudless – s2maps.eu by EOX IT Services GmbH (contains modified Copernicus Sentinel data) and NASA GIBS / MODIS Terra and Aqua');if(CMP.theme!=='none')c.add(THEMES[CMP.theme].src);c.add('Boundaries: geoBoundaries; protected areas: UNEP-WCMC & IUCN WDPA');return'Sources: '+[...c].join(' · ')}
 const cmpAreaName=()=>CMP.area.k==='site'?CMP.area.n+(CMP.area.st?', '+CMP.area.st+' State':''):CMP.area.k==='state'?CMP.area.n+' State':'Nigeria';
 const cmpTitle=()=>CMP.theme==='none'?'Satellite imagery':THEMES[CMP.theme].n;
 async function cmpDownload(ys,sheet){ys=ys.filter(y=>CMP.maps[y]).sort((a,b)=>a-b);if(!ys.length)return;const bs=$$('#cmpv .cmp-f button');bs.forEach(b=>b.disabled=true);toast('Preparing image…');
@@ -2141,7 +2151,7 @@ function buildData(){
    ['NASA POWER (MERRA-2)','Monthly temperature, daily temperature range and top-of-atmosphere radiation 1984–2024','Potential evapotranspiration (Hargreaves method) for the aridity index','https://power.larc.nasa.gov','NASA open data'],
    ['Esri, Impact Observatory and Microsoft, Sentinel-2 10 m Land Use/Land Cover Time Series','Annual 10 m land cover 2017–2025 (water, trees, flooded vegetation, crops, built area, bare ground, rangeland)','Land-cover profiles (live per reserve), state and national shares (computed at 250 m), map overlay','https://www.arcgis.com/home/item.html?id=cfcb7609de5f478eb7666240902d4d3d','CC BY 4.0'],
    ['World Bank Climate Change Knowledge Portal (CRU TS 4.07); UN SDG Global Database; Federal Ministry of Information','National rainfall since 1901; SDG 15.3.1 share of degraded land; Great Green Wall frontline states','Desertification context','https://climateknowledgeportal.worldbank.org/country/nigeria','Per source'],
-   ['Sentinel-2 cloudless annual mosaics (EOX IT Services, s2maps.eu); NASA GIBS MODIS Terra corrected reflectance','Satellite images by year in the Time explorer: 10 m cloud-free mosaics for 2016 and 2018–2025, MODIS 250 m single-day images (1 December) for other years','Time explorer imagery','https://s2maps.eu','CC BY 4.0 (2016) and CC BY-NC-SA 4.0 (2018 onwards); NASA open data'],
+   ['Sentinel-2 cloudless annual mosaics (EOX IT Services, s2maps.eu); NASA GIBS MODIS Terra corrected reflectance','Satellite images by year in the Time explorer: 10 m cloud-free mosaics for 2016 and 2018–2025, MODIS Terra/Aqua 250 m images for other years (clearest dry-season day, orbit gaps filled from the second satellite)','Time explorer imagery','https://s2maps.eu','CC BY 4.0 (2016) and CC BY-NC-SA 4.0 (2018 onwards); NASA open data'],
    ['Live services on the hosted site','iNaturalist (species photos), Wikimedia Commons (photos), Open-Meteo (weather), CARTO / Esri / OpenTopoMap / NASA GIBS (basemaps), Hansen GFC v1.12 (forest-loss tiles)','On demand','https://www.inaturalist.org','Per service terms']];
   $('#data').innerHTML=`<h2 class="title">Data, sources and method</h2><p class="lede">This atlas joins the official global protected-area register with national inventories, state laws, scientific literature and field reports, and records where every fact came from. It is built to be checked, cited and corrected.</p>
   <h3>Download the dataset</h3><p>${fmt.format(F.length)} records, version ${esc(DATA.meta.version)}, compiled ${esc(DATA.meta.compiled)}. CSV opens in Excel or R; GeoJSON opens in QGIS, ArcGIS and most web maps.</p>
