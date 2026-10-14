@@ -984,6 +984,38 @@ table.lct .sw{display:inline-block;width:10px;height:10px;border-radius:2px;marg
 .ovn{max-width:300px}
 .ovn select{width:auto;padding:3px 6px;margin-left:6px}
 .ovn small{display:block;color:var(--muted);margin-top:4px}
+/* time explorer */
+.legend.tl-hide{display:none!important}
+.tlpanel{position:absolute;left:12px;bottom:22px;z-index:1000;width:min(560px,calc(100% - 24px));max-height:calc(100% - 90px);overflow:auto;background:var(--panel);border:1px solid var(--line);border-radius:12px;box-shadow:var(--shadow);padding:10px 12px;display:grid;gap:8px;font-size:12.5px}
+.tl-h{display:flex;align-items:center;gap:10px}
+.tl-h b{font-family:var(--f-display);font-size:15px}
+.tl-h .tl-y{font-family:var(--f-display);font-weight:800;font-size:20px;color:var(--accent);margin-right:auto}
+.tl-h .x{border:1px solid var(--line);background:var(--bg);border-radius:8px;width:28px;height:28px;cursor:pointer;font-size:16px;line-height:1}
+.tl-row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.tl-row label{display:grid;gap:3px;font-size:11px;font-weight:600;color:var(--muted);flex:1;min-width:150px}
+.tl-row label.toggle{display:inline-flex;flex:none;min-width:0;align-items:center;gap:6px;font-size:12.5px;color:var(--ink);font-weight:500}
+.tl-row select{font-size:12.5px;padding:5px 8px}
+.tl-opts select{width:auto}
+.tl-sl{flex-wrap:nowrap}
+.tl-s{flex:1;min-width:120px}
+.tl-s input{width:100%;accent-color:var(--accent)}
+.tl-ticks{display:flex;justify-content:space-between;font-size:10.5px;color:var(--muted)}
+.tl-leg small{flex-basis:100%;color:var(--muted);font-size:10.5px}
+.tl-note{margin:0;font-size:11.5px;color:var(--muted)}
+.tl-act{border-top:1px solid var(--line);padding-top:8px}
+.tl-sumb{border-top:1px solid var(--line);padding-top:8px}
+.tl-sumb .tl-sh{display:flex;justify-content:space-between;align-items:baseline;gap:8px;margin-bottom:6px}
+.tl-sumb .tl-sh small{color:var(--muted);font-size:11px}
+.tl-sumb table{font-size:12px}
+.tl-txt{font-size:12.5px;margin:8px 0}
+.tlswipe{position:absolute;inset:0;z-index:450;pointer-events:none}
+.tlswipe .ln{position:absolute;top:0;bottom:0;left:0;width:2px;margin-left:-1px;background:#fff;box-shadow:0 0 4px rgba(0,0,0,.5)}
+.tlswipe{left:0}
+.tlswipe .hd{position:absolute;top:50%;left:0;transform:translate(-50%,-50%);pointer-events:auto;width:34px;height:34px;border-radius:50%;border:2px solid #fff;background:var(--accent);color:#fff;font-weight:800;cursor:ew-resize;touch-action:none;box-shadow:0 2px 8px rgba(0,0,0,.35)}
+.tlswipe .tg{position:absolute;top:12px;font-family:var(--f-display);font-weight:800;font-size:15px;color:#fff;background:rgba(0,0,0,.55);padding:3px 8px;border-radius:6px}
+.tlswipe .a{right:calc(100% + 10px)}
+.tlswipe .b{left:10px}
+@media (max-width:860px){.tlpanel{left:6px;right:6px;width:auto;bottom:6px;max-height:70%}}
 /* resizable panels */
 aside.rail{position:relative}
 #v-map{grid-template-columns:var(--railw,minmax(300px,370px)) 1fr}
@@ -1180,8 +1212,8 @@ const BASES={
   nasa:{n:'NASA daily',u:()=>`https://gibs.earthdata.nasa.gov/wmts/epsg3857/best/VIIRS_SNPP_CorrectedReflectance_TrueColor/default/${new Date(Date.now()-864e5*2).toISOString().slice(0,10)}/GoogleMapsCompatible_Level9/{z}/{y}/{x}.jpg`,a:'Imagery: NASA GIBS / VIIRS SNPP corrected reflectance (2 days ago)',mz:9}
 };
 const isDark=()=>document.documentElement.dataset.theme==='dark'||(document.documentElement.dataset.theme!=='light'&&matchMedia('(prefers-color-scheme: dark)').matches);
-const OVERLAYS={lc:{n:'Land cover',fn:on=>lcOverlay(on)},ari:{n:'Aridity',off:1,fn:on=>ariOverlay(on)},loss:{n:'Forest loss 2001–2024',u:'https://storage.googleapis.com/earthenginepartners-hansen/tiles/gfc_v1.12/loss_alpha/{z}/{x}/{y}.png',a:'Forest loss: Hansen et al. / UMD / Google / USGS / NASA, GFC v1.12',mz:12}};
-function stateStyle(hi){const onTile=!!tile;return onTile?{color:'#ffffff',weight:hi?2.5:1,fillOpacity:0,opacity:.75}:{color:css('--land-line'),weight:hi?2:.8,fillColor:hi?css('--land-hi'):css('--land'),fillOpacity:1,opacity:1}}
+const OVERLAYS={time:{n:'Time explorer',off:1,fn:on=>tlOpen(on)},loss:{n:'Forest loss 2001–2024 (all years)',u:'https://storage.googleapis.com/earthenginepartners-hansen/tiles/gfc_v1.12/loss_alpha/{z}/{x}/{y}.png',a:'Forest loss: Hansen et al. / UMD / Google / USGS / NASA, GFC v1.12',mz:12}};
+function stateStyle(hi){const onTile=!!tile;if(typeof TL!=='undefined'&&TL.on&&(TL.theme!=='none'||TL.img!=='none'))return{color:onTile?'#ffffff':css('--land-line'),weight:hi?2.5:1,fillOpacity:0,opacity:.8};return onTile?{color:'#ffffff',weight:hi?2.5:1,fillOpacity:0,opacity:.75}:{color:css('--land-line'),weight:hi?2:.8,fillColor:hi?css('--land-hi'):css('--land'),fillOpacity:1,opacity:1}}
 function initMap(){
   map=L.map('map',{preferCanvas:true,zoomSnap:.25,minZoom:5,maxZoom:17}).fitBounds([[4.1,2.6],[13.95,14.7]]);
   map.attributionControl.setPrefix(false);
@@ -1211,15 +1243,15 @@ function initMap(){
   new MutationObserver(re).observe(document.documentElement,{attributes:true,attributeFilter:['data-theme']});
   $('#legbtn').onclick=()=>$('#legend').classList.toggle('open');
   $('#close').onclick=closeSheet;
-  initResize();initBg();
+  initResize();initBg();initTime();
   document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!$('#sheet').hidden)closeSheet()});
 }
 function setBase(k){
   if(k!=='outline')track('basemap/'+k,'Switched basemap: '+k);
   $$('#base button').forEach(x=>x.setAttribute('aria-pressed',x.dataset.b===k));
   if(tile){map.removeLayer(tile);tile=null}
-  if(k!=='outline'){const B=BASES[k];const base=L.tileLayer(B.u(),{attribution:B.a,maxNativeZoom:B.mz,maxZoom:17,subdomains:'abc'});
-    const lab=B.lab&&B.lab()?L.tileLayer(B.lab(),{maxNativeZoom:B.mz,maxZoom:17,pane:'overlayPane'}):null;
+  if(k!=='outline'){const B=BASES[k];const base=L.tileLayer(B.u(),{attribution:B.a,maxNativeZoom:B.mz,maxZoom:17,subdomains:'abc',crossOrigin:'anonymous'});
+    const lab=B.lab&&B.lab()?L.tileLayer(B.lab(),{maxNativeZoom:B.mz,maxZoom:17,pane:'overlayPane',crossOrigin:'anonymous'}):null;
     tile=L.layerGroup(lab?[base,lab]:[base]).addTo(map);base.bringToBack();tile._key=k;
     // if a tile service stops answering, fall back to the built-in outline map
     let ok=0,bad=0;base.on('tileload',()=>ok++);base.on('tileerror',()=>{bad++;if(bad>=4&&ok===0&&tile&&tile._key===k){setBase('outline');const n=$('#tilenote');n.hidden=false;n.textContent=BASES[k].n+' tiles did not load, so the atlas switched to its built-in outline map.';setTimeout(()=>n.hidden=true,6000)}})}
@@ -1228,8 +1260,8 @@ function setBase(k){
 }
 function toggleOverlay(k){
   const on=!ovl[k];$$('#ovl button').forEach(x=>{if(x.dataset.o===k)x.setAttribute('aria-pressed',on)});
-  const O0=OVERLAYS[k];if(O0.fn){if(k==='ari')ovl.ari=on;O0.fn(on);return}
-  if(on){const O=OVERLAYS[k];ovl[k]=L.tileLayer(O.u,{attribution:O.a,maxNativeZoom:O.mz,maxZoom:17,opacity:.85}).addTo(map)}else{map.removeLayer(ovl[k]);ovl[k]=null}
+  const O0=OVERLAYS[k];if(O0.fn){ovl[k]=on;O0.fn(on);return}
+  if(on){const O=OVERLAYS[k];ovl[k]=L.tileLayer(O.u,{attribution:O.a,maxNativeZoom:O.mz,maxZoom:17,opacity:.85,crossOrigin:'anonymous'}).addTo(map)}else{map.removeLayer(ovl[k]);ovl[k]=null}
 }
 function recolor(){if(tile&&tile._key==='map')setBase('map');if(ariOn)ariOverlay(true);else statesLayer.setStyle(stateStyle(false));F.forEach(f=>{const c=gcol(f.gp);if(f.poly)f.poly.setStyle({color:c,fillColor:c});if(f.mk)f.mk.setStyle({fillColor:c,color:css('--panel')})});if(built.stats){built.stats=0;if(!$('#v-stats').hidden){built.stats=1;buildStats()}}}
 function renderLegend(){$('#legend').innerHTML=`<div class="t">Designation</div>`+GROUPS.map((g,i)=>`<div class="k"><span class="sw" style="--c:var(--g${i})"></span>${g}</div>`).join('')+`<div class="sm">Shapes are WDPA boundaries; dots mark centres. Dashed dots are placed at the nearest town.</div>`}
@@ -1377,10 +1409,10 @@ function select(f,fromMap){
   const setCap=i=>{const p=f.pics[i],c=$('#galcap');if(c)c.innerHTML=`${esc(capOf(p))} · ${esc(p[2]||'Unknown author')}, <a href="${pageUrl(p)}" target="_blank" rel="noopener">${esc(p[3])} via Wikimedia Commons</a>${p[4]==='G'?' · geotagged inside the reserve’s bounding box':''}`};
   if($('#gal')){setCap(0);$$('#gal .galrow button').forEach(b=>b.onclick=()=>{const i=+b.dataset.g,p=f.pics[i],im=$('#gal>img');if(im){im.dataset.f='';im.dataset.alt=imgUrl(p,500);im.src=imgUrl(p,960)}else{$('#gal').insertAdjacentHTML('afterbegin',imgTag(p,960,500))}setCap(i);$$('#gal .galrow button').forEach(x=>x.classList.toggle('on',x===b))})}
   $$('#list button').forEach(x=>x.classList.toggle('on',x.dataset.id===f.i));
-  renderSiteReports(f);mountChange(f);
+  renderSiteReports(f);mountChange(f);if(TL.on&&TL.sum)tlSummary();
   if(LIVE)loadLive(f,b);
 }
-function closeSheet(){$('#sheet').hidden=true;const p=state.sel;if(p){if(p.poly)p.poly.setStyle({weight:1.2});if(p.mk)p.mk.setStyle({weight:1,color:css('--panel')})}state.sel=null;$$('#list button.on').forEach(b=>b.classList.remove('on'));if(location.hash.length>1&&BY[location.hash.slice(1)])history.replaceState(null,'','#map')}
+function closeSheet(){$('#sheet').hidden=true;if(TL.on&&TL.sum)setTimeout(tlSummary,30);const p=state.sel;if(p){if(p.poly)p.poly.setStyle({weight:1.2});if(p.mk)p.mk.setStyle({weight:1,color:css('--panel')})}state.sel=null;$$('#list button.on').forEach(b=>b.classList.remove('on'));if(location.hash.length>1&&BY[location.hash.slice(1)])history.replaceState(null,'','#map')}
 
 /* ---------- live data (hosted site only) ---------- */
 const liveCache={};
@@ -1680,10 +1712,184 @@ function drawChange(el){
    <p class="note2">Desertification is land degradation in arid, semi-arid and dry sub-humid areas. No single satellite number measures it, so this section shows the drivers and symptoms side by side: dryness, rainfall trends, rising evaporative demand and shifts from trees to rangeland and bare ground. The aridity index here uses the Hargreaves temperature method; values are close to, but not identical with, the CGIAR Global Aridity Index (Penman–Monteith).</p></section>
   <section id="cl"><h3 class="h3x">Land cover</h3><div class="kpis"><div class="kpi"><b>${fmt1.format(avN(...nA,1))}% → ${fmt1.format(avN(...nB,1))}%</b><span>trees, 2017–18 to 2024–25</span><small>Share of national land</small></div><div class="kpi"><b>${fmt1.format(avN(...nA,4))}% → ${fmt1.format(avN(...nB,4))}%</b><span>built area</span><small>≈ ${fmt.format(Math.round((avN(...nB,4)-avN(...nA,4))/100*sum(DATA.st.map(s=>s.km2))))} km² added</small></div><div class="kpi"><b>${fmt1.format(avN(...nA,3))}% → ${fmt1.format(avN(...nB,3))}%</b><span>crops</span><small>See note on savanna farmland</small></div><div class="kpi"><b>${fmt1.format(avN(...nA,6))}% → ${fmt1.format(avN(...nB,6))}%</b><span>rangeland</span><small>Grass and shrub, incl. fallow</small></div></div>
    <div class="grid2">${cL.map(c=>c.html).join('')}</div>
-   <p class="note2">Turn on <b>Land cover</b> in the map’s overlay buttons to see the 10 m map for any year from 2017 to 2025, and <b>Aridity</b> to colour states by dryness. State figures were computed at 250 m from the 10 m maps; reserve figures in each profile are computed live.</p></section>`;
+   <p class="note2">Open the map’s <b>Time explorer</b> to pick a year, play the years in sequence, compare two years side by side, save map images or a year-by-year sheet, and get a written summary for Nigeria, a state or a reserve. State figures were computed at 250 m from the 10 m maps; reserve figures in each profile are computed live.</p>
+  <p><a class="btn primary" href="#map" id="go-time">Open the Time explorer on the map</a></p></section>`;
   [...cF,...cD,...cL].forEach(c=>c.mount());
+  $('#go-time').onclick=e=>{e.preventDefault();location.hash='map';setTimeout(()=>{if(!TL.on)toggleOverlay('time')},120)};
   $$('.subnav a').forEach(a=>a.onclick=e=>{e.preventDefault();$('#'+a.dataset.s).scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'})});
 }
+
+/* ---------- time explorer: year slider, compare swipe, image export, year summary ---------- */
+const rng=(a,b)=>[...Array(b-a+1)].map((_,i)=>a+i);
+const TL={on:false,theme:'lc',img:'none',y:2024,yB:2018,cmp:false,early:true,div:.5,lyr:{},busy:false};
+const EOXY=[2016,2018,2019,2020,2021,2022,2023,2024,2025];
+function imgSrc(y){if(EOXY.includes(y))return{u:`https://tiles.maps.eox.at/wmts/1.0.0/${y===2016?'s2cloudless_3857':'s2cloudless-'+y+'_3857'}/default/g/{z}/{y}/{x}.jpg`,mz:15,n:`Sentinel-2 cloudless ${y} (10 m annual mosaic)`,a:`Sentinel-2 cloudless ${y} – s2maps.eu by EOX IT Services GmbH (contains modified Copernicus Sentinel data ${y})`};
+  return{u:`https://gibs.earthdata.nasa.gov/wmts/epsg3857/best/MODIS_Terra_CorrectedReflectance_TrueColor/default/${y}-12-01/GoogleMapsCompatible_Level9/{z}/{y}/{x}.jpg`,mz:9,n:`MODIS Terra, 1 December ${y} (250 m, single day)`,a:`NASA GIBS / MODIS Terra corrected reflectance, ${y}-12-01`}}
+/* forest-loss tiles from Global Forest Watch: blue channel = loss year − 2000, red = intensity */
+const LossLayer=L.GridLayer.extend({createTile(c,done){const t=document.createElement('canvas');t.width=t.height=256;const o=this.options;
+  let z=c.z,x=c.x,y=c.y,sx=0,sy=0,sw=512;if(z>12){const k=2**(z-12);x=Math.floor(c.x/k);y=Math.floor(c.y/k);sw=512/k;sx=(c.x%k)*sw;sy=(c.y%k)*sw;z=12}
+  const im=new Image();im.crossOrigin='anonymous';im.onload=()=>{const g=t.getContext('2d');g.imageSmoothingEnabled=false;g.drawImage(im,sx,sy,sw,sw,0,0,256,256);const d=g.getImageData(0,0,256,256),p=d.data,yy=o.year-2000;
+    for(let i=0;i<p.length;i+=4){const b=p[i+2],r=p[i];let a=0;if(b===yy){p[i]=255;p[i+1]=32;p[i+2]=110;a=Math.min(255,60+Math.sqrt(r/255)*230)}else if(o.early&&b>0&&b<yy){p[i]=246;p[i+1]=170;p[i+2]=60;a=Math.min(190,30+Math.sqrt(r/255)*170)}p[i+3]=a}
+    g.putImageData(d,0,0);done(null,t)};im.onerror=()=>done(null,t);im.src=`https://tiles.globalforestwatch.org/umd_tree_cover_loss/v1.12/tcd_30/${z}/${x}/${y}.png`;return t}});
+/* state values per year */
+function stV(theme,n,y){if(!CHG)return null;const s=CHG.dz.st[n];
+  if(theme==='rain'){if(!s||!s.p)return null;const i=y-CHG.dz.p0;if(i<0||i>=s.p.length)return null;const nb=mean(s.p.slice(0,30));return{v:(s.p[i]/nb-1)*100,t:`${fmt.format(s.p[i])} mm (${sgn(Math.round((s.p[i]/nb-1)*100),fmt.format)}% vs 1991–2020)`}}
+  if(theme==='ari'){if(!s||!s.p)return null;const i=y-CHG.dz.p0;if(i<0||i>=s.p.length)return null;const ai=s.p[i]/s.pet[y-CHG.dz.e0];return{v:ai,t:`aridity index ${ai.toFixed(2)} · ${ariClass(ai)[1]}`}}
+  if(theme==='sloss'){const d=CHG.fl['S:'+n];if(!d)return null;const v=d[2+y-CHG.fl_y0];if(v==null)return null;return{v,t:`${fmt.format(Math.round(v))} ha lost (${fmt1.format(d[0]?v/d[0]*100:0)}% of 2000 tree cover)`}}
+  if(theme==='built'){const r=CHG.lc.st[n];if(!r)return null;const v=r[y-2017];if(!v)return null;return{v:v[4]/10,t:`${fmt1.format(v[4]/10)}% built-up`}}
+  return null}
+const lerp=(a,b,t)=>a.map((v,i)=>Math.round(v+(b[i]-v)*t)),hex=h=>[1,3,5].map(i=>parseInt(h.slice(i,i+2),16)),rgb=a=>`rgb(${a.join(',')})`;
+function ramp(stops,t){t=Math.max(0,Math.min(1,t));const n=stops.length-1,i=Math.min(n-1,Math.floor(t*n));return rgb(lerp(hex(stops[i]),hex(stops[i+1]),t*n-i))}
+const THEMES={
+  none:{n:'None'},
+  lc:{n:'Land cover (10 m)',yrs:rng(2017,2025),kind:'tile',src:'Esri / Impact Observatory / Microsoft, Sentinel-2 10 m land use/land cover',
+    make:(y,pane)=>new LCLayer('',{year:y,pane,opacity:.8,maxZoom:17,crossOrigin:'anonymous'}),leg:()=>LC_CLS.map(([k,n,c])=>[c,n])},
+  loss:{n:'Forest loss (30 m)',yrs:rng(2001,2024),kind:'tile',src:'Hansen et al. / UMD Global Forest Change v1.12 via Global Forest Watch tiles (canopy >30%)',
+    make:(y,pane)=>new LossLayer({year:y,early:TL.early,pane,maxZoom:17}),leg:y=>[['#ff206e',`Lost in ${y}`]].concat(TL.early?[['#f6aa3c',`Lost 2001–${y-1}`]]:[])},
+  rain:{n:'Rainfall vs normal (states)',yrs:rng(1991,2024),kind:'state',src:'CHIRPS v2 via NASA/USAID SERVIR ClimateSERV; anomaly vs 1991–2020',
+    col:v=>ramp(['#8c510a','#d8b365','#f2ede0','#5ab4ac','#01665e'],(v+40)/80),leg:()=>[['#8c510a','40% drier'],['#d8b365','20% drier'],['#f2ede0','normal'],['#5ab4ac','20% wetter'],['#01665e','40% wetter']]},
+  ari:{n:'Aridity index (states)',yrs:rng(1991,2024),kind:'state',src:'CHIRPS rainfall ÷ Hargreaves PET (NASA POWER); UNEP classes',col:v=>ariClass(v)[2],leg:()=>ARI.map(a=>[a[2],a[1]])},
+  sloss:{n:'Tree cover loss by state',yrs:rng(2001,2024),kind:'state',src:'Hansen GFC v1.12, zonal statistics by this atlas',col:v=>ramp(['#fff5eb','#fdae6b','#e6550d','#7f2704'],Math.sqrt(v/30000)),leg:()=>[['#fff5eb','0 ha'],['#fdae6b','3,300 ha'],['#e6550d','13,000 ha'],['#7f2704','30,000+ ha lost in the year']]},
+  built:{n:'Built-up share (states)',yrs:rng(2017,2025),kind:'state',src:'Esri / Impact Observatory 10 m land cover; state shares at 250 m',col:v=>ramp(['#fee5d9','#fb6a4a','#99000d'],Math.sqrt(v/30)),leg:()=>[['#fee5d9','0%'],['#fb6a4a','7%'],['#99000d','30%+']]}};
+const IMGS={none:{n:'Base map only'},sat:{n:'Satellite image of that year',yrs:rng(2001,2025)}};
+function tlYears(){const T=THEMES[TL.theme];return T.yrs||IMGS[TL.img].yrs||rng(2001,2025)}
+const clampY=(arr,y)=>arr.includes(y)?y:(y<arr[0]?arr[0]:arr[arr.length-1]);
+function tlPanes(){if(map.getPane('tlA'))return;[['tlA',250],['tlB',251],['tlAv',260],['tlBv',261]].forEach(([n,z])=>{const p=map.createPane(n);p.style.zIndex=z;p.style.pointerEvents='none'});
+  TL.rA=L.canvas({pane:'tlAv',padding:.3});TL.rB=L.canvas({pane:'tlBv',padding:.3});
+  const mk=r=>L.geoJSON({type:'FeatureCollection',features:DATA.st.map(s=>({type:'Feature',properties:{n:s.n},geometry:{type:s.t,coordinates:s.g}}))},{renderer:r,interactive:false,pane:r.options.pane,style:()=>({stroke:false,fillOpacity:0})});
+  TL.chA=mk(TL.rA);TL.chB=mk(TL.rB);map.on('move zoom resize viewreset',tlClip)}
+function tlSide(side,y){const L0=TL.lyr[side]||{};['img','th'].forEach(k=>{if(L0[k]){map.removeLayer(L0[k])}});const ch=side==='A'?TL.chA:TL.chB;if(map.hasLayer(ch))map.removeLayer(ch);TL.lyr[side]={};
+  if(!TL.on||(side==='B'&&!TL.cmp))return;const pane=side==='A'?'tlA':'tlB';
+  if(TL.img==='sat'&&LIVE){const s=imgSrc(clampY(IMGS.sat.yrs,y));TL.lyr[side].img=L.tileLayer(s.u,{pane,maxNativeZoom:s.mz,maxZoom:17,crossOrigin:'anonymous',attribution:s.a}).addTo(map);TL.lyr[side].imgN=s.n;TL.lyr[side].imgA=s.a}
+  const T=THEMES[TL.theme];if(TL.theme==='none')return;const ty=clampY(T.yrs,y);TL.lyr[side].ty=ty;
+  if(T.kind==='tile'&&LIVE){TL.lyr[side].th=T.make(ty,pane).addTo(map)}
+  if(T.kind==='state'){ch.setStyle(ft=>{const v=stV(TL.theme,ft.properties.n,ty);return v?{stroke:false,fillColor:T.col(v.v),fillOpacity:.82}:{stroke:false,fillOpacity:0}});ch.addTo(map)}}
+function tlClip(){if(!map.getPane('tlA'))return;const sz=map.getSize(),nw=map.containerPointToLayerPoint([0,0]),se=map.containerPointToLayerPoint(sz),cx=map.containerPointToLayerPoint([sz.x*TL.div,0]).x;
+  const on=TL.on&&TL.cmp;['tlA','tlAv'].forEach(p=>map.getPane(p).style.clip=on?`rect(${nw.y}px, ${cx}px, ${se.y}px, ${nw.x}px)`:'');['tlB','tlBv'].forEach(p=>map.getPane(p).style.clip=on?`rect(${nw.y}px, ${se.x}px, ${se.y}px, ${cx}px)`:'');
+  const d=$('#tlswipe');if(d){d.hidden=!on;d.style.left=(TL.div*100)+'%';$('#tlswipe .a').textContent=TL.y;$('#tlswipe .b').textContent=TL.yB}}
+function tlRender(){if(!CHG&&TL.on){loadChg().then(tlRender).catch(()=>toast('Land-change data could not be loaded'));return}
+  tlPanes();const ys=tlYears();TL.y=clampY(ys,TL.y);TL.yB=clampY(ys,TL.yB);tlSide('A',TL.y);tlSide('B',TL.yB);statesLayer.setStyle(stateStyle(false));tlClip();tlPanel();if(TL.sum)tlSummary()}
+function tlArea(){const f=state.sel;if(f&&!$('#sheet').hidden)return{k:'site',f,n:f.n,st:(f.st||[])[0]};if(state.st)return{k:'state',n:state.st,st:state.st};return{k:'nat',n:'Nigeria'}}
+function tlPanel(){const el=$('#tlpanel');if(!el)return;const ys=tlYears(),T=THEMES[TL.theme];
+  const leg=TL.theme==='none'?[]:T.leg(TL.lyr.A&&TL.lyr.A.ty||TL.y);
+  el.querySelector('.tl-y').textContent=TL.cmp?`${TL.y} | ${TL.yB}`:TL.y;
+  const s=el.querySelector('#tl-yr');s.min=ys[0];s.max=ys[ys.length-1];s.value=TL.y;s.setAttribute('aria-valuetext',String(TL.y));
+  el.querySelector('#tl-ticks').innerHTML=`<span>${ys[0]}</span><span>${ys[ys.length-1]}</span>`;
+  el.querySelector('#tl-b').innerHTML=ys.map(y=>`<option ${y===TL.yB?'selected':''}>${y}</option>`).join('');
+  el.querySelector('#tl-early').closest('label').hidden=TL.theme!=='loss';
+  const notes=[];if(T.kind==='tile'&&!LIVE)notes.push('This layer loads on the hosted site.');if(TL.img==='sat'){const s=imgSrc(clampY(IMGS.sat.yrs,TL.y));notes.push('Imagery: '+s.n+(TL.cmp?' · right side: '+imgSrc(clampY(IMGS.sat.yrs,TL.yB)).n:''));if(!LIVE)notes.push('Satellite images load on the hosted site.')}
+  if(TL.theme!=='none'&&TL.lyr.A&&TL.lyr.A.ty!==TL.y)notes.push(`${T.n} is available for ${T.yrs[0]}–${T.yrs[T.yrs.length-1]}; showing ${TL.lyr.A.ty}.`);
+  el.querySelector('.tl-leg').innerHTML=leg.map(([c,n])=>`<span><i style="background:${c}"></i>${esc(n)}</span>`).join('')+(TL.theme==='none'?'':`<small>${esc(T.src)}</small>`);
+  el.querySelector('.tl-note').textContent=notes.join(' ');el.querySelector('.tl-note').hidden=!notes.length}
+function tlOpen(on){TL.on=on;ovl.time=on;$$('#ovl button').forEach(x=>{if(x.dataset.o==='time')x.setAttribute('aria-pressed',on)});$('#tlpanel').hidden=!on;$('#legend').classList.toggle('tl-hide',on);if(!on){tlStop();TL.cmp=false;$('#tl-cmp').checked=false}track('time/'+(on?'open':'close'),'Time explorer');tlRender()}
+function tlStop(){if(TL.play){clearInterval(TL.play);TL.play=null;$('#tl-play').textContent='▶ Play';$('#tl-play').setAttribute('aria-pressed','false')}}
+function initTime(){
+  const mw=$('.mapwrap');
+  mw.insertAdjacentHTML('beforeend',`<div class="tlswipe" id="tlswipe" hidden><div class="ln"></div><button type="button" class="hd" role="slider" aria-label="Move the comparison divider" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50">⇔</button><span class="tg a"></span><span class="tg b"></span></div>
+  <section class="tlpanel" id="tlpanel" hidden aria-label="Time explorer"><div class="tl-h"><b>Time explorer</b><span class="tl-y"></span><button type="button" class="x" id="tl-x" aria-label="Close time explorer">×</button></div>
+   <div class="tl-row"><label>Layer<select id="tl-th">${Object.entries(THEMES).map(([k,v])=>`<option value="${k}">${v.n}</option>`).join('')}</select></label><label>Imagery<select id="tl-img">${Object.entries(IMGS).map(([k,v])=>`<option value="${k}">${v.n}</option>`).join('')}</select></label></div>
+   <div class="tl-row tl-sl"><button type="button" class="btn sm" id="tl-prev" aria-label="Previous year">◀</button><div class="tl-s"><input type="range" id="tl-yr" step="1" aria-label="Year"><div id="tl-ticks" class="tl-ticks"></div></div><button type="button" class="btn sm" id="tl-next" aria-label="Next year">▶</button><button type="button" class="btn sm" id="tl-play" aria-pressed="false">▶ Play</button></div>
+   <div class="tl-row tl-opts"><label class="toggle"><input type="checkbox" id="tl-cmp"> Compare with</label><select id="tl-b" aria-label="Comparison year"></select><label class="toggle"><input type="checkbox" id="tl-early" checked> Show earlier loss</label></div>
+   <div class="tl-leg lgd"></div><p class="tl-note"></p>
+   <div class="tl-row tl-act"><button type="button" class="btn sm primary" id="tl-save">Save map image</button><button type="button" class="btn sm" id="tl-series">Save year series</button><button type="button" class="btn sm" id="tl-sum" aria-expanded="false">Year summary</button></div>
+   <div class="tl-sumb" id="tl-sumb" hidden></div></section>`);
+  $('#tl-x').onclick=()=>tlOpen(false);
+  $('#tl-th').value=TL.theme;$('#tl-th').onchange=e=>{TL.theme=e.target.value;tlRender()};
+  $('#tl-img').onchange=e=>{TL.img=e.target.value;tlRender()};
+  const set=y=>{TL.y=y;tlRender()};$('#tl-yr').oninput=e=>set(+e.target.value);
+  const step=d=>{const ys=tlYears();const i=ys.indexOf(TL.y);set(ys[Math.max(0,Math.min(ys.length-1,i+d))])};$('#tl-prev').onclick=()=>step(-1);$('#tl-next').onclick=()=>step(1);
+  $('#tl-play').onclick=()=>{if(TL.play){tlStop();return}const ys=tlYears();if(TL.y===ys[ys.length-1])TL.y=ys[0];$('#tl-play').textContent='❚❚ Pause';$('#tl-play').setAttribute('aria-pressed','true');tlRender();
+    TL.play=setInterval(()=>{const ys=tlYears();const i=ys.indexOf(TL.y);if(i>=ys.length-1){tlStop();return}set(ys[i+1])},matchMedia('(prefers-reduced-motion: reduce)').matches?3000:1800)};
+  $('#tl-cmp').onchange=e=>{TL.cmp=e.target.checked;if(TL.cmp&&TL.yB===TL.y){const ys=tlYears();TL.yB=ys[0]===TL.y?ys[ys.length-1]:ys[0]}tlRender()};
+  $('#tl-b').onchange=e=>{TL.yB=+e.target.value;tlRender()};
+  $('#tl-early').onchange=e=>{TL.early=e.target.checked;tlRender()};
+  $('#tl-save').onclick=()=>tlExport();$('#tl-series').onclick=()=>tlSeries();
+  $('#tl-sum').onclick=()=>{TL.sum=!TL.sum;$('#tl-sum').setAttribute('aria-expanded',TL.sum);$('#tl-sumb').hidden=!TL.sum;if(TL.sum)tlSummary()};
+  // swipe divider
+  const sw=$('#tlswipe'),hd=sw.querySelector('.hd');const mv=x=>{const r=mw.getBoundingClientRect();TL.div=Math.max(.05,Math.min(.95,(x-r.left)/r.width));hd.setAttribute('aria-valuenow',Math.round(TL.div*100));tlClip()};
+  hd.addEventListener('pointerdown',e=>{e.preventDefault();hd.setPointerCapture(e.pointerId);const m=ev=>mv(ev.clientX),u=()=>{hd.removeEventListener('pointermove',m);hd.removeEventListener('pointerup',u)};hd.addEventListener('pointermove',m);hd.addEventListener('pointerup',u)});
+  hd.addEventListener('keydown',e=>{if(e.key==='ArrowLeft'||e.key==='ArrowRight'){e.preventDefault();TL.div=Math.max(.05,Math.min(.95,TL.div+(e.key==='ArrowLeft'?-.05:.05)));hd.setAttribute('aria-valuenow',Math.round(TL.div*100));tlClip()}});
+  L.DomEvent.disableClickPropagation($('#tlpanel'));L.DomEvent.disableScrollPropagation($('#tlpanel'));L.DomEvent.disableClickPropagation(sw);
+  document.addEventListener('change',e=>{if(TL.on&&TL.sum&&(e.target.id==='state'))setTimeout(tlSummary,50)})}
+/* ---- summary for the selected year(s) and area ---- */
+function areaStats(a,y){const o={y};if(!CHG)return o;const sts=a.k==='nat'?DATA.st.map(s=>s.n):[a.st].filter(Boolean);
+  const flk=a.k==='site'?a.f.i:null;const fl=flk&&CHG.fl[flk]?[CHG.fl[flk]]:sts.map(n=>CHG.fl['S:'+n]).filter(Boolean);
+  if(fl.length&&y>=CHG.fl_y0&&y<=CHG.fl_y1){const tc=sum(fl.map(d=>d[0])),i=2+y-CHG.fl_y0;o.tc=tc;o.loss=sum(fl.map(d=>d[i]));o.cum=sum(fl.map(d=>sum(d.slice(2,i+1))));o.flsite=!!flk}
+  const km=n=>(DATA.st.find(s=>s.n===n)||{}).km2||0;const dz=sts.map(n=>({n,s:CHG.dz.st[n],w:km(n)})).filter(x=>x.s&&x.s.p);
+  if(dz.length&&y>=CHG.dz.p0&&y<CHG.dz.p0+dz[0].s.p.length){const W=sum(dz.map(x=>x.w))||1,pi=y-CHG.dz.p0;o.rain=sum(dz.map(x=>x.s.p[pi]*x.w))/W;o.rainN=sum(dz.map(x=>mean(x.s.p.slice(0,30))*x.w))/W;o.pet=sum(dz.map(x=>x.s.pet[y-CHG.dz.e0]*x.w))/W;o.ai=o.rain/o.pet}
+  const lc=sts.map(n=>({r:CHG.lc.st[n],w:km(n)})).filter(x=>x.r);if(lc.length&&y>=2017&&y<=2025){const W=sum(lc.map(x=>x.w))||1;o.lc=LC_CLS.map((_,ci)=>sum(lc.map(x=>x.r[y-2017][ci]/10*x.w))/W)}
+  if(a.k==='site'&&lcCache[a.f.i]){const r=lcCache[a.f.i].rows[y-2017];if(r)o.lcSite=r.pct}
+  return o}
+function sumText(a,o,b){if(b&&b.y>o.y){const t=o;o=b;b=t}const p=[];const where=a.k==='site'?a.n:a.k==='state'?a.n+' State':'Nigeria';
+  if(o.loss!=null)p.push(`In ${o.y}, ${where} lost ${fmt.format(Math.round(o.loss))} ha of tree cover (${fmt1.format(o.tc?o.loss/o.tc*100:0)}% of its 2000 tree cover); ${fmt.format(Math.round(o.cum))} ha (${fmt1.format(o.tc?o.cum/o.tc*100:0)}%) had been lost since 2001.`);
+  if(o.rain!=null)p.push(`${a.k==='site'?'Its state':p.length?'It':(a.k==='state'?a.n+' State':'Nigeria')} received ${fmt.format(Math.round(o.rain))} mm of rain, ${Math.abs(o.rain/o.rainN-1)<.005?'close to':Math.abs(Math.round((o.rain/o.rainN-1)*100))+'% '+(o.rain>=o.rainN?'above':'below')} the 1991–2020 average; the aridity index was ${o.ai.toFixed(2)} (${ariClass(o.ai)[1].toLowerCase()}).`);
+  const lcv=o.lcSite||o.lc;if(lcv)p.push(`Land cover${o.lcSite?' inside the reserve':a.k==='site'?' in its state':''}: trees ${fmt1.format(lcv[1])}%, crops ${fmt1.format(lcv[3])}%, rangeland ${fmt1.format(lcv[6])}%, built-up ${fmt1.format(lcv[4])}%, bare ${fmt1.format(lcv[5])}%.`);
+  if(b){const d=[];const L1=o.lcSite||o.lc,L0=b.lcSite||b.lc;if(L1&&L0)d.push(`trees ${sgn(+(L1[1]-L0[1]).toFixed(1),fmt1.format)} pts, built-up ${sgn(+(L1[4]-L0[4]).toFixed(1),fmt1.format)} pts, rangeland ${sgn(+(L1[6]-L0[6]).toFixed(1),fmt1.format)} pts`);
+    if(o.cum!=null&&b.cum!=null){const lo=Math.min(o.y,b.y),hi=Math.max(o.y,b.y);d.push(`${fmt.format(Math.round(Math.abs(o.cum-b.cum)))} ha of tree cover lost in ${lo+1}–${hi}`)}
+    if(o.rain!=null&&b.rain!=null)d.push(`rainfall ${fmt.format(Math.round(b.rain))} → ${fmt.format(Math.round(o.rain))} mm`);
+    if(d.length)p.push(`Change from ${b.y} to ${o.y}: ${d.join('; ')}.`)}
+  return p.join(' ')}
+function tlSummary(){const el=$('#tl-sumb');if(!el||!CHG){if(el)loadChg().then(tlSummary).catch(()=>{});return}
+  const a=tlArea();const o=areaStats(a,TL.y),b=TL.cmp?areaStats(a,TL.yB):null;const cols=b?[b,o].sort((x,y)=>x.y-y.y):[o];
+  const rows=[['Tree cover lost in the year (ha)',x=>x.loss!=null?fmt.format(Math.round(x.loss)):'–'],['Lost since 2001 (ha)',x=>x.cum!=null?fmt.format(Math.round(x.cum)):'–'],['Share of 2000 tree cover lost',x=>x.cum!=null&&x.tc?fmt1.format(x.cum/x.tc*100)+'%':'–'],
+    ['Rainfall (mm)'+(a.k==='site'?' · state':''),x=>x.rain!=null?fmt.format(Math.round(x.rain)):'–'],['vs 1991–2020 average',x=>x.rain!=null?sgn(Math.round((x.rain/x.rainN-1)*100),fmt.format)+'%':'–'],['Aridity index',x=>x.ai!=null?x.ai.toFixed(2)+' · '+ariClass(x.ai)[1]:'–'],
+    ...[[1,'Trees'],[3,'Crops'],[6,'Rangeland'],[4,'Built-up'],[5,'Bare ground']].map(([ci,n])=>[n+' (% of '+(a.k==='site'?'reserve':'area')+')',x=>{const v=(x.lcSite||x.lc);return v?fmt1.format(v[ci])+'%':'–'}])];
+  TL.sumRows=rows.map(([k,f])=>Object.fromEntries([['indicator',k],...cols.map(c=>[String(c.y),f(c)])]));TL.sumTxt=sumText(a,o,b);TL.sumArea=a;
+  el.innerHTML=`<div class="tl-sh"><b>${esc(a.k==='site'?a.n:a.k==='state'?a.n+' State':'Nigeria')}</b><small>${a.k==='nat'?'Pick a state in the State filter, or open a reserve, to summarise it':a.k==='state'?'State filter':'Open profile'}</small></div>
+   <table class="dt"><thead><tr><th></th>${cols.map(c=>`<th class="n">${c.y}</th>`).join('')}</tr></thead><tbody>${rows.map(([k,f])=>`<tr><td>${esc(k)}</td>${cols.map(c=>`<td class="n">${f(c)}</td>`).join('')}</tr>`).join('')}</tbody></table>
+   <p class="tl-txt">${esc(TL.sumTxt)}</p><div class="tl-row"><button type="button" class="btn sm" id="tl-copy">Copy summary</button><button type="button" class="btn sm" id="tl-csv">CSV</button></div>
+   <p class="src2">Forest loss: Hansen GFC v1.12. Rainfall: CHIRPS v2. Aridity: CHIRPS ÷ Hargreaves PET. Land cover: Esri/Impact Observatory 10 m${a.k==='site'&&!lcCache[a.f.i]?' (state shares; open the reserve’s Land cover tab for reserve figures)':''}. Site rainfall and aridity are for the state.</p>`;
+  $('#tl-copy').onclick=()=>copy(TL.sumTxt+` Source: Nigeria Forest Reserves Atlas, ${CONFIG.siteUrl} (accessed ${today}).`);
+  $('#tl-csv').onclick=()=>saveFile(`summary_${(a.n||'nigeria').toLowerCase().replace(/\W+/g,'_')}_${cols.map(c=>c.y).join('_')}.csv`,toCSV(TL.sumRows),'text/csv')}
+/* ---- image export ---- */
+function waitTiles(ms){const ls=[];['A','B'].forEach(s=>{const o=TL.lyr[s]||{};['img','th'].forEach(k=>{if(o[k]&&o[k].isLoading&&o[k].isLoading())ls.push(o[k])})});if(tile)tile.eachLayer(l=>{if(l.isLoading&&l.isLoading())ls.push(l)});
+  return Promise.race([Promise.all(ls.map(l=>new Promise(r=>l.once('load',r)))),new Promise(r=>setTimeout(r,ms||9000))]).then(()=>new Promise(r=>setTimeout(r,250)))}
+function captureMap(S){const ct=map.getContainer(),R=ct.getBoundingClientRect(),W=R.width,H=R.height;const c=document.createElement('canvas');c.width=W*S;c.height=H*S;const g=c.getContext('2d');g.scale(S,S);g.fillStyle=css('--sea')||'#dfe8ee';g.fillRect(0,0,W,H);
+  const op=el=>{let o=1,n=el;while(n&&n!==ct){const v=parseFloat(getComputedStyle(n).opacity);if(!isNaN(v))o*=v;n=n.parentElement}return o};
+  const sz=map.getSize(),cx=sz.x*TL.div,cmp=TL.on&&TL.cmp;
+  ['tilePane','tlA','tlB','tlAv','tlBv','overlayPane'].forEach(pn=>{const p=map.getPane(pn);if(!p)return;g.save();if(cmp&&/^tlA/.test(pn)){g.beginPath();g.rect(0,0,cx,H);g.clip()}if(cmp&&/^tlB/.test(pn)){g.beginPath();g.rect(cx,0,W-cx,H);g.clip()}
+    p.querySelectorAll('img,canvas').forEach(el=>{if(el.tagName==='IMG'&&!(el.complete&&el.naturalWidth))return;const r=el.getBoundingClientRect();if(r.right<R.left||r.left>R.right||r.bottom<R.top||r.top>R.bottom||!r.width)return;g.globalAlpha=op(el);try{g.drawImage(el,r.left-R.left,r.top-R.top,r.width,r.height)}catch(e){}});g.restore()});
+  if(cmp){g.fillStyle='#fff';g.fillRect(cx-1,0,2,H);[[TL.y,cx-8,'right'],[TL.yB,cx+8,'left']].forEach(([t,x,al])=>{g.font='700 16px system-ui,sans-serif';g.textAlign=al;g.lineWidth=4;g.strokeStyle='rgba(0,0,0,.6)';g.strokeText(t,x,26);g.fillStyle='#fff';g.fillText(t,x,26)})}
+  return c}
+function niceLen(m){const p=10**Math.floor(Math.log10(m)),f=m/p;return(f>=5?5:f>=2?2:1)*p}
+function frame(mapCanvas,o){/* o:{title,sub,leg,credits,summary} */
+  const S=2,mw=mapCanvas.width/S,mh=mapCanvas.height/S,pad=20,W=Math.max(mw+pad*2,760);const legH=o.leg&&o.leg.length?34:0;const sumL=o.summary?wrapLines(o.summary,W-pad*2,13):[];const crL=wrapLines(o.credits,W-pad*2,11);
+  const H=pad+30+20+10+mh+12+legH+(sumL.length?sumL.length*18+10:0)+crL.length*15+pad+16;
+  const c=document.createElement('canvas');c.width=W*S;c.height=H*S;const g=c.getContext('2d');g.scale(S,S);g.fillStyle='#ffffff';g.fillRect(0,0,W,H);g.fillStyle='#15231a';
+  g.font='800 22px system-ui,sans-serif';g.fillText(o.title,pad,pad+22);g.font='13px system-ui,sans-serif';g.fillStyle='#56655b';g.fillText(o.sub,pad,pad+44);
+  let y=pad+60;const mx=(W-mw)/2;g.drawImage(mapCanvas,mx,y,mw,mh);g.strokeStyle='#d3dccf';g.strokeRect(mx+.5,y+.5,mw-1,mh-1);
+  // scale bar and north arrow
+  const ctr=map.getSize().y/2,m=map.distance(map.containerPointToLatLng([0,ctr]),map.containerPointToLatLng([100,ctr]))/100;const len=niceLen(m*120),px=len/m;
+  g.fillStyle='rgba(255,255,255,.85)';g.fillRect(mx+10,y+mh-34,px+20,24);g.fillStyle='#15231a';g.fillRect(mx+20,y+mh-16,px,3);g.font='11px system-ui,sans-serif';g.fillText(len>=1000?fmt.format(len/1000)+' km':fmt.format(len)+' m',mx+20,y+mh-20);
+  g.fillStyle='rgba(255,255,255,.85)';g.fillRect(mx+mw-34,y+10,24,30);g.fillStyle='#15231a';g.beginPath();g.moveTo(mx+mw-22,y+14);g.lineTo(mx+mw-28,y+30);g.lineTo(mx+mw-16,y+30);g.fill();g.font='700 10px system-ui,sans-serif';g.textAlign='center';g.fillText('N',mx+mw-22,y+39);g.textAlign='left';
+  y+=mh+12;
+  if(legH){let x=pad;g.font='12px system-ui,sans-serif';o.leg.forEach(([col,n])=>{const w=g.measureText(n).width;if(x+w+24>W-pad){x=pad;y+=16}g.fillStyle=col;g.fillRect(x,y+6,12,12);g.strokeStyle='rgba(0,0,0,.25)';g.strokeRect(x+.5,y+6.5,11,11);g.fillStyle='#15231a';g.fillText(n,x+17,y+16);x+=w+32});y+=legH}
+  if(sumL.length){g.font='13px system-ui,sans-serif';g.fillStyle='#15231a';sumL.forEach(l=>{g.fillText(l,pad,y+12);y+=18});y+=10}
+  g.font='11px system-ui,sans-serif';g.fillStyle='#56655b';crL.forEach(l=>{g.fillText(l,pad,y+11);y+=15});
+  g.font='700 11px system-ui,sans-serif';g.fillStyle='#1d6b3c';g.fillText(`Nigeria Forest Reserves Atlas · ${CONFIG.siteUrl.replace(/^https?:\/\//,'')} · made ${today}`,pad,y+14);return c}
+function wrapLines(t,w,fs){if(!t)return[];const g=document.createElement('canvas').getContext('2d');g.font=fs+'px system-ui,sans-serif';const out=[];let line='';t.split(' ').forEach(wd=>{const s=line?line+' '+wd:wd;if(g.measureText(s).width>w&&line){out.push(line);line=wd}else line=s});if(line)out.push(line);return out}
+function credits(){const c=new Set();if(tile&&tile._key&&BASES[tile._key])c.add(BASES[tile._key].a);['A','B'].forEach(s=>{const o=TL.lyr[s]||{};if(o.imgA)c.add(o.imgA)});if(TL.theme!=='none')c.add(THEMES[TL.theme].src);c.add('Boundaries: geoBoundaries; protected areas: UNEP-WCMC & IUCN WDPA');return'Sources: '+[...c].filter(Boolean).join(' · ')}
+function areaLabel(){const a=tlArea();return a.k==='site'?a.n+(a.st?', '+a.st+' State':''):a.k==='state'?a.n+' State':'Nigeria'}
+async function toPng(c,name){const b=await new Promise(r=>c.toBlob(r,'image/png'));if(!b){toast('The image could not be created');return}await saveFile(name,b,'image/png')}
+async function tlExport(){if(TL.busy)return;TL.busy=true;const btn=$('#tl-save');btn.disabled=true;btn.textContent='Preparing…';
+  try{if(TL.on&&!CHG)await loadChg();await waitTiles(8000);const T=THEMES[TL.theme];const yrs=TL.cmp?`${TL.y} (left) vs ${TL.yB} (right)`:String(TL.y);
+    const a=tlArea();let summary='';if(CHG){const o=areaStats(a,TL.y),b=TL.cmp?areaStats(a,TL.yB):null;summary=sumText(a,o,b)}
+    const c=frame(captureMap(2),{title:`${TL.theme!=='none'?T.n:TL.img==='sat'?'Satellite imagery':'Map'} · ${yrs}`,sub:`${areaLabel()}${TL.img==='sat'?' · '+(TL.lyr.A&&TL.lyr.A.imgN||''):''}`,leg:TL.theme!=='none'?T.leg(TL.lyr.A&&TL.lyr.A.ty||TL.y):[],credits:credits(),summary});
+    await toPng(c,`nigeria_atlas_${TL.theme}_${TL.cmp?TL.y+'_vs_'+TL.yB:TL.y}.png`);track('time/export','Saved map image')}
+  catch(e){toast('The image could not be created: '+(e.message||e))}finally{TL.busy=false;btn.disabled=false;btn.textContent='Save map image'}}
+async function tlSeries(){if(TL.busy)return;const ys0=tlYears();const step=Math.max(1,Math.ceil(ys0.length/12));const ys=ys0.filter((y,i)=>i%step===0||i===ys0.length-1);
+  if(!confirm(`Save a sheet of ${ys.length} maps (${ys.join(', ')}) for the current view? The map will step through the years while it works.`))return;
+  TL.busy=true;tlStop();const keep={y:TL.y,cmp:TL.cmp};TL.cmp=false;$('#tl-cmp').checked=false;const btn=$('#tl-series');btn.disabled=true;
+  try{if(!CHG)await loadChg();const shots=[];for(const y of ys){btn.textContent=`Capturing ${y}…`;TL.y=y;tlRender();await waitTiles(9000);shots.push([y,captureMap(1)])}
+    const T=THEMES[TL.theme],cols=ys.length<=4?ys.length:ys.length<=9?3:4,rows=Math.ceil(ys.length/cols),tw=shots[0][1].width,th=shots[0][1].height,sc=Math.min(1,380/tw),pw=tw*sc,ph=th*sc,gap=10,pad=20,S=2;
+    const W=pad*2+cols*pw+(cols-1)*gap;const leg=TL.theme!=='none'?T.leg(ys[ys.length-1]):[];const crL=wrapLines(credits(),W-pad*2,11);const H=pad+60+rows*(ph+gap)+(leg.length?30:0)+crL.length*15+pad+16;
+    const c=document.createElement('canvas');c.width=W*S;c.height=H*S;const g=c.getContext('2d');g.scale(S,S);g.fillStyle='#fff';g.fillRect(0,0,W,H);
+    g.fillStyle='#15231a';g.font='800 22px system-ui,sans-serif';g.fillText(`${TL.theme!=='none'?T.n:'Satellite imagery'}, ${ys[0]}–${ys[ys.length-1]}`,pad,pad+22);g.font='13px system-ui,sans-serif';g.fillStyle='#56655b';g.fillText(areaLabel(),pad,pad+44);
+    shots.forEach(([y,s],i)=>{const x=pad+(i%cols)*(pw+gap),yy=pad+60+Math.floor(i/cols)*(ph+gap);g.drawImage(s,x,yy,pw,ph);g.lineWidth=1;g.strokeStyle='#d3dccf';g.strokeRect(x+.5,yy+.5,pw-1,ph-1);g.font='700 15px system-ui,sans-serif';g.lineWidth=4;g.strokeStyle='rgba(255,255,255,.9)';g.strokeText(y,x+8,yy+20);g.fillStyle='#15231a';g.fillText(y,x+8,yy+20)});
+    let y=pad+60+rows*(ph+gap);if(leg.length){let x=pad;g.font='12px system-ui,sans-serif';leg.forEach(([col,n])=>{const w=g.measureText(n).width;g.fillStyle=col;g.fillRect(x,y+4,12,12);g.fillStyle='#15231a';g.fillText(n,x+17,y+14);x+=w+32});y+=30}
+    g.font='11px system-ui,sans-serif';g.fillStyle='#56655b';crL.forEach(l=>{g.fillText(l,pad,y+11);y+=15});g.font='700 11px system-ui,sans-serif';g.fillStyle='#1d6b3c';g.fillText(`Nigeria Forest Reserves Atlas · ${CONFIG.siteUrl.replace(/^https?:\/\//,'')} · made ${today}`,pad,y+14);
+    await toPng(c,`nigeria_atlas_${TL.theme}_${ys[0]}-${ys[ys.length-1]}.png`);track('time/series','Saved year series')}
+  catch(e){toast('The series could not be created: '+(e.message||e))}finally{TL.y=keep.y;TL.cmp=keep.cmp;$('#tl-cmp').checked=keep.cmp;tlRender();TL.busy=false;btn.disabled=false;btn.textContent='Save year series'}}
 
 /* ---------- visit view ---------- */
 function buildVisit(){
@@ -1786,6 +1992,7 @@ function buildData(){
    ['NASA POWER (MERRA-2)','Monthly temperature, daily temperature range and top-of-atmosphere radiation 1984–2024','Potential evapotranspiration (Hargreaves method) for the aridity index','https://power.larc.nasa.gov','NASA open data'],
    ['Esri, Impact Observatory and Microsoft, Sentinel-2 10 m Land Use/Land Cover Time Series','Annual 10 m land cover 2017–2025 (water, trees, flooded vegetation, crops, built area, bare ground, rangeland)','Land-cover profiles (live per reserve), state and national shares (computed at 250 m), map overlay','https://www.arcgis.com/home/item.html?id=cfcb7609de5f478eb7666240902d4d3d','CC BY 4.0'],
    ['World Bank Climate Change Knowledge Portal (CRU TS 4.07); UN SDG Global Database; Federal Ministry of Information','National rainfall since 1901; SDG 15.3.1 share of degraded land; Great Green Wall frontline states','Desertification context','https://climateknowledgeportal.worldbank.org/country/nigeria','Per source'],
+   ['Sentinel-2 cloudless annual mosaics (EOX IT Services, s2maps.eu); NASA GIBS MODIS Terra corrected reflectance','Satellite images by year in the Time explorer: 10 m cloud-free mosaics for 2016 and 2018–2025, MODIS 250 m single-day images (1 December) for other years','Time explorer imagery','https://s2maps.eu','CC BY 4.0 (2016) and CC BY-NC-SA 4.0 (2018 onwards); NASA open data'],
    ['Live services on the hosted site','iNaturalist (species photos), Wikimedia Commons (photos), Open-Meteo (weather), CARTO / Esri / OpenTopoMap / NASA GIBS (basemaps), Hansen GFC v1.12 (forest-loss tiles)','On demand','https://www.inaturalist.org','Per service terms']];
   $('#data').innerHTML=`<h2 class="title">Data, sources and method</h2><p class="lede">This atlas joins the official global protected-area register with national inventories, state laws, scientific literature and field reports, and records where every fact came from. It is built to be checked, cited and corrected.</p>
   <h3>Download the dataset</h3><p>${fmt.format(F.length)} records, version ${esc(DATA.meta.version)}, compiled ${esc(DATA.meta.compiled)}. CSV opens in Excel or R; GeoJSON opens in QGIS, ArcGIS and most web maps.</p>
