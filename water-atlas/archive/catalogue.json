@@ -485,7 +485,7 @@
    "rows": 990,
    "first": "2026-10-10",
    "last": "2026-10-15",
-   "bytes": 87100,
+   "bytes": 87595,
    "fields": [
     {
      "name": "issued",
@@ -561,5 +561,5 @@
   }
  ],
  "citation": "Amool, S. H. (2026). Nigeria Water Resources Atlas: data archive [Data set]. https://shagbaor.com/water-atlas/archive/",
- "generated": "2026-10-15T13:37Z"
+ "generated": "2026-10-15T18:28Z"
 }
