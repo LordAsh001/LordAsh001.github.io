@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-14",
+ "updated": "2026-10-15",
  "sources": [
   {
    "source": "Opportunities for Africans",
@@ -9,7 +9,7 @@
   {
    "source": "Opportunity Desk",
    "ok": true,
-   "items": 5
+   "items": 3
   },
   {
    "source": "Opportunities Corners",
@@ -19,12 +19,12 @@
   {
    "source": "Scholarship Region",
    "ok": true,
-   "items": 6
+   "items": 7
   },
   {
    "source": "Opportunities for Youth",
    "ok": true,
-   "items": 7
+   "items": 5
   },
   {
    "source": "Commonwealth Scholarship Commission",
@@ -57,6 +57,58 @@
  ],
  "items": [
   {
+   "title": "Harrison Middleton University (HMU) Fellowship in Ideas 2027",
+   "link": "https://opportunitydesk.org/2026/10/15/hmu-fellowship-in-ideas-2027/",
+   "date": "2026-10-15",
+   "source": "Opportunity Desk",
+   "official": false,
+   "ids": [],
+   "summary": "Deadline: November 15, 2026 Applications for the Harrison Middleton University (HMU) Fellowship in Ideas 2027 are now open. The HMU Fellowship in Ideas is a writing and discussion project in the huma…",
+   "seen": "2026-10-15"
+  },
+  {
+   "title": "University of Tokyo MEXT Scholarship 2027 in Japan (Fully Funded)",
+   "link": "https://opportunitiescorners.com/university-of-tokyo-mext-scholarship-2027/",
+   "date": "2026-10-15",
+   "source": "Opportunities Corners",
+   "official": false,
+   "ids": [
+    "mext"
+   ],
+   "summary": "Applications are now open for the University of Tokyo MEXT Scholarship 2027. This fully funded scholarship in Japan, provided by the Ministry of Education, Culture, Sports, Science and Technology (ME…",
+   "seen": "2026-10-15"
+  },
+  {
+   "title": "Adaptation & Resilience ClimAccelerator Tanzania 2026: Apply for Climate Innovation Support and Up to €95,000 in Grant Funding",
+   "link": "https://opportunitiesforyouth.org/2026/10/15/adaptation-resilience-climaccelerator-tanzania-2026-apply-for-climate-innovation-support-and-up-to-e95000-in-grant-funding/",
+   "date": "2026-10-15",
+   "source": "Opportunities for Youth",
+   "official": false,
+   "ids": [],
+   "summary": "Introduction The Adaptation & Resilience ClimAccelerator Tanzania 2026 is an opportunity for entrepreneurs, startup founders, and small and medium-sized enterprises (SMEs) developing innovative solut…",
+   "seen": "2026-10-15"
+  },
+  {
+   "title": "Sweden–UNICEF FemTech Ventures 2026: Up to US$100,000 in Funding for Women’s Health Technology Startups",
+   "link": "https://opportunitiesforyouth.org/2026/10/15/sweden-unicef-femtech-ventures-2026-up-to-us100000-in-funding-for-womens-health-technology-startups/",
+   "date": "2026-10-15",
+   "source": "Opportunities for Youth",
+   "official": false,
+   "ids": [],
+   "summary": "The Sweden–UNICEF FemTech Ventures programme is inviting applications from innovative companies developing technology-driven solutions to improve the health, wellbeing, and sexual and reproductive he…",
+   "seen": "2026-10-15"
+  },
+  {
+   "title": "2027 Processing Foundation Fellowship: $10,000 Stipend, Open-Source Technology Projects, Mentorship and Creative Innovation in the United States",
+   "link": "https://opportunitiesforyouth.org/2026/10/15/2027-processing-foundation-fellowship/",
+   "date": "2026-10-15",
+   "source": "Opportunities for Youth",
+   "official": false,
+   "ids": [],
+   "summary": "The 2027 Processing Foundation Fellowship is an eight-month creative technology fellowship offering a $10,000 stipend, mentorship, professional development, and opportunities to develop open-source t…",
+   "seen": "2026-10-15"
+  },
+  {
    "title": "UK Data Service Data Impact Fellows 2027–28: £3,500 Award and Professional Development Support for Early Career Researchers and Data Analysts.",
    "link": "https://opportunitiesforyouth.org/2026/10/14/uk-data-service-data-impact-fellows-2027-28-3500-award-and-professional-development-support-for-early-career-researchers-and-data-analysts/",
    "date": "2026-10-14",
@@ -75,6 +127,120 @@
    "ids": [],
    "summary": "The AI, Ethics and Climate Governance Fellowship 2026 is an eight-week online fellowship designed for emerging African researchers, practitioners, advocates, journalists, policy professionals and oth…",
    "seen": "2026-10-14"
+  },
+  {
+   "title": "The French Government Eiffel Excellence Scholarship Programme 2027 for Masters & Ph.D. Study in France (Funded)",
+   "link": "https://www.opportunitiesforafricans.com/the-french-government-eiffel-excellence-scholarship-programme-2027/",
+   "date": "2026-10-14",
+   "source": "Opportunities for Africans",
+   "official": false,
+   "ids": [
+    "eiffel"
+   ],
+   "summary": "Application Deadline: January 6, 2027 Applications are now open for the 2027 French Government Eiffel Excellence Scholarship Programme. The France Excellence Eiffel scholarship program is a tool deve…",
+   "seen": "2026-10-15"
+  },
+  {
+   "title": "France Excellence Eiffel Scholarship Program 2026-2027",
+   "link": "https://opportunitydesk.org/2026/10/14/france-excellence-eiffel-scholarship-program-2026-2027/",
+   "date": "2026-10-14",
+   "source": "Opportunity Desk",
+   "official": false,
+   "ids": [
+    "eiffel"
+   ],
+   "summary": "Deadline: Unspecified Applications are open for the France Excellence Eiffel Scholarship Program 2026-2027. Developed by the Ministry of Foreign Affairs, the France Excellence Eiffel Scholarship Prog…",
+   "seen": "2026-10-15"
+  },
+  {
+   "title": "From Rejections to ‘Congratulations’ : What to Do After Winning a Life-Changing Scholarship",
+   "link": "https://opportunitydesk.org/2026/10/14/from-rejections-to-congratulations-what-to-do-after-winning-a-life-changing-scholarship/",
+   "date": "2026-10-14",
+   "source": "Opportunity Desk",
+   "official": false,
+   "ids": [],
+   "summary": "April 4, 2025, started like any ordinary workday until an email notification sound interrupted my routine. I looked at my screen, and the first word in bold font jumped out at me: “Dear Favour, Greet…",
+   "seen": "2026-10-15"
+  },
+  {
+   "title": "10 Scholarships for African Students to Study Engineering Abroad (2026/2027)",
+   "link": "https://www.scholarshipregion.com/scholarships-for-african-students-to-study-engineering-abroad/",
+   "date": "2026-10-14",
+   "source": "Scholarship Region",
+   "official": false,
+   "ids": [],
+   "summary": "According to UNESCO, nearly 6.9 million students were studying outside their home countries in 2022. This reflects the growing demand for international higher education. As an African student interes…",
+   "seen": "2026-10-15"
+  },
+  {
+   "title": "CMU Africa Mastercard Scholarship 2027 (Carnegie Mellon University-Africa) | Fully Funded",
+   "link": "https://www.scholarshipregion.com/cmu-africa-mastercard-scholarship/",
+   "date": "2026-10-14",
+   "source": "Scholarship Region",
+   "official": false,
+   "ids": [],
+   "summary": "The CMU Mastercard Scholarship provides generous financial, social, and academic support for young Africans whose talent and promise exceed their financial resources. The Carnegie Mellon University-A…",
+   "seen": "2026-10-15"
+  },
+  {
+   "title": "University of Sussex Stuart Hall Scholarship in UK 2027 | Fully Funded",
+   "link": "https://www.scholarshipregion.com/university-of-sussex-stuart-hall-scholarship/",
+   "date": "2026-10-14",
+   "source": "Scholarship Region",
+   "official": false,
+   "ids": [],
+   "summary": "The University of Sussex Stuart Hall Scholarship is a fully funded graduate opportunity in the United Kingdom for international students. The University of Sussex Scholarship covers full tuition fees…",
+   "seen": "2026-10-15"
+  },
+  {
+   "title": "University of Sussex Scholarship in UK 2027 | Fully Funded",
+   "link": "https://www.scholarshipregion.com/university-of-sussex-scholarship/",
+   "date": "2026-10-14",
+   "source": "Scholarship Region",
+   "official": false,
+   "ids": [],
+   "summary": "We are about to reveal fully funded scholarship in UK that offers a direct PhD from bachelor’s degree. Yes, it is the University of Sussex Scholarship. The University of Sussex Scholarship covers ful…",
+   "seen": "2026-10-15"
+  },
+  {
+   "title": "2027 Royal Thai Government Scholarships For International Students | Fully Funded",
+   "link": "https://www.scholarshipregion.com/royal-thai-government-scholarship/",
+   "date": "2026-10-14",
+   "source": "Scholarship Region",
+   "official": false,
+   "ids": [],
+   "summary": "The Asian Institute of Technology (AIT) in Thailand annually offers several fully funded Royal Thai Government Scholarships for international students from eligible countries. The Royal Thai Governme…",
+   "seen": "2026-10-15"
+  },
+  {
+   "title": "Colorado State University Scholarships in USA 2027 | Fully Funded",
+   "link": "https://www.scholarshipregion.com/colorado-state-university-scholarship/",
+   "date": "2026-10-14",
+   "source": "Scholarship Region",
+   "official": false,
+   "ids": [],
+   "summary": "The Colorado State University Scholarship is a fully funded Master’s and PhD opportunity in the United States for students from home and foreign countries. The scholarship, offered as a graduate assi…",
+   "seen": "2026-10-15"
+  },
+  {
+   "title": "United Nations Regional Course in International Law for Africa 2027 in Ethiopia: Fully Funded Fellowship Opportunities for Legal Professionals — Apply by 30 October 2026",
+   "link": "https://opportunitiesforyouth.org/2026/10/14/applications-for-the-2025-united-nations-regional-course-in-international-law-for-africa-are-now-being-accepted-scholarships-available/",
+   "date": "2026-10-14",
+   "source": "Opportunities for Youth",
+   "official": false,
+   "ids": [],
+   "summary": "The United Nations Regional Course in International Law for Africa 2027 is an opportunity for qualified legal professionals, government officials, academics, and other practitioners working in intern…",
+   "seen": "2026-10-15"
+  },
+  {
+   "title": "ClimateCAP MBA Fellowship 2027: Apply for a Global Climate Leadership Fellowship for MBA Students",
+   "link": "https://opportunitiesforyouth.org/2026/10/14/climatecap-mba-fellowship-2027-apply-for-a-global-climate-leadership-fellowship-for-mba-students/",
+   "date": "2026-10-14",
+   "source": "Opportunities for Youth",
+   "official": false,
+   "ids": [],
+   "summary": "Applications are open for the ClimateCAP MBA Fellowship 2027, a 12-month professional and academic development programme designed for Master of Business Administration (MBA) students who want to unde…",
+   "seen": "2026-10-15"
   },
   {
    "title": "Global Investigative Journalism Conference (GIJC) Fellowship 2027 (Funded)",
