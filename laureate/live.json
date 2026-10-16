@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-15",
+ "updated": "2026-10-16",
  "sources": [
   {
    "source": "Opportunities for Africans",
@@ -9,22 +9,22 @@
   {
    "source": "Opportunity Desk",
    "ok": true,
-   "items": 3
+   "items": 4
   },
   {
    "source": "Opportunities Corners",
    "ok": true,
-   "items": 3
+   "items": 2
   },
   {
    "source": "Scholarship Region",
-   "ok": true,
-   "items": 7
+   "ok": false,
+   "error": "not well-formed (invalid token): line 1, column 119"
   },
   {
    "source": "Opportunities for Youth",
    "ok": true,
-   "items": 5
+   "items": 4
   },
   {
    "source": "Commonwealth Scholarship Commission",
@@ -56,6 +56,46 @@
   }
  ],
  "items": [
+  {
+   "title": "African Peacebuilding and Developmental Dynamics (APDD) Individual Research Fellowships 2027",
+   "link": "https://opportunitydesk.org/2026/10/16/apdd-individual-research-fellowships-2027/",
+   "date": "2026-10-16",
+   "source": "Opportunity Desk",
+   "official": false,
+   "ids": [],
+   "summary": "Deadline: January 15, 2027 Applications are open for the African Peacebuilding and Developmental Dynamics (APDD) Individual Research Fellowships 2027. Since its inception in 2012, the Individual Rese…",
+   "seen": "2026-10-16"
+  },
+  {
+   "title": "WWF Russell E. Train Fellowships 2027 (up to $15,000)",
+   "link": "https://opportunitydesk.org/2026/10/16/wwf-russell-e-train-fellowships-2027/",
+   "date": "2026-10-16",
+   "source": "Opportunity Desk",
+   "official": false,
+   "ids": [],
+   "summary": "Deadline: December 15, 2026 Applications are open for the WWF Russell E. Train Fellowships 2027. EFN invites applications from the current and next generation of conservation scientists, leaders, and…",
+   "seen": "2026-10-16"
+  },
+  {
+   "title": "John S. Knight Journalism Fellowships 2027–2028 at Stanford University: Apply for a $135,000 Fellowship for Journalists",
+   "link": "https://opportunitiesforyouth.org/2026/10/16/john-s-knight-journalism-fellowships-2027-2028-at-stanford-university-apply-for-a-135000-fellowship-for-journalists/",
+   "date": "2026-10-16",
+   "source": "Opportunities for Youth",
+   "official": false,
+   "ids": [],
+   "summary": "Introduction Applications are now open for the John S. Knight (JSK) Journalism Fellowships 2027–2028 at Stanford University in the United States. This prestigious programme offers experienced journal…",
+   "seen": "2026-10-16"
+  },
+  {
+   "title": "Shiraka Training Programme 2027: Fully Funded Local Governance Training in the Netherlands for Government Professionals from 12 MENA Countries",
+   "link": "https://opportunitiesforyouth.org/2026/10/16/shiraka-training-programme-2027/",
+   "date": "2026-10-16",
+   "source": "Opportunities for Youth",
+   "official": false,
+   "ids": [],
+   "summary": "The Shiraka Training Programme 2027 offers government professionals from selected Middle East and North Africa (MENA) countries an opportunity to strengthen their knowledge and practical skills throu…",
+   "seen": "2026-10-16"
+  },
   {
    "title": "Harrison Middleton University (HMU) Fellowship in Ideas 2027",
    "link": "https://opportunitydesk.org/2026/10/15/hmu-fellowship-in-ideas-2027/",
@@ -107,6 +147,46 @@
    "ids": [],
    "summary": "The 2027 Processing Foundation Fellowship is an eight-month creative technology fellowship offering a $10,000 stipend, mentorship, professional development, and opportunities to develop open-source t…",
    "seen": "2026-10-15"
+  },
+  {
+   "title": "Toronto Metropolitan University Global Migration Institute Scholarships 2027-2028",
+   "link": "https://opportunitydesk.org/2026/10/15/tmu-global-migration-institute-scholarships-2027-2028/",
+   "date": "2026-10-15",
+   "source": "Opportunity Desk",
+   "official": false,
+   "ids": [],
+   "summary": "Deadline: April 1, 2027 Applications are open for the Toronto Metropolitan University Global Migration Institute Scholarships 2027-2028. Every year, the Global Migration Institute offers a limited nu…",
+   "seen": "2026-10-16"
+  },
+  {
+   "title": "Universal Youth Leadership Summit Malaysia 2027 (Fully Funded)",
+   "link": "https://opportunitiescorners.com/universal-youth-leadership-summit-malaysia-2027/",
+   "date": "2026-10-15",
+   "source": "Opportunities Corners",
+   "official": false,
+   "ids": [],
+   "summary": "The Universal Youth Leadership Summit Malaysia 2027 invites young leaders, students, professionals, and changemakers from around the world to Kuala Lumpur, Malaysia. Under the theme “Roots & Rights,”…",
+   "seen": "2026-10-16"
+  },
+  {
+   "title": "UNICEF Yutopia Intrapreneur Fellowship Program",
+   "link": "https://opportunitiesforyouth.org/2026/10/15/unicef-yutopia-intrapreneur-fellowship-program/",
+   "date": "2026-10-15",
+   "source": "Opportunities for Youth",
+   "official": false,
+   "ids": [],
+   "summary": "UNICEF Yutopia Intrapreneur Fellowship Program 2026: Empowering the Next Generation of HR Leaders to Drive Youth-Centered Workplace Transformation Organizations around the world are increasingly reco…",
+   "seen": "2026-10-16"
+  },
+  {
+   "title": "Comprehensive Guide to the 2027–2028 CFR International Affairs Fellowship in Canada: Mid-Career Global Leadership Opportunity",
+   "link": "https://opportunitiesforyouth.org/2026/10/15/comprehensive-guide-to-the-2027-2028-cfr-international-affairs-fellowship-in-canada-mid-career-global-leadership-opportunity/",
+   "date": "2026-10-15",
+   "source": "Opportunities for Youth",
+   "official": false,
+   "ids": [],
+   "summary": "The Council on Foreign Relations (CFR) has officially opened applications for its International Affairs Fellowship (IAF) in Canada. Designed to cultivate deeper mutual understanding and cross-border …",
+   "seen": "2026-10-16"
   },
   {
    "title": "UK Data Service Data Impact Fellows 2027–28: £3,500 Award and Professional Development Support for Early Career Researchers and Data Analysts.",
