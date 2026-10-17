@@ -1,0 +1,46 @@
+# Publishes APPROVED public reports from KoboToolbox to the Nigeria Waste Sites Atlas.
+#   - you approve reports in KoboToolbox (Validation status = Approved)
+#   - every day this copies them to waste-atlas/data/reports.geojson (+ cleaned photos)
+# Needs the repository secret KOBO_TOKEN (your KoboToolbox API key).
+# Also runs on demand from the Actions tab ("Run workflow") if you want a report on the map now.
+name: Publish approved waste reports
+
+on:
+  schedule:
+    - cron: "43 6 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: waste-atlas-data
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install image tools
+        run: pip install --quiet pillow
+
+      - name: Fetch approved reports from KoboToolbox
+        env:
+          KOBO_TOKEN: ${{ secrets.KOBO_TOKEN }}
+        run: python3 .github/scripts/waste_atlas_kobo.py
+
+      - name: Commit if anything changed
+        run: |
+          if [ -z "$(git status --porcelain waste-atlas/data)" ]; then
+            echo "Nothing to commit."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A waste-atlas/data
+          git commit -m "Waste atlas: publish approved public reports"
+          git pull --rebase
+          git push
