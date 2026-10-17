@@ -1,0 +1,36 @@
+# Keeps the Nigeria Waste Sites Atlas OpenStreetMap layer current:
+#   - re-downloads every landfill / waste transfer station mapped on OpenStreetMap in Nigeria
+#   - saves it to waste-atlas/data/osm_landfills.geojson so the atlas loads it instantly
+# Runs every Monday, and on demand from the Actions tab ("Run workflow").
+name: Refresh Nigeria Waste Sites Atlas
+
+on:
+  schedule:
+    - cron: "17 5 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Refresh OpenStreetMap landfills
+        run: python3 .github/scripts/waste_atlas_osm.py
+
+      - name: Commit if anything changed
+        run: |
+          if [ -z "$(git status --porcelain waste-atlas/data/osm_landfills.geojson)" ]; then
+            echo "Nothing to commit."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add waste-atlas/data/osm_landfills.geojson
+          git commit -m "Refresh Nigeria Waste Sites Atlas OpenStreetMap layer"
+          git pull --rebase
+          git push
