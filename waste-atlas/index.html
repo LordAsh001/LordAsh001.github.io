@@ -197,6 +197,7 @@ ol.steps li::before{content:counter(s);position:absolute;left:14px;top:12px;widt
       <label class="f">Add a site you know</label>
       <div class="chips">
         <button class="btn primary small" id="pinBtn">＋ Pin a site</button>
+        <a class="btn small" id="formQuick" target="_blank" rel="noopener" style="display:none">📱 Report from phone</a>
         <a class="btn small" href="#report">How to report</a>
       </div>
       <p class="note" style="margin-top:8px">Pins stay in this browser until you export or send them. See <a href="#report">Report a site</a>.</p>
@@ -351,7 +352,7 @@ ol.steps li::before{content:counter(s);position:absolute;left:14px;top:12px;widt
 (function(){
 "use strict";
 // ---------------------------------------------------------------- settings
-const REPORT_FORM_URL = "";   // paste the KoboToolbox "Online-Only" link here to show the reporting form
+const REPORT_FORM_URL = "https://ee.kobotoolbox.org/x/lAmUfEER";   // paste the KoboToolbox "Online-Only" link here to show the reporting form
 const SCAN_APP_URL = "https://tribal-dispatch-510704-j4.projects.earthengine.app/view/nigeria-waste-sites-scan";
 const STATES_URL = "/energy-atlas/data/nigeria-states.geojson";
 const PIN_KEY = "nwa-pins-v1";
@@ -682,7 +683,7 @@ const SOURCES=[
 $('srcTable').innerHTML='<thead><tr><th>Source</th><th style="text-align:left">Used for</th><th style="text-align:left">Licence</th></tr></thead><tbody>'+
   SOURCES.map(s=>`<tr style="cursor:default"><td>${s[3]?`<a href="${s[3]}" target="_blank" rel="noopener">${esc(s[0])}</a>`:esc(s[0])}</td><td style="text-align:left">${esc(s[1])}</td><td style="text-align:left">${esc(s[2])}</td></tr>`).join('')+'</tbody>';
 $('copyCite').onclick=()=>copy($('citeText').textContent,$('copyCite'));
-if(REPORT_FORM_URL){$('formBox').style.display='';$('formLink').href=REPORT_FORM_URL;}
+if(REPORT_FORM_URL){$('formBox').style.display='';$('formLink').href=REPORT_FORM_URL;$('formQuick').href=REPORT_FORM_URL;$('formQuick').style.display='';}
 $('scanOpen').href=SCAN_APP_URL;
 
 // ---------------------------------------------------------------- routing (#map, #map/state=Benue, #map/site=doc3, #stats …)
