@@ -15,7 +15,7 @@
 :root{
   --bg:#f5f7f9; --panel:#ffffff; --panel2:#f0f3f6; --ink:#16202a; --muted:#5b6b7a; --line:#dde3ea;
   --accent:#1f8a5b; --accent-ink:#ffffff; --accent-soft:#e3f3ea; --warn-bg:#fff4e5; --warn-ink:#8a4b00;
-  --c-conf:#b3122b; --c-doc:#1b9e77; --c-approx:#d99a0b; --c-field:#c2378f; --c-osm:#2b7bd6; --c-mine:#e0532f;
+  --c-conf:#b3122b; --c-doc:#1b9e77; --c-approx:#d99a0b; --c-field:#c2378f; --c-rep:#7a4fc9; --c-osm:#2b7bd6; --c-mine:#e0532f;
   --shadow:0 1px 2px rgba(0,0,0,.06),0 6px 18px rgba(0,0,0,.06); --radius:10px;
 }
 @media (prefers-color-scheme: dark){
@@ -274,9 +274,9 @@ ol.steps li::before{content:counter(s);position:absolute;left:14px;top:12px;widt
 <section id="view-report" class="view" aria-label="Report a site">
   <div class="page">
     <h2>Report a dumpsite</h2>
-    <p class="lede">Satellites miss small dumps. Reports from people who live and work near them fill that gap. Every report is checked before it appears on the map.</p>
+    <p class="lede">Satellites miss small dumps. Reports from people who live and work near them fill that gap. Every report is checked before it appears on the map; approved reports are added within a day.</p>
     <div id="formBox" class="card" style="display:none;margin-bottom:16px">
-      <h3 style="margin-top:0">Report from your phone (2 minutes)</h3>
+      <h3 style="margin-top:0">Report from your phone (a few minutes)</h3>
       <p>Take a photo, record the location and answer a few questions. Your name and number are never shown.</p>
       <a class="btn primary" id="formLink" target="_blank" rel="noopener">Open the reporting form ↗</a>
     </div>
@@ -367,12 +367,13 @@ const KINDS={
   conf:  {label:"Confirmed (satellite + review)", short:"Confirmed", ver:"A", color:"--c-conf"},
   doc:   {label:"Published coordinates",           short:"Published", ver:"B", color:"--c-doc"},
   field: {label:"GPS field survey",                short:"Field survey", ver:"B", color:"--c-field"},
+  rep:   {label:"Public report (reviewed)",        short:"Public report", ver:"B", color:"--c-rep"},
   approx:{label:"Approximate location",            short:"Approximate", ver:"C", color:"--c-approx"},
   osm:   {label:"OpenStreetMap (community)",       short:"OpenStreetMap", ver:"C", color:"--c-osm"},
   mine:  {label:"Your pins (unverified)",          short:"Your pins", ver:"D", color:"--c-mine"}
 };
 const VER={A:"Confirmed: seen on high-resolution imagery by a reviewer, with a second piece of evidence",
-           B:"Located from a source: coordinates published in a study or recorded by GPS in the field",
+           B:"Located from a source: coordinates published in a study, recorded by GPS in the field, or sent with a photo in a public report that a reviewer approved",
            C:"Approximate or community-mapped: needs checking on imagery or on the ground",
            D:"Unverified: pinned in this browser and not yet reviewed"};
 const VER_RANK={A:0,B:1,C:2,D:3};
@@ -499,6 +500,26 @@ fetch('data/confirmed.geojson',{cache:'no-cache'}).then(r=>{if(!r.ok)throw 0;ret
   refresh();
 }).catch(()=>{});
 
+// ---------------------------------------------------------------- approved public reports (KoboToolbox, published daily by a GitHub Action)
+const L_YN={yes:'Yes',no:'No',unsure:'Not sure'};
+const L_WASTE={household:'household / food',plastic:'plastic',ewaste:'e-waste',medical:'medical',construction:'construction rubble',industrial:'industrial or chemical',animal:'animal / abattoir',tyres:'tyres',sewage:'sewage / sludge',other:'other'};
+const L_HOME={lt50:'under 50 m','50_200':'50–200 m','200_1000':'200 m – 1 km',gt1000:'over 1 km'};
+const L_AGE={new:'less than a month',lt1y:'1–12 months','1_5y':'1–5 years',gt5y:'more than 5 years',unknown:"don't know"};
+const L_STATUS={active:'Active',occasional:'Used sometimes',inactive:'Abandoned or closed',cleared:'Cleared',unsure:'Not sure'};
+fetch('data/reports.geojson',{cache:'no-cache'}).then(r=>{if(!r.ok)throw 0;return r.json();}).then(j=>{
+  (j.features||[]).forEach(f=>{const p=f.properties||{},c=f.geometry&&f.geometry.coordinates;if(!c)return;
+    const row=(l,v)=>v?`<div><b>${l}:</b> ${esc(v)}</div>`:'';
+    const waste=String(p.waste_types||'').split(/\s+/).filter(Boolean).map(w=>L_WASTE[w]||w).join(', ');
+    add({id:p.id,kind:'rep',name:(TYPES[p.site_type]||'Reported dumpsite')+(p.place?' – '+p.place:''),lat:c[1],lon:c[0],place:[p.place,p.lga].filter(Boolean).join(', '),
+      state:p.state?normState(p.state):null,status:L_STATUS[p.status]||'',src:'Public report (KoboToolbox), approved '+(p.approved||''),props:p,
+      html:(p.photos||[]).map(u=>`<a href="${esc(u)}" target="_blank" rel="noopener"><img src="${esc(u)}" alt="Photo of the reported site" loading="lazy" style="width:100%;max-height:140px;object-fit:cover;border-radius:6px;margin:4px 0"></a>`).join('')+
+        `<div class="pp-meta">${esc([p.place,p.lga].filter(Boolean).join(', '))}</div>`+
+        row('Type',TYPES[p.site_type]||p.site_type)+row('Size',SIZES[p.size])+row('Still used',L_STATUS[p.status])+row('Burning',L_YN[p.burning])+
+        row('Waste seen',waste)+row('Within 100 m of water',L_YN[p.near_water])+row('Nearest homes',L_HOME[p.dist_home])+row('There for',L_AGE[p.age])+
+        `<div class="pp-meta">Reported ${esc(p.report_date||'')}${p.approved?' · approved '+esc(p.approved):''}</div>`});});
+  refresh();
+}).catch(()=>{});
+
 // ---------------------------------------------------------------- OpenStreetMap (live)
 const OVERPASS=["https://overpass-api.de/api/interpreter","https://overpass.kumi.systems/api/interpreter","https://overpass.private.coffee/api/interpreter"];
 let osmState='loading', osmUpdated='';
@@ -570,7 +591,7 @@ $('importFile').onchange=async()=>{const f=$('importFile').files[0];if(!f)return
   $('importFile').value='';};
 
 // ---------------------------------------------------------------- filters + list
-const kindOn={conf:true,doc:true,field:true,approx:true,osm:true,mine:true};
+const kindOn={conf:true,doc:true,field:true,rep:true,approx:true,osm:true,mine:true};
 function renderChips(){
   $('kindChips').innerHTML=Object.entries(KINDS).map(([k,v])=>`<label class="chip"><input type="checkbox" data-k="${k}" ${kindOn[k]?'checked':''}><span class="dot" style="background:var(${v.color})"></span>${esc(v.short)} <span class="n" title="${k==='osm'?(osmState==='ok'?(osmUpdated?'OpenStreetMap data as of '+osmUpdated:'Live from OpenStreetMap'):osmState==='loading'?'Loading from OpenStreetMap…':'OpenStreetMap did not respond; try again later'):''}">${k==='osm'&&osmState==='loading'?'loading…':k==='osm'&&osmState==='fail'?'offline':recs.filter(r=>r.kind===k&&!(k==='osm'&&states&&!r.state)).length}</span></label>`).join('');
   $('kindChips').querySelectorAll('input').forEach(i=>i.onchange=()=>{kindOn[i.dataset.k]=i.checked;refresh();});
@@ -646,10 +667,10 @@ $('dlGeo').onclick=()=>download('geojson',pub());
 $('dlCsv').onclick=()=>download('csv',pub());
 
 // ---------------------------------------------------------------- statistics
-const SK=['conf','doc','field','approx','osm'];
+const SK=['conf','doc','field','rep','approx','osm'];
 let statSort={k:'total',dir:-1};
 function stateTable(){
-  const by={};STATE_NAMES.forEach(n=>by[n]={state:n,conf:0,doc:0,field:0,approx:0,osm:0,total:0,ha:0});
+  const by={};STATE_NAMES.forEach(n=>by[n]={state:n,conf:0,doc:0,field:0,rep:0,approx:0,osm:0,total:0,ha:0});
   recs.forEach(r=>{if(r.kind==='mine'||!r.state||!by[r.state])return;by[r.state][r.kind]++;by[r.state].total++;if(r.kind==='conf')by[r.state].ha+=r.area_ha||0;});
   return Object.values(by);
 }
@@ -660,9 +681,9 @@ function renderStats(){
            [withSites+' / 37','states with mapped sites'],[recs.filter(r=>r.kind==='osm'&&r.state).length,'OpenStreetMap landfills']];
   $('kpis').innerHTML=k.map(([v,l])=>`<div class="kpi"><div class="v">${v}</div><div class="l">${l}</div></div>`).join('');
   t.sort((a,b)=>statSort.k==='state'?statSort.dir*a.state.localeCompare(b.state)*-1:statSort.dir*(a[statSort.k]-b[statSort.k])||a.state.localeCompare(b.state));
-  const H=[['state','State'],['conf','Confirmed'],['doc','Published'],['field','Field survey'],['approx','Approximate'],['osm','OSM'],['total','Total'],['ha','Confirmed ha']];
+  const H=[['state','State'],['conf','Confirmed'],['doc','Published'],['field','Field survey'],['rep','Reports'],['approx','Approximate'],['osm','OSM'],['total','Total'],['ha','Confirmed ha']];
   $('statsTable').innerHTML=`<thead><tr>${H.map(([k,l])=>`<th data-k="${k}" scope="col" aria-sort="${statSort.k===k?(statSort.dir<0?'descending':'ascending'):'none'}">${l}${statSort.k===k?(statSort.dir<0?' ↓':' ↑'):''}</th>`).join('')}</tr></thead>
-   <tbody>${t.map(x=>`<tr data-s="${esc(x.state)}" tabindex="0"><td>${esc(x.state==='FCT'?'FCT (Abuja)':x.state)}</td><td>${x.conf}</td><td>${x.doc}</td><td>${x.field}</td><td>${x.approx}</td><td>${x.osm}</td><td><b>${x.total}</b></td><td>${x.ha?x.ha.toFixed(1):'–'}</td></tr>`).join('')}</tbody>`;
+   <tbody>${t.map(x=>`<tr data-s="${esc(x.state)}" tabindex="0"><td>${esc(x.state==='FCT'?'FCT (Abuja)':x.state)}</td><td>${x.conf}</td><td>${x.doc}</td><td>${x.field}</td><td>${x.rep}</td><td>${x.approx}</td><td>${x.osm}</td><td><b>${x.total}</b></td><td>${x.ha?x.ha.toFixed(1):'–'}</td></tr>`).join('')}</tbody>`;
   $('statsTable').querySelectorAll('th').forEach(th=>th.onclick=()=>{const k=th.dataset.k;statSort={k,dir:statSort.k===k?-statSort.dir:-1};renderStats();});
   $('statsTable').querySelectorAll('tbody tr').forEach(tr=>{const go=()=>{location.hash='#map/state='+encodeURIComponent(tr.dataset.s);};tr.onclick=go;tr.onkeydown=e=>{if(e.key==='Enter')go();};});
   // stacked bars, sorted by total
@@ -674,7 +695,7 @@ function renderStats(){
     s+=`<text x="${x+6}" y="${y+12}" class="axis">${b.total}</text>`;});
   $('bars').innerHTML=s;
 }
-function statsCsv(){return toCsv(stateTable().map(x=>({state:x.state,confirmed:x.conf,published:x.doc,field_survey:x.field,approximate:x.approx,openstreetmap:x.osm,total:x.total,confirmed_ha:x.ha.toFixed(2)})));}
+function statsCsv(){return toCsv(stateTable().map(x=>({state:x.state,confirmed:x.conf,published:x.doc,field_survey:x.field,public_reports:x.rep,approximate:x.approx,openstreetmap:x.osm,total:x.total,confirmed_ha:x.ha.toFixed(2)})));}
 $('statsCsv').onclick=$('dlStats').onclick=()=>save('nigeria-waste-sites-by-state-'+new Date().toISOString().slice(0,10)+'.csv',statsCsv(),'text/csv');
 
 // ---------------------------------------------------------------- method + sources tables
@@ -687,6 +708,7 @@ const SOURCES=[
  ['GHSL built-up surface (EC JRC)','Settlement density for the scan','CC BY 4.0','https://human-settlement.emergency.copernicus.eu'],
  ['NASA FIRMS (MODIS)','Fire detections for the screening bot','Free with citation','https://firms.modaps.eosdis.nasa.gov'],
  ['OpenStreetMap','Community-mapped landfills (live)','ODbL','https://www.openstreetmap.org/copyright'],
+ ['Public reports (KoboToolbox)','Photos and answers sent by the public, published after review','Shown with consent; contact details never published',''],
  ['Isimah et al. 2026','57 GPS-surveyed sites, Nsukka','CC BY 4.0 (preprint)','https://doi.org/10.21203/rs.3.rs-8260552/v1'],
  ['Published studies','Coordinates of documented dumpsites (see each site)','Cited per site',''],
  ['State boundaries','Used to assign sites to states','As in the Nigeria Energy Atlas','/energy-atlas/']];
