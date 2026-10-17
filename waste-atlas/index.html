@@ -4,209 +4,380 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Nigeria Waste Sites Atlas</title>
-<meta name="description" content="Open waste disposal sites in Nigeria mapped over free Sentinel-2 satellite imagery: documented sites, OpenStreetMap and GRID3 field data, and a pinning tool for new sites.">
+<meta name="description" content="Open waste dumpsites across Nigeria's 36 states and the FCT, mapped on free Sentinel-2 satellite imagery, with sources, verification levels, statistics by state and downloadable data.">
+<meta property="og:title" content="Nigeria Waste Sites Atlas">
+<meta property="og:description" content="Open dumpsites across all 36 states and the FCT, mapped from satellite imagery, published studies, field surveys and community data.">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
 <script src="/assets/traction.js" defer></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bg:#f6f5f1; --panel:#ffffff; --ink:#1d2320; --muted:#5d6762; --line:#e2e0d8;
-  --accent:#2f6b4f; --accent-ink:#ffffff;
-  --c-doc:#1b9e77; --c-approx:#e6a817; --c-osm:#2b7bd6; --c-grid:#8a4fd3; --c-mine:#d6453d; --c-field:#c2378f; --c-conf:#7a0019;
-  --shadow:0 1px 3px rgba(0,0,0,.08),0 4px 14px rgba(0,0,0,.06);
+  --bg:#f5f7f9; --panel:#ffffff; --panel2:#f0f3f6; --ink:#16202a; --muted:#5b6b7a; --line:#dde3ea;
+  --accent:#1f8a5b; --accent-ink:#ffffff; --accent-soft:#e3f3ea; --warn-bg:#fff4e5; --warn-ink:#8a4b00;
+  --c-conf:#b3122b; --c-doc:#1b9e77; --c-approx:#d99a0b; --c-field:#c2378f; --c-osm:#2b7bd6; --c-mine:#e0532f;
+  --shadow:0 1px 2px rgba(0,0,0,.06),0 6px 18px rgba(0,0,0,.06); --radius:10px;
 }
 @media (prefers-color-scheme: dark){
   :root:not([data-theme="light"]){
-    --bg:#121614; --panel:#1b201d; --ink:#e8ece9; --muted:#9aa59f; --line:#2c332f;
-    --accent:#5fb48a; --accent-ink:#0d120f; --shadow:0 1px 3px rgba(0,0,0,.4);
+    --bg:#0d141c; --panel:#121b25; --panel2:#18232f; --ink:#e6edf3; --muted:#93a4b5; --line:#243242;
+    --accent:#3fbf86; --accent-ink:#06120c; --accent-soft:#16301f; --warn-bg:#2d2213; --warn-ink:#f5c27a;
+    --shadow:0 1px 3px rgba(0,0,0,.5);
   }
 }
 :root[data-theme="dark"]{
-  --bg:#121614; --panel:#1b201d; --ink:#e8ece9; --muted:#9aa59f; --line:#2c332f;
-  --accent:#5fb48a; --accent-ink:#0d120f; --shadow:0 1px 3px rgba(0,0,0,.4);
+  --bg:#0d141c; --panel:#121b25; --panel2:#18232f; --ink:#e6edf3; --muted:#93a4b5; --line:#243242;
+  --accent:#3fbf86; --accent-ink:#06120c; --accent-soft:#16301f; --warn-bg:#2d2213; --warn-ink:#f5c27a;
+  --shadow:0 1px 3px rgba(0,0,0,.5);
 }
 *{box-sizing:border-box}
-html,body{margin:0;height:100%}
-body{background:var(--bg);color:var(--ink);font:14px/1.5 Inter,system-ui,sans-serif;display:flex;flex-direction:column}
-header{flex:none;padding:12px 16px;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:12px;flex-wrap:wrap;background:var(--panel)}
-header h1{font-size:18px;margin:0;font-weight:700;letter-spacing:-.01em}
-header .sub{color:var(--muted);font-size:13px}
-header .spacer{flex:1}
-.app{flex:1;display:flex;min-height:0}
-aside{width:360px;max-width:100%;background:var(--panel);border-right:1px solid var(--line);overflow-y:auto;padding:14px 16px}
-#map{flex:1;min-height:300px}
-h2{font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin:18px 0 8px;font-weight:600}
-h2:first-child{margin-top:0}
-.btns{display:flex;flex-wrap:wrap;gap:6px}
-button,.btn{font:inherit;font-size:13px;border:1px solid var(--line);background:var(--bg);color:var(--ink);border-radius:8px;padding:6px 10px;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:6px}
-button:hover,.btn:hover{border-color:var(--accent)}
-button.primary{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
-button.active{outline:2px solid var(--accent);outline-offset:1px}
-.layer{display:flex;align-items:center;gap:8px;padding:5px 0}
-.layer input{accent-color:var(--accent)}
-.dot{width:11px;height:11px;border-radius:50%;flex:none;border:2px solid #fff;box-shadow:0 0 0 1px rgba(0,0,0,.25)}
-.count{margin-left:auto;color:var(--muted);font-variant-numeric:tabular-nums;font-size:12px}
-.status{font-size:12px;color:var(--muted);margin:2px 0 0 19px}
-.list{list-style:none;margin:0;padding:0}
-.list li{padding:7px 0;border-bottom:1px solid var(--line);cursor:pointer;display:flex;gap:8px;align-items:flex-start}
-.list li:hover .nm{color:var(--accent)}
-.list .nm{font-weight:500}
-.list .meta{color:var(--muted);font-size:12px}
-.note{font-size:12.5px;color:var(--muted);background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:10px 12px}
-.note p{margin:0 0 6px}.note p:last-child{margin:0}
-details summary{cursor:pointer;font-weight:600;font-size:13px;padding:4px 0}
-details ol{padding-left:18px;margin:6px 0;font-size:12.5px;color:var(--muted)}
-.leaflet-popup-content{font:13px/1.45 Inter,system-ui,sans-serif;min-width:220px}
-.leaflet-popup-content h3{margin:0 0 4px;font-size:14px}
-.pp-meta{color:#555;font-size:12px;margin-bottom:6px}
-.pp-links a{display:inline-block;margin:4px 8px 0 0;font-size:12px}
-.tag{display:inline-block;font-size:11px;padding:1px 7px;border-radius:999px;color:#fff;margin-bottom:4px}
-.pin-form label{display:block;font-size:12px;margin-top:6px;color:#444}
-.pin-form input,.pin-form select,.pin-form textarea{width:100%;font:inherit;font-size:13px;padding:4px 6px;border:1px solid #ccc;border-radius:6px}
-.pin-form .row{display:flex;gap:6px;margin-top:8px}
-.pinmode #map{cursor:crosshair}
-.banner{display:none;position:absolute;z-index:1000;top:10px;left:50%;transform:translateX(-50%);background:var(--c-mine);color:#fff;padding:6px 12px;border-radius:999px;font-size:13px;box-shadow:var(--shadow)}
+html,body{margin:0}
+body{background:var(--bg);color:var(--ink);font:15px/1.55 "Public Sans","Segoe UI",system-ui,-apple-system,sans-serif}
+a{color:var(--accent)}
+button,select,input,textarea{font:inherit;color:inherit}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+/* ---------- header + tabs ---------- */
+.atlas-head{background:var(--panel);border-bottom:1px solid var(--line);padding:14px 20px 0}
+.brand{display:flex;gap:12px;align-items:center}
+.brand svg{flex:none;color:var(--accent)}
+.brand h1{margin:0;font-size:21px;font-weight:800;letter-spacing:-.01em}
+.brand p{margin:0;color:var(--muted);font-size:13px}
+.tabs{display:flex;gap:4px;flex-wrap:wrap;margin-top:10px}
+.tabs a{padding:9px 12px;border-radius:8px 8px 0 0;color:var(--muted);text-decoration:none;font-weight:600;font-size:14px;border-bottom:3px solid transparent}
+.tabs a:hover{color:var(--ink);background:var(--panel2)}
+.tabs a[aria-current="page"]{color:var(--ink);border-bottom-color:var(--accent)}
+.view{display:none}
+.view.on{display:block}
+.page{max-width:1080px;margin:0 auto;padding:24px 20px 60px}
+.page h2{font-size:24px;margin:0 0 6px}
+.page h3{font-size:17px;margin:22px 0 6px}
+.lede{color:var(--muted);margin:0 0 18px;max-width:760px}
+/* ---------- buttons/inputs ---------- */
+.btn{white-space:nowrap;display:inline-flex;align-items:center;gap:6px;padding:7px 12px;border-radius:8px;border:1px solid var(--line);background:var(--panel2);color:var(--ink);cursor:pointer;text-decoration:none;font-size:14px;font-weight:500}
+.btn:hover{border-color:var(--accent)}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--accent-ink);font-weight:600}
+.btn.small{padding:4px 9px;font-size:13px}
+.btn:focus-visible,.tabs a:focus-visible,select:focus-visible,input:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+label.f{display:block;font-size:11.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin:0 0 4px}
+select,input[type=search],input[type=text],input[type=number],textarea{width:100%;padding:8px 10px;border:1px solid var(--line);border-radius:8px;background:var(--panel2)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.note{background:var(--panel2);border:1px solid var(--line);border-radius:var(--radius);padding:12px 14px;font-size:14px;color:var(--muted)}
+.warn{background:var(--warn-bg);color:var(--warn-ink);border-radius:var(--radius);padding:10px 14px;font-size:14px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:16px;box-shadow:var(--shadow)}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
+.dot{width:11px;height:11px;border-radius:50%;flex:none;display:inline-block;border:2px solid #fff;box-shadow:0 0 0 1px rgba(0,0,0,.25)}
+.chip{display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border:1px solid var(--line);border-radius:999px;background:var(--panel2);font-size:13px;cursor:pointer;user-select:none}
+.chip input{accent-color:var(--accent);margin:0}
+.chip .n{color:var(--muted);font-variant-numeric:tabular-nums}
+.badge{display:inline-block;font-size:11px;font-weight:700;padding:2px 8px;border-radius:999px;color:#fff;letter-spacing:.02em}
+/* ---------- map view ---------- */
+#view-map.on{display:grid;grid-template-columns:370px 1fr;height:calc(100dvh - var(--top,150px));min-height:520px}
+#panel{background:var(--panel);border-right:1px solid var(--line);overflow-y:auto;padding:14px 16px 30px}
+#panel section{margin-bottom:16px}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.res-head{display:flex;justify-content:space-between;align-items:center;margin:4px 0 6px;font-size:13px;color:var(--muted)}
+#results{list-style:none;margin:0;padding:0}
+#results li{display:flex;gap:9px;padding:8px 6px;border-bottom:1px solid var(--line);cursor:pointer;border-radius:6px}
+#results li:hover,#results li:focus{background:var(--panel2);outline:none}
+#results .nm{font-weight:600;font-size:14px}
+#results .meta{font-size:12.5px;color:var(--muted)}
+.mapwrap{position:relative;min-height:0}
+#map{position:absolute;inset:0;background:var(--panel2)}
+.banner{display:none;position:absolute;z-index:1000;top:10px;left:50%;transform:translateX(-50%);background:var(--c-mine);color:#fff;padding:6px 14px;border-radius:999px;font-size:13px;box-shadow:var(--shadow)}
 .pinmode .banner{display:block}
-.mapwrap{position:relative;flex:1;display:flex}
-@media (max-width:760px){
-  header h1{font-size:16px} header .sub{display:none}
-  .app{flex-direction:column-reverse;min-height:0;overflow:hidden}
-  aside{width:100%;border-right:0;border-top:1px solid var(--line);flex:none;height:45%}
-  .mapwrap{flex:1;min-height:0}
-  #map{min-height:0}
+.pinmode #map{cursor:crosshair}
+.leaflet-container{font:13px/1.45 "Public Sans",system-ui,sans-serif}
+.leaflet-popup-content{min-width:230px}
+.leaflet-popup-content h3{margin:2px 0 4px;font-size:15px}
+.pp-meta{color:#5b6b7a;font-size:12px;margin:2px 0 6px}
+.pp-links a{display:inline-block;margin:4px 10px 0 0;font-size:12px}
+.legend{background:var(--panel);color:var(--ink);padding:8px 10px;border-radius:8px;box-shadow:var(--shadow);font-size:12px;line-height:1.7}
+.legend b{display:block;margin-bottom:2px}
+.dl-ctl a{display:block;background:var(--panel);color:var(--ink);padding:6px 10px;border-radius:8px;box-shadow:var(--shadow);font-size:13px;text-decoration:none;font-weight:600}
+.pin-form label{display:block;font-size:12px;margin-top:6px;color:#444}
+.pin-form input,.pin-form select,.pin-form textarea{width:100%;padding:4px 6px;border:1px solid #ccc;border-radius:6px;background:#fff;color:#111}
+details summary{cursor:pointer;font-weight:600;font-size:14px;padding:4px 0}
+/* ---------- stats ---------- */
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin:14px 0 20px}
+.kpi{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:12px 14px}
+.kpi .v{font-size:28px;font-weight:800;font-variant-numeric:tabular-nums;line-height:1.1}
+.kpi .l{font-size:13px;color:var(--muted)}
+table.data{width:100%;border-collapse:collapse;font-size:14px;background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+table.data th,table.data td{padding:7px 10px;border-bottom:1px solid var(--line);text-align:right;font-variant-numeric:tabular-nums}
+table.data th:first-child,table.data td:first-child{text-align:left}
+table.data th{background:var(--panel2);cursor:pointer;font-size:12.5px;white-space:nowrap}
+table.data tbody tr{cursor:pointer}
+table.data tbody tr:hover{background:var(--panel2)}
+.tablewrap{overflow-x:auto}
+#bars text{fill:var(--ink);font-size:12px}
+#bars .axis{fill:var(--muted)}
+ol.steps{counter-reset:s;list-style:none;padding:0;margin:0;display:grid;gap:12px}
+ol.steps li{counter-increment:s;background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:12px 14px 12px 52px;position:relative}
+ol.steps li::before{content:counter(s);position:absolute;left:14px;top:12px;width:26px;height:26px;border-radius:50%;background:var(--accent);color:var(--accent-ink);display:grid;place-items:center;font-weight:800;font-size:14px}
+.scanframe{width:100%;height:72vh;min-height:480px;border:1px solid var(--line);border-radius:var(--radius);background:var(--panel2)}
+.cite{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:13px;background:var(--panel2);border:1px solid var(--line);border-radius:8px;padding:10px 12px;white-space:pre-wrap}
+@media (max-width:820px){
+  .atlas-head{padding:12px 14px 0}
+  .brand h1{font-size:18px}
+  .tabs{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none}
+  .tabs a{white-space:nowrap;padding:8px 10px}
+  #view-map.on{display:flex;flex-direction:column;height:auto}
+  .mapwrap{height:62vh;flex:none}
+  #panel{border-right:0;border-top:1px solid var(--line);order:2;overflow:visible}
+  .page{padding:18px 16px 50px}
+  .grid2{grid-template-columns:1fr 1fr}
 }
 </style>
 </head>
 <body>
-<header>
-  <h1>Nigeria Waste Sites Atlas</h1>
-  <span class="sub">Open dumpsites across all 36 states + FCT, mapped on free Sentinel-2 satellite imagery</span>
-  <span class="spacer"></span>
-  <a class="btn" id="reportBtn" target="_blank" rel="noopener" style="display:none;background:var(--c-mine);color:#fff;border-color:var(--c-mine)">Report a dumpsite</a>
-  <button id="scanBtn" title="Live Earth Engine view of the national satellite scan (unverified)">🛰 Satellite scan</button>
-  <button id="themeBtn" title="Toggle light/dark">◐ Theme</button>
-</header>
-<div id="scanModal" role="dialog" aria-label="Satellite scan explorer" style="display:none;position:fixed;inset:0;z-index:2000;background:rgba(0,0,0,.55);padding:16px">
-  <div style="background:var(--panel);border-radius:12px;height:100%;display:flex;flex-direction:column;overflow:hidden;box-shadow:var(--shadow)">
-    <div style="display:flex;align-items:center;gap:10px;padding:10px 14px;border-bottom:1px solid var(--line);flex-wrap:wrap">
-      <b>Satellite scan explorer: all 36 states + FCT</b>
-      <span class="status" style="margin:0">Unverified model output, ranked by the screening bot. Confirmed sites are on the main map.</span>
-      <span style="flex:1"></span>
-      <a class="btn" id="scanOpen" target="_blank" rel="noopener">Open full screen ↗</a>
-      <button id="scanClose">Close ✕</button>
+<header class="atlas-head">
+  <div class="brand">
+    <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6h18"/><path d="M8 6V4h8v2"/><path d="M5 6l1.2 14a2 2 0 0 0 2 1.8h7.6a2 2 0 0 0 2-1.8L19 6"/><path d="M10 11v6M14 11v6"/></svg>
+    <div>
+      <h1>Nigeria Waste Sites Atlas</h1>
+      <p>Open dumpsites across all 36 states and the FCT · satellite, published studies, field surveys and community data</p>
     </div>
-    <iframe id="scanFrame" title="Earth Engine satellite scan" style="flex:1;border:0;width:100%" loading="lazy"></iframe>
   </div>
-</div>
-<div class="app">
-  <aside>
-    <h2>Jump to a city</h2>
-    <div class="btns" id="cities"></div>
+  <nav class="tabs" aria-label="Atlas sections">
+    <a href="#map" data-v="map">Map</a>
+    <a href="#stats" data-v="stats">Statistics by state</a>
+    <a href="#scan" data-v="scan">Satellite scan</a>
+    <a href="#why" data-v="why">Why it matters</a>
+    <a href="#report" data-v="report">Report a site</a>
+    <a href="#method" data-v="method">How it works</a>
+    <a href="#data" data-v="data">Data &amp; sources</a>
+  </nav>
+</header>
 
-    <h2>Basemap</h2>
-    <div class="btns" id="basemaps"></div>
-
-    <h2>Layers</h2>
-    <div class="layer"><input type="checkbox" id="L-conf" checked><span class="dot" style="background:var(--c-conf)"></span><label for="L-conf">Newly confirmed (satellite scan + public reports)</label><span class="count" id="n-conf"></span></div>
-    <div class="status" id="s-conf"></div>
-    <div class="layer"><input type="checkbox" id="L-doc" checked><span class="dot" style="background:var(--c-doc)"></span><label for="L-doc">Documented, coordinates from source</label><span class="count" id="n-doc"></span></div>
-    <div class="layer"><input type="checkbox" id="L-approx" checked><span class="dot" style="background:var(--c-approx)"></span><label for="L-approx">Documented, approximate location</label><span class="count" id="n-approx"></span></div>
-    <div class="layer"><input type="checkbox" id="L-field" checked><span class="dot" style="background:var(--c-field)"></span><label for="L-field">GPS field survey (Nsukka 2026)</label><span class="count" id="n-field"></span></div>
-    <div class="status">Filled = authorised by ESWAMA · hollow = unauthorised</div>
-    <div class="layer"><input type="checkbox" id="L-osm" checked><span class="dot" style="background:var(--c-osm)"></span><label for="L-osm">OpenStreetMap landfills (live)</label><span class="count" id="n-osm"></span></div>
-    <div class="status" id="s-osm">Loading…</div>
-    <div class="layer"><input type="checkbox" id="L-grid" checked><span class="dot" style="background:var(--c-grid)"></span><label for="L-grid">GRID3 field survey 2017–18 (live)</label><span class="count" id="n-grid"></span></div>
-    <div class="status" id="s-grid">Loading…</div>
-    <div class="layer"><input type="checkbox" id="L-mine" checked><span class="dot" style="background:var(--c-mine)"></span><label for="L-mine">My pinned sites</label><span class="count" id="n-mine"></span></div>
-    <div class="btns" style="margin-top:6px">
-      <button id="osmAll" title="Fetch the latest OpenStreetMap data again">Refresh OpenStreetMap layer</button>
-    </div>
-
-    <h2>National summary (confirmed sites)</h2>
-    <div id="summary" class="note">Loading…</div>
-
-    <h2>Map new sites</h2>
-    <div class="btns">
-      <button class="primary" id="pinBtn">＋ Pin a site</button>
-      <button id="exportBtn">Export GeoJSON</button>
-      <button id="importBtn">Import</button>
-      <input type="file" id="importFile" accept=".geojson,.json" hidden>
-    </div>
-    <p class="status" style="margin-left:0">Pins are saved in this browser only. Export them to keep or share.</p>
-
-    <h2>Documented but not yet pinned</h2>
-    <ul class="list" id="todo"></ul>
-
-    <h2>All sites in view</h2>
-    <ul class="list" id="sites"></ul>
-
-    <h2>How to spot a dumpsite on Sentinel-2</h2>
-    <div class="note">
-      <p>At 10 m per pixel, a site shows clearly once it covers about 0.5 ha (70 × 70 m). Look for:</p>
-      <p>• a patchy, speckled surface in grey, brown and white with no tidy structure;<br>• bare ground with a ring of access tracks where trucks drive in and out;<br>• dark smoke or burn scars, often next to a river, a flood plain, or a quarry or borrow pit;<br>• growth over time: compare the 2023 cloudless mosaic with the latest image in Copernicus Browser.</p>
-      <p>Confirm with the sharper Esri imagery before you pin a site. The best evidence is a field visit or a local report.</p>
-    </div>
-
-    <details style="margin-top:10px">
-      <summary>Method and sources</summary>
-      <ol>
-        <li><b>Basemap:</b> Sentinel-2 cloudless 2023 by EOX (contains modified Copernicus Sentinel data, CC BY-NC-SA 4.0). Each popup links to the latest Sentinel-2 L2A scene in Copernicus Browser.</li>
-        <li><b>Documented sites:</b> peer-reviewed studies and official sources (cited in each popup). Green means the source gives the coordinates; amber means the source gives only a study-area box or a site extent, so the marker is placed at its centre.</li>
-        <li><b>Newly confirmed:</b> candidates from a Sentinel-2 Random Forest scan in Google Earth Engine and reports sent in through a public KoboToolbox form. Each one is checked by a person in QGIS before it is published here.</li>
-        <li><b>GPS field survey:</b> 57 disposal sites in Nsukka Urban, each recorded on the ground with a GPS waypoint app and classed as authorised or unauthorised (Isimah et al. 2026, Research Square preprint, CC BY 4.0).</li>
-        <li><b>OpenStreetMap:</b> features tagged <code>landuse=landfill</code> or <code>amenity=waste_transfer_station</code>, fetched live from the Overpass API (ODbL).</li>
-        <li><b>GRID3 Nigeria:</b> dump-site points from the eHealth Africa field survey (2017–18), fetched live from the GRID3 GeoServer. These may include sites that have since closed.</li>
-        <li><b>Status:</b> "open" means the site is reported as operating or visibly active in recent imagery. Status changes, so check the date on each source.</li>
-      </ol>
+<main>
+<!-- ======================= MAP ======================= -->
+<section id="view-map" class="view" aria-label="Map">
+  <aside id="panel">
+    <section>
+      <label class="f" for="q">Search</label>
+      <input type="search" id="q" placeholder="Site, town or state (e.g. Olusosun, Makurdi, Kano)" autocomplete="off">
+    </section>
+    <section class="grid2">
+      <div>
+        <label class="f" for="fState">State</label>
+        <select id="fState"><option value="">All 36 states + FCT</option></select>
+      </div>
+      <div>
+        <label class="f" for="fVer">Verification</label>
+        <select id="fVer">
+          <option value="D">All levels</option>
+          <option value="C">A–C (hide your pins)</option>
+          <option value="B">A–B (located from sources)</option>
+          <option value="A">A only (confirmed)</option>
+        </select>
+      </div>
+      <div>
+        <label class="f" for="fSort">Sort</label>
+        <select id="fSort">
+          <option value="ver">Best verified first</option>
+          <option value="name">Name A–Z</option>
+          <option value="state">State</option>
+          <option value="near">Nearest to me</option>
+        </select>
+      </div>
+      <div style="display:flex;align-items:flex-end;gap:6px">
+        <button class="btn" id="nearBtn" title="Use your location to find the nearest sites">◎ Near me</button>
+        <button class="btn" id="resetBtn" title="Clear search and filters">Reset</button>
+      </div>
+    </section>
+    <section>
+      <label class="f">Sources</label>
+      <div class="chips" id="kindChips"></div>
+    </section>
+    <section>
+      <div class="res-head"><span id="resCount" aria-live="polite">Loading…</span><button class="btn small" id="shareBtn" title="Copy a link to this view">Copy link</button></div>
+      <ul id="results"></ul>
+    </section>
+    <section>
+      <label class="f">Add a site you know</label>
+      <div class="chips">
+        <button class="btn primary small" id="pinBtn">＋ Pin a site</button>
+        <a class="btn small" href="#report">How to report</a>
+      </div>
+      <p class="note" style="margin-top:8px">Pins stay in this browser until you export or send them. See <a href="#report">Report a site</a>.</p>
+    </section>
+    <details>
+      <summary>Documented in studies, location not yet pinned (<span id="todoN"></span>)</summary>
+      <ul id="todo" style="list-style:none;padding:0;margin:6px 0;font-size:13.5px"></ul>
     </details>
-    <p class="status" style="margin:14px 0 4px">Shagbaor Hycent Amool · UNBC · v0.1 pilot</p>
   </aside>
   <div class="mapwrap">
-    <div class="banner">Click the map where the site is · Esc to cancel</div>
-    <div id="map"></div>
+    <div class="banner" role="status">Click the map where the site is · Esc to cancel</div>
+    <div id="map" role="region" aria-label="Interactive map of dumpsites"></div>
   </div>
-</div>
+</section>
+
+<!-- ======================= STATS ======================= -->
+<section id="view-stats" class="view" aria-label="Statistics by state">
+  <div class="page">
+    <h2>Statistics by state</h2>
+    <p class="lede">How many open dumpsites are on the map in each state, by source. These are <b>mapped</b> sites, not a full count: the numbers grow as the satellite scan is reviewed and people report sites. Select a state to see its sites on the map.</p>
+    <div class="kpis" id="kpis"></div>
+    <h3>Sites mapped per state</h3>
+    <svg id="bars" role="img" aria-label="Bar chart of mapped dumpsites per state" width="100%"></svg>
+    <div style="display:flex;justify-content:space-between;align-items:center;margin:18px 0 8px;gap:10px;flex-wrap:wrap">
+      <h3 style="margin:0">Table</h3>
+      <button class="btn small" id="statsCsv">⬇ Download table (CSV)</button>
+    </div>
+    <div class="tablewrap"><table class="data" id="statsTable"></table></div>
+    <p class="note" style="margin-top:12px">Confirmed hectares are measured from the satellite outline of each confirmed site. OpenStreetMap counts update live from the community map.</p>
+  </div>
+</section>
+
+<!-- ======================= SCAN ======================= -->
+<section id="view-scan" class="view" aria-label="Satellite scan">
+  <div class="page" style="max-width:1300px">
+    <h2>Satellite scan</h2>
+    <p class="lede">A machine-learning model scans Sentinel-2 images of every state for patches that look like open dumps. A screening bot then ranks each candidate as <b style="color:#d7191c">likely</b>, <b style="color:#e08a1e">possible</b> or <b style="color:#888">unlikely</b>. Candidates are <b>not confirmed</b>: they appear on the main map only after a person has checked them.</p>
+    <div class="warn" style="margin-bottom:12px">Unverified model output. Quarries, building sites and bare ground can look like dumps from space.</div>
+    <iframe class="scanframe" id="scanFrame" title="Earth Engine satellite scan explorer" loading="lazy"></iframe>
+    <p><a class="btn" id="scanOpen" target="_blank" rel="noopener">Open the scan full screen ↗</a></p>
+    <h3>What the screening bot checks</h3>
+    <div class="cards">
+      <div class="card"><b>Model confidence</b><br><span class="note" style="display:block;border:0;padding:0;background:none">How strongly the Sentinel-2 model thinks the patch is a dump.</span></div>
+      <div class="card"><b>Persistence</b><br><span style="color:var(--muted);font-size:14px">Did the same spot also look like a dump in the 2020/21 dry season? Dumps persist; building sites change.</span></div>
+      <div class="card"><b>Burning</b><br><span style="color:var(--muted);font-size:14px">NASA fire detections within 500 m from 2019 to 2025. Open burning is common at dumps.</span></div>
+      <div class="card"><b>Shape and size</b><br><span style="color:var(--muted);font-size:14px">Compact patches score higher; long thin strips are usually road verges.</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= WHY ======================= -->
+<section id="view-why" class="view" aria-label="Why it matters">
+  <div class="page">
+    <h2>Why it matters</h2>
+    <p class="lede">You cannot manage what you have not measured. Most of Nigeria's waste ends up in open dumps that no official map records, so their size, growth and harm stay invisible to planning and budgets.</p>
+    <div class="cards">
+      <div class="card"><h3 style="margin-top:0">Health</h3><p>Open dumps breed flies, mosquitoes and rats and are linked to cholera, typhoid, dysentery and malaria in nearby communities. Nigeria recorded 1,528 suspected cholera cases and 53 deaths in 30 states between January and 24 June 2024 (NCDC, cited in Isimah et al. 2026).</p></div>
+      <div class="card"><h3 style="margin-top:0">Water</h3><p>Rain washes leachate from dumps into soil and groundwater. Studies around dumps in Lagos (Igando) and the FCT satellite towns found contamination in nearby wells and soils (Ige et al. 2022; Sawyerr et al. 2017).</p></div>
+      <div class="card"><h3 style="margin-top:0">Climate</h3><p>Waste after use produces about 3% of global man-made greenhouse gases and 18% of man-made methane (Sun et al. 2023). Burning dumps add smoke and soot.</p></div>
+      <div class="card"><h3 style="margin-top:0">Flooding</h3><p>Dumps in drains, riverbanks and wetlands block water flow and spread waste during floods, which the Water Atlas flood watch tracks for Nigeria's rivers.</p></div>
+    </div>
+    <h3>What the atlas makes possible</h3>
+    <ul>
+      <li><b>Counting and measuring:</b> the number and area of open dumpsites in each state, updated as sites are confirmed.</li>
+      <li><b>Prioritising:</b> sites near rivers, wells and homes can be ranked for clean-up or closure (see <a href="#method">How it works</a>).</li>
+      <li><b>Tracking change:</b> satellite history shows when a site started and whether it is growing.</li>
+      <li><b>Evidence for policy:</b> state waste agencies, researchers and NGOs can download the data and cite it.</li>
+    </ul>
+    <p class="note">Sources: Isimah et al. (2026) Research Square preprint, doi:10.21203/rs.3.rs-8260552/v1; Ige et al. (2022) Applied Water Science 12:79; Sawyerr et al. (2017) J Health Pollut 7(14); Sun et al. (2023) Nature Communications 14:1444, doi:10.1038/s41467-023-37136-1.</p>
+  </div>
+</section>
+
+<!-- ======================= REPORT ======================= -->
+<section id="view-report" class="view" aria-label="Report a site">
+  <div class="page">
+    <h2>Report a dumpsite</h2>
+    <p class="lede">Satellites miss small dumps. Reports from people who live and work near them fill that gap. Every report is checked before it appears on the map.</p>
+    <div id="formBox" class="card" style="display:none;margin-bottom:16px">
+      <h3 style="margin-top:0">Report from your phone (2 minutes)</h3>
+      <p>Take a photo, record the location and answer a few questions. Your name and number are never shown.</p>
+      <a class="btn primary" id="formLink" target="_blank" rel="noopener">Open the reporting form ↗</a>
+    </div>
+    <h3>Or pin it on the map</h3>
+    <ol class="steps">
+      <li>Open the <a href="#map">Map</a>, switch the basemap to <b>High-res (Esri)</b> and zoom to the site.</li>
+      <li>Click <b>＋ Pin a site</b>, click on the dump, and fill in the short form: name, whether it is still used, size and notes.</li>
+      <li>Click <b>Export my pins</b> below to save a file, and send it through the contact details on <a href="/#contact">the main website</a>.</li>
+    </ol>
+    <div class="card" style="margin-top:14px">
+      <b>Your pins in this browser: <span id="pinCount">0</span></b>
+      <div class="chips" style="margin-top:8px">
+        <button class="btn small" id="exportPins">⬇ Export my pins (GeoJSON)</button>
+        <button class="btn small" id="importPins">Import pins</button>
+        <input type="file" id="importFile" accept=".geojson,.json" hidden>
+      </div>
+    </div>
+    <h3>Stay safe</h3>
+    <ul>
+      <li>Stand at the edge of the site; do not walk on waste or near burning heaps.</li>
+      <li>Do not photograph people without their permission, including waste pickers.</li>
+      <li>Report what you see: the type of waste, signs of burning, and nearby water or homes.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ======================= METHOD ======================= -->
+<section id="view-method" class="view" aria-label="How it works">
+  <div class="page">
+    <h2>How it works</h2>
+    <p class="lede">Four sources feed one map. Every site carries a verification level, so you always know how sure we are.</p>
+    <ol class="steps">
+      <li><b>Published studies and field surveys.</b> Dumpsites with coordinates from peer-reviewed papers and GPS surveys, each linked to its source.</li>
+      <li><b>Satellite scan.</b> A Random Forest model in Google Earth Engine reads a cloud-free Sentinel-2 composite (10 m) of the 2024/25 dry season, with texture, land cover (Dynamic World) and built-up density (GHSL), and finds dump-like patches of at least 0.5 ha in every state.</li>
+      <li><b>Screening bot.</b> Each candidate gets a 0–100 score from model confidence, persistence since 2020/21, nearby fire detections, shape and size, and is labelled likely, possible or unlikely.</li>
+      <li><b>Human review.</b> Reviewers check candidates and public reports on high-resolution imagery in QGIS. Only sites with clear visual evidence plus a second piece of evidence are marked confirmed and published.</li>
+      <li><b>Community data.</b> Landfills mapped on OpenStreetMap load live, and anyone can pin or report a site.</li>
+    </ol>
+    <h3>Verification levels</h3>
+    <div class="tablewrap"><table class="data" id="verTable"></table></div>
+    <h3>Limits</h3>
+    <ul>
+      <li>Satellite detection misses sites smaller than about 0.5 ha; reports fill that gap.</li>
+      <li>A site on the map may since have been closed or cleared; dates are given where known.</li>
+      <li>Approximate locations come from a study area or a coarse coordinate and need checking on the ground.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ======================= DATA ======================= -->
+<section id="view-data" class="view" aria-label="Data and sources">
+  <div class="page">
+    <h2>Data &amp; sources</h2>
+    <p class="lede">Download what is on the map for your own analysis, report or class. Please cite the atlas and the original sources.</p>
+    <div class="chips" style="margin-bottom:18px">
+      <button class="btn primary" id="dlGeo">⬇ All mapped sites (GeoJSON)</button>
+      <button class="btn" id="dlCsv">⬇ All mapped sites (CSV)</button>
+      <a class="btn" href="data/confirmed.geojson" download>⬇ Confirmed sites only (GeoJSON)</a>
+      <button class="btn" id="dlStats">⬇ State summary (CSV)</button>
+    </div>
+    <h3>Sources</h3>
+    <div class="tablewrap"><table class="data" id="srcTable"></table></div>
+    <h3>How to cite</h3>
+    <div class="cite" id="citeText">Amool, S. H. (2026). Nigeria Waste Sites Atlas [Interactive web atlas]. https://shagbaor.com/waste-atlas/</div>
+    <p><button class="btn small" id="copyCite">Copy citation</button></p>
+    <p class="note">Records from OpenStreetMap are © OpenStreetMap contributors and available under the Open Database Licence (ODbL). Sentinel-2 cloudless mosaics © EOX IT Services GmbH, CC BY-NC-SA 4.0, contain modified Copernicus Sentinel data.</p>
+  </div>
+</section>
+</main>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
 <script>
 (function(){
 "use strict";
-// Paste your KoboToolbox form link here (Enketo "Online-Only" URL) to show the Report button
-const REPORT_FORM_URL = "";
-// Earth Engine App with the national scan (published from toolkit/5_gee_public_app.js)
+// ---------------------------------------------------------------- settings
+const REPORT_FORM_URL = "";   // paste the KoboToolbox "Online-Only" link here to show the reporting form
 const SCAN_APP_URL = "https://tribal-dispatch-510704-j4.projects.earthengine.app/view/nigeria-waste-sites-scan";
-(function(){const m=document.getElementById('scanModal'),f=document.getElementById('scanFrame');
-  document.getElementById('scanOpen').href=SCAN_APP_URL;
-  document.getElementById('scanBtn').onclick=()=>{if(!f.src)f.src=SCAN_APP_URL;m.style.display='block';};
-  document.getElementById('scanClose').onclick=()=>{m.style.display='none';};
-  document.addEventListener('keydown',e=>{if(e.key==='Escape')m.style.display='none';});})();
-if(REPORT_FORM_URL){const rb=document.getElementById('reportBtn');rb.href=REPORT_FORM_URL;rb.style.display='';}
-// ---------- theme ----------
-const root=document.documentElement;
-try{const t=localStorage.getItem('nwa-theme'); if(t) root.dataset.theme=t;}catch(e){}
-document.getElementById('themeBtn').onclick=()=>{
-  const dark = root.dataset.theme ? root.dataset.theme==='dark' : matchMedia('(prefers-color-scheme: dark)').matches;
-  root.dataset.theme = dark?'light':'dark';
-  try{localStorage.setItem('nwa-theme',root.dataset.theme);}catch(e){}
-};
-const css=n=>getComputedStyle(root).getPropertyValue(n).trim();
+const STATES_URL = "/energy-atlas/data/nigeria-states.geojson";
+const PIN_KEY = "nwa-pins-v1";
 
-// ---------- pilot areas (S,W,N,E) ----------
-const CITIES={
-  "Lagos":[6.35,3.0,6.75,3.75],
-  "Abuja (FCT)":[8.75,6.95,9.35,7.65],
-  "Kano":[11.85,8.35,12.15,8.7],
-  "Port Harcourt":[4.7,6.85,5.0,7.15],
-  "Makurdi":[7.6,8.4,7.85,8.7],
-  "Nsukka":[6.82,7.35,6.89,7.44],
-  "Kaduna*":[10.35,7.3,10.62,7.56],
-  "Nigeria":[4.2,2.6,13.9,14.7]
-};
-const STATE_CODES="'LA','FC','KN','RI','BE','KD'";
+const css=n=>getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const $=id=>document.getElementById(id);
+const fmt=n=>Number(n).toLocaleString('en-GB');
 
-// ---------- documented sites ----------
-// precision: "source" = coordinates given by source; "approx" = centre of a range/extent given by source
+// ---------------------------------------------------------------- source kinds and verification
+const KINDS={
+  conf:  {label:"Confirmed (satellite + review)", short:"Confirmed", ver:"A", color:"--c-conf"},
+  doc:   {label:"Published coordinates",           short:"Published", ver:"B", color:"--c-doc"},
+  field: {label:"GPS field survey",                short:"Field survey", ver:"B", color:"--c-field"},
+  approx:{label:"Approximate location",            short:"Approximate", ver:"C", color:"--c-approx"},
+  osm:   {label:"OpenStreetMap (community)",       short:"OpenStreetMap", ver:"C", color:"--c-osm"},
+  mine:  {label:"Your pins (unverified)",          short:"Your pins", ver:"D", color:"--c-mine"}
+};
+const VER={A:"Confirmed: seen on high-resolution imagery by a reviewer, with a second piece of evidence",
+           B:"Located from a source: coordinates published in a study or recorded by GPS in the field",
+           C:"Approximate or community-mapped: needs checking on imagery or on the ground",
+           D:"Unverified: pinned in this browser and not yet reviewed"};
+const VER_RANK={A:0,B:1,C:2,D:3};
+const col=k=>css(KINDS[k].color);
+
+// ---------------------------------------------------------------- data (documented sites)
 const DOC=[
  {name:"Olusosun landfill",place:"Ojota, Ikeja, Lagos",lat:6.59453,lon:3.37796,precision:"source",status:"Open, slated for decommissioning",area:"≈40–43 ha",detail:"Operating since 1992; receives roughly 2 million t of waste a year, including e-waste. In late 2025 the Lagos State Government announced it will close Olusosun and Solous within about 18 months, moving to new facilities at Badagry, Ikorodu and Epe.",src:[["Wikipedia: Olusosun landfill","https://en.wikipedia.org/wiki/Olusosun_landfill"],["AllAfrica (Dec 2025): Olusosun, Solous to be shut","https://allafrica.com/stories/202512010191.html"]]},
  {name:"Solous (Igando) dumpsites I–III",place:"Igando, Alimosho, Lagos",lat:6.6225,lon:3.2792,precision:"approx",status:"Open, slated for decommissioning",area:"Solous 2 ≈8 ha",detail:"A cluster of three dumps along the LASU–Iba road. The marker sits at the centre of the study-area box in Ige et al. (2022); use the Esri imagery to pin each cell.",src:[["Ige et al. 2022, Applied Water Science 12:79","https://doi.org/10.1007/s13201-022-01601-x"],["AllAfrica (Dec 2025)","https://allafrica.com/stories/202512010191.html"]]},
@@ -238,248 +409,306 @@ const TODO=[
  {name:"North Bank Mechanic Village dump",place:"Makurdi, Benue",note:"Auto-mechanic waste dump",zoom:"Makurdi",src:"https://iiste.org/Journals/index.php/CMR/article/view/4638"}
 ];
 
-// ---------- map ----------
-const map=L.map('map',{zoomControl:true,preferCanvas:true}).fitBounds([[4.2,2.6],[13.9,14.7]]);
+const NSUKKA=[[6.85593,7.39516,0,"University Rd1"],[6.8478,7.39573,1,"Aku Rd"],[6.84132,7.40262,1,"Echara Rd"],[6.8545,7.40353,0,"Mouka Rd2"],[6.85614,7.4052,0,"Odenigwe 1"],[6.85448,7.40466,0,"Odenigwe Rd 2"],[6.85371,7.41094,0,"Hil Top Rd 1"],[6.85342,7.41287,0,"Hil Top Rd 2"],[6.85865,7.41165,0,"Hil Top Fence 1"],[6.85941,7.4118,0,"Hil Top Fence 2"],[6.8605,7.41204,1,"Akintola Hostel Unn"],[6.86333,7.41361,1,"Beside Student Affairs Unn"],[6.86516,7.41227,0,"Verternary Department Unn"],[6.86677,7.41061,0,"Beside Abuja Bulding Unn"],[6.86456,7.40739,1,"Container Unn"],[6.86215,7.41022,1,"Beside Ekpo Ref Unn"],[6.86218,7.40481,1,"Gs Building Unn"],[6.86086,7.40844,1,"Geography Dep. Unn"],[6.84049,7.39118,1,"Tectanus Rd"],[6.86837,7.4032,0,"Eni Njoku Hostel Unn"],[6.85525,7.39298,1,"Prison Rd"],[6.85696,7.39904,1,"Unn Market Rd"],[6.84779,7.39831,0,"Behind Peace Park"],[6.85508,7.40224,0,"Mouka Rd1"],[6.85567,7.38346,1,"Nsk-Onitsha Rd1"],[6.86039,7.38581,0,"Nsk-Onitsha Rd2"],[6.8489,7.38856,0,"Beside St Terese Rd"],[6.87255,7.40876,0,"Odim Rd 1 Unn"],[6.87187,7.40873,0,"Odim Rd 2 Unn"],[6.86974,7.40878,0,"Odim Rd 3 Unn"],[6.86921,7.40864,0,"Odim Rd 4 Unn"],[6.84738,7.38851,1,"New Anglican Rd"],[6.85674,7.41037,0,"Hitop Rd 3"],[6.84804,7.40186,0,"Orba Rd 1"],[6.83714,7.37011,1,"Ikenga Juction"],[6.84466,7.36475,0,"Ibegwa Ani Rd"],[6.8466,7.37341,0,"Agu Ehera Pr School"],[6.84277,7.40647,1,"Umuche Rd"],[6.8307,7.40736,0,"Amula Rd (Enugu Rd)"],[6.86411,7.38837,0,"Obolo Idah Rd"],[6.87302,7.39947,1,"Behind Flat Joint"],[6.86408,7.39596,0,"Unn Rd"],[6.87906,7.40551,1,"Nkpur Junction"],[6.8775,7.39967,0,"Onuhi Rd"],[6.82839,7.40696,0,"Enugu Rd 1"],[6.83892,7.36618,0,"Nibo Rd"],[6.87001,7.40167,0,"Unn Boys Hostel"],[6.84512,7.36183,0,"Ibegwa Ani Rd 2"],[6.86856,7.38629,0,"Obolo-Idah Rd1"],[6.86948,7.38638,0,"Obolo-Idah Rd2"],[6.86948,7.39969,0,"Obukpa Rd1"],[6.88245,7.39838,0,"Obukpa Rd2"],[6.84931,7.42877,0,"Unn Gate 3"],[6.84954,7.39352,1,"Bishop Shanahan Hospital"],[6.87751,7.40834,0,"Beside Ejuona Pr Sch"],[6.86922,7.39848,1,"Unn Gate 2"],[6.86934,7.39999,0,"Unn Pg Hostel"]];
+
+
+// ---------------------------------------------------------------- record store
+const recs=[]; let selectedId=null, refreshing=false; // {id,kind,name,lat,lon,place,state,status,area,html,src,props,marker}
+let states=null, userLoc=null, userMarker=null, selectedState=null;
+function add(r){ r.state=r.state||stateOf(r.lat,r.lon); recs.push(r); return r; }
+
+DOC.forEach((d,i)=>add({id:'doc'+i,kind:d.precision==="source"?"doc":"approx",name:d.name,lat:d.lat,lon:d.lon,place:d.place,status:d.status,area:d.area,
+  src:d.src.map(s=>s[1]).join(' ; '),
+  html:`<div class="pp-meta">${esc(d.place)}${d.area?' · '+esc(d.area):''}</div><div><b>Status:</b> ${esc(d.status)}</div><div style="margin-top:4px">${esc(d.detail)}</div>
+   <div style="margin-top:6px;font-size:12px">${d.src.map(s=>`<a target="_blank" rel="noopener" href="${s[1]}">${esc(s[0])}</a>`).join('<br>')}</div>`}));
+NSUKKA.forEach(([la,lo,auth,loc],i)=>add({id:'nsk'+i,kind:'field',name:loc,lat:la,lon:lo,place:'Nsukka Urban, Enugu',state:'Enugu',
+  status:auth?'Authorised (ESWAMA)':'Unauthorised',src:'https://doi.org/10.21203/rs.3.rs-8260552/v1',hollow:!auth,
+  html:`<div class="pp-meta">Nsukka Urban, Enugu State · site ${i+1} of 57</div><div><b>Status:</b> ${auth?'Authorised (recognised by ESWAMA)':'Unauthorised, started by residents'}</div>
+   <div style="margin-top:4px;font-size:12px">Mostly roadside and campus collection points, too small for Sentinel-2; use the high-res imagery.</div>
+   <div style="margin-top:6px;font-size:12px"><a target="_blank" rel="noopener" href="https://doi.org/10.21203/rs.3.rs-8260552/v1">Isimah et al. 2026, Research Square preprint (not peer reviewed)</a></div>`}));
+
+// ---------------------------------------------------------------- map
+const map=L.map('map',{zoomControl:true,preferCanvas:true,worldCopyJump:false}).fitBounds([[4.2,2.6],[13.9,14.7]]);
 const BASE={
- "Sentinel-2 2023":L.tileLayer('https://tiles.maps.eox.at/wmts/1.0.0/s2cloudless-2023_3857/default/g/{z}/{y}/{x}.jpg',{maxZoom:17,maxNativeZoom:15,attribution:'<a href="https://s2maps.eu">Sentinel-2 cloudless 2023</a> by EOX IT Services GmbH (contains modified Copernicus Sentinel data 2023)'}),
- "Sentinel-2 2018":L.tileLayer('https://tiles.maps.eox.at/wmts/1.0.0/s2cloudless-2018_3857/default/g/{z}/{y}/{x}.jpg',{maxZoom:17,maxNativeZoom:15,attribution:'<a href="https://s2maps.eu">Sentinel-2 cloudless 2018</a> by EOX IT Services GmbH (contains modified Copernicus Sentinel data 2018)'}),
+ "Sentinel-2 2023":L.tileLayer('https://tiles.maps.eox.at/wmts/1.0.0/s2cloudless-2023_3857/default/g/{z}/{y}/{x}.jpg',{maxZoom:18,maxNativeZoom:15,attribution:'<a href="https://s2maps.eu">Sentinel-2 cloudless 2023</a> by EOX IT Services GmbH (contains modified Copernicus Sentinel data 2023)'}),
+ "Sentinel-2 2018":L.tileLayer('https://tiles.maps.eox.at/wmts/1.0.0/s2cloudless-2018_3857/default/g/{z}/{y}/{x}.jpg',{maxZoom:18,maxNativeZoom:15,attribution:'<a href="https://s2maps.eu">Sentinel-2 cloudless 2018</a> by EOX IT Services GmbH (contains modified Copernicus Sentinel data 2018)'}),
  "High-res (Esri)":L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',{maxZoom:19,attribution:'Imagery © Esri, Maxar, Earthstar Geographics'}),
  "Streets (OSM)":L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:19,attribution:'© OpenStreetMap contributors'})
 };
-let curBase=BASE["Sentinel-2 2023"].addTo(map);
-const bmWrap=document.getElementById('basemaps');
-Object.keys(BASE).forEach(k=>{
-  const b=document.createElement('button');b.textContent=k;if(k==="Sentinel-2 2023")b.classList.add('active');
-  b.onclick=()=>{map.removeLayer(curBase);curBase=BASE[k].addTo(map);bmWrap.querySelectorAll('button').forEach(x=>x.classList.toggle('active',x===b));};
-  bmWrap.appendChild(b);
-});
-const cWrap=document.getElementById('cities');
-Object.entries(CITIES).forEach(([k,bb])=>{
-  const b=document.createElement('button');b.textContent=k;b.onclick=()=>map.fitBounds([[bb[0],bb[1]],[bb[2],bb[3]]]);cWrap.appendChild(b);
-});
+let curBaseName="Sentinel-2 2023"; BASE[curBaseName].addTo(map);
+map.on('baselayerchange',e=>{curBaseName=e.name;});
+const stateLayer=L.geoJSON(null,{style:()=>({color:'#ffffff',weight:1,opacity:.7,fill:false}),interactive:false});
+const highlight=L.geoJSON(null,{style:()=>({color:css('--accent'),weight:3,fill:false}),interactive:false}).addTo(map);
+const visible=L.layerGroup().addTo(map);
+L.control.layers(BASE,{"State boundaries":stateLayer},{position:'topright',collapsed:true}).addTo(map);
+L.control.scale({imperial:false}).addTo(map);
+const Legend=L.Control.extend({options:{position:'bottomright'},onAdd(){const d=L.DomUtil.create('div','legend');
+  d.innerHTML='<b>Verification</b>'+Object.entries(KINDS).map(([k,v])=>`<div><span class="dot" style="background:var(${v.color})"></span> ${v.ver} · ${esc(v.short)}</div>`).join('');return d;}});
+new Legend().addTo(map);
+const Dl=L.Control.extend({options:{position:'topright'},onAdd(){const d=L.DomUtil.create('div','dl-ctl');d.innerHTML='<a href="#" role="button" title="Download the sites currently shown">⬇ Download GIS data</a>';
+  L.DomEvent.disableClickPropagation(d);d.firstChild.onclick=e=>{e.preventDefault();download('geojson',filtered());};return d;}});
+new Dl().addTo(map);
 
-const groups={doc:L.layerGroup().addTo(map),approx:L.layerGroup().addTo(map),conf:L.layerGroup().addTo(map),field:L.layerGroup().addTo(map),osm:L.layerGroup().addTo(map),grid:L.layerGroup().addTo(map),mine:L.layerGroup().addTo(map)};
-const all=[]; // {lat,lon,name,meta,kind,marker}
-['conf','doc','approx','field','osm','grid','mine'].forEach(k=>{
-  document.getElementById('L-'+k).onchange=e=>{e.target.checked?map.addLayer(groups[k]):map.removeLayer(groups[k]);renderList();};
-});
-const COLORS=()=>({doc:css('--c-doc'),approx:css('--c-approx'),conf:css('--c-conf'),field:css('--c-field'),osm:css('--c-osm'),grid:css('--c-grid'),mine:css('--c-mine')});
-const LABEL={doc:"Documented",approx:"Documented · approximate",conf:"Newly confirmed",field:"GPS field survey",osm:"OpenStreetMap",grid:"GRID3 survey",mine:"My pin"};
-const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-
-function links(lat,lon){
-  const z=16;
+function links(lat,lon,id){
   return `<div class="pp-links">
-   <a target="_blank" rel="noopener" href="https://browser.dataspace.copernicus.eu/?zoom=${z}&lat=${lat.toFixed(5)}&lng=${lon.toFixed(5)}&datasetId=S2_L2A_CDAS">Latest Sentinel-2 ↗</a>
+   <a target="_blank" rel="noopener" href="https://browser.dataspace.copernicus.eu/?zoom=16&lat=${lat.toFixed(5)}&lng=${lon.toFixed(5)}&datasetId=S2_L2A_CDAS">Latest Sentinel-2 ↗</a>
    <a target="_blank" rel="noopener" href="https://www.google.com/maps/@${lat.toFixed(5)},${lon.toFixed(5)},800m/data=!3m1!1e3">Google satellite ↗</a>
-   <a target="_blank" rel="noopener" href="https://www.openstreetmap.org/#map=17/${lat.toFixed(5)}/${lon.toFixed(5)}">OSM ↗</a></div>
+   <a href="#" data-copy="${esc(id)}">Copy link</a></div>
    <div class="pp-meta">${lat.toFixed(5)}, ${lon.toFixed(5)}</div>`;
 }
-function addPoint(kind,lat,lon,name,html,meta,hollow){
-  const col=COLORS()[kind];
-  const m=L.circleMarker([lat,lon],{radius:kind==='osm'||kind==='grid'||kind==='field'?8:11,color:hollow?col:'#fff',weight:hollow?3:2,fillColor:hollow?'#fff':col,fillOpacity:hollow?.85:.95})
-    .bindPopup(`<span class="tag" style="background:${col}">${LABEL[kind]}</span><h3>${esc(name)}</h3>${html}${links(lat,lon)}`);
-  m.addTo(groups[kind]);
-  const rec={kind,lat,lon,name,meta,marker:m};all.push(rec);return rec;
+function markerFor(r){
+  if(r.marker) return r.marker;
+  const c=col(r.kind), small=(r.kind==='osm'||r.kind==='field');
+  r.marker=L.circleMarker([r.lat,r.lon],{radius:small?7:10,color:r.hollow?c:'#fff',weight:r.hollow?3:2,fillColor:r.hollow?'#fff':c,fillOpacity:.95});
+  r.marker.bindPopup(()=>{const v=KINDS[r.kind].ver;return `<span class="badge" style="background:${c}">${v} · ${esc(KINDS[r.kind].short)}</span><h3>${esc(r.name)}</h3>
+    ${r.state?`<div class="pp-meta">${esc(r.state)} State</div>`:''}${r.html||''}${links(r.lat,r.lon,r.id)}`;});
+  r.marker.on('click',()=>{selectedId=r.id;setHashParam('site',r.id);});
+  r.marker.on('popupclose',()=>{if(!refreshing&&selectedId===r.id)selectedId=null;});
+  return r.marker;
 }
 
-// documented
-DOC.forEach(d=>{
-  const kind=d.precision==="source"?"doc":"approx";
-  const html=`<div class="pp-meta">${esc(d.place)}${d.area?' · '+esc(d.area):''}</div>
-   <div><b>Status:</b> ${esc(d.status)}</div><div style="margin-top:4px">${esc(d.detail)}</div>
-   <div style="margin-top:6px;font-size:12px">${d.src.map(s=>`<a target="_blank" rel="noopener" href="${s[1]}">${esc(s[0])}</a>`).join('<br>')}</div>`;
-  addPoint(kind,d.lat,d.lon,d.name,html,d.place);
-});
-// Nsukka Urban: 57 GPS-recorded disposal sites [lat, lon, authorised(1)/unauthorised(0), location]
-const NSUKKA=[[6.85593,7.39516,0,"University Rd1"],[6.8478,7.39573,1,"Aku Rd"],[6.84132,7.40262,1,"Echara Rd"],[6.8545,7.40353,0,"Mouka Rd2"],[6.85614,7.4052,0,"Odenigwe 1"],[6.85448,7.40466,0,"Odenigwe Rd 2"],[6.85371,7.41094,0,"Hil Top Rd 1"],[6.85342,7.41287,0,"Hil Top Rd 2"],[6.85865,7.41165,0,"Hil Top Fence 1"],[6.85941,7.4118,0,"Hil Top Fence 2"],[6.8605,7.41204,1,"Akintola Hostel Unn"],[6.86333,7.41361,1,"Beside Student Affairs Unn"],[6.86516,7.41227,0,"Verternary Department Unn"],[6.86677,7.41061,0,"Beside Abuja Bulding Unn"],[6.86456,7.40739,1,"Container Unn"],[6.86215,7.41022,1,"Beside Ekpo Ref Unn"],[6.86218,7.40481,1,"Gs Building Unn"],[6.86086,7.40844,1,"Geography Dep. Unn"],[6.84049,7.39118,1,"Tectanus Rd"],[6.86837,7.4032,0,"Eni Njoku Hostel Unn"],[6.85525,7.39298,1,"Prison Rd"],[6.85696,7.39904,1,"Unn Market Rd"],[6.84779,7.39831,0,"Behind Peace Park"],[6.85508,7.40224,0,"Mouka Rd1"],[6.85567,7.38346,1,"Nsk-Onitsha Rd1"],[6.86039,7.38581,0,"Nsk-Onitsha Rd2"],[6.8489,7.38856,0,"Beside St Terese Rd"],[6.87255,7.40876,0,"Odim Rd 1 Unn"],[6.87187,7.40873,0,"Odim Rd 2 Unn"],[6.86974,7.40878,0,"Odim Rd 3 Unn"],[6.86921,7.40864,0,"Odim Rd 4 Unn"],[6.84738,7.38851,1,"New Anglican Rd"],[6.85674,7.41037,0,"Hitop Rd 3"],[6.84804,7.40186,0,"Orba Rd 1"],[6.83714,7.37011,1,"Ikenga Juction"],[6.84466,7.36475,0,"Ibegwa Ani Rd"],[6.8466,7.37341,0,"Agu Ehera Pr School"],[6.84277,7.40647,1,"Umuche Rd"],[6.8307,7.40736,0,"Amula Rd (Enugu Rd)"],[6.86411,7.38837,0,"Obolo Idah Rd"],[6.87302,7.39947,1,"Behind Flat Joint"],[6.86408,7.39596,0,"Unn Rd"],[6.87906,7.40551,1,"Nkpur Junction"],[6.8775,7.39967,0,"Onuhi Rd"],[6.82839,7.40696,0,"Enugu Rd 1"],[6.83892,7.36618,0,"Nibo Rd"],[6.87001,7.40167,0,"Unn Boys Hostel"],[6.84512,7.36183,0,"Ibegwa Ani Rd 2"],[6.86856,7.38629,0,"Obolo-Idah Rd1"],[6.86948,7.38638,0,"Obolo-Idah Rd2"],[6.86948,7.39969,0,"Obukpa Rd1"],[6.88245,7.39838,0,"Obukpa Rd2"],[6.84931,7.42877,0,"Unn Gate 3"],[6.84954,7.39352,1,"Bishop Shanahan Hospital"],[6.87751,7.40834,0,"Beside Ejuona Pr Sch"],[6.86922,7.39848,1,"Unn Gate 2"],[6.86934,7.39999,0,"Unn Pg Hostel"]];
-NSUKKA.forEach(([la,lo,auth,loc],i)=>{
-  addPoint('field',la,lo,loc,`<div class="pp-meta">Nsukka Urban, Enugu State · site ${i+1} of 57</div>
-   <div><b>Status:</b> ${auth?'Authorised (ESWAMA-recognised)':'Unauthorised, started by residents'}</div>
-   <div style="margin-top:4px;font-size:12px">Most are roadside or campus collection points, too small to see on Sentinel-2. Use the high-res imagery.</div>
-   <div style="margin-top:6px;font-size:12px"><a target="_blank" rel="noopener" href="https://doi.org/10.21203/rs.3.rs-8260552/v1">Isimah et al. 2026, Research Square preprint (not peer reviewed), Table 1</a></div>`,
-   'Nsukka · '+(auth?'authorised':'unauthorised'),!auth);
-});
-const todoUl=document.getElementById('todo');
-TODO.forEach(t=>{
-  const li=document.createElement('li');
-  li.innerHTML=`<span class="dot" style="background:transparent;border-color:var(--c-approx);margin-top:5px"></span><div><div class="nm">${esc(t.name)}</div><div class="meta">${esc(t.place)} · ${esc(t.note)}${t.src?` · <a href="${t.src}" target="_blank" rel="noopener">source</a>`:''}</div></div>`;
-  li.onclick=e=>{if(e.target.tagName==='A')return;const bb=CITIES[t.zoom];map.fitBounds([[bb[0],bb[1]],[bb[2],bb[3]]]);};
-  todoUl.appendChild(li);
-});
+// ---------------------------------------------------------------- states (point in polygon)
+function inRing(x,y,ring){let ins=false;for(let i=0,j=ring.length-1;i<ring.length;j=i++){const xi=ring[i][0],yi=ring[i][1],xj=ring[j][0],yj=ring[j][1];
+  if(((yi>y)!==(yj>y))&&(x<(xj-xi)*(y-yi)/(yj-yi)+xi))ins=!ins;}return ins;}
+function inGeom(x,y,g){const polys=g.type==='Polygon'?[g.coordinates]:g.type==='MultiPolygon'?g.coordinates:[];
+  return polys.some(p=>inRing(x,y,p[0])&&!p.slice(1).some(h=>inRing(x,y,h)));}
+function normState(n){return ({'FCT':'FCT','Abuja':'FCT','Federal Capital Territory':'FCT','Nassarawa':'Nasarawa'})[n]||n;}
+function stateOf(lat,lon){if(!states)return null;const f=states.features.find(f=>inGeom(lon,lat,f.geometry));return f?normState(f.properties.name):null;}
+const STATE_NAMES=["Abia","Adamawa","Akwa Ibom","Anambra","Bauchi","Bayelsa","Benue","Borno","Cross River","Delta","Ebonyi","Edo","Ekiti","Enugu","FCT","Gombe","Imo","Jigawa","Kaduna","Kano","Katsina","Kebbi","Kogi","Kwara","Lagos","Nasarawa","Niger","Ogun","Ondo","Osun","Oyo","Plateau","Rivers","Sokoto","Taraba","Yobe","Zamfara"];
+$('fState').insertAdjacentHTML('beforeend',STATE_NAMES.map(n=>`<option value="${n}">${n==='FCT'?'FCT (Abuja)':n}</option>`).join(''));
+fetch(STATES_URL).then(r=>{if(!r.ok)throw 0;return r.json();}).then(g=>{
+  states=g; stateLayer.addData(g);
+  recs.forEach(r=>{if(!r.state)r.state=stateOf(r.lat,r.lon);});
+  if(selectedState) showState(selectedState,false);
+  refresh();
+}).catch(()=>{});
 
-// ---------- confirmed sites from the review pipeline (data/confirmed.geojson) ----------
+// ---------------------------------------------------------------- confirmed sites (review pipeline)
+const TYPES={open_dump:'Open dump',roadside:'Roadside heap',drain_river:'Drain / river bank / wetland',burn_pit:'Burning pit',official:'Official dumpsite',collection:'Overflowing collection point',quarry_pit:'Quarry / borrow pit dump',other:'Other'};
+const SIZES={xs:'< 20 m²',s:'20–500 m²',m:'500 m² – 0.7 ha',l:'0.7–5 ha',xl:'> 5 ha'};
 fetch('data/confirmed.geojson',{cache:'no-cache'}).then(r=>{if(!r.ok)throw 0;return r.json();}).then(j=>{
-  const T={open_dump:'Open dump',roadside:'Roadside heap',drain_river:'Drain / river bank / wetland',burn_pit:'Burning pit',official:'Official dumpsite',collection:'Overflowing collection point',quarry_pit:'Quarry / borrow pit dump',other:'Other'};
-  const SZ={xs:'< 20 m²',s:'20–500 m²',m:'500 m² – 0.7 ha',l:'0.7–5 ha',xl:'> 5 ha'};
-  (j.features||[]).forEach(f=>{
-    const p=f.properties||{},c=f.geometry&&f.geometry.coordinates; if(!c)return;
-    const size=p.area_ha?(p.area_ha+' ha (satellite)'):(SZ[p.size]||'');
-    const html=`<div class="pp-meta">${esc(p.place||'')}${p.state?' · '+esc(p.state):''}</div>
-      <div><b>Found by:</b> ${esc(p.origin)}</div>
-      ${p.site_type?`<div><b>Type:</b> ${esc(T[p.site_type]||p.site_type)}</div>`:''}
-      ${size?`<div><b>Size:</b> ${esc(size)}</div>`:''}
-      ${p.burning?`<div><b>Burning:</b> ${esc(p.burning)}</div>`:''}
-      ${p.mean_prob?`<div><b>Model probability:</b> ${esc(p.mean_prob)}</div>`:''}
-      ${p.evidence?`<div><b>Evidence:</b> ${esc(p.evidence)}</div>`:''}
-      ${p.notes?`<div style="margin-top:4px">${esc(p.notes)}</div>`:''}
-      <div style="margin-top:4px;font-size:12px;color:#666">Checked by a person on high-res imagery${p.review_date?' on '+esc(p.review_date):''}.</div>`;
-    addPoint('conf',c[1],c[0],T[p.site_type]||'Confirmed dumpsite',html,(p.state||'')+' · '+(p.origin||''));
-  });
-  document.getElementById('s-conf').textContent=(j.features||[]).length+' sites from the review pipeline.';
-  // national summary by state
-  const by={};(j.features||[]).forEach(f=>{const p=f.properties||{};const k=(p.state||'Unknown').replace(/^\w/,c=>c.toUpperCase());by[k]=by[k]||{n:0,ha:0};by[k].n++;by[k].ha+=Number(p.area_ha)||0;});
-  const rows=Object.entries(by).sort((a,b)=>b[1].n-a[1].n);const tot=rows.reduce((t,[,v])=>({n:t.n+v.n,ha:t.ha+v.ha}),{n:0,ha:0});
-  document.getElementById('summary').innerHTML=rows.length?`<p><b>${tot.n}</b> confirmed open dumpsites · <b>${tot.ha.toFixed(1)}</b> ha measured from satellite · ${rows.length} of 37 states</p>`+
-    `<table style="width:100%;font-size:12px;border-collapse:collapse">${rows.map(([k,v])=>`<tr><td>${esc(k)}</td><td style="text-align:right">${v.n}</td><td style="text-align:right">${v.ha?v.ha.toFixed(1)+' ha':'–'}</td></tr>`).join('')}</table>`:'No confirmed sites yet.';
-  updateCounts();renderList();
-}).catch(()=>{document.getElementById('s-conf').textContent='None published yet. They appear once data/confirmed.geojson is uploaded.';document.getElementById('summary').textContent='No confirmed sites published yet.';});
+  (j.features||[]).forEach((f,i)=>{const p=f.properties||{},c=f.geometry&&f.geometry.coordinates;if(!c)return;
+    const size=p.area_ha?(p.area_ha+' ha (measured from satellite)'):(SIZES[p.size]||'');
+    add({id:'conf'+i,kind:'conf',name:(p.place?p.place+' dumpsite':TYPES[p.site_type]||'Confirmed dumpsite'),lat:c[1],lon:c[0],place:p.place||'',
+      state:p.state?normState(String(p.state).replace(/^\w/,x=>x.toUpperCase())):null,status:p.active==='yes'||p.status==='active'?'Active':(p.status||''),
+      area_ha:Number(p.area_ha)||0,src:p.origin||'',props:p,
+      html:`<div><b>Found by:</b> ${esc(p.origin)}</div>${p.site_type?`<div><b>Type:</b> ${esc(TYPES[p.site_type]||p.site_type)}</div>`:''}
+        ${size?`<div><b>Size:</b> ${esc(size)}</div>`:''}${p.burning?`<div><b>Burning:</b> ${esc(p.burning)}</div>`:''}
+        ${p.evidence?`<div style="margin-top:4px">${esc(p.evidence)}</div>`:''}${p.review_date?`<div class="pp-meta">Reviewed ${esc(p.review_date)}</div>`:''}`});});
+  refresh();
+}).catch(()=>{});
 
-// ---------- OSM via Overpass ----------
+// ---------------------------------------------------------------- OpenStreetMap (live)
 const OVERPASS=["https://overpass-api.de/api/interpreter","https://overpass.kumi.systems/api/interpreter","https://overpass.private.coffee/api/interpreter"];
-const osmSeen=new Set();
-async function overpass(q){
-  let lastErr;
+async function loadOSM(){
+  const q='[out:json][timeout:120];(nwr["landuse"="landfill"](4.2,2.6,13.9,14.7);nwr["amenity"="waste_transfer_station"](4.2,2.6,13.9,14.7););out center tags;';
   for(const url of OVERPASS){
-    try{
-      const r=await fetch(url,{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:'data='+encodeURIComponent(q)});
-      if(!r.ok) throw new Error('HTTP '+r.status);
-      return await r.json();
-    }catch(e){lastErr=e;}
+    try{const r=await fetch(url,{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:'data='+encodeURIComponent(q)});
+      if(!r.ok)throw 0; const j=await r.json(); const seen=new Set(recs.filter(x=>x.kind==='osm').map(x=>x.id));
+      j.elements.forEach(e=>{const id='osm-'+e.type+'-'+e.id;if(seen.has(id))return;const lat=e.lat??e.center?.lat,lon=e.lon??e.center?.lon;if(lat==null)return;
+        const t=e.tags||{};if(lat<4||lat>14||lon<2.5||lon>14.8)return;
+        add({id,kind:'osm',name:t.name||(t.amenity==='waste_transfer_station'?'Waste transfer station':'Landfill (unnamed)'),lat,lon,place:t['addr:city']||'',status:'Tagged landfill',src:'https://www.openstreetmap.org/'+e.type+'/'+e.id,
+          html:`<div class="pp-meta">OpenStreetMap <a target="_blank" rel="noopener" href="https://www.openstreetmap.org/${e.type}/${e.id}">${e.type}/${e.id}</a></div>
+          <div style="font-size:12px">${Object.entries(t).slice(0,6).map(([k,v])=>`<code>${esc(k)}</code>=${esc(v)}`).join('<br>')}</div>
+          <div style="margin-top:6px;font-size:12px;color:#666">The tag says landfill, not whether it is still open. Check the imagery.</div>`});});
+      refresh(); return;
+    }catch(e){}
   }
-  throw lastErr;
 }
-async function loadOSM(bboxes,label){
-  const s=document.getElementById('s-osm');s.textContent='Querying OpenStreetMap ('+label+')…';
-  const parts=bboxes.map(b=>{const bb=b.join(',');return `nwr["landuse"="landfill"](${bb});nwr["amenity"="waste_transfer_station"](${bb});`;}).join('');
-  try{
-    const j=await overpass(`[out:json][timeout:120];(${parts});out center tags;`);
-    let added=0;
-    j.elements.forEach(e=>{
-      const id=e.type+'/'+e.id; if(osmSeen.has(id))return; osmSeen.add(id);
-      const lat=e.lat??e.center?.lat, lon=e.lon??e.center?.lon; if(lat==null)return;
-      const t=e.tags||{}; const nm=t.name||(t.amenity==='waste_transfer_station'?'Waste transfer station':'Landfill (unnamed)');
-      const rows=Object.entries(t).filter(([k])=>!k.startsWith('source')).slice(0,8).map(([k,v])=>`<code>${esc(k)}</code>=${esc(v)}`).join('<br>');
-      addPoint('osm',lat,lon,nm,`<div class="pp-meta">OSM <a target="_blank" rel="noopener" href="https://www.openstreetmap.org/${id}">${id}</a></div><div style="font-size:12px">${rows}</div><div style="margin-top:6px;font-size:12px;color:#666">The tag says landfill, not whether the site is still open. Check the imagery.</div>`,t['addr:city']||'');
-      added++;
-    });
-    s.textContent=`${added} new features from OSM (${label}).`;
-  }catch(e){ s.textContent='OpenStreetMap could not be reached ('+e.message+'). Try again later.'; }
-  updateCounts();renderList();
-}
-const pilotBoxes=Object.entries(CITIES).filter(([k])=>k!=="Nigeria").map(([,b])=>b);
-loadOSM([CITIES.Nigeria],'all Nigeria');
-document.getElementById('osmAll').onclick=()=>loadOSM([CITIES.Nigeria],'all Nigeria');
+loadOSM();
 
-// ---------- GRID3 WFS ----------
-(async function(){
-  const s=document.getElementById('s-grid');
-  const url='https://geoserver.grid-nigeria.org/geoserver/GRIDMaster/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=GRIDMaster:sv_fc_poi_dump_site&outputFormat=application%2Fjson&authkey=fdfe9a37-d2d0-4210-9a15-25dab5d907fa';
-  try{
-    const r=await fetch(url); if(!r.ok) throw new Error('HTTP '+r.status);
-    const j=await r.json(); let n=0;
-    (j.features||[]).forEach(f=>{
-      if(!f.geometry)return; let c=f.geometry.coordinates; if(f.geometry.type!=='Point'){return;}
-      const p=f.properties||{};
-      const nm=p.name||p.poi_name||'Dump site';
-      const rows=Object.entries(p).filter(([k,v])=>v!==null&&v!==''&&!/^(global_id|geom|the_geom|id)$/i.test(k)).slice(0,10).map(([k,v])=>`<code>${esc(k)}</code>: ${esc(v)}`).join('<br>');
-      addPoint('grid',c[1],c[0],nm,`<div style="font-size:12px">${rows}</div><div style="margin-top:6px;font-size:12px;color:#666">eHealth Africa / GRID3 field survey, 2017–18. The site may have closed since.</div>`,p.lga_name||p.state_name||'');
-      n++;
-    });
-    s.textContent=n+' points across Nigeria.';
-  }catch(e){
-    s.innerHTML='The GRID3 server did not respond from this browser. The data is listed on <a href="https://open.africa/dataset/fct-abuja-dump-sites" target="_blank" rel="noopener">openAFRICA</a>.';
-  }
-  updateCounts();renderList();
-})();
-
-// ---------- my pins ----------
-const KEY='nwa-pins-v1';
-let pins=[];
-try{pins=JSON.parse(localStorage.getItem(KEY)||'[]');}catch(e){pins=[];}
-function savePins(){try{localStorage.setItem(KEY,JSON.stringify(pins));}catch(e){}}
-function drawPin(p){
-  const html=`<div><b>Status:</b> ${esc(p.status)} · <b>Confidence:</b> ${esc(p.confidence)}</div>
-    ${p.size?`<div><b>Approx. size:</b> ${esc(p.size)} ha</div>`:''}
-    ${p.note?`<div style="margin-top:4px">${esc(p.note)}</div>`:''}
-    <div class="pp-meta">Pinned ${esc(p.date)} on ${esc(p.basemap)}</div>
-    <button data-del="${p.id}" style="margin-top:4px">Delete pin</button>`;
-  const rec=addPoint('mine',p.lat,p.lon,p.name||'Unnamed site',html,p.status);rec.pid=p.id;
-}
-pins.forEach(drawPin);
-map.on('popupopen',e=>{
-  const b=e.popup.getElement().querySelector('[data-del]');
-  if(b) b.onclick=()=>{const id=b.dataset.del;pins=pins.filter(p=>p.id!==id);savePins();
-    const i=all.findIndex(r=>r.pid===id); if(i>-1){groups.mine.removeLayer(all[i].marker);all.splice(i,1);} map.closePopup();updateCounts();renderList();};
-});
+// ---------------------------------------------------------------- my pins
+let pins=[]; try{pins=JSON.parse(localStorage.getItem(PIN_KEY)||'[]');}catch(e){pins=[];}
+function savePins(){try{localStorage.setItem(PIN_KEY,JSON.stringify(pins));}catch(e){} $('pinCount').textContent=pins.length;}
+function pinRec(p){return add({id:'pin-'+p.id,kind:'mine',name:p.name||'Unnamed site',lat:p.lat,lon:p.lon,status:p.status,pid:p.id,
+  html:`<div><b>Status:</b> ${esc(p.status)} · <b>Confidence:</b> ${esc(p.confidence)}</div>${p.size?`<div><b>Size:</b> ${esc(p.size)} ha</div>`:''}
+  ${p.note?`<div style="margin-top:4px">${esc(p.note)}</div>`:''}<div class="pp-meta">Pinned ${esc(p.date)}</div><button class="btn small" data-del="${esc(p.id)}">Delete pin</button>`});}
+pins.forEach(pinRec); savePins();
+map.on('popupopen',e=>{const el=e.popup.getElement();
+  const b=el.querySelector('[data-del]'); if(b)b.onclick=()=>{const id=b.dataset.del;pins=pins.filter(p=>p.id!==id);savePins();
+    const i=recs.findIndex(r=>r.pid===id);if(i>-1){visible.removeLayer(recs[i].marker);recs.splice(i,1);}map.closePopup();refresh();};
+  const c=el.querySelector('[data-copy]'); if(c)c.onclick=ev=>{ev.preventDefault();copy(location.origin+location.pathname+'#map/site='+c.dataset.copy,c);};});
 let pinMode=false;
-const pinBtn=document.getElementById('pinBtn');
-function setPin(on){pinMode=on;document.body.classList.toggle('pinmode',on);pinBtn.textContent=on?'Cancel pinning':'＋ Pin a site';}
-pinBtn.onclick=()=>setPin(!pinMode);
+function setPin(on){pinMode=on;document.body.classList.toggle('pinmode',on);$('pinBtn').textContent=on?'Cancel pinning':'＋ Pin a site';}
+$('pinBtn').onclick=()=>{if(!pinMode&&location.hash.indexOf('#map')!==0)location.hash='#map';setPin(!pinMode);};
 document.addEventListener('keydown',e=>{if(e.key==='Escape')setPin(false);});
 map.on('click',e=>{
   if(!pinMode)return; setPin(false);
-  const {lat,lng}=e.latlng; const baseName=Object.keys(BASE).find(k=>BASE[k]===curBase);
-  const form=L.DomUtil.create('div','pin-form');
+  const {lat,lng}=e.latlng; const form=L.DomUtil.create('div','pin-form');
   form.innerHTML=`<h3 style="margin:0">New site</h3><div class="pp-meta">${lat.toFixed(5)}, ${lng.toFixed(5)}</div>
    <label>Name / locality<input name="name" placeholder="e.g. Wurukum dumpsite"></label>
-   <label>Status<select name="status"><option>Open / active</option><option>Closed / inactive</option><option>Uncertain</option></select></label>
-   <label>Confidence<select name="confidence"><option>High: clear on imagery and confirmed by a report</option><option>Medium: clear on imagery</option><option>Low: possible site</option></select></label>
+   <label>Is waste still dumped here?<select name="status"><option>Active</option><option>Closed / inactive</option><option>Not sure</option></select></label>
+   <label>How sure are you?<select name="confidence"><option>High (seen in person or clear on imagery)</option><option>Medium</option><option>Low</option></select></label>
    <label>Approx. size (ha)<input name="size" type="number" min="0" step="0.1"></label>
    <label>Notes / source<textarea name="note" rows="2"></textarea></label>
-   <div class="row"><button class="primary" data-a="save">Save</button><button data-a="cancel">Cancel</button></div>`;
+   <div style="display:flex;gap:6px;margin-top:8px"><button class="btn primary small" data-a="save">Save</button><button class="btn small" data-a="cancel">Cancel</button></div>`;
   const pop=L.popup({closeOnClick:false}).setLatLng(e.latlng).setContent(form).openOn(map);
   L.DomEvent.disableClickPropagation(form);
   form.querySelector('[data-a=cancel]').onclick=()=>map.closePopup(pop);
-  form.querySelector('[data-a=save]').onclick=()=>{
-    const f=n=>form.querySelector(`[name=${n}]`).value.trim();
-    const p={id:Date.now().toString(36),lat:+lat.toFixed(6),lon:+lng.toFixed(6),name:f('name'),status:f('status'),confidence:f('confidence').split(':')[0],size:f('size'),note:f('note'),date:new Date().toISOString().slice(0,10),basemap:baseName};
-    pins.push(p);savePins();map.closePopup(pop);drawPin(p);updateCounts();renderList();
-  };
+  form.querySelector('[data-a=save]').onclick=()=>{const f=n=>form.querySelector(`[name=${n}]`).value.trim();
+    const p={id:Date.now().toString(36),lat:+lat.toFixed(6),lon:+lng.toFixed(6),name:f('name'),status:f('status'),confidence:f('confidence').split(' ')[0],size:f('size'),note:f('note'),date:new Date().toISOString().slice(0,10),basemap:curBaseName};
+    pins.push(p);savePins();map.closePopup(pop);const r=pinRec(p);refresh();markerFor(r).openPopup();};
 });
+$('exportPins').onclick=()=>download('geojson',recs.filter(r=>r.kind==='mine'),'my-dumpsite-pins');
+$('importPins').onclick=()=>$('importFile').click();
+$('importFile').onchange=async()=>{const f=$('importFile').files[0];if(!f)return;
+  try{const j=JSON.parse(await f.text());(j.features||[]).forEach(ft=>{const p=ft.properties||{};const c=ft.geometry&&ft.geometry.coordinates;if(!c)return;
+    const np={id:p.pin_id||Math.random().toString(36).slice(2),lat:c[1],lon:c[0],name:p.name||'',status:p.status||'Not sure',confidence:p.confidence||'Low',size:p.size||'',note:p.note||'',date:p.date||''};
+    if(pins.some(x=>x.id===np.id))return;pins.push(np);pinRec(np);});savePins();refresh();}catch(e){alert('Could not read that file as GeoJSON.');}
+  $('importFile').value='';};
 
-// ---------- export / import ----------
-document.getElementById('exportBtn').onclick=()=>{
-  const feats=all.filter(r=>map.hasLayer(groups[r.kind])).map(r=>({type:'Feature',geometry:{type:'Point',coordinates:[r.lon,r.lat]},
-    properties:Object.assign({name:r.name,layer:LABEL[r.kind]}, r.pid?pins.find(p=>p.id===r.pid):{})}));
-  const blob=new Blob([JSON.stringify({type:'FeatureCollection',features:feats},null,1)],{type:'application/geo+json'});
-  const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='nigeria-waste-sites-'+new Date().toISOString().slice(0,10)+'.geojson';a.click();
+// ---------------------------------------------------------------- filters + list
+const kindOn={conf:true,doc:true,field:true,approx:true,osm:true,mine:true};
+function renderChips(){
+  $('kindChips').innerHTML=Object.entries(KINDS).map(([k,v])=>`<label class="chip"><input type="checkbox" data-k="${k}" ${kindOn[k]?'checked':''}><span class="dot" style="background:var(${v.color})"></span>${esc(v.short)} <span class="n">${recs.filter(r=>r.kind===k).length}</span></label>`).join('');
+  $('kindChips').querySelectorAll('input').forEach(i=>i.onchange=()=>{kindOn[i.dataset.k]=i.checked;refresh();});
+}
+function dist(a,b){const R=6371,dLat=(b[0]-a[0])*Math.PI/180,dLon=(b[1]-a[1])*Math.PI/180,x=Math.sin(dLat/2)**2+Math.cos(a[0]*Math.PI/180)*Math.cos(b[0]*Math.PI/180)*Math.sin(dLon/2)**2;return 2*R*Math.asin(Math.sqrt(x));}
+function filtered(){
+  const q=$('q').value.trim().toLowerCase(), st=$('fState').value, maxV=VER_RANK[$('fVer').value];
+  let out=recs.filter(r=>kindOn[r.kind]&&VER_RANK[KINDS[r.kind].ver]<=maxV&&(!st||r.state===st)&&
+    (!q||[r.name,r.place,r.state,r.status].join(' ').toLowerCase().includes(q)));
+  const s=$('fSort').value;
+  if(s==='near'&&userLoc) out.sort((a,b)=>dist(userLoc,[a.lat,a.lon])-dist(userLoc,[b.lat,b.lon]));
+  else if(s==='name') out.sort((a,b)=>a.name.localeCompare(b.name));
+  else if(s==='state') out.sort((a,b)=>(a.state||'~').localeCompare(b.state||'~')||a.name.localeCompare(b.name));
+  else out.sort((a,b)=>VER_RANK[KINDS[a.kind].ver]-VER_RANK[KINDS[b.kind].ver]||a.name.localeCompare(b.name));
+  return out;
+}
+let refreshTimer=null;
+function refresh(){clearTimeout(refreshTimer);refreshTimer=setTimeout(doRefresh,30);}
+function doRefresh(){
+  renderChips();
+  const out=filtered();
+  refreshing=true; visible.clearLayers(); out.forEach(r=>visible.addLayer(markerFor(r))); refreshing=false;
+  if(selectedId){const sr=out.find(r=>r.id===selectedId); if(sr) markerFor(sr).openPopup();}
+  $('resCount').textContent=`${fmt(out.length)} site${out.length===1?'':'s'} shown`+($('fState').value?` in ${$('fState').value}`:'');
+  const ul=$('results'); ul.innerHTML='';
+  out.slice(0,200).forEach(r=>{const li=document.createElement('li');li.tabIndex=0;
+    const d=userLoc?` · ${dist(userLoc,[r.lat,r.lon]).toFixed(1)} km`:'';
+    li.innerHTML=`<span class="dot" style="background:${col(r.kind)};margin-top:5px"></span><div><div class="nm">${esc(r.name)}</div><div class="meta">${KINDS[r.kind].ver} · ${esc(KINDS[r.kind].short)}${r.state?' · '+esc(r.state):''}${d}</div></div>`;
+    li.onclick=()=>focusRec(r); li.onkeydown=e=>{if(e.key==='Enter')focusRec(r);}; ul.appendChild(li);});
+  if(out.length>200) ul.insertAdjacentHTML('beforeend',`<li class="meta" style="cursor:default">+${out.length-200} more: narrow the search or pick a state.</li>`);
+  if(!out.length) ul.innerHTML='<li class="meta" style="cursor:default">No sites match. Try another state or <a href="#" id="clr">reset the filters</a>.</li>';
+  const clr=$('clr'); if(clr) clr.onclick=e=>{e.preventDefault();resetFilters();};
+  $('todoN').textContent=TODO.length;
+  if(current==='stats') renderStats();
+}
+function focusRec(r){if(!filtered().includes(r)){$('q').value='';$('fState').value='';$('fVer').value='D';kindOn[r.kind]=true;selectedState=null;highlight.clearLayers();doRefresh();}
+  selectedId=r.id;map.setView([r.lat,r.lon],Math.max(map.getZoom(),15));markerFor(r).openPopup();setHashParam('site',r.id);if(innerWidth<820)$('map').scrollIntoView({behavior:'smooth'});}
+['q','fVer','fSort'].forEach(id=>$(id).addEventListener('input',refresh));
+$('fState').addEventListener('change',()=>{const v=$('fState').value; if(v){showState(v,true);} else {selectedState=null;highlight.clearLayers();map.fitBounds([[4.2,2.6],[13.9,14.7]]);setHashParam(null);} refresh();});
+function showState(name,fit){selectedState=name;$('fState').value=name;highlight.clearLayers();
+  if(states){const f=states.features.find(f=>normState(f.properties.name)===name);if(f){highlight.addData(f);if(fit)map.fitBounds(highlight.getBounds(),{padding:[20,20]});}}
+  setHashParam('state',name);}
+function resetFilters(){$('q').value='';$('fState').value='';$('fVer').value='D';$('fSort').value='ver';Object.keys(kindOn).forEach(k=>kindOn[k]=true);selectedState=null;highlight.clearLayers();setHashParam(null);refresh();}
+$('resetBtn').onclick=resetFilters;
+$('nearBtn').onclick=()=>{
+  if(!navigator.geolocation){alert('Your browser cannot share your location.');return;}
+  $('nearBtn').textContent='Locating…';
+  navigator.geolocation.getCurrentPosition(p=>{userLoc=[p.coords.latitude,p.coords.longitude];$('nearBtn').textContent='◎ Near me';
+    if(userMarker)map.removeLayer(userMarker);userMarker=L.circleMarker(userLoc,{radius:8,color:'#fff',weight:3,fillColor:'#1a73e8',fillOpacity:1}).addTo(map).bindTooltip('You are here');
+    $('fSort').value='near';$('fState').value='';selectedState=null;highlight.clearLayers();refresh();
+    const near=filtered().slice(0,5);const b=L.latLngBounds([userLoc,...near.map(r=>[r.lat,r.lon])]);map.fitBounds(b,{padding:[30,30],maxZoom:14});},
+    ()=>{$('nearBtn').textContent='◎ Near me';alert('Location was not shared, so nearest sites cannot be found.');},{enableHighAccuracy:false,timeout:10000});
 };
-const imp=document.getElementById('importFile');
-document.getElementById('importBtn').onclick=()=>imp.click();
-imp.onchange=async()=>{
-  const f=imp.files[0]; if(!f)return;
-  try{const j=JSON.parse(await f.text());
-    (j.features||[]).forEach(ft=>{const p=ft.properties||{}; if(p.layer&&p.layer!=='My pin')return;
-      const c=ft.geometry.coordinates; const np={id:p.id||Math.random().toString(36).slice(2),lat:c[1],lon:c[0],name:p.name||'',status:p.status||'Uncertain',confidence:p.confidence||'Low',size:p.size||'',note:p.note||'',date:p.date||'',basemap:p.basemap||''};
-      if(pins.some(x=>x.id===np.id))return; pins.push(np);drawPin(np);});
-    savePins();updateCounts();renderList();
-  }catch(e){alert('Could not read that file as GeoJSON.');}
-  imp.value='';
-};
+$('shareBtn').onclick=()=>copy(location.href,$('shareBtn'));
+function copy(text,btn){const done=()=>{const t=btn.textContent;btn.textContent='Copied ✓';setTimeout(()=>btn.textContent=t,1500);};
+  if(navigator.clipboard)navigator.clipboard.writeText(text).then(done,()=>prompt('Copy this link:',text));else prompt('Copy this link:',text);}
 
-// ---------- list & counts ----------
-function updateCounts(){
-  ['conf','doc','approx','field','osm','grid','mine'].forEach(k=>document.getElementById('n-'+k).textContent=all.filter(r=>r.kind===k).length);
+// TODO list (documented, not yet pinned)
+$('todo').innerHTML=TODO.map(t=>`<li style="padding:6px 0;border-bottom:1px solid var(--line)"><b>${esc(t.name)}</b><br><span style="color:var(--muted)">${esc(t.place)} · ${esc(t.note)}${t.src?` · <a href="${t.src}" target="_blank" rel="noopener">source</a>`:''}</span></li>`).join('');
+
+// ---------------------------------------------------------------- downloads
+function rows(list){return list.map(r=>({id:r.id,name:r.name,source:KINDS[r.kind].label,verification:KINDS[r.kind].ver,state:r.state||'',place:r.place||'',status:r.status||'',
+  area_ha:r.area_ha||'',latitude:+r.lat.toFixed(6),longitude:+r.lon.toFixed(6),reference:r.src||'',licence:r.kind==='osm'?'ODbL, © OpenStreetMap contributors':''}));}
+function save(name,text,type){const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([text],{type}));a.download=name;document.body.appendChild(a);a.click();a.remove();}
+function toCsv(objs){if(!objs.length)return'';const k=Object.keys(objs[0]);const q=v=>{v=String(v??'');return /[",\n]/.test(v)?'"'+v.replace(/"/g,'""')+'"':v;};
+  return k.join(',')+'\n'+objs.map(o=>k.map(x=>q(o[x])).join(',')).join('\n')+'\n';}
+function download(fmtName,list,base){const d=new Date().toISOString().slice(0,10);base=(base||'nigeria-waste-sites')+'-'+d;
+  if(fmtName==='csv')return save(base+'.csv',toCsv(rows(list)),'text/csv');
+  const fc={type:'FeatureCollection',name:'Nigeria Waste Sites Atlas',features:rows(list).map(o=>({type:'Feature',properties:o,geometry:{type:'Point',coordinates:[o.longitude,o.latitude]}}))};
+  save(base+'.geojson',JSON.stringify(fc,null,1),'application/geo+json');}
+$('dlGeo').onclick=()=>download('geojson',recs.filter(r=>r.kind!=='mine'));
+$('dlCsv').onclick=()=>download('csv',recs.filter(r=>r.kind!=='mine'));
+
+// ---------------------------------------------------------------- statistics
+const SK=['conf','doc','field','approx','osm'];
+let statSort={k:'total',dir:-1};
+function stateTable(){
+  const by={};STATE_NAMES.forEach(n=>by[n]={state:n,conf:0,doc:0,field:0,approx:0,osm:0,total:0,ha:0});
+  recs.forEach(r=>{if(r.kind==='mine'||!r.state||!by[r.state])return;by[r.state][r.kind]++;by[r.state].total++;if(r.kind==='conf')by[r.state].ha+=r.area_ha||0;});
+  return Object.values(by);
 }
-const ul=document.getElementById('sites');
-function renderList(){
-  const b=map.getBounds();
-  const vis=all.filter(r=>map.hasLayer(groups[r.kind])&&b.contains([r.lat,r.lon]));
-  const order={mine:0,conf:1,doc:2,field:3,approx:4,grid:5,osm:6};
-  vis.sort((a,c)=>order[a.kind]-order[c.kind]||a.name.localeCompare(c.name));
-  const C=COLORS();
-  ul.innerHTML=vis.length?'':'<li class="meta" style="cursor:default">No sites in this view. Zoom out or switch on more layers.</li>';
-  vis.slice(0,150).forEach(r=>{
-    const li=document.createElement('li');
-    li.innerHTML=`<span class="dot" style="background:${C[r.kind]};margin-top:5px"></span><div><div class="nm">${esc(r.name)}</div><div class="meta">${LABEL[r.kind]}${r.meta?' · '+esc(r.meta):''}</div></div>`;
-    li.onclick=()=>{map.setView([r.lat,r.lon],Math.max(map.getZoom(),15));r.marker.openPopup();};
-    ul.appendChild(li);
-  });
-  if(vis.length>150){const li=document.createElement('li');li.className='meta';li.textContent=`+${vis.length-150} more. Zoom in to see them.`;ul.appendChild(li);}
+function renderStats(){
+  const t=stateTable(); const all=recs.filter(r=>r.kind!=='mine');
+  const withSites=t.filter(x=>x.total>0).length;
+  const k=[[all.length,'sites mapped so far'],[recs.filter(r=>r.kind==='conf').length,'confirmed by review'],[t.reduce((s,x)=>s+x.ha,0).toFixed(1),'hectares confirmed'],
+           [withSites+' / 37','states with mapped sites'],[recs.filter(r=>r.kind==='osm').length,'OpenStreetMap landfills']];
+  $('kpis').innerHTML=k.map(([v,l])=>`<div class="kpi"><div class="v">${v}</div><div class="l">${l}</div></div>`).join('');
+  t.sort((a,b)=>statSort.k==='state'?statSort.dir*a.state.localeCompare(b.state)*-1:statSort.dir*(a[statSort.k]-b[statSort.k])||a.state.localeCompare(b.state));
+  const H=[['state','State'],['conf','Confirmed'],['doc','Published'],['field','Field survey'],['approx','Approximate'],['osm','OSM'],['total','Total'],['ha','Confirmed ha']];
+  $('statsTable').innerHTML=`<thead><tr>${H.map(([k,l])=>`<th data-k="${k}" scope="col" aria-sort="${statSort.k===k?(statSort.dir<0?'descending':'ascending'):'none'}">${l}${statSort.k===k?(statSort.dir<0?' ↓':' ↑'):''}</th>`).join('')}</tr></thead>
+   <tbody>${t.map(x=>`<tr data-s="${esc(x.state)}" tabindex="0"><td>${esc(x.state==='FCT'?'FCT (Abuja)':x.state)}</td><td>${x.conf}</td><td>${x.doc}</td><td>${x.field}</td><td>${x.approx}</td><td>${x.osm}</td><td><b>${x.total}</b></td><td>${x.ha?x.ha.toFixed(1):'–'}</td></tr>`).join('')}</tbody>`;
+  $('statsTable').querySelectorAll('th').forEach(th=>th.onclick=()=>{const k=th.dataset.k;statSort={k,dir:statSort.k===k?-statSort.dir:-1};renderStats();});
+  $('statsTable').querySelectorAll('tbody tr').forEach(tr=>{const go=()=>{location.hash='#map/state='+encodeURIComponent(tr.dataset.s);};tr.onclick=go;tr.onkeydown=e=>{if(e.key==='Enter')go();};});
+  // stacked bars, sorted by total
+  const bars=stateTable().sort((a,b)=>b.total-a.total||a.state.localeCompare(b.state));
+  const max=Math.max(1,...bars.map(b=>b.total)), W=$('bars').clientWidth||800, lw=110, rh=20, h=bars.length*rh+24;
+  $('bars').setAttribute('height',h); $('bars').setAttribute('viewBox',`0 0 ${W} ${h}`);
+  let s=''; bars.forEach((b,i)=>{let x=lw;const y=i*rh+4;s+=`<text x="${lw-8}" y="${y+12}" text-anchor="end">${esc(b.state)}</text>`;
+    SK.forEach(k=>{const w=(W-lw-50)*b[k]/max;if(w>0){s+=`<rect x="${x}" y="${y}" width="${w}" height="${rh-6}" fill="${col(k)}" rx="2"><title>${esc(b.state)}: ${b[k]} ${KINDS[k].short}</title></rect>`;x+=w;}});
+    s+=`<text x="${x+6}" y="${y+12}" class="axis">${b.total}</text>`;});
+  $('bars').innerHTML=s;
 }
-map.on('moveend',renderList);
-updateCounts();renderList();
+function statsCsv(){return toCsv(stateTable().map(x=>({state:x.state,confirmed:x.conf,published:x.doc,field_survey:x.field,approximate:x.approx,openstreetmap:x.osm,total:x.total,confirmed_ha:x.ha.toFixed(2)})));}
+$('statsCsv').onclick=$('dlStats').onclick=()=>save('nigeria-waste-sites-by-state-'+new Date().toISOString().slice(0,10)+'.csv',statsCsv(),'text/csv');
+
+// ---------------------------------------------------------------- method + sources tables
+$('verTable').innerHTML='<thead><tr><th>Level</th><th style="text-align:left">Meaning</th><th style="text-align:left">Sources</th></tr></thead><tbody>'+
+  Object.entries(VER).map(([v,m])=>`<tr><td><b>${v}</b></td><td style="text-align:left">${esc(m)}</td><td style="text-align:left">${Object.values(KINDS).filter(k=>k.ver===v).map(k=>esc(k.short)).join(', ')}</td></tr>`).join('')+'</tbody>';
+const SOURCES=[
+ ['Copernicus Sentinel-2 (ESA)','Satellite imagery for the scan, 10 m','Free and open','https://dataspace.copernicus.eu'],
+ ['Sentinel-2 cloudless (EOX)','Basemaps 2018 and 2023','CC BY-NC-SA 4.0','https://s2maps.eu'],
+ ['Dynamic World (Google, WRI)','Land-cover probabilities for the scan','CC BY 4.0','https://dynamicworld.app'],
+ ['GHSL built-up surface (EC JRC)','Settlement density for the scan','CC BY 4.0','https://human-settlement.emergency.copernicus.eu'],
+ ['NASA FIRMS (MODIS)','Fire detections for the screening bot','Free with citation','https://firms.modaps.eosdis.nasa.gov'],
+ ['OpenStreetMap','Community-mapped landfills (live)','ODbL','https://www.openstreetmap.org/copyright'],
+ ['Isimah et al. 2026','57 GPS-surveyed sites, Nsukka','CC BY 4.0 (preprint)','https://doi.org/10.21203/rs.3.rs-8260552/v1'],
+ ['Published studies','Coordinates of documented dumpsites (see each site)','Cited per site',''],
+ ['State boundaries','Used to assign sites to states','As in the Nigeria Energy Atlas','/energy-atlas/']];
+$('srcTable').innerHTML='<thead><tr><th>Source</th><th style="text-align:left">Used for</th><th style="text-align:left">Licence</th></tr></thead><tbody>'+
+  SOURCES.map(s=>`<tr style="cursor:default"><td>${s[3]?`<a href="${s[3]}" target="_blank" rel="noopener">${esc(s[0])}</a>`:esc(s[0])}</td><td style="text-align:left">${esc(s[1])}</td><td style="text-align:left">${esc(s[2])}</td></tr>`).join('')+'</tbody>';
+$('copyCite').onclick=()=>copy($('citeText').textContent,$('copyCite'));
+if(REPORT_FORM_URL){$('formBox').style.display='';$('formLink').href=REPORT_FORM_URL;}
+$('scanOpen').href=SCAN_APP_URL;
+
+// ---------------------------------------------------------------- routing (#map, #map/state=Benue, #map/site=doc3, #stats …)
+let current=null;
+function setTop(){const h=document.querySelector('.atlas-head');document.documentElement.style.setProperty('--top',(h.getBoundingClientRect().bottom+window.scrollY)+'px');}
+function setHashParam(k,v){const base='#map'+(k&&v?'/'+k+'='+encodeURIComponent(v):'');if(location.hash!==base)history.replaceState(null,'',base);}
+function route(){
+  const h=decodeURIComponent(location.hash.replace(/^#/,''))||'map'; const [v,param]=h.split('/'); const view=['map','stats','scan','why','report','method','data'].includes(v)?v:'map';
+  current=view;
+  document.querySelectorAll('.view').forEach(s=>s.classList.toggle('on',s.id==='view-'+view));
+  document.querySelectorAll('.tabs a').forEach(a=>{if(a.dataset.v===view)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current');});
+  document.title=(view==='map'?'':document.querySelector(`.tabs a[data-v="${view}"]`).textContent+' · ')+'Nigeria Waste Sites Atlas';
+  setTop();
+  if(view==='map'){setTimeout(()=>map.invalidateSize(),0);
+    if(param){const [k,val]=param.split('=');
+      if(k==='state'&&STATE_NAMES.includes(val)){showState(val,true);refresh();}
+      if(k==='site'){const r=recs.find(x=>x.id===val);if(r)setTimeout(()=>focusRec(r),50);else pendingSite=val;}}}
+  if(view==='stats')renderStats();
+  if(view==='scan'&&!$('scanFrame').src)$('scanFrame').src=SCAN_APP_URL;
+  if(view!=='map')window.scrollTo(0,0);
+}
+let pendingSite=null;
+// resolve deep links to records that load later (confirmed, OSM)
+setInterval(()=>{if(pendingSite){const r=recs.find(x=>x.id===pendingSite);if(r){pendingSite=null;focusRec(r);}}},800);
+window.addEventListener('hashchange',route);
+window.addEventListener('resize',()=>{setTop();map.invalidateSize();});
+new MutationObserver(setTop).observe(document.body,{childList:true}); // the shared tool bar is added at the top
+route(); refresh();
 })();
 </script>
 </body>
