@@ -23,6 +23,7 @@ var TOOL = /\/symbiosis\//.test(path) ? "symbiosis"
   : /\/market-atlas\//.test(path) ? "market-atlas"
   : /\/energy-atlas\//.test(path) ? "energy-atlas"
   : /\/peoples-atlas\//.test(path) ? "peoples-atlas"
+  : /\/waste-atlas\//.test(path) ? "waste-atlas"
   : "website";
 
 /* ---------- analytics (GoatCounter: no cookies, no personal data) ---------- */
