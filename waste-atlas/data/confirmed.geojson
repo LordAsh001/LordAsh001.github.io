@@ -1,7 +1,1 @@
-{"type":"FeatureCollection","features":[
-{"type":"Feature","geometry":{"type":"Point","coordinates":[3.25297,6.56425]},
- "properties":{"origin":"satellite scan","state":"Lagos","place":"Igando, Alimosho LGA","site_type":"open_dump","burning":null,
-  "area_ha":null,"mean_prob":null,"active":"yes",
-  "evidence":"Found by the Sentinel-2 Random Forest scan (Nov 2024–Mar 2025 composite) without being a training site; large grey waste mound with truck tracks clearly visible on high-res imagery. Probably the Solous (Igando) dumpsite complex documented in the literature, pending a field or report check.",
-  "review_date":"2026-10-17","notes":"First site confirmed through the Earth Engine scan"}}
-]}
+{"type": "FeatureCollection", "features": [{"type": "Feature", "geometry": {"type": "Point", "coordinates": [3.25297, 6.56425]}, "properties": {"origin": "satellite scan", "state": "Lagos", "place": "Igando, Alimosho LGA", "site_type": "open_dump", "burning": null, "area_ha": null, "mean_prob": null, "active": "yes", "evidence": "Found by the Sentinel-2 scan without being a training site; a large waste mound with truck tracks is clearly visible on high-resolution imagery; the same spot is independently mapped as a landfill on OpenStreetMap (way 705802151). Probably the Solous (Igando) dumpsite complex.", "review_date": "2026-10-17", "notes": "Confirmed with two independent pieces of evidence (imagery + OpenStreetMap)"}}]}
