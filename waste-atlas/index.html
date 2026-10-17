@@ -501,7 +501,7 @@ fetch('data/confirmed.geojson',{cache:'no-cache'}).then(r=>{if(!r.ok)throw 0;ret
 
 // ---------------------------------------------------------------- OpenStreetMap (live)
 const OVERPASS=["https://overpass-api.de/api/interpreter","https://overpass.kumi.systems/api/interpreter","https://overpass.private.coffee/api/interpreter"];
-let osmState='loading';
+let osmState='loading', osmUpdated='';
 async function loadOSM(){
   const q='[out:json][timeout:120];(nwr["landuse"="landfill"](4.2,2.6,13.9,14.7);nwr["amenity"="waste_transfer_station"](4.2,2.6,13.9,14.7););out center tags;';
   for(const url of OVERPASS){
@@ -518,7 +518,16 @@ async function loadOSM(){
   }
   osmState='fail'; refresh();
 }
-loadOSM();
+function addOsmFeatures(feats){const seen=new Set(recs.filter(x=>x.kind==='osm').map(x=>x.id));
+  feats.forEach(f=>{const p=f.properties||{},c=f.geometry&&f.geometry.coordinates;if(!c)return;const id='osm-'+p.osm_type+'-'+p.osm_id;if(seen.has(id))return;const t=p.tags||{};
+    add({id,kind:'osm',name:t.name||(t.amenity==='waste_transfer_station'?'Waste transfer station':'Landfill (unnamed)'),lat:c[1],lon:c[0],place:t['addr:city']||'',status:'Tagged landfill',src:'https://www.openstreetmap.org/'+p.osm_type+'/'+p.osm_id,
+      html:`<div class="pp-meta">OpenStreetMap <a target="_blank" rel="noopener" href="https://www.openstreetmap.org/${p.osm_type}/${p.osm_id}">${p.osm_type}/${p.osm_id}</a></div>
+      <div style="font-size:12px">${Object.entries(t).slice(0,6).map(([k,v])=>`<code>${esc(k)}</code>=${esc(v)}`).join('<br>')}</div>
+      <div style="margin-top:6px;font-size:12px;color:#666">The tag says landfill, not whether it is still open. Check the imagery.</div>`});});}
+// weekly snapshot (refreshed by a GitHub Action) loads instantly; live Overpass only if it is missing
+fetch('data/osm_landfills.geojson',{cache:'no-cache'}).then(r=>{if(!r.ok)throw 0;return r.json();}).then(j=>{
+  addOsmFeatures(j.features||[]); osmState='ok'; osmUpdated=j.updated||''; refresh();
+}).catch(()=>loadOSM());
 
 // ---------------------------------------------------------------- my pins
 let pins=[]; try{pins=JSON.parse(localStorage.getItem(PIN_KEY)||'[]');}catch(e){pins=[];}
@@ -563,13 +572,13 @@ $('importFile').onchange=async()=>{const f=$('importFile').files[0];if(!f)return
 // ---------------------------------------------------------------- filters + list
 const kindOn={conf:true,doc:true,field:true,approx:true,osm:true,mine:true};
 function renderChips(){
-  $('kindChips').innerHTML=Object.entries(KINDS).map(([k,v])=>`<label class="chip"><input type="checkbox" data-k="${k}" ${kindOn[k]?'checked':''}><span class="dot" style="background:var(${v.color})"></span>${esc(v.short)} <span class="n" title="${k==='osm'&&osmState!=='ok'?(osmState==='loading'?'Loading from OpenStreetMap…':'OpenStreetMap did not respond; try again later'):''}">${k==='osm'&&osmState==='loading'?'loading…':k==='osm'&&osmState==='fail'?'offline':recs.filter(r=>r.kind===k).length}</span></label>`).join('');
+  $('kindChips').innerHTML=Object.entries(KINDS).map(([k,v])=>`<label class="chip"><input type="checkbox" data-k="${k}" ${kindOn[k]?'checked':''}><span class="dot" style="background:var(${v.color})"></span>${esc(v.short)} <span class="n" title="${k==='osm'?(osmState==='ok'?(osmUpdated?'OpenStreetMap data as of '+osmUpdated:'Live from OpenStreetMap'):osmState==='loading'?'Loading from OpenStreetMap…':'OpenStreetMap did not respond; try again later'):''}">${k==='osm'&&osmState==='loading'?'loading…':k==='osm'&&osmState==='fail'?'offline':recs.filter(r=>r.kind===k&&!(k==='osm'&&states&&!r.state)).length}</span></label>`).join('');
   $('kindChips').querySelectorAll('input').forEach(i=>i.onchange=()=>{kindOn[i.dataset.k]=i.checked;refresh();});
 }
 function dist(a,b){const R=6371,dLat=(b[0]-a[0])*Math.PI/180,dLon=(b[1]-a[1])*Math.PI/180,x=Math.sin(dLat/2)**2+Math.cos(a[0]*Math.PI/180)*Math.cos(b[0]*Math.PI/180)*Math.sin(dLon/2)**2;return 2*R*Math.asin(Math.sqrt(x));}
 function filtered(){
   const q=$('q').value.trim().toLowerCase(), st=$('fState').value, maxV=VER_RANK[$('fVer').value];
-  let out=recs.filter(r=>kindOn[r.kind]&&VER_RANK[KINDS[r.kind].ver]<=maxV&&(!st||r.state===st)&&
+  let out=recs.filter(r=>!(r.kind==='osm'&&states&&!r.state)&&kindOn[r.kind]&&VER_RANK[KINDS[r.kind].ver]<=maxV&&(!st||r.state===st)&&
     (!q||[r.name,r.place,r.state,r.status].join(' ').toLowerCase().includes(q)));
   const s=$('fSort').value;
   if(s==='near'&&userLoc) out.sort((a,b)=>dist(userLoc,[a.lat,a.lon])-dist(userLoc,[b.lat,b.lon]));
@@ -632,8 +641,9 @@ function download(fmtName,list,base){const d=new Date().toISOString().slice(0,10
   if(fmtName==='csv')return save(base+'.csv',toCsv(rows(list)),'text/csv');
   const fc={type:'FeatureCollection',name:'Nigeria Waste Sites Atlas',features:rows(list).map(o=>({type:'Feature',properties:o,geometry:{type:'Point',coordinates:[o.longitude,o.latitude]}}))};
   save(base+'.geojson',JSON.stringify(fc,null,1),'application/geo+json');}
-$('dlGeo').onclick=()=>download('geojson',recs.filter(r=>r.kind!=='mine'));
-$('dlCsv').onclick=()=>download('csv',recs.filter(r=>r.kind!=='mine'));
+const pub=()=>recs.filter(r=>r.kind!=='mine'&&!(r.kind==='osm'&&states&&!r.state));
+$('dlGeo').onclick=()=>download('geojson',pub());
+$('dlCsv').onclick=()=>download('csv',pub());
 
 // ---------------------------------------------------------------- statistics
 const SK=['conf','doc','field','approx','osm'];
@@ -644,10 +654,10 @@ function stateTable(){
   return Object.values(by);
 }
 function renderStats(){
-  const t=stateTable(); const all=recs.filter(r=>r.kind!=='mine');
+  const t=stateTable(); const all=recs.filter(r=>r.kind!=='mine'&&!(r.kind==='osm'&&!r.state));
   const withSites=t.filter(x=>x.total>0).length;
   const k=[[all.length,'sites mapped so far'],[recs.filter(r=>r.kind==='conf').length,'confirmed by review'],[t.reduce((s,x)=>s+x.ha,0).toFixed(1),'hectares confirmed'],
-           [withSites+' / 37','states with mapped sites'],[recs.filter(r=>r.kind==='osm').length,'OpenStreetMap landfills']];
+           [withSites+' / 37','states with mapped sites'],[recs.filter(r=>r.kind==='osm'&&r.state).length,'OpenStreetMap landfills']];
   $('kpis').innerHTML=k.map(([v,l])=>`<div class="kpi"><div class="v">${v}</div><div class="l">${l}</div></div>`).join('');
   t.sort((a,b)=>statSort.k==='state'?statSort.dir*a.state.localeCompare(b.state)*-1:statSort.dir*(a[statSort.k]-b[statSort.k])||a.state.localeCompare(b.state));
   const H=[['state','State'],['conf','Confirmed'],['doc','Published'],['field','Field survey'],['approx','Approximate'],['osm','OSM'],['total','Total'],['ha','Confirmed ha']];
