@@ -151,6 +151,13 @@
         "caption": "",
         "anchor": "Nigeria Energy Atlas",
         "hidden": false
+      },
+      {
+        "src": "/images/tool-waste-atlas.jpg",
+        "alt": "Screenshot of the Nigeria Waste Sites Atlas: a satellite map of Nigeria with open dumpsites coloured by verification level, beside a searchable list of sites with state and source filters.",
+        "caption": "",
+        "anchor": "Nigeria Waste Sites Atlas",
+        "hidden": false
       }
     ]
   }
