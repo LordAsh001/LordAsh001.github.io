@@ -694,7 +694,7 @@ function route(){
   document.querySelectorAll('.tabs a').forEach(a=>{if(a.dataset.v===view)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current');});
   document.title=(view==='map'?'':document.querySelector(`.tabs a[data-v="${view}"]`).textContent+' · ')+'Nigeria Waste Sites Atlas';
   setTop();
-  if(view==='map'){setTimeout(()=>map.invalidateSize(),0);
+  if(view==='map'){setTimeout(()=>{map.invalidateSize();if(!fitted&&!param){fitted=true;map.fitBounds(NG);}},60);
     if(param){const [k,val]=param.split('=');
       if(k==='state'&&STATE_NAMES.includes(val)){showState(val,true);refresh();}
       if(k==='site'){const r=recs.find(x=>x.id===val);if(r)setTimeout(()=>focusRec(r),50);else pendingSite=val;}}}
@@ -702,12 +702,13 @@ function route(){
   if(view==='scan'&&!$('scanFrame').src)$('scanFrame').src=SCAN_APP_URL;
   if(view!=='map')window.scrollTo(0,0);
 }
-let pendingSite=null;
+let pendingSite=null, fitted=false, touched=false;
+['mousedown','touchstart','wheel'].forEach(ev=>$('map').addEventListener(ev,()=>{touched=true;},{passive:true})); const NG=[[4.2,2.6],[13.9,14.7]];
 // resolve deep links to records that load later (confirmed, OSM)
 setInterval(()=>{if(pendingSite){const r=recs.find(x=>x.id===pendingSite);if(r){pendingSite=null;focusRec(r);}}},800);
 window.addEventListener('hashchange',route);
 window.addEventListener('resize',()=>{setTop();map.invalidateSize();});
-new MutationObserver(setTop).observe(document.body,{childList:true}); // the shared tool bar is added at the top
+new MutationObserver(()=>{setTop();setTimeout(()=>{map.invalidateSize();if(!touched&&current==='map'&&!location.hash.includes('=')){map.fitBounds(NG);}},60);}).observe(document.body,{childList:true}); // the shared tool bar is added at the top
 route(); refresh();
 })();
 </script>
