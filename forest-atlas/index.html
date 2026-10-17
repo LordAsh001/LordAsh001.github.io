@@ -8,14 +8,14 @@
 <meta name="color-scheme" content="light dark">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Nigeria Forest Reserves Atlas">
-<meta property="og:description" content="Free, source-linked atlas of 1,176 forest reserves, national parks, game reserves, sanctuaries, Ramsar wetlands and biosphere reserves across Nigeria's 36 states and the FCT, with statistics, satellite land-change profiles (forest loss, desertification, land cover), a visit planner, an NGO field-report hub and open data downloads.">
+<meta property="og:description" content="Free, source-linked atlas of 1,176 forest reserves, national parks, game reserves, sanctuaries, Ramsar wetlands and biosphere reserves across Nigeria's 36 states and the FCT, with statistics, satellite land-change profiles (forest loss, desertification, land cover), plantation maps (oil palm, planted forests, estates), a visit planner, an NGO field-report hub and open data downloads.">
 <meta property="og:url" content="https://shagbaor.com/forest-atlas/">
 <meta property="og:image" content="https://shagbaor.com/images/tool-forest-atlas.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#1d6b3c">
 <link rel="canonical" href="https://shagbaor.com/forest-atlas/">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231d6b3c'/%3E%3Cpath d='M32 10C20 24 19 36 32 54C45 36 44 24 32 10Z' fill='%23fff'/%3E%3C/svg%3E">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"Nigeria Forest Reserves Atlas","description":"Free, source-linked atlas of 1,176 forest reserves, national parks, game reserves, sanctuaries, Ramsar wetlands and biosphere reserves across Nigeria's 36 states and the FCT, with statistics, satellite land-change profiles (forest loss, desertification, land cover), a visit planner, an NGO field-report hub and open data downloads.","url":"https://shagbaor.com/forest-atlas/","creator":{"@type":"Person","name":"Shagbaor Hycent Amool","affiliation":"University of Northern British Columbia"},"spatialCoverage":"Nigeria","isAccessibleForFree":true,"distribution":[{"@type":"DataDownload","encodingFormat":"text/csv","contentUrl":"https://shagbaor.com/forest-atlas/data/nigeria_protected_areas.csv"},{"@type":"DataDownload","encodingFormat":"application/geo+json","contentUrl":"https://shagbaor.com/forest-atlas/data/nigeria_protected_areas.geojson"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"Nigeria Forest Reserves Atlas","description":"Free, source-linked atlas of 1,176 forest reserves, national parks, game reserves, sanctuaries, Ramsar wetlands and biosphere reserves across Nigeria's 36 states and the FCT, with statistics, satellite land-change profiles (forest loss, desertification, land cover), plantation maps (oil palm, planted forests, estates), a visit planner, an NGO field-report hub and open data downloads.","url":"https://shagbaor.com/forest-atlas/","creator":{"@type":"Person","name":"Shagbaor Hycent Amool","affiliation":"University of Northern British Columbia"},"spatialCoverage":"Nigeria","isAccessibleForFree":true,"distribution":[{"@type":"DataDownload","encodingFormat":"text/csv","contentUrl":"https://shagbaor.com/forest-atlas/data/nigeria_protected_areas.csv"},{"@type":"DataDownload","encodingFormat":"application/geo+json","contentUrl":"https://shagbaor.com/forest-atlas/data/nigeria_protected_areas.geojson"}]}</script>
 <script>try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t);}catch(e){}</script>
 <script src="/assets/traction.js" defer></script>
 
@@ -981,6 +981,14 @@ table.lct .sw{display:inline-block;width:10px;height:10px;border-radius:2px;marg
 .subnav a:hover{border-color:var(--accent)}
 .h3x{font-family:var(--f-display);font-size:24px;margin:30px 0 12px;scroll-margin-top:12px}
 #change section:first-of-type .h3x{margin-top:6px}
+.leaflet-image-layer.pxov{image-rendering:pixelated;image-rendering:crisp-edges}
+.plchk{display:grid;gap:3px;margin:6px 0 4px;font-size:12px}
+.plchk label{display:flex;align-items:center;gap:6px;cursor:pointer}
+.plchk i{width:10px;height:10px;border-radius:2px;display:inline-block;margin-right:3px;vertical-align:-1px}
+.pl-est{font-size:12.5px;margin:8px 0}.pl-est ul{margin:4px 0 0;padding-left:18px}.pl-est li{margin:2px 0}.pl-est small{color:var(--muted)}
+.estmk{background:#1d2433;border:1.5px solid #fff;box-shadow:0 0 0 1px rgba(0,0,0,.35);transform:rotate(45deg);border-radius:2px}.estmk.ap{opacity:.5;border-style:dashed}
+.grid1{display:grid;gap:16px;margin-top:16px}
+.plsel{display:block;font-size:12.5px;margin-bottom:6px}.plsel select{width:auto;max-width:100%;padding:3px 6px;margin-left:6px}
 .ovn{max-width:300px}
 .ovn select{width:auto;padding:3px 6px;margin-left:6px}
 .ovn small{display:block;color:var(--muted);margin-top:4px}
@@ -1140,6 +1148,7 @@ body{margin:0;display:flex;flex-direction:column}
           <div class="note" id="tilenote" hidden></div>
           <div class="note ovn" id="lcnote" hidden></div>
           <div class="note ovn" id="arinote" hidden></div>
+          <div class="note ovn" id="plnote" hidden></div>
         </div>
         <div class="legend" id="legend"></div>
         <section class="sheet" id="sheet" hidden aria-label="Site profile">
@@ -1163,7 +1172,7 @@ body{margin:0;display:flex;flex-direction:column}
 const CONFIG={
   issuesRepo:'lordash001/lordash001.github.io',      // GitHub repo that receives field reports and corrections
   siteUrl:'https://shagbaor.com/forest-atlas/',
-  dataUrl:'data/atlas.json',chgUrl:'data/change.json'
+  dataUrl:'data/atlas.json',chgUrl:'data/change.json',plUrl:'data/plantations.json',plGeo:'data/plantation_estates.geojson',plOp:'data/oilpalm_2021_z10.webp',plPf:'data/planted_forest_2013_z10.webp'
 };
 let DATA=/*DATA*/null;
 const CATS=['National Park','Game Reserve','Wildlife Sanctuary','Strict Nature Reserve','Forest Reserve','Community Forest','Conservation Area','Ramsar Site','Biosphere Reserve','Other'];
@@ -1251,7 +1260,7 @@ const BASES={
   nasa:{n:'NASA daily',u:()=>`https://gibs.earthdata.nasa.gov/wmts/epsg3857/best/VIIRS_SNPP_CorrectedReflectance_TrueColor/default/${new Date(Date.now()-864e5*2).toISOString().slice(0,10)}/GoogleMapsCompatible_Level9/{z}/{y}/{x}.jpg`,a:'Imagery: NASA GIBS / VIIRS SNPP corrected reflectance (2 days ago)',mz:9}
 };
 const isDark=()=>document.documentElement.dataset.theme==='dark'||(document.documentElement.dataset.theme!=='light'&&matchMedia('(prefers-color-scheme: dark)').matches);
-const OVERLAYS={time:{n:'Time explorer',off:1,fn:on=>tlOpen(on)},cmp:{n:'Compare years',off:1,fn:()=>{ovl.cmp=false;$$('#ovl button[data-o=cmp]').forEach(b=>b.setAttribute('aria-pressed','false'));cmpOpen()}},loss:{n:'Forest loss 2001–2024 (all years)',u:'https://storage.googleapis.com/earthenginepartners-hansen/tiles/gfc_v1.12/loss_alpha/{z}/{x}/{y}.png',a:'Forest loss: Hansen et al. / UMD / Google / USGS / NASA, GFC v1.12',mz:12}};
+const OVERLAYS={time:{n:'Time explorer',off:1,fn:on=>tlOpen(on)},cmp:{n:'Compare years',off:1,fn:()=>{ovl.cmp=false;$$('#ovl button[data-o=cmp]').forEach(b=>b.setAttribute('aria-pressed','false'));cmpOpen()}},loss:{n:'Forest loss 2001–2024 (all years)',u:'https://storage.googleapis.com/earthenginepartners-hansen/tiles/gfc_v1.12/loss_alpha/{z}/{x}/{y}.png',a:'Forest loss: Hansen et al. / UMD / Google / USGS / NASA, GFC v1.12',mz:12},pl:{n:'Plantations',fn:on=>plOverlay(on)}};
 function stateStyle(hi){const onTile=!!tile;if(typeof TL!=='undefined'&&TL.on&&(TL.theme!=='none'||TL.img!=='none'))return{color:onTile?'#ffffff':css('--land-line'),weight:hi?2.5:1,fillOpacity:0,opacity:.8};return onTile?{color:'#ffffff',weight:hi?2.5:1,fillOpacity:0,opacity:.75}:{color:css('--land-line'),weight:hi?2:.8,fillColor:hi?css('--land-hi'):css('--land'),fillOpacity:1,opacity:1}}
 function initMap(){
   map=L.map('map',{preferCanvas:true,zoomSnap:.25,minZoom:5,maxZoom:17}).fitBounds([[4.1,2.6],[13.95,14.7]]);
@@ -1641,10 +1650,10 @@ async function siteLC(f){
   return lcCache[f.i]={rows,kind:sg.kind,area,ps}}
 /* ---- profile box ---- */
 function changeBox(f){
-  return `<div class="box chg" id="chg"><h3>Change over time <small>satellite-derived</small></h3><div class="seg chgseg" role="tablist" aria-label="Change profile">${[['fl','Forest loss'],['dz','Desertification'],['lc','Land cover']].map(([k,n],i)=>`<button type="button" role="tab" data-k="${k}" aria-selected="${i?'false':'true'}" aria-pressed="${i?'false':'true'}">${n}</button>`).join('')}</div><div id="chg-b" class="chgb"><p class="loading">Loading…</p></div><p class="chgmore"><a href="#change">Open the national land-change view →</a></p></div>`}
+  return `<div class="box chg" id="chg"><h3>Change over time <small>satellite-derived</small></h3><div class="seg chgseg" role="tablist" aria-label="Change profile">${[['fl','Forest loss'],['dz','Desertification'],['lc','Land cover'],['pl','Plantations']].map(([k,n],i)=>`<button type="button" role="tab" data-k="${k}" aria-selected="${i?'false':'true'}" aria-pressed="${i?'false':'true'}">${n}</button>`).join('')}</div><div id="chg-b" class="chgb"><p class="loading">Loading…</p></div><p class="chgmore"><a href="#change">Open the national land-change view →</a></p></div>`}
 function mountChange(f){
   const box=$('#chg');if(!box)return;const show=k=>{$$('#chg .chgseg button').forEach(b=>{const on=b.dataset.k===k;b.setAttribute('aria-selected',on);b.setAttribute('aria-pressed',on)});store('chgtab',k);
-    const el=$('#chg-b');el.innerHTML='<p class="loading">Loading…</p>';loadChg().then(()=>{if(state.sel!==f)return;({fl:renderFL,dz:renderDZ,lc:renderLC}[k])(f,el)}).catch(()=>{el.innerHTML='<p class="gap">The land-change data file could not be loaded.</p>'})};
+    const el=$('#chg-b');el.innerHTML='<p class="loading">Loading…</p>';(k==='pl'?loadPl():loadChg()).then(()=>{if(state.sel!==f)return;({fl:renderFL,dz:renderDZ,lc:renderLC,pl:renderPL}[k])(f,el)}).catch(()=>{el.innerHTML='<p class="gap">The land-change data file could not be loaded.</p>'})};
   $$('#chg .chgseg button').forEach(b=>b.onclick=()=>show(b.dataset.k));show(store('chgtab')||'fl')}
 function renderFL(f,el){
   const d=CHG.fl[f.i];
@@ -1695,10 +1704,123 @@ function lcOverlay(on){const n=$('#lcnote');if(ovl.lc){map.removeLayer(ovl.lc);o
 function ariOverlay(on){ariOn=on;const n=$('#arinote');if(!on){n.hidden=true;statesLayer.setStyle(stateStyle(false));return}
   loadChg().then(()=>{if(!ariOn)return;statesLayer.setStyle(ft=>{const z=dzState(ft.properties.n);return{color:'#fff',weight:1,fillColor:z?z.cls[2]:'#999',fillOpacity:.55,opacity:.8}});
     n.hidden=false;n.innerHTML=`<b>Aridity, 1991–2020</b><div class="lgd">${ARI.map(a=>`<span><i style="background:${a[2]}"></i>${a[1]}</span>`).join('')}</div><small>CHIRPS rainfall ÷ potential evapotranspiration, by state</small>`}).catch(()=>{n.hidden=false;n.textContent='Aridity data could not be loaded.'})}
+/* ---------- plantations: oil palm map (Descals et al. 2024), planted forests (SDPT/USGS), estates (Land Matrix), FAOSTAT tree crops ---------- */
+let PL=/*PL*/null,plP=null;
+function loadPl(){if(PL)return Promise.resolve(PL);if(!plP)plP=fetch(CONFIG.plUrl).then(r=>{if(!r.ok)throw new Error(r.status);return r.json()}).then(j=>PL=j).catch(e=>{plP=null;throw e});return plP}
+const PLC={ind:'#6a1b9a',smh:'#d67800',pf:'#008080',wri:'#3d0a6b',osm:'#2e9d4a',est:'#1d2433'};
+const PER=['before 2000','2000–09','2010–15','2016–18','2019–22'];
+const plKey=f=>f.w?'w'+f.w:f.i;
+const PL_SRC={op:'Descals et al. (2024) Earth Syst. Sci. Data 16:5111, global oil palm extent 2021 (10 m) and planting year (30 m), CC BY 4.0',
+  sd:'WRI Spatial Database of Planted Trees v2.0 (Richter et al. 2024): USGS West Africa land use 2013, WRI estate boundaries 2013–15, OpenStreetMap orchards',
+  lm:'Land Matrix Initiative, deals database (accessed Oct 2026)',fao:'FAOSTAT Crops and livestock products (QCL), via Our World in Data catalogue'};
+/* stacked two-part horizontal bars */
+function hbar2(el,rows,o={}){
+  const W=560,lw=o.lw||140,rh=o.rh||20,H=rows.length*rh+26,max=Math.max(...rows.map(r=>r.a+r.b))||1,iw=W-lw-64;
+  el.innerHTML=`<div class="lgd" style="margin:0 0 4px"><span><i style="background:${o.ca}"></i>${o.na}</span><span><i style="background:${o.cb}"></i>${o.nb}</span></div><svg viewBox="0 0 ${W} ${H-18}" role="img" aria-label="${esc(o.title||'')}">${rows.map((r,i)=>{const wa=r.a/max*iw,wb=r.b/max*iw,y=i*rh+4;return`<g data-i="${i}" ${r.on?'style="cursor:pointer"':''}><rect x="0" y="${y-2}" width="${W}" height="${rh}" fill="transparent"/><text x="${lw-8}" y="${y+rh/2+2}" text-anchor="end" class="lab">${esc(r.l)}</text><rect x="${lw}" y="${y+3}" width="${Math.max(wa,r.a>0?1:0)}" height="${rh-8}" fill="${o.ca}"/><rect x="${lw+wa}" y="${y+3}" width="${Math.max(wb,r.b>0?1:0)}" height="${rh-8}" fill="${o.cb}"/><text x="${lw+wa+wb+5}" y="${y+rh/2+2}">${o.f?o.f(r.a+r.b):fmt.format(r.a+r.b)}</text></g>`}).join('')}</svg>`;
+  el.querySelectorAll('g[data-i]').forEach(g=>{const r=rows[+g.dataset.i];g.onmousemove=e=>{const bb=el.getBoundingClientRect();tip(el,`<b>${esc(r.l)}</b><br>${o.na}: ${o.f?o.f(r.a):fmt.format(r.a)}<br>${o.nb}: ${o.f?o.f(r.b):fmt.format(r.b)}${r.t?'<br>'+r.t:''}`,e.clientX-bb.left,e.clientY-bb.top)};g.onmouseleave=hideTip;if(r.on)g.onclick=r.on});
+}
+/* unique protected-area figures: one record per boundary (overlapping designations that share a WDPA polygon are counted once) */
+function plSites(tab){const seen=new Set(),out=[];
+  const P=[2,0,1,5,6,3,4];F.filter(f=>f.w&&f.w!==7465&&tab[plKey(f)]).sort((a,b)=>P[a.gp]-P[b.gp]||(a.v<b.v?-1:a.v>b.v?1:0)).forEach(f=>{const d=tab[plKey(f)];const k=JSON.stringify(d);if(seen.has(k))return;seen.add(k);out.push({f,d})});return out}
+function nearEst(f,km){if(f.la==null)return[];const R=[];PL.est.forEach(e=>e.pts.forEach(p=>{const dx=(p[1]-f.lo)*111.32*Math.cos(f.la*Math.PI/180),dy=(p[0]-f.la)*110.57,d=Math.hypot(dx,dy);if(d<=km&&p[2]!=='admin area only')R.push({e,d})}));
+  const best=new Map();R.forEach(r=>{if(!best.has(r.e.id)||best.get(r.e.id).d>r.d)best.set(r.e.id,r)});return[...best.values()].sort((a,b)=>a.d-b.d)}
+function estLine(e){return`<a href="https://landmatrix.org/deal/${e.id}/" target="_blank" rel="noopener">${esc(e.co)}</a> · ${esc(e.crops.join(', ')||'crop not recorded')} · ${e.ha?fmt.format(Math.round(e.ha))+' ha':'size not recorded'} · ${esc(e.impl)}${e.neg?' ('+esc(e.neg)+')':''}`}
+/* ---- profile tab ---- */
+function renderPL(f,el){
+  if(f.la==null){el.innerHTML='<p class="gap" style="margin:0">This reserve has not been located yet, so plantation statistics cannot be computed.</p>';return}
+  if(f.q==='approx_town'){el.innerHTML='<p class="gap" style="margin:0">This reserve is only placed at the nearest town, so the atlas does not compute plantation figures for it.</p>';return}
+  const k=plKey(f),o=PL.op.rs[k],s=PL.sd.rs[k]||{},buf=!f.w||(o&&o[2]==='b');
+  const area=buf?Math.PI*300*300:(f.a||f.ar||null);const I=o?o[0]:0,Sm=o?o[1]:0,per=o?o.slice(3,8):[0,0,0,0,0];
+  const near=nearEst(f,12);
+  let h=`<div class="kv"><div><b>${haf(I)} ha</b><span>industrial oil palm (2021)</span></div><div><b>${haf(Sm)} ha</b><span>smallholder oil palm (2021)</span></div><div><b>${area&&(I+Sm)?fmt1.format((I+Sm)/area*100)+'%':'–'}</b><span>of the ${buf?'3 km circle':'reserve'}</span></div></div>`;
+  if(I+Sm>=1)h+=`<div class="chart" id="pl-ch"></div>`;
+  const extra=[];if(s.upl)extra.push(`<b>${fmt.format(s.upl)} ha</b> mapped as planted forest (timber plantation) in 2013`);if(s.wri)extra.push(`<b>${fmt.format(s.wri)} ha</b> inside oil palm estate boundaries digitised by WRI (2013–15)`);if(s.uop)extra.push(`<b>${fmt.format(s.uop)} ha</b> mapped as oil palm in 2013 (USGS, 2 km cells)`);if(s.osm)extra.push(`<b>${fmt.format(s.osm)} ha</b> of orchards mapped on OpenStreetMap`);
+  if(extra.length)h+=`<ul class="sig">${extra.map(t=>`<li><i aria-hidden="true">·</i><span>${t}</span></li>`).join('')}</ul>`;
+  if(near.length)h+=`<div class="pl-est"><b>Recorded plantation estates within 12 km</b><ul>${near.slice(0,6).map(r=>`<li>${estLine(r.e)} <small>(${fmt1.format(r.d)} km, ${esc(r.e.pts[0][2])})</small></li>`).join('')}</ul></div>`;
+  if(!(I+Sm)&&!extra.length&&!near.length)h+=`<p class="gap" style="margin:0 0 6px">No oil palm plantation was detected ${buf?'within 3 km of the published point':'inside this boundary'} on the 2021 global map, and no planted forest or estate is recorded here.</p>`;
+  const notes=[];
+  if(f.w===7465)notes.push('<b>The WDPA boundary on record for Okomu National Park is the whole Okomu Forest Reserve</b> (about 112,000 ha, against a gazetted park area of about 18,100 ha), so these figures describe the forest reserve and its estates, not the park.');
+  if(I>50)notes.push('Oil palm inside a reserve boundary can be an estate legally excised from the reserve, a government or company concession, or encroachment. The map shows where palms are, not whether they are lawful.');
+  h+=`<p class="note2">${notes.join(' ')} Industrial and smallholder are told apart by plantation size and pattern, not ownership. Closed-canopy palms only: young plantings and semi-wild palm groves are mostly missed, so totals are lower than official statistics. Planting years are approximate (about ±2 years for estates, ±5 for smallholdings), and gaps in the older satellite record push many dates into 2016–18. ${buf?'<b>No boundary is published for this site, so figures cover a 3 km radius around its published point.</b>':'Computed inside the WDPA boundary.'}</p>
+   <p class="src2">Sources: ${PL_SRC.op}; ${PL_SRC.sd}; ${PL_SRC.lm}. Zonal statistics computed by this atlas.</p>`;
+  el.innerHTML=h;
+  if(I+Sm>=1)cols($('#pl-ch'),per.map((v,i)=>({l:PER[i],v,c:i===4?'#b9a3c9':'#8e5cb3'})),{f:v=>haf(v)+' ha',tf:v=>fmt.format(v),title:'Oil palm area by estimated planting period'});
+}
+/* ---- map overlay ---- */
+const plL={on:false,show:{op:1,pf:1,est:1,wri:1,osm:0},lyr:{},gj:null};
+function plOverlay(on){plL.on=on;const n=$('#plnote');Object.values(plL.lyr).forEach(l=>map.removeLayer(l));plL.lyr={};
+  if(!on){n.hidden=true;return}
+  n.hidden=false;n.innerHTML='<p class="loading" style="margin:0">Loading plantation layers…</p>';
+  loadPl().then(async()=>{if(!plL.on)return;
+    if(!plL.gj){try{plL.gj=await (await fetch(CONFIG.plGeo)).json()}catch(e){plL.gj={features:[]}}}
+    if(!map.getPane('plpane')){map.createPane('plpane');map.getPane('plpane').style.zIndex=410}
+    const ov=PL.op.ov,b1=[[ov.sw[0],ov.sw[1]],[ov.ne[0],ov.ne[1]]],b2=[[PL.plov.sw[0],PL.plov.sw[1]],[PL.plov.ne[0],PL.plov.ne[1]]];
+    const L1={
+      pf:()=>L.imageOverlay(CONFIG.plPf,b2,{opacity:.75,className:'pxov',pane:'plpane',attribution:'Planted forest: USGS EROS West Africa land use 2013, via WRI SDPT v2.0'}),
+      op:()=>L.imageOverlay(CONFIG.plOp,b1,{opacity:.95,className:'pxov',pane:'plpane',attribution:'Oil palm: Descals et al. 2024 (ESSD), CC BY 4.0'}),
+      wri:()=>L.geoJSON({type:'FeatureCollection',features:plL.gj.features.filter(x=>x.properties.c==='wri')},{pane:'plpane',style:{color:PLC.wri,weight:1.6,dashArray:'4 3',fill:true,fillOpacity:.04},onEachFeature:(ft,l)=>l.bindTooltip(`Oil palm estate boundary (WRI, 2013–15) · ${fmt.format(Math.round(ft.properties.ha))} ha`,{className:'tip',sticky:true})}),
+      osm:()=>L.geoJSON({type:'FeatureCollection',features:plL.gj.features.filter(x=>x.properties.c==='osm')},{pane:'plpane',style:{color:PLC.osm,weight:.8,fillColor:PLC.osm,fillOpacity:.45},onEachFeature:(ft,l)=>l.bindTooltip(`Orchard mapped on OpenStreetMap · ${fmt1.format(ft.properties.ha)} ha`,{className:'tip',sticky:true})}),
+      est:()=>{const g=L.layerGroup();PL.est.forEach(e=>e.pts.forEach(p=>{const ap=p[2]==='admin area only'||p[2]==='approximate';const s=Math.round(2*Math.max(4,Math.min(10,Math.sqrt((e.ha||2000)/400))));const m=L.marker([p[0],p[1]],{pane:'plpane',keyboard:false,icon:L.divIcon({className:'estmk'+(ap?' ap':''),iconSize:[s,s]})});
+        m.bindTooltip(`<b>${esc(e.co)}</b><br>${esc(e.crops.join(', ')||'crop not recorded')} · ${e.ha?fmt.format(Math.round(e.ha))+' ha':'size not recorded'}<br>${esc(e.impl)}${e.neg?' · '+esc(e.neg):''}${e.yr?' · since '+e.yr:''}<br><small>Location: ${esc(p[2])} · Land Matrix deal ${e.id}</small>`,{className:'tip',direction:'top'});m.on('click',()=>window.open(`https://landmatrix.org/deal/${e.id}/`,'_blank','noopener'));m.addTo(g)}));return g}};
+    const draw=()=>{Object.values(plL.lyr).forEach(l=>map.removeLayer(l));plL.lyr={};['pf','op','osm','wri','est'].forEach(k=>{if(plL.show[k])plL.lyr[k]=L1[k]().addTo(map)})};draw();
+    const it=[['op',`<i style="background:${PLC.ind}"></i><i style="background:${PLC.smh}"></i>Oil palm 2021: industrial / smallholder (10 m)`],['pf',`<i style="background:${PLC.pf}"></i>Planted forest, 2013 (2 km cells)`],['wri',`<i style="border:1.5px dashed ${PLC.wri};background:none"></i>Oil palm estate boundaries (2013–15)`],['est',`<i style="background:${PLC.est};outline:1.5px solid #fff"></i>Plantation estates and land deals (faded = approximate location)`],['osm',`<i style="background:${PLC.osm}"></i>Orchards (OpenStreetMap)`]];
+    n.innerHTML=`<b>Plantations</b><div class="plchk">${it.map(([k,t])=>`<label><input type="checkbox" data-k="${k}" ${plL.show[k]?'checked':''}> <span>${t}</span></label>`).join('')}</div><small>Paler pixels are partly covered. Satellite maps miss young plantings and semi-wild palm groves. No open maps of cocoa, rubber, cashew, citrus or mango farms exist for Nigeria yet. <a href="#change" id="pl-more">Statistics and sources →</a></small>`;
+    $$('#plnote input').forEach(c=>c.onchange=()=>{plL.show[c.dataset.k]=c.checked?1:0;draw()});
+    $('#pl-more').onclick=e=>{e.preventDefault();location.hash='change';setTimeout(()=>{const s=$('#cp');if(s)s.scrollIntoView()},300)};
+  }).catch(()=>{n.innerHTML='Plantation data could not be loaded.'})}
+/* ---- national section ---- */
+function plSection(){
+  if(!PL)return{html:'<section id="cp"><h3 class="h3x">Plantations and tree crops</h3><p class="loading">Loading plantation data…</p></section>',cards:[]};
+  const op=PL.op,nat=op.nat,tot=nat[0]+nat[1],yi=PL.fao.s.op.A.length-1,y1=PL.fao.y0+yi;const fa=PL.fao.s;
+  const stR=Object.entries(op.st).map(([n,v])=>({l:n,a:v[0],b:v[1],p:v.slice(2)})).filter(r=>r.a+r.b>=50).sort((x,y)=>(y.a+y.b)-(x.a+x.b));
+  const ps=plSites(op.rs).filter(r=>r.d[2]==='p');const paI=sum(ps.map(r=>r.d[0])),paS=sum(ps.map(r=>r.d[1]));
+  const topR=[...ps].sort((a,b)=>(b.d[0]+b.d[1])-(a.d[0]+a.d[1])).slice(0,15);
+  const perN=[0,0,0,0,0];Object.values(op.st).forEach(v=>v.slice(2).forEach((x,i)=>perN[i]+=x));
+  const pf=plSites(Object.fromEntries(Object.entries(PL.sd.rs).filter(([k,v])=>v.upl).map(([k,v])=>[k,[v.upl]]))).sort((a,b)=>b.d[0]-a.d[0]).slice(0,12);
+  const crops=['op','cocoa','rubber','cashew','citrus','mango','kola','coconut','coffee'];
+  const last=(a)=>{for(let i=a.length-1;i>=0;i--)if(a[i]!=null)return[a[i],PL.fao.y0+i];return[null,null]};
+  const cr=crops.map(k=>{const s=fa[k],[A,ya]=last(s.A),[P]=last(s.P),i0=2000-PL.fao.y0;return{k,n:s.n,A,ya,P,A0:s.A[i0],P0:s.P[i0]}}).filter(r=>r.A);
+  const yrs=PL.fao.s.op.A.map((_,i)=>PL.fao.y0+i);
+  const est=[...PL.est].sort((a,b)=>(b.ha||0)-(a.ha||0));
+  const Cp=[card({t:'Where Nigeria’s oil palm plantations are',s:'Hectares of closed-canopy oil palm mapped in 2021, by state. Click a bar to open the state on the map.',src:PL_SRC.op+'; zonal statistics by this atlas',file:'oil_palm_by_state',
+      draw:e=>hbar2(e,stR.map(r=>({l:r.l,a:r.a,b:r.b,on:()=>{location.hash='map';setTimeout(()=>{state.st=r.l;$('#state').value=r.l;update();zoomState(r.l);if(!plL.on)toggleOverlay('pl')},80)}})),{ca:PLC.ind,cb:PLC.smh,na:'Industrial',nb:'Smallholder',rh:17,f:v=>fmt.format(Math.round(v))}),
+      rows:()=>stR.map(r=>({state:r.l,industrial_ha:r.a,smallholder_ha:r.b,total_ha:r.a+r.b}))}),
+    card({t:'Protected areas with the most oil palm inside',s:'Hectares inside the WDPA boundary, 2021. Estates excised from reserves still fall inside old boundaries. Click to open the profile.',src:PL_SRC.op+' within WDPA boundaries',file:'protected_areas_oil_palm',
+      draw:e=>hbar2(e,topR.map(r=>({l:r.f.n.length>26?r.f.n.slice(0,25)+'…':r.f.n,a:r.d[0],b:r.d[1],t:`${esc(r.f.s||'')}${r.f.a?' · '+fmt1.format((r.d[0]+r.d[1])/r.f.a*100)+'% of the boundary':''}`,on:()=>goSite(r.f.i)})),{ca:PLC.ind,cb:PLC.smh,na:'Industrial',nb:'Smallholder',lw:190,f:v=>fmt.format(Math.round(v))}),
+      rows:()=>topR.map(r=>({site:r.f.n,state:r.f.s,industrial_ha:r.d[0],smallholder_ha:r.d[1]}))}),
+    card({t:'When today’s oil palm was planted',s:'Area of 2021 plantations by estimated planting period (ha). Indicative only: older Landsat records over Africa are patchy, which pushes many dates into 2016–18, and post-2019 dates are mostly replanting.',src:PL_SRC.op,file:'oil_palm_planting_period',
+      draw:e=>cols(e,perN.map((v,i)=>({l:PER[i],v:Math.round(v),c:i===4?'#b9a3c9':'#8e5cb3'})),{f:v=>fmt.format(v)+' ha',tf:v=>fmt.format(v/1000)+'k'}),rows:()=>perN.map((v,i)=>({period:PER[i],area_ha:Math.round(v)}))}),
+    card({t:'Tree crops: harvested area, '+cr[0].ya,s:'National harvested area (ha) reported to FAO. Hover for production and change since 2000.',src:PL_SRC.fao,file:'tree_crops_area_latest',
+      draw:e=>hbar(e,[...cr].sort((a,b)=>b.A-a.A).map(r=>({l:r.n,v:r.A,c:r.k==='op'?PLC.smh:'#8a7a52',t:`production ${fmt.format(r.P)} t${r.A0?` · area ${sgn(Math.round((r.A/r.A0-1)*100),fmt.format)}% since 2000`:''}`})),{lw:170,f:v=>v>=1e6?fmt1.format(v/1e6)+' M ha':fmt.format(Math.round(v/1000))+'k ha'}),
+      rows:()=>cr.map(r=>({crop:r.n,year:r.ya,harvested_area_ha:r.A,production_t:r.P,area_2000_ha:r.A0,production_2000_t:r.P0}))}),
+    card({t:'Tree crops since 1961',s:'Harvested area reported to FAO, thousand hectares. Oil palm is left out of the first view because its area would dwarf the others; choose a crop to see its own area and production.',src:PL_SRC.fao,file:'tree_crops_series',
+      draw:e=>{const ks=crops.filter(k=>k!=='op'&&fa[k].A.some(v=>v));const C=['#7a4a1e','#3f6f8f','#c99400','#e0701f','#b04a8a','#8e5cb3','#2f7d4c','#8a6d3b'];
+        e.innerHTML=`<label class="plsel">Show <select>${['area','op',...ks].map(k=>`<option value="${k}">${k==='area'?'Harvested area, all crops except oil palm':fa[k].n+': area and production'}</option>`).join('')}</select></label><div class="plc"></div>`;
+        const box=e.querySelector('.plc'),go=v=>{if(v==='area')mline(box,yrs,ks.map((k,i)=>({n:fa[k].n,c:C[i%C.length],v:fa[k].A.map(x=>x==null?null:x/1000)})),{f:v=>fmt.format(Math.round(v))+'k ha',tf:v=>fmt.format(v)+'k',min:0});
+          else{const s=fa[v];mline(box,yrs,[{n:'Harvested area (thousand ha)',c:'#8a7a52',v:s.A.map(x=>x==null?null:x/1000)},{n:'Production (thousand t)',c:'#2a78d6',v:s.P.map(x=>x==null?null:x/1000)}],{f:v=>fmt.format(Math.round(v))+'k',tf:v=>fmt.format(v)+'k',min:0})}};
+        e.querySelector('select').onchange=x=>go(x.target.value);go('area')},
+      rows:()=>yrs.map((y,i)=>Object.fromEntries([['year',y],...crops.flatMap(k=>[[k+'_area_ha',fa[k].A[i]],[k+'_production_t',fa[k].P[i]]]),['palm_oil_production_t',fa.palmoil.P[i]]]))}),
+    card({t:'Planted forests inside protected areas',s:'Hectares mapped as planted forest (mostly gmelina and teak timber plantations) in 2013, inside WDPA boundaries. Coarse 2 km cells: read as an indication, not a measurement.',src:PL_SRC.sd,file:'planted_forest_protected_areas',
+      draw:e=>hbar(e,pf.map(r=>({l:r.f.n.length>26?r.f.n.slice(0,25)+'…':r.f.n,v:r.d[0],c:PLC.pf,t:esc(r.f.s||''),on:()=>goSite(r.f.i)})),{lw:190,f:v=>fmt.format(v)+' ha'}),rows:()=>pf.map(r=>({site:r.f.n,state:r.f.s,planted_forest_ha_2013:r.d[0]}))})];
+  const estCard=card({t:'Recorded plantation estates and land deals',s:'Tree-crop deals recorded in the Land Matrix database, with the area under contract (not the planted area) and the status as recorded. Click a company for the source record.',src:PL_SRC.lm+'; company reports',file:'plantation_estates_land_matrix',
+      draw:e=>{e.innerHTML=`<div class="tbl-wrap" style="max-height:380px;overflow:auto"><table class="dt"><thead><tr><th>Company</th><th>Crops</th><th>State</th><th class="n">Hectares</th><th>Status</th></tr></thead><tbody>${est.map(x=>`<tr><td><a href="https://landmatrix.org/deal/${x.id}/" target="_blank" rel="noopener">${esc(x.co)}</a></td><td>${esc(x.crops.join(', '))}</td><td>${esc(x.st||'')}</td><td class="n">${x.ha?fmt.format(Math.round(x.ha)):'–'}</td><td>${esc(x.impl)}${x.neg?' · '+esc(x.neg):''}</td></tr>`).join('')}</tbody></table></div><p class="note2" style="margin-top:6px">Company-reported planted area for comparison: ${PL.co.map(c=>`${esc(c.co)} ${fmt.format(c.op)} ha oil palm and ${fmt.format(c.rub)} ha rubber (${c.asof.slice(0,4)}, <a href="${c.src}" target="_blank" rel="noopener">company website</a>)`).join('; ')}.</p>`},
+      rows:()=>est.map(x=>({land_matrix_id:x.id,company:x.co,investors:x.inv,crops:x.crops.join('; '),state:x.st,contract_ha:x.ha,implementation:x.impl,negotiation:x.neg,initiation_year:x.yr,lat:x.pts[0][0],lon:x.pts[0][1],location_accuracy:x.pts[0][2]}))});
+  const faoOp=fa.op.A[yi];
+  const html=`<section id="cp"><h3 class="h3x">Plantations and tree crops</h3>
+   <div class="kpis"><div class="kpi"><b>${fmt.format(Math.round(tot/1000))}k ha</b><span>closed-canopy oil palm mapped in 2021: ${fmt.format(Math.round(nat[0]/1000))}k industrial, ${fmt.format(Math.round(nat[1]/1000))}k smallholder</span><small>Descals et al. 2024, 10 m. The authors’ sample-based estimate is ${(PL.desc_est[0]/1e6).toFixed(2)} ± ${(PL.desc_est[1]/1e6).toFixed(2)} M ha</small></div>
+    <div class="kpi"><b>${fmt1.format(faoOp/1e6)} M ha</b><span>oil palm harvested area reported to FAO (${y1})</span><small>Includes semi-wild palm groves that satellites do not separate from forest and farmland</small></div>
+    <div class="kpi"><b>${fmt.format(Math.round((paI+paS)/1000))}k ha</b><span>of mapped oil palm lies inside protected-area boundaries (${fmt.format(Math.round(paI/1000))}k industrial)</span><small>${ps.length} WDPA boundaries; includes estates excised from reserves</small></div>
+    <div class="kpi"><b>${fmt.format(Math.round(PL.sd.nat.upl/1000))}k ha</b><span>planted forest mapped in 2013</span><small>USGS 2 km land-use cells, via WRI SDPT</small></div></div>
+   <div class="grid2">${Cp.map(c=>c.html).join('')}</div>
+   <div class="grid1">${estCard.html}</div>
+   <p class="note2"><b>What is and is not mapped.</b> Oil palm is the only tree crop with an open, peer-reviewed map for Nigeria (Sentinel-1 and Sentinel-2, 2021; accuracy about 91% for industrial and 72% for smallholder plantations). It records closed-canopy palms only, so young plantings and the semi-wild groves that make up much of Nigeria’s palm area are largely missed. That is why the mapped area is far below FAO’s figure. No open, verified maps of cocoa, rubber, cashew, citrus or mango plantations exist for Nigeria yet; for those crops this section shows FAO national statistics and recorded estates. Planted forests come from a 2013 land-use map with 2 km cells and include government timber plantations inside forest reserves. A tree count can be estimated from area (about 143 palms per hectare in standard estates), but it is not measured, so the atlas does not report one.</p>
+   <p style="display:flex;gap:8px;flex-wrap:wrap"><a class="btn primary" href="#map" id="go-pl">Show plantations on the map</a></p></section>`;
+  return{html,cards:[...Cp,estCard]}}
+
 /* ---- national land-change view ---- */
 function buildChange(){
   const el=$('#change');el.innerHTML='<p class="loading">Loading land-change data…</p>';
-  loadChg().then(()=>drawChange(el)).catch(()=>{el.innerHTML='<p class="gap">The land-change data file could not be loaded.</p>'})}
+  Promise.all([loadChg(),loadPl().catch(()=>null)]).then(()=>drawChange(el)).catch(()=>{el.innerHTML='<p class="gap">The land-change data file could not be loaded.</p>'})}
 function drawChange(el){
   const Y0=CHG.fl_y0,Y1=CHG.fl_y1,NY=Y1-Y0+1,yrs=[...Array(NY)].map((_,i)=>Y0+i);
   const stL=DATA.st.map(s=>({n:s.n,d:CHG.fl['S:'+s.n],km2:s.km2})).filter(x=>x.d);
@@ -1713,7 +1835,7 @@ function drawChange(el){
   const nat=lcNational();
   const cru=CHG.dz.cru;const cruY=cru.map(r=>r[0]),cruP=cru.map(r=>r[1]),cru10=cruP.map((_,i)=>i<9?null:mean(cruP.slice(i-9,i+1)));
   const lcS=DATA.st.map(s=>{const r=CHG.lc.st[s.n];if(!r)return null;const av=(rs,ci)=>mean(rs.map(x=>x[ci]))/10;return{n:s.n,km2:s.km2,bu0:av(r.slice(0,2),4),bu1:av(r.slice(-2),4),tr0:av(r.slice(0,2),1),tr1:av(r.slice(-2),1),cr0:av(r.slice(0,2),3),cr1:av(r.slice(-2),3),ba0:av(r.slice(0,2),5),ba1:av(r.slice(-2),5),rg0:av(r.slice(0,2),6),rg1:av(r.slice(-2),6)}}).filter(Boolean);
-  const C=[];
+  const C=[];const PS=plSection();
   /* forest loss */
   const cF=[card({t:`Tree cover loss in Nigeria, ${Y0}–${Y1}`,s:'Hectares per year: whole country (sum of states) and inside protected areas with a WDPA boundary.',src:'Hansen et al. / UMD Global Forest Change v1.12; zonal statistics by this atlas',file:'tree_cover_loss_nigeria_and_pas',
       draw:e=>mline(e,yrs,[{n:'All Nigeria',c:'var(--loss)',v:natL},{n:'Inside protected areas',c:'#2f7d4c',v:paL}],{f:v=>fmt.format(Math.round(v))+' ha',tf:v=>fmt.format(v/1000)+'k'}),rows:()=>yrs.map((y,i)=>({year:y,nigeria_loss_ha:Math.round(natL[i]),protected_areas_loss_ha:Math.round(paL[i])}))}),
@@ -1743,7 +1865,7 @@ function drawChange(el){
       draw:e=>{const r=[...lcS].sort((a,b)=>b.cr1-a.cr1);hbar(e,r.map(x=>({l:x.n,v:+x.cr1.toFixed(1),c:'#e49635',t:`${fmt1.format(x.cr0)}% in 2017–18`})),{rh:17,f:v=>fmt1.format(v)+'%'})},rows:()=>lcS.map(x=>({state:x.n,crops_pct_2017_18:+x.cr0.toFixed(2),crops_pct_2024_25:+x.cr1.toFixed(2)}))})];
   const dry=dz.filter(z=>z.aiB<0.65);const n0=nat[0],n1=nat[nat.length-1];const avN=(a,b,ci)=>(a[ci]+b[ci])/2;const nA=[nat[0],nat[1]],nB=[nat[nat.length-2],nat[nat.length-1]];
   el.innerHTML=`<h2 class="title">Land change</h2><p class="lede">How Nigeria’s land is changing, measured from satellites: where tree cover has been lost since 2000, which states sit in the drylands and are drying, and how farmland, towns, rangeland and forest have shifted since 2017. Open any reserve on the map for its own change profile.</p>
-  <nav class="subnav" aria-label="Land change sections"><a href="#change" data-s="cf">Forest loss</a><a href="#change" data-s="cd">Desertification</a><a href="#change" data-s="cl">Land cover</a></nav>
+  <nav class="subnav" aria-label="Land change sections"><a href="#change" data-s="cf">Forest loss</a><a href="#change" data-s="cd">Desertification</a><a href="#change" data-s="cl">Land cover</a><a href="#change" data-s="cp">Plantations</a></nav>
   <section id="cf"><h3 class="h3x">Forest loss</h3><div class="kpis"><div class="kpi"><b>${fmt1.format(natTC/1e6)} M ha</b><span>tree cover in 2000 (canopy above 30%)</span><small>Hansen GFC v1.12, summed over states</small></div><div class="kpi"><b>${fmt1.format(natTot/1e6)} M ha</b><span>lost ${Y0}–${Y1} (${fmt1.format(natTot/natTC*100)}% of 2000 cover)</span><small>Stand-replacing loss, 30 m</small></div><div class="kpi"><b>${fmt.format(Math.round(sum(paL)/1000))}k ha</b><span>lost inside protected areas (${fmt1.format(sum(paL)/paTC*100)}% of their 2000 cover)</span><small>${fmt.format(pa.length)} WDPA boundaries; Ramsar and biosphere areas, which overlap other designations, excluded</small></div><div class="kpi"><b>${yrs[natL.indexOf(Math.max(...natL))]}</b><span>worst year nationally</span><small>${fmt.format(Math.round(Math.max(...natL)))} ha</small></div></div>
    <div class="grid2">${cF.map(c=>c.html).join('')}</div></section>
   <section id="cd"><h3 class="h3x">Desertification</h3><div class="kpis"><div class="kpi"><b>${dry.length} of ${dz.length}</b><span>states are drylands (aridity index below 0.65)</span><small>CHIRPS ÷ PET, 1991–2020</small></div><div class="kpi"><b>${CHG.dz.ggw.length}</b><span>Great Green Wall frontline states</span><small>Federal Ministry of Information</small></div><div class="kpi"><b>${fmt1.format(CHG.dz.sdg[CHG.dz.sdg.length-1][1])}%</b><span>of land degraded (${CHG.dz.sdg[CHG.dz.sdg.length-1][0]}), up from ${fmt1.format(CHG.dz.sdg[0][1])}% in ${CHG.dz.sdg[0][0]}</span><small>SDG 15.3.1, reported by Federal Ministry of Environment</small></div><div class="kpi"><b>${dz.filter(z=>z.pSlope<0).length}</b><span>states with a drying rainfall trend since 1991</span><small>CHIRPS v2</small></div></div>
@@ -1752,8 +1874,9 @@ function drawChange(el){
   <section id="cl"><h3 class="h3x">Land cover</h3><div class="kpis"><div class="kpi"><b>${fmt1.format(avN(...nA,1))}% → ${fmt1.format(avN(...nB,1))}%</b><span>trees, 2017–18 to 2024–25</span><small>Share of national land</small></div><div class="kpi"><b>${fmt1.format(avN(...nA,4))}% → ${fmt1.format(avN(...nB,4))}%</b><span>built area</span><small>≈ ${fmt.format(Math.round((avN(...nB,4)-avN(...nA,4))/100*sum(DATA.st.map(s=>s.km2))))} km² added</small></div><div class="kpi"><b>${fmt1.format(avN(...nA,3))}% → ${fmt1.format(avN(...nB,3))}%</b><span>crops</span><small>See note on savanna farmland</small></div><div class="kpi"><b>${fmt1.format(avN(...nA,6))}% → ${fmt1.format(avN(...nB,6))}%</b><span>rangeland</span><small>Grass and shrub, incl. fallow</small></div></div>
    <div class="grid2">${cL.map(c=>c.html).join('')}</div>
    <p class="note2">Use <b>Compare years</b> to see several years as a grid of maps, enlarge any one, and download them together or one at a time. The <b>Time explorer</b> steps through single years on the main map and gives a written summary for Nigeria, a state or a reserve. State figures were computed at 250 m from the 10 m maps; reserve figures in each profile are computed live.</p>
-  <p style="display:flex;gap:8px;flex-wrap:wrap"><a class="btn primary" href="#map" id="go-cmp">Compare years in a grid of maps</a><a class="btn" href="#map" id="go-time">Open the Time explorer on the map</a></p></section>`;
-  [...cF,...cD,...cL].forEach(c=>c.mount());
+  <p style="display:flex;gap:8px;flex-wrap:wrap"><a class="btn primary" href="#map" id="go-cmp">Compare years in a grid of maps</a><a class="btn" href="#map" id="go-time">Open the Time explorer on the map</a></p></section>${PS.html}`;
+  [...cF,...cD,...cL,...PS.cards].forEach(c=>c.mount());
+  if($('#go-pl'))$('#go-pl').onclick=e=>{e.preventDefault();location.hash='map';setTimeout(()=>{if(!plL.on)toggleOverlay('pl')},150)};
   $('#go-cmp').onclick=e=>{e.preventDefault();location.hash='map';setTimeout(cmpOpen,150)};
   $('#go-time').onclick=e=>{e.preventDefault();location.hash='map';setTimeout(()=>{if(!TL.on)toggleOverlay('time')},120)};
   $$('.subnav a').forEach(a=>a.onclick=e=>{e.preventDefault();$('#'+a.dataset.s).scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'})});
