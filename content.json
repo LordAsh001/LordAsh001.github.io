@@ -811,6 +811,42 @@
             }
           ],
           "classroom": "give each group a state, list the peoples and languages recorded there, and write the missing profile section for one of them using a cited source."
+        },
+        {
+          "name": "Nigeria Waste Sites Atlas",
+          "text": "Map open waste dumpsites across all 36 states and the FCT on free Sentinel-2 satellite imagery. Documented sites from studies and GPS field surveys sit alongside OpenStreetMap and GRID3 survey layers, a nationwide machine-learning scan ranked by a screening bot, and a national summary of confirmed sites and hectares by state. Every site shows its source and how it was verified, and you can pin new sites and download them as GeoJSON.",
+          "link_label": "Open tool",
+          "sdgs": [
+            3,
+            6,
+            11,
+            12
+          ],
+          "hidden": false,
+          "url": "/waste-atlas/",
+          "kind": "Interactive map · free",
+          "audience": [
+            "Researchers",
+            "Practitioners",
+            "Educators",
+            "Students"
+          ],
+          "level": "All levels",
+          "numbers": [
+            {
+              "value": "37",
+              "label": "states + FCT in the satellite scan"
+            },
+            {
+              "value": "74",
+              "label": "documented sites from studies and field surveys"
+            },
+            {
+              "value": "10 m",
+              "label": "Sentinel-2 image resolution"
+            }
+          ],
+          "classroom": "give each group a state, check five of the scan's candidate sites on high-resolution imagery, and decide which are real dumpsites, giving the evidence for each call."
         }
       ],
       "note": "Using one of these in a course or workshop? I'd love to hear how it went: [amool@unbc.ca](mailto:amool@unbc.ca). Free to use for teaching and learning."
