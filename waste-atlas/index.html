@@ -500,6 +500,7 @@ fetch('data/confirmed.geojson',{cache:'no-cache'}).then(r=>{if(!r.ok)throw 0;ret
 
 // ---------------------------------------------------------------- OpenStreetMap (live)
 const OVERPASS=["https://overpass-api.de/api/interpreter","https://overpass.kumi.systems/api/interpreter","https://overpass.private.coffee/api/interpreter"];
+let osmState='loading';
 async function loadOSM(){
   const q='[out:json][timeout:120];(nwr["landuse"="landfill"](4.2,2.6,13.9,14.7);nwr["amenity"="waste_transfer_station"](4.2,2.6,13.9,14.7););out center tags;';
   for(const url of OVERPASS){
@@ -511,9 +512,10 @@ async function loadOSM(){
           html:`<div class="pp-meta">OpenStreetMap <a target="_blank" rel="noopener" href="https://www.openstreetmap.org/${e.type}/${e.id}">${e.type}/${e.id}</a></div>
           <div style="font-size:12px">${Object.entries(t).slice(0,6).map(([k,v])=>`<code>${esc(k)}</code>=${esc(v)}`).join('<br>')}</div>
           <div style="margin-top:6px;font-size:12px;color:#666">The tag says landfill, not whether it is still open. Check the imagery.</div>`});});
-      refresh(); return;
+      osmState='ok'; refresh(); return;
     }catch(e){}
   }
+  osmState='fail'; refresh();
 }
 loadOSM();
 
@@ -560,7 +562,7 @@ $('importFile').onchange=async()=>{const f=$('importFile').files[0];if(!f)return
 // ---------------------------------------------------------------- filters + list
 const kindOn={conf:true,doc:true,field:true,approx:true,osm:true,mine:true};
 function renderChips(){
-  $('kindChips').innerHTML=Object.entries(KINDS).map(([k,v])=>`<label class="chip"><input type="checkbox" data-k="${k}" ${kindOn[k]?'checked':''}><span class="dot" style="background:var(${v.color})"></span>${esc(v.short)} <span class="n">${recs.filter(r=>r.kind===k).length}</span></label>`).join('');
+  $('kindChips').innerHTML=Object.entries(KINDS).map(([k,v])=>`<label class="chip"><input type="checkbox" data-k="${k}" ${kindOn[k]?'checked':''}><span class="dot" style="background:var(${v.color})"></span>${esc(v.short)} <span class="n" title="${k==='osm'&&osmState!=='ok'?(osmState==='loading'?'Loading from OpenStreetMap…':'OpenStreetMap did not respond; try again later'):''}">${k==='osm'&&osmState==='loading'?'loading…':k==='osm'&&osmState==='fail'?'offline':recs.filter(r=>r.kind===k).length}</span></label>`).join('');
   $('kindChips').querySelectorAll('input').forEach(i=>i.onchange=()=>{kindOn[i.dataset.k]=i.checked;refresh();});
 }
 function dist(a,b){const R=6371,dLat=(b[0]-a[0])*Math.PI/180,dLon=(b[1]-a[1])*Math.PI/180,x=Math.sin(dLat/2)**2+Math.cos(a[0]*Math.PI/180)*Math.cos(b[0]*Math.PI/180)*Math.sin(dLon/2)**2;return 2*R*Math.asin(Math.sqrt(x));}
