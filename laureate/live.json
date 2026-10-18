@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-17",
+ "updated": "2026-10-18",
  "sources": [
   {
    "source": "Opportunities for Africans",
@@ -14,12 +14,12 @@
   {
    "source": "Opportunities Corners",
    "ok": true,
-   "items": 2
+   "items": 4
   },
   {
    "source": "Scholarship Region",
-   "ok": true,
-   "items": 9
+   "ok": false,
+   "error": "not well-formed (invalid token): line 1, column 119"
   },
   {
    "source": "Opportunities for Youth",
@@ -57,6 +57,36 @@
  ],
  "items": [
   {
+   "title": "United Nations Young Professionals Programme 2026 (Fully Funded)",
+   "link": "https://opportunitiescorners.com/united-nations-young-professionals-program-2026/",
+   "date": "2026-10-18",
+   "source": "Opportunities Corners",
+   "official": false,
+   "ids": [],
+   "summary": "The United Nations Young Professionals Programme (YPP) 2026 offers eligible young professionals a chance to start an international career with the United Nations Secretariat. Designed for early-caree…",
+   "seen": "2026-10-18"
+  },
+  {
+   "title": "CEU Yehuda Elkana Fellowship 2027: Fully Funded PhD in Higher Education Policy in Austria",
+   "link": "https://opportunitiesforyouth.org/2026/10/18/ceu-yehuda-elkana-fellowship-2027-fully-funded-phd-in-higher-education-policy-in-austria/",
+   "date": "2026-10-18",
+   "source": "Opportunities for Youth",
+   "official": false,
+   "ids": [],
+   "summary": "The Central European University (CEU) Yehuda Elkana Fellowship offers an exciting opportunity for early-career scholars interested in pursuing doctoral research related to higher education policy. Ba…",
+   "seen": "2026-10-18"
+  },
+  {
+   "title": "Research & Innovation for Climate (RICH) Hub 2026: Climate AI Innovation Support and Potential Grants of Up to $200,000",
+   "link": "https://opportunitiesforyouth.org/2026/10/18/research-innovation-for-climate-rich-hub-2026-climate-ai-innovation-support-and-potential-grants-of-up-to-200000/",
+   "date": "2026-10-18",
+   "source": "Opportunities for Youth",
+   "official": false,
+   "ids": [],
+   "summary": "The Research & Innovation for Climate (RICH) Hub is inviting expressions of interest from innovators developing artificial intelligence (AI) and data-driven technologies that address climate change a…",
+   "seen": "2026-10-18"
+  },
+  {
    "title": "International Youth Foundation (IYF) Youth Research & Learning Fellow 2026: Paid Remote Fellowship for U.S. University Students, Earning Up to $28 per Hour",
    "link": "https://opportunitiesforyouth.org/2026/10/17/iyf-youth-research-learning-fellow-2026/",
    "date": "2026-10-17",
@@ -65,6 +95,26 @@
    "ids": [],
    "summary": "The International Youth Foundation (IYF) Youth Research & Learning Fellow 2026 is a paid, remote fellowship opportunity for university students in the United States who are interested in education, y…",
    "seen": "2026-10-17"
+  },
+  {
+   "title": "Global Investigative Journalism Conference 2027 in Netherlands (Fully Funded)",
+   "link": "https://opportunitiescorners.com/global-investigative-journalism-conference-2027/",
+   "date": "2026-10-17",
+   "source": "Opportunities Corners",
+   "official": false,
+   "ids": [],
+   "summary": "The applications are now open for the Global Investigative Journalism Conference 2027 in the Netherlands. Organized by the Global Investigative Journalism Network (GIJN) in collaboration with the Dut…",
+   "seen": "2026-10-18"
+  },
+  {
+   "title": "Palantir Meritocracy Fellowship 2026: A Five-Week Programme Combining Technology, Leadership, and Real-World Software Engineering",
+   "link": "https://opportunitiesforyouth.org/2026/10/17/palantir-meritocracy-fellowship-2026-a-five-week-programme-combining-technology-leadership-and-real-world-software-engineering/",
+   "date": "2026-10-17",
+   "source": "Opportunities for Youth",
+   "official": false,
+   "ids": [],
+   "summary": "Overview of the Palantir Meritocracy Fellowship The Palantir Meritocracy Fellowship is a development programme designed to identify talented individuals, challenge their intellectual abilities, and g…",
+   "seen": "2026-10-18"
   },
   {
    "title": "African Peacebuilding and Developmental Dynamics (APDD) Individual Research Fellowships 2027",
@@ -1645,60 +1695,6 @@
    "ids": [],
    "summary": "The UC Merced PhD in Public Health 2027 offers an advanced doctoral opportunity for students seeking to pursue research, scholarship, and professional careers in public health. Offered by the Univers…",
    "seen": "2026-10-08"
-  },
-  {
-   "title": "10 Fully Funded Postdoctoral Research Fellowships in Climate and Development at the University of Cape Town 2027",
-   "link": "https://opportunitiesforyouth.org/2026/10/07/10-fully-funded-postdoctoral-research-fellowships-in-climate-and-development-at-the-university-of-cape-town-2027/",
-   "date": "2026-10-07",
-   "source": "Opportunities for Youth",
-   "official": false,
-   "ids": [],
-   "summary": "Recent African PhD graduates looking to build careers in climate research, sustainable development, environmental policy, health, economics, marine science and related fields have an exciting opportu…",
-   "seen": "2026-10-08"
-  },
-  {
-   "title": "The University of Global Health Equity (UGHE) Mastercard Foundation Scholars Program 2027 for African healthcare professionals (Fully Funded)",
-   "link": "https://www.opportunitiesforafricans.com/the-university-of-global-health-equity-ughe-mastercard-foundation-scholars-program-2027/",
-   "date": "2026-10-06",
-   "source": "Opportunities for Africans",
-   "official": false,
-   "ids": [
-    "mastercard"
-   ],
-   "summary": "",
-   "seen": "2026-10-07"
-  },
-  {
-   "title": "Ernest May Fellowship in History and Policy 2027-2028 (stipend available)",
-   "link": "https://opportunitydesk.org/2026/10/06/ernest-may-fellowship-in-history-and-policy-2027-2028/",
-   "date": "2026-10-06",
-   "source": "Opportunity Desk",
-   "official": false,
-   "ids": [],
-   "summary": "Deadline: December 1, 2026 Applications for the Ernest May Fellowship in History and Policy 2027-2028 are now open. The Ernest May Fellowships honor Ernest May, Charles Warren Professor of American H…",
-   "seen": "2026-10-07"
-  },
-  {
-   "title": "Erasmus Mundus MESPOM Scholarship 2027/29 (Fully Funded)",
-   "link": "https://opportunitiescorners.com/erasmus-mundus-mespom-scholarship-2027/",
-   "date": "2026-10-06",
-   "source": "Opportunities Corners",
-   "official": false,
-   "ids": [
-    "erasmus"
-   ],
-   "summary": "Applications are now open for the Erasmus Mundus MESPOM Scholarship Program for the academic year 2027/29. MESPOM is an Erasmus Mundus Joint Master’s Degree program at four universities: Central Euro…",
-   "seen": "2026-10-07"
-  },
-  {
-   "title": "Global Youth Impact Summit Paris 2027 (Fully Funded)",
-   "link": "https://opportunitiescorners.com/global-youth-impact-summit-paris/",
-   "date": "2026-10-05",
-   "source": "Opportunities Corners",
-   "official": false,
-   "ids": [],
-   "summary": "Applications are open for the Global Youth Impact Summit Paris 2027, taking place in Paris, France, from 25–28 March 2027. The summit is a four-day international youth gathering focused on the UN Sus…",
-   "seen": "2026-10-07"
   }
  ]
 }
