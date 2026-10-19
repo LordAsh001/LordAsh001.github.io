@@ -1,5 +1,5 @@
 {
- "generated": "2026-10-19T07:26:47+00:00",
+ "generated": "2026-10-19T07:29:26+00:00",
  "records": [
   {
    "src": "wb_pinksheet",
@@ -1352,20 +1352,732 @@
    "usd_t": 2100.0,
    "date": "2026-09-01",
    "basis": "monthly average"
+  },
+  {
+   "src": "amis",
+   "c": "maize",
+   "label": "Maize, US No. 3 yellow, FOB Gulf (IGC)",
+   "usd_t": 201.0,
+   "date": "2025-09-30",
+   "basis": "export quotation"
+  },
+  {
+   "src": "amis",
+   "c": "maize",
+   "label": "Maize, US No. 3 yellow, FOB Gulf (IGC)",
+   "usd_t": 207.0,
+   "date": "2025-10-31",
+   "basis": "export quotation"
+  },
+  {
+   "src": "amis",
+   "c": "maize",
+   "label": "Maize, US No. 3 yellow, FOB Gulf (IGC)",
+   "usd_t": 211.0,
+   "date": "2025-11-28",
+   "basis": "export quotation"
+  },
+  {
+   "src": "amis",
+   "c": "maize",
+   "label": "Maize, US No. 3 yellow, FOB Gulf (IGC)",
+   "usd_t": 214.0,
+   "date": "2025-12-31",
+   "basis": "export quotation"
+  },
+  {
+   "src": "amis",
+   "c": "maize",
+   "label": "Maize, US No. 3 yellow, FOB Gulf (IGC)",
+   "usd_t": 216.0,
+   "date": "2026-01-30",
+   "basis": "export quotation"
+  },
+  {
+   "src": "amis",
+   "c": "maize",
+   "label": "Maize, US No. 3 yellow, FOB Gulf (IGC)",
+   "usd_t": 220.0,
+   "date": "2026-02-27",
+   "basis": "export quotation"
+  },
+  {
+   "src": "amis",
+   "c": "maize",
+   "label": "Maize, US No. 3 yellow, FOB Gulf (IGC)",
+   "usd_t": 218.0,
+   "date": "2026-03-31",
+   "basis": "export quotation"
+  },
+  {
+   "src": "amis",
+   "c": "maize",
+   "label": "Maize, US No. 3 yellow, FOB Gulf (IGC)",
+   "usd_t": 226.0,
+   "date": "2026-04-30",
+   "basis": "export quotation"
+  },
+  {
+   "src": "amis",
+   "c": "maize",
+   "label": "Maize, US No. 3 yellow, FOB Gulf (IGC)",
+   "usd_t": 215.0,
+   "date": "2026-05-29",
+   "basis": "export quotation"
+  },
+  {
+   "src": "amis",
+   "c": "maize",
+   "label": "Maize, US No. 3 yellow, FOB Gulf (IGC)",
+   "usd_t": 205.0,
+   "date": "2026-06-30",
+   "basis": "export quotation"
+  },
+  {
+   "src": "amis",
+   "c": "maize",
+   "label": "Maize, US No. 3 yellow, FOB Gulf (IGC)",
+   "usd_t": 221.0,
+   "date": "2026-07-31",
+   "basis": "export quotation"
+  },
+  {
+   "src": "amis",
+   "c": "maize",
+   "label": "Maize, US No. 3 yellow, FOB Gulf (IGC)",
+   "usd_t": 244.0,
+   "date": "2026-08-31",
+   "basis": "export quotation"
+  },
+  {
+   "src": "amis",
+   "c": "maize",
+   "label": "Maize, US No. 3 yellow, FOB Gulf (IGC)",
+   "usd_t": 236.0,
+   "date": "2026-09-30",
+   "basis": "export quotation"
+  },
+  {
+   "src": "amis",
+   "c": "palmoil",
+   "label": "Palm oil, Indonesia (IGC)",
+   "usd_t": 1115.0,
+   "date": "2025-10-01",
+   "basis": "export quotation"
+  },
+  {
+   "src": "amis",
+   "c": "palmoil",
+   "label": "Palm oil, Indonesia (IGC)",
+   "usd_t": 1070.0,
+   "date": "2025-11-01",
+   "basis": "export quotation"
+  },
+  {
+   "src": "amis",
+   "c": "palmoil",
+   "label": "Palm oil, Indonesia (IGC)",
+   "usd_t": 1059.0,
+   "date": "2025-12-01",
+   "basis": "export quotation"
+  },
+  {
+   "src": "amis",
+   "c": "palmoil",
+   "label": "Palm oil, Indonesia (IGC)",
+   "usd_t": 1085.0,
+   "date": "2026-01-01",
+   "basis": "export quotation"
+  },
+  {
+   "src": "amis",
+   "c": "palmoil",
+   "label": "Palm oil, Indonesia (IGC)",
+   "usd_t": 1119.0,
+   "date": "2026-02-01",
+   "basis": "export quotation"
+  },
+  {
+   "src": "amis",
+   "c": "palmoil",
+   "label": "Palm oil, Indonesia (IGC)",
+   "usd_t": 1200.0,
+   "date": "2026-03-01",
+   "basis": "export quotation"
+  },
+  {
+   "src": "amis",
+   "c": "palmoil",
+   "label": "Palm oil, Indonesia (IGC)",
+   "usd_t": 1223.0,
+   "date": "2026-04-01",
+   "basis": "export quotation"
+  },
+  {
+   "src": "amis",
+   "c": "palmoil",
+   "label": "Palm oil, Indonesia (IGC)",
+   "usd_t": 1214.0,
+   "date": "2026-05-01",
+   "basis": "export quotation"
+  },
+  {
+   "src": "amis",
+   "c": "palmoil",
+   "label": "Palm oil, Indonesia (IGC)",
+   "usd_t": 1199.0,
+   "date": "2026-06-01",
+   "basis": "export quotation"
+  },
+  {
+   "src": "amis",
+   "c": "palmoil",
+   "label": "Palm oil, Indonesia (IGC)",
+   "usd_t": 1196.0,
+   "date": "2026-07-01",
+   "basis": "export quotation"
+  },
+  {
+   "src": "amis",
+   "c": "palmoil",
+   "label": "Palm oil, Indonesia (IGC)",
+   "usd_t": 1220.0,
+   "date": "2026-08-01",
+   "basis": "export quotation"
+  },
+  {
+   "src": "amis",
+   "c": "palmoil",
+   "label": "Palm oil, Indonesia (IGC)",
+   "usd_t": 1242.0,
+   "date": "2026-09-01",
+   "basis": "export quotation"
+  },
+  {
+   "src": "amis",
+   "c": "rice",
+   "label": "Rice, Thai 100% Grade B, FOB Bangkok",
+   "usd_t": 355.0,
+   "date": "2025-09-30",
+   "basis": "export quotation"
+  },
+  {
+   "src": "amis",
+   "c": "rice",
+   "label": "Rice, Thai 100% Grade B, FOB Bangkok",
+   "usd_t": 344.0,
+   "date": "2025-10-31",
+   "basis": "export quotation"
+  },
+  {
+   "src": "amis",
+   "c": "rice",
+   "label": "Rice, Thai 100% Grade B, FOB Bangkok",
+   "usd_t": 366.0,
+   "date": "2025-11-28",
+   "basis": "export quotation"
+  },
+  {
+   "src": "amis",
+   "c": "rice",
+   "label": "Rice, Thai 100% Grade B, FOB Bangkok",
+   "usd_t": 412.0,
+   "date": "2025-12-31",
+   "basis": "export quotation"
+  },
+  {
+   "src": "amis",
+   "c": "rice",
+   "label": "Rice, Thai 100% Grade B, FOB Bangkok",
+   "usd_t": 398.0,
+   "date": "2026-01-30",
+   "basis": "export quotation"
+  },
+  {
+   "src": "amis",
+   "c": "rice",
+   "label": "Rice, Thai 100% Grade B, FOB Bangkok",
+   "usd_t": 391.0,
+   "date": "2026-02-27",
+   "basis": "export quotation"
+  },
+  {
+   "src": "amis",
+   "c": "rice",
+   "label": "Rice, Thai 100% Grade B, FOB Bangkok",
+   "usd_t": 372.0,
+   "date": "2026-03-31",
+   "basis": "export quotation"
+  },
+  {
+   "src": "amis",
+   "c": "rice",
+   "label": "Rice, Thai 100% Grade B, FOB Bangkok",
+   "usd_t": 404.0,
+   "date": "2026-04-30",
+   "basis": "export quotation"
+  },
+  {
+   "src": "amis",
+   "c": "rice",
+   "label": "Rice, Thai 100% Grade B, FOB Bangkok",
+   "usd_t": 460.0,
+   "date": "2026-05-29",
+   "basis": "export quotation"
+  },
+  {
+   "src": "amis",
+   "c": "rice",
+   "label": "Rice, Thai 100% Grade B, FOB Bangkok",
+   "usd_t": 485.0,
+   "date": "2026-06-30",
+   "basis": "export quotation"
+  },
+  {
+   "src": "amis",
+   "c": "rice",
+   "label": "Rice, Thai 100% Grade B, FOB Bangkok",
+   "usd_t": 458.0,
+   "date": "2026-07-31",
+   "basis": "export quotation"
+  },
+  {
+   "src": "amis",
+   "c": "rice",
+   "label": "Rice, Thai 100% Grade B, FOB Bangkok",
+   "usd_t": 475.0,
+   "date": "2026-08-31",
+   "basis": "export quotation"
+  },
+  {
+   "src": "amis",
+   "c": "rice",
+   "label": "Rice, Thai 100% Grade B, FOB Bangkok",
+   "usd_t": 466.0,
+   "date": "2026-09-30",
+   "basis": "export quotation"
+  },
+  {
+   "src": "amis",
+   "c": "soyoil",
+   "label": "Soybean oil, Argentina (IGC)",
+   "usd_t": 1089.0,
+   "date": "2025-10-01",
+   "basis": "export quotation"
+  },
+  {
+   "src": "amis",
+   "c": "soyoil",
+   "label": "Soybean oil, Argentina (IGC)",
+   "usd_t": 1095.0,
+   "date": "2025-11-01",
+   "basis": "export quotation"
+  },
+  {
+   "src": "amis",
+   "c": "soyoil",
+   "label": "Soybean oil, Argentina (IGC)",
+   "usd_t": 1100.0,
+   "date": "2025-12-01",
+   "basis": "export quotation"
+  },
+  {
+   "src": "amis",
+   "c": "soyoil",
+   "label": "Soybean oil, Argentina (IGC)",
+   "usd_t": 1134.0,
+   "date": "2026-01-01",
+   "basis": "export quotation"
+  },
+  {
+   "src": "amis",
+   "c": "soyoil",
+   "label": "Soybean oil, Argentina (IGC)",
+   "usd_t": 1166.0,
+   "date": "2026-02-01",
+   "basis": "export quotation"
+  },
+  {
+   "src": "amis",
+   "c": "soyoil",
+   "label": "Soybean oil, Argentina (IGC)",
+   "usd_t": 1151.0,
+   "date": "2026-03-01",
+   "basis": "export quotation"
+  },
+  {
+   "src": "amis",
+   "c": "soyoil",
+   "label": "Soybean oil, Argentina (IGC)",
+   "usd_t": 1200.0,
+   "date": "2026-04-01",
+   "basis": "export quotation"
+  },
+  {
+   "src": "amis",
+   "c": "soyoil",
+   "label": "Soybean oil, Argentina (IGC)",
+   "usd_t": 1166.0,
+   "date": "2026-05-01",
+   "basis": "export quotation"
+  },
+  {
+   "src": "amis",
+   "c": "soyoil",
+   "label": "Soybean oil, Argentina (IGC)",
+   "usd_t": 1173.0,
+   "date": "2026-06-01",
+   "basis": "export quotation"
+  },
+  {
+   "src": "amis",
+   "c": "soyoil",
+   "label": "Soybean oil, Argentina (IGC)",
+   "usd_t": 1175.0,
+   "date": "2026-07-01",
+   "basis": "export quotation"
+  },
+  {
+   "src": "amis",
+   "c": "soyoil",
+   "label": "Soybean oil, Argentina (IGC)",
+   "usd_t": 1190.0,
+   "date": "2026-08-01",
+   "basis": "export quotation"
+  },
+  {
+   "src": "amis",
+   "c": "soyoil",
+   "label": "Soybean oil, Argentina (IGC)",
+   "usd_t": 1211.0,
+   "date": "2026-09-01",
+   "basis": "export quotation"
+  },
+  {
+   "src": "amis",
+   "c": "soy",
+   "label": "Soybeans, US No. 2 yellow, FOB Gulf (IGC)",
+   "usd_t": 394.0,
+   "date": "2025-09-30",
+   "basis": "export quotation"
+  },
+  {
+   "src": "amis",
+   "c": "soy",
+   "label": "Soybeans, US No. 2 yellow, FOB Gulf (IGC)",
+   "usd_t": 442.0,
+   "date": "2025-10-31",
+   "basis": "export quotation"
+  },
+  {
+   "src": "amis",
+   "c": "soy",
+   "label": "Soybeans, US No. 2 yellow, FOB Gulf (IGC)",
+   "usd_t": 453.0,
+   "date": "2025-11-28",
+   "basis": "export quotation"
+  },
+  {
+   "src": "amis",
+   "c": "soy",
+   "label": "Soybeans, US No. 2 yellow, FOB Gulf (IGC)",
+   "usd_t": 417.0,
+   "date": "2025-12-31",
+   "basis": "export quotation"
+  },
+  {
+   "src": "amis",
+   "c": "soy",
+   "label": "Soybeans, US No. 2 yellow, FOB Gulf (IGC)",
+   "usd_t": 435.0,
+   "date": "2026-01-30",
+   "basis": "export quotation"
+  },
+  {
+   "src": "amis",
+   "c": "soy",
+   "label": "Soybeans, US No. 2 yellow, FOB Gulf (IGC)",
+   "usd_t": 471.0,
+   "date": "2026-02-27",
+   "basis": "export quotation"
+  },
+  {
+   "src": "amis",
+   "c": "soy",
+   "label": "Soybeans, US No. 2 yellow, FOB Gulf (IGC)",
+   "usd_t": 463.0,
+   "date": "2026-03-31",
+   "basis": "export quotation"
+  },
+  {
+   "src": "amis",
+   "c": "soy",
+   "label": "Soybeans, US No. 2 yellow, FOB Gulf (IGC)",
+   "usd_t": 473.0,
+   "date": "2026-04-30",
+   "basis": "export quotation"
+  },
+  {
+   "src": "amis",
+   "c": "soy",
+   "label": "Soybeans, US No. 2 yellow, FOB Gulf (IGC)",
+   "usd_t": 473.0,
+   "date": "2026-05-29",
+   "basis": "export quotation"
+  },
+  {
+   "src": "amis",
+   "c": "soy",
+   "label": "Soybeans, US No. 2 yellow, FOB Gulf (IGC)",
+   "usd_t": 449.0,
+   "date": "2026-06-30",
+   "basis": "export quotation"
+  },
+  {
+   "src": "amis",
+   "c": "soy",
+   "label": "Soybeans, US No. 2 yellow, FOB Gulf (IGC)",
+   "usd_t": 482.0,
+   "date": "2026-07-31",
+   "basis": "export quotation"
+  },
+  {
+   "src": "amis",
+   "c": "soy",
+   "label": "Soybeans, US No. 2 yellow, FOB Gulf (IGC)",
+   "usd_t": 516.0,
+   "date": "2026-08-31",
+   "basis": "export quotation"
+  },
+  {
+   "src": "amis",
+   "c": "soy",
+   "label": "Soybeans, US No. 2 yellow, FOB Gulf (IGC)",
+   "usd_t": 518.0,
+   "date": "2026-09-30",
+   "basis": "export quotation"
+  },
+  {
+   "src": "amis",
+   "c": "wheat",
+   "label": "Wheat, EU (France) Grade 1, FOB Rouen (IGC)",
+   "usd_t": 227.0,
+   "date": "2025-09-30",
+   "basis": "export quotation"
+  },
+  {
+   "src": "amis",
+   "c": "wheat",
+   "label": "Wheat, EU (France) Grade 1, FOB Rouen (IGC)",
+   "usd_t": 229.0,
+   "date": "2025-10-31",
+   "basis": "export quotation"
+  },
+  {
+   "src": "amis",
+   "c": "wheat",
+   "label": "Wheat, EU (France) Grade 1, FOB Rouen (IGC)",
+   "usd_t": 227.0,
+   "date": "2025-11-28",
+   "basis": "export quotation"
+  },
+  {
+   "src": "amis",
+   "c": "wheat",
+   "label": "Wheat, EU (France) Grade 1, FOB Rouen (IGC)",
+   "usd_t": 228.0,
+   "date": "2025-12-31",
+   "basis": "export quotation"
+  },
+  {
+   "src": "amis",
+   "c": "wheat",
+   "label": "Wheat, EU (France) Grade 1, FOB Rouen (IGC)",
+   "usd_t": 238.0,
+   "date": "2026-01-30",
+   "basis": "export quotation"
+  },
+  {
+   "src": "amis",
+   "c": "wheat",
+   "label": "Wheat, EU (France) Grade 1, FOB Rouen (IGC)",
+   "usd_t": 245.0,
+   "date": "2026-02-27",
+   "basis": "export quotation"
+  },
+  {
+   "src": "amis",
+   "c": "wheat",
+   "label": "Wheat, EU (France) Grade 1, FOB Rouen (IGC)",
+   "usd_t": 240.0,
+   "date": "2026-03-31",
+   "basis": "export quotation"
+  },
+  {
+   "src": "amis",
+   "c": "wheat",
+   "label": "Wheat, EU (France) Grade 1, FOB Rouen (IGC)",
+   "usd_t": 232.0,
+   "date": "2026-04-30",
+   "basis": "export quotation"
+  },
+  {
+   "src": "amis",
+   "c": "wheat",
+   "label": "Wheat, EU (France) Grade 1, FOB Rouen (IGC)",
+   "usd_t": 239.0,
+   "date": "2026-05-29",
+   "basis": "export quotation"
+  },
+  {
+   "src": "amis",
+   "c": "wheat",
+   "label": "Wheat, EU (France) Grade 1, FOB Rouen (IGC)",
+   "usd_t": 236.0,
+   "date": "2026-06-30",
+   "basis": "export quotation"
+  },
+  {
+   "src": "amis",
+   "c": "wheat",
+   "label": "Wheat, EU (France) Grade 1, FOB Rouen (IGC)",
+   "usd_t": 262.0,
+   "date": "2026-07-31",
+   "basis": "export quotation"
+  },
+  {
+   "src": "amis",
+   "c": "wheat",
+   "label": "Wheat, EU (France) Grade 1, FOB Rouen (IGC)",
+   "usd_t": 285.0,
+   "date": "2026-08-31",
+   "basis": "export quotation"
+  },
+  {
+   "src": "amis",
+   "c": "wheat",
+   "label": "Wheat, EU (France) Grade 1, FOB Rouen (IGC)",
+   "usd_t": 273.0,
+   "date": "2026-09-30",
+   "basis": "export quotation"
+  },
+  {
+   "src": "amis",
+   "c": "wheat",
+   "label": "Wheat, US HRW 11.5%, FOB Gulf (IGC)",
+   "usd_t": 229.0,
+   "date": "2025-09-30",
+   "basis": "export quotation"
+  },
+  {
+   "src": "amis",
+   "c": "wheat",
+   "label": "Wheat, US HRW 11.5%, FOB Gulf (IGC)",
+   "usd_t": 242.0,
+   "date": "2025-10-31",
+   "basis": "export quotation"
+  },
+  {
+   "src": "amis",
+   "c": "wheat",
+   "label": "Wheat, US HRW 11.5%, FOB Gulf (IGC)",
+   "usd_t": 245.0,
+   "date": "2025-11-28",
+   "basis": "export quotation"
+  },
+  {
+   "src": "amis",
+   "c": "wheat",
+   "label": "Wheat, US HRW 11.5%, FOB Gulf (IGC)",
+   "usd_t": 239.0,
+   "date": "2025-12-31",
+   "basis": "export quotation"
+  },
+  {
+   "src": "amis",
+   "c": "wheat",
+   "label": "Wheat, US HRW 11.5%, FOB Gulf (IGC)",
+   "usd_t": 263.0,
+   "date": "2026-01-30",
+   "basis": "export quotation"
+  },
+  {
+   "src": "amis",
+   "c": "wheat",
+   "label": "Wheat, US HRW 11.5%, FOB Gulf (IGC)",
+   "usd_t": 263.0,
+   "date": "2026-02-27",
+   "basis": "export quotation"
+  },
+  {
+   "src": "amis",
+   "c": "wheat",
+   "label": "Wheat, US HRW 11.5%, FOB Gulf (IGC)",
+   "usd_t": 283.0,
+   "date": "2026-03-31",
+   "basis": "export quotation"
+  },
+  {
+   "src": "amis",
+   "c": "wheat",
+   "label": "Wheat, US HRW 11.5%, FOB Gulf (IGC)",
+   "usd_t": 299.0,
+   "date": "2026-04-30",
+   "basis": "export quotation"
+  },
+  {
+   "src": "amis",
+   "c": "wheat",
+   "label": "Wheat, US HRW 11.5%, FOB Gulf (IGC)",
+   "usd_t": 292.0,
+   "date": "2026-05-29",
+   "basis": "export quotation"
+  },
+  {
+   "src": "amis",
+   "c": "wheat",
+   "label": "Wheat, US HRW 11.5%, FOB Gulf (IGC)",
+   "usd_t": 278.0,
+   "date": "2026-06-30",
+   "basis": "export quotation"
+  },
+  {
+   "src": "amis",
+   "c": "wheat",
+   "label": "Wheat, US HRW 11.5%, FOB Gulf (IGC)",
+   "usd_t": 315.0,
+   "date": "2026-07-31",
+   "basis": "export quotation"
+  },
+  {
+   "src": "amis",
+   "c": "wheat",
+   "label": "Wheat, US HRW 11.5%, FOB Gulf (IGC)",
+   "usd_t": 351.0,
+   "date": "2026-08-31",
+   "basis": "export quotation"
+  },
+  {
+   "src": "amis",
+   "c": "wheat",
+   "label": "Wheat, US HRW 11.5%, FOB Gulf (IGC)",
+   "usd_t": 330.0,
+   "date": "2026-09-30",
+   "basis": "export quotation"
   }
  ],
  "status": {
   "wb_pinksheet": {
    "ok": true,
    "records": 169,
-   "checked": "2026-10-19T07:26:46+00:00",
-   "last_success": "2026-10-19T07:26:46+00:00"
+   "checked": "2026-10-19T07:29:13+00:00",
+   "last_success": "2026-10-19T07:29:13+00:00"
   },
   "amis": {
-   "ok": false,
-   "error": "'str' object has no attribute 'get'",
-   "checked": "2026-10-19T07:26:47+00:00",
-   "last_success": null
+   "ok": true,
+   "records": 89,
+   "checked": "2026-10-19T07:29:26+00:00",
+   "last_success": "2026-10-19T07:29:26+00:00"
   }
  }
 }
