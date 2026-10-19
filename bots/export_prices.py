@@ -109,10 +109,13 @@ def collect_amis() -> list[dict]:
     s.headers.update({"User-Agent": USER_AGENT, "Content-Type": "application/json"})
     for table in sorted({t for t, _ in AMIS_SERIES}):
         q = ("SELECT indicator_code, date, value FROM `fao-maps.fao_amis.amis_indicators` "
-             f"WHERE indicator='{table}' AND value>0 AND date >= DATE_SUB(CURRENT_DATE(), INTERVAL 400 DAY) ORDER BY date ASC")
+             f"WHERE indicator='{table}' AND value>0 AND date >= FORMAT_DATE('%Y-%m-%d', DATE_SUB(CURRENT_DATE(), INTERVAL 400 DAY)) ORDER BY date ASC")
         r = s.post(AMIS_ENDPOINT, data=json.dumps({"query": q}), timeout=40)
         r.raise_for_status()
-        out += parse_amis(r.json(), table)
+        j = r.json()
+        if not isinstance(j, list):  # the endpoint answers {"error": "..."} when a query is rejected
+            raise RuntimeError(str(j.get("error", j) if isinstance(j, dict) else j)[:200])
+        out += parse_amis(j, table)
     # keep month-end values only (the last quote in each month) so the file stays small
     last = {}
     for x in out:
