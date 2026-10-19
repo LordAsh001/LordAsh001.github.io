@@ -35,6 +35,10 @@ jobs:
         run: python bots/collect.py --out market-atlas/data
         continue-on-error: true   # one broken site must not block the others' updates
 
+      - name: Collect international export prices (World Bank, AMIS)
+        run: python bots/export_prices.py market-atlas/data
+        continue-on-error: true
+
       - name: Build market-day calendar from community reports
         run: python bots/market_days.py market-atlas/data
         env:
