@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-18",
+ "updated": "2026-10-19",
  "sources": [
   {
    "source": "Opportunities for Africans",
@@ -14,22 +14,22 @@
   {
    "source": "Opportunities Corners",
    "ok": true,
-   "items": 4
+   "items": 5
   },
   {
    "source": "Scholarship Region",
-   "ok": false,
-   "error": "not well-formed (invalid token): line 1, column 119"
+   "ok": true,
+   "items": 10
   },
   {
    "source": "Opportunities for Youth",
-   "ok": true,
-   "items": 7
+   "ok": false,
+   "error": "HTTP Error 429: Too Many Requests"
   },
   {
    "source": "Commonwealth Scholarship Commission",
-   "ok": false,
-   "error": "not well-formed (invalid token): line 1, column 0"
+   "ok": true,
+   "items": 2
   },
   {
    "source": "Erasmus Mundus catalogue (EACEA)",
@@ -43,8 +43,8 @@
   },
   {
    "source": "Federal Ministry of Education, Nigeria",
-   "ok": true,
-   "items": 0
+   "ok": false,
+   "error": "HTTP Error 503: Service Unavailable"
   },
   {
    "source": "GOV.UK",
@@ -56,6 +56,46 @@
   }
  ],
  "items": [
+  {
+   "title": "CrossCulture Program 2027 in Germany (Fully Funded)",
+   "link": "https://opportunitiescorners.com/crossculture-program-2027-in-germany/",
+   "date": "2026-10-19",
+   "source": "Opportunities Corners",
+   "official": false,
+   "ids": [],
+   "summary": "Applications are now open for the CrossCulture Program (CCP) 2027 in Germany. This fully funded exchange program selects approximately 55–60 professionals and volunteers from 40 countries to build in…",
+   "seen": "2026-10-19"
+  },
+  {
+   "title": "Scout Adventures Volunteer Program 2026 UK (Fully Funded)",
+   "link": "https://opportunitiescorners.com/scout-adventures-volunteer-program/",
+   "date": "2026-10-19",
+   "source": "Opportunities Corners",
+   "official": false,
+   "ids": [],
+   "summary": "Applications are now open for the 2026 Scout Adventures Volunteer Program in the UK. It is a Paid Volunteer program for UK Residents and people from other countries, including Europe and the USA, to …",
+   "seen": "2026-10-19"
+  },
+  {
+   "title": "University of Gothenburg Axel Adler Scholarship in Sweden 2027 | Fully Funded",
+   "link": "https://www.scholarshipregion.com/axel-adler-scholarship/",
+   "date": "2026-10-19",
+   "source": "Scholarship Region",
+   "official": false,
+   "ids": [],
+   "summary": "University of Gothenburg Axel Adler Scholarship offers a fully funded opportunity to students studying international or Bachelor’s or Master’s Programmes at the University of Gothenburg. The Universi…",
+   "seen": "2026-10-19"
+  },
+  {
+   "title": "2027 Erasmus Trustfonds Scholarship in Netherlands | How To Apply",
+   "link": "https://www.scholarshipregion.com/erasmus-trustfonds-scholarships/",
+   "date": "2026-10-19",
+   "source": "Scholarship Region",
+   "official": false,
+   "ids": [],
+   "summary": "The Erasmus Trustfonds Scholarships have been founded to support research and education projects, organised by the Erasmus University Rotterdam (EUR) specifically. The Erasmus Trustfonds Scholarship …",
+   "seen": "2026-10-19"
+  },
   {
    "title": "United Nations Young Professionals Programme 2026 (Fully Funded)",
    "link": "https://opportunitiescorners.com/united-nations-young-professionals-program-2026/",
@@ -85,6 +125,16 @@
    "ids": [],
    "summary": "The Research & Innovation for Climate (RICH) Hub is inviting expressions of interest from innovators developing artificial intelligence (AI) and data-driven technologies that address climate change a…",
    "seen": "2026-10-18"
+  },
+  {
+   "title": "Keio University Japan ADB Scholarship 2027 (Fully Funded)",
+   "link": "https://opportunitiescorners.com/keio-university-japan-adb-scholarship-2027/",
+   "date": "2026-10-18",
+   "source": "Opportunities Corners",
+   "official": false,
+   "ids": [],
+   "summary": "The Keio University Japan ADB Scholarship 2027 is now open for applications for students seeking admission in April or September 2027. The Asian Development Bank (ADB) offers a fully funded master’s …",
+   "seen": "2026-10-19"
   },
   {
    "title": "International Youth Foundation (IYF) Youth Research & Learning Fellow 2026: Paid Remote Fellowship for U.S. University Students, Earning Up to $28 per Hour",
@@ -331,6 +381,16 @@
    "ids": [],
    "summary": "Overview of the Cities Deliver: AI Solutions for Public Services Grant Programme The Rockefeller Foundation and OpenAI Foundation have committed $50 million to Cities Deliver: AI Solutions for Public…",
    "seen": "2026-10-17"
+  },
+  {
+   "title": "Reconnecting Commonwealth Alumni in Samoa",
+   "link": "https://cscuk.fcdo.gov.uk/reconnecting-commonwealth-alumni-in-samoa/",
+   "date": "2026-10-15",
+   "source": "Commonwealth Scholarship Commission",
+   "official": true,
+   "ids": [],
+   "summary": "A recent Commonwealth Alumni engagement event in Samoa brought together alumni, education partners, and scholarship stakeholders to renew connections, share experiences, and explore how a stronger ne…",
+   "seen": "2026-10-19"
   },
   {
    "title": "Harrison Middleton University (HMU) Fellowship in Ideas 2027",
@@ -1634,66 +1694,6 @@
    "official": false,
    "ids": [],
    "summary": "1. France-South Africa Scholarship Programme 2026The France–South Africa Scholarship Programme supports eligible students intending to undertake a master’s degree or PhD at a French university or hig…",
-   "seen": "2026-10-08"
-  },
-  {
-   "title": "National Youth Pension Literacy Essay Competition For Nigerians | ₦2.5m Awards",
-   "link": "https://www.scholarshipregion.com/national-youth-pension-literacy-essay-competition/",
-   "date": "2026-10-07",
-   "source": "Scholarship Region",
-   "official": false,
-   "ids": [],
-   "summary": "The National Youth Pension Literacy Essay Competition invites secondary school students and tertiary/NYSC participants nationwide to write on financial independence, retirement planning, and pension …",
-   "seen": "2026-10-08"
-  },
-  {
-   "title": "University of Westminster Sanctuary Scholarship in UK 2027 | Fully Funded",
-   "link": "https://www.scholarshipregion.com/university-of-westminster-sanctuary-scholarship/",
-   "date": "2026-10-07",
-   "source": "Scholarship Region",
-   "official": false,
-   "ids": [],
-   "summary": "The University of Westminster Sanctuary Scholarship is a fully funded study opportunity for a Master’s degree in the United Kingdom. The University of Westminster Postgraduate Sanctuary Scholarship o…",
-   "seen": "2026-10-08"
-  },
-  {
-   "title": "Writing for the Media Training 2027: Fully Funded Research Communication Training by ACU and The Conversation for Early Career Researchers",
-   "link": "https://opportunitiesforyouth.org/2026/10/07/writing-for-the-media-training-2027-fully-funded-research-communication-training-by-acu-and-the-conversation-for-early-career-researchers/",
-   "date": "2026-10-07",
-   "source": "Opportunities for Youth",
-   "official": false,
-   "ids": [],
-   "summary": "Academic research has the power to influence public policy, transform communities, and address some of the world’s most pressing challenges. However, many researchers struggle to communicate their fi…",
-   "seen": "2026-10-08"
-  },
-  {
-   "title": "Novo Nordisk Foundation Postdoctoral Fellowships at MIT 2027: Up to DKK 3.6 Million for Early-Career Researchers",
-   "link": "https://opportunitiesforyouth.org/2026/10/07/novo-nordisk-foundation-postdoctoral-fellowships-at-mit-2027-up-to-dkk-3-6-million-for-early-career-researchers/",
-   "date": "2026-10-07",
-   "source": "Opportunities for Youth",
-   "official": false,
-   "ids": [],
-   "summary": "The Novo Nordisk Foundation Postdoctoral Fellowships at Massachusetts Institute of Technology (MIT) 2027 offer an opportunity for early-career researchers to undertake interdisciplinary research in c…",
-   "seen": "2026-10-08"
-  },
-  {
-   "title": "WES Ecosystem Fund 2027: Up to $80 Million in Funding for Organizations Supporting Women Entrepreneurs in Canada",
-   "link": "https://opportunitiesforyouth.org/2026/10/07/wes-ecosystem-fund-2027-up-to-80-million-in-funding-for-organizations-supporting-women-entrepreneurs-in-canada/",
-   "date": "2026-10-07",
-   "source": "Opportunities for Youth",
-   "official": false,
-   "ids": [],
-   "summary": "The Government of Canada has opened the application for the WES Ecosystem Fund 2027. The 2027 Women Entrepreneurship Strategy (WES) Ecosystem Fund Call for Proposals, providing an opportunity for eli…",
-   "seen": "2026-10-08"
-  },
-  {
-   "title": "UC Merced PhD in Public Health 2027: Fully Funded Doctoral Program for Domestic and International Students",
-   "link": "https://opportunitiesforyouth.org/2026/10/07/uc-merced-phd-in-public-health-2027/",
-   "date": "2026-10-07",
-   "source": "Opportunities for Youth",
-   "official": false,
-   "ids": [],
-   "summary": "The UC Merced PhD in Public Health 2027 offers an advanced doctoral opportunity for students seeking to pursue research, scholarship, and professional careers in public health. Offered by the Univers…",
    "seen": "2026-10-08"
   }
  ]
