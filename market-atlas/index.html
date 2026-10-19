@@ -3,22 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Nigeria Market Atlas</title>
-<meta name="author" content="Shagbaor Hycent Amool">
-<meta name="color-scheme" content="light dark">
-<meta name="description" content="Interactive map of Nigerian produce markets, market days, prices, storage and weighbridges, with a multi-stop road trip planner and fuel price tracker.">
-<meta property="og:type" content="website">
+<meta name="description" content="Interactive map of Nigerian produce markets, market days, prices, storage and weighbridges, with a multi-stop road trip planner, fuel price tracker and an export cost calculator.">
+<link rel="canonical" href="https://shagbaor.com/market-atlas/">
 <meta property="og:title" content="Nigeria Market Atlas">
 <meta property="og:description" content="Markets, market days, produce prices, storage and weighbridges across Nigeria, with road distances and travel times by car, bus and articulated truck.">
 <meta property="og:url" content="https://shagbaor.com/market-atlas/">
-<meta property="og:image" content="https://shagbaor.com/images/tool-market-atlas.jpg">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="theme-color" content="#2c3e9e">
-<link rel="canonical" href="https://shagbaor.com/market-atlas/">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%232c3e9e'/%3E%3Cpath d='M12 26 18 14h28l6 12Z' fill='%23fff'/%3E%3Cpath d='M15 30h34v20H15Z' fill='none' stroke='%23fff' stroke-width='5' stroke-linejoin='round'/%3E%3C/svg%3E">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"Nigeria Market Atlas","description":"Free, source-linked map of Nigerian produce markets, market days, food prices, grain silos, warehouses and weighbridges, with road distances and trucking cost estimates between markets.","url":"https://shagbaor.com/market-atlas/","creator":{"@type":"Person","name":"Shagbaor Hycent Amool","affiliation":"University of Northern British Columbia"},"spatialCoverage":"Nigeria","isAccessibleForFree":true}</script>
 <script>try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t);}catch(e){}</script>
 <script src="/assets/traction.js" defer></script>
+<title>Nigeria Market Atlas</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@500;600;700&family=Public+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <style>
@@ -204,12 +196,6 @@ td:first-child{font-family:var(--f-body)}
   .legend{max-width:170px}
 }
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
-
-/* shared site bar (added by /assets/toolbar.js): sits above the workbench, above Leaflet panes */
-body{margin:0;display:flex;flex-direction:column}
-.sitebar{z-index:1100!important}
-.app{flex:1;min-height:0;height:auto}
-@media (max-width:820px){body{display:block}.app{min-height:100%}}
 </style>
 </head>
 <body>
@@ -234,6 +220,7 @@ body{margin:0;display:flex;flex-direction:column}
         <button role="tab" id="t-tracker" aria-selected="false" data-tab="tracker">Tracker</button>
         <button role="tab" id="t-calendar" aria-selected="false" data-tab="calendar">Calendar</button>
         <button role="tab" id="t-route" aria-selected="false" data-tab="route">Logistics</button>
+        <button role="tab" id="t-export" aria-selected="false" data-tab="export">Export Camp</button>
         <button role="tab" id="t-data" aria-selected="false" data-tab="data">Data</button>
       </div>
       <div class="pane" id="pane-explore"></div>
@@ -241,6 +228,7 @@ body{margin:0;display:flex;flex-direction:column}
       <div class="pane" id="pane-tracker" hidden></div>
       <div class="pane" id="pane-calendar" hidden></div>
       <div class="pane" id="pane-route" hidden></div>
+      <div class="pane" id="pane-export" hidden></div>
       <div class="pane" id="pane-data" hidden></div>
     </aside>
     <div class="splitter" id="splitter" role="separator" aria-orientation="vertical" aria-label="Resize the panel and the map" tabindex="0"><span class="grip"></span><button type="button" class="splbtn" id="splPanel" aria-label="Widen the panel">‹</button><button type="button" class="splbtn" id="splMap" aria-label="Widen the map">›</button></div>
@@ -1858,6 +1846,7 @@ function showTab(t){
   if (t==="data") renderData();
   if (t==="tracker") renderTracker();
   if (t==="calendar") renderCalendar();
+  if (t==="export"){ renderExport(); exportRoute(); } else clearExportMap();
 }
 document.querySelectorAll(".tabs button").forEach(b=>b.onclick=()=>showTab(b.dataset.tab));
 
@@ -1903,7 +1892,7 @@ function selectedCard(){
   const fx = ["weighbridge","silo","warehouse","processor"].map(t=>({t, n:near(t)})).filter(r=>r.n);
   h += `<h3>Nearest support facilities</h3><div class="list">` + fx.map(({n})=>placeRow(n.x, `${fmtN(n.d*RS.circuity)} km`)).join("") + `</div>`;
   h += `<p class="small muted">Road km = straight-line distance × ${RS.circuity} (Nigerian road circuity). Drive time at ${RS.speed} km/h average including checkpoints. Change both in Logistics.</p>`;
-  h += `<div class="btns"><button class="btn" type="button" id="asOrigin">Start a trip here</button><button class="btn ghost" type="button" id="asDest">Add to trip</button></div>`;
+  h += `<div class="btns"><button class="btn" type="button" id="asOrigin">Start a trip here</button><button class="btn ghost" type="button" id="asDest">Add to trip</button><button class="btn ghost" type="button" id="asExport">Export from here</button></div>`;
   return h + `</div>`;
 }
 
@@ -1957,6 +1946,7 @@ function renderExplore(){
   $("#closeSel") && ($("#closeSel").onclick = ()=>{ SEL=null; ringLayer.clearLayers(); drawPoints(); renderExplore(); });
   $("#asOrigin") && ($("#asOrigin").onclick = ()=>{ RS.origin=SEL.id; RS.buy=null; saveRS(); showTab("route"); });
   $("#asDest") && ($("#asDest").onclick = ()=>{ RS.dest=SEL.id; RS.sell=null; saveRS(); showTab("route"); });
+  $("#asExport") && ($("#asExport").onclick = ()=>exportFrom(SEL));
   el.querySelectorAll("[data-mt]").forEach(i=>i.onchange=()=>{ MTYPES[i.dataset.mt]=i.checked; store.set("mtypes",MTYPES); drawPoints(); drawLegend(); });
   const q = $("#q");
   if (q) q.oninput = () => {
@@ -3502,6 +3492,527 @@ showTab = function(t){
 })();
 map.attributionControl.addAttribution('Routing <a href="https://valhalla.github.io/valhalla/" target="_blank" rel="noopener">Valhalla</a> · search <a href="https://photon.komoot.io" target="_blank" rel="noopener">Photon</a>');
 
+// ===================== Export Camp =====================
+// International prices, buyer specifications, export rules, sales channels and an export cost calculator
+// (farm gate or market → cleaning → truck to port → FOB → optional ocean freight to CFR/CIF).
+
+const FX = {
+  official: {rate:1332.47, date:"2026-10-13", label:"NFEM official rate (CBN)", src:"fx"},
+  parallel: {rate:1370,    date:"2026-10-14", label:"parallel market, middle of ₦1,365 buy / ₦1,375 sell", src:"fx"}
+};
+
+const EXP_SRC = {
+  wb_pinksheet:{name:"World Bank Pink Sheet, Oct 2026 (Sep 2026 monthly averages)", url:"https://thedocs.worldbank.org/en/doc/74e8be41ceb20fa0da750cda2f6b9e4e-0050012026/related/CMO-Pink-Sheet-October-2026.pdf", conf:"high"},
+  amis:{name:"AMIS Market Monitor No. 142, Oct 2026 (IGC and USDA export quotes)", url:"https://www.amis-outlook.org/market-monitor", conf:"high"},
+  aai:{name:"AAI Grains & Food Supplies, indicative export prices, 23 Sep 2026", url:"https://www.aaigrainsfoodsupllies.com/market-prices", conf:"low"},
+  cmb:{name:"CMB News cashew market report, 10 Jul 2026", url:"https://commodity-board.com/cashew-prices-stay-firm-as-raw-nut-costs-tight-african-supplies-squeeze-processors", conf:"medium"},
+  mansa_cocoa:{name:"Mansa Markets, cocoa price in Nigeria, 16 Oct 2026", url:"https://www.mansamarkets.com/blog/cocoa-price-in-nigeria-today", conf:"medium"},
+  mansa_cashew:{name:"Mansa Markets, cashew price in Nigeria, 16 Oct 2026", url:"https://www.mansamarkets.com/blog/cashew-price-in-nigeria-today", conf:"low"},
+  ecofin:{name:"Ecofin Agency, West Africa's shea market, 6 Oct 2026", url:"https://www.ecofinagency.com/news/0610-59480-west-africas-shea-market-faces-fresh-uncertainty-as-2026-season-begins", conf:"medium"},
+  bday23:{name:"BusinessDay, hibiscus exporters (AHFEN), 21 Sep 2023", url:"https://businessday.ng/agriculture/article/nigerias-hibiscus-farming-booms-as-growers-eye-n48bn-earnings/", conf:"low"},
+  fwf:{name:"FW Freight, Nigeria → Netherlands guideline container rates (undated)", url:"https://fwfreight.com/freight-shipping/from-nigeria-to-netherlands/", conf:"low"},
+  lokoja:{name:"lokoja.app haulage index, Aug 2026", url:"https://lokoja.app/haulage/", conf:"low"},
+  kudal:{name:"Kudal Group sesame specification sheet", url:"https://kudalgroup.lovable.app/grains/sesame-seed", conf:"medium"},
+  nsw:{name:"Nigeria National Single Window: export procedure", url:"https://tip.nsw.gov.ng/trading-with-nigeria/export-procedure", conf:"high"},
+  nepc:{name:"NEPC: export documents and procedures", url:"https://nepc.gov.ng/?p=46", conf:"high"},
+  nepc_eeg:{name:"NEPC: Export Expansion Grant", url:"https://nepc.gov.ng/?p=216557", conf:"high"},
+  eudr:{name:"VinciWorks, EUDR application dates (7 Jan 2026)", url:"https://vinciworks.com/blog/eudr-delayed-again-what-changed-what-is-now-fixed-and-what-businesses-should-do-in-2026/", conf:"medium"},
+  maizebill:{name:"CropGPT, unprocessed maize export prohibition bill", url:"https://cropgpt.ai/nigeria-maize-unprocessed-export-prohibition-bill", conf:"medium"},
+  fx:{name:"TechEconomy, dollar to naira, 14 Oct 2026", url:"https://techeconomy.ng/dollar-to-naira-exchange-rate-today-october-14-2026", conf:"medium"},
+  amis_home:{name:"AMIS home page, markets at a glance (1 Oct 2026) and news (15 Oct 2026)", url:"https://www.amis-outlook.org/home", conf:"high"}
+};
+
+// Price evidence. lo/hi in US$/t unless unit says otherwise. "origin": Nigeria = Nigerian product, world = benchmark.
+const EXPORT_PRICES = [
+  {c:"sesame", label:"White sesame, FAQ / sortex clean", origin:"Nigeria", basis:"FOB Lagos", lo:1100, hi:1350, date:"2026-09-23", src:"aai"},
+  {c:"sesame", label:"Mixed sesame, FAQ", origin:"Nigeria", basis:"FOB Lagos", lo:950, hi:1150, date:"2026-09-23", src:"aai"},
+  {c:"cashew", label:"Raw cashew nuts (Nigeria, Ghana, Côte d’Ivoire)", origin:"Nigeria", basis:"CNF Vietnam", lo:1410, hi:1530, date:"2026-07-10", src:"cmb"},
+  {c:"cashew", label:"Raw cashew nuts, local exchange spot", origin:"Nigeria", basis:"Nigeria spot", unit:"₦/kg", v:1719.5, date:"2026-10-16", src:"mansa_cashew", note:"Same figure every day since 10 Sep 2026, so it may not be updated."},
+  {c:"cashew", label:"Cashew kernels W320, African origin (processed)", origin:"world", basis:"FOB", lo:7385, hi:7716, date:"2026-07-10", src:"cmb", note:"Published as US$3.35–3.50 per lb; × 2,204.6 lb per tonne."},
+  {c:"cocoa", label:"Cocoa beans, ICCO average", origin:"world", basis:"monthly average", v:5920, date:"2026-09-01", src:"wb_pinksheet"},
+  {c:"cocoa", label:"Cocoa, world benchmark", origin:"world", basis:"daily", v:5619, date:"2026-10-16", src:"mansa_cocoa"},
+  {c:"cocoa", label:"Cocoa beans in Nigeria", origin:"Nigeria", basis:"Nigeria spot", unit:"₦/kg", v:7250, date:"2026-10-16", src:"mansa_cocoa"},
+  {c:"ginger", label:"Dried split ginger, FAQ", origin:"Nigeria", basis:"FOB Lagos", lo:1400, hi:1800, date:"2026-09-23", src:"aai"},
+  {c:"ginger", label:"Dried whole ginger, FAQ", origin:"Nigeria", basis:"FOB Lagos", lo:1200, hi:1550, date:"2026-09-23", src:"aai"},
+  {c:"soy", label:"Soybeans, FAQ grade 1", origin:"Nigeria", basis:"FOB Lagos", lo:480, hi:580, date:"2026-09-23", src:"aai"},
+  {c:"soy", label:"Soybeans, US", origin:"world", basis:"CIF Rotterdam", v:524, date:"2026-09-01", src:"wb_pinksheet"},
+  {c:"soy", label:"Soybeans, US No. 2 yellow", origin:"world", basis:"FOB Gulf", v:518, date:"2026-09-30", src:"amis"},
+  {c:"groundnut", label:"Groundnut kernels, shelled FAQ", origin:"Nigeria", basis:"FOB Lagos", lo:900, hi:1100, date:"2026-09-23", src:"aai"},
+  {c:"groundnut", label:"Groundnuts, US runners 40/50", origin:"world", basis:"CIF Rotterdam", v:1563, date:"2026-09-01", src:"wb_pinksheet"},
+  {c:"hibiscus", label:"Dried hibiscus, farm-to-exporter price", origin:"Nigeria", basis:"Nigeria, per tonne", unit:"₦/t", lo:1700000, hi:2000000, date:"2023-09-21", src:"bday23", note:"Three years old: the most recent published figure we found. Ask exporters for current prices."},
+  {c:"cowpea", label:"Black-eyed beans (cowpea), FAQ", origin:"Nigeria", basis:"FOB Lagos", lo:700, hi:900, date:"2026-09-23", src:"aai"},
+  {c:"sorghum", label:"Sorghum (guinea corn), FAQ", origin:"Nigeria", basis:"FOB Lagos", lo:260, hi:330, date:"2026-09-23", src:"aai"},
+  {c:"maize", label:"White maize, FAQ grade 1", origin:"Nigeria", basis:"FOB Lagos", lo:290, hi:370, date:"2026-09-23", src:"aai"},
+  {c:"maize", label:"Yellow maize, FAQ grade 1", origin:"Nigeria", basis:"FOB Lagos", lo:280, hi:360, date:"2026-09-23", src:"aai"},
+  {c:"maize", label:"Maize, US No. 2 yellow", origin:"world", basis:"FOB Gulf", v:239.6, date:"2026-09-01", src:"wb_pinksheet"},
+  {c:"maize", label:"Maize, US No. 3 yellow", origin:"world", basis:"FOB Gulf", v:236, date:"2026-09-30", src:"amis"},
+  {c:"shea", label:"Shea kernels in Nigeria", origin:"Nigeria", basis:"Nigeria, per kg", unit:"CFA F/kg", lo:280, hi:320, date:"2026-10-06", src:"ecofin", note:"Quoted in CFA francs by the N’kalô bulletin. Raw shea exports from Nigeria are banned (see Rules)."},
+  {c:"garri", label:"Garri, white or yellow", origin:"Nigeria", basis:"FOB Lagos", lo:350, hi:450, date:"2026-09-23", src:"aai"},
+  {c:"palmoil", label:"Crude palm oil (Nigeria)", origin:"Nigeria", basis:"FOB Lagos", lo:900, hi:1100, date:"2026-09-23", src:"aai"},
+  {c:"palmoil", label:"Palm oil, Malaysia/Indonesia", origin:"world", basis:"CIF Rotterdam", v:1180, date:"2026-09-01", src:"wb_pinksheet"},
+  {c:"palmoil", label:"Palm oil, Indonesia", origin:"world", basis:"IGC quote", v:1242, date:"2026-09-01", src:"amis"},
+  {c:"rice", label:"Rice, Thai 5% broken", origin:"world", basis:"FOB Bangkok", v:482, date:"2026-09-01", src:"wb_pinksheet"},
+  {c:"wheat", label:"Wheat, US HRW", origin:"world", basis:"FOB Gulf", v:347, date:"2026-09-01", src:"wb_pinksheet"}
+];
+
+// Global context shown at the top of Prices (AMIS / FAO / World Bank)
+const GLOBAL_CONTEXT = [
+  ["FAO Food Price Index", "136.0", "Sep 2026 (2014–16 = 100). Oils & fats 198.6, cereals 122.8.", "amis"],
+  ["World production forecast 2026/27", "Wheat 813.9 Mt · maize 1,302.0 Mt · rice 552.5 Mt · soybeans 441.1 Mt", "AMIS, 1 Oct 2026. Wheat −3.3% and maize −1.3% on the previous season; soybeans +2.1%.", "amis_home"],
+  ["Baltic Dry Index (bulk freight)", "3,113", "30 Sep 2026. High freight rates push up delivered (CFR/CIF) prices and squeeze FOB prices.", "amis"],
+  ["Brent crude oil", "US$116.8 per barrel", "Sep 2026 average, up from US$90.9 in Aug. This feeds into diesel and haulage costs.", "wb_pinksheet"],
+  ["Nigeria policy", "₦200 billion guaranteed minimum price programme", "Launched 8 Sep 2026, targeting at least 500,000 t of grain (reported by AMIS). It can lift local grain prices, which narrows export margins.", "amis_home"],
+  ["United States trade preferences", "Extended to 31 Dec 2028", "The US scheme for eligible sub-Saharan African countries, extended on 2 Sep 2026 (AMIS news). Check Nigeria’s eligibility and the product list before relying on it.", "amis_home"]
+];
+
+const PORTS = {
+  apapa:  {name:"Apapa port, Lagos", lat:6.4426, lng:3.3653},
+  tincan: {name:"Tin Can Island port, Lagos", lat:6.4380, lng:3.3460},
+  lekki:  {name:"Lekki Deep Sea Port, Lagos", lat:6.4170, lng:4.0320},
+  onne:   {name:"Onne port, Rivers", lat:4.7180, lng:7.1550},
+  calabar:{name:"Calabar port, Cross River", lat:4.9600, lng:8.3200},
+  seme:   {name:"Seme border (road to Benin, Togo, Ghana)", lat:6.3720, lng:2.7110, road:true},
+  illela: {name:"Illela border (road to Niger)", lat:13.7300, lng:5.2970, road:true}
+};
+
+// Ocean freight per container, US$. Only Europe has a published guideline; the rest are Atlas placeholders.
+const DESTS = {
+  europe: {name:"Europe (Rotterdam / Antwerp)", f20:2939, f40:3827, src:"fwf", note:"Guideline rate from FW Freight (no date given)."},
+  china:  {name:"China (Qingdao / Shanghai)", f20:1800, f40:2600, src:null},
+  vietnam:{name:"Vietnam (Ho Chi Minh City)", f20:1800, f40:2600, src:null},
+  india:  {name:"India (Mundra / Tuticorin)", f20:1700, f40:2500, src:null},
+  turkey: {name:"Türkiye (Mersin)", f20:2200, f40:3000, src:null},
+  japan:  {name:"Japan (Yokohama / Kobe)", f20:2300, f40:3200, src:null},
+  mexico: {name:"Mexico (Veracruz / Manzanillo)", f20:3000, f40:4000, src:null},
+  gulf:   {name:"Middle East (Jebel Ali)", f20:1900, f40:2700, src:null},
+  usa:    {name:"USA East Coast", f20:3200, f40:4200, src:null},
+  ecowas: {name:"ECOWAS neighbour by road (no sea freight)", f20:0, f40:0, src:null, road:true}
+};
+
+// Typical buyer specifications. The contract always decides.
+const EXPORT_ITEMS = {
+  sesame:{label:"Sesame seed", atlasC:null, status:"open", load20:25, load40:26, loss:3, bag:50, dest:"china",
+    buyers:"China, Japan, Türkiye and other Asian buyers are the usual destinations.",
+    specs:[["Purity","99% or 99.5% (whitish grades)"],["Admixture / foreign matter","0.5–1% max"],["Moisture","6% max"],["Free fatty acid (FFA)","2% max"],["Oil content","48–52%"],["Packing","50 kg new polypropylene bags; jute or big bags on request"],["Container","25 t per 20 ft"]], specSrc:"kudal",
+    risks:["Buyers in Japan and the EU test for pesticide residues and salmonella. Test a sample at an accredited lab before you ship."]},
+  cashew:{label:"Raw cashew nuts (RCN)", atlasC:null, status:"open", load20:17, load40:26, loss:1, bag:80, dest:"vietnam",
+    buyers:"Vietnam and India buy most of West Africa’s raw nuts and process them into kernels.",
+    specs:[["Outturn (KOR)","46–50 lb of kernel per 80 kg bag; the higher the better"],["Nut count","180–210 nuts per kg"],["Moisture","10% max"],["Defective nuts","8–10% max"],["Foreign matter","1% max"],["Packing","80 kg jute bags"],["Container","Usually shipped in 40 ft (about 26 t); 20 ft about 17 t"]], specSrc:null,
+    risks:["Price is usually agreed per tonne at a stated KOR, with a discount for each pound below it. Get an independent KOR test at loading."]},
+  cocoa:{label:"Cocoa beans", atlasC:null, status:"check", load20:12.5, load40:25, loss:1, bag:64, dest:"europe",
+    statusNote:"From 30 Dec 2026, large and medium EU buyers must prove cocoa was not grown on land deforested after 31 Dec 2020 (EU Deforestation Regulation). You will need the GPS location of every farm plot. Small and micro operators follow from 30 Jun 2027.", statusSrc:"eudr",
+    buyers:"The Netherlands, Germany and other EU grinders, plus Malaysia and Indonesia.",
+    specs:[["Grade","Grade I: mouldy ≤3%, slaty ≤3%, insect-damaged, germinated or flat ≤3%"],["Moisture","7.5% max"],["Bean count","About 100 beans per 100 g or fewer"],["Foreign matter","None"],["Packing","62.5–64 kg jute bags"],["Container","About 12.5 t bagged per 20 ft; more with a bulk liner"]], specSrc:null,
+    risks:["Needs a Federal Produce Inspection Service grade certificate and fumigation certificate."]},
+  ginger:{label:"Dried split ginger", atlasC:null, status:"open", load20:13, load40:24, loss:2, bag:50, dest:"india",
+    buyers:"Buyers in Asia, Europe and the Middle East. Southern Kaduna is the main producing area.",
+    specs:[["Moisture","10% max"],["Foreign matter","1% max"],["Condition","Free from mould and live insects; light brown colour"],["Packing","25–50 kg jute or polypropylene bags"],["Container","About 13 t per 20 ft (light, bulky cargo; confirm with your forwarder)"]], specSrc:null,
+    risks:["Mould from poor drying is the most common rejection reason. Dry to below 10% moisture before bagging."]},
+  soy:{label:"Soybeans", atlasC:"soy", status:"open", load20:25, load40:26, loss:2, bag:50, dest:"china",
+    buyers:"Asian crushers and feed mills. Nigeria’s own crushers compete for the same beans.",
+    specs:[["Moisture","13% max"],["Foreign matter","2% max"],["Damaged / split beans","Agreed in the contract"],["Oil / protein","About 18–20% oil and 35–36% protein"],["Packing","50 kg bags or bulk"],["Container","25 t per 20 ft"]], specSrc:null, risks:[]},
+  groundnut:{label:"Groundnut kernels", atlasC:"groundnut", status:"open", load20:19, load40:26, loss:4, bag:50, dest:"europe",
+    buyers:"EU snack and oil processors, and buyers in Asia.",
+    specs:[["Aflatoxin (EU)","For nuts sorted before use: B1 ≤8 µg/kg, total ≤10 µg/kg. For direct eating: B1 ≤2, total ≤4"],["Moisture","7% max"],["Count","Agreed per ounce, for example 40/50 or 50/60"],["Packing","50 kg jute or polypropylene bags"],["Container","About 19 t per 20 ft"]], specSrc:null,
+    risks:["Aflatoxin is the main reason shipments are rejected in Europe. Dry quickly, store dry and test before shipping."]},
+  hibiscus:{label:"Dried hibiscus (zobo) flower", atlasC:null, status:"open", load20:7, load40:14, loss:2, bag:25, dest:"mexico",
+    buyers:"Mexico bought about 85% of Nigeria’s hibiscus in 2023, according to AHFEN. Main producing states are Jigawa, Katsina, Bauchi, Kano, Kebbi and Sokoto.",
+    specs:[["Moisture","12% max"],["Admixture","1% max"],["Quality","Whole calyces, deep red colour, free of mould"],["Packing","Pressed bales or polypropylene bags"],["Container","Very light cargo: about 7 t per 20 ft, 14 t per 40 ft (confirm with your forwarder)"]], specSrc:null,
+    risks:["Mexico needs a phytosanitary certificate that meets its import requirements. Check with NAQS before you ship."]},
+  cowpea:{label:"Cowpea (beans)", atlasC:"beansw", status:"check", load20:25, load40:26, loss:2, bag:50, dest:"ecowas",
+    statusNote:"The EU suspended imports of Nigerian dried beans in 2015 over pesticide residues (dichlorvos). Confirm the current status with NAQS before selling to the EU. Neighbouring ECOWAS countries are the main market.", statusSrc:null,
+    buyers:"Niger, Ghana and other ECOWAS markets by road; diaspora shops in the UK and US for cleaned, packed beans.",
+    specs:[["Moisture","13% max"],["Foreign matter","1–2% max"],["Weevil damage","Agreed in the contract; fumigate before loading"],["Packing","50 kg bags"]], specSrc:null, risks:["Pesticide residues: use only approved storage chemicals and keep records."]},
+  sorghum:{label:"Sorghum", atlasC:"sorghum", status:"open", load20:25, load40:26, loss:2, bag:50, dest:"ecowas",
+    buyers:"Brewers and feed millers in neighbouring countries.", specs:[["Moisture","13% max"],["Foreign matter","2% max"],["Packing","50 kg or 100 kg bags"]], specSrc:null, risks:[]},
+  maize:{label:"Maize", atlasC:"maize", status:"check", load20:25, load40:26, loss:2, bag:50, dest:"ecowas",
+    statusNote:"The Senate passed a bill on 10 Dec 2024 to ban exports of unprocessed maize above one tonne. We could not confirm whether it has been signed into law. Check with NEPC or Customs before you export.", statusSrc:"maizebill",
+    buyers:"Neighbouring ECOWAS countries by road.", specs:[["Moisture","13–14% max"],["Aflatoxin","Agreed in the contract; test before shipping"],["Foreign matter","2% max"],["Packing","50 kg or 100 kg bags"]], specSrc:null, risks:[]},
+  shea:{label:"Shea nuts / kernels", atlasC:null, status:"ban", load20:20, load40:26, loss:2, bag:50, dest:"europe",
+    statusNote:"Export of raw shea from Nigeria is banned, and Ecofin reported the ban still in place at the start of the 2026 season. The route open to exporters is processed shea butter.", statusSrc:"ecofin",
+    buyers:"Shea butter buyers in Europe and North America (cosmetics and food).", specs:[["Kernels (for local processors)","Moisture 7% max; free fatty acid as agreed"],["Butter","Free fatty acid, moisture and impurities as agreed with the buyer"]], specSrc:null, risks:[]},
+  garri:{label:"Garri (processed cassava)", atlasC:"garriw", status:"open", load20:20, load40:26, loss:0, bag:25, dest:"usa",
+    buyers:"Diaspora food shops in the UK, US and Canada.", specs:[["Registration","NAFDAC registration and export health certificate (processed food)"],["Moisture","About 12% max"],["Packing","Branded, labelled retail packs or 25–50 kg bags"]], specSrc:null,
+    risks:["The US needs FDA food facility registration and prior notice of each shipment."]},
+  palmoil:{label:"Crude palm oil", atlasC:"palmoil", status:"open", load20:20, load40:26, loss:0, bag:0, dest:"ecowas",
+    buyers:"Mostly neighbouring countries and diaspora shops. Nigeria imports more palm oil than it exports.", specs:[["Free fatty acid","5% max for good-quality CPO"],["Moisture and impurities","0.5% max"],["Packing","Drums, IBC tanks or flexitanks"]], specSrc:null, risks:[]}
+};
+
+const SALES_CHANNELS = [
+  ["Direct contract with an importer", "Highest price, highest risk. Agree the specification, quantity, Incoterm (FOB, CFR or CIF), inspection agency and payment terms in writing. Ask for a confirmed letter of credit or part payment in advance from a buyer you have not traded with."],
+  ["Local export aggregator or off-taker", "An established exporter buys from you at a warehouse or in Lagos and handles shipping and documents. Lower price, lower risk, quick cash. Compare what they pay with your break-even price in the calculator."],
+  ["Commodity exchanges (AFEX, NCX, LCFE)", "Use them to source graded, warehoused produce, store it against a warehouse receipt, or sell to exporters who buy on the exchange."],
+  ["NEPC programmes", "NEPC runs exporter registration, export clinics, buyer-seller meetings and trade missions, and administers the Export Expansion Grant (5–15% of export value for eligible exporters, paid as an Export Credit Certificate)."],
+  ["Trade fairs", "International food and ingredient fairs are where most first contracts with importers start. Bring a specification sheet, a lab certificate and real samples."],
+  ["Road exports to ECOWAS neighbours", "Grains, beans and garri move by truck to Niger, Benin, Togo and Ghana. Use the ECOWAS Trade Liberalisation Scheme certificate of origin to avoid duty, and cross at official border posts."],
+  ["Online B2B marketplaces", "Useful for finding buyers and price signals. Check every buyer carefully: never pay a ‘registration’ or ‘release’ fee to a buyer you have not verified, and never ship before payment is secured."]
+];
+
+const EXPORT_STEPS = [
+  ["Register the business", "CAC registration, a tax ID (TIN) and an export proceeds domiciliary account at a bank."],
+  ["Register with NEPC", "Get the NEPC exporter’s certificate and register on the National Single Window (NSW)."],
+  ["Check the product code", "Confirm the HS code and that the product is not prohibited or restricted (see the status above)."],
+  ["Sign the export contract", "Specification, quantity, Incoterm, inspection agency, payment terms and shipment date."],
+  ["Open Form NXP", "Through your bank on the CBN trade portal (TRMS), for commercial exports."],
+  ["Quality and plant-health documents", "NAQS phytosanitary certificate, FPIS fumigation and grade certificate, NAFDAC certificate for processed food, and a lab report where the buyer asks."],
+  ["Independent inspection", "Weight and quality certificate from a surveyor such as SGS or Bureau Veritas if the contract requires one."],
+  ["Certificate of origin", "From NACCIMA (or the ECOWAS certificate for road exports to neighbours)."],
+  ["Customs clearance", "A licensed customs agent files through the B’odogwu platform; the goods are risk-profiled into green, yellow or red lanes."],
+  ["Ship", "The shipping line issues the bill of lading once the container is loaded."],
+  ["Get paid and close the NXP", "Export proceeds come into your domiciliary account; the bank confirms the NXP."]
+];
+
+// ----- state -----
+let ES = Object.assign({
+  view:"calc", item:"sesame", origin:null, port:"apapa", dest:null, cont:"20", tonnes:25,
+  buy:null, buyUnit:"kg", loss:null, clean:15000, bagCost:900, fxMode:"official", fxCustom:1332.47,
+  truckCap:30, lp100:45, perkm:450, levy:60000, emptyRet:false, haulMode:"truck", tkm:37.7, handle:2000,
+  portPer:1200000, stuffPer:250000, docs:1500000, bankPct:0.75, finDays:60, finRate:25,
+  terms:"FOB", freight20:null, freight40:null, insPct:0.3, sell:null, checks:{}
+}, store.get("export", {}));
+function saveES(){ store.set("export", ES); }
+const exportLayer = L.layerGroup().addTo(map);
+let EX_ROUTE = {key:"", res:null, busy:false, err:null};
+
+function exportFrom(p){ ES.origin = stopFromPlace(p); ES.buy = null; saveES(); showTab("export"); }
+function itemNow(){ return EXPORT_ITEMS[ES.item] || EXPORT_ITEMS.sesame; }
+function destNow(){ return ES.dest || itemNow().dest; }
+function fxNow(){ return ES.fxMode==="custom" ? +ES.fxCustom : FX[ES.fxMode].rate; }
+function loadPerCont(){ const it = itemNow(); return ES.cont==="40" ? it.load40 : it.load20; }
+function lossPct(){ return ES.loss!=null ? +ES.loss : itemNow().loss; }
+function freightPer(){ const d = DESTS[destNow()]; const own = ES.cont==="40" ? ES.freight40 : ES.freight20; return own!=null && own!=="" ? +own : (ES.cont==="40" ? d.f40 : d.f20); }
+function usdRange(o){ return o.v!=null ? o.v : (o.lo+o.hi)/2; }
+function exportRefs(c){ return EXPORT_PRICES.filter(o=>o.c===c).sort((a,b)=> (a.origin==="Nigeria"?0:1)-(b.origin==="Nigeria"?0:1) || b.date.localeCompare(a.date)); }
+function defaultSell(){
+  // Middle of the newest Nigerian quote on the chosen terms. For CFR/CIF with no Nigerian delivered quote,
+  // use the Nigerian FOB quote plus sea freight per tonne. Never a benchmark from another origin.
+  const ng = exportRefs(ES.item).filter(x=>x.origin==="Nigeria" && !x.unit);
+  if (ES.terms==="FOB"){ const o = ng.find(x=>/^FOB/.test(x.basis)); return o ? {price:usdRange(o), o} : null; }
+  const o = ng.find(x=>/^(CNF|CFR|CIF)/.test(x.basis));
+  if (o) return {price:usdRange(o), o};
+  const f = ng.find(x=>/^FOB/.test(x.basis)); if (!f) return null;
+  const perT = DESTS[destNow()].road ? 0 : freightPer() / loadPerCont();
+  return {price: usdRange(f) + perT, o:f, plusFreight: perT};
+}
+function originPrice(){
+  const it = itemNow(); if (!it.atlasC || !ES.origin) return null;
+  const place = ES.origin.id ? byId(ES.origin.id) : null;
+  const st = place ? place.state : (findLGA(ES.origin.lat, ES.origin.lng)?.properties.state);
+  const o = bestPrice(it.atlasC, place || {id:null, state:st});
+  if (!o) return null;
+  const base = COMMODITIES[it.atlasC].base;
+  return {perKg: base==="litre" ? perBase(o)/0.91 : perBase(o), o, conv: base==="litre"};
+}
+
+// ----- road distance to the port (truck routing, same engine as Logistics) -----
+async function exportRoute(){
+  if (!ES.origin) return;
+  const p = PORTS[ES.port]; const stops = [ES.origin, {lat:p.lat, lng:p.lng, name:p.name}];
+  const key = JSON.stringify(stops.map(s=>[+s.lat.toFixed(4), +s.lng.toFixed(4)]));
+  if (EX_ROUTE.key===key && (EX_ROUTE.res || EX_ROUTE.busy)) return;
+  EX_ROUTE = {key, res:null, busy:true, err:null}; renderExport();
+  try { EX_ROUTE.res = await roadRoute(stops, "truck"); }
+  catch(e){ EX_ROUTE.err = String(e.message||e); EX_ROUTE.res = estimateRoute(stops, "truck"); }
+  EX_ROUTE.busy = false;
+  if (!$("#pane-export").hidden){ renderExport(); const pts = EX_ROUTE.res.legs.flatMap(l=>l.shape); if (pts.length) map.flyToBounds(L.latLngBounds(pts).pad(0.15), {duration:.6}); }
+}
+function drawExportMap(){
+  exportLayer.clearLayers(); if ($("#pane-export").hidden) return;
+  Object.entries(PORTS).forEach(([k,p])=>{
+    const on = k===ES.port;
+    const mk = L.marker([p.lat,p.lng], {zIndexOffset: on?900:800, icon: L.divIcon({className:"", iconSize:[22,22], iconAnchor:[11,11], html:`<div style="width:22px;height:22px;border-radius:5px;background:${on?cssVar("--indigo"):cssVar("--panel")};color:${on?cssVar("--panel"):cssVar("--indigo")};border:2px solid ${cssVar("--indigo")};display:grid;place-items:center;font:700 12px var(--f-mono);box-shadow:0 1px 4px rgba(0,0,0,.3)">${p.road?"B":"⚓"}</div>`})});
+    mk.bindTooltip(p.name + (on?" (chosen)":" · click to use"), {direction:"top", offset:[0,-10], permanent:on}).on("click", ()=>{ ES.port=k; saveES(); exportRoute(); renderExport(); }).addTo(exportLayer);
+  });
+  if (ES.origin){
+    L.marker([ES.origin.lat, ES.origin.lng], {icon: stopIcon(0, 2)}).bindTooltip(ES.origin.name).addTo(exportLayer);
+    const r = EX_ROUTE.res; if (r) r.legs.forEach(l=>L.polyline(l.shape, {color: cssVar("--indigo"), weight: r.source==="road"?5:3, dashArray: r.source==="road"?null:"8 6", opacity:.85, interactive:false}).addTo(exportLayer));
+  }
+}
+
+// ----- the cost model: every line has a formula shown to the user -----
+function exportCalc(){
+  const it = itemNow(), fx = fxNow(), T = +ES.tonnes || 0, loss = lossPct();
+  const net = T * (1 - loss/100);
+  const load = loadPerCont(), conts = net>0 ? Math.ceil(net / load) : 0;
+  const op = originPrice();
+  const buyKg = ES.buy!=null && ES.buy!=="" ? (ES.buyUnit==="t" ? +ES.buy/1000 : +ES.buy) : (op ? op.perKg : null);
+  const r = EX_ROUTE.res; const km = r ? r.km : null;
+  const trucks = net>0 ? Math.ceil(net / ES.truckCap) : 0;
+  const tripKm = km==null ? null : km * (ES.emptyRet ? 2 : 1);
+  const diesel = dieselPrice();
+  const haulFuel = tripKm==null ? null : trucks * tripKm * ES.lp100/100 * diesel;
+  const haulRun = tripKm==null ? null : trucks * tripKm * ES.perkm;
+  const haulLevy = trucks * ES.levy;
+  const truckHaul = tripKm==null ? null : haulFuel + haulRun + haulLevy;
+  const bench = km==null ? null : net * km * ES.tkm + net * ES.handle;
+  const haul = ES.haulMode==="rate" ? bench : truckHaul;
+  const bags = it.bag ? Math.ceil(net*1000 / it.bag) : 0;
+  const L_ = [];
+  const add = (k, label, v, how, kind="cost") => L_.push({k, label, v, how, kind});
+  add("buy", "Buying the produce", buyKg==null ? null : T*1000*buyKg, buyKg==null ? "Enter a buying price" : `${fmtN(T,1)} t × 1,000 kg × ₦${fmtN(buyKg,2)}/kg`);
+  add("clean", "Cleaning, sorting and drying", T*ES.clean, `${fmtN(T,1)} t × ₦${fmtN(ES.clean)}/t`);
+  add("bags", "Export bags", bags*ES.bagCost, it.bag ? `${fmtN(bags)} bags of ${it.bag} kg × ₦${fmtN(ES.bagCost)}` : "Not bagged");
+  add("haul", "Truck to the port", haul, km==null ? "Waiting for the road distance" : ES.haulMode==="rate" ? `${fmtN(net,1)} t × ${km1(km)} km × ₦${fmtN(ES.tkm,1)} per tonne-km + ${fmtN(net,1)} t × ₦${fmtN(ES.handle)} handling` : `${trucks} truck${trucks>1?"s":""} × ${km1(tripKm)} km${ES.emptyRet?" (there and back)":""}: fuel ${naira(haulFuel)} + running ${naira(haulRun)} + levies ${naira(haulLevy)}`);
+  add("port", "Port, terminal and clearing agent", conts*ES.portPer, `${conts} container${conts!==1?"s":""} × ₦${fmtN(ES.portPer)}`);
+  add("stuff", "Stuffing and fumigation", conts*ES.stuffPer, `${conts} × ₦${fmtN(ES.stuffPer)}`);
+  add("docs", "Documents, inspection and lab tests", +ES.docs, "One amount per shipment");
+  add("fin", "Interest on the money tied up", buyKg==null ? null : T*1000*buyKg * ES.finRate/100 * ES.finDays/365, `purchase × ${ES.finRate}% a year × ${ES.finDays} days ÷ 365`);
+  // sale side
+  const ds = defaultSell(); const sell = ES.sell!=null && ES.sell!=="" ? +ES.sell : (ds ? ds.price : null);
+  const freightUsd = ES.terms==="FOB" || DESTS[destNow()].road ? 0 : conts * freightPer();
+  const revenueUsd = sell==null ? null : net * sell;
+  const insUsd = ES.terms==="CIF" && revenueUsd!=null ? revenueUsd * 1.1 * ES.insPct/100 : 0;
+  const bankN = revenueUsd==null ? null : revenueUsd * fx * ES.bankPct/100;
+  add("bank", "Bank charges on the payment", bankN, `sale value × ${ES.bankPct}%`);
+  if (ES.terms!=="FOB") add("freight", "Ocean freight", freightUsd*fx, DESTS[destNow()].road ? "Road export: no sea freight" : `${conts} × US$${fmtN(freightPer())} × ₦${fmtN(fx,2)}/US$`);
+  if (ES.terms==="CIF") add("ins", "Cargo insurance", insUsd*fx, `sale value × 110% × ${ES.insPct}%`);
+  const known = L_.filter(l=>l.v!=null);
+  const missing = L_.filter(l=>l.v==null);
+  const total = known.reduce((t,l)=>t+l.v,0);
+  const revenueN = revenueUsd==null ? null : revenueUsd*fx;
+  const margin = revenueN==null || missing.length ? null : revenueN - total;
+  const breakEvenUsd = missing.length || !net ? null : total / net / fx;
+  return {it, fx, T, net, loss, load, conts, trucks, km, tripKm, diesel, bench, truckHaul, bags, lines:L_, missing, total, sell, ds, revenueUsd, revenueN, margin, breakEvenUsd, buyKg, op, freightUsd};
+}
+
+// ----- rendering -----
+function statusBadge(it){
+  const m = {open:["good","Open for export"], check:["warn","Check the rules first"], ban:["bad","Export banned"]}[it.status];
+  return `<span class="tag" style="background:color-mix(in srgb,var(--${m[0]==="good"?"leaf":m[0]==="bad"?"bad":"warn"}) 18%,transparent);color:var(--${m[0]==="good"?"leaf":m[0]==="bad"?"bad":"warn"})">${m[1]}</span>`;
+}
+function srcLink(k){ const s = EXP_SRC[k]; return s ? `<a href="${s.url}" target="_blank" rel="noopener">${esc(s.name)}</a>` : "Atlas assumption"; }
+function confTag(k){ const c = EXP_SRC[k]?.conf || "low"; return `<span class="tag ${c==="high"?"market":c==="medium"?"state":"zone"}">${c} confidence</span>`; }
+function priceCell(o){
+  const u = o.unit || "US$/t"; const v = o.v!=null ? fmtN(o.v, o.v<100?1:0) : `${fmtN(o.lo)}–${fmtN(o.hi)}`;
+  if (u==="US$/t") return "US$" + v; if (u==="₦/kg") return "₦" + v + "/kg"; if (u==="₦/t") return "₦" + v + "/t"; return v + " " + u;
+}
+function clearExportMap(){ try { exportLayer.clearLayers(); } catch(e){} }
+function itemSelect(){
+  return `<div class="field"><label for="exItem">Commodity</label><select id="exItem">${Object.entries(EXPORT_ITEMS).map(([k,v])=>`<option value="${k}" ${k===ES.item?"selected":""}>${esc(v.label)}${v.status==="ban"?" (export banned)":v.status==="check"?" (check rules)":""}</option>`).join("")}</select></div>`;
+}
+
+function renderExport(){
+  const el = $("#pane-export"); if (!el) return;
+  const it = itemNow();
+  let h = `<div><h2>Export Camp</h2><p class="small muted">World prices, buyer specifications, export rules, ways to sell and an export cost calculator for Nigerian produce.</p></div>`;
+  h += itemSelect();
+  h += `<div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">${statusBadge(it)}${it.statusNote?`<span class="small">${esc(it.statusNote)} ${it.statusSrc?`<span class="muted">Source: ${srcLink(it.statusSrc)}</span>`:""}</span>`:""}</div>`;
+  const views = [["calc","Calculator"],["prices","Prices"],["specs","Specs & rules"],["sell","Selling"],["check","Checklist"]];
+  h += `<div class="seg" role="tablist">${views.map(([k,l])=>`<button type="button" data-exv="${k}" aria-selected="${ES.view===k}" style="${ES.view===k?"background:var(--indigo);color:var(--panel);font-weight:600":""}">${l}</button>`).join("")}</div>`;
+  if (ES.view==="prices") h += exportPricesView();
+  else if (ES.view==="specs") h += exportSpecsView();
+  else if (ES.view==="sell") h += exportSellView();
+  else if (ES.view==="check") h += exportChecklistView();
+  else h += exportCalcView();
+  el.innerHTML = h;
+  wireExport();
+  drawExportMap();
+}
+
+function exportPricesView(){
+  const refs = exportRefs(ES.item);
+  let h = `<div class="card"><h3>${esc(itemNow().label)}: price evidence</h3>`;
+  if (!refs.length) h += `<p class="small muted">No published price found yet for this item.</p>`;
+  else h += `<div class="list">${refs.map(o=>`<div class="item" style="cursor:default;grid-template-columns:1fr auto;align-items:start"><span class="t"><b style="white-space:normal">${o.origin==="Nigeria"?'<span class="tag market">Nigeria</span>':'<span class="tag national">benchmark</span>'} ${esc(o.label)}</b><span style="display:block;white-space:normal">${srcLink(o.src)} · ${confTag(o.src)}${o.note?`<br>${esc(o.note)}`:""}</span></span><span class="r"><b class="num" style="font-size:13px">${priceCell(o)}</b><br>${esc(o.basis)}<br>${fmtDate(o.date)}</span></div>`).join("")}</div>`;
+  h += `<p class="hint small muted">Prices are US$ per tonne unless shown otherwise. <b>FOB Lagos</b> means loaded on the ship in Lagos; the buyer pays the sea freight. <b>CNF / CFR</b> includes freight to the buyer’s port, <b>CIF</b> adds insurance. A benchmark from another origin shows the world level; Nigerian produce often sells at a discount to it until quality is proven.</p></div>`;
+  h += `<div class="card"><h3>World market context</h3><div class="list">${GLOBAL_CONTEXT.map(([k,v,n,s])=>`<div class="item" style="cursor:default;grid-template-columns:1fr"><span class="t"><span style="display:block;font-weight:600;color:var(--muted)">${esc(k)}</span><b class="num" style="white-space:normal">${esc(v)}</b><span style="display:block;white-space:normal">${esc(n)} Source: ${srcLink(s)}</span></span></div>`).join("")}</div></div>`;
+  h += `<div class="card"><h3>Exchange rate used</h3><dl class="kv"><dt>${esc(FX.official.label)}</dt><dd>₦${fmtN(FX.official.rate,2)} · ${fmtDate(FX.official.date)}</dd><dt>${esc(FX.parallel.label)}</dt><dd>₦${fmtN(FX.parallel.rate)} · ${fmtDate(FX.parallel.date)}</dd></dl><p class="small muted">Source: ${srcLink("fx")}. Export proceeds are converted through your bank, so the official rate is the default in the calculator.</p></div>`;
+  h += `<div class="note">World Bank and AMIS figures refresh automatically once a day on the website. Nigerian export quotes come from traders’ published price lists and are marked low confidence: treat them as a starting point and confirm with two or three buyers.</div>`;
+  return h;
+}
+
+function exportSpecsView(){
+  const it = itemNow();
+  let h = `<div class="card"><h3>Typical buyer specification</h3><div class="tablewrap"><table><tbody>${it.specs.map(([k,v])=>`<tr><td style="vertical-align:top;font-weight:600;white-space:normal;min-width:110px">${esc(k)}</td><td style="white-space:normal;font-family:var(--f-body)">${esc(v)}</td></tr>`).join("")}</tbody></table></div>
+    <p class="small muted">${it.specSrc?`Source: ${srcLink(it.specSrc)}. `:""}These are common trade terms, not a standard. Your contract decides, so ask the buyer for their specification sheet before you buy produce.</p></div>`;
+  if (it.risks.length) h += `<div class="card"><h3>Common reasons shipments fail</h3><ul class="small" style="margin:0;padding-left:18px">${it.risks.map(r=>`<li>${esc(r)}</li>`).join("")}</ul></div>`;
+  h += `<div class="card"><h3>Who buys it</h3><p class="small">${esc(it.buyers)}</p></div>`;
+  h += `<div class="card"><h3>Rules for every agricultural export</h3><ul class="small" style="margin:0;padding-left:18px">
+    <li>Register with NEPC and on the National Single Window, then open Form NXP through your bank.</li>
+    <li>Plant products need a NAQS phytosanitary certificate. Processed food needs NAFDAC. Fumigation and grading come from the Federal Produce Inspection Service.</li>
+    <li>Export proceeds must come back through a Nigerian bank to your domiciliary account.</li>
+    <li>The buyer’s country has its own rules (residue limits, aflatoxin, labelling, import permits). Meeting Nigerian rules alone is not enough.</li></ul>
+    <p class="small muted">Sources: ${srcLink("nsw")}; ${srcLink("nepc")}.</p></div>`;
+  h += `<div class="card"><h3>Status of other export items</h3><div class="list">${Object.entries(EXPORT_ITEMS).filter(([,v])=>v.status!=="open").map(([k,v])=>`<button type="button" class="item" data-exitem="${k}"><span class="dot" style="background:var(--${v.status==="ban"?"bad":"warn"})"></span><span class="t"><b>${esc(v.label)}</b><span>${esc((v.statusNote||"").split(". ")[0])}.</span></span><span class="r">${v.status==="ban"?"banned":"check"}</span></button>`).join("")}</div></div>`;
+  return h;
+}
+
+function exportSellView(){
+  let h = `<div class="list">${SALES_CHANNELS.map(([t,d])=>`<div class="item" style="cursor:default;grid-template-columns:1fr"><span class="t"><b style="white-space:normal">${esc(t)}</b><span style="display:block;white-space:normal">${esc(d)}</span></span></div>`).join("")}</div>`;
+  h += `<div class="card"><h3>Choosing the Incoterm</h3><dl class="kv" style="grid-template-columns:auto 1fr"><dt>FOB</dt><dd style="text-align:left;font-family:var(--f-body)">You pay everything until the goods are on the ship. The simplest start.</dd><dt>CFR / CNF</dt><dd style="text-align:left;font-family:var(--f-body)">You also pay sea freight. Higher price, but you carry freight-rate risk.</dd><dt>CIF</dt><dd style="text-align:left;font-family:var(--f-body)">CFR plus cargo insurance.</dd></dl></div>`;
+  h += `<div class="card"><h3>Getting paid safely</h3><ul class="small" style="margin:0;padding-left:18px"><li><b>Confirmed letter of credit</b>: a bank promises payment against your documents. Safest for new buyers.</li><li><b>Documents against payment</b>: the buyer gets the bill of lading only after paying. Cheaper, some risk.</li><li><b>Advance payment</b>: common for small first orders.</li><li><b>Open account</b>: only for buyers with a long, good record with you.</li></ul></div>`;
+  h += `<div class="note">Export Expansion Grant: ${srcLink("nepc_eeg")} describes 5–15% of export value for registered exporters with at least ₦5 million in annual exports, an annual ₦100,000 accreditation fee, and payment as an Export Credit Certificate. The page carries no date, so confirm the scheme is running before you count on it.</div>`;
+  return h;
+}
+
+function exportChecklistView(){
+  const it = itemNow(); const ck = ES.checks[ES.item] || {};
+  const extra = [];
+  if (ES.item==="cocoa") extra.push(["EU deforestation proof", "GPS location of every farm plot and a due-diligence statement for EU buyers from 30 Dec 2026."]);
+  if (["groundnut","maize"].includes(ES.item)) extra.push(["Aflatoxin test", "Lab report from an accredited laboratory on a sample taken at loading."]);
+  if (ES.item==="sesame") extra.push(["Residue and salmonella test", "Lab report the buyer accepts, for Japan and EU buyers in particular."]);
+  if (ES.item==="cashew") extra.push(["KOR test at loading", "Independent cut test for outturn, nut count and moisture."]);
+  if (ES.item==="garri") extra.push(["NAFDAC registration", "Product registration and export health certificate."]);
+  const steps = [...EXPORT_STEPS.slice(0,6), ...extra, ...EXPORT_STEPS.slice(6)];
+  const done = steps.filter((s,i)=>ck[i]).length;
+  let h = `<div class="card"><h3>Export checklist for ${esc(it.label.toLowerCase())} · ${done} of ${steps.length} done</h3>
+    <div style="display:flex;flex-direction:column;gap:6px">${steps.map(([t,d],i)=>`<label style="display:grid;grid-template-columns:auto 1fr;gap:8px;align-items:start;cursor:pointer"><input type="checkbox" data-exck="${i}" ${ck[i]?"checked":""} style="margin-top:3px;accent-color:var(--indigo)"><span><b class="small">${i+1}. ${esc(t)}</b><span class="small muted" style="display:block">${esc(d)}</span></span></label>`).join("")}</div>
+    <p class="small muted">Ticks are saved in this browser only. Steps follow ${srcLink("nsw")} and ${srcLink("nepc")}; some can run at the same time.</p></div>`;
+  if (it.status==="ban") h = `<div class="card" style="border-color:var(--bad)"><b class="bad">This product cannot be exported raw.</b><p class="small">${esc(it.statusNote)}</p></div>` + h;
+  return h;
+}
+
+function numField(id, label, val, step="any", suffix=""){
+  return `<div class="field"><label for="${id}">${label}</label><input type="number" id="${id}" value="${val??""}" step="${step}" inputmode="decimal"></div>`;
+}
+
+function exportCalcView(){
+  const it = itemNow(); const C = exportCalc(); const d = DESTS[destNow()];
+  let h = "";
+  if (it.status==="ban") h += `<div class="card" style="border-color:var(--bad)"><b class="bad">Export of this product is banned.</b><p class="small">The calculator still runs so you can compare, but you cannot legally ship it raw. ${esc(it.statusNote)}</p></div>`;
+  // where from / to
+  h += `<div class="card"><h3>1 · Where the produce comes from</h3>
+    <div class="field" style="position:relative"><label for="exQ">Buying market or town</label><input type="search" id="exQ" placeholder="Type a market, town or LGA" value="${esc(ES.origin?ES.origin.name:"")}" autocomplete="off"><div id="exSug" class="list" style="display:none;position:absolute;top:100%;left:0;right:0;z-index:20;background:var(--panel)"></div></div>
+    ${ES.origin?`<p class="small muted">${esc(ES.origin.sub||"")}</p>`:`<p class="small muted">Or click a market on the map and choose “Export from here”.</p>`}
+    <div class="row"><div class="field"><label for="exPort">Export port or border</label><select id="exPort">${Object.entries(PORTS).map(([k,p])=>`<option value="${k}" ${k===ES.port?"selected":""}>${esc(p.name)}</option>`).join("")}</select></div>
+    <div class="field"><label for="exDest">Buyer’s market</label><select id="exDest">${Object.entries(DESTS).map(([k,v])=>`<option value="${k}" ${k===destNow()?"selected":""}>${esc(v.name)}</option>`).join("")}</select></div></div>
+    <p class="small">${C.km==null ? (ES.origin ? (EX_ROUTE.busy?"Measuring the road distance for an articulated truck…":"") : "Choose where you buy to measure the road distance.") : `Road distance to ${esc(PORTS[ES.port].name)}: <b class="num">${km1(C.km)} km</b> ${EX_ROUTE.res.source==="road"?"(OpenStreetMap roads, truck routing)":"(estimate: straight line × "+RS.circuity+", road routing not reachable)"}.`}</p></div>`;
+  // quantity and buying
+  const op = C.op;
+  h += `<div class="card"><h3>2 · Quantity and buying price</h3>
+    <div class="row">${numField("exT","Tonnes you buy",ES.tonnes,"0.5")}
+    <div class="field"><label for="exCont">Container</label><select id="exCont"><option value="20" ${ES.cont==="20"?"selected":""}>20 ft (holds about ${it.load20} t)</option><option value="40" ${ES.cont==="40"?"selected":""}>40 ft (holds about ${it.load40} t)</option></select></div></div>
+    <div class="row">${numField("exBuy", `Buying price (₦ per ${ES.buyUnit==="t"?"tonne":"kg"})`, ES.buy!=null&&ES.buy!==""?ES.buy:(op?Math.round(op.perKg*(ES.buyUnit==="t"?1000:1)):""), "1")}
+    <div class="field"><label for="exBuyU">Price unit</label><select id="exBuyU"><option value="kg" ${ES.buyUnit==="kg"?"selected":""}>per kg</option><option value="t" ${ES.buyUnit==="t"?"selected":""}>per tonne</option></select></div></div>
+    <p class="small muted">${ES.buy!=null&&ES.buy!=="" ? "Your price." : op ? `Filled from the atlas: ${levelTag(op.o)} ${naira(op.perKg)}/kg${op.conv?" (converted from ₦"+fmtN(perBase(op.o))+" per litre at 0.91 kg per litre)":""}, ${fmtDate(op.o.date)}. Replace it with what you will actually pay.` : "No atlas price for this item here. Enter what sellers are asking."}</p>
+    ${numField("exLoss","Weight lost in cleaning and drying (%)",lossPct(),"0.5")}</div>`;
+  // sale
+  const ds = C.ds;
+  h += `<div class="card"><h3>3 · Selling terms</h3>
+    <div class="seg">${["FOB","CFR","CIF"].map(t=>`<button type="button" data-exterms="${t}" style="${ES.terms===t?"background:var(--indigo);color:var(--panel);font-weight:600":""}">${t}</button>`).join("")}</div>
+    <div class="row">${numField("exSell",`Sale price (US$ per tonne, ${ES.terms})`, ES.sell!=null&&ES.sell!==""?ES.sell:(ds?Math.round(ds.price):""),"1")}
+    <div class="field"><label for="exFx">Exchange rate</label><select id="exFx"><option value="official" ${ES.fxMode==="official"?"selected":""}>Official ₦${fmtN(FX.official.rate,2)}</option><option value="parallel" ${ES.fxMode==="parallel"?"selected":""}>Parallel ₦${fmtN(FX.parallel.rate)}</option><option value="custom" ${ES.fxMode==="custom"?"selected":""}>My rate</option></select></div></div>
+    ${ES.fxMode==="custom"?numField("exFxC","My rate (₦ per US$)",ES.fxCustom,"0.01"):""}
+    <p class="small muted">${ES.sell!=null&&ES.sell!=="" ? "Your price." : ds ? `Filled with the middle of “${esc(ds.o.label)}”, ${priceCell(ds.o)} ${esc(ds.o.basis)} (${fmtDate(ds.o.date)}, ${EXP_SRC[ds.o.src]?.conf} confidence)${ds.plusFreight!=null?`, plus sea freight of US$${fmtN(ds.plusFreight)} per tonne (US$${fmtN(freightPer())} per container ÷ ${fmtN(loadPerCont(),1)} t)`:""}. Replace it with your buyer’s offer.` : "No published Nigerian price on these terms. Enter your buyer’s offer."}</p>
+    ${ES.terms!=="FOB" && !d.road ? `<div class="row">${numField("exFr",`Sea freight per ${ES.cont} ft container (US$)`,freightPer(),"10")}${ES.terms==="CIF"?numField("exIns","Insurance (% of 110% of sale value)",ES.insPct,"0.05"):"<div></div>"}</div><p class="small muted">${d.src?`Default from ${srcLink(d.src)}. `:"Default is an Atlas placeholder: we found no published 2026 rate from Lagos to this market. "}Ask two forwarders for a quote.</p>`:""}</div>`;
+  // results
+  h += exportResults(C);
+  // rates
+  h += `<details class="card" ${store.get("exRatesOpen",false)?"open":""} id="exRates"><summary style="cursor:pointer;font-weight:600">4 · Cost rates (assumptions you can change)</summary>
+    <div class="row">${numField("exClean","Cleaning, sorting, drying (₦ per tonne)",ES.clean,"500")}${numField("exBag",`Bag cost (₦ per ${it.bag||50} kg bag)`,ES.bagCost,"50")}</div>
+    <div class="row">${numField("exCap","Truck load (tonnes)",ES.truckCap,"1")}${numField("exLp","Truck fuel use (L per 100 km)",ES.lp100,"1")}</div>
+    <div class="row">${numField("exPkm","Truck running cost (₦ per km)",ES.perkm,"10")}${numField("exLevy","Levies and tolls (₦ per truck trip)",ES.levy,"1000")}</div>
+    <div class="field"><label for="exHm">How to price the truck</label><select id="exHm"><option value="truck" ${ES.haulMode==="truck"?"selected":""}>Truck model: fuel + running costs + levies</option><option value="rate" ${ES.haulMode==="rate"?"selected":""}>Published rate per tonne-km</option></select></div>
+    ${ES.haulMode==="rate" ? `<div class="row">${numField("exTkm","Rate (₦ per tonne-km)",ES.tkm,"0.1")}${numField("exHand","Loading and handling (₦ per tonne)",ES.handle,"100")}</div><p class="small muted">Default from ${srcLink("lokoja")}: ₦37.7 per tonne-km by road plus ₦2,000 per tonne, indexed to diesel.</p>` : `<label class="small" style="display:flex;gap:6px;align-items:center"><input type="checkbox" id="exRet" ${ES.emptyRet?"checked":""}> Charge for the truck’s empty return journey</label><p class="small muted">Off by default: trucks serving the Lagos and Onne ports usually find a return load. Tick it if your haulier charges for the return.</p>`}
+    <div class="row">${numField("exPort1","Port, terminal and agent (₦ per container)",ES.portPer,"10000")}${numField("exStuff","Stuffing and fumigation (₦ per container)",ES.stuffPer,"5000")}</div>
+    <div class="row">${numField("exDocs","Documents, inspection, lab (₦ per shipment)",ES.docs,"10000")}${numField("exBank","Bank charges (% of sale value)",ES.bankPct,"0.05")}</div>
+    <div class="row">${numField("exFinR","Interest rate (% a year)",ES.finRate,"0.5")}${numField("exFinD","Days until you are paid",ES.finDays,"1")}</div>
+    <p class="small muted">Diesel price comes from the fuel tracker in Logistics (₦${fmtN(C.diesel)}/L). Change it there.</p></details>`;
+  h += exportAssumptions(C);
+  return h;
+}
+
+function exportResults(C){
+  const it = C.it;
+  let h = `<div class="card"><h3>Result</h3>`;
+  const stats = [
+    [`${fmtN(C.net,1)} t`, `exported after ${fmtN(C.loss,1)}% loss`],
+    [`${C.conts} × ${ES.cont} ft`, `containers at ${fmtN(C.load,1)} t each`],
+    [C.breakEvenUsd==null?"–":`US$${fmtN(C.breakEvenUsd)}`, `break-even price per tonne ${ES.terms}`]
+  ];
+  h += `<div class="stats">${stats.map(([b,s])=>`<div class="stat"><b>${b}</b><span>${s}</span></div>`).join("")}</div>`;
+  if (C.margin!=null){
+    const per = C.margin / C.net;
+    const sg = C.margin<0 ? "−" : "";
+    h += `<div class="stat" style="background:color-mix(in srgb,var(--${C.margin>=0?"leaf":"bad"}) 12%,var(--soft))"><span>Estimated ${C.margin>=0?"profit":"loss"} on this shipment</span><b class="${C.margin>=0?"good":"bad"}">${sg}${naira(Math.abs(C.margin))}</b><span>${sg}${naira(Math.abs(per))} per tonne · ${sg}US$${fmtN(Math.abs(per/C.fx))} per tonne · ${sg}${fmtN(Math.abs(C.margin/C.revenueN*100),1)}% of the sale value</span></div>`;
+  } else if (C.missing.length) h += `<p class="small" style="color:var(--warn)">Still needed: ${C.missing.map(l=>esc(l.label.toLowerCase())).join(", ")}.</p>`;
+  // worked table
+  const maxV = Math.max(1, ...C.lines.map(l=>l.v||0));
+  const line = (label, v, how, bold, w) => `<div class="item" style="cursor:default;grid-template-columns:1fr auto;align-items:start"><span class="t"><b style="white-space:normal;${bold?"":"font-weight:500"}">${label}</b><span style="display:block;white-space:normal">${how}</span>${w!=null?`<div style="height:4px;border-radius:2px;background:var(--indigo);opacity:.55;margin-top:4px;width:${w}%"></div>`:""}</span><span class="r" style="font-size:13px">${bold?"<b>":""}${v}${bold?"</b>":""}</span></div>`;
+  h += `<div class="list">`;
+  C.lines.forEach(l=>{ h += line(esc(l.label), l.v==null?"–":naira(l.v), l.how, false, l.v?Math.max(2,l.v/maxV*100):0); });
+  h += line(`Total cost ${ES.terms}`, naira(C.total), `${naira(C.net?C.total/C.net:null)} per exported tonne = US$${fmtN(C.net?C.total/C.net/C.fx:null)} at ₦${fmtN(C.fx,2)}/US$${C.missing.length?" (incomplete)":""}`, true);
+  if (C.revenueUsd!=null) h += line("Sale value", naira(C.revenueN), `${fmtN(C.net,1)} t × US$${fmtN(C.sell)} × ₦${fmtN(C.fx,2)} = US$${fmtN(C.revenueUsd)}`, true);
+  h += `</div>`;
+  if (C.bench!=null) h += `<p class="small muted">Cross-check for the truck cost: ${ES.haulMode==="rate" ? `the truck model (fuel, running costs and levies) would give ${naira(C.truckHaul)}` : `the published corridor rate of ₦${fmtN(ES.tkm,1)} per tonne-km plus ₦${fmtN(ES.handle)} per tonne handling (${srcLink("lokoja")}) would give ${naira(C.bench)}`}. A big gap means one of the rates needs checking against a real quote.</p>`;
+  // compare with references
+  const refs = exportRefs(ES.item).filter(o=>!o.unit);
+  if (refs.length && C.breakEvenUsd!=null){
+    h += `<h3 style="margin-top:6px">Your break-even against published prices</h3><div class="tablewrap"><table><thead><tr><th>Published price</th><th>US$/t</th><th>vs break-even</th></tr></thead><tbody>${refs.map(o=>{ const m = usdRange(o) - C.breakEvenUsd; const comparable = (ES.terms==="FOB" ? /^FOB/ : /^(CNF|CFR|CIF)/).test(o.basis); return `<tr><td style="white-space:normal;min-width:150px">${esc(o.label)} <span class="small muted">· ${esc(o.basis)}, ${fmtDate(o.date)}</span>${comparable?"":` <span class="tag national">different terms</span>`}</td><td>${priceCell(o).replace("US$","")}</td><td class="${m>=0?"good":"bad"}">${m>=0?"+":"−"}${fmtN(Math.abs(m))}</td></tr>`; }).join("")}</tbody></table></div><p class="small muted">The middle of a range is used. Only rows with the same terms (${ES.terms}) compare like with like.</p>`;
+  }
+  h += `</div>`;
+  return h;
+}
+
+function exportAssumptions(C){
+  const it = C.it, d = DESTS[destNow()];
+  const rows = [
+    ["Road distance", C.km==null ? "Not yet measured." : `${km1(C.km)} km from ${esc(ES.origin?.name||"")} to ${esc(PORTS[ES.port].name)}, ${EX_ROUTE.res.source==="road" ? "measured on OpenStreetMap roads by the Valhalla routing engine for an articulated truck" : "estimated as straight line × "+RS.circuity+" because road routing wasn’t reachable"}.`],
+    ["Weight loss", `${fmtN(C.loss,1)}% of the bought weight is lost to cleaning, sorting and drying (typical for ${esc(it.label.toLowerCase())}; an assumption). Exported tonnes = ${fmtN(C.T,1)} × (1 − ${fmtN(C.loss,1)}%) = ${fmtN(C.net,1)} t. Costs before cleaning use the bought tonnes; costs after use exported tonnes.`],
+    ["Containers", `Exported tonnes ÷ ${fmtN(C.load,1)} t per ${ES.cont} ft container, rounded up = ${C.conts}. The load per container is typical for this product and packing; light cargo fills a container before it reaches its weight limit.`],
+    ["Trucks", ES.haulMode==="rate" ? `Exported tonnes × road km × ₦${fmtN(ES.tkm,1)} per tonne-km, plus ₦${fmtN(ES.handle)} per tonne for loading and handling (published corridor rate).` : `Exported tonnes ÷ ${ES.truckCap} t per truck, rounded up = ${C.trucks}. Each truck trip costs fuel (km × ${ES.lp100} L/100 km × ₦${fmtN(C.diesel)}/L) + running costs (km × ₦${fmtN(ES.perkm)}) + ₦${fmtN(ES.levy)} levies and tolls${ES.emptyRet?", with the distance doubled for the empty return":", one way only (the truck is assumed to find a return load)"}. Same truck model as the Logistics tab.`],
+    ["Port and documents", `₦${fmtN(ES.portPer)} per container for terminal, shipping-line and clearing-agent charges, ₦${fmtN(ES.stuffPer)} per container for stuffing and fumigation, and ₦${fmtN(ES.docs)} per shipment for documents, inspection and lab tests. These are Atlas placeholders, not published tariffs: replace them with your agent’s quote.`],
+    ["Money", `Interest on the purchase at ${ES.finRate}% a year for ${ES.finDays} days. Bank charges ${ES.bankPct}% of the sale value. Both are assumptions.`],
+    ["Exchange rate", `₦${fmtN(C.fx,2)} per US$ (${ES.fxMode==="custom"?"your rate":esc(FX[ES.fxMode].label)+", "+fmtDate(FX[ES.fxMode].date)}). US$ results = ₦ ÷ this rate.`],
+    ["Selling terms", ES.terms==="FOB" ? "FOB: the buyer pays sea freight and insurance, so neither is counted." : `${ES.terms}: sea freight ${d.road?"not counted (road export)":`US$${fmtN(freightPer())} per ${ES.cont} ft container to ${esc(d.name)}${d.src?" (published guideline)":" (Atlas placeholder)"}`}${ES.terms==="CIF"?`; insurance ${ES.insPct}% of 110% of the sale value, the usual way cargo cover is set`:""}.`],
+    ["Break-even", "Total cost ÷ exported tonnes ÷ exchange rate. Selling above this price makes money; below it loses money."],
+    ["Not included", "Export Expansion Grant, taxes on profit, demurrage if the container waits at the port, quality discounts or rejections, and price changes between buying and shipping."]
+  ];
+  return `<details class="card" id="exHow" ${store.get("exHowOpen",true)?"open":""}><summary style="cursor:pointer;font-weight:600">How the numbers are worked out</summary>
+    <div style="display:flex;flex-direction:column;gap:8px;margin-top:8px">${rows.map(([k,t])=>`<div class="small"><b>${k}</b><div>${t}</div></div>`).join("")}</div>
+    <p class="hint small muted">Every figure marked as an assumption can be changed under Cost rates and the result updates straight away. Your entries are saved in this browser only.</p></details>`;
+}
+
+// ----- events -----
+function wireExport(){
+  const el = $("#pane-export");
+  el.querySelectorAll("[data-exv]").forEach(b=>b.onclick=()=>{ ES.view=b.dataset.exv; saveES(); renderExport(); });
+  el.querySelectorAll("[data-exitem]").forEach(b=>b.onclick=()=>{ ES.item=b.dataset.exitem; ES.dest=null; ES.loss=null; ES.sell=null; ES.buy=null; saveES(); renderExport(); });
+  el.querySelectorAll("[data-exterms]").forEach(b=>b.onclick=()=>{ ES.terms=b.dataset.exterms; ES.sell=null; saveES(); renderExport(); });
+  el.querySelectorAll("[data-exck]").forEach(b=>b.onchange=()=>{ (ES.checks[ES.item] ||= {})[b.dataset.exck] = b.checked; saveES(); renderExport(); });
+  const on = (id, fn, ev="change") => { const x = $("#"+id); if (x) x.addEventListener(ev, fn); };
+  on("exItem", e=>{ ES.item=e.target.value; ES.dest=null; ES.loss=null; ES.sell=null; ES.buy=null; saveES(); renderExport(); });
+  on("exPort", e=>{ ES.port=e.target.value; saveES(); exportRoute(); renderExport(); });
+  on("exDest", e=>{ ES.dest=e.target.value; ES.freight20=null; ES.freight40=null; saveES(); renderExport(); });
+  on("exCont", e=>{ ES.cont=e.target.value; saveES(); renderExport(); });
+  on("exBuyU", e=>{ const old = ES.buyUnit; ES.buyUnit=e.target.value; if (ES.buy!=null && ES.buy!=="") ES.buy = old==="kg" && ES.buyUnit==="t" ? ES.buy*1000 : old==="t" && ES.buyUnit==="kg" ? ES.buy/1000 : ES.buy; saveES(); renderExport(); });
+  on("exFx", e=>{ ES.fxMode=e.target.value; saveES(); renderExport(); });
+  on("exRet", e=>{ ES.emptyRet=e.target.checked; saveES(); renderExport(); });
+  on("exHm", e=>{ ES.haulMode=e.target.value; saveES(); renderExport(); });
+  const nums = {exT:"tonnes", exBuy:"buy", exLoss:"loss", exSell:"sell", exFxC:"fxCustom", exIns:"insPct", exClean:"clean", exBag:"bagCost", exCap:"truckCap", exLp:"lp100", exPkm:"perkm", exLevy:"levy", exPort1:"portPer", exStuff:"stuffPer", exDocs:"docs", exBank:"bankPct", exFinR:"finRate", exFinD:"finDays", exTkm:"tkm", exHand:"handle"};
+  Object.entries(nums).forEach(([id,k])=>on(id, e=>{ const v = e.target.value; ES[k] = v==="" ? (["buy","sell","loss"].includes(k) ? null : ES[k]) : +v; if (k==="truckCap" && ES.truckCap<1) ES.truckCap=1; saveES(); renderExport(); }));
+  on("exFr", e=>{ const v = e.target.value; if (ES.cont==="40") ES.freight40 = v===""?null:+v; else ES.freight20 = v===""?null:+v; saveES(); renderExport(); });
+  $("#exRates") && ($("#exRates").ontoggle = e=>store.set("exRatesOpen", e.target.open));
+  $("#exHow") && ($("#exHow").ontoggle = e=>store.set("exHowOpen", e.target.open));
+  // origin search
+  const q = $("#exQ"), sug = $("#exSug");
+  if (q){
+    const show = list => { if (!list.length){ sug.style.display="none"; return; } sug.style.display="flex"; sug.innerHTML = list.map((m,i)=>`<button type="button" class="item" data-exo="${i}"><span class="tag">${esc(m.tag||"")}</span><span class="t"><b>${esc(m.name)}</b><span>${esc(m.sub||"")}</span></span><span class="r"></span></button>`).join(""); sug.querySelectorAll("[data-exo]").forEach(b=>b.onclick=()=>{ const m = list[+b.dataset.exo]; ES.origin = {id:m.id, name:m.name, sub:m.sub, lat:m.lat, lng:m.lng, kind:m.kind}; ES.buy=null; saveES(); sug.style.display="none"; exportRoute(); renderExport(); }); };
+    q.oninput = () => { const loc = localMatches(q.value); show(loc); onlineMatches(q.value, on=>{ if (on && document.activeElement===q) show([...localMatches(q.value), ...on].slice(0,10)); }); };
+    q.onblur = () => setTimeout(()=>{ if (sug) sug.style.display="none"; }, 200);
+  }
+}
+
+// ----- live feed from the export bot -----
+async function loadExportFeed(){
+  try {
+    const r = await fetch("data/export-prices.json", {cache:"no-store"}); if (!r.ok) return;
+    const j = await r.json(); if (!Array.isArray(j.records) || !j.records.length) return;
+    const latest = {};
+    j.records.forEach(x=>{ const k = x.src+"|"+x.label; if (!latest[k] || x.date>latest[k].date) latest[k]=x; });
+    const map_ = {cocoa:"cocoa", soy:"soy", groundnut:"groundnut", maize:"maize", palmoil:"palmoil", rice:"rice", wheat:"wheat"};
+    Object.values(latest).forEach(x=>{
+      const c = map_[x.c]; if (!c) return;
+      const basis = /CIF Rotterdam/.test(x.label) ? "CIF Rotterdam" : /FOB Gulf/.test(x.label) ? "FOB Gulf" : /FOB Bangkok/.test(x.label) ? "FOB Bangkok" : /FOB Rouen/.test(x.label) ? "FOB Rouen" : x.basis;
+      const same = EXPORT_PRICES.findIndex(o=>o.src===x.src && o.c===c && o.basis===basis);
+      const rec = {c, label: x.label.replace(/\s*\((IGC|ICCO average)\)/,"").replace(/, (CIF Rotterdam|FOB Gulf|FOB Bangkok|FOB Rouen)/,"").replace(/ \((US[^)]*|Malaysia\/Indonesia)[^)]*\)/,""), origin:"world", basis, v:x.usd_t, date:x.date, src:x.src, feed:true};
+      if (same>=0){ if (x.date>=EXPORT_PRICES[same].date) EXPORT_PRICES[same] = rec; }
+      else if (["wb_pinksheet","amis"].includes(x.src) && EXPORT_ITEMS[c]) EXPORT_PRICES.push(rec);
+    });
+    if (!$("#pane-export").hidden) renderExport();
+  } catch(e){}
+}
+
 // ---------- Adjustable panel / map split ----------
 (function(){
   const main = $(".main"), sp = $("#splitter");
@@ -3561,11 +4072,12 @@ map.fitBounds(stateLayer.getBounds(), {padding:[10,10]});
 renderExplore(); renderTicker();
 $("#feedPill").textContent = "Snapshot · " + fmtDate(SNAPSHOT_DATE);
 const startTab = ((location.hash||"").replace("#","")==="fuel") ? "route" : (location.hash||"").replace("#","");
-if (["explore","prices","tracker","calendar","route","data"].includes(startTab)) showTab(startTab);
+if (["explore","prices","tracker","calendar","route","export","data"].includes(startTab)) showTab(startTab);
 
 loadFeed();
 initCalendarStore();
 initFuelStore();
+loadExportFeed();
 
 </script>
 
