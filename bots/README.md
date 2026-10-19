@@ -15,6 +15,15 @@ These scripts keep the prices in the Nigeria Market Atlas up to date. Once a day
 | `opaindex` | Opaindex (re-publishes NBS) | New NBS Selected Food Prices Watch months | ₦/kg national |
 | `wfp_hdx` | WFP food prices for Nigeria on HDX (CC BY-IGO) | Monthly market prices from WFP monitors (last 6 months) | Taken from the CSV unit column |
 
+`export_prices.py` (a separate step) writes `export-prices.json` for the Export Camp tab:
+
+| Source | What it collects |
+|---|---|
+| `wb_pinksheet` | World Bank Pink Sheet monthly averages (CC BY 4.0): cocoa, palm oil, groundnuts, soybeans, maize, sorghum, rice, wheat, sugar, cotton, rubber, in US$/t |
+| `amis` | AMIS Market Monitor export quotations (FOB, US$/t) for maize, wheat, rice, soybeans and vegetable oils, read through the public data endpoint the AMIS site uses |
+
+Nigerian export quotes (sesame, ginger, cashew…), specifications and rules are typed into the page and need a manual update.
+
 
 ## How the bots behave
 
@@ -69,7 +78,7 @@ How the bot handles reports:
 
 ## Fuel prices: community reports
 
-The atlas's Fuel tab shows NNPC pump prices by state, depot prices, NBS monthly averages and black-market prices. Black-market prices come only from what people report. On the website, reports go to a second Tally form (`tally.so/r/xXk2Zy`), and `bots/fuel_reports.py` turns them into `market-atlas/data/fuel-reports.json` every day.
+The fuel tracker in the Logistics tab shows NNPC pump prices by state, depot prices, NBS monthly averages and black-market prices. Black-market prices come only from what people report. On the website, reports go to a second Tally form (`tally.so/r/xXk2Zy`), and `bots/fuel_reports.py` turns them into `market-atlas/data/fuel-reports.json` every day.
 
 - The bot uses the same `TALLY_API_KEY` secret as the market-day bot; the form id is set in the workflow.
 - It keeps reports from the last 90 days. A report is dropped if its state isn't recognised or its price is outside a sensible range (₦300–₦6,000 for petrol).
