@@ -3681,6 +3681,7 @@ function fxNow(){ return ES.fxMode==="custom" ? +ES.fxCustom : FX[ES.fxMode].rat
 function loadPerCont(){ const it = itemNow(); return ES.cont==="40" ? it.load40 : it.load20; }
 function lossPct(){ return ES.loss!=null ? +ES.loss : itemNow().loss; }
 function freightPer(){ const d = DESTS[destNow()]; const own = ES.cont==="40" ? ES.freight40 : ES.freight20; return own!=null && own!=="" ? +own : (ES.cont==="40" ? d.f40 : d.f20); }
+function dOf(o){ return o.src==="wb_pinksheet" || o.src==="amis" && /-01$/.test(o.date) && o.c==="palmoil" ? fmtDate(o.date.slice(0,7))+" average" : fmtDate(o.date); }
 function usdRange(o){ return o.v!=null ? o.v : (o.lo+o.hi)/2; }
 function exportRefs(c){ return EXPORT_PRICES.filter(o=>o.c===c).sort((a,b)=> (a.origin==="Nigeria"?0:1)-(b.origin==="Nigeria"?0:1) || b.date.localeCompare(a.date)); }
 function defaultSell(){
@@ -3813,7 +3814,7 @@ function exportPricesView(){
   const refs = exportRefs(ES.item);
   let h = `<div class="card"><h3>${esc(itemNow().label)}: price evidence</h3>`;
   if (!refs.length) h += `<p class="small muted">No published price found yet for this item.</p>`;
-  else h += `<div class="list">${refs.map(o=>`<div class="item" style="cursor:default;grid-template-columns:1fr auto;align-items:start"><span class="t"><b style="white-space:normal">${o.origin==="Nigeria"?'<span class="tag market">Nigeria</span>':'<span class="tag national">benchmark</span>'} ${esc(o.label)}</b><span style="display:block;white-space:normal">${srcLink(o.src)} · ${confTag(o.src)}${o.note?`<br>${esc(o.note)}`:""}</span></span><span class="r"><b class="num" style="font-size:13px">${priceCell(o)}</b><br>${esc(o.basis)}<br>${fmtDate(o.date)}</span></div>`).join("")}</div>`;
+  else h += `<div class="list">${refs.map(o=>`<div class="item" style="cursor:default;grid-template-columns:1fr auto;align-items:start"><span class="t"><b style="white-space:normal">${o.origin==="Nigeria"?'<span class="tag market">Nigeria</span>':'<span class="tag national">benchmark</span>'} ${esc(o.label)}</b><span style="display:block;white-space:normal">${srcLink(o.src)} · ${confTag(o.src)}${o.note?`<br>${esc(o.note)}`:""}</span></span><span class="r"><b class="num" style="font-size:13px">${priceCell(o)}</b><br>${esc(o.basis)}<br>${dOf(o)}</span></div>`).join("")}</div>`;
   h += `<p class="hint small muted">Prices are US$ per tonne unless shown otherwise. <b>FOB Lagos</b> means loaded on the ship in Lagos; the buyer pays the sea freight. <b>CNF / CFR</b> includes freight to the buyer’s port, <b>CIF</b> adds insurance. A benchmark from another origin shows the world level; Nigerian produce often sells at a discount to it until quality is proven.</p></div>`;
   h += `<div class="card"><h3>World market context</h3><div class="list">${GLOBAL_CONTEXT.map(([k,v,n,s])=>`<div class="item" style="cursor:default;grid-template-columns:1fr"><span class="t"><span style="display:block;font-weight:600;color:var(--muted)">${esc(k)}</span><b class="num" style="white-space:normal">${esc(v)}</b><span style="display:block;white-space:normal">${esc(n)} Source: ${srcLink(s)}</span></span></div>`).join("")}</div></div>`;
   h += `<div class="card"><h3>Exchange rate used</h3><dl class="kv"><dt>${esc(FX.official.label)}</dt><dd>₦${fmtN(FX.official.rate,2)} · ${fmtDate(FX.official.date)}</dd><dt>${esc(FX.parallel.label)}</dt><dd>₦${fmtN(FX.parallel.rate)} · ${fmtDate(FX.parallel.date)}</dd></dl><p class="small muted">Source: ${srcLink("fx")}. Export proceeds are converted through your bank, so the official rate is the default in the calculator.</p></div>`;
@@ -3893,7 +3894,7 @@ function exportCalcView(){
     <div class="row">${numField("exSell",`Sale price (US$ per tonne, ${ES.terms})`, ES.sell!=null&&ES.sell!==""?ES.sell:(ds?Math.round(ds.price):""),"1")}
     <div class="field"><label for="exFx">Exchange rate</label><select id="exFx"><option value="official" ${ES.fxMode==="official"?"selected":""}>Official ₦${fmtN(FX.official.rate,2)}</option><option value="parallel" ${ES.fxMode==="parallel"?"selected":""}>Parallel ₦${fmtN(FX.parallel.rate)}</option><option value="custom" ${ES.fxMode==="custom"?"selected":""}>My rate</option></select></div></div>
     ${ES.fxMode==="custom"?numField("exFxC","My rate (₦ per US$)",ES.fxCustom,"0.01"):""}
-    <p class="small muted">${ES.sell!=null&&ES.sell!=="" ? "Your price." : ds ? `Filled with the middle of “${esc(ds.o.label)}”, ${priceCell(ds.o)} ${esc(ds.o.basis)} (${fmtDate(ds.o.date)}, ${EXP_SRC[ds.o.src]?.conf} confidence)${ds.plusFreight!=null?`, plus sea freight of US$${fmtN(ds.plusFreight)} per tonne (US$${fmtN(freightPer())} per container ÷ ${fmtN(loadPerCont(),1)} t)`:""}. Replace it with your buyer’s offer.` : "No published Nigerian price on these terms. Enter your buyer’s offer."}</p>
+    <p class="small muted">${ES.sell!=null&&ES.sell!=="" ? "Your price." : ds ? `Filled with the middle of “${esc(ds.o.label)}”, ${priceCell(ds.o)} ${esc(ds.o.basis)} (${dOf(ds.o)}, ${EXP_SRC[ds.o.src]?.conf} confidence)${ds.plusFreight!=null?`, plus sea freight of US$${fmtN(ds.plusFreight)} per tonne (US$${fmtN(freightPer())} per container ÷ ${fmtN(loadPerCont(),1)} t)`:""}. Replace it with your buyer’s offer.` : "No published Nigerian price on these terms. Enter your buyer’s offer."}</p>
     ${ES.terms!=="FOB" && !d.road ? `<div class="row">${numField("exFr",`Sea freight per ${ES.cont} ft container (US$)`,freightPer(),"10")}${ES.terms==="CIF"?numField("exIns","Insurance (% of 110% of sale value)",ES.insPct,"0.05"):"<div></div>"}</div><p class="small muted">${d.src?`Default from ${srcLink(d.src)}. `:"Default is an Atlas placeholder: we found no published 2026 rate from Lagos to this market. "}Ask two forwarders for a quote.</p>`:""}</div>`;
   // results
   h += exportResults(C);
@@ -3938,7 +3939,7 @@ function exportResults(C){
   // compare with references
   const refs = exportRefs(ES.item).filter(o=>!o.unit);
   if (refs.length && C.breakEvenUsd!=null){
-    h += `<h3 style="margin-top:6px">Your break-even against published prices</h3><div class="tablewrap"><table><thead><tr><th>Published price</th><th>US$/t</th><th>vs break-even</th></tr></thead><tbody>${refs.map(o=>{ const m = usdRange(o) - C.breakEvenUsd; const comparable = (ES.terms==="FOB" ? /^FOB/ : /^(CNF|CFR|CIF)/).test(o.basis); return `<tr><td style="white-space:normal;min-width:150px">${esc(o.label)} <span class="small muted">· ${esc(o.basis)}, ${fmtDate(o.date)}</span>${comparable?"":` <span class="tag national">different terms</span>`}</td><td>${priceCell(o).replace("US$","")}</td><td class="${m>=0?"good":"bad"}">${m>=0?"+":"−"}${fmtN(Math.abs(m))}</td></tr>`; }).join("")}</tbody></table></div><p class="small muted">The middle of a range is used. Only rows with the same terms (${ES.terms}) compare like with like.</p>`;
+    h += `<h3 style="margin-top:6px">Your break-even against published prices</h3><div class="tablewrap"><table><thead><tr><th>Published price</th><th>US$/t</th><th>vs break-even</th></tr></thead><tbody>${refs.map(o=>{ const m = usdRange(o) - C.breakEvenUsd; const comparable = (ES.terms==="FOB" ? /^FOB/ : /^(CNF|CFR|CIF)/).test(o.basis); return `<tr><td style="white-space:normal;min-width:150px">${esc(o.label)} <span class="small muted">· ${esc(o.basis)}, ${dOf(o)}</span>${comparable?"":` <span class="tag national">different terms</span>`}</td><td>${priceCell(o).replace("US$","")}</td><td class="${m>=0?"good":"bad"}">${m>=0?"+":"−"}${fmtN(Math.abs(m))}</td></tr>`; }).join("")}</tbody></table></div><p class="small muted">The middle of a range is used. Only rows with the same terms (${ES.terms}) compare like with like.</p>`;
   }
   h += `</div>`;
   return h;
@@ -4006,7 +4007,7 @@ async function loadExportFeed(){
       const basis = /CIF Rotterdam/.test(x.label) ? "CIF Rotterdam" : /FOB Gulf/.test(x.label) ? "FOB Gulf" : /FOB Bangkok/.test(x.label) ? "FOB Bangkok" : /FOB Rouen/.test(x.label) ? "FOB Rouen" : x.basis;
       const same = EXPORT_PRICES.findIndex(o=>o.src===x.src && o.c===c && o.basis===basis);
       const rec = {c, label: x.label.replace(/\s*\((IGC|ICCO average)\)/,"").replace(/, (CIF Rotterdam|FOB Gulf|FOB Bangkok|FOB Rouen)/,"").replace(/ \((US[^)]*|Malaysia\/Indonesia)[^)]*\)/,""), origin:"world", basis, v:x.usd_t, date:x.date, src:x.src, feed:true};
-      if (same>=0){ if (x.date>=EXPORT_PRICES[same].date) EXPORT_PRICES[same] = rec; }
+      if (same>=0){ if (x.date>=EXPORT_PRICES[same].date) EXPORT_PRICES[same] = Object.assign(rec, {label: EXPORT_PRICES[same].label}); }
       else if (["wb_pinksheet","amis"].includes(x.src) && EXPORT_ITEMS[c]) EXPORT_PRICES.push(rec);
     });
     if (!$("#pane-export").hidden) renderExport();
