@@ -145,3 +145,23 @@ def test_fuel_reports_build():
             sub("e", {"product": "lpg", "kind": "pump", "price": "1100", "state": "Abuja", "date": d})]
     r = F.build(F.flatten(subs, qs), blocked=set())
     assert [(x["id"], x["state"]) for x in r] == [("a", "Kano"), ("e", "FCT")]
+
+
+def test_export_prices():
+    from openpyxl import Workbook
+    import export_prices as X
+    wb = Workbook(); ws = wb.active; ws.title = "Monthly Prices"
+    ws.append(["World Bank Commodity Price Data (The Pink Sheet)"]); ws.append([])
+    ws.append([None, "Crude oil, Brent", "Cocoa", "Palm oil", "Soybeans", "Rice, Thai 5%"])
+    ws.append([None, "($/bbl)", "($/kg)", "($/mt)", "($/mt)", "($/mt)"])
+    ws.append(["2026M08", 90.9, 5.95, 1132, 482, 471])
+    ws.append(["2026M09", 116.8, 5.92, 1180, 524, "…"])
+    got = X.parse_wb_monthly(wb)
+    cocoa = [r for r in got if r["c"] == "cocoa"]
+    assert cocoa[-1] == {"src": "wb_pinksheet", "c": "cocoa", "label": X.WB_SERIES["Cocoa"][1], "usd_t": 5920.0,
+                         "date": "2026-09-01", "basis": "monthly average"}
+    assert not [r for r in got if r["c"] == "rice" and r["date"] == "2026-09-01"]   # '…' is skipped
+    rows = [{"indicator_code": "US 3YC, Gulf", "date": "2026-09-30", "value": 236.0},
+            {"indicator_code": "US 3YC, Gulf", "date": "2026-10-01", "value": 0}]
+    a = X.parse_amis(rows, "maize_international_prices")
+    assert len(a) == 1 and a[0]["usd_t"] == 236.0 and a[0]["c"] == "maize"
