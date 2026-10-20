@@ -2,6 +2,14 @@
  "source": "GDELT 2.0 DOC API (news index)",
  "query": "(\"national grid\" OR \"power grid\") (collapse OR collapsed OR disturbance OR blackout) (Nigeria OR TCN OR NISO OR NERC)",
  "note": "Automatically collected headlines; not verified.",
- "checked": "2026-10-13T23:05:25+00:00",
- "items": []
+ "checked": "2026-10-20T17:29:19+00:00",
+ "items": [
+  {
+   "title": "NISO refutes grid collapse claims , restores system",
+   "url": "https://punchng.com/just-in-niso-refutes-grid-collapse-claims-says-partial-system-disturbance-restored/",
+   "domain": "punchng.com",
+   "seen": "2026-10-19T20:15:00+00:00",
+   "status": "unverified"
+  }
+ ]
 }
