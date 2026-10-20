@@ -418,11 +418,11 @@ function renderProfiles(v, s) {
 async function loadDirectory(occs, key, deceasedOnly) {
   if (dirCache[key]) return dirCache[key];
   const q = `SELECT ?p ?pLabel ?pDescription ?b ?d ?sl WHERE {
-    { SELECT DISTINCT ?p WHERE { VALUES ?occ { ${occs.map(o => "wd:" + o).join(" ")} } ?p wdt:P27 wd:${NIGERIA}; wdt:P106 ?occ. ${deceasedOnly ? "?p wdt:P570 []." : ""} } }
-    ?p wikibase:sitelinks ?sl.
-    OPTIONAL { ?p wdt:P569 ?b } OPTIONAL { ?p wdt:P570 ?d }
+    VALUES ?occ { ${occs.map(o => "wd:" + o).join(" ")} }
+    ?p wdt:P27 wd:${NIGERIA}; wdt:P106 ?occ; wikibase:sitelinks ?sl.
+    OPTIONAL { ?p wdt:P569 ?b } ${deceasedOnly ? "?p wdt:P570 ?d." : "OPTIONAL { ?p wdt:P570 ?d }"}
     SERVICE wikibase:label { bd:serviceParam wikibase:language "en". }
-  } ORDER BY DESC(?sl) LIMIT 3000`;
+  } ORDER BY DESC(?sl) LIMIT 6000`;
   const j = await sparql(q);
   const seen = new Set(), rows = [];
   for (const r of j.results.bindings) {
