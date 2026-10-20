@@ -161,7 +161,7 @@ ul.clean li{margin:0 0 6px}
         <button class="btn" id="dlBtn" aria-haspopup="true" aria-expanded="false">Download data</button>
         <div class="menu-list" id="dlMenu" hidden>
           <a href="data/landscape.json" download>All curated data (JSON)</a>
-          <button type="button" id="dlCsv">Profiles &amp; Hall of Fame (CSV)</button>
+          <button type="button" id="dlCsv">Curated Living &amp; Lived profiles (CSV)</button>
           <button type="button" id="dlStats">Statistics with sources (CSV)</button>
           <a href="data/followers.json" download>Follower counts from the bot (JSON)</a>
         </div>
@@ -238,10 +238,10 @@ document.addEventListener("click", e => { if (!e.target.closest(".menu")) { $("#
 function csvCell(v) { v = Array.isArray(v) ? v.join(" | ") : (v ?? ""); v = String(v); return /[",\n]/.test(v) ? '"' + v.replace(/"/g, '""') + '"' : v; }
 function download(name, text, type) { const a = document.createElement("a"); a.href = URL.createObjectURL(new Blob([text], { type })); a.download = name; document.body.appendChild(a); a.click(); setTimeout(() => { URL.revokeObjectURL(a.href); a.remove(); }, 500); }
 $("#dlCsv").addEventListener("click", () => {
-  const rows = [["field","status","name","role","active_since","born","died","highlights","wikipedia","official_site","source"]];
+  const rows = [["field","status","name","role","active_since","born","until","highlights","wikipedia","official_site","source"]];
   DATA.sectors.forEach(s => {
     s.profiles.forEach(p => rows.push([s.name,"living",p.n,p.r,p.since,"","",p.h,p.w?wikiUrl(p.w):"",p.site||"",p.src||""]));
-    s.hall.forEach(p => rows.push([s.name,"hall of fame",p.n,p.r,"",p.b||"",p.d||"",p.h,p.w?wikiUrl(p.w):"","",p.src||""]));
+    s.hall.forEach(p => rows.push([s.name,"lived",p.n,p.r,"",p.b||"",p.d||"",p.h,p.w?wikiUrl(p.w):"","",p.src||""]));
   });
   download("nigeria-literature-landscape-people.csv", rows.map(r => r.map(csvCell).join(",")).join("\n"), "text/csv");
 });
@@ -330,12 +330,11 @@ function statCard(x) {
   return `<div class="card stat"><div class="l">${esc(x.label)}${x.year ? `<span class="yr">${esc(x.year)}</span>` : ""}</div><div class="v">${esc(x.value)}</div>${x.note ? `<p class="n">${esc(x.note)}</p>` : ""}<div class="src">Source: ${srcLink(x.src, x.srcName)}</div></div>`;
 }
 function renderOverview(m) {
-  const totP = DATA.sectors.reduce((a, s) => a + s.profiles.length, 0), totH = DATA.sectors.reduce((a, s) => a + s.hall.length, 0);
-  const tlAll = DATA.sectors.flatMap(s => s.timeline.map(t => ({ ...t, s }))).filter(t => t.y >= 2024).sort((a, b) => b.y - a.y);
+    const tlAll = DATA.sectors.flatMap(s => s.timeline.map(t => ({ ...t, s }))).filter(t => t.y >= 2024).sort((a, b) => b.y - a.y);
   m.innerHTML = `
   <section>
     <h2>The creative economy at a glance</h2>
-    <p class="sub">${totP} curated living profiles and ${totH} Hall of Fame entries across eight fields, plus a live directory of every Nigerian creative recorded on Wikidata. Every figure links to the page it came from.</p>
+    <p class="sub">Eight fields, every genre, language and tradition — drawn live from everyone on record, with a new random set of people on every visit. Every figure links to the page it came from.</p>
     <div class="grid g-stats">${DATA.overview.stats.map(statCard).join("")}</div>
   </section>
   <section class="section">
@@ -343,7 +342,7 @@ function renderOverview(m) {
     <div class="grid g-cards">${DATA.sectors.map(s => `
       <button class="card sector-card" style="${sectorVar(s.id)}" data-go="${s.id}">
         <h3>${esc(s.name)}</h3><p>${esc(s.short)}</p>
-        <div class="mini"><span><b>${s.profiles.length}</b>profiles</span><span><b>${s.hall.length}</b>Hall of Fame</span><span><b data-count="${s.id}">…</b>on Wikidata</span></div>
+        <div class="mini"><span><b data-count="${s.id}">…</b>people on record</span><span><b>${s.timeline.length}</b>milestones</span><span><b>${s.stats.length}</b>sourced statistics</span></div>
       </button>`).join("")}</div>
   </section>
   <section class="section">
@@ -357,94 +356,76 @@ function renderOverview(m) {
   m.querySelectorAll("[data-go]").forEach(b => b.addEventListener("click", () => location.hash = "#/" + b.dataset.go));
   DATA.sectors.forEach(s => sectorCount(s).then(n => { const el = m.querySelector(`[data-count="${s.id}"]`); if (el) el.textContent = n == null ? "—" : n.toLocaleString(); }));
 }
+const COUNTRIES = "wd:Q1033 wd:Q2046345 wd:Q472146 wd:Q585408 wd:Q2062030"; // Nigeria + colonial-era Nigeria
+const nigWhere = () => `{ VALUES ?c { ${COUNTRIES} } ?p wdt:P27 ?c } UNION { ?p wdt:P19/wdt:P17 wd:${NIGERIA} }`;
+let ALL_OCCS = [];
 async function sectorCount(s) {
   if (s.id in countCache) return countCache[s.id];
   try {
-    const j = await sparql(`SELECT (COUNT(DISTINCT ?p) AS ?c) WHERE { VALUES ?occ { ${s.occupations.map(o => "wd:" + o).join(" ")} } ?p wdt:P27 wd:${NIGERIA}; wdt:P106 ?occ. }`);
+    const j = await sparql(`SELECT (COUNT(DISTINCT ?p) AS ?c) WHERE { VALUES ?occ { ${s.occupations.map(o => "wd:" + o).join(" ")} } ?p wdt:P106 ?occ. ${nigWhere()} }`);
     return countCache[s.id] = +j.results.bindings[0].c.value;
   } catch (e) { return countCache[s.id] = null; }
 }
 
 /* ---------- sector ---------- */
 function renderSector(m, s, sub) {
-  const subs = [["profiles", "Profiles", s.profiles.length], ["directory", "Full directory", null], ["hall", "Hall of Fame", s.hall.length], ["timeline", "Timeline", s.timeline.length], ["awards", "Awards", s.awards.length]];
+  const subs = [["profiles", "Living"], ["hall", "Lived · Hall of Fame"], ["directory", "Full directory"], ["timeline", "Timeline"], ["awards", "Awards"]];
   m.setAttribute("style", sectorVar(s.id));
   m.innerHTML = `
     <h2><span class="dot" style="width:12px;height:12px;vertical-align:4px;margin-right:8px"></span>${esc(s.name)}</h2>
     <p class="sub">${esc(s.intro)}</p>
     <div class="grid g-stats">${s.stats.map(statCard).join("")}</div>
-    <div class="subtabs" role="tablist">${subs.map(([id, n, c]) => `<button class="chipbtn" aria-pressed="${id === sub}" data-sub="${id}">${n}${c != null ? ` <span class="c">${c}</span>` : ""}</button>`).join("")}</div>
+    <div class="subtabs" role="tablist">${subs.map(([id, n]) => `<button class="chipbtn" aria-pressed="${id === sub}" data-sub="${id}">${n}</button>`).join("")}</div>
     <div id="subview"></div>`;
   m.querySelectorAll("[data-sub]").forEach(b => b.addEventListener("click", () => location.hash = "#/" + s.id + "/" + b.dataset.sub));
   const v = $("#subview", m);
   if (sub === "directory") renderDirectory(v, s);
-  else if (sub === "hall") renderHallList(v, s.hall.map(p => ({ ...p, s })), true);
+  else if (sub === "hall") renderPeople(v, s, true);
   else if (sub === "timeline") v.innerHTML = timelineHTML(s.timeline.map(t => ({ ...t, s })), false);
   else if (sub === "awards") v.innerHTML = `<div class="grid g-cards">${s.awards.map(a => `<div class="card"><h3>${esc(a.name)}</h3><p class="n" style="color:var(--muted);font-size:13.5px;margin:0 0 8px">Since ${esc(a.since)} · ${esc(a.about)}</p><div class="src">${srcLink(a.src)}</div></div>`).join("")}</div>`;
-  else renderProfiles(v, s);
-}
-function personCard(p, s, hall) {
-  const key = p.w ? "t:" + p.w : "n:" + s.id + ":" + p.n;
-  return `<button class="card person${hall ? " hall" : ""}" style="${sectorVar(s.id)}" data-person="${esc(key)}">
-    <div class="ph" ${p.w ? `data-thumb="${esc(p.w)}"` : ""}>${esc(initials(p.n))}</div>
-    <div style="min-width:0">
-      <p class="nm">${esc(p.n)}</p>
-      ${hall ? `<p class="years">${p.b ? esc(p.b) : "?"} – ${esc(p.d || "")}</p>` : ""}
-      <p class="rl">${esc(p.r)}${!hall && p.since ? ` · since ${esc(p.since)}` : ""}</p>
-      ${p.h && p.h[0] ? `<p class="hl">${esc(p.h[0])}</p>` : ""}
-      ${!hall && p.w ? `<span class="badge f" data-fol="${esc(p.w)}" hidden></span>` : ""}
-    </div></button>`;
+  else renderPeople(v, s, false);
 }
 function bindPeople(root) { root.querySelectorAll("[data-person]").forEach(b => b.addEventListener("click", () => setPersonHash(b.dataset.person))); }
-function renderProfiles(v, s) {
-  v.innerHTML = `<div class="toolbar"><input class="input search" type="search" placeholder="Search ${esc(s.name.toLowerCase())} profiles" aria-label="Search profiles" id="pq">
-    <select class="input" id="psort" aria-label="Sort"><option value="since">Longest active first</option><option value="name">Name A–Z</option><option value="recent">Newest first</option><option value="fol">Most followers</option></select></div>
-    <div class="grid g-cards" id="plist"></div>
-    <p class="note" style="margin-top:16px">These are curated profiles. For every Nigerian ${esc(s.name.toLowerCase())} figure recorded on Wikidata — living and deceased — open <a href="#/${s.id}/directory">the full directory</a>. Missing someone? <a href="#/contribute">Submit a profile</a>.</p>`;
-  const draw = () => {
-    const q = $("#pq", v).value.trim().toLowerCase(), so = $("#psort", v).value;
-    let L = s.profiles.filter(p => !q || (p.n + " " + p.r + " " + (p.h || []).join(" ")).toLowerCase().includes(q));
-    const fv = p => { const i = pageInfo[p.w] || {}; const t = topCount(folFor(i.qid, p.w)); return t ? t.value : -1; };
-    L.sort(so === "name" ? (a, b) => a.n.localeCompare(b.n) : so === "recent" ? (a, b) => (b.since || 0) - (a.since || 0) : so === "fol" ? (a, b) => fv(b) - fv(a) : (a, b) => (a.since || 9999) - (b.since || 9999));
-    $("#plist", v).innerHTML = L.map(p => personCard(p, s, false)).join("") || `<p class="loading">No profiles match.</p>`;
-    bindPeople(v); paintThumbs(v);
-  };
-  $("#pq", v).addEventListener("input", draw); $("#psort", v).addEventListener("change", draw);
-  draw();
-  loadPageInfo(s.profiles.map(p => p.w)).then(() => paintThumbs(v));
-}
 
-/* ---------- live directory ---------- */
-async function loadDirectory(occs, key, deceasedOnly) {
+/* ---------- live directory (Wikidata) ---------- */
+const LSK = k => "nll-dir-v3:" + k;
+function lsGet(k) { try { const v = JSON.parse(localStorage.getItem(LSK(k)) || "null"); if (v && Date.now() - v.t < 864e5) return v.rows; } catch (e) {} return null; }
+function lsSet(k, rows) { try { localStorage.setItem(LSK(k), JSON.stringify({ t: Date.now(), rows })); } catch (e) {} }
+const isLived = r => !!r.d || (!!r.b && +r.b < 1910);
+async function loadDirectory(occs, key, livedOnly) {
   if (dirCache[key]) return dirCache[key];
-  const q = `SELECT ?p ?pLabel ?pDescription ?b ?d ?sl WHERE {
+  const cached = lsGet(key); if (cached) return dirCache[key] = cached;
+  const q = `SELECT DISTINCT ?p ?pLabel ?pDescription ?b ?d ?sl ?img WHERE {
     VALUES ?occ { ${occs.map(o => "wd:" + o).join(" ")} }
-    ?p wdt:P27 wd:${NIGERIA}; wdt:P106 ?occ; wikibase:sitelinks ?sl.
-    OPTIONAL { ?p wdt:P569 ?b } ${deceasedOnly ? "?p wdt:P570 ?d." : "OPTIONAL { ?p wdt:P570 ?d }"}
+    ?p wdt:P106 ?occ. ${nigWhere()}
+    ?p wikibase:sitelinks ?sl.
+    OPTIONAL { ?p wdt:P569 ?b } ${livedOnly ? "?p wdt:P570 ?d." : "OPTIONAL { ?p wdt:P570 ?d }"}
+    OPTIONAL { ?p wdt:P18 ?img }
     SERVICE wikibase:label { bd:serviceParam wikibase:language "en". }
-  } ORDER BY DESC(?sl) LIMIT 6000`;
+  } ORDER BY DESC(?sl) LIMIT 20000`;
   const j = await sparql(q);
   const seen = new Set(), rows = [];
   for (const r of j.results.bindings) {
     const qid = r.p.value.split("/").pop(); if (seen.has(qid)) continue; seen.add(qid);
-    rows.push({ qid, name: r.pLabel ? r.pLabel.value : qid, desc: r.pDescription ? r.pDescription.value : "", b: r.b ? yearOf(r.b.value) : "", d: r.d ? yearOf(r.d.value) : "", sl: +r.sl.value });
+    rows.push({ qid, name: r.pLabel ? r.pLabel.value : qid, desc: r.pDescription ? r.pDescription.value : "", b: r.b ? yearOf(r.b.value) : "", d: r.d ? yearOf(r.d.value) : "", sl: +r.sl.value, img: r.img ? r.img.value.replace(/^http:/, "https:") : "" });
   }
+  lsSet(key, rows);
   return dirCache[key] = rows;
 }
 function renderDirectory(v, s) {
-  v.innerHTML = `<p class="note">Live from <a href="https://www.wikidata.org" target="_blank" rel="noopener">Wikidata</a>: everyone recorded as a Nigerian citizen with a ${esc(s.name.toLowerCase())}-related occupation. Ranked by prominence (number of Wikipedia language editions). Community-maintained — click anyone for their sourced record.</p>
+  v.innerHTML = `<p class="note">Live from <a href="https://www.wikidata.org" target="_blank" rel="noopener">Wikidata</a>: everyone recorded with a ${esc(s.name.toLowerCase())}-related occupation who is a citizen of Nigeria (including colonial-era Nigeria) or was born in Nigeria — across every language and tradition. Ranked by prominence (number of Wikipedia language editions). Click anyone for their sourced record.</p>
   <div class="toolbar"><input class="input search" type="search" placeholder="Search names or descriptions" id="dq" aria-label="Search directory">
-    <select class="input" id="dst" aria-label="Status"><option value="all">Living and deceased</option><option value="living">Living</option><option value="dead">Deceased</option></select>
+    <select class="input" id="dst" aria-label="Status"><option value="all">Living and Lived</option><option value="living">Living</option><option value="lived">Lived</option></select>
     <select class="input" id="dsort" aria-label="Sort"><option value="sl">Most prominent</option><option value="b">Oldest first</option><option value="bd">Youngest first</option><option value="name">Name A–Z</option></select></div>
   <div id="dout"><p class="loading"><span class="spin"></span>Querying Wikidata…</p></div>`;
   let shown = 100;
   loadDirectory(s.occupations, s.id).then(rows => {
     const draw = () => {
       const q = $("#dq", v).value.trim().toLowerCase(), st = $("#dst", v).value, so = $("#dsort", v).value;
-      let L = rows.filter(r => (!q || (r.name + " " + r.desc).toLowerCase().includes(q)) && (st === "all" || (st === "dead" ? r.d : !r.d)) && !/^Q\d+$/.test(r.name));
+      let L = rows.filter(r => (!q || (r.name + " " + r.desc).toLowerCase().includes(q)) && (st === "all" || (st === "lived" ? isLived(r) : !isLived(r))) && !/^Q\d+$/.test(r.name));
       if (so === "b") L = [...L].sort((a, b) => (a.b || 9999) - (b.b || 9999)); else if (so === "bd") L = [...L].sort((a, b) => (b.b || 0) - (a.b || 0)); else if (so === "name") L = [...L].sort((a, b) => a.name.localeCompare(b.name));
       $("#dout", v).innerHTML = `<p class="src" style="margin:0 0 8px">${L.length.toLocaleString()} people${L.length > shown ? `, showing ${shown}` : ""}</p>
-      <table class="tbl"><thead><tr><th>Name</th><th class="hide-sm">Description</th><th>Born</th><th>Died</th></tr></thead><tbody>
+      <table class="tbl"><thead><tr><th>Name</th><th class="hide-sm">Description</th><th>Born</th><th>Until</th></tr></thead><tbody>
       ${L.slice(0, shown).map(r => `<tr class="rowlink" tabindex="0" data-person="q:${r.qid}"><td><b>${esc(r.name)}</b></td><td class="d hide-sm">${esc(r.desc)}</td><td>${esc(r.b)}</td><td>${r.d ? `<span class="rip">${esc(r.d)}</span>` : ""}</td></tr>`).join("")}
       </tbody></table>${L.length > shown ? `<div class="more"><button class="btn" id="dmore">Show 200 more</button></div>` : ""}`;
       v.querySelectorAll("tr[data-person]").forEach(tr => { tr.addEventListener("click", () => setPersonHash(tr.dataset.person)); tr.addEventListener("keydown", e => { if (e.key === "Enter") setPersonHash(tr.dataset.person); }); });
@@ -455,29 +436,82 @@ function renderDirectory(v, s) {
   }).catch(e => { $("#dout", v).innerHTML = `<p class="note">Wikidata did not respond (${esc(e.message)}). Please try again in a moment.</p>`; });
 }
 
-/* ---------- hall of fame ---------- */
-function renderHallList(v, list) {
-  list = [...list].sort((a, b) => (b.d || 0) - (a.d || 0));
-  v.innerHTML = `<div class="grid g-cards">${list.map(p => personCard(p, p.s, true)).join("")}</div>`;
-  bindPeople(v);
-  loadPageInfo(list.map(p => p.w)).then(() => paintThumbs(v));
+/* ---------- random people (Living / Lived) ---------- */
+const rand = () => { const u = new Uint32Array(1); crypto.getRandomValues(u); return u[0] / 4294967296; };
+function sample(arr, n) { const a = arr.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(rand() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a.slice(0, n); }
+function curatedQ(p) { return (p.w && FOL && FOL.byTitle && FOL.byTitle[p.w]) || (p.w && pageInfo[p.w] && pageInfo[p.w].qid) || null; }
+function buildPool(rows, s, lived) {
+  const byQ = new Map();
+  rows.forEach(r => { if (/^Q\d+$/.test(r.name) || isLived(r) !== lived) return; byQ.set(r.qid, { ...r, sec: s }); });
+  (s ? [s] : DATA.sectors).forEach(sec => (lived ? sec.hall : sec.profiles).forEach(p => {
+    const q = curatedQ(p), key = q || "c:" + sec.id + ":" + p.n;
+    const e = byQ.get(key) || { qid: q, name: p.n, desc: "", b: p.b ? String(p.b) : "", d: p.d ? String(p.d) : "", img: "", sl: 0 };
+    e.cur = { p, s: sec }; e.sec = e.sec || sec; byQ.set(key, e);
+  }));
+  return [...byQ.values()];
 }
+function poolCard(e, lived) {
+  const key = e.qid ? "q:" + e.qid : (e.cur.p.w ? "t:" + e.cur.p.w : "n:" + e.cur.s.id + ":" + e.cur.p.n);
+  const sec = e.sec || (e.cur && e.cur.s);
+  const role = e.cur ? e.cur.p.r : e.desc;
+  const hl = e.cur && e.cur.p.h && e.cur.p.h[0];
+  const tc = topCount(folFor(e.qid, e.cur && e.cur.p.w));
+  const old = tc && (Date.now() - Date.parse(tc.date)) > 60 * 864e5;
+  const years = lived ? `${esc(e.b || "?")} – ${esc(e.d || "")}` : (e.b ? "Born " + esc(e.b) : "");
+  return `<button class="card person${lived ? " hall" : ""}" style="${sec ? sectorVar(sec.id) : "--tc:var(--gold)"}" data-person="${esc(key)}">
+    <div class="ph" ${!e.img && e.cur && e.cur.p.w ? `data-thumb="${esc(e.cur.p.w)}"` : ""}>${e.img ? `<img src="${esc(e.img)}${Q}width=240" alt="" loading="lazy">` : esc(initials(e.name))}</div>
+    <div style="min-width:0">
+      <p class="nm">${esc(e.name)}</p>
+      ${years ? `<p class="${lived ? "years" : "rl"}" style="margin:0 0 4px">${years}</p>` : ""}
+      <p class="rl">${esc(role)}</p>
+      ${hl ? `<p class="hl">${esc(hl)}</p>` : ""}
+      ${tc ? `<span class="badge f" title="As of ${esc(tc.date)} · ${esc(tc.source)}">${fmt(tc.value)} on ${PLAT[tc.platform] || tc.platform}${old ? " · " + tc.date.slice(0, 4) : ""}</span>` : ""}
+    </div></button>`;
+}
+function renderPeople(v, s, lived) {
+  const N = 24, word = lived ? "Lived" : "Living";
+  const scope = s ? s.name.toLowerCase() : "all fields";
+  v.innerHTML = `<div class="toolbar"><input class="input search" type="search" placeholder="Search every ${word.toLowerCase()} person in ${esc(scope)}" aria-label="Search people" id="pq">
+    <button class="btn" type="button" id="shuf">Shuffle ↻</button></div>
+    <p class="src" id="pinfo" style="margin:0 0 10px"></p>
+    <div class="grid g-cards" id="plist"><p class="loading"><span class="spin"></span>Drawing a random set from the full directory…</p></div>
+    <p class="note" style="margin-top:16px">Everyone has an equal chance of appearing: each visit draws a new random set from every ${word.toLowerCase()} person on record — every genre, language and tradition. Not listed? <a href="#/contribute">Add a profile</a>.</p>`;
+  const load = s ? loadDirectory(s.occupations, s.id) : loadDirectory(ALL_OCCS, "lived:all", true);
+  const go = rows => {
+    const pool = buildPool(rows, s, lived);
+    let cur = sample(pool, N);
+    const draw = () => {
+      const q = $("#pq", v).value.trim().toLowerCase();
+      const list = q ? pool.filter(e => (e.name + " " + e.desc + " " + (e.cur ? e.cur.p.r + " " + (e.cur.p.h || []).join(" ") : "")).toLowerCase().includes(q)).sort((a, b) => (b.sl || 0) - (a.sl || 0)).slice(0, 60) : cur;
+      $("#pinfo", v).textContent = q ? `${list.length}${list.length === 60 ? "+" : ""} matches among ${pool.length.toLocaleString()} ${word}` : `${list.length} of ${pool.length.toLocaleString()} ${word}, chosen at random — refresh or shuffle for a new set`;
+      $("#plist", v).innerHTML = list.map(e => poolCard(e, lived)).join("") || `<p class="loading">No one matches.</p>`;
+      bindPeople(v);
+      const titles = list.filter(e => !e.img && e.cur && e.cur.p.w).map(e => e.cur.p.w);
+      if (titles.length) loadPageInfo(titles).then(() => paintThumbs(v));
+    };
+    $("#pq", v).addEventListener("input", draw);
+    $("#shuf", v).addEventListener("click", () => { $("#pq", v).value = ""; cur = sample(pool, N); draw(); });
+    draw();
+  };
+  load.then(go).catch(() => { go([]); $("#pinfo", v).textContent += " (Wikidata is unavailable right now — showing the curated set only)"; });
+}
+
+/* ---------- hall of fame ---------- */
 function renderHall(m, sub) {
-  const all = DATA.sectors.flatMap(s => s.hall.map(p => ({ ...p, s })));
   const filt = sub && S[sub] ? sub : "all";
   m.removeAttribute("style");
-  m.innerHTML = `<div class="memorial"><h2>Hall of Fame</h2><p class="sub" style="margin:0">Honouring the writers, poets, dramatists, musicians, filmmakers, comedians, journalists and creators who are no longer with us — from Olaudah Equiano (d. 1797) to those we lost this year. Nominate someone through <a href="#/contribute">Contribute</a>.</p></div>
-  <div class="subtabs"><button class="chipbtn" aria-pressed="${filt === "all"}" data-f="">All fields <span class="c">${all.length}</span></button>${DATA.sectors.map(s => `<button class="chipbtn" aria-pressed="${filt === s.id}" data-f="${s.id}" style="${sectorVar(s.id)}"><span class="dot"></span>${esc(s.name)} <span class="c">${s.hall.length}</span></button>`).join("")}</div>
+  m.innerHTML = `<div class="memorial"><h2>Hall of Fame</h2><p class="sub" style="margin:0">Honouring the writers, poets, griots, dramatists, musicians, filmmakers, comedians, journalists and creators who have lived — from Olaudah Equiano (d. 1797) to those we lost this year. Each visit brings a different set of names. Nominate someone through <a href="#/contribute">Contribute</a>.</p></div>
+  <div class="subtabs"><button class="chipbtn" aria-pressed="${filt === "all"}" data-f="">All fields</button>${DATA.sectors.map(s => `<button class="chipbtn" aria-pressed="${filt === s.id}" data-f="${s.id}" style="${sectorVar(s.id)}"><span class="dot"></span>${esc(s.name)}</button>`).join("")}</div>
   <div id="hl"></div>
-  <section class="section"><h2>More remembered on Wikidata</h2><p class="sub">Every deceased Nigerian creative in these fields recorded on Wikidata, most prominent first.</p><div id="hlive"><button class="btn" id="loadLive">Load the full memorial list</button></div></section>`;
+  <section class="section"><h2>The full memorial list</h2><p class="sub">Every person who has lived in ${filt === "all" ? "these fields" : esc(S[filt].name.toLowerCase())} recorded on Wikidata, most prominent first.</p><div id="hlive"><button class="btn" id="loadLive">Load the full memorial list</button></div></section>`;
   m.querySelectorAll("[data-f]").forEach(b => b.addEventListener("click", () => location.hash = "#/hall" + (b.dataset.f ? "/" + b.dataset.f : "")));
-  renderHallList($("#hl", m), filt === "all" ? all : all.filter(p => p.s.id === filt));
+  renderPeople($("#hl", m), filt === "all" ? null : S[filt], true);
   $("#loadLive", m).addEventListener("click", () => {
     const box = $("#hlive", m); box.innerHTML = `<p class="loading"><span class="spin"></span>Querying Wikidata…</p>`;
-    const occs = filt === "all" ? [...new Set(DATA.sectors.flatMap(s => s.occupations))] : S[filt].occupations;
-    loadDirectory(occs, "dead:" + filt, true).then(rows => {
-      rows = rows.filter(r => !/^Q\d+$/.test(r.name));
-      box.innerHTML = `<p class="src">${rows.length.toLocaleString()} people</p><table class="tbl"><thead><tr><th>Name</th><th class="hide-sm">Description</th><th>Years</th></tr></thead><tbody>${rows.slice(0, 600).map(r => `<tr class="rowlink" tabindex="0" data-person="q:${r.qid}"><td><b>${esc(r.name)}</b></td><td class="d hide-sm">${esc(r.desc)}</td><td class="rip">${esc(r.b || "?")}–${esc(r.d)}</td></tr>`).join("")}</tbody></table>`;
+    const p = filt === "all" ? loadDirectory(ALL_OCCS, "lived:all", true) : loadDirectory(S[filt].occupations, filt);
+    p.then(rows => {
+      rows = rows.filter(r => !/^Q\d+$/.test(r.name) && isLived(r));
+      box.innerHTML = `<p class="src">${rows.length.toLocaleString()} people</p><table class="tbl"><thead><tr><th>Name</th><th class="hide-sm">Description</th><th>Years</th></tr></thead><tbody>${rows.slice(0, 800).map(r => `<tr class="rowlink" tabindex="0" data-person="q:${r.qid}"><td><b>${esc(r.name)}</b></td><td class="d hide-sm">${esc(r.desc)}</td><td class="rip">${esc(r.b || "?")}–${esc(r.d)}</td></tr>`).join("")}</tbody></table>`;
       box.querySelectorAll("tr[data-person]").forEach(tr => tr.addEventListener("click", () => setPersonHash(tr.dataset.person)));
     }).catch(e => box.innerHTML = `<p class="note">Wikidata did not respond (${esc(e.message)}).</p>`);
   });
@@ -680,7 +714,7 @@ function renderAbout(m) {
   <p class="sub">The Nigeria Literature Landscape gathers Nigeria's creative fields — literature, poetry, drama, music, film, comedy, journalism and digital content — in one place, with every claim traceable to a source. It is one of a family of open Nigeria atlases built because robust, verifiable data on African countries is hard to find online.</p>
   <div class="grid g-cards">
     <div class="card"><h3>1 · Curated and sourced</h3><p style="font-size:14px;margin:0">Statistics, timelines, profiles and the Hall of Fame are written by hand. Each statistic and milestone links to the page it came from (government agencies, PwC, DataReportal, award bodies, reputable news). Where sources disagree, the note says so.</p></div>
-    <div class="card"><h3>2 · Live from Wikidata &amp; Wikipedia</h3><p style="font-size:14px;margin:0">Profiles pull biographies, photos, birth and death dates, awards, notable works, works counts and official links live when you open them. The full directory lists every Nigerian with a relevant occupation recorded on Wikidata.</p></div>
+    <div class="card"><h3>2 · Live from Wikidata &amp; Wikipedia</h3><p style="font-size:14px;margin:0">Profiles pull biographies, photos, birth and death dates, awards, notable works, works counts and official links live when you open them. The full directory lists every Nigerian creative recorded on Wikidata, across every genre, language and tradition.</p></div>
     <div class="card"><h3>3 · Refreshed by a bot</h3><p style="font-size:14px;margin:0">A scheduled bot runs weekly. It reads each profile's official social accounts from Wikidata, fetches YouTube subscriber counts from YouTube's official API, collects the dated follower counts recorded on Wikidata, and flags any profile whose Wikidata record gains a date of death for human review.</p></div>
     <div class="card"><h3>4 · Screened contributions</h3><p style="font-size:14px;margin:0">Anyone — including the people profiled — can submit additions and corrections. Submissions go to a private review queue and are checked against the sources provided before publication.</p></div>
   </div>
@@ -688,7 +722,11 @@ function renderAbout(m) {
     <p style="font-size:14px">${FOL && FOL.updated ? `Last run ${esc(FOL.updated.slice(0, 10))} · ${Object.keys(FOL.people || {}).length} profiles with social data · sources: ${esc((FOL.sources || []).join(", "))}.` : "The first run is pending."}</p>
     ${flags.length ? `<div class="note"><b>Awaiting review:</b> ${flags.map(f => esc(f.title + " — " + f.reason)).join("; ")}</div>` : ""}
   </section>
-  <section class="section"><h3>What counts as "Nigerian" here</h3><p style="font-size:14px">Citizens and people of Nigerian birth or heritage whose work is connected to Nigeria. Diaspora figures are labelled (e.g. "British-Nigerian"). Statistics for diaspora-inclusive totals, such as Grammy counts, state which definition they use.</p></section>
+  <section class="section"><h3>Who is included, and how people are shown</h3><ul class="clean" style="font-size:14px">
+    <li><b>Everyone in the industry, equally.</b> Anyone recorded on Wikidata with an occupation in these fields — including griots, praise and folk singers, traditional percussionists and drummers, storytellers, indigenous-language writers, Kannywood and Yoruba-film actors — who is a citizen of Nigeria (including colonial-era Nigeria) or was born in Nigeria.</li>
+    <li><b>No ranking by fame.</b> The Living and Lived pages draw a fresh random set from the whole pool on every visit or shuffle, so every person has the same chance of appearing.</li>
+    <li><b>Living and Lived.</b> People with a recorded date of death — or born before 1910 — appear under Lived and in the Hall of Fame.</li>
+    <li><b>Hand-written highlights</b> are added for some people, each checked against a source. Diaspora figures are labelled (e.g. "British-Nigerian").</li></ul></section>
   <section class="section"><h3>Limitations</h3><ul class="clean" style="font-size:14px">
     <li>Wikidata is community-edited and uneven: many Nigerian creatives — especially in indigenous-language film, music and literature — are missing or thinly recorded. Contributions help close that gap.</li>
     <li>Platforms such as Instagram, X and TikTok do not offer free public follower APIs, so those counts appear only where a dated figure exists on Wikidata. Each count shows its date and source.</li>
@@ -702,6 +740,7 @@ function renderAbout(m) {
     DATA = await getJSON("data/landscape.json", { cache: "no-cache" });
   } catch (e) { $("#main").innerHTML = `<p class="note">Could not load the data file. Please refresh.</p>`; return; }
   DATA.sectors.forEach(s => S[s.id] = s);
+  ALL_OCCS = [...new Set(DATA.sectors.flatMap(s => s.occupations))];
   try { FOL = await getJSON("data/followers.json", { cache: "no-cache" }); } catch (e) { FOL = null; }
   window.addEventListener("hashchange", route);
   route();
