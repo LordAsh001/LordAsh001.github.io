@@ -1661,36 +1661,36 @@ issued,station,state,lga,lat,lon,day,day_label,weather,temp_day_c,temp_night_c
 2026-10-20,Ado-Ekiti,Ekiti,Ado Ekiti,7.62,5.22,1,Tue 20th,Partly cloudy,33.0,23.0
 2026-10-20,Ado-Ekiti,Ekiti,Ado Ekiti,7.62,5.22,2,Wed 21st,Partly cloudy,33.0,23.0
 2026-10-20,Ado-Ekiti,Ekiti,Ado Ekiti,7.62,5.22,3,Thu 22nd,Partly cloudy,33.0,24.0
-2026-10-20,Akure,Ondo,Akure South,7.25,5.19,1,Tue 20th,Thunderstorm,32.0,23.0
-2026-10-20,Akure,Ondo,Akure South,7.25,5.19,2,Wed 21st,Thunderstorm,33.0,23.0
-2026-10-20,Akure,Ondo,Akure South,7.25,5.19,3,Thu 22nd,Cloudy,33.0,24.0
-2026-10-20,Asaba,Delta,Oshimili South,6.2,6.73,1,Tue 20th,Thunderstorm,32.0,23.0
-2026-10-20,Asaba,Delta,Oshimili South,6.2,6.73,2,Wed 21st,Thunderstorm,33.0,23.0
-2026-10-20,Asaba,Delta,Oshimili South,6.2,6.73,3,Thu 22nd,Cloudy,33.0,24.0
-2026-10-20,Awka,Anambra,Awka South,6.21,7.07,1,Tue 20th,Thunderstorm,32.0,23.0
-2026-10-20,Awka,Anambra,Awka South,6.21,7.07,2,Wed 21st,Thunderstorm,33.0,23.0
-2026-10-20,Awka,Anambra,Awka South,6.21,7.07,3,Thu 22nd,Cloudy,33.0,24.0
+2026-10-20,Akure,Ondo,Akure South,7.25,5.19,1,Tue 20th,Partly cloudy,33.0,23.0
+2026-10-20,Akure,Ondo,Akure South,7.25,5.19,2,Wed 21st,Partly cloudy,33.0,23.0
+2026-10-20,Akure,Ondo,Akure South,7.25,5.19,3,Thu 22nd,Partly cloudy,33.0,24.0
+2026-10-20,Asaba,Delta,Oshimili South,6.2,6.73,1,Tue 20th,Partly cloudy,33.0,23.0
+2026-10-20,Asaba,Delta,Oshimili South,6.2,6.73,2,Wed 21st,Partly cloudy,33.0,23.0
+2026-10-20,Asaba,Delta,Oshimili South,6.2,6.73,3,Thu 22nd,Partly cloudy,33.0,24.0
+2026-10-20,Awka,Anambra,Awka South,6.21,7.07,1,Tue 20th,Partly cloudy,33.0,23.0
+2026-10-20,Awka,Anambra,Awka South,6.21,7.07,2,Wed 21st,Partly cloudy,33.0,23.0
+2026-10-20,Awka,Anambra,Awka South,6.21,7.07,3,Thu 22nd,Partly cloudy,33.0,24.0
 2026-10-20,Ayetoro Ondo,Ondo,Ilaje,6.1,4.75,1,Tue 20th,Partly cloudy,33.0,23.0
 2026-10-20,Ayetoro Ondo,Ondo,Ilaje,6.1,4.75,2,Wed 21st,Partly cloudy,33.0,23.0
 2026-10-20,Ayetoro Ondo,Ondo,Ilaje,6.1,4.75,3,Thu 22nd,Partly cloudy,33.0,24.0
-2026-10-20,Badagry,Lagos,Badagry,6.42,2.88,1,Tue 20th,Thunderstorm,32.0,23.0
-2026-10-20,Badagry,Lagos,Badagry,6.42,2.88,2,Wed 21st,Thunderstorm,33.0,23.0
-2026-10-20,Badagry,Lagos,Badagry,6.42,2.88,3,Thu 22nd,Cloudy,33.0,24.0
-2026-10-20,Bauchi,Bauchi,Bauchi,10.31,9.84,1,Tue 20th,Thunderstorm,32.0,23.0
-2026-10-20,Bauchi,Bauchi,Bauchi,10.31,9.84,2,Wed 21st,Thunderstorm,33.0,23.0
-2026-10-20,Bauchi,Bauchi,Bauchi,10.31,9.84,3,Thu 22nd,Cloudy,33.0,24.0
-2026-10-20,Benin,Edo,Oredo,6.34,5.63,1,Tue 20th,Thunderstorm,32.0,23.0
-2026-10-20,Benin,Edo,Oredo,6.34,5.63,2,Wed 21st,Thunderstorm,33.0,23.0
-2026-10-20,Benin,Edo,Oredo,6.34,5.63,3,Thu 22nd,Cloudy,33.0,24.0
-2026-10-20,Bida,Niger,Bida,9.08,6.01,1,Tue 20th,Thunderstorm,32.0,23.0
-2026-10-20,Bida,Niger,Bida,9.08,6.01,2,Wed 21st,Thunderstorm,33.0,23.0
-2026-10-20,Bida,Niger,Bida,9.08,6.01,3,Thu 22nd,Cloudy,33.0,24.0
-2026-10-20,Calabar,Cross River,Calabar Municipal,4.96,8.33,1,Tue 20th,Thunderstorm,32.0,23.0
-2026-10-20,Calabar,Cross River,Calabar Municipal,4.96,8.33,2,Wed 21st,Thunderstorm,33.0,23.0
-2026-10-20,Calabar,Cross River,Calabar Municipal,4.96,8.33,3,Thu 22nd,Cloudy,33.0,24.0
-2026-10-20,Calabar Marine,Cross River,Calabar Municipal,4.93,8.31,1,Tue 20th,Thunderstorm,32.0,23.0
-2026-10-20,Calabar Marine,Cross River,Calabar Municipal,4.93,8.31,2,Wed 21st,Thunderstorm,33.0,23.0
-2026-10-20,Calabar Marine,Cross River,Calabar Municipal,4.93,8.31,3,Thu 22nd,Cloudy,33.0,24.0
+2026-10-20,Badagry,Lagos,Badagry,6.42,2.88,1,Tue 20th,Partly cloudy,33.0,23.0
+2026-10-20,Badagry,Lagos,Badagry,6.42,2.88,2,Wed 21st,Partly cloudy,33.0,23.0
+2026-10-20,Badagry,Lagos,Badagry,6.42,2.88,3,Thu 22nd,Partly cloudy,33.0,24.0
+2026-10-20,Bauchi,Bauchi,Bauchi,10.31,9.84,1,Tue 20th,Partly cloudy,33.0,23.0
+2026-10-20,Bauchi,Bauchi,Bauchi,10.31,9.84,2,Wed 21st,Partly cloudy,33.0,23.0
+2026-10-20,Bauchi,Bauchi,Bauchi,10.31,9.84,3,Thu 22nd,Partly cloudy,33.0,24.0
+2026-10-20,Benin,Edo,Oredo,6.34,5.63,1,Tue 20th,Partly cloudy,33.0,23.0
+2026-10-20,Benin,Edo,Oredo,6.34,5.63,2,Wed 21st,Partly cloudy,33.0,23.0
+2026-10-20,Benin,Edo,Oredo,6.34,5.63,3,Thu 22nd,Partly cloudy,33.0,24.0
+2026-10-20,Bida,Niger,Bida,9.08,6.01,1,Tue 20th,Partly cloudy,33.0,23.0
+2026-10-20,Bida,Niger,Bida,9.08,6.01,2,Wed 21st,Partly cloudy,33.0,23.0
+2026-10-20,Bida,Niger,Bida,9.08,6.01,3,Thu 22nd,Partly cloudy,33.0,24.0
+2026-10-20,Calabar,Cross River,Calabar Municipal,4.96,8.33,1,Tue 20th,Partly cloudy,33.0,23.0
+2026-10-20,Calabar,Cross River,Calabar Municipal,4.96,8.33,2,Wed 21st,Partly cloudy,33.0,23.0
+2026-10-20,Calabar,Cross River,Calabar Municipal,4.96,8.33,3,Thu 22nd,Partly cloudy,33.0,24.0
+2026-10-20,Calabar Marine,Cross River,Calabar Municipal,4.93,8.31,1,Tue 20th,Partly cloudy,33.0,23.0
+2026-10-20,Calabar Marine,Cross River,Calabar Municipal,4.93,8.31,2,Wed 21st,Partly cloudy,33.0,23.0
+2026-10-20,Calabar Marine,Cross River,Calabar Municipal,4.93,8.31,3,Thu 22nd,Partly cloudy,33.0,24.0
 2026-10-20,Dutse,Jigawa,Dutse,11.76,9.34,1,Tue 20th,Partly cloudy,33.0,23.0
 2026-10-20,Dutse,Jigawa,Dutse,11.76,9.34,2,Wed 21st,Partly cloudy,33.0,23.0
 2026-10-20,Dutse,Jigawa,Dutse,11.76,9.34,3,Thu 22nd,Partly cloudy,33.0,24.0
