@@ -140,7 +140,7 @@ ul.clean li{margin:0 0 6px}
 .two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .check{display:flex!important;gap:10px;align-items:flex-start;font-weight:400!important}
 .check input{margin-top:3px}
-.foot{border-top:1px solid var(--line);padding:24px 0 40px;color:var(--muted);font-size:13px}
+.foot{border-top:1px solid var(--line);padding-top:24px;padding-bottom:40px;color:var(--muted);font-size:13px}
 .menu{position:relative}
 .menu-list{position:absolute;top:calc(100% + 6px);left:0;z-index:50;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:6px;box-shadow:var(--shadow);min-width:240px}
 .menu-list a,.menu-list button{display:block;width:100%;text-align:left;padding:9px 10px;border-radius:7px;border:0;background:none;color:var(--ink);font:500 13.5px/1.3 var(--sans);text-decoration:none;cursor:pointer}
@@ -206,8 +206,17 @@ const fmt = n => n >= 1e9 ? (n/1e9).toFixed(n>=1e10?0:1).replace(/\.0$/,"")+"B" 
 const initials = n => String(n).replace(/\(.*?\)/g,"").split(/\s+/).filter(Boolean).slice(0,2).map(w=>w[0]).join("").toUpperCase();
 const yearOf = v => v ? String(v).replace(/^\+/,"").slice(0,4) : "";
 async function getJSON(url, opt) { const r = await fetch(url, opt); if (!r.ok) throw new Error(r.status + " " + url); return r.json(); }
-async function sparql(query) {
-  return getJSON(WD_SPARQL + Q + qs({ format: "json", query }), { headers: { Accept: "application/sparql-results+json" } });
+let sparqlChain = Promise.resolve();
+function sparql(query) {
+  // queue queries one at a time to stay within Wikidata's fair-use limits
+  const run = async () => {
+    const ctl = new AbortController(), t = setTimeout(() => ctl.abort(), 55000);
+    try { return await getJSON(WD_SPARQL + Q + qs({ format: "json", query }), { signal: ctl.signal }); }
+    finally { clearTimeout(t); }
+  };
+  const p = sparqlChain.then(run, run);
+  sparqlChain = p.catch(() => {});
+  return p;
 }
 function srcLink(url, name) { if (!url) return ""; let host = name; try { host = name || new URL(url).hostname.replace(/^www\./, ""); } catch (e) {} return `<a href="${esc(url)}" target="_blank" rel="noopener">${esc(host)} ↗</a>`; }
 function sectorVar(id) { return `--tc:var(--s-${id})`; }
@@ -408,18 +417,17 @@ function renderProfiles(v, s) {
 /* ---------- live directory ---------- */
 async function loadDirectory(occs, key, deceasedOnly) {
   if (dirCache[key]) return dirCache[key];
-  const q = `SELECT ?p ?pLabel ?pDescription ?b ?d ?sl ?art WHERE {
+  const q = `SELECT ?p ?pLabel ?pDescription ?b ?d ?sl WHERE {
     { SELECT DISTINCT ?p WHERE { VALUES ?occ { ${occs.map(o => "wd:" + o).join(" ")} } ?p wdt:P27 wd:${NIGERIA}; wdt:P106 ?occ. ${deceasedOnly ? "?p wdt:P570 []." : ""} } }
     ?p wikibase:sitelinks ?sl.
     OPTIONAL { ?p wdt:P569 ?b } OPTIONAL { ?p wdt:P570 ?d }
-    OPTIONAL { ?art schema:about ?p; schema:isPartOf <https://en.wikipedia.org/> }
     SERVICE wikibase:label { bd:serviceParam wikibase:language "en". }
   } ORDER BY DESC(?sl) LIMIT 3000`;
   const j = await sparql(q);
   const seen = new Set(), rows = [];
   for (const r of j.results.bindings) {
     const qid = r.p.value.split("/").pop(); if (seen.has(qid)) continue; seen.add(qid);
-    rows.push({ qid, name: r.pLabel ? r.pLabel.value : qid, desc: r.pDescription ? r.pDescription.value : "", b: r.b ? yearOf(r.b.value) : "", d: r.d ? yearOf(r.d.value) : "", sl: +r.sl.value, wiki: r.art ? decodeURIComponent(r.art.value.split("/wiki/").pop()).replace(/_/g, " ") : "" });
+    rows.push({ qid, name: r.pLabel ? r.pLabel.value : qid, desc: r.pDescription ? r.pDescription.value : "", b: r.b ? yearOf(r.b.value) : "", d: r.d ? yearOf(r.d.value) : "", sl: +r.sl.value });
   }
   return dirCache[key] = rows;
 }
