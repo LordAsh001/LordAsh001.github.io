@@ -277,7 +277,7 @@ function paintThumbs(root) {
   });
   root.querySelectorAll("[data-fol]").forEach(el => {
     const t = el.dataset.fol, info = pageInfo[t] || {}; const tc = topCount(folFor(info.qid, t));
-    if (tc) { el.hidden = false; el.textContent = `${fmt(tc.value)} on ${PLAT[tc.platform] || tc.platform}`; el.title = `As of ${tc.date} · ${tc.source}`; }
+    if (tc) { el.hidden = false; const old = (Date.now() - Date.parse(tc.date)) > 60 * 864e5; el.textContent = `${fmt(tc.value)} on ${PLAT[tc.platform] || tc.platform}${old ? " · " + tc.date.slice(0, 4) : ""}`; el.title = `As of ${tc.date} · ${tc.source}`; }
   });
 }
 
@@ -590,7 +590,7 @@ async function openPerson(key) {
 
   // numbers
   const nums = [];
-  if (fol && fol.counts) for (const [k, v] of Object.entries(fol.counts)) if (v && v.value) nums.push([fmt(v.value), `${PLAT[k] || k} followers`, `As of ${v.date} · ${v.source}`]);
+  if (fol && fol.counts) for (const [k, v] of Object.entries(fol.counts)) if (v && v.value) nums.push([fmt(v.value), `${PLAT[k] || k} followers · as of ${v.date}`, v.source]);
   const numsEl = $("#drNums", body);
   const paintNums = () => { if (drawer.hidden) return; numsEl.innerHTML = nums.length ? nums.map(([v, l, t]) => `<div class="card"${t ? ` title="${esc(t)}"` : ""}><div class="v">${esc(v)}</div><div class="l">${esc(l)}</div></div>`).join("") : `<p class="src">No counts recorded yet.</p>`; };
   const jobs = [];
