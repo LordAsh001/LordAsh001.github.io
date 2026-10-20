@@ -477,23 +477,23 @@ function renderPeople(v, s, lived) {
     <div class="grid g-cards" id="plist"><p class="loading"><span class="spin"></span>Drawing a random set from the full directory…</p></div>
     <p class="note" style="margin-top:16px">Everyone has an equal chance of appearing: each visit draws a new random set from every ${word.toLowerCase()} person on record — every genre, language and tradition. Not listed? <a href="#/contribute">Add a profile</a>.</p>`;
   const load = s ? loadDirectory(s.occupations, s.id) : loadDirectory(ALL_OCCS, "lived:all", true);
-  const go = rows => {
-    const pool = buildPool(rows, s, lived);
-    let cur = sample(pool, N);
-    const draw = () => {
-      const q = $("#pq", v).value.trim().toLowerCase();
-      const list = q ? pool.filter(e => (e.name + " " + e.desc + " " + (e.cur ? e.cur.p.r + " " + (e.cur.p.h || []).join(" ") : "")).toLowerCase().includes(q)).sort((a, b) => (b.sl || 0) - (a.sl || 0)).slice(0, 60) : cur;
-      $("#pinfo", v).textContent = q ? `${list.length}${list.length === 60 ? "+" : ""} matches among ${pool.length.toLocaleString()} ${word}` : `${list.length} of ${pool.length.toLocaleString()} ${word}, chosen at random — refresh or shuffle for a new set`;
-      $("#plist", v).innerHTML = list.map(e => poolCard(e, lived)).join("") || `<p class="loading">No one matches.</p>`;
-      bindPeople(v);
-      const titles = list.filter(e => !e.img && e.cur && e.cur.p.w).map(e => e.cur.p.w);
-      if (titles.length) loadPageInfo(titles).then(() => paintThumbs(v));
-    };
-    $("#pq", v).addEventListener("input", draw);
-    $("#shuf", v).addEventListener("click", () => { $("#pq", v).value = ""; cur = sample(pool, N); draw(); });
-    draw();
+  let pool = [], cur = [], loading = true;
+  const draw = () => {
+    if (!v.isConnected) return;
+    const q = $("#pq", v).value.trim().toLowerCase();
+    const list = q ? pool.filter(e => (e.name + " " + e.desc + " " + (e.cur ? e.cur.p.r + " " + (e.cur.p.h || []).join(" ") : "")).toLowerCase().includes(q)).sort((a, b) => (b.sl || 0) - (a.sl || 0)).slice(0, 60) : cur;
+    $("#pinfo", v).innerHTML = (q ? `${list.length}${list.length === 60 ? "+" : ""} matches among ${pool.length.toLocaleString()} ${word}` : `${list.length} of ${pool.length.toLocaleString()} ${word}, chosen at random — refresh or shuffle for a new set`) + (loading ? ` · <span class="spin"></span>adding everyone on record from Wikidata…` : "");
+    $("#plist", v).innerHTML = list.map(e => poolCard(e, lived)).join("") || `<p class="loading">No one matches.</p>`;
+    bindPeople(v);
+    const titles = list.filter(e => !e.img && e.cur && e.cur.p.w).map(e => e.cur.p.w);
+    if (titles.length) loadPageInfo(titles).then(() => paintThumbs(v));
   };
-  load.then(go).catch(() => { go([]); $("#pinfo", v).textContent += " (Wikidata is unavailable right now — showing the curated set only)"; });
+  const setRows = rows => { pool = buildPool(rows, s, lived); cur = sample(pool, N); draw(); };
+  $("#pq", v).addEventListener("input", draw);
+  $("#shuf", v).addEventListener("click", () => { $("#pq", v).value = ""; cur = sample(pool, N); draw(); });
+  { const k = s ? s.id : "lived:all"; if (!dirCache[k] && !lsGet(k)) setRows([]); }   // show a first random set instantly
+  load.then(rows => { loading = false; setRows(rows); })
+      .catch(() => { loading = false; draw(); $("#pinfo", v).textContent += " (Wikidata is unavailable right now — showing the curated set only)"; });
 }
 
 /* ---------- hall of fame ---------- */
