@@ -17,14 +17,14 @@
   --bg:#f6f4ee;--surface:#ffffff;--surface2:#efece3;--ink:#1c2321;--muted:#5d6763;--line:#dcd7ca;
   --accent:#1e7a55;--accent2:#b5651d;--accent-ink:#fff;--focus:#1e7a55;--shadow:0 10px 30px rgba(20,30,25,.10);
   --gold:#a8791d;--chip:#e7e3d6;
-  --s-literature:#2f6fb0;--s-poetry:#8a4fb3;--s-drama:#b0445a;--s-music:#c2711c;--s-film:#2f8f7a;--s-comedy:#b89a12;--s-journalism:#596a7d;--s-digital:#d0478a;
+  --s-literature:#2f6fb0;--s-poetry:#8a4fb3;--s-drama:#b0445a;--s-music:#c2711c;--s-film:#2f8f7a;--s-photography:#7a6a2f;--s-comedy:#b89a12;--s-journalism:#596a7d;--s-digital:#d0478a;
   --sans:'Inter',system-ui,-apple-system,'Segoe UI',sans-serif;--serif:'Fraunces',Georgia,serif;
 }
 :root[data-theme="dark"]{
   --bg:#12171a;--surface:#1a2125;--surface2:#222a2f;--ink:#e8ece9;--muted:#9aa6a1;--line:#2e383d;
   --accent:#3fb183;--accent2:#e39550;--accent-ink:#0d1512;--focus:#5fd0a0;--shadow:0 12px 34px rgba(0,0,0,.45);
   --gold:#e0b45a;--chip:#273035;
-  --s-literature:#6aa5e0;--s-poetry:#b98be0;--s-drama:#e07a90;--s-music:#eda25a;--s-film:#5cc4ad;--s-comedy:#e0c64a;--s-journalism:#9fb0c3;--s-digital:#ef7fb4;
+  --s-literature:#6aa5e0;--s-poetry:#b98be0;--s-drama:#e07a90;--s-music:#eda25a;--s-film:#5cc4ad;--s-photography:#c9b77a;--s-comedy:#e0c64a;--s-journalism:#9fb0c3;--s-digital:#ef7fb4;
 }
 @media (prefers-color-scheme: light){:root:not([data-theme="dark"]){}}
 *{box-sizing:border-box}
@@ -146,6 +146,11 @@ ul.clean li{margin:0 0 6px}
 .menu-list a,.menu-list button{display:block;width:100%;text-align:left;padding:9px 10px;border-radius:7px;border:0;background:none;color:var(--ink);font:500 13.5px/1.3 var(--sans);text-decoration:none;cursor:pointer}
 .menu-list a:hover,.menu-list button:hover{background:var(--surface2)}
 .pill{display:inline-block;font:600 11px/1 var(--sans);padding:4px 7px;border-radius:999px;background:color-mix(in srgb,var(--tc,var(--accent)) 18%,transparent);color:var(--tc,var(--accent));margin-right:4px}
+.dlg{border:1px solid var(--line);border-radius:16px;padding:0;width:min(640px,calc(100% - 24px));max-height:calc(100% - 32px);background:var(--bg);color:var(--ink);box-shadow:var(--shadow)}
+.dlg::backdrop{background:rgba(5,10,8,.55)}
+.dlg h3{font:600 12px/1 var(--sans);text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin:0 0 10px}
+.ckgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:8px 14px;font-size:14px}
+.leaflet-container{font:13px var(--sans)}
 @media (max-width:640px){.two{grid-template-columns:1fr}.tbl .hide-sm{display:none}.dr-top .ph{width:84px;height:100px}.tabs{top:36px}}
 @media print{.tabs,.btnrow,.drawer,.scrim{display:none}}
 </style>
@@ -153,19 +158,11 @@ ul.clean li{margin:0 0 6px}
 <body>
 <div class="wrap">
   <header class="hero">
-    <div class="kicker">8 creative fields · 1789 → today · live-verified</div>
+    <div class="kicker">9 creative fields · 1789 → today · live-verified</div>
     <h1>Nigeria Literature <em>Landscape</em></h1>
-    <p class="lede">Writers, poets, playwrights, musicians, filmmakers, comedians, journalists and digital creators of Nigeria — readable profiles with sources, verifiable statistics on output, earnings and recognition, timelines that reach back centuries, and a Hall of Fame honouring those who have passed.</p>
+    <p class="lede">Writers, poets, playwrights, musicians, filmmakers, photographers, comedians, journalists and digital creators of Nigeria, and the infrastructure behind them: readable profiles with sources, verifiable statistics on output, earnings and recognition, timelines that reach back centuries, and a Hall of Fame honouring those who have lived.</p>
     <div class="btnrow">
-      <div class="menu">
-        <button class="btn" id="dlBtn" aria-haspopup="true" aria-expanded="false">Download data</button>
-        <div class="menu-list" id="dlMenu" hidden>
-          <a href="data/landscape.json" download>All curated data (JSON)</a>
-          <button type="button" id="dlCsv">Curated Living &amp; Lived profiles (CSV)</button>
-          <button type="button" id="dlStats">Statistics with sources (CSV)</button>
-          <a href="data/followers.json" download>Follower counts from the bot (JSON)</a>
-        </div>
-      </div>
+      <button class="btn" id="dlBtn" type="button">Download data</button>
       <button class="btn" id="goContribute">Contribute or claim a profile</button>
       <button class="btn" id="themeBtn" type="button">Light mode</button>
     </div>
@@ -176,6 +173,7 @@ ul.clean li{margin:0 0 6px}
 <footer class="wrap foot">
   <p><b>Nigeria Literature Landscape</b> · built and maintained by <a href="/">Shagbaor Hycent Amool</a>. Curated content CC BY 4.0; code MIT. Live data from <a href="https://www.wikidata.org">Wikidata</a> (CC0) and <a href="https://en.wikipedia.org">Wikipedia</a> (CC BY-SA). Every statistic links to its source — if one is wrong, <a href="#/contribute">tell us</a>.</p>
 </footer>
+<dialog id="dlDlg" class="dlg"></dialog>
 <div class="scrim" id="scrim" hidden></div>
 <aside class="drawer" id="drawer" hidden aria-modal="true" role="dialog" aria-labelledby="drTitle"></aside>
 
@@ -233,24 +231,9 @@ new MutationObserver(syncThemeBtn).observe(document.documentElement, { attribute
 syncThemeBtn();
 
 /* ---------- downloads ---------- */
-$("#dlBtn").addEventListener("click", e => { const m = $("#dlMenu"); m.hidden = !m.hidden; e.currentTarget.setAttribute("aria-expanded", String(!m.hidden)); });
-document.addEventListener("click", e => { if (!e.target.closest(".menu")) { $("#dlMenu").hidden = true; $("#dlBtn").setAttribute("aria-expanded","false"); } });
+$("#dlBtn").addEventListener("click", () => openDownload());
 function csvCell(v) { v = Array.isArray(v) ? v.join(" | ") : (v ?? ""); v = String(v); return /[",\n]/.test(v) ? '"' + v.replace(/"/g, '""') + '"' : v; }
-function download(name, text, type) { const a = document.createElement("a"); a.href = URL.createObjectURL(new Blob([text], { type })); a.download = name; document.body.appendChild(a); a.click(); setTimeout(() => { URL.revokeObjectURL(a.href); a.remove(); }, 500); }
-$("#dlCsv").addEventListener("click", () => {
-  const rows = [["field","status","name","role","active_since","born","until","highlights","wikipedia","official_site","source"]];
-  DATA.sectors.forEach(s => {
-    s.profiles.forEach(p => rows.push([s.name,"living",p.n,p.r,p.since,"","",p.h,p.w?wikiUrl(p.w):"",p.site||"",p.src||""]));
-    s.hall.forEach(p => rows.push([s.name,"lived",p.n,p.r,"",p.b||"",p.d||"",p.h,p.w?wikiUrl(p.w):"","",p.src||""]));
-  });
-  download("nigeria-literature-landscape-people.csv", rows.map(r => r.map(csvCell).join(",")).join("\n"), "text/csv");
-});
-$("#dlStats").addEventListener("click", () => {
-  const rows = [["field","statistic","value","year","note","source_name","source_url"]];
-  DATA.overview.stats.forEach(x => rows.push(["All creative industries",x.label,x.value,x.year||"",x.note||"",x.srcName||"",x.src]));
-  DATA.sectors.forEach(s => s.stats.forEach(x => rows.push([s.name,x.label,x.value,x.year||"",x.note||"",x.srcName||"",x.src])));
-  download("nigeria-literature-landscape-statistics.csv", rows.map(r => r.map(csvCell).join(",")).join("\n"), "text/csv");
-});
+function download(name, data, type) { const a = document.createElement("a"); a.href = URL.createObjectURL(data instanceof Blob ? data : new Blob([data], { type })); a.download = name; document.body.appendChild(a); a.click(); setTimeout(() => { URL.revokeObjectURL(a.href); a.remove(); }, 1500); }
 $("#goContribute").addEventListener("click", () => { location.hash = "#/contribute"; });
 
 /* ---------- followers (bot output) ---------- */
@@ -292,10 +275,10 @@ function paintThumbs(root) {
 
 /* ---------- tabs & routing ---------- */
 function tabList() {
-  return [{ id: "overview", name: "Overview" }, ...DATA.sectors.map(s => ({ id: s.id, name: s.name, sector: true })), { id: "hall", name: "Hall of Fame" }, { id: "timeline", name: "Timeline" }, { id: "contribute", name: "Contribute" }, { id: "about", name: "About & data" }];
+  return [{ id: "overview", name: "Overview" }, ...DATA.sectors.map(s => ({ id: s.id, name: s.name, sector: true })), { id: "infrastructure", name: "Infrastructure" }, { id: "hall", name: "Hall of Fame" }, { id: "timeline", name: "Timeline" }, { id: "contribute", name: "Contribute" }, { id: "about", name: "About & data" }];
 }
 function renderTabs(active) {
-  $("#tabs").innerHTML = tabList().map(t => `<button class="tab" role="tab" aria-selected="${t.id === active}" data-tab="${t.id}" style="${t.sector ? sectorVar(t.id) : t.id==="hall" ? "--tc:var(--gold)" : ""}">${t.sector ? '<span class="dot"></span>' : ""}${esc(t.name)}</button>`).join("");
+  $("#tabs").innerHTML = tabList().map(t => `<button class="tab" role="tab" aria-selected="${t.id === active}" data-tab="${t.id}" style="${t.sector ? sectorVar(t.id) : t.id==="hall" ? "--tc:var(--gold)" : t.id==="infrastructure" ? "--tc:var(--accent2)" : ""}">${t.sector ? '<span class="dot"></span>' : ""}${esc(t.name)}</button>`).join("");
   $("#tabs").querySelectorAll(".tab").forEach(b => b.addEventListener("click", () => { location.hash = "#/" + b.dataset.tab; }));
   const act = $("#tabs").querySelector('[aria-selected="true"]'); if (act) act.scrollIntoView({ block: "nearest", inline: "nearest" });
 }
@@ -314,6 +297,7 @@ function route() {
     renderTabs(tab);
     const m = $("#main");
     if (S[tab]) renderSector(m, S[tab], sub || "profiles");
+    else if (tab === "infrastructure") renderInfra(m, sub);
     else if (tab === "hall") renderHall(m, sub);
     else if (tab === "timeline") renderTimeline(m);
     else if (tab === "contribute") renderContribute(m);
@@ -334,7 +318,7 @@ function renderOverview(m) {
   m.innerHTML = `
   <section>
     <h2>The creative economy at a glance</h2>
-    <p class="sub">Eight fields, every genre, language and tradition — drawn live from everyone on record, with a new random set of people on every visit. Every figure links to the page it came from.</p>
+    <p class="sub">Nine fields, every genre, language and tradition — drawn live from everyone on record, with a new random set of people on every visit. Every figure links to the page it came from.</p>
     <div class="grid g-stats">${DATA.overview.stats.map(statCard).join("")}</div>
   </section>
   <section class="section">
@@ -343,7 +327,8 @@ function renderOverview(m) {
       <button class="card sector-card" style="${sectorVar(s.id)}" data-go="${s.id}">
         <h3>${esc(s.name)}</h3><p>${esc(s.short)}</p>
         <div class="mini"><span><b data-count="${s.id}">…</b>people on record</span><span><b>${s.timeline.length}</b>milestones</span><span><b>${s.stats.length}</b>sourced statistics</span></div>
-      </button>`).join("")}</div>
+      </button>`).join("")}
+      <button class="card sector-card" style="--tc:var(--accent2)" data-go="infrastructure"><h3>Infrastructure</h3><p>Cinemas, stages, studios, publishers, labels, media houses, festivals and schools</p><div class="mini"><span><b>${DATA.infrastructure.items.length}</b>places &amp; institutions</span><span><b>${DATA.infrastructure.categories.length}</b>categories</span></div></button></div>
   </section>
   <section class="section">
     <h2>Latest milestones</h2>
@@ -517,6 +502,161 @@ function renderHall(m, sub) {
   });
 }
 
+/* ---------- infrastructure ---------- */
+let leafletP = null;
+function loadLeaflet() {
+  if (leafletP) return leafletP;
+  leafletP = new Promise((res, rej) => {
+    const l = document.createElement("link"); l.rel = "stylesheet"; l.href = "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css"; document.head.appendChild(l);
+    const s = document.createElement("script"); s.src = "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"; s.onload = () => res(window.L); s.onerror = rej; document.head.appendChild(s);
+  });
+  return leafletP;
+}
+const infraLive = {};
+async function loadInfraLive(cat) {
+  if (infraLive[cat.id]) return infraLive[cat.id];
+  const j = await sparql(`SELECT ?i ?iLabel ?iDescription ?coord ?inc ?locLabel ?site WHERE {
+    { ?i wdt:P31 wd:${cat.wd} } UNION { ?i wdt:P31/wdt:P279 wd:${cat.wd} }
+    ?i wdt:P17 wd:${NIGERIA}.
+    OPTIONAL { ?i wdt:P625 ?coord } OPTIONAL { ?i wdt:P571 ?inc } OPTIONAL { ?i wdt:P131 ?loc } OPTIONAL { ?i wdt:P856 ?site }
+    SERVICE wikibase:label { bd:serviceParam wikibase:language "en". }
+  } LIMIT 3000`);
+  const seen = new Set(), rows = [];
+  for (const r of j.results.bindings) {
+    const qid = r.i.value.split("/").pop(); if (seen.has(qid) || !r.iLabel || /^Q\d+$/.test(r.iLabel.value)) continue; seen.add(qid);
+    let ll = null; if (r.coord) { const m = r.coord.value.match(/Point\(([-\d.]+) ([-\d.]+)\)/); if (m) ll = [+m[2], +m[1]]; }
+    rows.push({ qid, n: r.iLabel.value, c: cat.id, at: r.locLabel ? r.locLabel.value : "", f: r.inc ? yearOf(r.inc.value) : "", x: r.iDescription ? r.iDescription.value : "", site: r.site ? r.site.value : "", src: "https://www.wikidata.org/wiki/" + qid, ll, live: true });
+  }
+  return infraLive[cat.id] = rows;
+}
+function renderInfra(m, sub) {
+  const I = DATA.infrastructure, cats = I.categories;
+  const filt = cats.some(c => c.id === sub) ? sub : "all";
+  m.setAttribute("style", "--tc:var(--accent2)");
+  m.innerHTML = `<h2>Infrastructure</h2><p class="sub">${esc(I.intro)}</p>
+    <div class="grid g-stats">${I.stats.map(statCard).join("")}</div>
+    <div class="subtabs"><button class="chipbtn" aria-pressed="${filt === "all"}" data-f="">All <span class="c">${I.items.length}</span></button>${cats.map(c => `<button class="chipbtn" aria-pressed="${filt === c.id}" data-f="${c.id}">${esc(c.name)} <span class="c">${I.items.filter(x => x.c === c.id).length}</span></button>`).join("")}</div>
+    <div id="imap" style="height:380px;border-radius:14px;border:1px solid var(--line);margin-bottom:16px;background:var(--surface2)"></div>
+    <p class="src" style="margin:-8px 0 14px">Curated places are pinned at city level; places loaded from Wikidata use their recorded coordinates.</p>
+    <div class="toolbar"><input class="input search" type="search" id="iq" placeholder="Search infrastructure" aria-label="Search infrastructure">
+      ${filt !== "all" && cats.find(c => c.id === filt).wd ? `<button class="btn" id="ilive">Add everything on Wikidata</button>` : ""}</div>
+    <div class="grid g-cards" id="ilist"></div>`;
+  m.querySelectorAll("[data-f]").forEach(b => b.addEventListener("click", () => location.hash = "#/infrastructure" + (b.dataset.f ? "/" + b.dataset.f : "")));
+  let items = I.items.filter(x => filt === "all" || x.c === filt).map(x => ({ ...x, ll: I.places[x.at] || null }));
+  let map = null, layer = null;
+  const catName = id => (cats.find(c => c.id === id) || {}).name || id;
+  const draw = () => {
+    const q = $("#iq", m).value.trim().toLowerCase();
+    const L = items.filter(x => !q || (x.n + " " + (x.at || "") + " " + (x.x || "")).toLowerCase().includes(q));
+    $("#ilist", m).innerHTML = L.map(x => `<div class="card"><span class="pill">${esc(catName(x.c))}</span>${x.live ? `<span class="pill" style="--tc:var(--muted)">Wikidata</span>` : ""}
+      <h3 style="margin:8px 0 4px">${esc(x.n)}</h3>
+      <p class="src" style="margin:0 0 6px">${[x.at, x.f ? "since " + x.f : ""].filter(Boolean).map(esc).join(" · ")}</p>
+      ${x.x ? `<p style="margin:0 0 8px;font-size:13.5px">${esc(x.x)}</p>` : ""}
+      <div class="src">${x.site ? srcLink(x.site, "Website") + " · " : ""}${srcLink(x.src, x.live ? "Wikidata record" : null)}</div></div>`).join("") || `<p class="loading">Nothing matches.</p>`;
+    if (map && layer) {
+      layer.clearLayers();
+      const seen = {};
+      L.forEach(x => { if (!x.ll) return; const k = x.ll.join(","); const n = seen[k] = (seen[k] || 0) + 1; const off = x.live ? [0, 0] : [Math.sin(n * 2.4) * 0.004 * Math.sqrt(n), Math.cos(n * 2.4) * 0.004 * Math.sqrt(n)];
+        window.L.circleMarker([x.ll[0] + off[0], x.ll[1] + off[1]], { radius: 6, weight: 1, color: "#fff", fillColor: x.live ? "#3f8fd0" : "#e39550", fillOpacity: .9 }).bindPopup(`<b>${esc(x.n)}</b><br>${esc(catName(x.c))}${x.at ? " · " + esc(x.at) : ""}${x.f ? "<br>Since " + esc(x.f) : ""}`).addTo(layer); });
+    }
+  };
+  $("#iq", m).addEventListener("input", draw);
+  const lb = $("#ilive", m);
+  if (lb) lb.addEventListener("click", () => {
+    lb.disabled = true; lb.innerHTML = `<span class="spin"></span>Loading from Wikidata…`;
+    loadInfraLive(cats.find(c => c.id === filt)).then(rows => {
+      const have = new Set(items.map(x => x.n.toLowerCase()));
+      const add = rows.filter(r => !have.has(r.n.toLowerCase()));
+      items = items.concat(add); lb.textContent = `Added ${add.length} from Wikidata`; draw();
+    }).catch(() => { lb.disabled = false; lb.textContent = "Wikidata unavailable — try again"; });
+  });
+  draw();
+  loadLeaflet().then(Lf => {
+    if (!m.isConnected || !$("#imap", m)) return;
+    map = Lf.map($("#imap", m), { scrollWheelZoom: false }).setView([9.08, 8.0], 6);
+    Lf.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", { maxZoom: 18, attribution: "© OpenStreetMap contributors" }).addTo(map);
+    layer = Lf.layerGroup().addTo(map); draw();
+  }).catch(() => { const el = $("#imap", m); if (el) el.innerHTML = `<p class="loading" style="padding:16px">The map could not load.</p>`; });
+}
+
+/* ---------- download builder ---------- */
+let zipP = null;
+function loadZip() { if (zipP) return zipP; zipP = new Promise((res, rej) => { const s = document.createElement("script"); s.src = "https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"; s.onload = () => res(window.JSZip); s.onerror = rej; document.head.appendChild(s); }); return zipP; }
+const toCSV = rows => rows.map(r => r.map(csvCell).join(",")).join("\n");
+function openDownload() {
+  const dlg = $("#dlDlg");
+  dlg.innerHTML = `<form method="dialog" class="dl-form" id="dlf">
+    <div class="dr-hd" style="position:static"><h2 style="margin:0;font-size:22px">Download data</h2><button class="x" value="cancel" aria-label="Close">×</button></div>
+    <div style="padding:16px 18px">
+    <h3>1 · Choose fields</h3>
+    <div class="ckgrid"><label class="check"><input type="checkbox" id="dlAllF" checked> <b>All fields</b></label>
+      ${DATA.sectors.map(s => `<label class="check"><input type="checkbox" name="f" value="${s.id}" checked> ${esc(s.name)}</label>`).join("")}</div>
+    <h3 style="margin-top:16px">2 · Choose what to include</h3>
+    <div class="ckgrid">
+      <label class="check"><input type="checkbox" name="c" value="stats" checked> Statistics with sources</label>
+      <label class="check"><input type="checkbox" name="c" value="timeline" checked> Timeline milestones</label>
+      <label class="check"><input type="checkbox" name="c" value="awards" checked> Awards &amp; institutions</label>
+      <label class="check"><input type="checkbox" name="c" value="curated" checked> Curated profiles (Living &amp; Lived)</label>
+      <label class="check"><input type="checkbox" name="c" value="infra"> Infrastructure (curated)</label>
+      <label class="check"><input type="checkbox" name="c" value="followers"> Follower counts (bot)</label>
+      <label class="check"><input type="checkbox" name="c" value="directory"> Full directory from Wikidata
+        <select class="input" name="dstat" style="margin-left:6px;padding:4px 6px"><option value="all">Living and Lived</option><option value="living">Living</option><option value="lived">Lived</option></select></label>
+    </div>
+    <h3 style="margin-top:16px">3 · Format</h3>
+    <div class="ckgrid"><label class="check"><input type="radio" name="fmt" value="csv" checked> CSV (spreadsheet; a .zip with one file per section)</label><label class="check"><input type="radio" name="fmt" value="json"> JSON (one file)</label></div>
+    <div class="btnrow" style="margin-top:16px"><button class="btn primary" type="button" id="dlGo">Download</button><a class="btn" href="data/landscape.json" download>Raw curated JSON</a></div>
+    <p class="src" id="dlMsg">Curated content CC BY 4.0 · Wikidata CC0. Please cite the Nigeria Literature Landscape.</p>
+    </div></form>`;
+  const fs = () => [...dlg.querySelectorAll('input[name="f"]')];
+  $("#dlAllF", dlg).addEventListener("change", e => fs().forEach(x => x.checked = e.target.checked));
+  fs().forEach(x => x.addEventListener("change", () => { $("#dlAllF", dlg).checked = fs().every(y => y.checked); }));
+  $("#dlGo", dlg).addEventListener("click", () => runDownload(dlg));
+  dlg.showModal();
+}
+async function runDownload(dlg) {
+  const msg = $("#dlMsg", dlg), go = $("#dlGo", dlg);
+  const fields = [...dlg.querySelectorAll('input[name="f"]:checked')].map(x => S[x.value]);
+  const parts = new Set([...dlg.querySelectorAll('input[name="c"]:checked')].map(x => x.value));
+  const fmtv = dlg.querySelector('input[name="fmt"]:checked').value, dstat = dlg.querySelector('select[name="dstat"]').value;
+  if (!parts.size || (!fields.length && [...parts].some(p => !["infra", "followers"].includes(p)))) { msg.textContent = "Choose at least one field and one kind of data."; return; }
+  go.disabled = true;
+  const out = {};
+  try {
+    if (parts.has("stats")) out.statistics = [["field", "statistic", "value", "year", "note", "source_name", "source_url"],
+      ...(fields.length === DATA.sectors.length ? DATA.overview.stats.map(x => ["All creative industries", x.label, x.value, x.year || "", x.note || "", x.srcName || "", x.src]) : []),
+      ...fields.flatMap(s => s.stats.map(x => [s.name, x.label, x.value, x.year || "", x.note || "", x.srcName || "", x.src])),
+      ...(parts.has("infra") ? DATA.infrastructure.stats.map(x => ["Infrastructure", x.label, x.value, x.year || "", x.note || "", x.srcName || "", x.src]) : [])];
+    if (parts.has("timeline")) out.timeline = [["field", "year", "event", "source_url"], ...fields.flatMap(s => s.timeline.map(t => [s.name, t.y, t.t, t.src]))];
+    if (parts.has("awards")) out.awards = [["field", "name", "since", "about", "source_url"], ...fields.flatMap(s => s.awards.map(a => [s.name, a.name, a.since, a.about, a.src]))];
+    if (parts.has("curated")) out.curated_profiles = [["field", "status", "name", "role", "active_since", "born", "until", "highlights", "wikipedia", "official_site", "source"],
+      ...fields.flatMap(s => [...s.profiles.map(p => [s.name, "living", p.n, p.r, p.since || "", "", "", p.h, p.w ? wikiUrl(p.w) : "", p.site || "", p.src || ""]), ...s.hall.map(p => [s.name, "lived", p.n, p.r, "", p.b || "", p.d || "", p.h, p.w ? wikiUrl(p.w) : "", "", p.src || ""])])];
+    if (parts.has("infra")) { const cn = id => (DATA.infrastructure.categories.find(c => c.id === id) || {}).name || id; out.infrastructure = [["category", "name", "location", "founded", "key_fact", "website", "source_url"], ...DATA.infrastructure.items.map(x => [cn(x.c), x.n, x.at || "", x.f || "", x.x || "", x.site || "", x.src])]; }
+    if (parts.has("followers")) { out.followers = [["wikidata_id", "wikipedia_title", "platform", "count", "as_of", "source"]]; Object.entries((FOL && FOL.people) || {}).forEach(([q, p]) => Object.entries(p.counts || {}).forEach(([k, v]) => out.followers.push([q, p.title || "", PLAT[k] || k, v.value, v.date, v.source]))); }
+    if (parts.has("directory")) {
+      out.directory = [["field", "status", "wikidata_id", "name", "description", "born", "until", "wikidata_url"]];
+      for (const [i, s] of fields.entries()) {
+        msg.innerHTML = `<span class="spin"></span>Fetching ${esc(s.name)} from Wikidata (${i + 1} of ${fields.length})…`;
+        const rows = await loadDirectory(s.occupations, s.id);
+        rows.filter(r => !/^Q\d+$/.test(r.name) && (dstat === "all" || (dstat === "lived") === isLived(r))).forEach(r => out.directory.push([s.name, isLived(r) ? "lived" : "living", r.qid, r.name, r.desc, r.b, r.d, "https://www.wikidata.org/wiki/" + r.qid]));
+      }
+    }
+    const stamp = new Date().toISOString().slice(0, 10);
+    const scope = fields.length === DATA.sectors.length ? "all-fields" : fields.map(s => s.id).join("-") || "infrastructure";
+    const base = `nigeria-literature-landscape_${scope}_${stamp}`;
+    if (fmtv === "json") {
+      const obj = { title: "Nigeria Literature Landscape", source: location.href.split("#")[0], downloaded: new Date().toISOString(), licence: "Curated CC BY 4.0; Wikidata CC0" };
+      for (const [k, rows] of Object.entries(out)) { const [h, ...r] = rows; obj[k] = r.map(row => Object.fromEntries(h.map((c, i) => [c, Array.isArray(row[i]) ? row[i] : row[i]]))); }
+      download(base + ".json", JSON.stringify(obj, null, 1), "application/json");
+    } else {
+      const keys = Object.keys(out);
+      if (keys.length === 1) download(`${base}_${keys[0]}.csv`, toCSV(out[keys[0]]), "text/csv");
+      else { msg.innerHTML = `<span class="spin"></span>Packing files…`; const Z = await loadZip(); const z = new Z(); keys.forEach(k => z.file(`${k}.csv`, toCSV(out[k]))); z.file("README.txt", `Nigeria Literature Landscape — data export (${stamp})\n${location.href.split("#")[0]}\nCurated content CC BY 4.0; Wikidata-derived rows CC0.\nCite: Amool, S. H. (2026). Nigeria Literature Landscape [Interactive database].`); download(base + ".zip", await z.generateAsync({ type: "blob" }), "application/zip"); }
+    }
+    msg.textContent = "Done — check your downloads.";
+  } catch (e) { msg.textContent = "Something went wrong (" + e.message + "). Please try again."; }
+  go.disabled = false;
+}
+
 /* ---------- timeline ---------- */
 function eraLabel(y) { return y < 1800 ? "Before 1800" : y < 1900 ? "1800s" : y < 1960 ? "1900–1959" : y < 2000 ? "1960–1999" : "2000 – today"; }
 function timelineHTML(items, chips) {
@@ -531,7 +671,7 @@ function timelineHTML(items, chips) {
 }
 function renderTimeline(m) {
   m.removeAttribute("style");
-  m.innerHTML = `<h2>Timeline</h2><p class="sub">Milestones across all eight fields, from oral traditions to this year. Each entry links to its source. Filter by field:</p>
+  m.innerHTML = `<h2>Timeline</h2><p class="sub">Milestones across all nine fields, from oral traditions to this year. Each entry links to its source. Filter by field:</p>
     <div class="subtabs" id="tlf"><button class="chipbtn" aria-pressed="true" data-f="">All</button>${DATA.sectors.map(s => `<button class="chipbtn" aria-pressed="false" data-f="${s.id}" style="${sectorVar(s.id)}"><span class="dot"></span>${esc(s.name)}</button>`).join("")}</div><div id="tlo"></div>`;
   const draw = f => { $("#tlo", m).innerHTML = timelineHTML(DATA.sectors.filter(s => !f || s.id === f).flatMap(s => s.timeline.map(t => ({ ...t, s }))), true); };
   m.querySelectorAll("#tlf [data-f]").forEach(b => b.addEventListener("click", () => { m.querySelectorAll("#tlf [data-f]").forEach(x => x.setAttribute("aria-pressed", String(x === b))); draw(b.dataset.f); }));
@@ -711,7 +851,7 @@ function renderAbout(m) {
   m.removeAttribute("style");
   const flags = FOL && FOL.flags ? FOL.flags : [];
   m.innerHTML = `<h2>About &amp; data</h2>
-  <p class="sub">The Nigeria Literature Landscape gathers Nigeria's creative fields — literature, poetry, drama, music, film, comedy, journalism and digital content — in one place, with every claim traceable to a source. It is one of a family of open Nigeria atlases built because robust, verifiable data on African countries is hard to find online.</p>
+  <p class="sub">The Nigeria Literature Landscape gathers Nigeria's creative fields — literature, poetry, drama, music, film, photography and video, comedy, journalism and digital content — together with the infrastructure that supports them, in one place, with every claim traceable to a source. It is one of a family of open Nigeria atlases built because robust, verifiable data on African countries is hard to find online.</p>
   <div class="grid g-cards">
     <div class="card"><h3>1 · Curated and sourced</h3><p style="font-size:14px;margin:0">Statistics, timelines, profiles and the Hall of Fame are written by hand. Each statistic and milestone links to the page it came from (government agencies, PwC, DataReportal, award bodies, reputable news). Where sources disagree, the note says so.</p></div>
     <div class="card"><h3>2 · Live from Wikidata &amp; Wikipedia</h3><p style="font-size:14px;margin:0">Profiles pull biographies, photos, birth and death dates, awards, notable works, works counts and official links live when you open them. The full directory lists every Nigerian creative recorded on Wikidata, across every genre, language and tradition.</p></div>
