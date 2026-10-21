@@ -847,6 +847,42 @@
             }
           ],
           "classroom": "give each group a state, check five of the scan's candidate sites on high-resolution imagery, and decide which are real dumpsites, giving the evidence for each call."
+        },
+        {
+          "name": "Nigeria Literature Landscape",
+          "text": "Nigeria's writers, poets, playwrights, musicians, filmmakers, photographers, comedians, journalists and digital creators in one place, from Olaudah Equiano (1789) to today. Each field has sourced statistics on output, earnings and recognition, a timeline, its main awards, and profiles drawn at random from everyone on record, so every genre, language and tradition gets an equal chance to appear. A Hall of Fame honours those who have lived, an infrastructure map shows cinemas, stages, studios, publishers, labels and festivals, and a weekly bot refreshes follower counts. Anyone can add or claim a profile, and every submission is reviewed before it appears.",
+          "link_label": "Open tool",
+          "sdgs": [
+            4,
+            8,
+            11,
+            16
+          ],
+          "hidden": false,
+          "url": "/literature-landscape/",
+          "kind": "Interactive database · free",
+          "audience": [
+            "Researchers",
+            "Practitioners",
+            "Educators",
+            "Students"
+          ],
+          "level": "All levels",
+          "numbers": [
+            {
+              "value": "9",
+              "label": "creative fields, from literature to digital creators"
+            },
+            {
+              "value": "1789",
+              "label": "earliest milestone on the timeline"
+            },
+            {
+              "value": "82",
+              "label": "infrastructure places and institutions mapped"
+            }
+          ],
+          "classroom": "give each group one creative field: draw a random set of Living profiles, check one statistic against its source, and present how that field has changed since independence."
         }
       ],
       "note": "Using one of these in a course or workshop? I'd love to hear how it went: [amool@unbc.ca](mailto:amool@unbc.ca). Free to use for teaching and learning."
