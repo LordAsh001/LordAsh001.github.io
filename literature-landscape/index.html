@@ -905,7 +905,7 @@ async function openPerson(key) {
         if (!e.url && r.article) e.url = r.article.value;
         map.set(k, e);
       }
-      let all = [...map.values()];
+      let all = [...map.values()].filter(e => !/fictional|character/i.test(e.type)); // P175 also links actors to the characters they play
       const listed = new Set(all.filter(e => e.role !== "Notable works").map(e => e.w));
       all = all.filter(e => e.role !== "Notable works" || !listed.has(e.w));
       const uniq = new Set(all.map(e => e.w)).size;
