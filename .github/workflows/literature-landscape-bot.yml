@@ -34,13 +34,17 @@ jobs:
         run: node literature-landscape/bot/update-followers.mjs
       - name: Commit changes
         run: |
-          git add -N literature-landscape/data/directory 2>/dev/null || true
-          if git diff --quiet -- literature-landscape/data/followers.json literature-landscape/data/directory; then
-            echo "No changes"; exit 0
-          fi
           git config user.name "literature-landscape-bot"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          mkdir -p /tmp/out/directory
+          cp literature-landscape/data/followers.json /tmp/out/
+          cp -r literature-landscape/data/directory/. /tmp/out/directory/ 2>/dev/null || true
+          git fetch origin main
+          git reset --hard origin/main
+          mkdir -p literature-landscape/data/directory
+          cp /tmp/out/followers.json literature-landscape/data/
+          cp -r /tmp/out/directory/. literature-landscape/data/directory/
           git add literature-landscape/data/followers.json literature-landscape/data/directory
+          if git diff --cached --quiet; then echo "No changes"; exit 0; fi
           git commit -m "Literature Landscape: weekly directory and follower refresh"
-          git pull --rebase
-          git push
+          git push origin HEAD:main
