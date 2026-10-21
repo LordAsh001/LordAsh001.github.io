@@ -25,18 +25,22 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 20
+      - name: Build state-traced directories
+        continue-on-error: true
+        run: node literature-landscape/bot/build-directory.mjs
       - name: Refresh follower counts and records
         env:
           YT_API_KEY: ${{ secrets.YT_API_KEY }}
         run: node literature-landscape/bot/update-followers.mjs
       - name: Commit changes
         run: |
-          if git diff --quiet -- literature-landscape/data/followers.json; then
+          git add -N literature-landscape/data/directory 2>/dev/null || true
+          if git diff --quiet -- literature-landscape/data/followers.json literature-landscape/data/directory; then
             echo "No changes"; exit 0
           fi
           git config user.name "literature-landscape-bot"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add literature-landscape/data/followers.json
-          git commit -m "Literature Landscape: weekly follower refresh"
+          git add literature-landscape/data/followers.json literature-landscape/data/directory
+          git commit -m "Literature Landscape: weekly directory and follower refresh"
           git pull --rebase
           git push
