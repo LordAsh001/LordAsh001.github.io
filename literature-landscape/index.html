@@ -157,6 +157,7 @@ ul.clean li{margin:0 0 6px}
 .mapwrap.full #imap{height:100vh}
 .mapbar{position:absolute;top:10px;right:10px;z-index:500;display:flex;gap:6px}
 .mapbar .btn{box-shadow:var(--shadow)}
+[data-theme="dark"] .mapwrap .leaflet-tile-pane{filter:invert(1) hue-rotate(180deg) brightness(.95) contrast(.9)}
 .pin span{display:block;width:16px;height:16px;border-radius:50%;border:2px solid #fff;box-shadow:0 1px 4px rgba(0,0,0,.45)}
 .pop{font:13px/1.45 var(--sans);display:grid;gap:4px}.pop b{font-size:14px}.pop .pm{color:#666;font-size:12px}
 .leaflet-popup-content{margin:12px 14px}
@@ -627,11 +628,11 @@ function renderInfra(m, sub) {
     }).catch(() => { lb.disabled = false; lb.textContent = "Wikidata unavailable — try again"; });
   });
   drawList();
-  const tileUrl = () => document.documentElement.getAttribute("data-theme") === "light" ? "https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png" : "https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png";
+  const tileUrl = () => "https://tile.openstreetmap.org/{z}/{x}/{y}.png";
   Promise.all([loadLeaflet(), loadWikiCoords(items)]).then(([Lf]) => {
     const el = $("#imap", m); if (!m.isConnected || !el) return;
     map = Lf.map(el, { scrollWheelZoom: false, zoomControl: true, minZoom: 5, maxBounds: [[1.5, -1], [16.5, 17]] }).setView([9.08, 8.0], 6);
-    tiles = Lf.tileLayer(tileUrl(), { maxZoom: 19, subdomains: "abcd", attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> · © <a href="https://carto.com/attributions">CARTO</a>' }).addTo(map);
+    tiles = Lf.tileLayer(tileUrl(), { maxZoom: 19, attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors' }).addTo(map);
     cluster = Lf.markerClusterGroup({ showCoverageOnHover: false, spiderfyOnMaxZoom: true, maxClusterRadius: 45, spiderfyDistanceMultiplier: 1.6 });
     map.addLayer(cluster);
     map.on("click focus", () => map.scrollWheelZoom.enable());
