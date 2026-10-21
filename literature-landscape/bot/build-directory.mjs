@@ -76,6 +76,17 @@ for (const s of data.sectors) {
     if (prev) { if (!prev.img && r.img) prev.img = r.img.value.replace(/^http:/, "https:"); continue; }
     byQ.set(qid, { qid, name, desc: r.pDescription ? r.pDescription.value : "", b: r.b ? yearOf(r.b.value) : "", d: r.d ? yearOf(r.d.value) : "", sl: +r.sl.value, img: r.img ? r.img.value.replace(/^http:/, "https:") : "", st });
   }
+  // keep only people with evidence of actual work in this field (e.g. released music, authored books, screen credits)
+  if (s.evidence) {
+    const cand = [...byQ.keys()], ok = new Set();
+    for (let i = 0; i < cand.length; i += 300) {
+      const chunk = cand.slice(i, i + 300);
+      const ev = await sparql(`SELECT DISTINCT ?p WHERE { VALUES ?p { ${chunk.map(q => "wd:" + q).join(" ")} } ${s.evidence} }`);
+      ev.forEach(b => ok.add(qidOf(b.p.value)));
+      await sleep(1000);
+    }
+    for (const q of cand) if (!ok.has(q)) byQ.delete(q);
+  }
   const list = [...byQ.values()].sort((a, b) => b.sl - a.sl);
   counts[s.id] = list.length;
   await fs.writeFile(new URL(s.id + ".json", OUT), JSON.stringify(list));
@@ -106,6 +117,6 @@ for (let i = 0; i < cq.length; i += 150) {
 const curated = {};
 titles.forEach(t => { curated[t] = byTitle[t] ? (curState[byTitle[t]] || null) : null; });
 await fs.writeFile(new URL("curated.json", OUT), JSON.stringify({ updated: new Date().toISOString(), byTitle, state: curated }));
-await fs.writeFile(new URL("index.json", OUT), JSON.stringify({ updated: new Date().toISOString(), rule: "Place of birth (Wikidata P19) located in one of Nigeria's 36 states or the FCT", counts }));
+await fs.writeFile(new URL("index.json", OUT), JSON.stringify({ updated: new Date().toISOString(), rule: "Place of birth (Wikidata P19) located in one of Nigeria's 36 states or the FCT, plus evidence of work in the field", counts }));
 console.log("curated traced:", Object.values(curated).filter(Boolean).length, "of", titles.length);
 console.log("not traced:", titles.filter(t => !curated[t]).join("; "));
