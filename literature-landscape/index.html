@@ -534,7 +534,7 @@ async function loadWikiCoords(items) {
     try {
       const j = await getJSON(WP_API + Q + qs({ action: "query", format: "json", origin: "*", redirects: 1, prop: "coordinates", titles: chunk.join("|") }));
       const back = {}; (j.query.normalized || []).forEach(n => back[n.to] = n.from); (j.query.redirects || []).forEach(r => back[r.to] = back[r.from] || r.from);
-      Object.values(j.query.pages || {}).forEach(p => { if (p.coordinates && p.coordinates[0]) wikiCoords[back[p.title] || p.title] = [p.coordinates[0].lat, p.coordinates[0].lon]; });
+      Object.values(j.query.pages || {}).forEach(p => { if (p.coordinates && p.coordinates[0]) { const c = p.coordinates[0]; if (c.lat > 4 && c.lat < 14 && c.lon > 2.6 && c.lon < 14.7) wikiCoords[back[p.title] || p.title] = [c.lat, c.lon]; } // ignore coordinates outside Nigeria (data errors) });
     } catch (e) {}
   }
 }
