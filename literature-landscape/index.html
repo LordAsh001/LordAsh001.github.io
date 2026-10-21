@@ -805,7 +805,8 @@ async function openPerson(key) {
   let title = cur ? cur.p.w : null, qid = key.startsWith("q:") ? key.slice(2) : null;
   let summary = null, ent = null;
   try {
-    if (!qid && title) { await loadPageInfo([title]); qid = (pageInfo[title] || {}).qid || null; }
+    if (!qid && title) qid = (CUR && CUR.byTitle && CUR.byTitle[title]) || (FOL && FOL.byTitle && FOL.byTitle[title]) || (pageInfo[title] || {}).qid || null;
+    if (!qid && title) { const j = await getJSON(WP_API + Q + qs({ action: "query", format: "json", origin: "*", redirects: 1, prop: "pageprops", ppprop: "wikibase_item", titles: title })).catch(() => null); const pg = j && Object.values(j.query.pages || {})[0]; qid = (pg && pg.pageprops && pg.pageprops.wikibase_item) || null; }
     if (qid) {
       const j = await getJSON(WD_API + Q + qs({ action: "wbgetentities", ids: qid, props: "claims|sitelinks|labels|descriptions", languages: "en", sitefilter: "enwiki", format: "json", origin: "*" }));
       ent = j.entities[qid];
