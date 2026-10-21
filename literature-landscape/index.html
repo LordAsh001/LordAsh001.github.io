@@ -151,6 +151,17 @@ ul.clean li{margin:0 0 6px}
 .dlg h3{font:600 12px/1 var(--sans);text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin:0 0 10px}
 .ckgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:8px 14px;font-size:14px}
 .leaflet-container{font:13px var(--sans)}
+.mapwrap{position:relative;border-radius:14px;overflow:hidden;border:1px solid var(--line);background:var(--surface2)}
+#imap{height:min(68vh,560px);width:100%}
+.mapwrap.full{position:fixed;inset:0;z-index:95;border-radius:0;border:0}
+.mapwrap.full #imap{height:100vh}
+.mapbar{position:absolute;top:10px;right:10px;z-index:500;display:flex;gap:6px}
+.mapbar .btn{box-shadow:var(--shadow)}
+.pin span{display:block;width:16px;height:16px;border-radius:50%;border:2px solid #fff;box-shadow:0 1px 4px rgba(0,0,0,.45)}
+.pop{font:13px/1.45 var(--sans);display:grid;gap:4px}.pop b{font-size:14px}.pop .pm{color:#666;font-size:12px}
+.leaflet-popup-content{margin:12px 14px}
+.marker-cluster div{font:600 12px var(--sans)}
+
 @media (max-width:640px){.two{grid-template-columns:1fr}.tbl .hide-sm{display:none}.dr-top .ph{width:84px;height:100px}.tabs{top:36px}}
 @media print{.tabs,.btnrow,.drawer,.scrim{display:none}}
 </style>
@@ -504,14 +515,29 @@ function renderHall(m, sub) {
 
 /* ---------- infrastructure ---------- */
 let leafletP = null;
+function addCSS(href) { return new Promise(res => { const l = document.createElement("link"); l.rel = "stylesheet"; l.href = href; l.onload = res; l.onerror = res; document.head.appendChild(l); }); }
+function addJS(src) { return new Promise((res, rej) => { const s = document.createElement("script"); s.src = src; s.onload = res; s.onerror = rej; document.head.appendChild(s); }); }
 function loadLeaflet() {
   if (leafletP) return leafletP;
-  leafletP = new Promise((res, rej) => {
-    const l = document.createElement("link"); l.rel = "stylesheet"; l.href = "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css"; document.head.appendChild(l);
-    const s = document.createElement("script"); s.src = "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"; s.onload = () => res(window.L); s.onerror = rej; document.head.appendChild(s);
-  });
+  const C = "https://cdnjs.cloudflare.com/ajax/libs/";
+  leafletP = Promise.all([addCSS(C + "leaflet/1.9.4/leaflet.min.css"), addCSS(C + "leaflet.markercluster/1.5.3/MarkerCluster.min.css"), addCSS(C + "leaflet.markercluster/1.5.3/MarkerCluster.Default.min.css"), addJS(C + "leaflet/1.9.4/leaflet.min.js")])
+    .then(() => addJS(C + "leaflet.markercluster/1.5.3/leaflet.markercluster.min.js")).then(() => window.L);
   return leafletP;
 }
+const CAT_COL = { cinemas: "#e4572e", stages: "#c2185b", studios: "#8e44ad", publishers: "#2e86de", labels: "#f39c12", media: "#16a085", festivals: "#d4ac0d", schools: "#27ae60", regulators: "#7f8c8d", platforms: "#5d6d7e" };
+const wikiCoords = {};
+async function loadWikiCoords(items) {
+  const titles = [...new Set(items.map(x => { const m = String(x.src || "").match(/en\.wikipedia\.org\/wiki\/([^#?]+)/); return m ? decodeURIComponent(m[1]).replace(/_/g, " ") : null; }).filter(t => t && !(t in wikiCoords)))];
+  for (let i = 0; i < titles.length; i += 50) {
+    const chunk = titles.slice(i, i + 50); chunk.forEach(t => wikiCoords[t] = null);
+    try {
+      const j = await getJSON(WP_API + Q + qs({ action: "query", format: "json", origin: "*", redirects: 1, prop: "coordinates", titles: chunk.join("|") }));
+      const back = {}; (j.query.normalized || []).forEach(n => back[n.to] = n.from); (j.query.redirects || []).forEach(r => back[r.to] = back[r.from] || r.from);
+      Object.values(j.query.pages || {}).forEach(p => { if (p.coordinates && p.coordinates[0]) wikiCoords[back[p.title] || p.title] = [p.coordinates[0].lat, p.coordinates[0].lon]; });
+    } catch (e) {}
+  }
+}
+function exactFor(x) { const m = String(x.src || "").match(/en\.wikipedia\.org\/wiki\/([^#?]+)/); if (!m) return null; return wikiCoords[decodeURIComponent(m[1]).replace(/_/g, " ")] || null; }
 const infraLive = {};
 async function loadInfraLive(cat) {
   if (infraLive[cat.id]) return infraLive[cat.id];
@@ -525,58 +551,98 @@ async function loadInfraLive(cat) {
   for (const r of j.results.bindings) {
     const qid = r.i.value.split("/").pop(); if (seen.has(qid) || !r.iLabel || /^Q\d+$/.test(r.iLabel.value)) continue; seen.add(qid);
     let ll = null; if (r.coord) { const m = r.coord.value.match(/Point\(([-\d.]+) ([-\d.]+)\)/); if (m) ll = [+m[2], +m[1]]; }
-    rows.push({ qid, n: r.iLabel.value, c: cat.id, at: r.locLabel ? r.locLabel.value : "", f: r.inc ? yearOf(r.inc.value) : "", x: r.iDescription ? r.iDescription.value : "", site: r.site ? r.site.value : "", src: "https://www.wikidata.org/wiki/" + qid, ll, live: true });
+    rows.push({ qid, n: r.iLabel.value, c: cat.id, at: r.locLabel ? r.locLabel.value : "", f: r.inc ? yearOf(r.inc.value) : "", x: r.iDescription ? r.iDescription.value : "", site: r.site ? r.site.value : "", src: "https://www.wikidata.org/wiki/" + qid, ll, exact: !!ll, live: true });
   }
   return infraLive[cat.id] = rows;
 }
 function renderInfra(m, sub) {
   const I = DATA.infrastructure, cats = I.categories;
   const filt = cats.some(c => c.id === sub) ? sub : "all";
+  const catName = id => (cats.find(c => c.id === id) || {}).name || id;
   m.setAttribute("style", "--tc:var(--accent2)");
   m.innerHTML = `<h2>Infrastructure</h2><p class="sub">${esc(I.intro)}</p>
     <div class="grid g-stats">${I.stats.map(statCard).join("")}</div>
-    <div class="subtabs"><button class="chipbtn" aria-pressed="${filt === "all"}" data-f="">All <span class="c">${I.items.length}</span></button>${cats.map(c => `<button class="chipbtn" aria-pressed="${filt === c.id}" data-f="${c.id}">${esc(c.name)} <span class="c">${I.items.filter(x => x.c === c.id).length}</span></button>`).join("")}</div>
-    <div id="imap" style="height:380px;border-radius:14px;border:1px solid var(--line);margin-bottom:16px;background:var(--surface2)"></div>
-    <p class="src" style="margin:-8px 0 14px">Curated places are pinned at city level; places loaded from Wikidata use their recorded coordinates.</p>
-    <div class="toolbar"><input class="input search" type="search" id="iq" placeholder="Search infrastructure" aria-label="Search infrastructure">
+    <div class="subtabs"><button class="chipbtn" aria-pressed="${filt === "all"}" data-f="">All <span class="c">${I.items.length}</span></button>${cats.map(c => `<button class="chipbtn" aria-pressed="${filt === c.id}" data-f="${c.id}"><span class="dot" style="background:${CAT_COL[c.id]}"></span>${esc(c.name)} <span class="c">${I.items.filter(x => x.c === c.id).length}</span></button>`).join("")}</div>
+    <div class="toolbar"><input class="input search" type="search" id="iq" placeholder="Search by name, city or fact" aria-label="Search infrastructure">
+      <select class="input" id="icity" aria-label="City"><option value="">All cities</option></select>
       ${filt !== "all" && cats.find(c => c.id === filt).wd ? `<button class="btn" id="ilive">Add everything on Wikidata</button>` : ""}</div>
+    <div class="mapwrap" id="mapwrap">
+      <div id="imap"></div>
+      <div class="mapbar"><button class="btn sm" id="mReset" type="button">Fit all</button><button class="btn sm" id="mFull" type="button">Full screen</button></div>
+    </div>
+    <p class="src" id="mnote" style="margin:8px 0 16px"></p>
     <div class="grid g-cards" id="ilist"></div>`;
   m.querySelectorAll("[data-f]").forEach(b => b.addEventListener("click", () => location.hash = "#/infrastructure" + (b.dataset.f ? "/" + b.dataset.f : "")));
-  let items = I.items.filter(x => filt === "all" || x.c === filt).map(x => ({ ...x, ll: I.places[x.at] || null }));
-  let map = null, layer = null;
-  const catName = id => (cats.find(c => c.id === id) || {}).name || id;
-  const draw = () => {
-    const q = $("#iq", m).value.trim().toLowerCase();
-    const L = items.filter(x => !q || (x.n + " " + (x.at || "") + " " + (x.x || "")).toLowerCase().includes(q));
-    $("#ilist", m).innerHTML = L.map(x => `<div class="card"><span class="pill">${esc(catName(x.c))}</span>${x.live ? `<span class="pill" style="--tc:var(--muted)">Wikidata</span>` : ""}
+  let items = I.items.filter(x => filt === "all" || x.c === filt).map((x, i) => ({ ...x, id: "c" + i }));
+  const cities = [...new Set(items.map(x => x.at).filter(Boolean))].sort();
+  $("#icity", m).innerHTML += cities.map(c => `<option>${esc(c)}</option>`).join("");
+  let map = null, cluster = null, tiles = null, markers = {}, firstFit = true;
+  const placeOf = x => x.ll || exactFor(x) || (x.at && I.places[x.at]) || null;
+  const visible = () => {
+    const q = $("#iq", m).value.trim().toLowerCase(), city = $("#icity", m).value;
+    return items.filter(x => (!q || (x.n + " " + (x.at || "") + " " + (x.x || "")).toLowerCase().includes(q)) && (!city || x.at === city));
+  };
+  const popup = x => `<div class="pop"><span class="pill" style="--tc:${CAT_COL[x.c]}">${esc(catName(x.c))}</span><b>${esc(x.n)}</b>
+    <div class="pm">${[x.at, x.f ? "since " + x.f : ""].filter(Boolean).map(esc).join(" · ")}</div>${x.x ? `<div>${esc(x.x)}</div>` : ""}
+    <div class="pm">${x.site ? `<a href="${esc(x.site)}" target="_blank" rel="noopener">Website ↗</a> · ` : ""}<a href="${esc(x.src)}" target="_blank" rel="noopener">Source ↗</a>
+    ${(exactFor(x) || x.exact) ? "" : " · <i>pinned at city level</i>"}</div></div>`;
+  const drawMap = () => {
+    if (!map) return;
+    cluster.clearLayers(); markers = {};
+    const L = visible(), pts = [];
+    L.forEach(x => {
+      const ll = placeOf(x); if (!ll) return;
+      const mk = window.L.marker(ll, { icon: window.L.divIcon({ className: "pin", html: `<span style="background:${CAT_COL[x.c]}"></span>`, iconSize: [18, 18], iconAnchor: [9, 9], popupAnchor: [0, -8] }), title: x.n, keyboard: true });
+      mk.bindPopup(popup(x), { maxWidth: 280 });
+      markers[x.id] = mk; cluster.addLayer(mk); pts.push(ll);
+    });
+    const off = L.length - pts.length;
+    $("#mnote", m).textContent = `${pts.length} on the map${off ? ` · ${off} without a fixed location (e.g. streaming platforms)` : ""} · click a cluster to zoom in · scroll-zoom turns on when you click the map`;
+    if (pts.length && (firstFit || true)) { map.fitBounds(pts, { padding: [30, 30], maxZoom: pts.length === 1 ? 13 : 11 }); firstFit = false; }
+  };
+  const drawList = () => {
+    const L = visible();
+    $("#ilist", m).innerHTML = L.map(x => `<div class="card"><span class="pill" style="--tc:${CAT_COL[x.c]}">${esc(catName(x.c))}</span>${x.live ? `<span class="pill" style="--tc:var(--muted)">Wikidata</span>` : ""}
       <h3 style="margin:8px 0 4px">${esc(x.n)}</h3>
       <p class="src" style="margin:0 0 6px">${[x.at, x.f ? "since " + x.f : ""].filter(Boolean).map(esc).join(" · ")}</p>
       ${x.x ? `<p style="margin:0 0 8px;font-size:13.5px">${esc(x.x)}</p>` : ""}
-      <div class="src">${x.site ? srcLink(x.site, "Website") + " · " : ""}${srcLink(x.src, x.live ? "Wikidata record" : null)}</div></div>`).join("") || `<p class="loading">Nothing matches.</p>`;
-    if (map && layer) {
-      layer.clearLayers();
-      const seen = {};
-      L.forEach(x => { if (!x.ll) return; const k = x.ll.join(","); const n = seen[k] = (seen[k] || 0) + 1; const off = x.live ? [0, 0] : [Math.sin(n * 2.4) * 0.004 * Math.sqrt(n), Math.cos(n * 2.4) * 0.004 * Math.sqrt(n)];
-        window.L.circleMarker([x.ll[0] + off[0], x.ll[1] + off[1]], { radius: 6, weight: 1, color: "#fff", fillColor: x.live ? "#3f8fd0" : "#e39550", fillOpacity: .9 }).bindPopup(`<b>${esc(x.n)}</b><br>${esc(catName(x.c))}${x.at ? " · " + esc(x.at) : ""}${x.f ? "<br>Since " + esc(x.f) : ""}`).addTo(layer); });
-    }
+      <div class="src">${x.site ? srcLink(x.site, "Website") + " · " : ""}${srcLink(x.src, x.live ? "Wikidata record" : null)}</div>
+      ${placeOf(x) ? `<button class="btn sm" style="margin-top:10px" data-show="${x.id}" type="button">Show on map</button>` : ""}</div>`).join("") || `<p class="loading">Nothing matches.</p>`;
+    m.querySelectorAll("[data-show]").forEach(b => b.addEventListener("click", () => {
+      const mk = markers[b.dataset.show]; if (!mk || !cluster) return;
+      $("#mapwrap", m).scrollIntoView({ behavior: "smooth", block: "center" });
+      cluster.zoomToShowLayer(mk, () => mk.openPopup());
+    }));
   };
-  $("#iq", m).addEventListener("input", draw);
+  const redraw = () => { drawList(); drawMap(); };
+  $("#iq", m).addEventListener("input", redraw);
+  $("#icity", m).addEventListener("change", redraw);
   const lb = $("#ilive", m);
   if (lb) lb.addEventListener("click", () => {
     lb.disabled = true; lb.innerHTML = `<span class="spin"></span>Loading from Wikidata…`;
     loadInfraLive(cats.find(c => c.id === filt)).then(rows => {
       const have = new Set(items.map(x => x.n.toLowerCase()));
-      const add = rows.filter(r => !have.has(r.n.toLowerCase()));
-      items = items.concat(add); lb.textContent = `Added ${add.length} from Wikidata`; draw();
+      const add = rows.filter(r => !have.has(r.n.toLowerCase())).map((x, i) => ({ ...x, id: "w" + i }));
+      items = items.concat(add); lb.textContent = `Added ${add.length} from Wikidata`; redraw();
     }).catch(() => { lb.disabled = false; lb.textContent = "Wikidata unavailable — try again"; });
   });
-  draw();
-  loadLeaflet().then(Lf => {
-    if (!m.isConnected || !$("#imap", m)) return;
-    map = Lf.map($("#imap", m), { scrollWheelZoom: false }).setView([9.08, 8.0], 6);
-    Lf.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", { maxZoom: 18, attribution: "© OpenStreetMap contributors" }).addTo(map);
-    layer = Lf.layerGroup().addTo(map); draw();
-  }).catch(() => { const el = $("#imap", m); if (el) el.innerHTML = `<p class="loading" style="padding:16px">The map could not load.</p>`; });
+  drawList();
+  const tileUrl = () => document.documentElement.getAttribute("data-theme") === "light" ? "https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png" : "https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png";
+  Promise.all([loadLeaflet(), loadWikiCoords(items)]).then(([Lf]) => {
+    const el = $("#imap", m); if (!m.isConnected || !el) return;
+    map = Lf.map(el, { scrollWheelZoom: false, zoomControl: true, minZoom: 5, maxBounds: [[1.5, -1], [16.5, 17]] }).setView([9.08, 8.0], 6);
+    tiles = Lf.tileLayer(tileUrl(), { maxZoom: 19, subdomains: "abcd", attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> · © <a href="https://carto.com/attributions">CARTO</a>' }).addTo(map);
+    cluster = Lf.markerClusterGroup({ showCoverageOnHover: false, spiderfyOnMaxZoom: true, maxClusterRadius: 45, spiderfyDistanceMultiplier: 1.6 });
+    map.addLayer(cluster);
+    map.on("click focus", () => map.scrollWheelZoom.enable());
+    map.on("mouseout", () => map.scrollWheelZoom.disable());
+    const obs = new MutationObserver(() => { if (!m.isConnected) return obs.disconnect(); tiles.setUrl(tileUrl()); });
+    obs.observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
+    $("#mReset", m).addEventListener("click", () => { firstFit = true; drawMap(); });
+    $("#mFull", m).addEventListener("click", e => { const w = $("#mapwrap", m); const on = w.classList.toggle("full"); e.target.textContent = on ? "Exit full screen" : "Full screen"; document.body.style.overflow = on ? "hidden" : ""; setTimeout(() => { map.invalidateSize(); drawMap(); }, 50); });
+    document.addEventListener("keydown", function esck(e) { if (!m.isConnected) return document.removeEventListener("keydown", esck); if (e.key === "Escape" && $("#mapwrap", m).classList.contains("full")) $("#mFull", m).click(); });
+    setTimeout(() => { map.invalidateSize(); drawList(); drawMap(); }, 60);
+  }).catch(() => { const el = $("#imap", m); if (el) el.innerHTML = `<p class="loading" style="padding:16px">The map could not load. The list below still works.</p>`; });
 }
 
 /* ---------- download builder ---------- */
