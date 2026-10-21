@@ -129,6 +129,7 @@ h3{font:600 17px/1.3 var(--sans);margin:0 0 8px}
 .links a:hover{border-color:var(--accent);color:var(--accent)}
 ul.clean{margin:0;padding-left:18px}
 ul.clean li{margin:0 0 6px}
+ul.works{list-style:none;padding-left:0}ul.works li{font-size:14px;margin:0 0 5px}
 .awards li{font-size:14px}
 .x{border:0;background:none;color:var(--ink);font-size:22px;cursor:pointer;width:36px;height:36px;border-radius:8px}
 .x:hover{background:var(--surface2)}
@@ -353,17 +354,15 @@ function renderOverview(m) {
   m.querySelectorAll("[data-go]").forEach(b => b.addEventListener("click", () => location.hash = "#/" + b.dataset.go));
   DATA.sectors.forEach(s => sectorCount(s).then(n => { const el = m.querySelector(`[data-count="${s.id}"]`); if (el) el.textContent = n == null ? "—" : n.toLocaleString(); }));
 }
-const COUNTRIES = "wd:Q1033 wd:Q2046345 wd:Q472146 wd:Q585408 wd:Q2062030"; // Nigeria + colonial-era Nigeria
-const nigWhere = () => `{ VALUES ?c { ${COUNTRIES} } ?p wdt:P27 ?c } UNION { ?p wdt:P19/wdt:P17 wd:${NIGERIA} }`;
-let ALL_OCCS = [];
+const STATE_Q = "Q815913 Q117714 Q337514 Q145793 Q748523 Q836657 Q3817714 Q130626 Q878284 Q503936 Q682777 Q320852 Q376241 Q509300 Q387745 Q424388 Q429908 Q463959 Q464953 Q503910 Q503905 Q503932 Q503928 Q503923 Q503941 Q506808 Q532153 Q534917 Q657821 Q682571 Q682704 Q682691 Q682721 Q739676 Q836645 Q836654 Q842939".split(" ");
+const NOT_PLACES = "wd:Q1033, wd:Q2046345, wd:Q472146, wd:Q585408, wd:Q2062030";
+let ALL_OCCS = [], CUR = null, DIRIDX = null;
+const stateName = st => !st ? "" : /Capital Territory/.test(st) ? "FCT Abuja" : st + " State";
 async function sectorCount(s) {
-  if (s.id in countCache) return countCache[s.id];
-  try {
-    const j = await sparql(`SELECT (COUNT(DISTINCT ?p) AS ?c) WHERE { VALUES ?occ { ${s.occupations.map(o => "wd:" + o).join(" ")} } ?p wdt:P106 ?occ. ${nigWhere()} }`);
-    return countCache[s.id] = +j.results.bindings[0].c.value;
-  } catch (e) { return countCache[s.id] = null; }
+  if (DIRIDX && DIRIDX.counts && s.id in DIRIDX.counts) return DIRIDX.counts[s.id];
+  if (dirCache[s.id]) return dirCache[s.id].length;
+  return null;
 }
-
 /* ---------- sector ---------- */
 function renderSector(m, s, sub) {
   const subs = [["profiles", "Living"], ["hall", "Lived · Hall of Fame"], ["directory", "Full directory"], ["timeline", "Timeline"], ["awards", "Awards"]];
@@ -385,50 +384,75 @@ function renderSector(m, s, sub) {
 function bindPeople(root) { root.querySelectorAll("[data-person]").forEach(b => b.addEventListener("click", () => setPersonHash(b.dataset.person))); }
 
 /* ---------- live directory (Wikidata) ---------- */
-const LSK = k => "nll-dir-v3:" + k;
+const LSK = k => "nll-dir-v4:" + k;
 function lsGet(k) { try { const v = JSON.parse(localStorage.getItem(LSK(k)) || "null"); if (v && Date.now() - v.t < 864e5) return v.rows; } catch (e) {} return null; }
 function lsSet(k, rows) { try { localStorage.setItem(LSK(k), JSON.stringify({ t: Date.now(), rows })); } catch (e) {} }
 const isLived = r => !!r.d || (!!r.b && +r.b < 1910);
-async function loadDirectory(occs, key, livedOnly) {
-  if (dirCache[key]) return dirCache[key];
-  const cached = lsGet(key); if (cached) return dirCache[key] = cached;
-  const q = `SELECT DISTINCT ?p ?pLabel ?pDescription ?b ?d ?sl ?img WHERE {
-    VALUES ?occ { ${occs.map(o => "wd:" + o).join(" ")} }
-    ?p wdt:P106 ?occ. ${nigWhere()}
-    ?p wikibase:sitelinks ?sl.
-    OPTIONAL { ?p wdt:P569 ?b } ${livedOnly ? "?p wdt:P570 ?d." : "OPTIONAL { ?p wdt:P570 ?d }"}
-    OPTIONAL { ?p wdt:P18 ?img }
-    SERVICE wikibase:label { bd:serviceParam wikibase:language "en". }
-  } ORDER BY DESC(?sl) LIMIT 20000`;
-  const j = await sparql(q);
-  const seen = new Set(), rows = [];
-  for (const r of j.results.bindings) {
-    const qid = r.p.value.split("/").pop(); if (seen.has(qid)) continue; seen.add(qid);
-    rows.push({ qid, name: r.pLabel ? r.pLabel.value : qid, desc: r.pDescription ? r.pDescription.value : "", b: r.b ? yearOf(r.b.value) : "", d: r.d ? yearOf(r.d.value) : "", sl: +r.sl.value, img: r.img ? r.img.value.replace(/^http:/, "https:") : "" });
+async function sparqlPost(query) {
+  const r = await fetch(WD_SPARQL, { method: "POST", headers: { "Content-Type": "application/x-www-form-urlencoded" }, body: "format=json&query=" + encodeURIComponent(query) });
+  if (!r.ok) throw new Error("HTTP " + r.status); return (await r.json()).results.bindings;
+}
+const stateCache = {};
+async function statesFor(pobs) {
+  const need = [...new Set(pobs)].filter(p => !(p in stateCache));
+  for (let i = 0; i < need.length; i += 300) {
+    const chunk = need.slice(i, i + 300); chunk.forEach(p => stateCache[p] = null);
+    const rows = await sparqlPost(`SELECT ?pob ?stLabel WHERE { VALUES ?pob { ${chunk.map(p => "wd:" + p).join(" ")} } VALUES ?st { ${STATE_Q.map(q => "wd:" + q).join(" ")} } ?pob wdt:P131* ?st. SERVICE wikibase:label { bd:serviceParam wikibase:language "en". } }`);
+    rows.forEach(b => stateCache[b.pob.value.split("/").pop()] = b.stLabel.value.replace(/ State$/, ""));
   }
+}
+// Everyone with an occupation in the field whose birthplace traces to one of Nigeria's 36 states or the FCT.
+async function loadDirectory(occs, key) {
+  if (dirCache[key]) return dirCache[key];
+  if (key === "lived:all") {
+    const all = await Promise.all(DATA.sectors.map(s => loadDirectory(s.occupations, s.id).catch(() => [])));
+    const m = new Map(); all.flat().forEach(r => { if (isLived(r) && !m.has(r.qid)) m.set(r.qid, r); });
+    return dirCache[key] = [...m.values()].sort((a, b) => b.sl - a.sl);
+  }
+  try { const rows = await getJSON(`data/directory/${key}.json`, { cache: "no-cache" }); if (Array.isArray(rows)) return dirCache[key] = rows; } catch (e) {}
+  const cached = lsGet(key); if (cached) return dirCache[key] = cached;
+  const j = await sparql(`SELECT DISTINCT ?p ?pLabel ?pDescription ?b ?d ?sl ?img ?pob WHERE {
+    VALUES ?occ { ${occs.map(o => "wd:" + o).join(" ")} }
+    ?p wdt:P106 ?occ; wdt:P19 ?pob. ?pob wdt:P17 wd:${NIGERIA}. FILTER(?pob NOT IN (${NOT_PLACES}))
+    ?p wikibase:sitelinks ?sl.
+    OPTIONAL { ?p wdt:P569 ?b } OPTIONAL { ?p wdt:P570 ?d } OPTIONAL { ?p wdt:P18 ?img }
+    SERVICE wikibase:label { bd:serviceParam wikibase:language "en". }
+  } LIMIT 30000`);
+  const B = j.results.bindings;
+  await statesFor(B.map(r => r.pob.value.split("/").pop()));
+  const byQ = new Map();
+  for (const r of B) {
+    const qid = r.p.value.split("/").pop(), st = stateCache[r.pob.value.split("/").pop()];
+    if (!st) continue; const name = r.pLabel ? r.pLabel.value : qid; if (/^Q\d+$/.test(name)) continue;
+    const prev = byQ.get(qid); if (prev) { if (!prev.img && r.img) prev.img = r.img.value.replace(/^http:/, "https:"); continue; }
+    byQ.set(qid, { qid, name, desc: r.pDescription ? r.pDescription.value : "", b: r.b ? yearOf(r.b.value) : "", d: r.d ? yearOf(r.d.value) : "", sl: +r.sl.value, img: r.img ? r.img.value.replace(/^http:/, "https:") : "", st });
+  }
+  const rows = [...byQ.values()].sort((a, b) => b.sl - a.sl);
   lsSet(key, rows);
   return dirCache[key] = rows;
 }
 function renderDirectory(v, s) {
-  v.innerHTML = `<p class="note">Live from <a href="https://www.wikidata.org" target="_blank" rel="noopener">Wikidata</a>: everyone recorded with a ${esc(s.name.toLowerCase())}-related occupation who is a citizen of Nigeria (including colonial-era Nigeria) or was born in Nigeria — across every language and tradition. Ranked by prominence (number of Wikipedia language editions). Click anyone for their sourced record.</p>
+  v.innerHTML = `<p class="note">Live from <a href="https://www.wikidata.org" target="_blank" rel="noopener">Wikidata</a>: everyone recorded with a ${esc(s.name.toLowerCase())}-related occupation whose place of birth traces to one of Nigeria’s 36 states or the FCT — across every language and tradition. Ranked by prominence (number of Wikipedia language editions). Click anyone for their sourced record.</p>
   <div class="toolbar"><input class="input search" type="search" placeholder="Search names or descriptions" id="dq" aria-label="Search directory">
     <select class="input" id="dst" aria-label="Status"><option value="all">Living and Lived</option><option value="living">Living</option><option value="lived">Lived</option></select>
+    <select class="input" id="dstate" aria-label="State"><option value="">All states</option></select>
     <select class="input" id="dsort" aria-label="Sort"><option value="sl">Most prominent</option><option value="b">Oldest first</option><option value="bd">Youngest first</option><option value="name">Name A–Z</option></select></div>
   <div id="dout"><p class="loading"><span class="spin"></span>Querying Wikidata…</p></div>`;
   let shown = 100;
   loadDirectory(s.occupations, s.id).then(rows => {
+    $("#dstate", v).innerHTML += [...new Set(rows.map(r => r.st).filter(Boolean))].sort().map(x => `<option value="${esc(x)}">${esc(stateName(x))}</option>`).join("");
     const draw = () => {
-      const q = $("#dq", v).value.trim().toLowerCase(), st = $("#dst", v).value, so = $("#dsort", v).value;
-      let L = rows.filter(r => (!q || (r.name + " " + r.desc).toLowerCase().includes(q)) && (st === "all" || (st === "lived" ? isLived(r) : !isLived(r))) && !/^Q\d+$/.test(r.name));
+      const q = $("#dq", v).value.trim().toLowerCase(), st = $("#dst", v).value, so = $("#dsort", v).value, sta = $("#dstate", v).value;
+      let L = rows.filter(r => (!q || (r.name + " " + r.desc).toLowerCase().includes(q)) && (st === "all" || (st === "lived" ? isLived(r) : !isLived(r))) && (!sta || r.st === sta) && !/^Q\d+$/.test(r.name));
       if (so === "b") L = [...L].sort((a, b) => (a.b || 9999) - (b.b || 9999)); else if (so === "bd") L = [...L].sort((a, b) => (b.b || 0) - (a.b || 0)); else if (so === "name") L = [...L].sort((a, b) => a.name.localeCompare(b.name));
       $("#dout", v).innerHTML = `<p class="src" style="margin:0 0 8px">${L.length.toLocaleString()} people${L.length > shown ? `, showing ${shown}` : ""}</p>
-      <table class="tbl"><thead><tr><th>Name</th><th class="hide-sm">Description</th><th>Born</th><th>Until</th></tr></thead><tbody>
-      ${L.slice(0, shown).map(r => `<tr class="rowlink" tabindex="0" data-person="q:${r.qid}"><td><b>${esc(r.name)}</b></td><td class="d hide-sm">${esc(r.desc)}</td><td>${esc(r.b)}</td><td>${r.d ? `<span class="rip">${esc(r.d)}</span>` : ""}</td></tr>`).join("")}
+      <table class="tbl"><thead><tr><th>Name</th><th class="hide-sm">Description</th><th>State</th><th>Born</th><th>Until</th></tr></thead><tbody>
+      ${L.slice(0, shown).map(r => `<tr class="rowlink" tabindex="0" data-person="q:${r.qid}"><td><b>${esc(r.name)}</b></td><td class="d hide-sm">${esc(r.desc)}</td><td class="d">${esc(stateName(r.st))}</td><td>${esc(r.b)}</td><td>${r.d ? `<span class="rip">${esc(r.d)}</span>` : ""}</td></tr>`).join("")}
       </tbody></table>${L.length > shown ? `<div class="more"><button class="btn" id="dmore">Show 200 more</button></div>` : ""}`;
       v.querySelectorAll("tr[data-person]").forEach(tr => { tr.addEventListener("click", () => setPersonHash(tr.dataset.person)); tr.addEventListener("keydown", e => { if (e.key === "Enter") setPersonHash(tr.dataset.person); }); });
       const mb = $("#dmore", v); if (mb) mb.addEventListener("click", () => { shown += 200; draw(); });
     };
-    ["input", "change"].forEach(ev => v.addEventListener(ev, e => { if (e.target.matches("#dq,#dst,#dsort")) { shown = 100; draw(); } }));
+    ["input", "change"].forEach(ev => v.addEventListener(ev, e => { if (e.target.matches("#dq,#dst,#dsort,#dstate")) { shown = 100; draw(); } }));
     draw();
   }).catch(e => { $("#dout", v).innerHTML = `<p class="note">Wikidata did not respond (${esc(e.message)}). Please try again in a moment.</p>`; });
 }
@@ -436,13 +460,16 @@ function renderDirectory(v, s) {
 /* ---------- random people (Living / Lived) ---------- */
 const rand = () => { const u = new Uint32Array(1); crypto.getRandomValues(u); return u[0] / 4294967296; };
 function sample(arr, n) { const a = arr.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(rand() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a.slice(0, n); }
-function curatedQ(p) { return (p.w && FOL && FOL.byTitle && FOL.byTitle[p.w]) || (p.w && pageInfo[p.w] && pageInfo[p.w].qid) || null; }
+function curatedQ(p) { return (p.w && CUR && CUR.byTitle && CUR.byTitle[p.w]) || (p.w && FOL && FOL.byTitle && FOL.byTitle[p.w]) || (p.w && pageInfo[p.w] && pageInfo[p.w].qid) || null; }
+function curatedState(p) { if (p.st) return p.st; if (p.w && CUR && CUR.state && CUR.state[p.w]) return CUR.state[p.w]; return null; }
 function buildPool(rows, s, lived) {
   const byQ = new Map();
   rows.forEach(r => { if (/^Q\d+$/.test(r.name) || isLived(r) !== lived) return; byQ.set(r.qid, { ...r, sec: s }); });
   (s ? [s] : DATA.sectors).forEach(sec => (lived ? sec.hall : sec.profiles).forEach(p => {
-    const q = curatedQ(p), key = q || "c:" + sec.id + ":" + p.n;
-    const e = byQ.get(key) || { qid: q, name: p.n, desc: "", b: p.b ? String(p.b) : "", d: p.d ? String(p.d) : "", img: "", sl: 0 };
+    const q = curatedQ(p), st = (q && byQ.get(q) && byQ.get(q).st) || curatedState(p);
+    if (!st) return; // not traced to one of Nigeria's 36 states or the FCT
+    const key = q || "c:" + sec.id + ":" + p.n;
+    const e = byQ.get(key) || { qid: q, name: p.n, desc: "", b: p.b ? String(p.b) : "", d: p.d ? String(p.d) : "", img: "", sl: 0, st };
     e.cur = { p, s: sec }; e.sec = e.sec || sec; byQ.set(key, e);
   }));
   return [...byQ.values()];
@@ -454,7 +481,7 @@ function poolCard(e, lived) {
   const hl = e.cur && e.cur.p.h && e.cur.p.h[0];
   const tc = topCount(folFor(e.qid, e.cur && e.cur.p.w));
   const old = tc && (Date.now() - Date.parse(tc.date)) > 60 * 864e5;
-  const years = lived ? `${esc(e.b || "?")} – ${esc(e.d || "")}` : (e.b ? "Born " + esc(e.b) : "");
+  const years = [lived ? `${esc(e.b || "?")} – ${esc(e.d || "")}` : (e.b ? "Born " + esc(e.b) : ""), esc(stateName(e.st))].filter(Boolean).join(" · ");
   return `<button class="card person${lived ? " hall" : ""}" style="${sec ? sectorVar(sec.id) : "--tc:var(--gold)"}" data-person="${esc(key)}">
     <div class="ph" ${!e.img && e.cur && e.cur.p.w ? `data-thumb="${esc(e.cur.p.w)}"` : ""}>${e.img ? `<img src="${esc(e.img)}${Q}width=240" alt="" loading="lazy">` : esc(initials(e.name))}</div>
     <div style="min-width:0">
@@ -469,25 +496,29 @@ function renderPeople(v, s, lived) {
   const N = 24, word = lived ? "Lived" : "Living";
   const scope = s ? s.name.toLowerCase() : "all fields";
   v.innerHTML = `<div class="toolbar"><input class="input search" type="search" placeholder="Search every ${word.toLowerCase()} person in ${esc(scope)}" aria-label="Search people" id="pq">
+    <select class="input" id="pst" aria-label="State"><option value="">All states</option></select>
     <button class="btn" type="button" id="shuf">Shuffle ↻</button></div>
     <p class="src" id="pinfo" style="margin:0 0 10px"></p>
     <div class="grid g-cards" id="plist"><p class="loading"><span class="spin"></span>Drawing a random set from the full directory…</p></div>
-    <p class="note" style="margin-top:16px">Everyone has an equal chance of appearing: each visit draws a new random set from every ${word.toLowerCase()} person on record — every genre, language and tradition. Not listed? <a href="#/contribute">Add a profile</a>.</p>`;
-  const load = s ? loadDirectory(s.occupations, s.id) : loadDirectory(ALL_OCCS, "lived:all", true);
+    <p class="note" style="margin-top:16px">Everyone has an equal chance of appearing: each visit draws a new random set from every ${word.toLowerCase()} person on record whose birthplace traces to one of Nigeria’s 36 states or the FCT — every genre, language and tradition. Not listed? <a href="#/contribute">Add a profile</a>.</p>`;
+  const load = s ? loadDirectory(s.occupations, s.id) : loadDirectory(ALL_OCCS, "lived:all");
   let pool = [], cur = [], loading = true;
   const draw = () => {
     if (!v.isConnected) return;
-    const q = $("#pq", v).value.trim().toLowerCase();
-    const list = q ? pool.filter(e => (e.name + " " + e.desc + " " + (e.cur ? e.cur.p.r + " " + (e.cur.p.h || []).join(" ") : "")).toLowerCase().includes(q)).sort((a, b) => (b.sl || 0) - (a.sl || 0)).slice(0, 60) : cur;
-    $("#pinfo", v).innerHTML = (q ? `${list.length}${list.length === 60 ? "+" : ""} matches among ${pool.length.toLocaleString()} ${word}` : `${list.length} of ${pool.length.toLocaleString()} ${word}, chosen at random — refresh or shuffle for a new set`) + (loading ? ` · <span class="spin"></span>adding everyone on record from Wikidata…` : "");
+    const q = $("#pq", v).value.trim().toLowerCase(), sta = $("#pst", v).value;
+    const base = sta ? pool.filter(e => e.st === sta) : pool;
+    const list = q ? base.filter(e => (e.name + " " + e.desc + " " + (e.cur ? e.cur.p.r + " " + (e.cur.p.h || []).join(" ") : "")).toLowerCase().includes(q)).sort((a, b) => (b.sl || 0) - (a.sl || 0)).slice(0, 60) : cur;
+    $("#pinfo", v).innerHTML = (q ? `${list.length}${list.length === 60 ? "+" : ""} matches among ${base.length.toLocaleString()} ${word}` : `${list.length} of ${base.length.toLocaleString()} ${word}${sta ? " from " + esc(stateName(sta)) : ""}, chosen at random — refresh or shuffle for a new set`) + (loading ? ` · <span class="spin"></span>adding everyone on record from Wikidata…` : "");
     $("#plist", v).innerHTML = list.map(e => poolCard(e, lived)).join("") || `<p class="loading">No one matches.</p>`;
     bindPeople(v);
     const titles = list.filter(e => !e.img && e.cur && e.cur.p.w).map(e => e.cur.p.w);
     if (titles.length) loadPageInfo(titles).then(() => paintThumbs(v));
   };
-  const setRows = rows => { pool = buildPool(rows, s, lived); cur = sample(pool, N); draw(); };
+  const reshuffle = () => { const sta = $("#pst", v).value; cur = sample(sta ? pool.filter(e => e.st === sta) : pool, N); };
+  const setRows = rows => { pool = buildPool(rows, s, lived); const sel = $("#pst", v), keep = sel.value; sel.innerHTML = `<option value="">All states</option>` + [...new Set(pool.map(e => e.st).filter(Boolean))].sort().map(x => `<option value="${esc(x)}">${esc(stateName(x))}</option>`).join(""); sel.value = keep; reshuffle(); draw(); };
   $("#pq", v).addEventListener("input", draw);
-  $("#shuf", v).addEventListener("click", () => { $("#pq", v).value = ""; cur = sample(pool, N); draw(); });
+  $("#pst", v).addEventListener("change", () => { reshuffle(); draw(); });
+  $("#shuf", v).addEventListener("click", () => { $("#pq", v).value = ""; reshuffle(); draw(); });
   { const k = s ? s.id : "lived:all"; if (!dirCache[k] && !lsGet(k)) setRows([]); }   // show a first random set instantly
   load.then(rows => { loading = false; setRows(rows); })
       .catch(() => { loading = false; draw(); $("#pinfo", v).textContent += " (Wikidata is unavailable right now — showing the curated set only)"; });
@@ -505,10 +536,10 @@ function renderHall(m, sub) {
   renderPeople($("#hl", m), filt === "all" ? null : S[filt], true);
   $("#loadLive", m).addEventListener("click", () => {
     const box = $("#hlive", m); box.innerHTML = `<p class="loading"><span class="spin"></span>Querying Wikidata…</p>`;
-    const p = filt === "all" ? loadDirectory(ALL_OCCS, "lived:all", true) : loadDirectory(S[filt].occupations, filt);
+    const p = filt === "all" ? loadDirectory(ALL_OCCS, "lived:all") : loadDirectory(S[filt].occupations, filt);
     p.then(rows => {
       rows = rows.filter(r => !/^Q\d+$/.test(r.name) && isLived(r));
-      box.innerHTML = `<p class="src">${rows.length.toLocaleString()} people</p><table class="tbl"><thead><tr><th>Name</th><th class="hide-sm">Description</th><th>Years</th></tr></thead><tbody>${rows.slice(0, 800).map(r => `<tr class="rowlink" tabindex="0" data-person="q:${r.qid}"><td><b>${esc(r.name)}</b></td><td class="d hide-sm">${esc(r.desc)}</td><td class="rip">${esc(r.b || "?")}–${esc(r.d)}</td></tr>`).join("")}</tbody></table>`;
+      box.innerHTML = `<p class="src">${rows.length.toLocaleString()} people</p><table class="tbl"><thead><tr><th>Name</th><th class="hide-sm">Description</th><th>State</th><th>Years</th></tr></thead><tbody>${rows.slice(0, 800).map(r => `<tr class="rowlink" tabindex="0" data-person="q:${r.qid}"><td><b>${esc(r.name)}</b></td><td class="d hide-sm">${esc(r.desc)}</td><td class="d">${esc(stateName(r.st))}</td><td class="rip">${esc(r.b || "?")}–${esc(r.d)}</td></tr>`).join("")}</tbody></table>`;
       box.querySelectorAll("tr[data-person]").forEach(tr => tr.addEventListener("click", () => setPersonHash(tr.dataset.person)));
     }).catch(e => box.innerHTML = `<p class="note">Wikidata did not respond (${esc(e.message)}).</p>`);
   });
@@ -695,16 +726,16 @@ async function runDownload(dlg) {
       ...(parts.has("infra") ? DATA.infrastructure.stats.map(x => ["Infrastructure", x.label, x.value, x.year || "", x.note || "", x.srcName || "", x.src]) : [])];
     if (parts.has("timeline")) out.timeline = [["field", "year", "event", "source_url"], ...fields.flatMap(s => s.timeline.map(t => [s.name, t.y, t.t, t.src]))];
     if (parts.has("awards")) out.awards = [["field", "name", "since", "about", "source_url"], ...fields.flatMap(s => s.awards.map(a => [s.name, a.name, a.since, a.about, a.src]))];
-    if (parts.has("curated")) out.curated_profiles = [["field", "status", "name", "role", "active_since", "born", "until", "highlights", "wikipedia", "official_site", "source"],
-      ...fields.flatMap(s => [...s.profiles.map(p => [s.name, "living", p.n, p.r, p.since || "", "", "", p.h, p.w ? wikiUrl(p.w) : "", p.site || "", p.src || ""]), ...s.hall.map(p => [s.name, "lived", p.n, p.r, "", p.b || "", p.d || "", p.h, p.w ? wikiUrl(p.w) : "", "", p.src || ""])])];
+    if (parts.has("curated")) out.curated_profiles = [["field", "status", "name", "role", "state_of_birth", "active_since", "born", "until", "highlights", "wikipedia", "official_site", "source"],
+      ...fields.flatMap(s => [...s.profiles.filter(curatedState).map(p => [s.name, "living", p.n, p.r, stateName(curatedState(p)), p.since || "", "", "", p.h, p.w ? wikiUrl(p.w) : "", p.site || "", p.src || ""]), ...s.hall.filter(curatedState).map(p => [s.name, "lived", p.n, p.r, stateName(curatedState(p)), "", p.b || "", p.d || "", p.h, p.w ? wikiUrl(p.w) : "", "", p.src || ""])])];
     if (parts.has("infra")) { const cn = id => (DATA.infrastructure.categories.find(c => c.id === id) || {}).name || id; out.infrastructure = [["category", "name", "location", "founded", "key_fact", "website", "source_url"], ...DATA.infrastructure.items.map(x => [cn(x.c), x.n, x.at || "", x.f || "", x.x || "", x.site || "", x.src])]; }
     if (parts.has("followers")) { out.followers = [["wikidata_id", "wikipedia_title", "platform", "count", "as_of", "source"]]; Object.entries((FOL && FOL.people) || {}).forEach(([q, p]) => Object.entries(p.counts || {}).forEach(([k, v]) => out.followers.push([q, p.title || "", PLAT[k] || k, v.value, v.date, v.source]))); }
     if (parts.has("directory")) {
-      out.directory = [["field", "status", "wikidata_id", "name", "description", "born", "until", "wikidata_url"]];
+      out.directory = [["field", "status", "wikidata_id", "name", "description", "state_of_birth", "born", "until", "wikidata_url"]];
       for (const [i, s] of fields.entries()) {
         msg.innerHTML = `<span class="spin"></span>Fetching ${esc(s.name)} from Wikidata (${i + 1} of ${fields.length})…`;
         const rows = await loadDirectory(s.occupations, s.id);
-        rows.filter(r => !/^Q\d+$/.test(r.name) && (dstat === "all" || (dstat === "lived") === isLived(r))).forEach(r => out.directory.push([s.name, isLived(r) ? "lived" : "living", r.qid, r.name, r.desc, r.b, r.d, "https://www.wikidata.org/wiki/" + r.qid]));
+        rows.filter(r => !/^Q\d+$/.test(r.name) && (dstat === "all" || (dstat === "lived") === isLived(r))).forEach(r => out.directory.push([s.name, isLived(r) ? "lived" : "living", r.qid, r.name, r.desc, stateName(r.st), r.b, r.d, "https://www.wikidata.org/wiki/" + r.qid]));
       }
     }
     const stamp = new Date().toISOString().slice(0, 10);
@@ -817,7 +848,7 @@ async function openPerson(key) {
       <div class="ph"${isDead ? ' style="filter:grayscale(1)"' : ""}>${photo ? `<img src="${esc(photo)}" alt="Photo of ${esc(name)}">` : esc(initials(name))}</div>
       <div><h2 id="drTitle">${esc(name)}</h2>
         <p style="margin:0 0 6px;color:var(--muted)">${esc(desc)}</p>
-        <p style="margin:0;font-size:13.5px">${yB ? (isDead ? `<span class="rip">${esc(yB)} – ${esc(yD)}</span> · In the Hall of Fame` : `Born ${esc(yB)}`) : (isDead ? `<span class="rip">Died ${esc(yD)}</span>` : "")}</p>
+        <p style="margin:0;font-size:13.5px">${yB ? (isDead ? `<span class="rip">${esc(yB)} – ${esc(yD)}</span> · In the Hall of Fame` : `Born ${esc(yB)}`) : (isDead ? `<span class="rip">Died ${esc(yD)}</span>` : "")}<span id="drState"></span></p>
         <div style="margin-top:8px">${curList.map(x => `<span class="pill" style="${sectorVar(x.s.id)}">${esc(x.s.name)}</span>`).join("")}</div>
       </div>
     </div>
@@ -825,7 +856,8 @@ async function openPerson(key) {
     ${summary && summary.extract ? `<div class="dr-sec"><h3>Biography</h3><p style="margin:0 0 6px">${esc(summary.extract)}</p><div class="src">From Wikipedia · ${srcLink(wikiUrl(title), "read the full article")}</div></div>` : ""}
     <div class="dr-sec"><h3>By the numbers</h3><div class="kv" id="drNums"><p class="loading"><span class="spin"></span>Counting works and audience…</p></div><p class="src" style="margin-top:8px">Works counted live from Wikidata; page views from Wikimedia; followers from the weekly bot.</p></div>
     <div class="dr-sec" id="drAwardsSec" hidden><h3>Awards &amp; honours <span class="c" id="drAwN"></span></h3><ul class="clean awards" id="drAwards"></ul><p class="src">From Wikidata ${qid ? srcLink("https://www.wikidata.org/wiki/" + qid + "#P166", "check the record") : ""}</p></div>
-    <div class="dr-sec" id="drWorksSec" hidden><h3>Notable works</h3><ul class="clean" id="drWorks"></ul></div>
+    <div class="dr-sec" id="drWorksSec"><h3>Works <span class="c" id="drWkN"></span></h3><div id="drWorks"><p class="loading"><span class="spin"></span>Listing every recorded work…</p></div>
+      <p class="src" style="margin-top:8px">Every work recorded on Wikidata with this person as author, performer, actor, director, producer, writer, composer, cinematographer or creator, with the year of release or publication where recorded. Each title links to its record for verification. Missing a work? <a href="#/contribute">Add it</a>.</p></div>
     ${L.length ? `<div class="dr-sec"><h3>Read more &amp; verify</h3><div class="links">${L.map(([t, u]) => `<a href="${esc(u)}" target="_blank" rel="noopener">${esc(t)} ↗</a>`).join("")}</div></div>` : ""}
     <div class="dr-sec"><h3>Help keep this accurate</h3><div class="btnrow">
       <button class="btn sm" data-contrib="update">Suggest an update</button>
@@ -843,29 +875,72 @@ async function openPerson(key) {
   const numsEl = $("#drNums", body);
   const paintNums = () => { if (drawer.hidden) return; numsEl.innerHTML = nums.length ? nums.map(([v, l, t]) => `<div class="card"${t ? ` title="${esc(t)}"` : ""}><div class="v">${esc(v)}</div><div class="l">${esc(l)}</div></div>`).join("") : `<p class="src">No counts recorded yet.</p>`; };
   const jobs = [];
-  if (qid) jobs.push(sparql(`SELECT ?k (COUNT(DISTINCT ?w) AS ?n) WHERE {
-      { ?w wdt:P50 wd:${qid}. BIND("Books & written works" AS ?k) } UNION
-      { ?w wdt:P161 wd:${qid}. BIND("Film & TV acting credits" AS ?k) } UNION
-      { ?w wdt:P57 wd:${qid}. BIND("Films directed" AS ?k) } UNION
-      { ?w wdt:P162 wd:${qid}. BIND("Productions produced" AS ?k) } UNION
-      { ?w wdt:P58 wd:${qid}. BIND("Screenplays" AS ?k) } UNION
-      { ?w wdt:P175 wd:${qid}; wdt:P31/wdt:P279* wd:Q482994. BIND("Albums" AS ?k) } UNION
-      { ?w wdt:P175 wd:${qid}; wdt:P31 ?t. VALUES ?t { wd:Q7366 wd:Q134556 wd:Q105543609 } BIND("Songs & singles" AS ?k) }
-    } GROUP BY ?k`).then(j => j.results.bindings.forEach(b => { if (+b.n.value > 0) nums.push([b.n.value, b.k.value + " (recorded)", "Count of items on Wikidata"]); })).catch(() => {}));
+  // state of origin by birthplace
+  const paintState = st => { const el = $("#drState", body); if (el && st) el.textContent = " · " + stateName(st); };
+  { let st = null; for (const rows of Object.values(dirCache)) { const r = rows.find(x => x.qid === qid); if (r) { st = r.st; break; } } if (!st && cur) st = curatedState(cur.p); paintState(st);
+    if (!st && qid) sparql(`SELECT ?stLabel WHERE { wd:${qid} wdt:P19 ?pob. VALUES ?st { ${STATE_Q.map(q => "wd:" + q).join(" ")} } ?pob wdt:P131* ?st. SERVICE wikibase:label { bd:serviceParam wikibase:language "en". } } LIMIT 1`).then(j => { const b = j.results.bindings[0]; if (b) paintState(b.stLabel.value.replace(/ State$/, "")); }).catch(() => {}); }
+  // every recorded work, with years
+  const ROLE_ORDER = ["Writing", "Music (performer)", "Music (composer)", "Lyrics", "Acting", "Directing", "Producing", "Screenwriting", "Cinematography", "Film editing", "Created works", "Notable works"];
+  if (qid) jobs.push(sparql(`SELECT ?w ?wLabel ?role ?date ?typeLabel ?article WHERE {
+      { ?w wdt:P50 wd:${qid}. BIND("Writing" AS ?role) } UNION { ?w wdt:P175 wd:${qid}. BIND("Music (performer)" AS ?role) } UNION
+      { ?w wdt:P86 wd:${qid}. BIND("Music (composer)" AS ?role) } UNION { ?w wdt:P676 wd:${qid}. BIND("Lyrics" AS ?role) } UNION
+      { ?w wdt:P161 wd:${qid}. BIND("Acting" AS ?role) } UNION { ?w wdt:P57 wd:${qid}. BIND("Directing" AS ?role) } UNION
+      { ?w wdt:P162 wd:${qid}. BIND("Producing" AS ?role) } UNION { ?w wdt:P58 wd:${qid}. BIND("Screenwriting" AS ?role) } UNION
+      { ?w wdt:P344 wd:${qid}. BIND("Cinematography" AS ?role) } UNION { ?w wdt:P1040 wd:${qid}. BIND("Film editing" AS ?role) } UNION
+      { ?w wdt:P170 wd:${qid}. BIND("Created works" AS ?role) } UNION { wd:${qid} wdt:P800 ?w. BIND("Notable works" AS ?role) }
+      OPTIONAL { ?w wdt:P577 ?pd } OPTIONAL { ?w wdt:P571 ?inc } OPTIONAL { ?w wdt:P580 ?sd }
+      BIND(COALESCE(?pd, ?inc, ?sd) AS ?date)
+      OPTIONAL { ?w wdt:P31 ?type }
+      OPTIONAL { ?article schema:about ?w; schema:isPartOf <https://en.wikipedia.org/> }
+      SERVICE wikibase:label { bd:serviceParam wikibase:language "en". }
+    } LIMIT 4000`).then(j => {
+      const map = new Map();
+      for (const r of j.results.bindings) {
+        const w = r.w.value.split("/").pop(), title = r.wLabel ? r.wLabel.value : w; if (/^Q\d+$/.test(title)) continue;
+        const k = w + "|" + r.role.value, y = r.date ? yearOf(r.date.value) : "";
+        const e = map.get(k) || { w, title, role: r.role.value, y: "", type: "", url: "" };
+        if (y && (!e.y || y < e.y)) e.y = y;
+        if (!e.type && r.typeLabel && !/^Q\d+$/.test(r.typeLabel.value)) e.type = r.typeLabel.value;
+        if (!e.url && r.article) e.url = r.article.value;
+        map.set(k, e);
+      }
+      let all = [...map.values()];
+      const listed = new Set(all.filter(e => e.role !== "Notable works").map(e => e.w));
+      all = all.filter(e => e.role !== "Notable works" || !listed.has(e.w));
+      const uniq = new Set(all.map(e => e.w)).size;
+      if (drawer.hidden) return;
+      $("#drWkN", body).textContent = uniq ? "(" + uniq + ")" : "";
+      if (!uniq) { $("#drWorks", body).innerHTML = `<p class="src">No works are recorded on Wikidata for this person yet.</p>`; return; }
+      const groups = ROLE_ORDER.map(r => [r, all.filter(e => e.role === r).sort((a, b) => (a.y || "9999").localeCompare(b.y || "9999") || a.title.localeCompare(b.title))]).filter(([, L]) => L.length);
+      groups.forEach(([r, L]) => {
+        if (r === "Notable works") return;
+        if (r === "Music (performer)") {
+          const alb = L.filter(e => /album/i.test(e.type)).length, sng = L.filter(e => /single|song/i.test(e.type)).length;
+          if (alb) nums.push([String(alb), "Albums (recorded)", "Wikidata"]); if (sng) nums.push([String(sng), "Songs & singles (recorded)", "Wikidata"]);
+          if (!alb && !sng) nums.push([String(L.length), "Music releases (recorded)", "Wikidata"]);
+        } else nums.push([String(L.length), r + " credits (recorded)", "Wikidata"]);
+      });
+      paintNums();
+      $("#drWorks", body).innerHTML = groups.map(([r, L], gi) => `<div style="margin:12px 0 4px"><b style="font-size:13.5px">${esc(r)}</b> <span class="src">${L.length}</span></div>
+        <ul class="clean works" data-g="${gi}">${L.map((e, i) => `<li${i >= 12 ? ' class="more-w" hidden' : ""}>${e.y ? `<span class="yr" style="margin:0 6px 0 0">${esc(e.y)}</span>` : `<span class="yr" style="margin:0 6px 0 0;opacity:.6">n.d.</span>`}<a href="${esc(e.url || "https://www.wikidata.org/wiki/" + e.w)}" target="_blank" rel="noopener">${esc(e.title)}</a>${e.type ? ` <span class="src">· ${esc(e.type)}</span>` : ""}</li>`).join("")}</ul>
+        ${L.length > 12 ? `<button class="btn sm" type="button" data-more="${gi}">Show all ${L.length}</button>` : ""}`).join("") +
+        `<div class="btnrow" style="margin-top:12px"><button class="btn sm" type="button" id="wkCsv">Download works (CSV)</button></div>`;
+      body.querySelectorAll("[data-more]").forEach(b => b.addEventListener("click", () => { body.querySelectorAll(`ul[data-g="${b.dataset.more}"] .more-w`).forEach(li => li.hidden = false); b.remove(); }));
+      $("#wkCsv", body).addEventListener("click", () => download(`${name.replace(/[^\w]+/g, "-").toLowerCase()}-works.csv`, toCSV([["person", "role", "year", "title", "type", "source"], ...groups.flatMap(([, L]) => L.map(e => [name, e.role, e.y, e.title, e.type, e.url || "https://www.wikidata.org/wiki/" + e.w]))]), "text/csv"));
+    }).catch(() => { if (!drawer.hidden) $("#drWorks", body).innerHTML = `<p class="src">Wikidata did not respond — reopen this profile to try again.</p>`; }));
+  else $("#drWorks", body).innerHTML = `<p class="src">No linked Wikidata record yet, so works cannot be listed automatically.</p>`;
   if (title) {
     const d = new Date(), end = new Date(d - 864e5), start = new Date(d - 31 * 864e5), f = x => x.toISOString().slice(0, 10).replace(/-/g, "");
     jobs.push(getJSON(`https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/${encodeURIComponent(title.replace(/ /g, "_"))}/daily/${f(start)}/${f(end)}`).then(j => { const n = j.items.reduce((a, i) => a + i.views, 0); if (n) nums.push([fmt(n), "Wikipedia page views, last 30 days", "English Wikipedia, Wikimedia REST API"]); }).catch(() => {}));
   }
   const awards = (C.P166 || []).filter(c => c.mainsnak.datavalue).map(c => ({ id: c.mainsnak.datavalue.value.id, y: c.qualifiers && c.qualifiers.P585 && c.qualifiers.P585[0].datavalue ? yearOf(c.qualifiers.P585[0].datavalue.value.time) : "" }));
   const nominated = (C.P1411 || []).length;
-  const works = vals("P800").map(v => v.id);
   if (awards.length) nums.push([String(awards.length), "Awards & honours on record", "Wikidata P166"]);
   if (nominated) nums.push([String(nominated), "Nominations on record", "Wikidata P1411"]);
-  const ids = [...new Set([...awards.map(a => a.id), ...works])].slice(0, 50);
+  const ids = [...new Set(awards.map(a => a.id))].slice(0, 50);
   if (ids.length) jobs.push(getJSON(WD_API + Q + qs({ action: "wbgetentities", ids: ids.join("|"), props: "labels", languages: "en", format: "json", origin: "*" })).then(j => {
     const lab = id => (j.entities[id] && j.entities[id].labels.en) ? j.entities[id].labels.en.value : id;
     if (awards.length) { $("#drAwardsSec", body).hidden = false; $("#drAwN", body).textContent = "(" + awards.length + ")"; $("#drAwards", body).innerHTML = awards.sort((a, b) => (b.y || 0) - (a.y || 0)).map(a => `<li>${esc(lab(a.id))}${a.y ? ` <span class="yr">${esc(a.y)}</span>` : ""}</li>`).join(""); }
-    if (works.length) { $("#drWorksSec", body).hidden = false; $("#drWorks", body).innerHTML = works.map(w => `<li><a href="https://www.wikidata.org/wiki/${esc(w)}" target="_blank" rel="noopener">${esc(lab(w))}</a></li>`).join(""); }
   }).catch(() => {}));
   await Promise.all(jobs); paintNums();
 }
@@ -930,10 +1005,12 @@ function renderAbout(m) {
     ${flags.length ? `<div class="note"><b>Awaiting review:</b> ${flags.map(f => esc(f.title + " — " + f.reason)).join("; ")}</div>` : ""}
   </section>
   <section class="section"><h3>Who is included, and how people are shown</h3><ul class="clean" style="font-size:14px">
-    <li><b>Everyone in the industry, equally.</b> Anyone recorded on Wikidata with an occupation in these fields — including griots, praise and folk singers, traditional percussionists and drummers, storytellers, indigenous-language writers, Kannywood and Yoruba-film actors — who is a citizen of Nigeria (including colonial-era Nigeria) or was born in Nigeria.</li>
+    <li><b>Traced to a Nigerian state.</b> Everyone listed must be traceable to one of Nigeria’s 36 states or the FCT: their recorded place of birth on Wikidata has to lie within a state. Each person’s state is shown on their card and profile. People whose birthplace is unrecorded, or outside Nigeria, are not listed until a contribution with a verifiable source traces them to a state.</li>
+    <li><b>Everyone in the industry, equally.</b> Within that rule, anyone with an occupation in these fields — including griots, praise and folk singers, traditional percussionists and drummers, storytellers, indigenous-language writers, Kannywood and Yoruba-film actors.</li>
+    <li><b>Works with years.</b> Each profile lists every work recorded on Wikidata — books, albums, songs, films, roles, productions, photographs — with its year of release or publication and a link to verify it.</li>
     <li><b>No ranking by fame.</b> The Living and Lived pages draw a fresh random set from the whole pool on every visit or shuffle, so every person has the same chance of appearing.</li>
     <li><b>Living and Lived.</b> People with a recorded date of death — or born before 1910 — appear under Lived and in the Hall of Fame.</li>
-    <li><b>Hand-written highlights</b> are added for some people, each checked against a source. Diaspora figures are labelled (e.g. "British-Nigerian").</li></ul></section>
+    <li><b>Hand-written highlights</b> are added for some people, each checked against a source. </li></ul></section>
   <section class="section"><h3>Limitations</h3><ul class="clean" style="font-size:14px">
     <li>Wikidata is community-edited and uneven: many Nigerian creatives — especially in indigenous-language film, music and literature — are missing or thinly recorded. Contributions help close that gap.</li>
     <li>Platforms such as Instagram, X and TikTok do not offer free public follower APIs, so those counts appear only where a dated figure exists on Wikidata. Each count shows its date and source.</li>
@@ -948,7 +1025,8 @@ function renderAbout(m) {
   } catch (e) { $("#main").innerHTML = `<p class="note">Could not load the data file. Please refresh.</p>`; return; }
   DATA.sectors.forEach(s => S[s.id] = s);
   ALL_OCCS = [...new Set(DATA.sectors.flatMap(s => s.occupations))];
-  try { FOL = await getJSON("data/followers.json", { cache: "no-cache" }); } catch (e) { FOL = null; }
+  const [f, c, x] = await Promise.all(["followers.json", "directory/curated.json", "directory/index.json"].map(n => getJSON("data/" + n, { cache: "no-cache" }).catch(() => null)));
+  FOL = f; CUR = c; DIRIDX = x;
   window.addEventListener("hashchange", route);
   route();
 })();
