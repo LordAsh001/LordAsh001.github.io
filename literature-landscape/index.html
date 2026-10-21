@@ -384,7 +384,7 @@ function renderSector(m, s, sub) {
 function bindPeople(root) { root.querySelectorAll("[data-person]").forEach(b => b.addEventListener("click", () => setPersonHash(b.dataset.person))); }
 
 /* ---------- live directory (Wikidata) ---------- */
-const LSK = k => "nll-dir-v4:" + k;
+const LSK = k => "nll-dir-v5:" + k;
 function lsGet(k) { try { const v = JSON.parse(localStorage.getItem(LSK(k)) || "null"); if (v && Date.now() - v.t < 864e5) return v.rows; } catch (e) {} return null; }
 function lsSet(k, rows) { try { localStorage.setItem(LSK(k), JSON.stringify({ t: Date.now(), rows })); } catch (e) {} }
 const isLived = r => !!r.d || (!!r.b && +r.b < 1910);
@@ -427,12 +427,21 @@ async function loadDirectory(occs, key) {
     const prev = byQ.get(qid); if (prev) { if (!prev.img && r.img) prev.img = r.img.value.replace(/^http:/, "https:"); continue; }
     byQ.set(qid, { qid, name, desc: r.pDescription ? r.pDescription.value : "", b: r.b ? yearOf(r.b.value) : "", d: r.d ? yearOf(r.d.value) : "", sl: +r.sl.value, img: r.img ? r.img.value.replace(/^http:/, "https:") : "", st });
   }
+  const sec = DATA.sectors.find(x => x.id === key);
+  if (sec && sec.evidence) {
+    const cand = [...byQ.keys()], ok = new Set();
+    for (let i = 0; i < cand.length; i += 300) {
+      const ev = await sparqlPost(`SELECT DISTINCT ?p WHERE { VALUES ?p { ${cand.slice(i, i + 300).map(q => "wd:" + q).join(" ")} } ${sec.evidence} }`);
+      ev.forEach(b => ok.add(b.p.value.split("/").pop()));
+    }
+    cand.forEach(q => { if (!ok.has(q)) byQ.delete(q); });
+  }
   const rows = [...byQ.values()].sort((a, b) => b.sl - a.sl);
   lsSet(key, rows);
   return dirCache[key] = rows;
 }
 function renderDirectory(v, s) {
-  v.innerHTML = `<p class="note">Live from <a href="https://www.wikidata.org" target="_blank" rel="noopener">Wikidata</a>: everyone recorded with a ${esc(s.name.toLowerCase())}-related occupation whose place of birth traces to one of Nigeria’s 36 states or the FCT — across every language and tradition. Ranked by prominence (number of Wikipedia language editions). Click anyone for their sourced record.</p>
+  v.innerHTML = `<p class="note">Live from <a href="https://www.wikidata.org" target="_blank" rel="noopener">Wikidata</a>: everyone recorded with a ${esc(s.name.toLowerCase())}-related occupation whose place of birth traces to one of Nigeria’s 36 states or the FCT${s.evidenceText ? ` and who ${esc(s.evidenceText)}` : ""} — across every language and tradition. Ranked by prominence (number of Wikipedia language editions). Click anyone for their sourced record.</p>
   <div class="toolbar"><input class="input search" type="search" placeholder="Search names or descriptions" id="dq" aria-label="Search directory">
     <select class="input" id="dst" aria-label="Status"><option value="all">Living and Lived</option><option value="living">Living</option><option value="lived">Lived</option></select>
     <select class="input" id="dstate" aria-label="State"><option value="">All states</option></select>
@@ -467,7 +476,7 @@ function buildPool(rows, s, lived) {
   rows.forEach(r => { if (/^Q\d+$/.test(r.name) || isLived(r) !== lived) return; byQ.set(r.qid, { ...r, sec: s }); });
   (s ? [s] : DATA.sectors).forEach(sec => (lived ? sec.hall : sec.profiles).forEach(p => {
     const q = curatedQ(p), st = (q && byQ.get(q) && byQ.get(q).st) || curatedState(p);
-    if (!st) return; // not traced to one of Nigeria's 36 states or the FCT
+    if (!st && !p.keep) return; // not traced to one of Nigeria's 36 states or the FCT
     const key = q || "c:" + sec.id + ":" + p.n;
     const e = byQ.get(key) || { qid: q, name: p.n, desc: "", b: p.b ? String(p.b) : "", d: p.d ? String(p.d) : "", img: "", sl: 0, st };
     e.cur = { p, s: sec }; e.sec = e.sec || sec; byQ.set(key, e);
@@ -481,7 +490,7 @@ function poolCard(e, lived) {
   const hl = e.cur && e.cur.p.h && e.cur.p.h[0];
   const tc = topCount(folFor(e.qid, e.cur && e.cur.p.w));
   const old = tc && (Date.now() - Date.parse(tc.date)) > 60 * 864e5;
-  const years = [lived ? `${esc(e.b || "?")} – ${esc(e.d || "")}` : (e.b ? "Born " + esc(e.b) : ""), esc(stateName(e.st))].filter(Boolean).join(" · ");
+  const years = [lived ? `${esc(e.b || "?")} – ${esc(e.d || "")}` : (e.b ? "Born " + esc(e.b) : ""), esc(stateName(e.st) || (e.cur && e.cur.p.keep ? "State not yet traced" : ""))].filter(Boolean).join(" · ");
   return `<button class="card person${lived ? " hall" : ""}" style="${sec ? sectorVar(sec.id) : "--tc:var(--gold)"}" data-person="${esc(key)}">
     <div class="ph" ${!e.img && e.cur && e.cur.p.w ? `data-thumb="${esc(e.cur.p.w)}"` : ""}>${e.img ? `<img src="${esc(e.img)}${Q}width=240" alt="" loading="lazy">` : esc(initials(e.name))}</div>
     <div style="min-width:0">
@@ -727,7 +736,7 @@ async function runDownload(dlg) {
     if (parts.has("timeline")) out.timeline = [["field", "year", "event", "source_url"], ...fields.flatMap(s => s.timeline.map(t => [s.name, t.y, t.t, t.src]))];
     if (parts.has("awards")) out.awards = [["field", "name", "since", "about", "source_url"], ...fields.flatMap(s => s.awards.map(a => [s.name, a.name, a.since, a.about, a.src]))];
     if (parts.has("curated")) out.curated_profiles = [["field", "status", "name", "role", "state_of_birth", "active_since", "born", "until", "highlights", "wikipedia", "official_site", "source"],
-      ...fields.flatMap(s => [...s.profiles.filter(curatedState).map(p => [s.name, "living", p.n, p.r, stateName(curatedState(p)), p.since || "", "", "", p.h, p.w ? wikiUrl(p.w) : "", p.site || "", p.src || ""]), ...s.hall.filter(curatedState).map(p => [s.name, "lived", p.n, p.r, stateName(curatedState(p)), "", p.b || "", p.d || "", p.h, p.w ? wikiUrl(p.w) : "", "", p.src || ""])])];
+      ...fields.flatMap(s => [...s.profiles.filter(p => curatedState(p) || p.keep).map(p => [s.name, "living", p.n, p.r, stateName(curatedState(p)), p.since || "", "", "", p.h, p.w ? wikiUrl(p.w) : "", p.site || "", p.src || ""]), ...s.hall.filter(p => curatedState(p) || p.keep).map(p => [s.name, "lived", p.n, p.r, stateName(curatedState(p)), "", p.b || "", p.d || "", p.h, p.w ? wikiUrl(p.w) : "", "", p.src || ""])])];
     if (parts.has("infra")) { const cn = id => (DATA.infrastructure.categories.find(c => c.id === id) || {}).name || id; out.infrastructure = [["category", "name", "location", "founded", "key_fact", "website", "source_url"], ...DATA.infrastructure.items.map(x => [cn(x.c), x.n, x.at || "", x.f || "", x.x || "", x.site || "", x.src])]; }
     if (parts.has("followers")) { out.followers = [["wikidata_id", "wikipedia_title", "platform", "count", "as_of", "source"]]; Object.entries((FOL && FOL.people) || {}).forEach(([q, p]) => Object.entries(p.counts || {}).forEach(([k, v]) => out.followers.push([q, p.title || "", PLAT[k] || k, v.value, v.date, v.source]))); }
     if (parts.has("directory")) {
@@ -877,7 +886,7 @@ async function openPerson(key) {
   const paintNums = () => { if (drawer.hidden) return; numsEl.innerHTML = nums.length ? nums.map(([v, l, t]) => `<div class="card"${t ? ` title="${esc(t)}"` : ""}><div class="v">${esc(v)}</div><div class="l">${esc(l)}</div></div>`).join("") : `<p class="src">No counts recorded yet.</p>`; };
   const jobs = [];
   // state of origin by birthplace
-  const paintState = st => { const el = $("#drState", body); if (el && st) el.textContent = " · " + stateName(st); };
+  const paintState = st => { const el = $("#drState", body); if (!el) return; const p = cur && cur.p; if (st) el.innerHTML = " · " + esc(stateName(st)) + (p && p.st === st && p.stBasis && p.stBasis !== "birth" ? ` <span class="src">(${esc(p.stBasis)}${p.stSrc ? " · " + srcLink(p.stSrc, "source") : ""})</span>` : ""); else if (p && p.keep) el.innerHTML = ` · <span class="src">State not yet traced — ${esc(p.stBasis || "")}${p.stSrc ? " · " + srcLink(p.stSrc, "source") : ""}. <a href="#/contribute">Know their state?</a></span>`; };
   { let st = null; for (const rows of Object.values(dirCache)) { const r = rows.find(x => x.qid === qid); if (r) { st = r.st; break; } } if (!st && cur) st = curatedState(cur.p); paintState(st);
     if (!st && qid) sparql(`SELECT ?stLabel WHERE { wd:${qid} wdt:P19 ?pob. VALUES ?st { ${STATE_Q.map(q => "wd:" + q).join(" ")} } ?pob wdt:P131* ?st. SERVICE wikibase:label { bd:serviceParam wikibase:language "en". } } LIMIT 1`).then(j => { const b = j.results.bindings[0]; if (b) paintState(b.stLabel.value.replace(/ State$/, "")); }).catch(() => {}); }
   // every recorded work, with years
@@ -1008,6 +1017,7 @@ function renderAbout(m) {
   <section class="section"><h3>Who is included, and how people are shown</h3><ul class="clean" style="font-size:14px">
     <li><b>Traced to a Nigerian state.</b> Everyone listed must be traceable to one of Nigeria’s 36 states or the FCT: their recorded place of birth on Wikidata has to lie within a state. Each person’s state is shown on their card and profile. People whose birthplace is unrecorded, or outside Nigeria, are not listed until a contribution with a verifiable source traces them to a state.</li>
     <li><b>Everyone in the industry, equally.</b> Within that rule, anyone with an occupation in these fields — including griots, praise and folk singers, traditional percussionists and drummers, storytellers, indigenous-language writers, Kannywood and Yoruba-film actors.</li>
+    <li><b>Placed by their actual work.</b> A field’s lists only include people with evidence of work in that field: released music for Music, authored books for Literature, film or TV credits for Film &amp; TV, writing or stage work for Drama and Poetry. An actor with no recorded songs is not listed under Music, and a musician with no book is not listed under Literature. Hand-written profiles are placed individually, each with a sourced highlight.</li>
     <li><b>Works with years.</b> Each profile lists every work recorded on Wikidata — books, albums, songs, films, roles, productions, photographs — with its year of release or publication and a link to verify it.</li>
     <li><b>No ranking by fame.</b> The Living and Lived pages draw a fresh random set from the whole pool on every visit or shuffle, so every person has the same chance of appearing.</li>
     <li><b>Living and Lived.</b> People with a recorded date of death — or born before 1910 — appear under Lived and in the Hall of Fame.</li>
