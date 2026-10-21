@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-20",
+ "updated": "2026-10-21",
  "sources": [
   {
    "source": "Opportunities for Africans",
@@ -9,7 +9,7 @@
   {
    "source": "Opportunity Desk",
    "ok": true,
-   "items": 3
+   "items": 5
   },
   {
    "source": "Opportunities Corners",
@@ -19,17 +19,17 @@
   {
    "source": "Scholarship Region",
    "ok": true,
-   "items": 7
+   "items": 8
   },
   {
    "source": "Opportunities for Youth",
    "ok": true,
-   "items": 6
+   "items": 8
   },
   {
    "source": "Commonwealth Scholarship Commission",
-   "ok": true,
-   "items": 2
+   "ok": false,
+   "error": "not well-formed (invalid token): line 1, column 0"
   },
   {
    "source": "Erasmus Mundus catalogue (EACEA)",
@@ -56,6 +56,46 @@
   }
  ],
  "items": [
+  {
+   "title": "UNESCO Science for Crisis Response and Solutions Research Continuity Grants for Africa 2026: Apply for Up to US$2,000 in Research Funding",
+   "link": "https://opportunitiesforyouth.org/2026/10/21/unesco-science-for-crisis-response-and-solutions-research-continuity-grants-for-africa-2026-apply-for-up-to-us2000-in-research-funding/",
+   "date": "2026-10-21",
+   "source": "Opportunities for Youth",
+   "official": false,
+   "ids": [],
+   "summary": "Are you an African researcher whose natural-science research has been interrupted by armed conflict, a natural disaster, or a biological hazard? The UNESCO Science for Crisis Response and Solutions (…",
+   "seen": "2026-10-21"
+  },
+  {
+   "title": "UNDP Uganda ICCA-GSI Phase II Call for Proposals 2026: Up to $44,000 Grant for Indigenous and Community-Based Organisations",
+   "link": "https://opportunitiesforyouth.org/2026/10/21/undp-uganda-icca-gsi-phase-ii-call-for-proposals-2026-up-to-44000-grant-for-indigenous-and-community-based-organisations/",
+   "date": "2026-10-21",
+   "source": "Opportunities for Youth",
+   "official": false,
+   "ids": [],
+   "summary": "The United Nations Development Programme (UNDP) Uganda, through the Global Environment Facility Small Grants Programme (GEF-SGP), has announced a call for proposals inviting eligible indigenous Ugand…",
+   "seen": "2026-10-21"
+  },
+  {
+   "title": "Ocean Legal Fellowship Needs Assessment Survey 2026: Opportunity for Early-Career Lawyers in Ocean, Coastal, and Climate Law",
+   "link": "https://opportunitiesforyouth.org/2026/10/21/ocean-legal-fellowship-needs-assessment-survey-2026-opportunity-for-early-career-lawyers-in-ocean-coastal-and-climate-law/",
+   "date": "2026-10-21",
+   "source": "Opportunities for Youth",
+   "official": false,
+   "ids": [],
+   "summary": "Are you an early-career lawyer, recent law graduate, or Master of Laws (LL.M.) student interested in ocean conservation, coastal protection, climate change, and environmental law? The Ocean Legal Fel…",
+   "seen": "2026-10-21"
+  },
+  {
+   "title": "CrossCulture Programme (CCP) Fellowships 2027: Fully Funded International Fellowship for Civil Society Professionals and Volunteers",
+   "link": "https://opportunitiesforyouth.org/2026/10/21/crossculture-programfully-funded-to-germany/",
+   "date": "2026-10-21",
+   "source": "Opportunities for Youth",
+   "official": false,
+   "ids": [],
+   "summary": "The CrossCulture Programme (CCP) Fellowships 2027, organised by the Institut für Auslandsbeziehungen (ifa), offers professionals and volunteers working in civil society an opportunity to strengthen t…",
+   "seen": "2026-10-21"
+  },
   {
    "title": "AI and National Security Convergence Fellowship 2026-2027",
    "link": "https://opportunitydesk.org/2026/10/20/ai-and-national-security-convergence-fellowship-2026-2027/",
@@ -129,6 +169,150 @@
    "ids": [],
    "summary": "The Hertie School Digital Governance Scholarship is an excellent funding opportunity for students who want to understand how digitalisation, artificial intelligence, data protection, and emerging tec…",
    "seen": "2026-10-20"
+  },
+  {
+   "title": "The University of Edinburgh Mastercard Foundation on-campus and online postgraduate Scholars Program 2027/2028 for young Africans (Fully Funded)",
+   "link": "https://www.opportunitiesforafricans.com/university-of-edinburgh-mastercard-foundation-on-campus-and-online-postgraduate-scholars-program-2027-2028/",
+   "date": "2026-10-20",
+   "source": "Opportunities for Africans",
+   "official": false,
+   "ids": [
+    "mastercard"
+   ],
+   "summary": "Application Deadline: 26 October 2026, 5pm Applications are now open for the 2027/2028 University of Edinburgh Mastercard Foundation on-campus and online postgraduate Scholars Program. Scholars will …",
+   "seen": "2026-10-21"
+  },
+  {
+   "title": "Mercedes-Benz South Africa Bursary Programme 2027 for young South Africans",
+   "link": "https://www.opportunitiesforafricans.com/mercedes-benz-south-africa-bursary-programme-2027/",
+   "date": "2026-10-20",
+   "source": "Opportunities for Africans",
+   "official": false,
+   "ids": [],
+   "summary": "Application Deadline: 12 November 2026 Applications are now open for the 2027 Mercedes-Benz South Africa Bursary Programme. The programme supports high-performing Grade 12 learners and tertiary stude…",
+   "seen": "2026-10-21"
+  },
+  {
+   "title": "Jane Street Graduate Research Fellowship (GRF) 2027",
+   "link": "https://opportunitydesk.org/2026/10/20/jane-street-graduate-research-fellowship-2027/",
+   "date": "2026-10-20",
+   "source": "Opportunity Desk",
+   "official": false,
+   "ids": [],
+   "summary": "Deadline: November 13, 2026 Applications are open for the Jane Street Graduate Research Fellowship (GRF) 2027. The Jane Street Graduate Research Fellowship (GRF) supports exceptional doctoral student…",
+   "seen": "2026-10-21"
+  },
+  {
+   "title": "U.S. Bank Discover Us: Finance & Banking Fellowship 2026",
+   "link": "https://opportunitydesk.org/2026/10/20/discover-us-finance-banking-fellowship-2026/",
+   "date": "2026-10-20",
+   "source": "Opportunity Desk",
+   "official": false,
+   "ids": [],
+   "summary": "Deadline: October 30, 2026 Are you interested in the banking and finance industry, but not sure what career path to take or where to start? Curious about what it’s like to work at a Fortune 500 compa…",
+   "seen": "2026-10-21"
+  },
+  {
+   "title": "Global Debate Championship 2026 in Malaysia (Fully Funded)",
+   "link": "https://opportunitiescorners.com/global-debate-championship-2026-in-malaysia/",
+   "date": "2026-10-20",
+   "source": "Opportunities Corners",
+   "official": false,
+   "ids": [],
+   "summary": "Applications are open for the Global Debate Championship 2026 – Harvard Merdeka Edition in Kuala Lumpur, Malaysia. Organized by European Voice Assembly under VOOICE ASSEMBLY USA, the five-day interna…",
+   "seen": "2026-10-21"
+  },
+  {
+   "title": "European Parliament Schuman Traineeships 2027 (Fully Funded)",
+   "link": "https://opportunitiescorners.com/european-parliament-schuman-traineeships-2027/",
+   "date": "2026-10-20",
+   "source": "Opportunities Corners",
+   "official": false,
+   "ids": [],
+   "summary": "Applications are now open for the European Parliament Schuman Traineeships 2027. The European Parliament offers paid traineeships to university graduates to gain professional experience in a major Eu…",
+   "seen": "2026-10-21"
+  },
+  {
+   "title": "2027 East Tennessee State University Masters Scholarship in USA | Fully Funded",
+   "link": "https://www.scholarshipregion.com/east-tennessee-state-university-masters-scholarship/",
+   "date": "2026-10-20",
+   "source": "Scholarship Region",
+   "official": false,
+   "ids": [],
+   "summary": "The East Tennessee State University Scholarship is a fully funded master’s opportunity to study in the United States of America (USA). The opportunity provides two years of funding for a master’s deg…",
+   "seen": "2026-10-21"
+  },
+  {
+   "title": "Iowa State University Scholarship in USA 2027 (Borel Global Fellows Program) | Fully Funded",
+   "link": "https://www.scholarshipregion.com/iowa-state-university-scholarship-borel/",
+   "date": "2026-10-20",
+   "source": "Scholarship Region",
+   "official": false,
+   "ids": [],
+   "summary": "Iowa State University Scholarship offers international students up to $25,000 per year to support graduate student stipends during their Masters or PhD program in the United States. The Borel Global …",
+   "seen": "2026-10-21"
+  },
+  {
+   "title": "University of Warwick Postgraduate Research Scholarships in UK 2027 | Fully Funded",
+   "link": "https://www.scholarshipregion.com/warwick-postgraduate-research-scholarship/",
+   "date": "2026-10-20",
+   "source": "Scholarship Region",
+   "official": false,
+   "ids": [],
+   "summary": "If you are looking for a postgraduate opportunity in the UK, apply for the 2027 University of Warwick Postgraduate Research Scholarships. The University of Warwick Research Scholarships offers fully …",
+   "seen": "2026-10-21"
+  },
+  {
+   "title": "Top Fully Funded Undergraduate Scholarships for International Students 2027",
+   "link": "https://www.scholarshipregion.com/fully-funded-undergraduate-scholarships-2/",
+   "date": "2026-10-20",
+   "source": "Scholarship Region",
+   "official": false,
+   "ids": [],
+   "summary": "Studying abroad can open doors to quality education and international career opportunities, but the cost of a bachelor’s degree can be a major obstacle. Beyond tuition, you must budget for accommodat…",
+   "seen": "2026-10-21"
+  },
+  {
+   "title": "Burger King Scholars Program 2027–2028: Apply for Scholarships Worth $1,000 to $60,000",
+   "link": "https://opportunitiesforyouth.org/2026/10/20/burger-king-scholars-program-2027-2028-apply-for-scholarships-worth-1000-to-60000/",
+   "date": "2026-10-20",
+   "source": "Opportunities for Youth",
+   "official": false,
+   "ids": [],
+   "summary": "Applications are now open for the Burger King Scholars program for the 2027–2028 academic year, offering financial support to eligible high school seniors and Burger King employees, children of emplo…",
+   "seen": "2026-10-21"
+  },
+  {
+   "title": "Nalafem Fund Grants 2026: Apply for US$1,500 to Support Young Feminist Initiatives Across Africa",
+   "link": "https://opportunitiesforyouth.org/2026/10/20/nalafem-fund-grants-2026-apply-for-us1500-to-support-young-feminist-initiatives-across-africa/",
+   "date": "2026-10-20",
+   "source": "Opportunities for Youth",
+   "official": false,
+   "ids": [],
+   "summary": "Young feminist advocates and organisations across Africa have an opportunity to access funding through the Nalafem Fund, which is offering three grants of US$1,500 each to support initiatives advanci…",
+   "seen": "2026-10-21"
+  },
+  {
+   "title": "USEFP Fulbright Scholar Program 2027: Fully Funded U.S. Research and Lectureship Opportunity for Pakistani Scholars",
+   "link": "https://opportunitiesforyouth.org/2026/10/20/usefp-fulbright-scholar-program/",
+   "date": "2026-10-20",
+   "source": "Opportunities for Youth",
+   "official": false,
+   "ids": [
+    "fulbright"
+   ],
+   "summary": "The USEFP Fulbright Scholar Program 2027 is an exciting opportunity for Pakistani scholars, academics, researchers, professionals, and distinguished leaders to undertake funded academic activities at…",
+   "seen": "2026-10-21"
+  },
+  {
+   "title": "WRITEABILITY® Fellows Program 2027–2028: Fully Funded Writing Fellowship for African American, African, Black and Native American Writers",
+   "link": "https://opportunitiesforyouth.org/2026/10/20/writeability-fellows-program-2027-2028/",
+   "date": "2026-10-20",
+   "source": "Opportunities for Youth",
+   "official": false,
+   "ids": [],
+   "summary": "The WRITEABILITY Fellows Program 2027–2028 is an exciting opportunity for developing writers seeking dedicated writing time, professional guidance, creative resources, and a supportive community to s…",
+   "seen": "2026-10-21"
   },
   {
    "title": "CrossCulture Program 2027 in Germany (Fully Funded)",
@@ -1511,192 +1695,6 @@
    ],
    "summary": "If you have always dreamed of studying in Canada, we have got the best opportunity for you to do so in this post. The University of British Columbia in Canada annually welcomes students from all coun…",
    "seen": "2026-10-10"
-  },
-  {
-   "title": "Aliko Dangote Foundation Student Share Grant 2026 For Nigerians | How To Apply",
-   "link": "https://www.scholarshipregion.com/aliko-dangote-foundation-student-share-grant/",
-   "date": "2026-10-09",
-   "source": "Scholarship Region",
-   "official": false,
-   "ids": [],
-   "summary": "The Aliko Dangote Foundation (ADF) has introduced a Share Grant Initiative that could provide eligible Nigerian tertiary students with an application for an additional 10 shares in the Dangote Petrol…",
-   "seen": "2026-10-10"
-  },
-  {
-   "title": "2027 GLOBE Erasmus Mundus Joint Master Scholarship Program in Europe | Fully Funded",
-   "link": "https://www.scholarshipregion.com/globe-erasmus-mundus-joint-master-scholarship/",
-   "date": "2026-10-09",
-   "source": "Scholarship Region",
-   "official": false,
-   "ids": [
-    "erasmus"
-   ],
-   "summary": "GLOBE is the Erasmus Mundus Joint Master’s Degree in Global Change and Biodiversity Management. The program offers a fully funded degree funded by the European Union and covers tuition, travel costs,…",
-   "seen": "2026-10-10"
-  },
-  {
-   "title": "Okwuchukwu Fund Support Grant For Pharmacy Students 2026 | How To Apply",
-   "link": "https://www.scholarshipregion.com/okwuchukwu-fund-support-grant/",
-   "date": "2026-10-09",
-   "source": "Scholarship Region",
-   "official": false,
-   "ids": [],
-   "summary": "Are you a pharmacy student from Imo State? The Okwuchukwu Fund Support Grant is a funding opportunity for 4th-year undergraduate Pharmacy students in Nigeria who are indigenes of Imo State. The grant…",
-   "seen": "2026-10-10"
-  },
-  {
-   "title": "University of Reading International PhD Studentships in UK 2027 | Fully Funded",
-   "link": "https://www.scholarshipregion.com/university-of-reading-international-phd-studentships/",
-   "date": "2026-10-09",
-   "source": "Scholarship Region",
-   "official": false,
-   "ids": [],
-   "summary": "The University of Reading in the United Kingdom (UK) is welcoming applications for its fully funded studentship opportunities for international students. The fully funded International PhD studentshi…",
-   "seen": "2026-10-10"
-  },
-  {
-   "title": "2027 UBC International Scholars Program in Canada | Fully Funded",
-   "link": "https://www.scholarshipregion.com/ubc-international-scholars-program/",
-   "date": "2026-10-09",
-   "source": "Scholarship Region",
-   "official": false,
-   "ids": [
-    "ubc-isp"
-   ],
-   "summary": "The University of British Columbia in Canada is pleased to invite applicants for the 2027 UBC International Scholars Program. The UBC International Scholarship Program covers the cost of tuition and …",
-   "seen": "2026-10-10"
-  },
-  {
-   "title": "Tarbell Fellowship 2027–2028: Earn $75,000–$135,000 to Cover Artificial Intelligence at Leading Newsrooms",
-   "link": "https://opportunitiesforyouth.org/2026/10/09/tarbell-fellowship-shaping-the-future-of-ai-journalism/",
-   "date": "2026-10-09",
-   "source": "Opportunities for Youth",
-   "official": false,
-   "ids": [],
-   "summary": "Are you a journalist, researcher, or artificial intelligence (AI) specialist looking to build a career at the intersection of technology, journalism, and public policy? The Tarbell Fellowship 2027–20…",
-   "seen": "2026-10-10"
-  },
-  {
-   "title": "2027 Indigenous Youth Fellowship by Cultural Survival: Apply for $5,000 in Funding for Indigenous-Led Community Projects",
-   "link": "https://opportunitiesforyouth.org/2026/10/09/2027-indigenous-youth-fellowship-by-cultural-survival-apply-for-5000-in-funding-for-indigenous-led-community-projects/",
-   "date": "2026-10-09",
-   "source": "Opportunities for Youth",
-   "official": false,
-   "ids": [],
-   "summary": "Are you an Indigenous young person passionate about protecting Indigenous cultures, revitalising traditional languages, addressing climate change, defending Indigenous lands, or strengthening communi…",
-   "seen": "2026-10-10"
-  },
-  {
-   "title": "ETH AI Center Fellowships 2027 in Switzerland: Fully Funded PhD and Postdoctoral Research Opportunities at ETH Zurich",
-   "link": "https://opportunitiesforyouth.org/2026/10/09/eth-ai-center-fellowships-2027-in-switzerland-fully-funded-phd-and-postdoctoral-research-opportunities-at-eth-zurich/",
-   "date": "2026-10-09",
-   "source": "Opportunities for Youth",
-   "official": false,
-   "ids": [
-    "eth"
-   ],
-   "summary": "The ETH AI Center Fellowships 2027 in Switzerland offer outstanding opportunities for aspiring doctoral researchers and experienced researchers who want to advance their careers in artificial intelli…",
-   "seen": "2026-10-10"
-  },
-  {
-   "title": "Novo Nordisk Foundation Postdoctoral Fellowships at Massachusetts Institute of Technology 2027 (Funded)",
-   "link": "https://opportunitydesk.org/2026/10/08/novo-nordisk-foundation-postdoctoral-fellowships-at-mit-2027/",
-   "date": "2026-10-08",
-   "source": "Opportunity Desk",
-   "official": false,
-   "ids": [],
-   "summary": "Deadline: January 29, 2027 Applications are open for the Novo Nordisk Foundation Postdoctoral Fellowships at Massachusetts Institute of Technology 2027. The postdoctoral fellowship offers a unique op…",
-   "seen": "2026-10-08"
-  },
-  {
-   "title": "HSC Youth Ambassador Program 2027 in Germany (Fully Funded)",
-   "link": "https://opportunitiescorners.com/hsc-youth-ambassador-program-2027/",
-   "date": "2026-10-08",
-   "source": "Opportunities Corners",
-   "official": false,
-   "ids": [],
-   "summary": "The Applications are now open for the HSC Youth Ambassador Program 2027 in Hamburg, Germany. The Hamburg Sustainability Conference (HSC) is a Fully Funded conference in Hamburg from 31st May to 1st J…",
-   "seen": "2026-10-08"
-  },
-  {
-   "title": "Cultural Futures Forum 2027 in Austria (Fully Funded)",
-   "link": "https://opportunitiescorners.com/cultural-futures-forum-2027-in-austria/",
-   "date": "2026-10-08",
-   "source": "Opportunities Corners",
-   "official": false,
-   "ids": [],
-   "summary": "Applications are now open for Cultural Futures Forum 2027, an international program organized by Salzburg Global in Salzburg, Austria. The forum will take place from March 14th to 19th, 2027. There i…",
-   "seen": "2026-10-08"
-  },
-  {
-   "title": "2027 California State Polytechnic University Scholarship in USA | Fully Funded",
-   "link": "https://www.scholarshipregion.com/california-state-polytechnic-university-scholarship/",
-   "date": "2026-10-08",
-   "source": "Scholarship Region",
-   "official": false,
-   "ids": [],
-   "summary": "The California State Polytechnic University is welcoming applications for fully funded master’s assistantships in Avian Ecology and Remote Sensing. The fully funded opportunity includes tuition, heal…",
-   "seen": "2026-10-08"
-  },
-  {
-   "title": "University of Edinburgh Cyber Security Scholarship in UK 2027 | Fully Funded",
-   "link": "https://www.scholarshipregion.com/university-of-edinburgh-cyber-security-scholarship/",
-   "date": "2026-10-08",
-   "source": "Scholarship Region",
-   "official": false,
-   "ids": [],
-   "summary": "The University of Edinburgh Cyber Security Scholarship is a fully funded postgraduate research programme by Department of Computing Science of the institution. The scholarship generally covers the co…",
-   "seen": "2026-10-08"
-  },
-  {
-   "title": "Gloria’s Foundation Fellowship 2027: $5,000 Fellowship for Activists, Artists, Change-Makers and Creative Thinkers in New York City",
-   "link": "https://opportunitiesforyouth.org/2026/10/08/glorias-foundation-fellowship-2027-5000-fellowship-for-activists-artists-change-makers-and-creative-thinkers-in-new-york-city/",
-   "date": "2026-10-08",
-   "source": "Opportunities for Youth",
-   "official": false,
-   "ids": [],
-   "summary": "Gloria’s Foundation Fellowship 2027 is inviting activists, artists, change-makers, and creative thinkers whose work or independent projects center on justice to apply for a one-year fellowship runnin…",
-   "seen": "2026-10-08"
-  },
-  {
-   "title": "University of Oxford Master of Public Policy Scholarships 2027–28: 1,000+ Funding Opportunities for Future Public Leaders",
-   "link": "https://opportunitiesforyouth.org/2026/10/08/master-of-public-policy-mpp-blavatnik-school-of-government-university-of-oxford/",
-   "date": "2026-10-08",
-   "source": "Opportunities for Youth",
-   "official": false,
-   "ids": [],
-   "summary": "The University of Oxford’s Master of Public Policy (MPP) programme offers a wide range of scholarships and funding opportunities to help students meet the substantial cost of studying at Oxford. For …",
-   "seen": "2026-10-08"
-  },
-  {
-   "title": "Rutgers University Global Urban Studies PhD 2027: Fully Funded Doctoral Opportunity in Urban Systems",
-   "link": "https://opportunitiesforyouth.org/2026/10/08/rutgers-university-global-urban-studies-phd-2027-fully-funded-doctoral-opportunity-in-urban-systems/",
-   "date": "2026-10-08",
-   "source": "Opportunities for Youth",
-   "official": false,
-   "ids": [],
-   "summary": "Rutgers University is currently accepting applications for its Global Urban Studies (GUS) PhD Program for Fall 2027, offering an exciting opportunity for students interested in cities, urban systems,…",
-   "seen": "2026-10-08"
-  },
-  {
-   "title": "Heinz Heinen Fellowships 2027/2028 at the University of Bonn, Germany – Fully Funded Research Fellowship for Scholars of Slavery and Dependency Studies",
-   "link": "https://opportunitiesforyouth.org/2026/10/08/heinz-heinen-fellowships-2027-2028-at-the-university-of-bonn-germany-fully-funded-research-fellowship-for-scholars-of-slavery-and-dependency-studies/",
-   "date": "2026-10-08",
-   "source": "Opportunities for Youth",
-   "official": false,
-   "ids": [],
-   "summary": "The Bonn Center for Dependency and Slavery Studies (BCDSS) at the University of Bonn, Germany, is inviting applications for the Heinz Heinen Fellowships for the 2027/2028 academic year. The fellowshi…",
-   "seen": "2026-10-08"
-  },
-  {
-   "title": "Atlantic Fellows for Social and Economic Equity (AFSEE) Programme 2027-2028 (Fully-funded)",
-   "link": "https://opportunitydesk.org/2026/10/08/afsee-programme-2027-2028/",
-   "date": "2026-10-08",
-   "source": "Opportunity Desk",
-   "official": false,
-   "ids": [],
-   "summary": "Deadline: January 11, 2027 Applications are open for the Atlantic Fellows for Social and Economic Equity (AFSEE) Programme 2027-2028. Policymakers, researchers, activists, practitioners, artists, and…",
-   "seen": "2026-10-09"
   }
  ]
 }
