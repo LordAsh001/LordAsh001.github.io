@@ -3,4 +3,4 @@ event_id,episode,from_date,to_date,alert,state,lat,lon,deaths,missing,displaced,
 1104105,8,2026-08-13,2026-09-11,Green,FCT,8.936,7.0859,,1,,,,Awka South; Eket; Gwagwalada; Kaduna; Makurdi; Malam Madori; Obosi; Oghara,https://www.gdacs.org/report.aspx?eventtype=FL&eventid=1104105,2026-10-10,2026-10-22
 1104109,2,2026-08-01,2026-08-06,Green,Adamawa,9.2089,12.4802,,,50,50,,Damaturu; Yola,https://www.gdacs.org/report.aspx?eventtype=FL&eventid=1104109,2026-10-10,2026-10-22
 1104134,1,2026-08-16,2026-08-17,Green,Benue,7.3506,8.7773,,,,20,,Benue State,https://www.gdacs.org/report.aspx?eventtype=FL&eventid=1104134,2026-10-10,2026-10-22
-1104186,8,2026-09-21,2026-10-07,Green,FCT,8.8796,7.2272,2,1,,,,Ado Ekiti; Aka Eze; Asaba; Delta State; Delta state; Kuje; Lafiagi; Nigeria; Osogbo; Ugwueke; Warri,https://www.gdacs.org/report.aspx?eventtype=FL&eventid=1104186,2026-10-10,2026-10-22
+1104186,8,2026-09-21,2026-10-07,Green,FCT,8.8796,7.2272,,,,,,,https://www.gdacs.org/report.aspx?eventtype=FL&eventid=1104186,2026-10-10,2026-10-22
