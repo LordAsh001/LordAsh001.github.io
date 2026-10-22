@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-21",
+ "updated": "2026-10-22",
  "sources": [
   {
    "source": "Opportunities for Africans",
@@ -9,12 +9,12 @@
   {
    "source": "Opportunity Desk",
    "ok": true,
-   "items": 5
+   "items": 6
   },
   {
    "source": "Opportunities Corners",
    "ok": true,
-   "items": 5
+   "items": 4
   },
   {
    "source": "Scholarship Region",
@@ -24,7 +24,7 @@
   {
    "source": "Opportunities for Youth",
    "ok": true,
-   "items": 8
+   "items": 3
   },
   {
    "source": "Commonwealth Scholarship Commission",
@@ -56,6 +56,36 @@
   }
  ],
  "items": [
+  {
+   "title": "2027 Michigan State University Scholarship in USA | MS & PhD Graduate Assistantship (Fully Funded)",
+   "link": "https://www.scholarshipregion.com/michigan-state-university-scholarship-ga/",
+   "date": "2026-10-22",
+   "source": "Scholarship Region",
+   "official": false,
+   "ids": [],
+   "summary": "The Michigan State University Scholarship offers full funding for masters and doctoral candidates seeking to study in the United States of America (USA). The scholarships at Michigan State University…",
+   "seen": "2026-10-22"
+  },
+  {
+   "title": "2027 KI Global Scholarship in Sweden | Step-by-Step Process",
+   "link": "https://www.scholarshipregion.com/ki-global-scholarship/",
+   "date": "2026-10-22",
+   "source": "Scholarship Region",
+   "official": false,
+   "ids": [],
+   "summary": "Karolinska Institutet is inviting applications to the 2027 KI Global Scholarships for international students. The KI Global Masters Scholarships offer some tuition-fee scholarships to excellent stude…",
+   "seen": "2026-10-22"
+  },
+  {
+   "title": "Grief Reach Grant 2027: New York Life Foundation and NACG Funding for U.S. Nonprofits Expanding School-Based Bereavement Support",
+   "link": "https://opportunitiesforyouth.org/2026/10/22/grief-reach-grant-2027/",
+   "date": "2026-10-22",
+   "source": "Opportunities for Youth",
+   "official": false,
+   "ids": [],
+   "summary": "The Grief Reach Grant 2027 is a competitive funding opportunity from the New York Life Foundation and the National Alliance for Children’s Grief (NACG) designed to help eligible U.S. nonprofit organi…",
+   "seen": "2026-10-22"
+  },
   {
    "title": "UNESCO Science for Crisis Response and Solutions Research Continuity Grants for Africa 2026: Apply for Up to US$2,000 in Research Funding",
    "link": "https://opportunitiesforyouth.org/2026/10/21/unesco-science-for-crisis-response-and-solutions-research-continuity-grants-for-africa-2026-apply-for-up-to-us2000-in-research-funding/",
@@ -95,6 +125,150 @@
    "ids": [],
    "summary": "The CrossCulture Programme (CCP) Fellowships 2027, organised by the Institut für Auslandsbeziehungen (ifa), offers professionals and volunteers working in civil society an opportunity to strengthen t…",
    "seen": "2026-10-21"
+  },
+  {
+   "title": "CDC Public Health Informatics Fellowship Program 2027",
+   "link": "https://opportunitydesk.org/2026/10/21/cdc-public-health-informatics-fellowship-program-2027/",
+   "date": "2026-10-21",
+   "source": "Opportunity Desk",
+   "official": false,
+   "ids": [],
+   "summary": "Deadline: November 6, 2026 Applications are open for the CDC Public Health Informatics Fellowship Program 2027. Public health informatics is the systematic application of knowledge about systems that…",
+   "seen": "2026-10-22"
+  },
+  {
+   "title": "Wisconsin Population Health Service Fellowship Program 2027-2029 ($58,000 salary)",
+   "link": "https://opportunitydesk.org/2026/10/21/wisconsin-population-health-service-fellowship-program-2027-2029/",
+   "date": "2026-10-21",
+   "source": "Opportunity Desk",
+   "official": false,
+   "ids": [],
+   "summary": "Deadline: January 10, 2027 Applications are open for the Wisconsin Population Health Service Fellowship Program 2027-2029. The Wisconsin Population Health Service Fellowship Program is a two-year ser…",
+   "seen": "2026-10-22"
+  },
+  {
+   "title": "Institut für Auslandsbeziehungen CrossCulture Programme (CCP) Fellowships 2027",
+   "link": "https://opportunitydesk.org/2026/10/21/ifa-crossculture-programme-fellowships-2027/",
+   "date": "2026-10-21",
+   "source": "Opportunity Desk",
+   "official": false,
+   "ids": [],
+   "summary": "Deadline: December 8, 2026 Applications are invited for the Institut für Auslandsbeziehungen CrossCulture Programme (CCP) Fellowships 2027. The CrossCulture Programme (CCP) funds 50 to 60 professiona…",
+   "seen": "2026-10-22"
+  },
+  {
+   "title": "Chevening British Library Southeast Asian Fellowship 2027 (Funded)",
+   "link": "https://opportunitydesk.org/2026/10/21/chevening-british-library-southeast-asian-fellowship-2027/",
+   "date": "2026-10-21",
+   "source": "Opportunity Desk",
+   "official": false,
+   "ids": [
+    "chevening"
+   ],
+   "summary": "Deadline: October 27, 2026 Applications are open for the Chevening British Library Southeast Asian Fellowship 2027. The fellowship is open to mid-career professionals from Cambodia, Laos, and Thailan…",
+   "seen": "2026-10-22"
+  },
+  {
+   "title": "UNESCO Science for Crisis Response & Solutions Research Continuity Grants for Africa 2026 (up to $2,000)",
+   "link": "https://opportunitydesk.org/2026/10/21/unesco-scrs-grants-for-africa-2026/",
+   "date": "2026-10-21",
+   "source": "Opportunity Desk",
+   "official": false,
+   "ids": [],
+   "summary": "Deadline: November 15, 2026 Applications are open for the UNESCO Science for Crisis Response & Solutions Research Continuity Grants for Africa 2026. This is a new small-grants initiative supporting t…",
+   "seen": "2026-10-22"
+  },
+  {
+   "title": "United Diplomats Global Assembly 2027 in Thailand (Fully Funded)",
+   "link": "https://opportunitiescorners.com/united-diplomats-global-assembly-2027/",
+   "date": "2026-10-21",
+   "source": "Opportunities Corners",
+   "official": false,
+   "ids": [],
+   "summary": "Applications are open for the United Diplomats Global Assembly 2027 in Thailand, an international diplomatic simulation organized by United Diplomats and powered by Global Peace Chain. The five-day a…",
+   "seen": "2026-10-22"
+  },
+  {
+   "title": "Top UK Universities Offering Scholarships for International Students (2027)",
+   "link": "https://www.scholarshipregion.com/uk-universities-offering-scholarships/",
+   "date": "2026-10-21",
+   "source": "Scholarship Region",
+   "official": false,
+   "ids": [],
+   "summary": "The cost of studying in the UK goes beyond tuition fees, with international students also required to cover accommodation, food, transport and other living expenses. British councli highlights these …",
+   "seen": "2026-10-22"
+  },
+  {
+   "title": "2027 Politecnico di Milano Scholarships in Italy | Step-by-Step Process",
+   "link": "https://www.scholarshipregion.com/politecnico-di-milano-scholarships/",
+   "date": "2026-10-21",
+   "source": "Scholarship Region",
+   "official": false,
+   "ids": [],
+   "summary": "The application for the Politecnico di Milano Scholarships has commenced for interested and qualified students willing to study at the prestigious institution in Italy. The 2027 Politecnico di Milano…",
+   "seen": "2026-10-22"
+  },
+  {
+   "title": "2026 Liberty Career Academy Scholarships for Nigerians | ₦200,000 Award",
+   "link": "https://www.scholarshipregion.com/liberty-career-academy-scholarship/",
+   "date": "2026-10-21",
+   "source": "Scholarship Region",
+   "official": false,
+   "ids": [],
+   "summary": "The Liberty Career Academy (LCA) is offering scholarship awards to Nigerian undergraduate students. The Liberty Career Academy Scholarships are valued up to ₦200,000 award for students in University,…",
+   "seen": "2026-10-22"
+  },
+  {
+   "title": "European Masters in Mechatronics Engineering Scholarship (Erasmus Mundus Eu4M) | 2027",
+   "link": "https://www.scholarshipregion.com/european-masters-in-mechatronics-engineering-scholarship/",
+   "date": "2026-10-21",
+   "source": "Scholarship Region",
+   "official": false,
+   "ids": [
+    "erasmus"
+   ],
+   "summary": "The Erasmus Mundus EU4M program refers to the fully funded European Masters in Mechatronics Engineering. The scholarship is hosted by top universities in Germany, France, Spain, and Sweden, covers fu…",
+   "seen": "2026-10-22"
+  },
+  {
+   "title": "Germany CGIAR Science and Impact Hub Scholarship 2027 | Fully Funded",
+   "link": "https://www.scholarshipregion.com/germany-cgiar-science-and-impact-hub-scholarship/",
+   "date": "2026-10-21",
+   "source": "Scholarship Region",
+   "official": false,
+   "ids": [],
+   "summary": "The Germany CGIAR Science and Impact Hub Scholarship 2027 is currently accepting applications, with a deadline of 30 November 2026. The scholarship offers €1,800 per month for three years, with a pos…",
+   "seen": "2026-10-22"
+  },
+  {
+   "title": "Dartmouth College King Scholarship in United States 2027 | Fully Funded",
+   "link": "https://www.scholarshipregion.com/dartmouth-college-king-scholarship/",
+   "date": "2026-10-21",
+   "source": "Scholarship Region",
+   "official": false,
+   "ids": [],
+   "summary": "Dartmouth College King Scholarship seeks low-income students from developing nations who are interested in alleviating poverty in their home countries. At Dartmouth, King Scholars receive 4-year scho…",
+   "seen": "2026-10-22"
+  },
+  {
+   "title": "Girl Up Project Awards 2026: Apply for Up to US$1,000 to Advance Gender Justice and Empower Young Activists",
+   "link": "https://opportunitiesforyouth.org/2026/10/21/girl-up-project-awards-2026-apply-for-up-to-us1000-to-advance-gender-justice-and-empower-young-activists/",
+   "date": "2026-10-21",
+   "source": "Opportunities for Youth",
+   "official": false,
+   "ids": [],
+   "summary": "Are you a girl or young activist with an idea for promoting gender justice in your community? Are you looking for funding and mentorship to turn your ideas into meaningful action? The Girl Up Project…",
+   "seen": "2026-10-22"
+  },
+  {
+   "title": "George Moore Scholars Programme 2026: Scholarships for Students and Recent Graduates to Pursue a Master’s Degree Abroad",
+   "link": "https://opportunitiesforyouth.org/2026/10/21/george-moore-scholars-programme-2026-scholarships-for-students-and-recent-graduates-to-pursue-a-masters-degree-abroad/",
+   "date": "2026-10-21",
+   "source": "Opportunities for Youth",
+   "official": false,
+   "ids": [],
+   "summary": "The George Moore Scholars Programme 2026 offers an opportunity for academically talented students and recent graduates from across the island of Ireland to pursue a master’s degree at leading univers…",
+   "seen": "2026-10-22"
   },
   {
    "title": "AI and National Security Convergence Fellowship 2026-2027",
@@ -1518,182 +1692,6 @@
     "eiffel"
    ],
    "summary": "Applications for the 2027 Eiffel Excellence Scholarship in France are open until January 8th, 2027. Those seeking a fully funded scholarship to study in France can apply for the Eiffel Excellence Sch…",
-   "seen": "2026-10-10"
-  },
-  {
-   "title": "Shenzhen FinTech Competition 2026 in China (Fully Funded)",
-   "link": "https://opportunitiescorners.com/shenzhen-fintech-competition-2026/",
-   "date": "2026-10-10",
-   "source": "Opportunities Corners",
-   "official": false,
-   "ids": [],
-   "summary": "Applications are now open for the Shenzhen FinTech Competition 2026 (FinTechathon) – International Track, an international competition for university students interested in artificial intelligence (A…",
-   "seen": "2026-10-10"
-  },
-  {
-   "title": "KITLV Visiting Fellowship 2027 in the Netherlands: Apply for a 3-Month Research Fellowship in Southeast Asian and Caribbean Studies",
-   "link": "https://opportunitiesforyouth.org/2026/10/10/kitlv-visiting-fellowship-2027-in-the-netherlands-apply-for-a-3-month-research-fellowship-in-southeast-asian-and-caribbean-studies/",
-   "date": "2026-10-10",
-   "source": "Opportunities for Youth",
-   "official": false,
-   "ids": [],
-   "summary": "Are you a scholar, researcher, or independent academic looking for an opportunity to advance your research, develop a scholarly publication, and collaborate with experts in Southeast Asian or Caribbe…",
-   "seen": "2026-10-10"
-  },
-  {
-   "title": "NSF Graduate Research Fellowship Program 2027: Eligibility Requirements, STEM Fields, Benefits, and How to Qualify for the U.S. Graduate Fellowship",
-   "link": "https://opportunitiesforyouth.org/2026/10/10/nsf-graduate-research-fellowship-program-2027-eligibility-requirements-stem-fields-benefits-and-how-to-qualify-for-the-u-s-graduate-fellowship/",
-   "date": "2026-10-10",
-   "source": "Opportunities for Youth",
-   "official": false,
-   "ids": [],
-   "summary": "The National Science Foundation Graduate Research Fellowship Program (NSF GRFP) is one of the United States’ major fellowship programs designed to support outstanding students pursuing advanced resea…",
-   "seen": "2026-10-10"
-  },
-  {
-   "title": "University of Canberra Snow Scholarship Program Coordinator Job 2026: Part-Time University Opportunity in Australia Paying AUD $93,705–$100,871 Plus 17% Superannuation",
-   "link": "https://opportunitiesforyouth.org/2026/10/10/university-of-canberra-snow-scholarship-program-coordinator-job-2026/",
-   "date": "2026-10-10",
-   "source": "Opportunities for Youth",
-   "official": false,
-   "ids": [],
-   "summary": "The University of Canberra Snow Scholarship Program Coordinator Job 2026 is an opportunity for an experienced, empathetic, and impact-driven professional to contribute to a transformative scholarship…",
-   "seen": "2026-10-11"
-  },
-  {
-   "title": "World Bank Group Government Analytics Fellowship 2027",
-   "link": "https://opportunitydesk.org/2026/10/09/world-bank-group-government-analytics-fellowship-2027/",
-   "date": "2026-10-09",
-   "source": "Opportunity Desk",
-   "official": false,
-   "ids": [],
-   "summary": "Deadline: November 16, 2026 Do you want to lead change and drive innovation within your government? The World Bank invites dedicated public servants to apply for the 2027 Government Analytics Fellows…",
-   "seen": "2026-10-09"
-  },
-  {
-   "title": "EQUALS in Tech Awards 2027",
-   "link": "https://opportunitydesk.org/2026/10/09/equals-in-tech-awards-2027/",
-   "date": "2026-10-09",
-   "source": "Opportunity Desk",
-   "official": false,
-   "ids": [],
-   "summary": "Deadline: November 7, 2026 Applications are open for the EQUALS in Tech Awards 2027. First launched in 2014, the Awards recognize efforts at the global, regional and national levels that use technolo…",
-   "seen": "2026-10-09"
-  },
-  {
-   "title": "World Bank Government Analytics Fellowship 2027: Applications Open for Public Servants to Use Government Data for Better Decision-Making",
-   "link": "https://opportunitiesforyouth.org/2026/10/09/apply-for-the-2025-world-bank-government-analytics-fellowship/",
-   "date": "2026-10-09",
-   "source": "Opportunities for Youth",
-   "official": false,
-   "ids": [],
-   "summary": "Are you a government official or public servant interested in using data to improve public administration, strengthen government institutions, and support evidence-based policymaking? The World Bank …",
-   "seen": "2026-10-09"
-  },
-  {
-   "title": "World Finance Innovation Awards 2026: Apply for the 1,000 Young Entrepreneurs Initiative in Kenya",
-   "link": "https://opportunitiesforyouth.org/2026/10/09/world-finance-innovation-awards-2026-apply-for-the-1000-young-entrepreneurs-initiative-in-kenya/",
-   "date": "2026-10-09",
-   "source": "Opportunities for Youth",
-   "official": false,
-   "ids": [],
-   "summary": "The World Finance Innovation Awards competition is inviting young entrepreneurs in Kenya to submit innovative business ideas, social impact initiatives, and other creative solutions through its Stage…",
-   "seen": "2026-10-09"
-  },
-  {
-   "title": "US-MEPI Tomorrow’s Leaders Program 2027/2028 for undergraduate & graduate Students from the Middle East and North Africa (Fully Funded)",
-   "link": "https://www.opportunitiesforafricans.com/us-mepi-tomorrows-leaders-program-2027-2028/",
-   "date": "2026-10-09",
-   "source": "Opportunities for Africans",
-   "official": false,
-   "ids": [],
-   "summary": "Application Deadline: November 18, 2026 Applications are now open for the 2027/2028 US-MEPI Tomorrow’s Leaders Program. Sponsored by the Department of State’s U.S.-Middle East Partnership Initiative …",
-   "seen": "2026-10-10"
-  },
-  {
-   "title": "The University of British Columbia (UBC) International Scholars Program 2027 for international students (Fully Funded)",
-   "link": "https://www.opportunitiesforafricans.com/the-university-of-british-columbia-ubc-international-scholars-program-2027-for-international-students/",
-   "date": "2026-10-09",
-   "source": "Opportunities for Africans",
-   "official": false,
-   "ids": [
-    "ubc-isp"
-   ],
-   "summary": "Application Deadline: 15 November 2026 Applications are now open for the 2027 University of British Columbia (UBC) International Scholars Program. The UBC International Scholars Program is for intern…",
-   "seen": "2026-10-10"
-  },
-  {
-   "title": "Harvard LEAD Fellowship for Promoting Women in Global Health 2027-2028 (Funded)",
-   "link": "https://opportunitydesk.org/2026/10/09/harvard-lead-fellowship-for-promoting-women-in-global-health-2027-2028/",
-   "date": "2026-10-09",
-   "source": "Opportunity Desk",
-   "official": false,
-   "ids": [],
-   "summary": "Deadline: November 15, 2026 Applications are open for the Harvard LEAD Fellowship for Promoting Women in Global Health 2027-2028. The LEAD Fellowship, a one-year fellowship designed to advance leader…",
-   "seen": "2026-10-10"
-  },
-  {
-   "title": "Youth Diplomacy Convention 2027 in Belgium (Fully Funded)",
-   "link": "https://opportunitiescorners.com/youth-diplomacy-convention-2027-in-belgium/",
-   "date": "2026-10-09",
-   "source": "Opportunities Corners",
-   "official": false,
-   "ids": [],
-   "summary": "Applications are now open for the Youth Diplomacy Convention 2027 in Brussels, Belgium. Organised by the Organisation for Global Peace and Sustainability (OGPS), this four-day international conferenc…",
-   "seen": "2026-10-10"
-  },
-  {
-   "title": "Harvard LEAD Fellowship 2027/28, USA (Fully Funded)",
-   "link": "https://opportunitiescorners.com/harvard-lead-fellowship-2027/",
-   "date": "2026-10-09",
-   "source": "Opportunities Corners",
-   "official": false,
-   "ids": [],
-   "summary": "Applications are now open for the Harvard LEAD Fellowship 2027, a fully funded fellowship for one year, offered by the Harvard Global Health Institute (HGHI) in collaboration with the Department of G…",
-   "seen": "2026-10-10"
-  },
-  {
-   "title": "SDG Innovation Summit Malaysia 2026 (Fully Funded)",
-   "link": "https://opportunitiescorners.com/sdg-innovation-summit-malaysia-2026/",
-   "date": "2026-10-09",
-   "source": "Opportunities Corners",
-   "official": false,
-   "ids": [],
-   "summary": "Deadline Approaching. Apply now for the fully funded SDG Innovation Summit Malaysia 2026, an international youth summit that will bring together 100 young leaders, innovators, students, youth leaders…",
-   "seen": "2026-10-10"
-  },
-  {
-   "title": "World Bank Government Analytics Fellowship Program 2027 | Fully Funded",
-   "link": "https://www.scholarshipregion.com/world-bank-government-analytics-fellowship/",
-   "date": "2026-10-09",
-   "source": "Scholarship Region",
-   "official": false,
-   "ids": [],
-   "summary": "The World Bank Government Analytics Fellowship program provides in-person training and in-service support from senior experts at the World Bank and University College London. The World Bank Fellowshi…",
-   "seen": "2026-10-10"
-  },
-  {
-   "title": "2027 UBC Masters Scholarship in Cell and Developmental Biology | Fully Funded",
-   "link": "https://www.scholarshipregion.com/ubc-masters-scholarship-in-cell-biology/",
-   "date": "2026-10-09",
-   "source": "Scholarship Region",
-   "official": false,
-   "ids": [
-    "ubc-isp"
-   ],
-   "summary": "The University of British Columbia (UBC) offers funding to incoming graduate students to study in Canada. The UBC Masters Scholarship offers up to $25,639 in funding per year to cover study and livin…",
-   "seen": "2026-10-10"
-  },
-  {
-   "title": "University of British Columbia Scholarships in Canada 2027 | Fully Funded",
-   "link": "https://www.scholarshipregion.com/university-of-british-columbia-scholarships/",
-   "date": "2026-10-09",
-   "source": "Scholarship Region",
-   "official": false,
-   "ids": [
-    "ubc-isp"
-   ],
-   "summary": "If you have always dreamed of studying in Canada, we have got the best opportunity for you to do so in this post. The University of British Columbia in Canada annually welcomes students from all coun…",
    "seen": "2026-10-10"
   }
  ]
