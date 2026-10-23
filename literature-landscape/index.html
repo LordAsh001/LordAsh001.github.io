@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Nigeria Literature Landscape</title>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"Nigeria Literature Landscape","description":"Free, source-linked database of Nigeria's writers, poets, musicians, filmmakers, photographers, comedians, journalists and digital creators, with sourced statistics, timelines, awards, a Hall of Fame and a map of creative infrastructure.","url":"https://shagbaor.com/literature-landscape/","creator":{"@type":"Person","name":"Shagbaor Hycent Amool","affiliation":"University of Northern British Columbia"},"spatialCoverage":"Nigeria","isAccessibleForFree":true,"identifier":"https://doi.org/10.5281/zenodo.23589297","license":"https://creativecommons.org/licenses/by/4.0/"}</script>
 <meta name="description" content="Nigeria's writers, poets, playwrights, musicians, filmmakers, comedians, journalists and digital creators — profiles, verifiable statistics, timelines from 1789 to today, and a Hall of Fame.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231E7A55'/%3E%3Cpath d='M14 46V18c6-3 12-3 18 1 6-4 12-4 18-1v28c-6-3-12-3-18 1-6-4-12-4-18-1Z' fill='none' stroke='%23fff' stroke-width='4' stroke-linejoin='round'/%3E%3Cpath d='M32 19v28' stroke='%23fff' stroke-width='4'/%3E%3C/svg%3E">
 <script>try{var t=localStorage.getItem("theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
@@ -757,7 +758,7 @@ async function runDownload(dlg) {
     } else {
       const keys = Object.keys(out);
       if (keys.length === 1) download(`${base}_${keys[0]}.csv`, toCSV(out[keys[0]]), "text/csv");
-      else { msg.innerHTML = `<span class="spin"></span>Packing files…`; const Z = await loadZip(); const z = new Z(); keys.forEach(k => z.file(`${k}.csv`, toCSV(out[k]))); z.file("README.txt", `Nigeria Literature Landscape — data export (${stamp})\n${location.href.split("#")[0]}\nCurated content CC BY 4.0; Wikidata-derived rows CC0.\nCite: Amool, S. H. (2026). Nigeria Literature Landscape [Interactive database].`); download(base + ".zip", await z.generateAsync({ type: "blob" }), "application/zip"); }
+      else { msg.innerHTML = `<span class="spin"></span>Packing files…`; const Z = await loadZip(); const z = new Z(); keys.forEach(k => z.file(`${k}.csv`, toCSV(out[k]))); z.file("README.txt", `Nigeria Literature Landscape — data export (${stamp})\n${location.href.split("#")[0]}\nCurated content CC BY 4.0; Wikidata-derived rows CC0.\nCite: Amool, S. H. (2026). Nigeria Literature Landscape (Version 1.0) [Software and dataset]. Zenodo. https://doi.org/10.5281/zenodo.23589297`); download(base + ".zip", await z.generateAsync({ type: "blob" }), "application/zip"); }
     }
     msg.textContent = "Done — check your downloads.";
   } catch (e) { msg.textContent = "Something went wrong (" + e.message + "). Please try again."; }
@@ -1026,7 +1027,7 @@ function renderAbout(m) {
     <li>Wikidata is community-edited and uneven: many Nigerian creatives — especially in indigenous-language film, music and literature — are missing or thinly recorded. Contributions help close that gap.</li>
     <li>Platforms such as Instagram, X and TikTok do not offer free public follower APIs, so those counts appear only where a dated figure exists on Wikidata. Each count shows its date and source.</li>
     <li>Box office and industry figures come from different bodies with different scopes; the notes state the scope (for example, the 2025 box office covers Nigeria, Ghana and Liberia).</li></ul></section>
-  <section class="section"><h3>Cite this resource</h3><p class="note">Amool, S. H. (2026). <i>Nigeria Literature Landscape</i> [Interactive database]. https://shagbaor.com/literature-landscape/</p></section>`;
+  <section class="section"><h3>Cite this resource</h3><p class="note">Amool, S. H. (2026). <i>Nigeria Literature Landscape: an interactive database and open dataset of Nigeria's writers, musicians, filmmakers and other creatives, and the creative economy</i> (Version 1.0) [Software and dataset]. Zenodo. <a href="https://doi.org/10.5281/zenodo.23589297" target="_blank" rel="noopener">https://doi.org/10.5281/zenodo.23589297</a></p><p class="note">Archived on Zenodo with a DOI; the DOI always resolves to the latest archived version. Live version: https://shagbaor.com/literature-landscape/</p></section>`;
 }
 
 /* ---------- boot ---------- */
