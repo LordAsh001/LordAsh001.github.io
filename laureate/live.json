@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-22",
+ "updated": "2026-10-23",
  "sources": [
   {
    "source": "Opportunities for Africans",
@@ -9,7 +9,7 @@
   {
    "source": "Opportunity Desk",
    "ok": true,
-   "items": 6
+   "items": 4
   },
   {
    "source": "Opportunities Corners",
@@ -24,7 +24,7 @@
   {
    "source": "Opportunities for Youth",
    "ok": true,
-   "items": 3
+   "items": 4
   },
   {
    "source": "Commonwealth Scholarship Commission",
@@ -57,6 +57,46 @@
  ],
  "items": [
   {
+   "title": "Raisina Young Fellows Programme 2027 (Fully-funded)",
+   "link": "https://opportunitydesk.org/2026/10/23/raisina-young-fellows-programme-2027/",
+   "date": "2026-10-23",
+   "source": "Opportunity Desk",
+   "official": false,
+   "ids": [],
+   "summary": "Deadline: November 2, 2026 Applications are open for the Raisina Young Fellows Programme 2027. The Raisina Young Fellows Programme convenes emerging leaders from around the world to discuss current p…",
+   "seen": "2026-10-23"
+  },
+  {
+   "title": "Community Engagement Exchange Program 2027 in USA (Fully Funded)",
+   "link": "https://opportunitiescorners.com/community-engagement-exchange-program-2027/",
+   "date": "2026-10-23",
+   "source": "Opportunities Corners",
+   "official": false,
+   "ids": [],
+   "summary": "Applications are now open for the Community Engagement Exchange Program 2027 in the USA. Sponsored by the U.S. Department of State and implemented by IREX, this fully funded international exchange pr…",
+   "seen": "2026-10-23"
+  },
+  {
+   "title": "University of Lincoln Global Leaders Scholarship 2027–2028: 50% Tuition Fee Scholarship for International Students in the UK",
+   "link": "https://opportunitiesforyouth.org/2026/10/23/university-of-lincoln-global-leaders-scholarship-2027-2028-50-tuition-fee-scholarship-for-international-students-in-the-uk/",
+   "date": "2026-10-23",
+   "source": "Opportunities for Youth",
+   "official": false,
+   "ids": [],
+   "summary": "The University of Lincoln Global Leaders Scholarship is an opportunity for outstanding international students who wish to pursue undergraduate or postgraduate taught studies in the United Kingdom. Th…",
+   "seen": "2026-10-23"
+  },
+  {
+   "title": "Columbia University Italian Academy Fellowship Program 2027–2028: Fully Funded Research Fellowship in the United States",
+   "link": "https://opportunitiesforyouth.org/2026/10/23/columbia-university-italian-academy-fellowship-program-2027-2028-fully-funded-research-fellowship-in-the-united-states/",
+   "date": "2026-10-23",
+   "source": "Opportunities for Youth",
+   "official": false,
+   "ids": [],
+   "summary": "Scholars, researchers, and academics from around the world are invited to apply for the prestigious Italian Academy Fellowship Program 2027–2028 at Columbia University in New York City, United States…",
+   "seen": "2026-10-23"
+  },
+  {
    "title": "2027 Michigan State University Scholarship in USA | MS & PhD Graduate Assistantship (Fully Funded)",
    "link": "https://www.scholarshipregion.com/michigan-state-university-scholarship-ga/",
    "date": "2026-10-22",
@@ -85,6 +125,122 @@
    "ids": [],
    "summary": "The Grief Reach Grant 2027 is a competitive funding opportunity from the New York Life Foundation and the National Alliance for Children’s Grief (NACG) designed to help eligible U.S. nonprofit organi…",
    "seen": "2026-10-22"
+  },
+  {
+   "title": "Swedish Institute Scholarships 2027 for Global Professionals for Master’s Level Studies in Sweden (Fully Funded)",
+   "link": "https://www.opportunitiesforafricans.com/swedish-institute-scholarships-2027-for-global-professionals-for-masters-level-studies-in-sweden/",
+   "date": "2026-10-22",
+   "source": "Opportunities for Africans",
+   "official": false,
+   "ids": [
+    "si"
+   ],
+   "summary": "Application Deadline: 15 January 2027 Applications are now open for the 2027 Swedish Institute Scholarships for Global Professionals. The SI Scholarship for Global Professionals offers you the opport…",
+   "seen": "2026-10-23"
+  },
+  {
+   "title": "The Swedish Institute (SI) Pioneering Women in STEM Scholarship 2027 for study in Sweden (Fully Funded)",
+   "link": "https://www.opportunitiesforafricans.com/the-swedish-institute-si-pioneering-women-in-stem-scholarship-2027/",
+   "date": "2026-10-22",
+   "source": "Opportunities for Africans",
+   "official": false,
+   "ids": [
+    "si"
+   ],
+   "summary": "Application Deadline: 15 January 2027 Applications are now open for the 2027 Swedish Institute (SI) Pioneering Women in STEM Scholarship. The Pioneering Women in STEM scholarship supports women who w…",
+   "seen": "2026-10-23"
+  },
+  {
+   "title": "50 Scholarships, Grants, Fellowships and Other Opportunities Currently Open – October 22, 2026",
+   "link": "https://opportunitydesk.org/2026/10/22/50-scholarships-grants-fellowships-and-other-opportunities-currently-open-october-22-2026/",
+   "date": "2026-10-22",
+   "source": "Opportunity Desk",
+   "official": false,
+   "ids": [],
+   "summary": "1. Maria Rosario Lazzati Niada Scholarship for Afghan Women 2027-2028 The Maria Rosario Lazzati Niada Scholarship supports Afghan women who already hold a university degree and want to pursue a two-y…",
+   "seen": "2026-10-23"
+  },
+  {
+   "title": "AIRC Non-Resident Research Fellowship in AI and Social Sciences 2027",
+   "link": "https://opportunitydesk.org/2026/10/22/airc-non-resident-research-fellowship-in-ai-and-social-sciences-2027/",
+   "date": "2026-10-22",
+   "source": "Opportunity Desk",
+   "official": false,
+   "ids": [],
+   "summary": "Deadline: October 25, 2026 Applications are open for the AIRC Non-Resident Research Fellowship in AI and Social Sciences 2027. Artificial intelligence is reshaping how people work, learn, communicate…",
+   "seen": "2026-10-23"
+  },
+  {
+   "title": "Swedish Institute (SI) Scholarship for Global Professionals 2027 (Fully-funded)",
+   "link": "https://opportunitydesk.org/2026/10/22/si-scholarship-for-global-professionals-2027/",
+   "date": "2026-10-22",
+   "source": "Opportunity Desk",
+   "official": false,
+   "ids": [
+    "si"
+   ],
+   "summary": "Deadline: January 15, 2027 Applications are invited for the SI Scholarship for Global Professionals 2027. The SI Scholarship for Global Professionals offers you the opportunity to access world-class …",
+   "seen": "2026-10-23"
+  },
+  {
+   "title": "London Youth Diplomacy Forum 2027 in the UK (Fully Funded)",
+   "link": "https://opportunitiescorners.com/london-youth-diplomacy-forum-2027/",
+   "date": "2026-10-22",
+   "source": "Opportunities Corners",
+   "official": false,
+   "ids": [],
+   "summary": "Applications for the London Youth Diplomacy Forum 2027 are now open for young leaders, students, aspiring diplomats, and early-career professionals. This international youth forum is scheduled to tak…",
+   "seen": "2026-10-23"
+  },
+  {
+   "title": "Government of Denmark Scholarship at SDU 2027 (Southern Denmark University) | How To Apply",
+   "link": "https://www.scholarshipregion.com/government-of-denmark-scholarship-at-sdu/",
+   "date": "2026-10-22",
+   "source": "Scholarship Region",
+   "official": false,
+   "ids": [],
+   "summary": "The Government of Denmark Scholarship is offered in collaboration with the Southern Denmark University for full-time international students commencing their studies at the university. As a recipient …",
+   "seen": "2026-10-23"
+  },
+  {
+   "title": "European Parliament Schuman Traineeships 2027 | Fully Funded",
+   "link": "https://www.scholarshipregion.com/european-parliament-schuman-traineeship/",
+   "date": "2026-10-22",
+   "source": "Scholarship Region",
+   "official": false,
+   "ids": [],
+   "summary": "Applications are now open for the 2027 European Parliament Schuman Traineeship Program. The European Parliament Schuman Traineeship aims to train up to 1000 members at different EU parliament offices…",
+   "seen": "2026-10-23"
+  },
+  {
+   "title": "Montana State University Scholarship in USA 2027 | Fully Funded",
+   "link": "https://www.scholarshipregion.com/montana-state-university-scholarship/",
+   "date": "2026-10-22",
+   "source": "Scholarship Region",
+   "official": false,
+   "ids": [],
+   "summary": "The Montana State University Scholarship offers a graduate master’s assistantship position for students seeking study opportunities in the United States. The Montana State University Graduate Assista…",
+   "seen": "2026-10-23"
+  },
+  {
+   "title": "Bodleian Visiting Fellowships 2027–2028 at the University of Oxford: Funding of Up to £2,200 per Month for International Researchers",
+   "link": "https://opportunitiesforyouth.org/2026/10/22/bodleian-visiting-fellowships-2027-2028-at-the-university-of-oxford-funding-of-up-to-2200-per-month-for-international-researchers/",
+   "date": "2026-10-22",
+   "source": "Opportunities for Youth",
+   "official": false,
+   "ids": [],
+   "summary": "The Bodleian Libraries are part of the University of Oxford and hold extensive collections of historical documents, manuscripts, printed books and other research materials. Their special collections …",
+   "seen": "2026-10-23"
+  },
+  {
+   "title": "Community Changemakers Initiative (CCI) Ghana 2026: Apply for Certification, Mentorship, Capacity-Building and Funding Opportunities for Young Changemakers",
+   "link": "https://opportunitiesforyouth.org/2026/10/22/community-changemakers-initiative-cci-ghana-2026-apply-for-certification-mentorship-capacity-building-and-funding-opportunities-for-young-changemakers/",
+   "date": "2026-10-22",
+   "source": "Opportunities for Youth",
+   "official": false,
+   "ids": [],
+   "summary": "Young people and youth organisations in Ghana who are creating positive change in their communities have an opportunity to gain recognition and strengthen their impact through the Community Changemak…",
+   "seen": "2026-10-23"
   },
   {
    "title": "UNESCO Science for Crisis Response and Solutions Research Continuity Grants for Africa 2026: Apply for Up to US$2,000 in Research Funding",
@@ -1533,166 +1689,6 @@
    "ids": [],
    "summary": "The Echidna Global Scholars Program 2027–2028, hosted by the Center for Universal Education (CUE) at the Brookings Institution in Washington, D.C., United States, offers an opportunity for experience…",
    "seen": "2026-10-12"
-  },
-  {
-   "title": "SHARE Fellowship 2027 at Arizona State University: Fully Funded Master of Global Management Scholarship in the USA",
-   "link": "https://opportunitiesforyouth.org/2026/10/12/share-fellowship-2027-at-arizona-state-university-fully-funded-master-of-global-management-scholarship-in-the-usa/",
-   "date": "2026-10-12",
-   "source": "Opportunities for Youth",
-   "official": false,
-   "ids": [],
-   "summary": "The SHARE Fellowship 2027 at Thunderbird School of Global Management, Arizona State University (ASU), offers an opportunity for experienced professionals from low- and middle-income countries to purs…",
-   "seen": "2026-10-12"
-  },
-  {
-   "title": "The Echidna Global Scholars Program 2027 at Brookings Institution, Washington D.C USA ($26,500 USD Stipend & Fully Funded)",
-   "link": "https://www.opportunitiesforafricans.com/the-echidna-global-scholars-program-2027-at-brookings-institution/",
-   "date": "2026-10-12",
-   "source": "Opportunities for Africans",
-   "official": false,
-   "ids": [],
-   "summary": "Application Deadline: December 1, 2026. Applications are now open for the 2027 Echidna Global Scholars Program. The Echidna Global Scholars Program at the Center for Universal Education (CUE) at Broo…",
-   "seen": "2026-10-13"
-  },
-  {
-   "title": "Niger Delta Development Commission (NDDC) Local Postgraduate Scholarship Programme 2026/2027 for Nigerian Students.",
-   "link": "https://www.opportunitiesforafricans.com/niger-delta-development-commission-nddc-local-postgraduate-scholarship-programme-2026-2027-for-nigerian-students/",
-   "date": "2026-10-12",
-   "source": "Opportunities for Africans",
-   "official": false,
-   "ids": [
-    "nddc"
-   ],
-   "summary": "Application Deadline: November 8, 2026 Applications are now open for the 2026/2027 Niger Delta Development Commission (NDDC) Local Postgraduate Scholarship Programme. The Niger Delta Development Comm…",
-   "seen": "2026-10-13"
-  },
-  {
-   "title": "6 Organisations That Fund African Students to Study Abroad",
-   "link": "https://www.scholarshipregion.com/organisations-that-fund-african-students-to-study-abroad/",
-   "date": "2026-10-12",
-   "source": "Scholarship Region",
-   "official": false,
-   "ids": [],
-   "summary": "Studying abroad is expensive, with tuition, accommodation, living expenses, travel, health insurance and visa fees adding up quickly. However, scholarships, grants and fellowships from governments, c…",
-   "seen": "2026-10-13"
-  },
-  {
-   "title": "Auburn University Scholarships 2027 in USA | Fully Funded",
-   "link": "https://www.scholarshipregion.com/auburn-university-scholarship/",
-   "date": "2026-10-12",
-   "source": "Scholarship Region",
-   "official": false,
-   "ids": [],
-   "summary": "The Auburn University Scholarship is a fully funded graduate assistantship for intending students seeking to study in the United States of America (USA). The Auburn State University Scholarship offer…",
-   "seen": "2026-10-13"
-  },
-  {
-   "title": "2027 Dr Gabriel Olubunmi Fakeye Scholarship & Bursary Award | How To Apply",
-   "link": "https://www.scholarshipregion.com/dr-gabriel-olubunmi-fakeye-scholarship/",
-   "date": "2026-10-12",
-   "source": "Scholarship Region",
-   "official": false,
-   "ids": [],
-   "summary": "The Pro. Dr. Gabriel Olubunmi Fakeye (GOF) Scholarship & Bursary Award is now open for applications from eligible indigent Nigerians. The scholarship offers awards and bursaries worth up to ₦4.6m to …",
-   "seen": "2026-10-13"
-  },
-  {
-   "title": "Institute of Science Tokyo MEXT Scholarship by Japan Government 2027 | Fully Funded",
-   "link": "https://www.scholarshipregion.com/institute-of-science-tokyo-mext-scholarship/",
-   "date": "2026-10-12",
-   "source": "Scholarship Region",
-   "official": false,
-   "ids": [
-    "mext"
-   ],
-   "summary": "The Institute of Science Tokyo is inviting applications from international students for the 2027 MEXT Scholarship by Japan Government. The Institute of Science Tokyo MEXT Scholarship covers tuition f…",
-   "seen": "2026-10-13"
-  },
-  {
-   "title": "AIxBio Research Fellowship 2027 in UK (Fully Funded)",
-   "link": "https://opportunitiescorners.com/aixbio-research-fellowship-2027/",
-   "date": "2026-10-11",
-   "source": "Opportunities Corners",
-   "official": false,
-   "ids": [],
-   "summary": "Applications are open for the AIxBio Research Fellowship 2027 in Cambridge, United Kingdom. ERA, in partnership with the Cambridge Biosecurity Hub, offers this 10-week, fully funded fellowship to res…",
-   "seen": "2026-10-11"
-  },
-  {
-   "title": "2027 France Government Eiffel Scholarship Program | Fully Funded",
-   "link": "https://www.scholarshipregion.com/france-government-eiffel-scholarship/",
-   "date": "2026-10-11",
-   "source": "Scholarship Region",
-   "official": false,
-   "ids": [
-    "eiffel"
-   ],
-   "summary": "The Eiffel Scholarship Program provides annual scholarships and trainings for future foreign decision-makers in the public and private sectors in degree programs at the Master’s and Doctoral levels. …",
-   "seen": "2026-10-11"
-  },
-  {
-   "title": "Branco Weiss Fellowship 2027: Up to CHF 600,000 for Outstanding Postdoctoral Researchers to Pursue Groundbreaking Research Worldwide",
-   "link": "https://opportunitiesforyouth.org/2026/10/11/branco-weiss-fellowship-eth-zurich-postdoctoral-fellowship/",
-   "date": "2026-10-11",
-   "source": "Opportunities for Youth",
-   "official": false,
-   "ids": [],
-   "summary": "The Branco Weiss Fellowship – Society in Science is inviting applications from exceptional early-career researchers worldwide who want to pursue original, ambitious and unconventional research projec…",
-   "seen": "2026-10-12"
-  },
-  {
-   "title": "University of Auckland Doctoral Scholarship 2026–2027: Receive NZ$35,468 Per Year, Tuition Fee Coverage and Health Insurance Support",
-   "link": "https://opportunitiesforyouth.org/2026/10/11/university-of-auckland-doctoral-scholarship-2026-2027-receive-nz35468-per-year-tuition-fee-coverage-and-health-insurance-support/",
-   "date": "2026-10-11",
-   "source": "Opportunities for Youth",
-   "official": false,
-   "ids": [],
-   "summary": "Introduction Are you looking for a doctoral scholarship in New Zealand to support your advanced studies and research career? The University of Auckland Doctoral Scholarship 2026–2027 offers eligible …",
-   "seen": "2026-10-12"
-  },
-  {
-   "title": "MSc in Health Professions Education 2026 at UGHE, Rwanda: Fully Funded Mastercard Foundation Scholars Program",
-   "link": "https://opportunitiesforyouth.org/2026/10/11/master-of-science-in-health-professions-education-fully-funded-by-mastercard-foundation-scholars-program/",
-   "date": "2026-10-11",
-   "source": "Opportunities for Youth",
-   "official": false,
-   "ids": [
-    "mastercard"
-   ],
-   "summary": "The Master of Science in Health Professions Education (MSc-HPE) 2026 at the University of Global Health Equity (UGHE), Rwanda, offers an advanced academic opportunity for young African health profess…",
-   "seen": "2026-10-12"
-  },
-  {
-   "title": "WomanKind Creative Grant 2027",
-   "link": "https://opportunitydesk.org/2026/10/10/womankind-creative-grant-2027/",
-   "date": "2026-10-10",
-   "source": "Opportunity Desk",
-   "official": false,
-   "ids": [],
-   "summary": "Deadline: November 1, 2026 Applications for the WomanKind Creative Grant 2027 are now open. The WomanKind Creative Grant provides early-stage women’s health companies with the strategic branding and …",
-   "seen": "2026-10-10"
-  },
-  {
-   "title": "Yves Rocher Foundation Terre de Femmes International Award 2027 (€10,000 grant)",
-   "link": "https://opportunitydesk.org/2026/10/10/terre-de-femmes-international-award-2027/",
-   "date": "2026-10-10",
-   "source": "Opportunity Desk",
-   "official": false,
-   "ids": [],
-   "summary": "Deadline: November 30, 2026 Applications are open for the Yves Rocher Foundation Terre de Femmes International Award 2027. This new edition of the thematic Terre de Femmes International Award will re…",
-   "seen": "2026-10-10"
-  },
-  {
-   "title": "Eiffel Excellence Scholarship 2027 in France (Fully Funded)",
-   "link": "https://opportunitiescorners.com/eiffel-excellence-scholarship-2027/",
-   "date": "2026-10-10",
-   "source": "Opportunities Corners",
-   "official": false,
-   "ids": [
-    "eiffel"
-   ],
-   "summary": "Applications for the 2027 Eiffel Excellence Scholarship in France are open until January 8th, 2027. Those seeking a fully funded scholarship to study in France can apply for the Eiffel Excellence Sch…",
-   "seen": "2026-10-10"
   }
  ]
 }
