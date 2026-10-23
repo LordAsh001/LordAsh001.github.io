@@ -810,7 +810,8 @@
               "label": "festivals in the calendar"
             }
           ],
-          "classroom": "give each group a state, list the peoples and languages recorded there, and write the missing profile section for one of them using a cited source."
+          "classroom": "give each group a state, list the peoples and languages recorded there, and write the missing profile section for one of them using a cited source.",
+          "doi": "10.5281/zenodo.23589283"
         },
         {
           "name": "Nigeria Waste Sites Atlas",
@@ -846,7 +847,8 @@
               "label": "Sentinel-2 image resolution"
             }
           ],
-          "classroom": "give each group a state, check five of the scan's candidate sites on high-resolution imagery, and decide which are real dumpsites, giving the evidence for each call."
+          "classroom": "give each group a state, check five of the scan's candidate sites on high-resolution imagery, and decide which are real dumpsites, giving the evidence for each call.",
+          "doi": "10.5281/zenodo.23589293"
         },
         {
           "name": "Nigeria Literature Landscape",
@@ -882,7 +884,8 @@
               "label": "infrastructure places and institutions mapped"
             }
           ],
-          "classroom": "give each group one creative field: draw a random set of Living profiles, check one statistic against its source, and present how that field has changed since independence."
+          "classroom": "give each group one creative field: draw a random set of Living profiles, check one statistic against its source, and present how that field has changed since independence.",
+          "doi": "10.5281/zenodo.23589297"
         }
       ],
       "note": "Using one of these in a course or workshop? I'd love to hear how it went: [amool@unbc.ca](mailto:amool@unbc.ca). Free to use for teaching and learning."
