@@ -61,6 +61,11 @@ tb.src = "/assets/toolbar.js"; tb.defer = true;
 document.head.appendChild(tb);
 }
 
+/* legal notices: per-tool disclaimer, footer line, photo credits (see legal.js) */
+var lg = document.createElement("script");
+lg.src = "/assets/legal.js"; lg.defer = true;
+document.head.appendChild(lg);
+
 /* per-tool actions, counted without touching each tool's own code */
 document.addEventListener("click", function (e) {
 var t = e.target.closest ? e.target.closest("button,a,[role=tab]") : null;
@@ -99,7 +104,7 @@ function mount() {
 var st = document.createElement("style"); st.textContent = css; document.head.appendChild(st);
 var bar = document.querySelector(".sitebar-in");
 var box = document.createElement("span"); box.className = "tr-links";
-box.innerHTML = (TALLY_FORM_ID ? '<button type="button" class="tr-join">Join the community</button>' : "") + '<a class="tr-priv" href="' + PRIVACY_URL + '">Privacy</a>';
+box.innerHTML = (TALLY_FORM_ID ? '<button type="button" class="tr-join">Join the community</button>' : "") + '<a class="tr-priv" href="' + PRIVACY_URL + '">Privacy</a><a class="tr-priv" href="/terms.html">Terms</a>';
 if (bar) { var more = bar.querySelector(".sb-more"); bar.insertBefore(box, more || null); }
 else {
 /* pages that build their footer with script (the homepage): wait for it */
