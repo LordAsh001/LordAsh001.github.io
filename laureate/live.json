@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-23",
+ "updated": "2026-10-24",
  "sources": [
   {
    "source": "Opportunities for Africans",
@@ -9,7 +9,7 @@
   {
    "source": "Opportunity Desk",
    "ok": true,
-   "items": 4
+   "items": 3
   },
   {
    "source": "Opportunities Corners",
@@ -18,13 +18,13 @@
   },
   {
    "source": "Scholarship Region",
-   "ok": true,
-   "items": 8
+   "ok": false,
+   "error": "not well-formed (invalid token): line 1, column 119"
   },
   {
    "source": "Opportunities for Youth",
    "ok": true,
-   "items": 4
+   "items": 5
   },
   {
    "source": "Commonwealth Scholarship Commission",
@@ -95,6 +95,68 @@
    "ids": [],
    "summary": "Scholars, researchers, and academics from around the world are invited to apply for the prestigious Italian Academy Fellowship Program 2027–2028 at Columbia University in New York City, United States…",
    "seen": "2026-10-23"
+  },
+  {
+   "title": "Columbia University Italian Academy Fellowship Program 2027-2028",
+   "link": "https://opportunitydesk.org/2026/10/23/columbia-university-italian-academy-fellowship-2027-2028/",
+   "date": "2026-10-23",
+   "source": "Opportunity Desk",
+   "official": false,
+   "ids": [],
+   "summary": "Deadline: December 4, 2026 Applications are open for the Columbia University Italian Academy Fellowship Program 2027-2028. The multi-disciplinary Fellowship Program is the heart of the work of the It…",
+   "seen": "2026-10-24"
+  },
+  {
+   "title": "Human Rights Summit 2027 in Canada (Fully Funded)",
+   "link": "https://opportunitiescorners.com/human-rights-summit-2027-in-canada/",
+   "date": "2026-10-23",
+   "source": "Opportunities Corners",
+   "official": false,
+   "ids": [
+    "ubc-isp"
+   ],
+   "summary": "Applications are now open for the Human Rights Summit 2027 in Canada. The summit will take place at the University of British Columbia, Canada, from May 21–24, 2027, for a total of four days. Candida…",
+   "seen": "2026-10-24"
+  },
+  {
+   "title": "FLEX Global Program 2027 in the USA (Fully Funded Exchange Program)",
+   "link": "https://opportunitiescorners.com/flex-global-program-2027-in-the-usa/",
+   "date": "2026-10-23",
+   "source": "Opportunities Corners",
+   "official": false,
+   "ids": [],
+   "summary": "Applications are now open for the FLEX Global Program 2027 in the USA, a fully funded international exchange program for eligible high school students from participating countries. Funded by the U.S.…",
+   "seen": "2026-10-24"
+  },
+  {
+   "title": "WAAW Foundation Scholarship 2026/2027: $500 Undergraduate Scholarship for African Women Studying STEM – Applications Open October 30, 2026",
+   "link": "https://opportunitiesforyouth.org/2026/10/23/waaw-foundation-scholarship-2026-2027/",
+   "date": "2026-10-23",
+   "source": "Opportunities for Youth",
+   "official": false,
+   "ids": [],
+   "summary": "The WAAW Foundation Scholarship 2026/2027 is an undergraduate scholarship opportunity designed to support African women pursuing degrees in Science, Technology, Engineering, and Mathematics (STEM) at…",
+   "seen": "2026-10-24"
+  },
+  {
+   "title": "NobleReach Scholars Program 2027: Apply for a One-Year Paid Fellowship Paying $70,000-$90,000 Plus an $18,000 Stipend",
+   "link": "https://opportunitiesforyouth.org/2026/10/23/noblereach-scholars-program-2027-apply-for-a-one-year-paid-fellowship-paying-70000-90000-plus-an-18000-stipend/",
+   "date": "2026-10-23",
+   "source": "Opportunities for Youth",
+   "official": false,
+   "ids": [],
+   "summary": "Overview of the NobleReach Scholars Program Recent graduates seeking a paid professional opportunity in technology, engineering, cybersecurity, or public-sector innovation can apply for the NobleReac…",
+   "seen": "2026-10-24"
+  },
+  {
+   "title": "Intra-Africa Academic Mobility Scheme 2022–2027: EU-Funded Scholarships and International Study Opportunities for African Students, Trainees and University Staff",
+   "link": "https://opportunitiesforyouth.org/2026/10/23/intra-africa-academic-mobility-scheme-2022-2027-eu-funded-scholarships-and-international-study-opportunities-for-african-students-trainees-and-university-staff/",
+   "date": "2026-10-23",
+   "source": "Opportunities for Youth",
+   "official": false,
+   "ids": [],
+   "summary": "The Intra-Africa Academic Mobility Scheme 2022–2027 is a European Union (EU)-supported initiative designed to strengthen higher education, promote international academic exchanges, and expand learnin…",
+   "seen": "2026-10-24"
   },
   {
    "title": "2027 Michigan State University Scholarship in USA | MS & PhD Graduate Assistantship (Fully Funded)",
@@ -1628,66 +1690,6 @@
    "official": false,
    "ids": [],
    "summary": "The University of Oxford, through its School of Geography and the Environment (SoGE), is inviting applications for the Palestine-Oxford Scholarship in Geography and the Environment 2027. The award co…",
-   "seen": "2026-10-12"
-  },
-  {
-   "title": "2027 Ruth Titilayo Foundation Scholarship (RTEF) For Nigerians | How To Apply",
-   "link": "https://www.scholarshipregion.com/ruth-titilayo-foundation-scholarship/",
-   "date": "2026-10-12",
-   "source": "Scholarship Region",
-   "official": false,
-   "ids": [],
-   "summary": "The Ruth Titilayo Foundation Scholarship is aimed at breaking down barriers to education For underprivileged communities in Nigeria. The RTF Scholarships is specifically designed to pay for tuition f…",
-   "seen": "2026-10-12"
-  },
-  {
-   "title": "2027 VISTEC Scholarship For International Students in Thailand | Fully Funded",
-   "link": "https://www.scholarshipregion.com/vistec-scholarship/",
-   "date": "2026-10-12",
-   "source": "Scholarship Region",
-   "official": false,
-   "ids": [],
-   "summary": "International students worldwide are welcome to apply for the 2027 VISTEC Scholarships at the Vidyasirimedhi Institute of Science & Technology. The VISTEC University Scholarship is a fully financed s…",
-   "seen": "2026-10-12"
-  },
-  {
-   "title": "Novo Nordisk Foundation Postdoctoral Fellowships at the University of Oxford 2027: Apply for Up to DKK 3.6 Million in Research Funding",
-   "link": "https://opportunitiesforyouth.org/2026/10/12/novo-nordisk-foundation-postdoctoral-fellowships-at-the-university-of-oxford-2027-apply-for-up-to-dkk-3-6-million-in-research-funding/",
-   "date": "2026-10-12",
-   "source": "Opportunities for Youth",
-   "official": false,
-   "ids": [],
-   "summary": "Early-career researchers seeking to advance their academic careers through international research collaboration can explore the Novo Nordisk Foundation Postdoctoral Fellowships at the University of O…",
-   "seen": "2026-10-12"
-  },
-  {
-   "title": "5th IAFFE Feminist Economics School 2027 in Japan: Free Three-Day Training Programme with Travel Grants for Eligible Applicants",
-   "link": "https://opportunitiesforyouth.org/2026/10/12/iaffes-2nd-feminist-economics-school-call-for-applicationsfully-funded/",
-   "date": "2026-10-12",
-   "source": "Opportunities for Youth",
-   "official": false,
-   "ids": [],
-   "summary": "Overview of the 5th IAFFE Feminist Economics School 2027 Applications are invited for the 5th International Association for Feminist Economics (IAFFE) Feminist Economics School 2027, an intensive edu…",
-   "seen": "2026-10-12"
-  },
-  {
-   "title": "Gulbenkian Institute for Advanced Study Fellowships 2027/28 in Portugal: International Research Opportunity with Funding for 3-8 Months",
-   "link": "https://opportunitiesforyouth.org/2026/10/12/gulbenkian-institute-for-advanced-study-fellowships-2027-28-in-portugal-international-research-opportunity-with-funding-for-3-8-months/",
-   "date": "2026-10-12",
-   "source": "Opportunities for Youth",
-   "official": false,
-   "ids": [],
-   "summary": "Researchers, academics, independent scholars, and artists seeking an opportunity to advance their research in an international academic environment can now apply for the Gulbenkian Institute for Adva…",
-   "seen": "2026-10-12"
-  },
-  {
-   "title": "Echidna Global Scholars Program 2027–2028 at Brookings Institution: $26,500 Fellowship for Education, Gender Equality and Policy Research",
-   "link": "https://opportunitiesforyouth.org/2026/10/12/echidna-global-scholars-program-2025-now-open-for-applications/",
-   "date": "2026-10-12",
-   "source": "Opportunities for Youth",
-   "official": false,
-   "ids": [],
-   "summary": "The Echidna Global Scholars Program 2027–2028, hosted by the Center for Universal Education (CUE) at the Brookings Institution in Washington, D.C., United States, offers an opportunity for experience…",
    "seen": "2026-10-12"
   }
  ]
