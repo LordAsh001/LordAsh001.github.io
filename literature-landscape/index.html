@@ -267,7 +267,7 @@ async function loadPageInfo(titles) {
     const chunk = need.slice(i, i + 50);
     chunk.forEach(t => pageInfo[t] = pageInfo[t] || {});
     try {
-      const j = await getJSON(WP_API + Q + qs({ action: "query", format: "json", origin: "*", redirects: 1, prop: "pageimages|pageprops|description", piprop: "thumbnail", pithumbsize: 240, ppprop: "wikibase_item", titles: chunk.join("|") }));
+      const j = await getJSON(WP_API + Q + qs({ action: "query", format: "json", origin: "*", redirects: 1, prop: "pageimages|pageprops|description", piprop: "thumbnail", pilicense: "free", pithumbsize: 240, ppprop: "wikibase_item", titles: chunk.join("|") }));
       const map = {}; (j.query.normalized || []).forEach(n => map[n.to] = n.from); (j.query.redirects || []).forEach(r => map[r.to] = map[r.from] || r.from);
       Object.values(j.query.pages || {}).forEach(p => {
         const orig = map[p.title] || p.title;
