@@ -2474,27 +2474,27 @@ issued,station,state,lga,lat,lon,day,day_label,weather,temp_day_c,temp_night_c
 2026-10-24,Zaria,Kaduna,Zaria,11.09,7.7,1,Sun 25th,Sunny,35.0,24.0
 2026-10-24,Zaria,Kaduna,Zaria,11.09,7.7,2,Mon 26th,Thunderstorm with Rain,35.0,26.0
 2026-10-24,Zaria,Kaduna,Zaria,11.09,7.7,3,Tue 27th,Thunderstorm with Rain,36.0,26.0
-2026-10-25,Abakaliki,Ebonyi,Abakaliki,6.33,8.11,1,Sun 25th,Sunny,35.0,24.0
-2026-10-25,Abakaliki,Ebonyi,Abakaliki,6.33,8.11,2,Mon 26th,Thunderstorm with Rain,35.0,26.0
-2026-10-25,Abakaliki,Ebonyi,Abakaliki,6.33,8.11,3,Tue 27th,Thunderstorm with Rain,36.0,26.0
-2026-10-25,Abeokuta,Ogun,Abeokuta South,7.15,3.35,1,Sun 25th,Sunny,35.0,24.0
-2026-10-25,Abeokuta,Ogun,Abeokuta South,7.15,3.35,2,Mon 26th,Thunderstorm with Rain,35.0,26.0
-2026-10-25,Abeokuta,Ogun,Abeokuta South,7.15,3.35,3,Tue 27th,Thunderstorm with Rain,36.0,26.0
-2026-10-25,Abuja,FCT,Abuja Municipal Area Council,9.06,7.49,1,Sun 25th,Sunny,35.0,24.0
-2026-10-25,Abuja,FCT,Abuja Municipal Area Council,9.06,7.49,2,Mon 26th,Thunderstorm with Rain,35.0,26.0
-2026-10-25,Abuja,FCT,Abuja Municipal Area Council,9.06,7.49,3,Tue 27th,Thunderstorm with Rain,36.0,26.0
-2026-10-25,Ado-Ekiti,Ekiti,Ado Ekiti,7.62,5.22,1,Sun 25th,Sunny,35.0,24.0
-2026-10-25,Ado-Ekiti,Ekiti,Ado Ekiti,7.62,5.22,2,Mon 26th,Thunderstorm with Rain,35.0,26.0
-2026-10-25,Ado-Ekiti,Ekiti,Ado Ekiti,7.62,5.22,3,Tue 27th,Thunderstorm with Rain,36.0,26.0
-2026-10-25,Akure,Ondo,Akure South,7.25,5.19,1,Sun 25th,Sunny,35.0,24.0
-2026-10-25,Akure,Ondo,Akure South,7.25,5.19,2,Mon 26th,Thunderstorm with Rain,35.0,26.0
-2026-10-25,Akure,Ondo,Akure South,7.25,5.19,3,Tue 27th,Thunderstorm with Rain,36.0,26.0
-2026-10-25,Asaba,Delta,Oshimili South,6.2,6.73,1,Sun 25th,Sunny,35.0,24.0
-2026-10-25,Asaba,Delta,Oshimili South,6.2,6.73,2,Mon 26th,Thunderstorm with Rain,35.0,26.0
-2026-10-25,Asaba,Delta,Oshimili South,6.2,6.73,3,Tue 27th,Thunderstorm with Rain,36.0,26.0
-2026-10-25,Awka,Anambra,Awka South,6.21,7.07,1,Sun 25th,Sunny,35.0,24.0
-2026-10-25,Awka,Anambra,Awka South,6.21,7.07,2,Mon 26th,Thunderstorm with Rain,35.0,26.0
-2026-10-25,Awka,Anambra,Awka South,6.21,7.07,3,Tue 27th,Thunderstorm with Rain,36.0,26.0
+2026-10-25,Abakaliki,Ebonyi,Abakaliki,6.33,8.11,1,Sun 25th,Thunderstorm with Rain,34.0,25.0
+2026-10-25,Abakaliki,Ebonyi,Abakaliki,6.33,8.11,2,Mon 26th,Thunderstorm with Rain,33.0,26.0
+2026-10-25,Abakaliki,Ebonyi,Abakaliki,6.33,8.11,3,Tue 27th,Thunderstorm with Rain,33.0,26.0
+2026-10-25,Abeokuta,Ogun,Abeokuta South,7.15,3.35,1,Sun 25th,Thunderstorm with Rain,34.0,25.0
+2026-10-25,Abeokuta,Ogun,Abeokuta South,7.15,3.35,2,Mon 26th,Thunderstorm with Rain,33.0,26.0
+2026-10-25,Abeokuta,Ogun,Abeokuta South,7.15,3.35,3,Tue 27th,Thunderstorm with Rain,33.0,26.0
+2026-10-25,Abuja,FCT,Abuja Municipal Area Council,9.06,7.49,1,Sun 25th,Thunderstorm with Rain,34.0,25.0
+2026-10-25,Abuja,FCT,Abuja Municipal Area Council,9.06,7.49,2,Mon 26th,Thunderstorm with Rain,33.0,26.0
+2026-10-25,Abuja,FCT,Abuja Municipal Area Council,9.06,7.49,3,Tue 27th,Thunderstorm with Rain,33.0,26.0
+2026-10-25,Ado-Ekiti,Ekiti,Ado Ekiti,7.62,5.22,1,Sun 25th,Thunderstorm with Rain,34.0,25.0
+2026-10-25,Ado-Ekiti,Ekiti,Ado Ekiti,7.62,5.22,2,Mon 26th,Thunderstorm with Rain,33.0,26.0
+2026-10-25,Ado-Ekiti,Ekiti,Ado Ekiti,7.62,5.22,3,Tue 27th,Thunderstorm with Rain,33.0,26.0
+2026-10-25,Akure,Ondo,Akure South,7.25,5.19,1,Sun 25th,Thunderstorm with Rain,34.0,25.0
+2026-10-25,Akure,Ondo,Akure South,7.25,5.19,2,Mon 26th,Thunderstorm with Rain,33.0,26.0
+2026-10-25,Akure,Ondo,Akure South,7.25,5.19,3,Tue 27th,Thunderstorm with Rain,33.0,26.0
+2026-10-25,Asaba,Delta,Oshimili South,6.2,6.73,1,Sun 25th,Thunderstorm with Rain,34.0,25.0
+2026-10-25,Asaba,Delta,Oshimili South,6.2,6.73,2,Mon 26th,Thunderstorm with Rain,33.0,26.0
+2026-10-25,Asaba,Delta,Oshimili South,6.2,6.73,3,Tue 27th,Thunderstorm with Rain,33.0,26.0
+2026-10-25,Awka,Anambra,Awka South,6.21,7.07,1,Sun 25th,Thunderstorm with Rain,34.0,25.0
+2026-10-25,Awka,Anambra,Awka South,6.21,7.07,2,Mon 26th,Thunderstorm with Rain,33.0,26.0
+2026-10-25,Awka,Anambra,Awka South,6.21,7.07,3,Tue 27th,Thunderstorm with Rain,33.0,26.0
 2026-10-25,Ayetoro Ondo,Ondo,Ilaje,6.1,4.75,1,Sun 25th,Sunny,35.0,24.0
 2026-10-25,Ayetoro Ondo,Ondo,Ilaje,6.1,4.75,2,Mon 26th,Thunderstorm with Rain,35.0,26.0
 2026-10-25,Ayetoro Ondo,Ondo,Ilaje,6.1,4.75,3,Tue 27th,Thunderstorm with Rain,36.0,26.0
