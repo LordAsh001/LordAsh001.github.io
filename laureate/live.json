@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-24",
+ "updated": "2026-10-25",
  "sources": [
   {
    "source": "Opportunities for Africans",
@@ -9,22 +9,22 @@
   {
    "source": "Opportunity Desk",
    "ok": true,
-   "items": 3
+   "items": 4
   },
   {
    "source": "Opportunities Corners",
    "ok": true,
-   "items": 4
+   "items": 5
   },
   {
    "source": "Scholarship Region",
-   "ok": false,
-   "error": "not well-formed (invalid token): line 1, column 119"
+   "ok": true,
+   "items": 7
   },
   {
    "source": "Opportunities for Youth",
    "ok": true,
-   "items": 5
+   "items": 6
   },
   {
    "source": "Commonwealth Scholarship Commission",
@@ -56,6 +56,120 @@
   }
  ],
  "items": [
+  {
+   "title": "Stanford Fisher Family Summer Program 2027, USA (Fully Funded)",
+   "link": "https://opportunitiescorners.com/stanford-fisher-family-summer-program-2027/",
+   "date": "2026-10-25",
+   "source": "Opportunities Corners",
+   "official": false,
+   "ids": [],
+   "summary": "Applications are now open for the Stanford Fisher Family Summer Program 2027, formerly known as the Draper Hills Summer Fellows Program. This fully funded Fellowship in the USA is hosted annually by …",
+   "seen": "2026-10-25"
+  },
+  {
+   "title": "IDM-Africa Fellowship Programme 2027",
+   "link": "https://opportunitydesk.org/2026/10/24/idm-africa-fellowship-programme-2027/",
+   "date": "2026-10-24",
+   "source": "Opportunity Desk",
+   "official": false,
+   "ids": [],
+   "summary": "Deadline: October 30, 2026 Applications are open for the IDM-Africa Fellowship Programme 2027. IDM-Africa invites applications from early- and mid-career scientists in sub-Saharan Africa (SSA) for it…",
+   "seen": "2026-10-25"
+  },
+  {
+   "title": "Anthropic STEM Fellowship 2027 (up to $167,000)",
+   "link": "https://opportunitydesk.org/2026/10/24/anthropic-stem-fellowship-2027/",
+   "date": "2026-10-24",
+   "source": "Opportunity Desk",
+   "official": false,
+   "ids": [],
+   "summary": "Deadline: October 28, 2026 Applications are open for the Anthropic STEM Fellowship 2027. The Anthropic STEM Fellows Program brings researchers and experts from across science and engineering into Ant…",
+   "seen": "2026-10-25"
+  },
+  {
+   "title": "Swedish Institute Pioneering Women in STEM Scholarship 2027 (Fully-funded)",
+   "link": "https://opportunitydesk.org/2026/10/24/si-pioneering-women-in-stem-scholarship-2027/",
+   "date": "2026-10-24",
+   "source": "Opportunity Desk",
+   "official": false,
+   "ids": [
+    "si"
+   ],
+   "summary": "Deadline: January 15, 2027 Applications are open for the Swedish Institute Pioneering Women in STEM Scholarship 2027. The Pioneering Women in STEM scholarship supports women who want to lead innovati…",
+   "seen": "2026-10-25"
+  },
+  {
+   "title": "New York Fellowship 2028 in the USA (Fully Funded)",
+   "link": "https://opportunitiescorners.com/acc-new-york-fellowship-2028/",
+   "date": "2026-10-24",
+   "source": "Opportunities Corners",
+   "official": false,
+   "ids": [],
+   "summary": "Applications are now open for the New York Fellowship 2028 by the Asian Cultural Council (ACC) in the United States. This six-month, fully funded fellowship offers artists, scholars, and arts profess…",
+   "seen": "2026-10-25"
+  },
+  {
+   "title": "UKUDLA Master’s Scholarships 2027 in South Africa: DAAD-Funded Postgraduate Study in Data Science, Agriculture and Sustainable Food Systems",
+   "link": "https://opportunitiesforyouth.org/2026/10/24/ukudla-masters-scholarships-2027-in-south-africa-daad-funded-postgraduate-study-in-data-science-agriculture-and-sustainable-food-systems/",
+   "date": "2026-10-24",
+   "source": "Opportunities for Youth",
+   "official": false,
+   "ids": [
+    "daad-epos"
+   ],
+   "summary": "UKUDLA Master’s Scholarships 2027 in South The African German Centre for Sustainable and Resilient Food Systems and Applied Agricultural and Food Data Science (UKUDLA) is inviting applications for it…",
+   "seen": "2026-10-25"
+  },
+  {
+   "title": "WomenLeaders India Fellowship 2026–27: Fully Funded Leadership Fellowship for 50 Indian Women Leaders",
+   "link": "https://opportunitiesforyouth.org/2026/10/24/womenleaders-india-fellowship-2026-27-fully-funded-leadership-fellowship-for-50-indian-women-leaders/",
+   "date": "2026-10-24",
+   "source": "Opportunities for Youth",
+   "official": false,
+   "ids": [],
+   "summary": "The WomenLeaders India Fellowship 2026–27, powered by Reliance Foundation in partnership with Vital Voices Global Partnership, is offering an exciting opportunity for Indian women leaders who are com…",
+   "seen": "2026-10-25"
+  },
+  {
+   "title": "Justice First Fellowship 2027 in the UK: Applications Open for Two-Year Fellowships Supporting Access to Justice",
+   "link": "https://opportunitiesforyouth.org/2026/10/24/justice-first-fellowship-2027-in-the-uk-applications-open-for-two-year-fellowships-supporting-access-to-justice/",
+   "date": "2026-10-24",
+   "source": "Opportunities for Youth",
+   "official": false,
+   "ids": [],
+   "summary": "Applications are open for the Justice First Fellowship 2027, an opportunity for people passionate about access to justice, supporting marginalised communities, and creating positive change within the…",
+   "seen": "2026-10-25"
+  },
+  {
+   "title": "NIST Summer Undergraduate Research Fellowship (SURF) 2027: Apply for a Paid STEM Research Internship in the United States",
+   "link": "https://opportunitiesforyouth.org/2026/10/24/nist-summer-undergraduate-research-fellowship-surf-2027-apply-for-a-paid-stem-research-internship-in-the-united-states/",
+   "date": "2026-10-24",
+   "source": "Opportunities for Youth",
+   "official": false,
+   "ids": [],
+   "summary": "The National Institute of Standards and Technology (NIST) has opened applications for its 2027 Summer Undergraduate Research Fellowship (SURF), a research programme designed to inspire undergraduate …",
+   "seen": "2026-10-25"
+  },
+  {
+   "title": "IDM-Africa Fellowship Programme in Infectious Disease Modelling 2026: Eligibility, Requirements, Benefits and How to Apply.",
+   "link": "https://opportunitiesforyouth.org/2026/10/24/idm-africa-fellowship-programme-in-infectious-disease-modelling-2026-eligibility-requirements-benefits-and-how-to-apply/",
+   "date": "2026-10-24",
+   "source": "Opportunities for Youth",
+   "official": false,
+   "ids": [],
+   "summary": "The IDM-Africa Fellowship Programme in Infectious Disease Modelling 2026 is an opportunity for qualified early- and mid-career scientists in sub-Saharan Africa to strengthen their expertise in infect…",
+   "seen": "2026-10-25"
+  },
+  {
+   "title": "University of Cambridge Peace, Conflict and Religion Early Career Fellowship 2026: Eligibility, Research Areas, Funding and How to Apply.",
+   "link": "https://opportunitiesforyouth.org/2026/10/24/university-of-cambridge-peace-conflict-and-religion-early-career-fellowship-2026-eligibility-research-areas-funding-and-how-to-apply/",
+   "date": "2026-10-24",
+   "source": "Opportunities for Youth",
+   "official": false,
+   "ids": [],
+   "summary": "The University of Cambridge, through its Cambridge Interfaith Programme (CIP), is inviting applications from outstanding early-career researchers interested in exploring the relationships between pea…",
+   "seen": "2026-10-25"
+  },
   {
    "title": "Raisina Young Fellows Programme 2027 (Fully-funded)",
    "link": "https://opportunitydesk.org/2026/10/23/raisina-young-fellows-programme-2027/",
@@ -157,6 +271,78 @@
    "ids": [],
    "summary": "The Intra-Africa Academic Mobility Scheme 2022–2027 is a European Union (EU)-supported initiative designed to strengthen higher education, promote international academic exchanges, and expand learnin…",
    "seen": "2026-10-24"
+  },
+  {
+   "title": "NNPC/SNEPCo Scholarship 2026 (₦250,000 Award) | Step-by-Step Process",
+   "link": "https://www.scholarshipregion.com/nnpc-snepco-scholarship-award/",
+   "date": "2026-10-23",
+   "source": "Scholarship Region",
+   "official": false,
+   "ids": [
+    "shell"
+   ],
+   "summary": "The NNPC, Shell Nigeria are jointly inviting applications for the NNPC/SNEPCo Scholarship 2026 Award to promote academic excellence and improving the skills of young Nigerians. The NNPC/Shell Scholar…",
+   "seen": "2026-10-25"
+  },
+  {
+   "title": "London School of Economics (LSE) Demography Studentship in UK | Fully Funded",
+   "link": "https://www.scholarshipregion.com/london-school-of-economics-lse-demography-studentship/",
+   "date": "2026-10-23",
+   "source": "Scholarship Region",
+   "official": false,
+   "ids": [],
+   "summary": "The London School of Economics (LSE) is offering fully funded studentship opportunities to home and overseas students seeking to study in the UK. The London School of Economics (LSE) Demography Stude…",
+   "seen": "2026-10-25"
+  },
+  {
+   "title": "7 UK Universities Offering Undergraduate Scholarships (2027)",
+   "link": "https://www.scholarshipregion.com/uk-universities-offering-undergraduate-scholarships/",
+   "date": "2026-10-23",
+   "source": "Scholarship Region",
+   "official": false,
+   "ids": [],
+   "summary": "According to the British Council, the UK remains a major destination for international students seeking internationally recognised university qualifications. However, tuition fees and living expenses…",
+   "seen": "2026-10-25"
+  },
+  {
+   "title": "University of Sydney Studentship in Australia (Fully Funded)",
+   "link": "https://www.scholarshipregion.com/university-of-sydney-studentship/",
+   "date": "2026-10-23",
+   "source": "Scholarship Region",
+   "official": false,
+   "ids": [],
+   "summary": "The University of Sydney is welcoming applications for a fully funded studentship opportunity to study in Australia. The studentship is funded by the Australian Government Research Training Program (…",
+   "seen": "2026-10-25"
+  },
+  {
+   "title": "Texas Tech University Petroleum Engineering Scholarship in USA 2027 | Fully Funded",
+   "link": "https://www.scholarshipregion.com/texas-tech-university-petroleum-engineering-scholarship/",
+   "date": "2026-10-23",
+   "source": "Scholarship Region",
+   "official": false,
+   "ids": [],
+   "summary": "Fully funded graduate research assistantships in Petroleum Engineering are open at Texas Tech University in the United States of America (USA). The Texas Tech University Petroleum Engineering Scholar…",
+   "seen": "2026-10-25"
+  },
+  {
+   "title": "University of Sheffield Undergraduate Scholarships in UK 2027 | Step-by-Step Process",
+   "link": "https://www.scholarshipregion.com/sheffield-undergraduate-scholarship/",
+   "date": "2026-10-23",
+   "source": "Scholarship Region",
+   "official": false,
+   "ids": [],
+   "summary": "The University of Sheffield Undergraduate Scholarships are offered to international students seeking to study in the UK starting in the 2027/28 academic session. The International Undergraduate Schol…",
+   "seen": "2026-10-25"
+  },
+  {
+   "title": "2027 UBEL London ESRC Studentships in UK | Fully Funded",
+   "link": "https://www.scholarshipregion.com/ubel-london-esrc-studentships/",
+   "date": "2026-10-23",
+   "source": "Scholarship Region",
+   "official": false,
+   "ids": [],
+   "summary": "The UBEL London ESRC Studentships are fully funded Doctoral Training Programmes (DTP) hosted by six partner institutions in the UK. The scholarships are fully funded and includes the costs of tuition…",
+   "seen": "2026-10-25"
   },
   {
    "title": "2027 Michigan State University Scholarship in USA | MS & PhD Graduate Assistantship (Fully Funded)",
@@ -1509,188 +1695,6 @@
    "ids": [],
    "summary": "Introduction Graduate students looking to pursue advanced research in migration, social divisions, and related interdisciplinary fields have an opportunity to receive substantial financial support th…",
    "seen": "2026-10-13"
-  },
-  {
-   "title": "The Atlantic Editorial Fellowship 2027–2028: $60,000 Salary, Journalism Training and Mentorship in Washington, D.C.",
-   "link": "https://opportunitiesforyouth.org/2026/10/13/the-atlantic-editorial-fellowship-2027-2028-60000-salary-journalism-training-and-mentorship-in-washington-d-c/",
-   "date": "2026-10-13",
-   "source": "Opportunities for Youth",
-   "official": false,
-   "ids": [],
-   "summary": "The Atlantic is inviting recent college graduates and early-career journalists to apply for its Editorial Fellowship, a full-time opportunity designed to develop emerging journalism professionals thr…",
-   "seen": "2026-10-13"
-  },
-  {
-   "title": "2027 Sabanci University Scholarship in Turkey | Fully Funded",
-   "link": "https://www.scholarshipregion.com/sabanci-university-scholarship/",
-   "date": "2026-10-13",
-   "source": "Scholarship Region",
-   "official": false,
-   "ids": [],
-   "summary": "International students can now apply for the 2027 Sabanci University Scholarship for a golden opportunity to study in the beautiful European country of Turkey. The Sabanci University Scholarship pres…",
-   "seen": "2026-10-14"
-  },
-  {
-   "title": "Amsterdam Merit Scholarship in Netherlands 2027 | How To Apply",
-   "link": "https://www.scholarshipregion.com/university-of-amsterdam-merit-scholarship/",
-   "date": "2026-10-13",
-   "source": "Scholarship Region",
-   "official": false,
-   "ids": [],
-   "summary": "The University of Amsterdam (UvA) aims to attract the world’s brightest students to its international classrooms through the Amsterdam Merit Scholarships. The Amsterdam Merit Scholarships offer up to…",
-   "seen": "2026-10-14"
-  },
-  {
-   "title": "United Nations Regional Course in International Law for Africa (Fully Funded)",
-   "link": "https://www.scholarshipregion.com/united-nations-regional-course-in-international-law-for-africa/",
-   "date": "2026-10-13",
-   "source": "Scholarship Region",
-   "official": false,
-   "ids": [],
-   "summary": "Applications are now open for the 2027 United Nations Regional Course in International Law for Africa. The program provides a fully funded fellowship for selected participants that will cover a month…",
-   "seen": "2026-10-14"
-  },
-  {
-   "title": "2027 ALCHE Mastercard Foundation Scholars Program For Africans | Fully Funded",
-   "link": "https://www.scholarshipregion.com/alche-mastercard-foundation-scholars-program/",
-   "date": "2026-10-13",
-   "source": "Scholarship Region",
-   "official": false,
-   "ids": [
-    "mastercard"
-   ],
-   "summary": "ALCHE, in partnership with the Mastercard Foundation, is proud to offer the Mastercard Foundation Scholars Program, which provides fully funded scholarships to exceptionally deserving and talented st…",
-   "seen": "2026-10-14"
-  },
-  {
-   "title": "UCL Child Health Research PhD Studentships 2027/28: Fully Funded Doctoral Research Opportunities at a World-Leading Institution",
-   "link": "https://opportunitiesforyouth.org/2026/10/13/ucl-child-health-research-phd-studentships-2027-28-fully-funded-doctoral-research-opportunities-at-a-world-leading-institution/",
-   "date": "2026-10-13",
-   "source": "Opportunities for Youth",
-   "official": false,
-   "ids": [],
-   "summary": "The University College London (UCL) Great Ormond Street Institute of Child Health (GOS ICH) has launched its Child Health Research PhD Project Portfolio for the 2027/28 academic year. This prestigiou…",
-   "seen": "2026-10-14"
-  },
-  {
-   "title": "Dorothy Hodgkin Fellowship 2027: Up to £1.9 Million for Early-Career Researchers Seeking Flexible Support for Independent Scientific Careers",
-   "link": "https://opportunitiesforyouth.org/2026/10/13/dorothy-hodgkin-fellowship-2027-up-to-1-9-million-for-early-career-researchers-seeking-flexible-support-for-independent-scientific-careers/",
-   "date": "2026-10-13",
-   "source": "Opportunities for Youth",
-   "official": false,
-   "ids": [],
-   "summary": "The Dorothy Hodgkin Fellowship 2027, offered by the Royal Society, is one of the United Kingdom’s most prestigious opportunities for outstanding early-career researchers who are ready to transition i…",
-   "seen": "2026-10-14"
-  },
-  {
-   "title": "Fortis Society Fellowship 2027: Apply for a Fully Funded Global Leadership Fellowship in Medellín, Colombia",
-   "link": "https://opportunitiesforyouth.org/2026/10/13/fortis-society-fellowship-2027/",
-   "date": "2026-10-13",
-   "source": "Opportunities for Youth",
-   "official": false,
-   "ids": [],
-   "summary": "The Fortis Society Fellowship 2027 is an international leadership and professional development opportunity for ambitious individuals from humble beginnings who want to create meaningful, positive cha…",
-   "seen": "2026-10-14"
-  },
-  {
-   "title": "Indigenous Leaders Conference Scholarship in Australia: Travel Funding for Indigenous Leaders, Youth and Changemakers",
-   "link": "https://opportunitiesforyouth.org/2026/10/13/indigenous-leaders-scholarship-in-australia/",
-   "date": "2026-10-13",
-   "source": "Opportunities for Youth",
-   "official": false,
-   "ids": [],
-   "summary": "The Indigenous Leaders Conference Scholarship is an international conference funding opportunity for Indigenous leaders, community members and changemakers from Africa, Asia and the Pacific, and Lati…",
-   "seen": "2026-10-14"
-  },
-  {
-   "title": "Lilly Endowment Serving Neighbors Grant 2027: Apply for Planning Grants of Up to $50,000 and Implementation Grants of Up to $5 Million",
-   "link": "https://opportunitiesforyouth.org/2026/10/13/lilly-endowment-serving-neighbors-grant-2027-apply-for-planning-grants-of-up-to-50000-and-implementation-grants-of-up-to-5-million-2/",
-   "date": "2026-10-13",
-   "source": "Opportunities for Youth",
-   "official": false,
-   "ids": [],
-   "summary": "Charitable organisations working with Christian congregations to address community needs have an opportunity to access substantial funding through the Serving Neighbors Through Congregational Collabo…",
-   "seen": "2026-10-14"
-  },
-  {
-   "title": "Echidna Global Scholars Visiting Fellowship 2027 ($26,500 stipend)",
-   "link": "https://opportunitydesk.org/2026/10/12/echidna-global-scholars-visiting-fellowship-2027/",
-   "date": "2026-10-12",
-   "source": "Opportunity Desk",
-   "official": false,
-   "ids": [],
-   "summary": "Deadline: December 1, 2026 Applications are open for the Echidna Global Scholars Visiting Fellowship 2027. The Echidna Global Scholars Program at the Center for Universal Education (CUE) at Brookings…",
-   "seen": "2026-10-12"
-  },
-  {
-   "title": "Branco Weiss Fellowship – Society in Science 2027 (up to CHF600,000)",
-   "link": "https://opportunitydesk.org/2026/10/12/branco-weiss-fellowship-society-in-science-2027/",
-   "date": "2026-10-12",
-   "source": "Opportunity Desk",
-   "official": false,
-   "ids": [],
-   "summary": "Deadline: January 15, 2027 Applications are open for the Branco Weiss Fellowship – Society in Science 2027. The Branco Weiss Fellowship – Society in Science is a community of exceptional young scient…",
-   "seen": "2026-10-12"
-  },
-  {
-   "title": "UNICEF Venture Funding Opportunity for Femtech Solutions 2026 (up to $100,000)",
-   "link": "https://opportunitydesk.org/2026/10/12/unicef-venture-funding-opportunity-for-femtech-solutions-2026/",
-   "date": "2026-10-12",
-   "source": "Opportunity Desk",
-   "official": false,
-   "ids": [],
-   "summary": "Deadline: November 4, 2026 UNICEF Femtech Ventures is seeking applications to join its second annual cohort of companies using frontier technologies to build open-source solutions for the health, wel…",
-   "seen": "2026-10-12"
-  },
-  {
-   "title": "Falling Walls Foundation Female Science Talents Intensive Track 2027 (Fully-funded)",
-   "link": "https://opportunitydesk.org/2026/10/12/female-science-talents-intensive-track-2027/",
-   "date": "2026-10-12",
-   "source": "Opportunity Desk",
-   "official": false,
-   "ids": [],
-   "summary": "Deadline: November 15, 2026 Applications are invited for the Female Science Talents Intensive Track 2027. For 2027, they are looking for 20 exceptionally talented women in science from all discipline…",
-   "seen": "2026-10-12"
-  },
-  {
-   "title": "True Story Award 2027 for Journalists ($20,000 prize)",
-   "link": "https://opportunitydesk.org/2026/10/12/true-story-award-2027/",
-   "date": "2026-10-12",
-   "source": "Opportunity Desk",
-   "official": false,
-   "ids": [],
-   "summary": "Deadline: October 31, 2026 Applications are open for the True Story Award 2027. This international award for journalists from around the world is presented at the opening of the True Story Festival. …",
-   "seen": "2026-10-12"
-  },
-  {
-   "title": "Africa-China Post-Doctoral Fellowship 2027-2028 (Funded)",
-   "link": "https://opportunitydesk.org/2026/10/12/africa-china-post-doctoral-fellowship-2027-2028/",
-   "date": "2026-10-12",
-   "source": "Opportunity Desk",
-   "official": false,
-   "ids": [],
-   "summary": "Deadline: November 15, 2026 Applications for the Africa-China Post-Doctoral Fellowship 2027-2028 are now open. The Africa-China Initiative (ACI) at the Walsh School of Foreign Service (SFS) at George…",
-   "seen": "2026-10-12"
-  },
-  {
-   "title": "World Bank Government Analytics Fellowship 2027 (Fully Funded)",
-   "link": "https://opportunitiescorners.com/world-bank-government-analytics-fellowship-2027/",
-   "date": "2026-10-12",
-   "source": "Opportunities Corners",
-   "official": false,
-   "ids": [],
-   "summary": "Applications are now open for the World Bank Government Analytics Fellowship 2027, an international professional development opportunity for government officials seeking to improve public administrat…",
-   "seen": "2026-10-12"
-  },
-  {
-   "title": "2027 Palestine-Oxford Scholarship in UK | Fully Funded",
-   "link": "https://www.scholarshipregion.com/palestine-oxford-scholarship-in-geography/",
-   "date": "2026-10-12",
-   "source": "Scholarship Region",
-   "official": false,
-   "ids": [],
-   "summary": "The University of Oxford, through its School of Geography and the Environment (SoGE), is inviting applications for the Palestine-Oxford Scholarship in Geography and the Environment 2027. The award co…",
-   "seen": "2026-10-12"
   }
  ]
 }
