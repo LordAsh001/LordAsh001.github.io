@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-25",
+ "updated": "2026-10-26",
  "sources": [
   {
    "source": "Opportunities for Africans",
@@ -14,17 +14,17 @@
   {
    "source": "Opportunities Corners",
    "ok": true,
-   "items": 5
+   "items": 2
   },
   {
    "source": "Scholarship Region",
-   "ok": true,
-   "items": 7
+   "ok": false,
+   "error": "not well-formed (invalid token): line 1, column 119"
   },
   {
    "source": "Opportunities for Youth",
-   "ok": true,
-   "items": 6
+   "ok": false,
+   "error": "HTTP Error 403: Forbidden"
   },
   {
    "source": "Commonwealth Scholarship Commission",
@@ -65,6 +65,16 @@
    "ids": [],
    "summary": "Applications are now open for the Stanford Fisher Family Summer Program 2027, formerly known as the Draper Hills Summer Fellows Program. This fully funded Fellowship in the USA is hosted annually by …",
    "seen": "2026-10-25"
+  },
+  {
+   "title": "33 Global Trainings, Awards and Travel Abroad Opportunities Currently Open – October 25, 2026",
+   "link": "https://opportunitydesk.org/2026/10/25/33-global-trainings-awards-and-travel-abroad-opportunities-currently-open-october-25-2026/",
+   "date": "2026-10-25",
+   "source": "Opportunity Desk",
+   "official": false,
+   "ids": [],
+   "summary": "1. EJN Virtual Media Workshops on the 30×30 Target and Marine Protected Areas 2027The Earth Journalism Network is inviting journalists to join virtual media workshops focused on the global 30×30 cons…",
+   "seen": "2026-10-26"
   },
   {
    "title": "IDM-Africa Fellowship Programme 2027",
@@ -1684,16 +1694,6 @@
    "official": false,
    "ids": [],
    "summary": "Young water professionals who are developing innovative solutions to water challenges have an opportunity to strengthen their work through the 2027–2028 IWA & Grundfos Youth Action for SDG 6 Fellowsh…",
-   "seen": "2026-10-13"
-  },
-  {
-   "title": "Toronto Metropolitan University Bridging Divides Graduate Student Scholarships 2027: Up to $45,000 Annually for Master’s and PhD Students",
-   "link": "https://opportunitiesforyouth.org/2026/10/13/toronto-metropolitan-university-bridging-divides-graduate-student-scholarships-2027-up-to-45000-annually-for-masters-and-phd-students/",
-   "date": "2026-10-13",
-   "source": "Opportunities for Youth",
-   "official": false,
-   "ids": [],
-   "summary": "Introduction Graduate students looking to pursue advanced research in migration, social divisions, and related interdisciplinary fields have an opportunity to receive substantial financial support th…",
    "seen": "2026-10-13"
   }
  ]
