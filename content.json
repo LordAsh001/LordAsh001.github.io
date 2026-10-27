@@ -467,6 +467,32 @@
       "body": "",
       "items": [
         {
+          "name": "LARA · Legal Access to Research for Africa",
+          "text": "Find a legal copy of a paywalled journal article. Enter a DOI and LARA searches 10 free scholarly databases at once, drafts a request to the author, points you to Research4Life, and connects you with African researchers in the diaspora who help track papers down.",
+          "link_label": "Open tool",
+          "sdgs": [
+            4,
+            10,
+            17
+          ],
+          "hidden": false,
+          "url": "/lara/",
+          "kind": "Interactive tool · free",
+          "audience": [
+            "Students",
+            "Researchers",
+            "Educators"
+          ],
+          "level": "Beginner",
+          "numbers": [
+            {
+              "value": "10",
+              "label": "free databases searched per DOI"
+            }
+          ],
+          "classroom": "show students how to find a legal free copy of a paper before they give up on it."
+        },
+        {
           "name": "Techno-Economic Studio",
           "text": "Carry out a techno-economic assessment step by step, from capital and operating cost to cash flow, NPV, IRR and minimum selling price, with 30 rebuilt published case studies, presets for 197 countries and 7,768 published TEAs to benchmark against.",
           "link_label": "Open tool",
