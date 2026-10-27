@@ -1,14 +1,14 @@
 {
- "updated": "2026-10-26",
+ "updated": "2026-10-27",
  "pages": {
   "chevening": {
    "url": "https://www.chevening.org/scholarship/nigeria/",
    "hash": "3b9c137f470fc984",
-   "checked": "2026-10-26",
+   "checked": "2026-10-27",
    "ok": true,
    "error": null,
-   "etag": "\"d659df0d577c398bd8eb056853f4cec0\"",
-   "modified": "Mon, 26 Oct 2026 11:18:47 GMT",
+   "etag": "\"9e178c8da0cccc27e84ea98148761177\"",
+   "modified": "Tue, 27 Oct 2026 10:43:35 GMT",
    "pending": "closed",
    "since": "2026-10-08",
    "signal": "closed",
@@ -17,11 +17,11 @@
   "csc-masters": {
    "url": "https://cscuk.fcdo.gov.uk/scholarships/commonwealth-masters-scholarships/",
    "hash": "e3b0c44298fc1c14",
-   "checked": "2026-10-26",
+   "checked": "2026-10-27",
    "ok": true,
    "error": null,
    "etag": null,
-   "modified": "Sun, 25 Oct 2026 13:16:54 GMT",
+   "modified": "Mon, 26 Oct 2026 13:38:00 GMT",
    "pending": "unclear",
    "since": "2026-10-09",
    "signal": "unclear",
@@ -30,22 +30,22 @@
   },
   "csc-phd": {
    "url": "https://cscuk.fcdo.gov.uk/scholarships/commonwealth-phd-scholarships/",
-   "hash": "e3b0c44298fc1c14",
-   "checked": "2026-10-26",
+   "hash": "375adad7815bf70c",
+   "checked": "2026-10-27",
    "ok": true,
    "error": null,
    "etag": null,
-   "modified": "Sun, 25 Oct 2026 13:38:56 GMT",
+   "modified": "Mon, 26 Oct 2026 14:48:53 GMT",
    "pending": "unclear",
    "since": "2026-10-09",
    "signal": "unclear",
    "evidence": "",
-   "changed": "2026-10-26"
+   "changed": "2026-10-27"
   },
   "gates": {
    "url": "https://www.gatescambridge.org/apply/timeline/",
    "hash": "199c761ad86b2603",
-   "checked": "2026-10-26",
+   "checked": "2026-10-27",
    "ok": true,
    "error": null,
    "etag": null,
@@ -59,7 +59,7 @@
   "knight": {
    "url": "https://knight-hennessy.stanford.edu/admission/preparing-your-applications/application-deadlines",
    "hash": "a556281d3495542f",
-   "checked": "2026-10-26",
+   "checked": "2026-10-27",
    "ok": true,
    "error": null,
    "etag": "\"1792003976\"",
@@ -68,20 +68,20 @@
   },
   "clarendon": {
    "url": "https://www.ox.ac.uk/clarendon",
-   "checked": "2026-10-26",
+   "checked": "2026-10-27",
    "ok": false,
    "error": "HTTP 403"
   },
   "weidenfeld": {
    "url": "https://www.weidenfeldhoffmann.org/",
-   "checked": "2026-10-26",
+   "checked": "2026-10-27",
    "ok": false,
    "error": "HTTP 522"
   },
   "rhodes-wa": {
    "url": "https://www.rhodeshouse.ox.ac.uk/scholarships/applications/west-africa/",
    "hash": "09dccb56c920a1e3",
-   "checked": "2026-10-26",
+   "checked": "2026-10-27",
    "ok": true,
    "error": null,
    "etag": null,
@@ -94,7 +94,7 @@
   "schwarzman": {
    "url": "https://www.schwarzmanscholars.org/admissions/",
    "hash": "310bd8e989522b2a",
-   "checked": "2026-10-26",
+   "checked": "2026-10-27",
    "ok": true,
    "error": null,
    "etag": null,
@@ -107,7 +107,7 @@
   "erasmus": {
    "url": "https://www.eacea.ec.europa.eu/scholarships/erasmus-mundus-catalogue_en",
    "hash": "63ff211053e56511",
-   "checked": "2026-10-26",
+   "checked": "2026-10-27",
    "ok": true,
    "error": null,
    "etag": null,
@@ -119,7 +119,7 @@
   },
   "daad-epos": {
    "url": "https://www.daad.de/en/study-and-research-in-germany/scholarships/",
-   "checked": "2026-10-26",
+   "checked": "2026-10-27",
    "ok": true,
    "error": null,
    "hash": "983b9f18452a77dd",
@@ -133,7 +133,7 @@
   "si": {
    "url": "https://si.se/en/apply/scholarships/swedish-institute-scholarships-for-global-professionals/",
    "hash": "1403d22215e0fd6d",
-   "checked": "2026-10-26",
+   "checked": "2026-10-27",
    "ok": true,
    "error": null,
    "etag": null,
@@ -146,14 +146,14 @@
   },
   "kth": {
    "url": "https://www.kth.se/en/studies/master/admission/scholarships",
-   "checked": "2026-10-26",
+   "checked": "2026-10-27",
    "ok": false,
    "error": "HTTP 500"
   },
   "delft": {
    "url": "https://www.tudelft.nl/en/education/practical-matters/scholarships",
    "hash": "2e8548d730950088",
-   "checked": "2026-10-26",
+   "checked": "2026-10-27",
    "ok": true,
    "error": null,
    "etag": null,
@@ -165,14 +165,14 @@
   },
   "radboud": {
    "url": "https://www.ru.nl/en/education/scholarships-and-grants",
-   "checked": "2026-10-26",
+   "checked": "2026-10-27",
    "ok": false,
    "error": "HTTP 404"
   },
   "eth": {
    "url": "https://ethz.ch/en/studies/financial/scholarships/excellencescholarship.html",
    "hash": "829fd1ba620bd7b1",
-   "checked": "2026-10-26",
+   "checked": "2026-10-27",
    "ok": true,
    "error": null,
    "etag": null,
@@ -184,14 +184,14 @@
   },
   "eiffel": {
    "url": "https://www.campusfrance.org/en/eiffel-scholarship-program-of-excellence",
-   "hash": "6e81f16c0c49cf46",
-   "checked": "2026-10-26",
+   "hash": "eb5815f3e7ddb137",
+   "checked": "2026-10-27",
    "ok": true,
    "error": null,
    "etag": null,
    "modified": null,
    "pending": "open",
-   "changed": "2026-10-26",
+   "changed": "2026-10-27",
    "since": "2026-10-24",
    "signal": "open",
    "evidence": "plicants up to 35 years old at PhD level. 2027 Campaign Timeline Opening of the call for applications: October 2026 Deadline for the reception of applications by Campus France: January 6, 2027 included . Publication of re"
@@ -199,11 +199,11 @@
   "ubc-isp": {
    "url": "https://you.ubc.ca/financial-planning/scholarships-awards-international-students/",
    "hash": "947b566ff2e59533",
-   "checked": "2026-10-26",
+   "checked": "2026-10-27",
    "ok": true,
    "error": null,
    "etag": null,
-   "modified": "Mon, 26 Oct 2026 04:32:52 GMT",
+   "modified": "Tue, 27 Oct 2026 01:34:16 GMT",
    "pending": "unclear",
    "since": "2026-10-08",
    "signal": "unclear",
@@ -211,14 +211,14 @@
   },
   "reach-oxford": {
    "url": "https://www.ox.ac.uk/admissions/undergraduate/fees-and-funding/oxford-support/reach-oxford-scholarship",
-   "checked": "2026-10-26",
+   "checked": "2026-10-27",
    "ok": false,
    "error": "HTTP 403"
   },
   "uopeople": {
    "url": "https://www.uopeople.edu/",
    "hash": "4f6ce79ecef3ee52",
-   "checked": "2026-10-26",
+   "checked": "2026-10-27",
    "ok": true,
    "error": null,
    "etag": null,
@@ -231,20 +231,20 @@
   },
   "fulbright": {
    "url": "https://ng.usembassy.gov/the-fulbright-foreign-student-program/",
-   "checked": "2026-10-26",
+   "checked": "2026-10-27",
    "ok": false,
    "error": "HTTP 403"
   },
   "aauw": {
    "url": "https://www.aauw.org/resources/programs/fellowships-grants/current-opportunities/international/",
-   "checked": "2026-10-26",
+   "checked": "2026-10-27",
    "ok": false,
    "error": "HTTP 403"
   },
   "mext": {
    "url": "https://www.studyinjapan.go.jp/en/planning/scholarships/mext-scholarships/",
    "hash": "a343cc6789dc3797",
-   "checked": "2026-10-26",
+   "checked": "2026-10-27",
    "ok": true,
    "error": null,
    "etag": null,
@@ -256,20 +256,20 @@
   },
   "csc-china": {
    "url": "https://www.campuschina.org/",
-   "checked": "2026-10-26",
+   "checked": "2026-10-27",
    "ok": false,
    "error": "HTTP 412"
   },
   "gks": {
    "url": "https://www.studyinkorea.go.kr/",
-   "hash": "d5bf4cb129d6523d",
-   "checked": "2026-10-26",
+   "hash": "e447dacfc0a3afc2",
+   "checked": "2026-10-27",
    "ok": true,
    "error": null,
    "etag": null,
    "modified": null,
    "pending": "unclear",
-   "changed": "2026-10-26",
+   "changed": "2026-10-27",
    "since": "2026-10-08",
    "signal": "unclear",
    "evidence": ""
@@ -277,7 +277,7 @@
   "turkiye": {
    "url": "https://www.turkiyeburslari.gov.tr/",
    "hash": "2a902f2bdde76d33",
-   "checked": "2026-10-26",
+   "checked": "2026-10-27",
    "ok": true,
    "error": null,
    "etag": null,
@@ -291,7 +291,7 @@
   "hungaricum": {
    "url": "https://stipendiumhungaricum.hu/",
    "hash": "9d87db21e0926212",
-   "checked": "2026-10-26",
+   "checked": "2026-10-27",
    "ok": true,
    "error": null,
    "etag": null,
@@ -304,8 +304,8 @@
   },
   "mastercard": {
    "url": "https://mastercardfdn.org/en/what-we-do/our-programs/mastercard-foundation-scholars-program/",
-   "hash": "9bdcdf43fcc14e31",
-   "checked": "2026-10-26",
+   "hash": "70bc1ee947403dc7",
+   "checked": "2026-10-27",
    "ok": true,
    "error": null,
    "etag": null,
@@ -314,12 +314,12 @@
    "since": "2026-10-08",
    "signal": "unclear",
    "evidence": "",
-   "changed": "2026-10-24"
+   "changed": "2026-10-27"
   },
   "mandela-rhodes": {
    "url": "https://www.mandelarhodes.org/scholarship/apply/",
    "hash": "addb7ff17d63c1d6",
-   "checked": "2026-10-26",
+   "checked": "2026-10-27",
    "ok": true,
    "error": null,
    "etag": null,
@@ -332,7 +332,7 @@
   "jjwbgsp": {
    "url": "https://www.worldbank.org/en/programs/scholarships",
    "hash": "7c6777a60b7acff5",
-   "checked": "2026-10-26",
+   "checked": "2026-10-27",
    "ok": true,
    "error": null,
    "etag": null,
@@ -345,7 +345,7 @@
   "ptdf": {
    "url": "https://ptdf.gov.ng/",
    "hash": "51332ab3d6d2bf3f",
-   "checked": "2026-10-26",
+   "checked": "2026-10-27",
    "ok": true,
    "error": null,
    "etag": null,
@@ -358,7 +358,7 @@
   "fsb-bea": {
    "url": "https://education.gov.ng/federal-scholarships-board/",
    "hash": "43903697e63e76bb",
-   "checked": "2026-10-26",
+   "checked": "2026-10-27",
    "ok": true,
    "error": null,
    "etag": null,
@@ -371,42 +371,42 @@
   },
   "nlng": {
    "url": "https://www.nigerialng.com/csr/Pages/Scholarships.aspx",
-   "checked": "2026-10-26",
+   "checked": "2026-10-27",
    "ok": false,
    "error": "<urlopen error [Errno -2] Name or service not known>"
   },
   "total": {
    "url": "https://csr-ngscholarship.totalenergies.com/",
-   "checked": "2026-10-26",
+   "checked": "2026-10-27",
    "ok": false,
    "error": "<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl."
   },
   "agbami": {
    "url": "https://www.chevron.com/worldwide/nigeria",
-   "checked": "2026-10-26",
+   "checked": "2026-10-27",
    "ok": false,
    "error": "HTTP 403"
   },
   "shell": {
    "url": "https://www.shell.com.ng/sustainability/communities/education-programmes.html",
-   "checked": "2026-10-26",
+   "checked": "2026-10-27",
    "ok": false,
    "error": "page too short to read"
   },
   "seplat": {
    "url": "https://www.seplatenergy.com/news-insights/news/nnpcseplat-jv-national-undergraduate-scholarship/",
-   "checked": "2026-10-26",
+   "checked": "2026-10-27",
    "ok": false,
    "error": "HTTP 403"
   },
   "mtn": {
    "url": "https://www.mtn.ng/scholarships/",
    "hash": "09eb4efa04106238",
-   "checked": "2026-10-26",
+   "checked": "2026-10-27",
    "ok": true,
    "error": null,
    "etag": "\"7b3d86cae706e80bb378354719e40f68\"",
-   "modified": "Mon, 26 Oct 2026 11:22:05 GMT",
+   "modified": "Tue, 27 Oct 2026 10:46:25 GMT",
    "pending": "unclear",
    "since": "2026-10-08",
    "signal": "unclear",
@@ -415,7 +415,7 @@
   "ovia": {
    "url": "https://jimoviafoundation.org/faq/",
    "hash": "1992794b61ae328d",
-   "checked": "2026-10-26",
+   "checked": "2026-10-27",
    "ok": true,
    "error": null,
    "etag": null,
@@ -428,7 +428,7 @@
   "nbplc": {
    "url": "https://www.nbplc.com/tag/education/",
    "hash": "0829943aad59c394",
-   "checked": "2026-10-26",
+   "checked": "2026-10-27",
    "ok": true,
    "error": null,
    "etag": null,
@@ -441,7 +441,7 @@
   "nddc": {
    "url": "https://www.nddc.gov.ng/",
    "hash": "74f19fcea1507c8f",
-   "checked": "2026-10-26",
+   "checked": "2026-10-27",
    "ok": true,
    "error": null,
    "etag": null,
@@ -454,7 +454,7 @@
   },
   "tetfund": {
    "url": "https://tetfund.gov.ng/",
-   "checked": "2026-10-26",
+   "checked": "2026-10-27",
    "ok": true,
    "error": null,
    "hash": "47bbb75202d5cbed",
@@ -468,7 +468,7 @@
   "nelfund": {
    "url": "https://www.nelf.gov.ng/",
    "hash": "bf5b3925a727e309",
-   "checked": "2026-10-26",
+   "checked": "2026-10-27",
    "ok": true,
    "error": null,
    "etag": "\"k7zcro5vv6oza\"",

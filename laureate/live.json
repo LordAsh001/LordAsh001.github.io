@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-26",
+ "updated": "2026-10-27",
  "sources": [
   {
    "source": "Opportunities for Africans",
@@ -18,18 +18,18 @@
   },
   {
    "source": "Scholarship Region",
-   "ok": false,
-   "error": "not well-formed (invalid token): line 1, column 119"
+   "ok": true,
+   "items": 4
   },
   {
    "source": "Opportunities for Youth",
-   "ok": false,
-   "error": "HTTP Error 403: Forbidden"
+   "ok": true,
+   "items": 8
   },
   {
    "source": "Commonwealth Scholarship Commission",
-   "ok": false,
-   "error": "not well-formed (invalid token): line 1, column 0"
+   "ok": true,
+   "items": 2
   },
   {
    "source": "Erasmus Mundus catalogue (EACEA)",
@@ -56,6 +56,162 @@
   }
  ],
  "items": [
+  {
+   "title": "Abiola Ajimobi Foundation Scholarship (SAAF) 2026 | Step-by-Step Process",
+   "link": "https://www.scholarshipregion.com/ajimobi-foundation-scholarship/",
+   "date": "2026-10-27",
+   "source": "Scholarship Region",
+   "official": false,
+   "ids": [],
+   "summary": "Application for the 2026 Abiola Ajimobi Foundation Scholarship has commenced for all interested and qualified Nigerian students. The Ajimobi Foundation Scholarship seeks to offer educational support …",
+   "seen": "2026-10-27"
+  },
+  {
+   "title": "2027 Don Jazzy Tech Scholarship For Nigerians | How To Apply",
+   "link": "https://www.scholarshipregion.com/don-jazzy-tech-scholarship/",
+   "date": "2026-10-27",
+   "source": "Scholarship Region",
+   "official": false,
+   "ids": [],
+   "summary": "The Don Jazzy Tech Scholarship 2027 aims to make technology education more accessible by offering eligible applicants up to 100% (worth ₦447,000) off tuition fees for selected technology and digital-…",
+   "seen": "2026-10-27"
+  },
+  {
+   "title": "EPFL AI Center and Swiss AI Initiative Postdoctoral Fellowships 2026: Research Funding in Switzerland for International Researchers",
+   "link": "https://opportunitiesforyouth.org/2026/10/27/epfl-ai-center-and-swiss-ai-initiative-postdoctoral-fellowships-2026-research-funding-in-switzerland-for-international-researchers/",
+   "date": "2026-10-27",
+   "source": "Opportunities for Youth",
+   "official": false,
+   "ids": [],
+   "summary": "The EPFL AI Center and Swiss AI Initiative Postdoctoral Fellowships 2026 offer an exciting opportunity for outstanding early-career researchers to advance artificial intelligence research in Switzerl…",
+   "seen": "2026-10-27"
+  },
+  {
+   "title": "University of Exeter EPSRC Fully Funded Engineering PhD Studentships 2027 in the UK: Research Projects, Funding, Eligibility and Application Guide",
+   "link": "https://opportunitiesforyouth.org/2026/10/27/university-of-exeter-epsrc-fully-funded-engineering-phd-studentships-2027-in-the-uk-research-projects-funding-eligibility-and-application-guide/",
+   "date": "2026-10-27",
+   "source": "Opportunities for Youth",
+   "official": false,
+   "ids": [],
+   "summary": "The University of Exeter is inviting applications for its Engineering and Physical Sciences Research Council (EPSRC) Doctoral Landscape Award (DLA) PhD Studentships for September 2027 entry. These co…",
+   "seen": "2026-10-27"
+  },
+  {
+   "title": "CODESRIA Research Grants on University Ecosystems 2027: Funding of $5,000–$15,000 for African Researchers",
+   "link": "https://opportunitiesforyouth.org/2026/10/27/codesria-research-grants-on-university-ecosystems-2027-funding-of-5000-15000-for-african-researchers/",
+   "date": "2026-10-27",
+   "source": "Opportunities for Youth",
+   "official": false,
+   "ids": [],
+   "summary": "The Council for the Development of Social Science Research in Africa (CODESRIA) has announced a call for proposals for its Research Grants on University Ecosystems programme, focusing on higher educa…",
+   "seen": "2026-10-27"
+  },
+  {
+   "title": "Gates Cambridge Scholarship 2027–2028: Fully Funded Postgraduate Scholarships at the University of Cambridge, UK",
+   "link": "https://opportunitiesforyouth.org/2026/10/27/the-gates-cambridge-scholarship-your-path-to-excellence-fully-funded/",
+   "date": "2026-10-27",
+   "source": "Opportunities for Youth",
+   "official": false,
+   "ids": [
+    "gates"
+   ],
+   "summary": "The Gates Cambridge Scholarship is one of the world’s leading postgraduate scholarship programmes, offering outstanding international students the opportunity to pursue eligible postgraduate degrees …",
+   "seen": "2026-10-27"
+  },
+  {
+   "title": "Fully Funded UN Journalism Fellowship 2027 in Qatar: Travel Support for 10 Journalists to Cover the Doha Programme of Action Review",
+   "link": "https://opportunitiesforyouth.org/2026/10/27/fully-funded-un-journalism-fellowship-2027-in-qatar-travel-support-for-10-journalists-to-cover-the-doha-programme-of-action-review/",
+   "date": "2026-10-27",
+   "source": "Opportunities for Youth",
+   "official": false,
+   "ids": [],
+   "summary": "The United Nations is inviting applications for the 2027 DPoA MTR Journalism Fellowship, a fully funded opportunity for journalists from eligible Least Developed Countries (LDCs) to travel to Doha, Q…",
+   "seen": "2026-10-27"
+  },
+  {
+   "title": "Sir Cyril Taylor Young African Leaders Program 2027 (Fully-funded)",
+   "link": "https://opportunitydesk.org/2026/10/26/sir-cyril-taylor-young-african-leaders-program-2027/",
+   "date": "2026-10-26",
+   "source": "Opportunity Desk",
+   "official": false,
+   "ids": [],
+   "summary": "Deadline: November 19, 2026 Applications are open for the Sir Cyril Taylor Young African Leaders Program 2027. With generous grant support from the Sir Cyril Taylor Charitable Foundation, this initia…",
+   "seen": "2026-10-27"
+  },
+  {
+   "title": "Nexa Lighthouse Funding Program 2027",
+   "link": "https://opportunitydesk.org/2026/10/26/nexa-lighthouse-funding-program-2027/",
+   "date": "2026-10-26",
+   "source": "Opportunity Desk",
+   "official": false,
+   "ids": [],
+   "summary": "Deadline: November 17, 2026 Applications for the Nexa Lighthouse Funding Program 2027 are now open. Nexa Lighthouse is investing in proven innovations across Asia and the Pacific that help local heal…",
+   "seen": "2026-10-27"
+  },
+  {
+   "title": "Fulbright U.S.-ASEAN Visiting Scholar Program 2027 (Fully-funded)",
+   "link": "https://opportunitydesk.org/2026/10/26/fulbright-us-asean-visiting-scholar-program-2027/",
+   "date": "2026-10-26",
+   "source": "Opportunity Desk",
+   "official": false,
+   "ids": [
+    "fulbright"
+   ],
+   "summary": "Deadline: November 30, 2026 Applications are open for the Fulbright U.S.-ASEAN Visiting Scholar Program 2027. The Fulbright U.S.-ASEAN Visiting Scholar Program welcomes university faculty, government…",
+   "seen": "2026-10-27"
+  },
+  {
+   "title": "Birmingham Business School Scholarships in UK 2027 | How To Apply",
+   "link": "https://www.scholarshipregion.com/birmingham-business-school-scholarship/",
+   "date": "2026-10-26",
+   "source": "Scholarship Region",
+   "official": false,
+   "ids": [],
+   "summary": "The University of Birmingham is inviting international candidates to apply for the 2026 Birmingham Business School Scholarships. The Birmingham Business School Masters Scholarships offer awards up to…",
+   "seen": "2026-10-27"
+  },
+  {
+   "title": "Awareness Africa University Scholarship For Nigerians | ₦500,000 Award",
+   "link": "https://www.scholarshipregion.com/awareness-africa-university-scholarship/",
+   "date": "2026-10-26",
+   "source": "Scholarship Region",
+   "official": false,
+   "ids": [],
+   "summary": "The Awareness Africa University Scholarship 2026/2027 offers a financial assistance opportunity for African students to begin undergraduate studies at a federal or state university in Nigeria. The sc…",
+   "seen": "2026-10-27"
+  },
+  {
+   "title": "SMART Scholarship-for-Service Program 2027: Fully Funded STEM Scholarships in the USA with Annual Stipends of Up to $46,000",
+   "link": "https://opportunitiesforyouth.org/2026/10/26/smart-scholarship-for-service-program-2027/",
+   "date": "2026-10-26",
+   "source": "Opportunities for Youth",
+   "official": false,
+   "ids": [],
+   "summary": "The SMART Scholarship-for-Service Program offers a significant opportunity for students pursuing science, technology, engineering, and mathematics (STEM) degrees to receive fully funded education at …",
+   "seen": "2026-10-27"
+  },
+  {
+   "title": "Joint MSc in Geography of Environmental Risks and Human Security at UNU-EHS and the University of Bonn, Germany – 2027 Master’s Programme with DAAD EPOS Scholarship Opportunities",
+   "link": "https://opportunitiesforyouth.org/2026/10/26/joint-msc-in-geography-of-environmental-risks-and-human-security-at-unu-ehs-and-the-university-of-bonn-germany-2027-masters-programme-with-daad-epos-scholarship-opportunities/",
+   "date": "2026-10-26",
+   "source": "Opportunities for Youth",
+   "official": false,
+   "ids": [
+    "daad-epos"
+   ],
+   "summary": "The Joint MSc in Geography of Environmental Risks and Human Security is an international postgraduate programme offered by the United Nations University Institute for Environment and Human Security (…",
+   "seen": "2026-10-27"
+  },
+  {
+   "title": "VLIR-UOS ICP Connect Scholarships 2027–2028 in Belgium: Fully Funded Study Opportunities for International Students",
+   "link": "https://opportunitiesforyouth.org/2026/10/26/vlir-uos-icp-connect-scholarships-2027-2028-in-belgium-fully-funded-study-opportunities-for-international-students/",
+   "date": "2026-10-26",
+   "source": "Opportunities for Youth",
+   "official": false,
+   "ids": [],
+   "summary": "The VLIR-UOS ICP Connect Scholarships 2027–2028 offer international students from eligible countries in Africa, Asia, and Latin America the opportunity to pursue selected English-taught bachelor’s an…",
+   "seen": "2026-10-27"
+  },
   {
    "title": "Stanford Fisher Family Summer Program 2027, USA (Fully Funded)",
    "link": "https://opportunitiescorners.com/stanford-fisher-family-summer-program-2027/",
@@ -1543,158 +1699,6 @@
    "ids": [],
    "summary": "According to UNESCO, nearly 6.9 million students were studying outside their home countries in 2022. This reflects the growing demand for international higher education. As an African student interes…",
    "seen": "2026-10-15"
-  },
-  {
-   "title": "CMU Africa Mastercard Scholarship 2027 (Carnegie Mellon University-Africa) | Fully Funded",
-   "link": "https://www.scholarshipregion.com/cmu-africa-mastercard-scholarship/",
-   "date": "2026-10-14",
-   "source": "Scholarship Region",
-   "official": false,
-   "ids": [],
-   "summary": "The CMU Mastercard Scholarship provides generous financial, social, and academic support for young Africans whose talent and promise exceed their financial resources. The Carnegie Mellon University-A…",
-   "seen": "2026-10-15"
-  },
-  {
-   "title": "University of Sussex Stuart Hall Scholarship in UK 2027 | Fully Funded",
-   "link": "https://www.scholarshipregion.com/university-of-sussex-stuart-hall-scholarship/",
-   "date": "2026-10-14",
-   "source": "Scholarship Region",
-   "official": false,
-   "ids": [],
-   "summary": "The University of Sussex Stuart Hall Scholarship is a fully funded graduate opportunity in the United Kingdom for international students. The University of Sussex Scholarship covers full tuition fees…",
-   "seen": "2026-10-15"
-  },
-  {
-   "title": "University of Sussex Scholarship in UK 2027 | Fully Funded",
-   "link": "https://www.scholarshipregion.com/university-of-sussex-scholarship/",
-   "date": "2026-10-14",
-   "source": "Scholarship Region",
-   "official": false,
-   "ids": [],
-   "summary": "We are about to reveal fully funded scholarship in UK that offers a direct PhD from bachelor’s degree. Yes, it is the University of Sussex Scholarship. The University of Sussex Scholarship covers ful…",
-   "seen": "2026-10-15"
-  },
-  {
-   "title": "2027 Royal Thai Government Scholarships For International Students | Fully Funded",
-   "link": "https://www.scholarshipregion.com/royal-thai-government-scholarship/",
-   "date": "2026-10-14",
-   "source": "Scholarship Region",
-   "official": false,
-   "ids": [],
-   "summary": "The Asian Institute of Technology (AIT) in Thailand annually offers several fully funded Royal Thai Government Scholarships for international students from eligible countries. The Royal Thai Governme…",
-   "seen": "2026-10-15"
-  },
-  {
-   "title": "Colorado State University Scholarships in USA 2027 | Fully Funded",
-   "link": "https://www.scholarshipregion.com/colorado-state-university-scholarship/",
-   "date": "2026-10-14",
-   "source": "Scholarship Region",
-   "official": false,
-   "ids": [],
-   "summary": "The Colorado State University Scholarship is a fully funded Master’s and PhD opportunity in the United States for students from home and foreign countries. The scholarship, offered as a graduate assi…",
-   "seen": "2026-10-15"
-  },
-  {
-   "title": "United Nations Regional Course in International Law for Africa 2027 in Ethiopia: Fully Funded Fellowship Opportunities for Legal Professionals — Apply by 30 October 2026",
-   "link": "https://opportunitiesforyouth.org/2026/10/14/applications-for-the-2025-united-nations-regional-course-in-international-law-for-africa-are-now-being-accepted-scholarships-available/",
-   "date": "2026-10-14",
-   "source": "Opportunities for Youth",
-   "official": false,
-   "ids": [],
-   "summary": "The United Nations Regional Course in International Law for Africa 2027 is an opportunity for qualified legal professionals, government officials, academics, and other practitioners working in intern…",
-   "seen": "2026-10-15"
-  },
-  {
-   "title": "ClimateCAP MBA Fellowship 2027: Apply for a Global Climate Leadership Fellowship for MBA Students",
-   "link": "https://opportunitiesforyouth.org/2026/10/14/climatecap-mba-fellowship-2027-apply-for-a-global-climate-leadership-fellowship-for-mba-students/",
-   "date": "2026-10-14",
-   "source": "Opportunities for Youth",
-   "official": false,
-   "ids": [],
-   "summary": "Applications are open for the ClimateCAP MBA Fellowship 2027, a 12-month professional and academic development programme designed for Master of Business Administration (MBA) students who want to unde…",
-   "seen": "2026-10-15"
-  },
-  {
-   "title": "Global Investigative Journalism Conference (GIJC) Fellowship 2027 (Funded)",
-   "link": "https://opportunitydesk.org/2026/10/13/global-investigative-journalism-conference-fellowship-2027/",
-   "date": "2026-10-13",
-   "source": "Opportunity Desk",
-   "official": false,
-   "ids": [],
-   "summary": "Deadline: January 31, 2027 Applications are open for the Global Investigative Journalism Conference (GIJC) Fellowship 2027. The 15th Global Investigative Journalism Conference (GIJC) will be held in …",
-   "seen": "2026-10-13"
-  },
-  {
-   "title": "United Nations Regional Course in International Law for Africa 2027 (Funding available)",
-   "link": "https://opportunitydesk.org/2026/10/13/united-nations-regional-course-in-international-law-for-africa-2027/",
-   "date": "2026-10-13",
-   "source": "Opportunity Desk",
-   "official": false,
-   "ids": [],
-   "summary": "Deadline: October 30, 2026 Applications are open for the United Nations Regional Course in International Law for Africa 2027. The United Nations Regional Course in International Law for Africa is org…",
-   "seen": "2026-10-13"
-  },
-  {
-   "title": "2027 Erasmus Mundus AFEPA Scholarship Programme in Germany, Sweden, Italy, Belgium (Fully Funded)",
-   "link": "https://www.scholarshipregion.com/erasmus-mundus-afepa-scholarship/",
-   "date": "2026-10-13",
-   "source": "Scholarship Region",
-   "official": false,
-   "ids": [
-    "erasmus"
-   ],
-   "summary": "The Erasmus Mundus AFEPA Scholarship is the European Master’s programme in Agricultural, Food, and Environmental Policy Analysis (AFEPA). The Erasmus Mundus AFEPA Scholarship is fully funded covering…",
-   "seen": "2026-10-13"
-  },
-  {
-   "title": "2027 Beahrs Environmental Leadership Program at UC Berkeley: Apply for Environmental Leadership Training and Scholarship Opportunities",
-   "link": "https://opportunitiesforyouth.org/2026/10/13/2027-beahrs-environmental-leadership-program-at-uc-berkeley-apply-for-environmental-leadership-training-and-scholarship-opportunities/",
-   "date": "2026-10-13",
-   "source": "Opportunities for Youth",
-   "official": false,
-   "ids": [],
-   "summary": "The University of California, Berkeley, through the Rausser College of Natural Resources, is inviting applications for the 2027 Beahrs Environmental Leadership Program (ELP). This programme offers an…",
-   "seen": "2026-10-13"
-  },
-  {
-   "title": "Trinity College Dublin PhD Researcher in Sociology Scholarship 2027: Fully Funded PhD in Ireland with €25,000 Annual Stipend",
-   "link": "https://opportunitiesforyouth.org/2026/10/13/trinity-college-dublin-phd-researcher-in-sociology-scholarship-2027-fully-funded-phd-in-ireland-with-e25000-annual-stipend/",
-   "date": "2026-10-13",
-   "source": "Opportunities for Youth",
-   "official": false,
-   "ids": [],
-   "summary": "Are you a postgraduate graduate with a background in Sociology, Social Policy, Sociology of Health, or a related social science discipline looking for a fully funded PhD opportunity in Europe? Trinit…",
-   "seen": "2026-10-13"
-  },
-  {
-   "title": "Youth Investment Council 2026–2027: Paid Youth Leadership Opportunity to Shape Major Community Funding in New Bedford, Massachusetts",
-   "link": "https://opportunitiesforyouth.org/2026/10/13/youth-investment-council-2026-2027-paid-youth-leadership-opportunity-to-shape-major-community-funding-in-new-bedford-massachusetts/",
-   "date": "2026-10-13",
-   "source": "Opportunities for Youth",
-   "official": false,
-   "ids": [],
-   "summary": "The Youth Investment Council is giving young people in New Bedford, Massachusetts, an opportunity to take part in something much bigger than a traditional youth leadership program. Selected Council m…",
-   "seen": "2026-10-13"
-  },
-  {
-   "title": "AWC Predoctoral and Postdoctoral Fellowships 2027–28 at Duke, Johns Hopkins SAIS and UT Austin: Fully Funded Research Fellowship Opportunity for Doctoral Scholars",
-   "link": "https://opportunitiesforyouth.org/2026/10/13/awc-predoctoral-and-postdoctoral-fellowships-2027-28-at-duke-johns-hopkins-sais-and-ut-austin-fully-funded-research-fellowship-opportunity-for-doctoral-scholars/",
-   "date": "2026-10-13",
-   "source": "Opportunities for Youth",
-   "official": false,
-   "ids": [],
-   "summary": "The America in the World Consortium (AWC) Predoctoral and Postdoctoral Fellowships 2027–28 offer an important research opportunity for scholars whose work examines American grand strategy, U.S. forei…",
-   "seen": "2026-10-13"
-  },
-  {
-   "title": "2027–2028 IWA & Grundfos Youth Action for SDG 6 Fellowship",
-   "link": "https://opportunitiesforyouth.org/2026/10/13/call-for-applications-fellowship-in-the-water-sector/",
-   "date": "2026-10-13",
-   "source": "Opportunities for Youth",
-   "official": false,
-   "ids": [],
-   "summary": "Young water professionals who are developing innovative solutions to water challenges have an opportunity to strengthen their work through the 2027–2028 IWA & Grundfos Youth Action for SDG 6 Fellowsh…",
-   "seen": "2026-10-13"
   }
  ]
 }
