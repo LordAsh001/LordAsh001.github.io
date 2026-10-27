@@ -83,6 +83,13 @@
   "resources": {
     "items": [
       {
+        "src": "/images/tool-lara.jpg",
+        "alt": "Screenshot of LARA after a DOI search: a Nature paper with 11 free legal copies found, including the published version and preprints on arXiv, PubMed Central and Harvard’s repository.",
+        "caption": "",
+        "anchor": "LARA",
+        "hidden": false
+      },
+      {
         "src": "/images/tool-tea-studio.jpg",
         "alt": "Screenshot of the Techno-Economic Studio: a guided start screen showing how capital cost, revenue and operating cost add up to a net present value.",
         "caption": "",
