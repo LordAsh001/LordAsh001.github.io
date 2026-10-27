@@ -4,7 +4,7 @@
 // database rules in supabase/schema.sql. Never put the service_role/secret key here.
 window.LARA_CONFIG = {
   SUPABASE_URL: "https://drxqetamznkqpjoryfde.supabase.co",
-  SUPABASE_ANON_KEY: "YOUR-ANON-OR-PUBLISHABLE-KEY",
+  SUPABASE_ANON_KEY: "sb_publishable_43H2h65_jChEG-UK52KRnA_2wGzZn3I",
 
   // Shown on the privacy page as the contact for data questions.
   CONTACT_EMAIL: "",
