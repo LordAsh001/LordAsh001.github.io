@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Privacy · LARA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,750&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="styles.css">
+<script src="config.js"></script>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div class="brand"><h1>LARA</h1><span class="doi-mark">doi:10.</span></div>
+    <p class="fullname">Legal Access to Research for Africa</p>
+    <p><a href="index.html">← Back to the site</a></p>
+  </header>
+  <main class="prose">
+    <h2>Privacy notice</h2>
+    <p class="small muted">Last updated: <span id="updated">October 2026</span></p>
+
+    <p>LARA (Legal Access to Research for Africa) helps researchers at African institutions get journal articles through legal routes. This notice explains what personal data we collect, why, and your rights. We follow the data protection laws that apply to our members, such as Nigeria's Data Protection Act 2023, Kenya's Data Protection Act 2019, Ghana's Data Protection Act 2012 and South Africa's Protection of Personal Information Act (POPIA).</p>
+
+    <h2>What we collect</h2>
+    <ul>
+      <li><b>Account:</b> your email address, used only to sign you in.</li>
+      <li><b>Profile:</b> the name, institution, country, city or region and field you enter, and whether you request papers or volunteer.</li>
+      <li><b>Requests:</b> the DOIs you request, notes you add, and the status of each request.</li>
+      <li><b>DOI checks:</b> the DOI you check and a short-lived record of how many checks you made in the past day (by account, or by IP address if you're not signed in), to keep within the free limits of the databases we use.</li>
+    </ul>
+
+    <h2>Why we use it</h2>
+    <ul>
+      <li>To run the service: matching requests with volunteers and showing members who is asking and who is helping.</li>
+      <li>To publish anonymous totals on the Impact page (numbers of requests, papers obtained, countries, institutions and fields). These never show names.</li>
+    </ul>
+    <p>Our legal basis is your consent when you join, which you can withdraw at any time by asking us to delete your account.</p>
+
+    <h2>Who can see it</h2>
+    <ul>
+      <li>Signed-in members can see your profile name, institution, country, city or region and field, your requests and their notes.</li>
+      <li>Your email address is never shown to other members.</li>
+      <li>Visitors who aren't signed in see only the anonymous totals.</li>
+    </ul>
+
+    <h2>Where it is stored</h2>
+    <p>Data is stored with our database provider, Supabase, which may hold it outside your country. DOIs (never your personal details) are sent to the open scholarly databases we search: Unpaywall, Crossref, OpenAlex, CORE, Europe PMC, Semantic Scholar, arXiv, DOAJ, DataCite and Zenodo.</p>
+
+    <h2>How long we keep it</h2>
+    <p>We keep your profile and requests while your account is active. Records of DOI checks are deleted after about a day. If you ask us to delete your account, we delete your profile, requests and notes.</p>
+
+    <h2>Your rights</h2>
+    <p>You can ask to see, correct, export or delete your data, or withdraw your consent, by writing to <span data-contact>the site operator</span>. You can also complain to the data protection authority in your country, for example the Nigeria Data Protection Commission, Kenya's Office of the Data Protection Commissioner, Ghana's Data Protection Commission or South Africa's Information Regulator.</p>
+  </main>
+  <footer class="foot"><div><a href="index.html">Home</a> · <a href="index.html#rules">Ground rules</a></div></footer>
+</div>
+<script>
+  (function () {
+    var c = (window.LARA_CONFIG || {}).CONTACT_EMAIL;
+    if (c) document.querySelectorAll("[data-contact]").forEach(function (el) { el.textContent = c; });
+  })();
+</script>
+</body>
+</html>

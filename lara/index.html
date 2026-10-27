@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LARA · Legal Access to Research for Africa</title>
+<meta name="description" content="Get journal articles legally: check free open-access copies across major databases, ask authors, and get help from African researchers abroad.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,750&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="styles.css">
+<script src="config.js"></script>
+<script type="module" src="app.js"></script>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div class="brand-row">
+      <div class="brand"><h1>LARA</h1><span class="doi-mark">doi:10.</span></div>
+      <div id="authBox" class="row"></div>
+    </div>
+    <p class="fullname">Legal Access to Research for Africa</p>
+    <p class="tagline">Request a journal article by its DOI. We search the major free scholarly databases for a legal copy, help you ask the author, and connect you with African researchers in the diaspora who volunteer to track papers down.</p>
+    <nav class="tabs" aria-label="Sections">
+      <a href="#request" data-tab="request">Request a paper</a>
+      <a href="#board" data-tab="board">Request board</a>
+      <a href="#mine" data-tab="mine">My requests</a>
+      <a href="#impact" data-tab="impact">Impact</a>
+      <a href="#profile" data-tab="profile">My profile</a>
+      <a href="#rules" data-tab="rules">Ground rules</a>
+    </nav>
+  </header>
+
+  <main>
+    <div id="statusNote" class="notice" hidden></div>
+
+    <!-- REQUEST -->
+    <section id="tab-request" class="stack">
+      <ol class="route" aria-label="How a request is handled">
+        <li><span class="n">STEP 1</span><b>Free legal copy</b><span>We check Unpaywall, OpenAlex, CORE, Europe PMC, Semantic Scholar, arXiv, Zenodo and more.</span></li>
+        <li><span class="n">STEP 2</span><b>Research4Life</b><span>Check your institution's free or low-cost journal access.</span></li>
+        <li><span class="n">STEP 3</span><b>Ask the author</b><span>Authors can usually share their own paper for research use.</span></li>
+        <li><span class="n">STEP 4</span><b>Volunteer help</b><span>A researcher abroad helps you find preprints, theses or the author.</span></li>
+      </ol>
+
+      <div class="panel">
+        <h2>Find your paper</h2>
+        <div class="row" style="align-items:end">
+          <label class="f" style="flex:1 1 320px">DOI
+            <input type="text" id="doiInput" placeholder="10.1016/j.watres.2023.120001 or https://doi.org/…" autocomplete="off" spellcheck="false">
+          </label>
+          <button class="primary" id="checkBtn" type="button">Check for a legal copy</button>
+        </div>
+        <p id="doiError" class="small" style="color:var(--warn)" hidden></p>
+        <div id="checkResult" class="stack" hidden></div>
+      </div>
+    </section>
+
+    <!-- BOARD -->
+    <section id="tab-board" class="stack" hidden>
+      <div class="row" style="justify-content:space-between">
+        <h2>Request board</h2>
+        <div class="chips" id="boardFilter">
+          <button type="button" aria-pressed="true" data-f="open">Waiting</button>
+          <button type="button" aria-pressed="false" data-f="active">In progress</button>
+          <button type="button" aria-pressed="false" data-f="done">Resolved</button>
+          <button type="button" aria-pressed="false" data-f="all">All</button>
+        </div>
+      </div>
+      <input type="text" id="boardSearch" placeholder="Filter by DOI, title, field or institution">
+      <p class="small muted" id="volHint"></p>
+      <div class="slips" id="boardList"></div>
+    </section>
+
+    <!-- MINE -->
+    <section id="tab-mine" class="stack" hidden>
+      <h2>Papers I asked for</h2>
+      <div class="slips" id="mineList"></div>
+      <h2>Requests I'm helping with</h2>
+      <div class="slips" id="helpList"></div>
+    </section>
+
+    <!-- IMPACT -->
+    <section id="tab-impact" class="stack" hidden>
+      <h2>Impact</h2>
+      <p class="muted small">Live totals from every request on the platform, across Africa. No names are shown here.</p>
+      <div class="stats" id="stats"></div>
+      <div class="panel"><h3>How papers were obtained</h3><div class="bars" id="routeBars"></div></div>
+      <div class="panel"><h3>Requesting countries</h3><div class="bars" id="countryBars"></div></div>
+      <div class="grid2">
+        <div class="panel"><h3>Requesting institutions</h3><div class="bars" id="instBars"></div></div>
+        <div class="panel"><h3>Fields</h3><div class="bars" id="fieldBars"></div></div>
+      </div>
+    </section>
+
+    <!-- PROFILE -->
+    <section id="tab-profile" class="stack" hidden>
+      <div class="panel">
+        <h2>My profile</h2>
+        <p class="muted small">Signed-in members see your name, institution, country and field on your requests. Visitors who aren't signed in never see them.</p>
+        <div class="grid2">
+          <label class="f">Name to show<input type="text" id="pName" maxlength="80"></label>
+          <label class="f">I want to
+            <select id="pRole">
+              <option value="requester">Request papers</option>
+              <option value="volunteer">Volunteer from abroad</option>
+              <option value="both">Both</option>
+            </select>
+          </label>
+          <label class="f">Institution<input type="text" id="pInst" maxlength="120" placeholder="e.g. University of Ghana"></label>
+          <label class="f">Country<input type="text" id="pCountry" maxlength="60" list="countryList" autocomplete="country-name" placeholder="e.g. Nigeria, Kenya, or Canada"></label>
+          <label class="f">City or region<input type="text" id="pLoc" maxlength="60" placeholder="e.g. Makurdi"></label>
+          <label class="f">Field<input type="text" id="pField" maxlength="80" placeholder="e.g. Environmental engineering"></label>
+        </div>
+        <label class="check" id="pledgeRow"><input type="checkbox" id="pPledge"><span>I will not share PDFs downloaded through my institution's subscriptions. I will help with legal routes only: open-access copies, preprints, theses and contacting authors.</span></label>
+        <div class="row"><button class="primary" id="saveProfile" type="button">Save profile</button><span class="small muted" id="profileState"></span></div>
+      </div>
+    </section>
+
+    <!-- SIGN IN -->
+    <section id="tab-signin" class="stack" hidden>
+      <div class="panel" style="max-width:520px">
+        <h2>Sign in or join</h2>
+        <p class="small muted">Enter your email and we'll send you a one-time sign-in link. No password needed. New members are signed up automatically.</p>
+        <label class="f">Email<input type="email" id="signinEmail" autocomplete="email" placeholder="you@institution.edu"></label>
+        <div class="row">
+          <button class="primary" id="signinBtn" type="button">Email me a sign-in link</button>
+          <button id="googleBtn" type="button" hidden>Continue with Google</button>
+        </div>
+        <p class="small" id="signinState"></p>
+        <p class="small muted">By joining you agree to the <a href="#rules">ground rules</a> and our <a href="privacy.html">privacy notice</a>.</p>
+      </div>
+    </section>
+
+    <!-- RULES -->
+    <section id="tab-rules" class="stack" hidden>
+      <div class="panel">
+        <h2>Ground rules</h2>
+        <ol class="rules">
+          <li><b>No sharing of subscription PDFs.</b> Library licences forbid passing articles to people outside the institution. Breaking them can cut off access for a whole university and puts the volunteer's account at risk.</li>
+          <li><b>Look for a free legal copy first.</b> Many paywalled papers have an accepted manuscript in a university repository, on arXiv, Europe PMC or the author's page. The DOI check does this for you.</li>
+          <li><b>Check Research4Life.</b> Universities, polytechnics and research institutes in most African countries can register for free or low-cost access to journals through Research4Life (Hinari, AGORA, OARE, GOALI). Eligibility depends on the country. Ask your librarian whether your institution has a login.</li>
+          <li><b>Ask the author.</b> Most publishers let authors send their own paper to individual researchers. A short, polite email usually works within a few days.</li>
+          <li><b>Volunteers help you search and ask.</b> They find preprints and theses, identify the corresponding author and can write to the author on your behalf.</li>
+          <li><b>Be kind.</b> Volunteers give their own time. Mark a request received or withdraw it when you no longer need it.</li>
+        </ol>
+      </div>
+    </section>
+  </main>
+  <datalist id="countryList"><option value="Algeria"><option value="Angola"><option value="Benin"><option value="Botswana"><option value="Burkina Faso"><option value="Burundi"><option value="Cabo Verde"><option value="Cameroon"><option value="Central African Republic"><option value="Chad"><option value="Comoros"><option value="Congo"><option value="Côte d'Ivoire"><option value="Democratic Republic of the Congo"><option value="Djibouti"><option value="Egypt"><option value="Equatorial Guinea"><option value="Eritrea"><option value="Eswatini"><option value="Ethiopia"><option value="Gabon"><option value="Gambia"><option value="Ghana"><option value="Guinea"><option value="Guinea-Bissau"><option value="Kenya"><option value="Lesotho"><option value="Liberia"><option value="Libya"><option value="Madagascar"><option value="Malawi"><option value="Mali"><option value="Mauritania"><option value="Mauritius"><option value="Morocco"><option value="Mozambique"><option value="Namibia"><option value="Niger"><option value="Nigeria"><option value="Rwanda"><option value="São Tomé and Príncipe"><option value="Senegal"><option value="Seychelles"><option value="Sierra Leone"><option value="Somalia"><option value="South Africa"><option value="South Sudan"><option value="Sudan"><option value="Tanzania"><option value="Togo"><option value="Tunisia"><option value="Uganda"><option value="Zambia"><option value="Zimbabwe"></datalist>
+
+  <footer class="foot">
+    <div><a href="#rules">Ground rules</a> · <a href="privacy.html">Privacy</a></div>
+    <div>Open data from Unpaywall, Crossref, OpenAlex, CORE, Europe PMC, Semantic Scholar, arXiv, DOAJ, DataCite and Zenodo.</div>
+  </footer>
+</div>
+<div id="toast" role="status" hidden></div>
+</body>
+</html>
