@@ -1,0 +1,13 @@
+{
+  "name": "LARA · Legal Access to Research for Africa",
+  "short_name": "LARA",
+  "description": "Find legal free copies of journal articles, write to authors, and get help from volunteers.",
+  "start_url": "./#request",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#0E1511",
+  "theme_color": "#0B6E45",
+  "icons": [
+    { "src": "icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }
+  ]
+}

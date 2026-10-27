@@ -7,8 +7,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,750&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
-<link rel="stylesheet" href="styles.css">
-<script src="config.js"></script>
+<link rel="stylesheet" href="styles.css?v=3">
+<script src="config.js?v=3"></script>
 </head>
 <body>
 <div class="wrap">
@@ -28,6 +28,10 @@
       <li><b>Account:</b> your email address, used only to sign you in.</li>
       <li><b>Profile:</b> the name, institution, country, city or region and field you enter, and whether you request papers or volunteer.</li>
       <li><b>Requests:</b> the DOIs you request, notes you add, and the status of each request.</li>
+      <li><b>Emails you send from LARA:</b> when you use "Send from LARA", we pass your message, your name and your email address to our email provider so the message can be delivered and replies reach you. We keep only a record that an email was sent (when, and for which request), not its text or the recipient's address.</li>
+      <li><b>Notifications:</b> if you leave notifications on, we email you when something changes on your requests. You can turn this off in My profile.</li>
+      <li><b>Reports:</b> if you report a problem, we keep your report and your name so admins can review it.</li>
+      <li><b>On your device only:</b> your language choice and any papers you save are stored in your browser, not on our servers.</li>
       <li><b>DOI checks:</b> the DOI you check and a short-lived record of how many checks you made in the past day (by account, or by IP address if you're not signed in), to keep within the free limits of the databases we use.</li>
     </ul>
 
@@ -46,7 +50,7 @@
     </ul>
 
     <h2>Where it is stored</h2>
-    <p>Data is stored with our database provider, Supabase, which may hold it outside your country. DOIs (never your personal details) are sent to the open scholarly databases we search: Unpaywall, Crossref, OpenAlex, CORE, Europe PMC, Semantic Scholar, arXiv, DOAJ, DataCite and Zenodo.</p>
+    <p>Data is stored with our database provider, Supabase, which may hold it outside your country. Emails sent from LARA go through our email provider (Brevo or Resend). DOIs (never your personal details) are sent to the open scholarly databases we search: Unpaywall, Crossref, OpenAlex, CORE, Europe PMC, Semantic Scholar, arXiv, DOAJ, DataCite and Zenodo.</p>
 
     <h2>How long we keep it</h2>
     <p>We keep your profile and requests while your account is active. Records of DOI checks are deleted after about a day. If you ask us to delete your account, we delete your profile, requests and notes.</p>

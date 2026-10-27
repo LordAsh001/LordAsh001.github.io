@@ -4,156 +4,260 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>LARA · Legal Access to Research for Africa</title>
-<meta name="description" content="Get journal articles legally: check free open-access copies across major databases, ask authors, and get help from African researchers abroad.">
+<meta name="description" content="Get journal articles legally: check free open-access copies across major databases, write to authors, and get help from African researchers in the diaspora.">
+<meta name="theme-color" content="#0B6E45">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,750&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
-<link rel="stylesheet" href="styles.css">
-<script src="config.js"></script>
-<script type="module" src="app.js"></script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,750&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Sans+Arabic:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="styles.css?v=3">
+<script src="config.js?v=3"></script>
+<script src="i18n.js?v=3"></script>
+<script type="module" src="app.js?v=3"></script>
 </head>
 <body>
 <div class="wrap">
   <header class="top">
     <div class="brand-row">
       <div class="brand"><h1>LARA</h1><span class="doi-mark">doi:10.</span></div>
-      <div id="authBox" class="row"></div>
+      <div class="row top-tools">
+        <label class="lang"><span class="sr" data-i18n="language">Language</span>
+          <select id="langSelect" aria-label="Language">
+            <option value="en">English</option>
+            <option value="fr">Français</option>
+            <option value="pt">Português</option>
+            <option value="ar">العربية</option>
+          </select>
+        </label>
+        <div id="authBox" class="row"></div>
+      </div>
     </div>
-    <p class="fullname">Legal Access to Research for Africa</p>
-    <p class="tagline">Request a journal article by its DOI. We search the major free scholarly databases for a legal copy, help you ask the author, and connect you with African researchers in the diaspora who volunteer to track papers down.</p>
+    <p class="fullname" data-i18n="fullname">Legal Access to Research for Africa</p>
+    <p class="tagline" data-i18n="tagline">Request a journal article by its DOI. We search the major free scholarly databases for a legal copy, help you write to the author, and connect you with African researchers in the diaspora who volunteer to track papers down.</p>
     <nav class="tabs" aria-label="Sections">
-      <a href="#request" data-tab="request">Request a paper</a>
-      <a href="#board" data-tab="board">Request board</a>
-      <a href="#mine" data-tab="mine">My requests</a>
-      <a href="#impact" data-tab="impact">Impact</a>
-      <a href="#profile" data-tab="profile">My profile</a>
-      <a href="#rules" data-tab="rules">Ground rules</a>
+      <a href="#request" data-tab="request" data-i18n="tab_request">Find a paper</a>
+      <a href="#refs" data-tab="refs" data-i18n="tab_refs">Reference list</a>
+      <a href="#board" data-tab="board" data-i18n="tab_board">Request board</a>
+      <a href="#mine" data-tab="mine" data-i18n="tab_mine">My requests</a>
+      <a href="#impact" data-tab="impact" data-i18n="tab_impact">Impact</a>
+      <a href="#profile" data-tab="profile" data-i18n="tab_profile">My profile</a>
+      <a href="#rules" data-tab="rules" data-i18n="tab_rules">Ground rules</a>
+      <a href="#admin" data-tab="admin" data-i18n="tab_admin" hidden id="adminTab">Admin</a>
     </nav>
   </header>
 
   <main>
     <div id="statusNote" class="notice" hidden></div>
 
-    <!-- REQUEST -->
+    <!-- FIND A PAPER -->
     <section id="tab-request" class="stack">
       <ol class="route" aria-label="How a request is handled">
-        <li><span class="n">STEP 1</span><b>Free legal copy</b><span>We check Unpaywall, OpenAlex, CORE, Europe PMC, Semantic Scholar, arXiv, Zenodo and more.</span></li>
-        <li><span class="n">STEP 2</span><b>Research4Life</b><span>Check your institution's free or low-cost journal access.</span></li>
-        <li><span class="n">STEP 3</span><b>Ask the author</b><span>Authors can usually share their own paper for research use.</span></li>
-        <li><span class="n">STEP 4</span><b>Volunteer help</b><span>A researcher abroad helps you find preprints, theses or the author.</span></li>
+        <li><span class="n" data-i18n="step1_n">STEP 1</span><b data-i18n="step1_t">Free legal copy</b><span data-i18n="step1_d">We check Unpaywall, OpenAlex, CORE, Europe PMC, Semantic Scholar, arXiv, Zenodo and more.</span></li>
+        <li><span class="n" data-i18n="step2_n">STEP 2</span><b>Research4Life</b><span data-i18n="step2_d">Check your institution's free or low-cost journal access.</span></li>
+        <li><span class="n" data-i18n="step3_n">STEP 3</span><b data-i18n="step3_t">Write to the author</b><span data-i18n="step3_d">Authors can usually share their own paper for research use.</span></li>
+        <li><span class="n" data-i18n="step4_n">STEP 4</span><b data-i18n="step4_t">Volunteer help</b><span data-i18n="step4_d">A researcher abroad helps you find preprints, theses or the author.</span></li>
       </ol>
 
       <div class="panel">
-        <h2>Find your paper</h2>
+        <h2 data-i18n="find_h">Find your paper</h2>
         <div class="row" style="align-items:end">
-          <label class="f" style="flex:1 1 320px">DOI
-            <input type="text" id="doiInput" placeholder="10.1016/j.watres.2023.120001 or https://doi.org/…" autocomplete="off" spellcheck="false">
+          <label class="f" style="flex:1 1 320px"><span data-i18n="find_label">DOI, title or full reference</span>
+            <input type="text" id="doiInput" data-i18n-ph="find_ph" placeholder="10.1016/j.watres.2023.120001, or paste a title or reference" autocomplete="off" spellcheck="false">
           </label>
-          <button class="primary" id="checkBtn" type="button">Check for a legal copy</button>
+          <button class="primary" id="checkBtn" type="button" data-i18n="find_btn">Check for a legal copy</button>
         </div>
-        <p id="doiError" class="small" style="color:var(--warn)" hidden></p>
+        <p id="doiError" class="small errtext" hidden></p>
+        <div id="candidates" class="stack" hidden></div>
         <div id="checkResult" class="stack" hidden></div>
       </div>
+
+      <details class="panel tools-box">
+        <summary data-i18n="bm_h">Add the LARA button to your browser</summary>
+        <p class="small" data-i18n="bm_p1">Drag this button to your bookmarks bar. When you're on a journal article page, click it and LARA checks that paper for a legal free copy.</p>
+        <p><a id="bookmarklet" class="bookmarklet" href="#" data-i18n="bm_btn">Find it on LARA</a></p>
+        <p class="small muted" data-i18n="bm_p2">On a phone, bookmark any page, then edit the bookmark and paste the button's code as its address. You can also install LARA on your phone's home screen from your browser menu.</p>
+      </details>
+
+      <details class="panel" id="savedBox">
+        <summary><span data-i18n="saved_h">Saved papers</span> <span id="savedCount" class="pill st-link"></span></summary>
+        <p class="small muted" data-i18n="saved_p">Papers you save stay on this device, so you can open the links later, even on a slow connection.</p>
+        <div id="savedList" class="stack"></div>
+      </details>
+    </section>
+
+    <!-- REFERENCE LIST -->
+    <section id="tab-refs" class="stack" hidden>
+      <div class="panel">
+        <h2 data-i18n="refs_h">Check a whole reference list</h2>
+        <p class="small muted" data-i18n="refs_p">Paste up to 40 references, one per line or separated by blank lines. LARA finds each one's DOI, then you can check them for free copies.</p>
+        <textarea id="refsInput" rows="9" data-i18n-ph="refs_ph" placeholder="Paste references here"></textarea>
+        <div class="row">
+          <button class="primary" id="refsBtn" type="button" data-i18n="refs_btn">Find DOIs</button>
+          <button id="refsCheckAll" type="button" hidden data-i18n="refs_checkall">Check all for free copies</button>
+          <span class="small muted" id="refsState"></span>
+        </div>
+      </div>
+      <div class="table-wrap"><table class="refs" id="refsTable" hidden>
+        <thead><tr><th>#</th><th data-i18n="refs_col_ref">Reference</th><th data-i18n="refs_col_match">Best match</th><th data-i18n="refs_col_status">Free copy</th></tr></thead>
+        <tbody></tbody>
+      </table></div>
     </section>
 
     <!-- BOARD -->
     <section id="tab-board" class="stack" hidden>
       <div class="row" style="justify-content:space-between">
-        <h2>Request board</h2>
+        <h2 data-i18n="board_h">Request board</h2>
         <div class="chips" id="boardFilter">
-          <button type="button" aria-pressed="true" data-f="open">Waiting</button>
-          <button type="button" aria-pressed="false" data-f="active">In progress</button>
-          <button type="button" aria-pressed="false" data-f="done">Resolved</button>
-          <button type="button" aria-pressed="false" data-f="all">All</button>
+          <button type="button" aria-pressed="true" data-f="open" data-i18n="f_open">Waiting</button>
+          <button type="button" aria-pressed="false" data-f="active" data-i18n="f_active">In progress</button>
+          <button type="button" aria-pressed="false" data-f="done" data-i18n="f_done">Resolved</button>
+          <button type="button" aria-pressed="false" data-f="all" data-i18n="f_all">All</button>
         </div>
       </div>
-      <input type="text" id="boardSearch" placeholder="Filter by DOI, title, field or institution">
+      <input type="text" id="boardSearch" data-i18n-ph="board_search" placeholder="Filter by DOI, title, field, institution or country">
       <p class="small muted" id="volHint"></p>
       <div class="slips" id="boardList"></div>
     </section>
 
     <!-- MINE -->
     <section id="tab-mine" class="stack" hidden>
-      <h2>Papers I asked for</h2>
+      <h2 data-i18n="mine_h">Papers I asked for</h2>
       <div class="slips" id="mineList"></div>
-      <h2>Requests I'm helping with</h2>
+      <h2 data-i18n="help_h">Requests I'm helping with</h2>
       <div class="slips" id="helpList"></div>
     </section>
 
     <!-- IMPACT -->
     <section id="tab-impact" class="stack" hidden>
-      <h2>Impact</h2>
-      <p class="muted small">Live totals from every request on the platform, across Africa. No names are shown here.</p>
+      <div class="row" style="justify-content:space-between">
+        <h2 data-i18n="impact_h">Impact</h2>
+        <button id="exportBtn" type="button" class="small" data-i18n="impact_export">Download the data (CSV)</button>
+      </div>
+      <p class="muted small" data-i18n="impact_p">Live totals from every request on the platform, across Africa. No names are shown, and the download has no names, DOIs or notes.</p>
       <div class="stats" id="stats"></div>
-      <div class="panel"><h3>How papers were obtained</h3><div class="bars" id="routeBars"></div></div>
-      <div class="panel"><h3>Requesting countries</h3><div class="bars" id="countryBars"></div></div>
+      <div class="panel"><h3 data-i18n="impact_monthly">Requests per month</h3><div class="months" id="monthBars"></div></div>
+      <div class="panel"><h3 data-i18n="impact_routes">How papers were obtained</h3><div class="bars" id="routeBars"></div></div>
+      <div class="panel"><h3 data-i18n="impact_countries">Requesting countries</h3><div class="bars" id="countryBars"></div></div>
       <div class="grid2">
-        <div class="panel"><h3>Requesting institutions</h3><div class="bars" id="instBars"></div></div>
-        <div class="panel"><h3>Fields</h3><div class="bars" id="fieldBars"></div></div>
+        <div class="panel"><h3 data-i18n="impact_inst">Requesting institutions</h3><div class="bars" id="instBars"></div></div>
+        <div class="panel"><h3 data-i18n="impact_fields">Fields</h3><div class="bars" id="fieldBars"></div></div>
       </div>
     </section>
 
     <!-- PROFILE -->
     <section id="tab-profile" class="stack" hidden>
       <div class="panel">
-        <h2>My profile</h2>
-        <p class="muted small">Signed-in members see your name, institution, country and field on your requests. Visitors who aren't signed in never see them.</p>
+        <h2 data-i18n="prof_h">My profile</h2>
+        <p class="muted small" data-i18n="prof_p">Signed-in members see your name, institution, country and field on your requests. Visitors who aren't signed in never see them. Your email address is never shown.</p>
         <div class="grid2">
-          <label class="f">Name to show<input type="text" id="pName" maxlength="80"></label>
-          <label class="f">I want to
+          <label class="f"><span data-i18n="prof_name">Name to show</span><input type="text" id="pName" maxlength="80"></label>
+          <label class="f"><span data-i18n="prof_role">I want to</span>
             <select id="pRole">
-              <option value="requester">Request papers</option>
-              <option value="volunteer">Volunteer from abroad</option>
-              <option value="both">Both</option>
+              <option value="requester" data-i18n="role_req">Request papers</option>
+              <option value="volunteer" data-i18n="role_vol">Volunteer from abroad</option>
+              <option value="both" data-i18n="role_both">Both</option>
             </select>
           </label>
-          <label class="f">Institution<input type="text" id="pInst" maxlength="120" placeholder="e.g. University of Ghana"></label>
-          <label class="f">Country<input type="text" id="pCountry" maxlength="60" list="countryList" autocomplete="country-name" placeholder="e.g. Nigeria, Kenya, or Canada"></label>
-          <label class="f">City or region<input type="text" id="pLoc" maxlength="60" placeholder="e.g. Makurdi"></label>
-          <label class="f">Field<input type="text" id="pField" maxlength="80" placeholder="e.g. Environmental engineering"></label>
+          <label class="f"><span data-i18n="prof_inst">Institution</span><input type="text" id="pInst" maxlength="120" data-i18n-ph="prof_inst_ph" placeholder="e.g. University of Ghana"></label>
+          <label class="f"><span data-i18n="prof_country">Country</span><input type="text" id="pCountry" maxlength="60" list="countryList" autocomplete="country-name" data-i18n-ph="prof_country_ph" placeholder="e.g. Nigeria, Kenya, or Canada"></label>
+          <label class="f"><span data-i18n="prof_city">City or region</span><input type="text" id="pLoc" maxlength="60" data-i18n-ph="prof_city_ph" placeholder="e.g. Makurdi"></label>
+          <label class="f"><span data-i18n="prof_field">Field</span><input type="text" id="pField" maxlength="80" data-i18n-ph="prof_field_ph" placeholder="e.g. Environmental engineering"></label>
         </div>
-        <label class="check" id="pledgeRow"><input type="checkbox" id="pPledge"><span>I will not share PDFs downloaded through my institution's subscriptions. I will help with legal routes only: open-access copies, preprints, theses and contacting authors.</span></label>
-        <div class="row"><button class="primary" id="saveProfile" type="button">Save profile</button><span class="small muted" id="profileState"></span></div>
+        <label class="check"><input type="checkbox" id="pNotify" checked><span data-i18n="prof_notify">Email me when something changes on my requests, or on requests I'm helping with.</span></label>
+        <label class="check" id="pledgeRow"><input type="checkbox" id="pPledge"><span data-i18n="prof_pledge">I will not share PDFs downloaded through my institution's subscriptions. I will help with legal routes only: open-access copies, preprints, theses and contacting authors.</span></label>
+        <p class="small muted" id="verifiedNote"></p>
+        <div class="row"><button class="primary" id="saveProfile" type="button" data-i18n="prof_save">Save profile</button><span class="small muted" id="profileState"></span></div>
       </div>
     </section>
 
     <!-- SIGN IN -->
     <section id="tab-signin" class="stack" hidden>
       <div class="panel" style="max-width:520px">
-        <h2>Sign in or join</h2>
-        <p class="small muted">Enter your email and we'll send you a one-time sign-in link. No password needed. New members are signed up automatically.</p>
-        <label class="f">Email<input type="email" id="signinEmail" autocomplete="email" placeholder="you@institution.edu"></label>
+        <h2 data-i18n="si_h">Sign in or join</h2>
+        <p class="small muted" data-i18n="si_p">Enter your email and we'll send you a one-time sign-in link. No password needed. New members are signed up automatically.</p>
+        <label class="f"><span data-i18n="si_email">Email</span><input type="email" id="signinEmail" autocomplete="email" placeholder="you@institution.edu"></label>
         <div class="row">
-          <button class="primary" id="signinBtn" type="button">Email me a sign-in link</button>
-          <button id="googleBtn" type="button" hidden>Continue with Google</button>
+          <button class="primary" id="signinBtn" type="button" data-i18n="si_btn">Email me a sign-in link</button>
+          <button id="googleBtn" type="button" hidden data-i18n="si_google">Continue with Google</button>
         </div>
         <p class="small" id="signinState"></p>
-        <p class="small muted">By joining you agree to the <a href="#rules">ground rules</a> and our <a href="privacy.html">privacy notice</a>.</p>
+        <p class="small muted"><span data-i18n="si_agree">By joining you agree to the ground rules and our privacy notice.</span> <a href="#rules" data-i18n="tab_rules">Ground rules</a> · <a href="privacy.html" data-i18n="privacy">Privacy</a></p>
       </div>
     </section>
 
     <!-- RULES -->
     <section id="tab-rules" class="stack" hidden>
       <div class="panel">
-        <h2>Ground rules</h2>
+        <h2 data-i18n="rules_h">Ground rules</h2>
         <ol class="rules">
-          <li><b>No sharing of subscription PDFs.</b> Library licences forbid passing articles to people outside the institution. Breaking them can cut off access for a whole university and puts the volunteer's account at risk.</li>
-          <li><b>Look for a free legal copy first.</b> Many paywalled papers have an accepted manuscript in a university repository, on arXiv, Europe PMC or the author's page. The DOI check does this for you.</li>
-          <li><b>Check Research4Life.</b> Universities, polytechnics and research institutes in most African countries can register for free or low-cost access to journals through Research4Life (Hinari, AGORA, OARE, GOALI). Eligibility depends on the country. Ask your librarian whether your institution has a login.</li>
-          <li><b>Ask the author.</b> Most publishers let authors send their own paper to individual researchers. A short, polite email usually works within a few days.</li>
-          <li><b>Volunteers help you search and ask.</b> They find preprints and theses, identify the corresponding author and can write to the author on your behalf.</li>
-          <li><b>Be kind.</b> Volunteers give their own time. Mark a request received or withdraw it when you no longer need it.</li>
+          <li data-i18n-html="rule1"><b>No sharing of subscription PDFs.</b> Library licences forbid passing articles to people outside the institution. Breaking them can cut off access for a whole university and puts the volunteer's account at risk.</li>
+          <li data-i18n-html="rule2"><b>Look for a free legal copy first.</b> Many paywalled papers have an accepted manuscript in a university repository, on arXiv, Europe PMC or the author's page. The check does this for you.</li>
+          <li data-i18n-html="rule3"><b>Check Research4Life.</b> Universities, polytechnics and research institutes in most African countries can register for free or low-cost access to journals through Research4Life (Hinari, AGORA, OARE, GOALI). Eligibility depends on the country. Ask your librarian whether your institution has a login.</li>
+          <li data-i18n-html="rule4"><b>Write to the author.</b> Most publishers let authors send their own paper to individual researchers. A short, polite email usually works within a few days.</li>
+          <li data-i18n-html="rule5"><b>Volunteers help you search and ask.</b> They find preprints and theses, identify the corresponding author and can write to the author on your behalf.</li>
+          <li data-i18n-html="rule6"><b>Be kind.</b> Volunteers give their own time. Mark a request received or withdraw it when you no longer need it.</li>
         </ol>
       </div>
+      <div class="panel" id="versions">
+        <h2 data-i18n="ver_h">Published version, accepted manuscript, preprint: what's the difference?</h2>
+        <dl class="defs">
+          <dt data-i18n="ver_pub_t">Published version</dt><dd data-i18n="ver_pub_d">The final article as it appears in the journal, with the publisher's layout and page numbers.</dd>
+          <dt data-i18n="ver_aam_t">Accepted manuscript</dt><dd data-i18n="ver_aam_d">The author's final text after peer review, before the publisher's copy-editing and layout. The science is the same; wording and page numbers can differ slightly.</dd>
+          <dt data-i18n="ver_pre_t">Preprint</dt><dd data-i18n="ver_pre_d">A version shared before or during peer review. It may change after review, so check whether a published version exists and say which version you read.</dd>
+        </dl>
+        <p class="small muted" data-i18n="ver_cite">When you cite, cite the published article (with its DOI). If you only read a preprint or accepted manuscript and quote from it, check the quote against the published version if you can.</p>
+      </div>
+      <div class="panel">
+        <h2 data-i18n="concern_h">Concerns</h2>
+        <p class="small" data-i18n="concern_p">Use the Report button on any request to flag a problem. Publishers and others can also write to:</p>
+        <p class="small"><span data-contact>the site operator</span></p>
+      </div>
+    </section>
+
+    <!-- ADMIN -->
+    <section id="tab-admin" class="stack" hidden>
+      <h2 data-i18n="admin_h">Reports to review</h2>
+      <div id="reportList" class="stack"></div>
     </section>
   </main>
-  <datalist id="countryList"><option value="Algeria"><option value="Angola"><option value="Benin"><option value="Botswana"><option value="Burkina Faso"><option value="Burundi"><option value="Cabo Verde"><option value="Cameroon"><option value="Central African Republic"><option value="Chad"><option value="Comoros"><option value="Congo"><option value="Côte d'Ivoire"><option value="Democratic Republic of the Congo"><option value="Djibouti"><option value="Egypt"><option value="Equatorial Guinea"><option value="Eritrea"><option value="Eswatini"><option value="Ethiopia"><option value="Gabon"><option value="Gambia"><option value="Ghana"><option value="Guinea"><option value="Guinea-Bissau"><option value="Kenya"><option value="Lesotho"><option value="Liberia"><option value="Libya"><option value="Madagascar"><option value="Malawi"><option value="Mali"><option value="Mauritania"><option value="Mauritius"><option value="Morocco"><option value="Mozambique"><option value="Namibia"><option value="Niger"><option value="Nigeria"><option value="Rwanda"><option value="São Tomé and Príncipe"><option value="Senegal"><option value="Seychelles"><option value="Sierra Leone"><option value="Somalia"><option value="South Africa"><option value="South Sudan"><option value="Sudan"><option value="Tanzania"><option value="Togo"><option value="Tunisia"><option value="Uganda"><option value="Zambia"><option value="Zimbabwe"></datalist>
 
   <footer class="foot">
-    <div><a href="#rules">Ground rules</a> · <a href="privacy.html">Privacy</a></div>
-    <div>Open data from Unpaywall, Crossref, OpenAlex, CORE, Europe PMC, Semantic Scholar, arXiv, DOAJ, DataCite and Zenodo.</div>
+    <div><a href="#rules" data-i18n="tab_rules">Ground rules</a> · <a href="privacy.html" data-i18n="privacy">Privacy</a></div>
+    <div data-i18n="foot_data">Open data from Unpaywall, Crossref, OpenAlex, CORE, Europe PMC, Semantic Scholar, arXiv, DOAJ, DataCite, Zenodo and Open Policy Finder.</div>
   </footer>
 </div>
+
+<!-- Email composer -->
+<dialog id="composer" class="composer">
+  <form method="dialog" class="stack" id="composerForm">
+    <div class="row" style="justify-content:space-between"><h2 data-i18n="em_h">Write to the author</h2><button type="button" class="ghost small" id="emClose" data-i18n="close">Close</button></div>
+    <label class="f"><span data-i18n="em_to">Author's email</span><input type="email" id="emTo" data-i18n-ph="em_to_ph" placeholder="From the article's first page or the publisher page"></label>
+    <p class="small muted" id="emWho"></p>
+    <label class="f"><span data-i18n="em_lang">Letter language</span>
+      <select id="emLang"><option value="en">English</option><option value="fr">Français</option><option value="pt">Português</option><option value="ar">العربية</option></select>
+    </label>
+    <label class="f"><span data-i18n="em_subject">Subject</span><input type="text" id="emSubject" maxlength="200"></label>
+    <label class="f"><span data-i18n="em_body">Message</span><textarea id="emBody" rows="12"></textarea></label>
+    <p class="small muted" id="emPolicy"></p>
+    <div class="row">
+      <button type="button" class="primary" id="emSend" hidden data-i18n="em_send">Send from LARA</button>
+      <span class="small muted" id="emSendNote"></span>
+    </div>
+    <p class="small muted" data-i18n="em_or">Or send it from your own email account. Your message is filled in for you:</p>
+    <div class="row">
+      <a class="btn" id="emGmail" target="_blank" rel="noopener">Gmail</a>
+      <a class="btn" id="emOutlook" target="_blank" rel="noopener">Outlook.com</a>
+      <a class="btn" id="emOffice" target="_blank" rel="noopener">Microsoft 365</a>
+      <a class="btn" id="emYahoo" target="_blank" rel="noopener">Yahoo Mail</a>
+      <a class="btn" id="emMailto" data-i18n="em_app">My email app</a>
+    </div>
+    <p class="small" id="emState" role="status"></p>
+  </form>
+</dialog>
+
+<datalist id="countryList"></datalist>
 <div id="toast" role="status" hidden></div>
 </body>
 </html>
