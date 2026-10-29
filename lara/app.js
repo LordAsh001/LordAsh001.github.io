@@ -98,6 +98,8 @@ function renderAuth() {
 // ---------- sign in / create account (email + password, codes by email) ----------
 // Codes instead of links: university email scanners "click" links and use them up.
 const AU = { mode: "in", email: "", codeType: "", sentAt: 0 };
+// University mail systems often hold emails for a few minutes; asking again too soon cancels the code on its way.
+const RESEND_WAIT = 5 * 60 * 1000;
 // Remember an in-progress code step, so reloading the page doesn't push people into requesting
 // another code (each new code cancels the previous one).
 function auSave() { try { sessionStorage.setItem("lara_au", JSON.stringify({ mode: AU.mode, email: AU.email, codeType: AU.codeType, sentAt: AU.sentAt })); } catch {} }
@@ -113,9 +115,9 @@ let auTimer = null;
 function auCountdown() {
   clearInterval(auTimer);
   const tick = () => {
-    const left = Math.ceil((AU.sentAt + 60000 - Date.now()) / 1000);
+    const left = Math.ceil((AU.sentAt + RESEND_WAIT - Date.now()) / 1000);
     const a = $("auResend");
-    if (left > 0) { a.classList.add("disabled-link"); a.setAttribute("aria-disabled", "true"); a.textContent = t("au_resend_wait", { s: left }); }
+    if (left > 0) { a.classList.add("disabled-link"); a.setAttribute("aria-disabled", "true"); a.textContent = t("au_resend_wait", { s: Math.floor(left / 60) + ":" + String(left % 60).padStart(2, "0") }); }
     else { a.classList.remove("disabled-link"); a.removeAttribute("aria-disabled"); a.textContent = t("au_resend"); clearInterval(auTimer); }
   };
   tick(); auTimer = setInterval(tick, 1000);
@@ -159,7 +161,7 @@ function auView(mode) {
 }
 function auBusy(on) { $("auSubmit").disabled = on; }
 async function sendCode() {
-  if (Date.now() - AU.sentAt < 60000) return { message: "rate limit" };
+  if (Date.now() - AU.sentAt < RESEND_WAIT) return { message: "rate limit" };
   const r = AU.codeType === "recovery"
     ? await sb.auth.resetPasswordForEmail(AU.email, { redirectTo: SITE })
     : await sb.auth.resend({ type: "signup", email: AU.email, options: { emailRedirectTo: SITE } });
@@ -205,7 +207,7 @@ $("auForm").addEventListener("submit", async (e) => {
       if (error) { auSay(auError(error), true); return; }
       AU.sentAt = 0; AU.mode = "in"; auSave(); auSay(t("au_ok_in"));
     } else if (AU.mode === "forgot") {
-      if (AU.codeType === "recovery" && prevEmail === email && Date.now() - AU.sentAt < 60000) { auView("reset"); auSay(t("au_already", { time: sentClock() })); return; }
+      if (AU.codeType === "recovery" && prevEmail === email && Date.now() - AU.sentAt < RESEND_WAIT) { auView("reset"); auSay(t("au_already", { time: sentClock() })); return; }
       if (AU.codeType !== "recovery") AU.sentAt = 0;
       AU.codeType = "recovery";
       const error = await sendCode();
@@ -232,7 +234,7 @@ $("auToForgot").addEventListener("click", (e) => { e.preventDefault(); auSay("")
 $("auToUp").addEventListener("click", (e) => { e.preventDefault(); auSay(""); auView("up"); });
 $("auToIn").addEventListener("click", (e) => { e.preventDefault(); auSay(""); clearInterval(auTimer); auView("in"); });
 $("auResend").addEventListener("click", async (e) => {
-  e.preventDefault(); if (!AU.email || Date.now() - AU.sentAt < 60000) return;
+  e.preventDefault(); if (!AU.email || Date.now() - AU.sentAt < RESEND_WAIT) return;
   const error = await sendCode();
   if (!error) auView(AU.mode);
   auSay(error ? auError(error) : t("au_sent_new", { e: AU.email, time: sentClock() }), !!error);
