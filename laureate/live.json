@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-28",
+ "updated": "2026-10-29",
  "sources": [
   {
    "source": "Opportunities for Africans",
@@ -9,17 +9,17 @@
   {
    "source": "Opportunity Desk",
    "ok": true,
-   "items": 7
+   "items": 5
   },
   {
    "source": "Opportunities Corners",
    "ok": true,
-   "items": 2
+   "items": 4
   },
   {
    "source": "Scholarship Region",
-   "ok": true,
-   "items": 8
+   "ok": false,
+   "error": "not well-formed (invalid token): line 1, column 119"
   },
   {
    "source": "Opportunities for Youth",
@@ -44,7 +44,7 @@
   {
    "source": "Federal Ministry of Education, Nigeria",
    "ok": true,
-   "items": 0
+   "items": 1
   },
   {
    "source": "GOV.UK",
@@ -56,6 +56,72 @@
   }
  ],
  "items": [
+  {
+   "title": "2027/2028 Commonwealth Scholarship and Fellowship Plan (CSFP) nomination interview from 2nd to 5th November, 2026",
+   "link": "https://education.gov.ng/2027-2028-commonwealth-scholarship-and-fellowship-plan-csfp-nomination-interview-from-2nd-to-5th-november-2026/",
+   "date": "2026-10-29",
+   "source": "Federal Ministry of Education, Nigeria",
+   "official": true,
+   "ids": [
+    "csc-masters"
+   ],
+   "summary": "The Honorable Minister of Education, Dr. Maruf Olatunji Alausa, invites all candidates who had successfully completed the Commonwealth Scholarship and Fellowship Plan (CSFP) application form via the …",
+   "seen": "2026-10-29"
+  },
+  {
+   "title": "Mastercard Foundation Scholars Program at ALCHE 2027 (Fully-funded)",
+   "link": "https://opportunitydesk.org/2026/10/29/mastercard-foundation-scholars-program-at-alche-2027/",
+   "date": "2026-10-29",
+   "source": "Opportunity Desk",
+   "official": false,
+   "ids": [
+    "mastercard"
+   ],
+   "summary": "Deadline: Unspecified Applications for the Mastercard Foundation Scholars Program at ALCHE 2027 are now open. The African Leadership College of Higher Education (ALCHE), in partnership with the Maste…",
+   "seen": "2026-10-29"
+  },
+  {
+   "title": "Columbia HBCU Fellowship Program Fall 2027",
+   "link": "https://opportunitydesk.org/2026/10/29/columbia-hbcu-fellowship-program-fall-2027/",
+   "date": "2026-10-29",
+   "source": "Opportunity Desk",
+   "official": false,
+   "ids": [],
+   "summary": "Deadline: January 7, 2027 Applications are open for the Columbia HBCU Fellowship Program Fall 2027. Open to seniors and recent graduates of Historically Black Colleges & Universities (HBCUs) as defin…",
+   "seen": "2026-10-29"
+  },
+  {
+   "title": "Heinrich Böll Foundation Feminist Futures Fellowship 2027",
+   "link": "https://opportunitydesk.org/2026/10/29/heinrich-boll-foundation-feminist-futures-fellowship-2027/",
+   "date": "2026-10-29",
+   "source": "Opportunity Desk",
+   "official": false,
+   "ids": [],
+   "summary": "Deadline: November 2, 2026 Applications are open for the Heinrich Böll Foundation Feminist Futures Fellowship 2027. The Heinrich Böll Foundation’s (HBS), Washington DC Office is pleased to announce t…",
+   "seen": "2026-10-29"
+  },
+  {
+   "title": "Hans De Wit Fellowship 2027 (stipend available)",
+   "link": "https://opportunitydesk.org/2026/10/29/hans-de-wit-fellowship-2027/",
+   "date": "2026-10-29",
+   "source": "Opportunity Desk",
+   "official": false,
+   "ids": [],
+   "summary": "Deadline: November 15, 2026 Applications are open for the Hans De Wit Fellowship 2027. Partially funded with seed funding generously donated by World Education Services, the Hans de Wit Fellowship wa…",
+   "seen": "2026-10-29"
+  },
+  {
+   "title": "Swedish Institute SI Global Scholarship 2027 (Fully Funded)",
+   "link": "https://opportunitiescorners.com/swedish-institute-si-global-scholarship-2027/",
+   "date": "2026-10-29",
+   "source": "Opportunities Corners",
+   "official": false,
+   "ids": [
+    "si"
+   ],
+   "summary": "The Swedish Institute (SI) Global Scholarship 2027 is a fully funded opportunity for international students to pursue a Master’s Program in Sweden. Swedish universities are now accepting applications…",
+   "seen": "2026-10-29"
+  },
   {
    "title": "British Council Green & Digital Employability and Enterprise Programme 2027 (£150,000 grant)",
    "link": "https://opportunitydesk.org/2026/10/28/british-council-green-digital-employability-and-enterprise-programme-2027/",
@@ -105,6 +171,38 @@
    "ids": [],
    "summary": "Applications are now open for the fully funded Impact AI Fellowship 2027 in Germany, offered by the Alexander von Humboldt Institute for Internet and Society (HIIG). This ten-week fellowship offers r…",
    "seen": "2026-10-28"
+  },
+  {
+   "title": "NNPC/SNEPCo National University Scholarship Programme 2026 for Young Nigerian Students.",
+   "link": "https://www.opportunitiesforafricans.com/nnpc-snepco-national-university-scholarship-programme-2026/",
+   "date": "2026-10-28",
+   "source": "Opportunities for Africans",
+   "official": false,
+   "ids": [
+    "shell"
+   ],
+   "summary": "Application Deadline: NOVEMBER 30TH, 2026. Applications are now open for the 2026 NNPC/SNEPCo National University Scholarship Programme. The Shell Nigeria Exploration and Production Company Limited (…",
+   "seen": "2026-10-29"
+  },
+  {
+   "title": "SA-CERN Programme Excellence MSc/PhD Bursary Program 2027 for young South Africans.",
+   "link": "https://www.opportunitiesforafricans.com/sa-cern-programme-excellence-msc-phd-bursary-program-2027/",
+   "date": "2026-10-28",
+   "source": "Opportunities for Africans",
+   "official": false,
+   "ids": [],
+   "summary": "Application Deadline: Applications are now open for the 2027 SA-CERN Programme Excellence MSc/PhD Bursary Program. The SA-CERN programme is a national programme funded by the Department of Science an…",
+   "seen": "2026-10-29"
+  },
+  {
+   "title": "SDG 6 Fellowship 2027 in UK, Denmark, Malaysia (Fully Funded)",
+   "link": "https://opportunitiescorners.com/sdg-6-fellowship-2027/",
+   "date": "2026-10-28",
+   "source": "Opportunities Corners",
+   "official": false,
+   "ids": [],
+   "summary": "Applications are open for the IWA & Grundfos Youth Action for SDG 6 Fellowship 2027 in the UK, Denmark, and Malaysia. Organized by the International Water Association (IWA) and Grundfos, this interna…",
+   "seen": "2026-10-29"
   },
   {
    "title": "Abiola Ajimobi Foundation Scholarship (SAAF) 2026 | Step-by-Step Process",
@@ -1609,98 +1707,6 @@
    "ids": [],
    "summary": "The ENS Scholarship is an international selection Competition which offers scholarships to international students to pursue a Diploma or a Master’s Degree Program in France. The ENS France Scholarshi…",
    "seen": "2026-10-17"
-  },
-  {
-   "title": "Women inPower Fellowship 2026: Free Year-Long Leadership Fellowship for Senior-Level Women Leaders in the United States",
-   "link": "https://opportunitiesforyouth.org/2026/10/16/women-inpower-fellowship-2026-free-year-long-leadership-fellowship-for-senior-level-women-leaders-in-the-united-states/",
-   "date": "2026-10-16",
-   "source": "Opportunities for Youth",
-   "official": false,
-   "ids": [],
-   "summary": "Introduction Are you a senior-level woman leader looking for mentorship, executive coaching, leadership training, and a supportive professional community to help you advance to the highest levels of …",
-   "seen": "2026-10-17"
-  },
-  {
-   "title": "UpSkill America Education and Career Mobility Fellowship 2026: Applications Open for the Fourth Cohort of This 9-Month Professional Development Programme",
-   "link": "https://opportunitiesforyouth.org/2026/10/16/upskill-america-education-and-career-mobility-fellowship-2026-applications-open-for-the-fourth-cohort-of-this-9-month-professional-development-programme/",
-   "date": "2026-10-16",
-   "source": "Opportunities for Youth",
-   "official": false,
-   "ids": [],
-   "summary": "Introduction Are you a mid-career professional working in Human Resources (HR), Learning and Development (L&D), or corporate talent management and looking for opportunities to strengthen your profess…",
-   "seen": "2026-10-17"
-  },
-  {
-   "title": "AIDSWatch@Home 2026–2027 Grant Program: Apply for Up to $15,000 to Advance HIV Advocacy, Community Organizing and Policy Change",
-   "link": "https://opportunitiesforyouth.org/2026/10/16/aidswatchhome-2026-2027-grant-program-apply-for-up-to-15000-to-advance-hiv-advocacy-community-organizing-and-policy-change/",
-   "date": "2026-10-16",
-   "source": "Opportunities for Youth",
-   "official": false,
-   "ids": [],
-   "summary": "Organizations and community coalitions working to advance HIV-related policy, strengthen community leadership, and promote equitable decision-making have an opportunity to secure funding through the …",
-   "seen": "2026-10-17"
-  },
-  {
-   "title": "Asian Development Bank–Japan Scholarship Program 2026: Fully Funded Master’s Scholarships at the East-West Center in the USA",
-   "link": "https://opportunitiesforyouth.org/2026/10/16/asian-development-bank-japan-scholarship-program-2026-fully-funded-masters-scholarships-at-the-east-west-center-in-the-usa/",
-   "date": "2026-10-16",
-   "source": "Opportunities for Youth",
-   "official": false,
-   "ids": [],
-   "summary": "Are you an ambitious graduate from an eligible developing country looking to pursue a master’s degree in the United States but concerned about the cost of international education? The Asian Developme…",
-   "seen": "2026-10-17"
-  },
-  {
-   "title": "Oxford University Scholarship for Afghan Women 2027: Fully Funded Master’s Degree and Leadership Programme",
-   "link": "https://opportunitiesforyouth.org/2026/10/16/oxford-university-scholarship-for-afghan-women-2027-fully-funded-masters-degree-and-leadership-programme/",
-   "date": "2026-10-16",
-   "source": "Opportunities for Youth",
-   "official": false,
-   "ids": [],
-   "summary": "The University of Oxford has announced a new scholarship initiative designed to empower Afghan women through access to world-class postgraduate education and leadership development. Supported by a ge…",
-   "seen": "2026-10-17"
-  },
-  {
-   "title": "Rockefeller Foundation and OpenAI Foundation Launch $50 Million Cities Deliver Initiative: AI Grants of $500,000–$2 Million for Public Services Worldwide",
-   "link": "https://opportunitiesforyouth.org/2026/10/16/rockefeller-foundation-and-openai-foundation-launch-50-million-cities-deliver-initiative-ai-grants-of-500000-2-million-for-public-services-worldwide/",
-   "date": "2026-10-16",
-   "source": "Opportunities for Youth",
-   "official": false,
-   "ids": [],
-   "summary": "Overview of the Cities Deliver: AI Solutions for Public Services Grant Programme The Rockefeller Foundation and OpenAI Foundation have committed $50 million to Cities Deliver: AI Solutions for Public…",
-   "seen": "2026-10-17"
-  },
-  {
-   "title": "Reconnecting Commonwealth Alumni in Samoa",
-   "link": "https://cscuk.fcdo.gov.uk/reconnecting-commonwealth-alumni-in-samoa/",
-   "date": "2026-10-15",
-   "source": "Commonwealth Scholarship Commission",
-   "official": true,
-   "ids": [],
-   "summary": "A recent Commonwealth Alumni engagement event in Samoa brought together alumni, education partners, and scholarship stakeholders to renew connections, share experiences, and explore how a stronger ne…",
-   "seen": "2026-10-19"
-  },
-  {
-   "title": "Harrison Middleton University (HMU) Fellowship in Ideas 2027",
-   "link": "https://opportunitydesk.org/2026/10/15/hmu-fellowship-in-ideas-2027/",
-   "date": "2026-10-15",
-   "source": "Opportunity Desk",
-   "official": false,
-   "ids": [],
-   "summary": "Deadline: November 15, 2026 Applications for the Harrison Middleton University (HMU) Fellowship in Ideas 2027 are now open. The HMU Fellowship in Ideas is a writing and discussion project in the huma…",
-   "seen": "2026-10-15"
-  },
-  {
-   "title": "University of Tokyo MEXT Scholarship 2027 in Japan (Fully Funded)",
-   "link": "https://opportunitiescorners.com/university-of-tokyo-mext-scholarship-2027/",
-   "date": "2026-10-15",
-   "source": "Opportunities Corners",
-   "official": false,
-   "ids": [
-    "mext"
-   ],
-   "summary": "Applications are now open for the University of Tokyo MEXT Scholarship 2027. This fully funded scholarship in Japan, provided by the Ministry of Education, Culture, Sports, Science and Technology (ME…",
-   "seen": "2026-10-15"
   }
  ]
 }
