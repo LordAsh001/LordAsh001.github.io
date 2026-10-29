@@ -12,12 +12,12 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,750&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Sans+Arabic:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
-<link rel="stylesheet" href="styles.css?v=8">
-<script src="config.js?v=8"></script>
-<script src="errors.js?v=8"></script>
-<script src="i18n.js?v=8"></script>
-<script src="letters.js?v=8"></script>
-<script type="module" src="app.js?v=8"></script>
+<link rel="stylesheet" href="styles.css?v=9">
+<script src="config.js?v=9"></script>
+<script src="errors.js?v=9"></script>
+<script src="i18n.js?v=9"></script>
+<script src="letters.js?v=9"></script>
+<script type="module" src="app.js?v=9"></script>
 </head>
 <body>
 <div class="wrap">
@@ -186,7 +186,7 @@
     <!-- SIGN IN -->
     <section id="tab-signin" class="stack" hidden>
       <div class="panel auth-panel" style="max-width:520px">
-        <h2 id="auHead" data-i18n="au_h_in">Sign in</h2>
+        <h2 id="auHead">Sign in</h2>
         <p class="small muted" id="auLead"></p>
 
         <div id="auGoogle" hidden>
@@ -202,7 +202,7 @@
           </label>
           <label class="f" id="auCodeRow" hidden><span data-i18n="au_code">6-digit code from your email</span><input type="text" id="auCode" inputmode="numeric" autocomplete="one-time-code" maxlength="10" placeholder="123456"></label>
           <label class="f" id="auNewPassRow" hidden><span data-i18n="au_newpass">New password</span><input type="password" id="auNewPass" autocomplete="new-password" minlength="8"><span class="small muted" data-i18n="au_pass_hint">At least 8 characters.</span></label>
-          <div class="row"><button class="primary" id="auSubmit" type="submit" data-i18n="au_btn_in">Sign in</button></div>
+          <div class="row"><button class="primary" id="auSubmit" type="submit">Sign in</button></div>
         </form>
         <p class="small" id="signinState" role="status" aria-live="polite"></p>
 
@@ -210,7 +210,7 @@
           <a href="#" id="auToForgot" data-i18n="au_forgot">Forgot your password? (or never set one)</a>
           <a href="#" id="auToUp" data-i18n="au_to_up">New to LARA? Create an account</a>
           <a href="#" id="auToIn" hidden data-i18n="au_to_in">Already have an account? Sign in</a>
-          <a href="#" id="auResend" hidden data-i18n="au_resend">Didn't get the code? Send it again</a>
+          <a href="#" id="auResend" hidden>Didn't get the code? Send it again</a>
         </div>
         <p class="small muted"><span data-i18n="si_agree">By joining you agree to the ground rules and our privacy notice.</span> <a href="#rules" data-i18n="tab_rules">Ground rules</a> · <a href="privacy.html" data-i18n="privacy">Privacy</a></p>
       </div>

@@ -216,3 +216,5 @@ html[dir="rtl"] #doiInput,html[dir="rtl"] #emTo{text-align:right}
 .auth-links{gap:.35rem;margin-top:.25rem}
 #auEmail,#auPass,#auNewPass,#auCode{direction:ltr}
 #auCode{font-size:1.4rem;letter-spacing:.35em;font-family:var(--f-mono);text-align:center}
+
+.disabled-link{pointer-events:none;color:var(--muted);text-decoration:none}

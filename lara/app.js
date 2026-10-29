@@ -97,7 +97,29 @@ function renderAuth() {
 }
 // ---------- sign in / create account (email + password, codes by email) ----------
 // Codes instead of links: university email scanners "click" links and use them up.
-const AU = { mode: "in", email: "", codeType: "" };
+const AU = { mode: "in", email: "", codeType: "", sentAt: 0 };
+// Remember an in-progress code step, so reloading the page doesn't push people into requesting
+// another code (each new code cancels the previous one).
+function auSave() { try { sessionStorage.setItem("lara_au", JSON.stringify({ mode: AU.mode, email: AU.email, codeType: AU.codeType, sentAt: AU.sentAt })); } catch {} }
+function auRestore() {
+  try {
+    const v = JSON.parse(sessionStorage.getItem("lara_au") || "null");
+    if (v && (v.mode === "code" || v.mode === "reset") && v.email && Date.now() - v.sentAt < 3600000) { Object.assign(AU, v); return v.mode; }
+  } catch {}
+  return "in";
+}
+function sentClock() { return AU.sentAt ? new Date(AU.sentAt).toLocaleTimeString(I.lang, { hour: "numeric", minute: "2-digit" }) : ""; }
+let auTimer = null;
+function auCountdown() {
+  clearInterval(auTimer);
+  const tick = () => {
+    const left = Math.ceil((AU.sentAt + 60000 - Date.now()) / 1000);
+    const a = $("auResend");
+    if (left > 0) { a.classList.add("disabled-link"); a.setAttribute("aria-disabled", "true"); a.textContent = t("au_resend_wait", { s: left }); }
+    else { a.classList.remove("disabled-link"); a.removeAttribute("aria-disabled"); a.textContent = t("au_resend"); clearInterval(auTimer); }
+  };
+  tick(); auTimer = setInterval(tick, 1000);
+}
 const EMAIL_OK = (e) => /^\S+@\S+\.\S+$/.test(e);
 function auSay(msg, bad) { $("signinState").textContent = msg || ""; $("signinState").classList.toggle("errtext", !!bad); }
 function auError(err) {
@@ -121,7 +143,7 @@ function auView(mode) {
     reset:  { head: "au_h_reset",  lead: "au_lead_reset",  btn: "au_btn_reset",  pass: false, code: true,  newpass: true,  email: false },
   }[mode];
   $("auHead").textContent = t(v.head);
-  $("auLead").textContent = t(v.lead, { e: AU.email });
+  $("auLead").textContent = t(v.lead, { e: AU.email }) + (v.code && AU.sentAt ? " " + t("au_newest", { time: sentClock() }) : "");
   $("auSubmit").textContent = t(v.btn);
   $("auEmailRow").hidden = !v.email; $("auPassRow").hidden = !v.pass;
   $("auCodeRow").hidden = !v.code; $("auNewPassRow").hidden = !v.newpass;
@@ -132,13 +154,16 @@ function auView(mode) {
   $("auToUp").hidden = mode !== "in";
   $("auToIn").hidden = mode === "in";
   $("auResend").hidden = !(mode === "code" || mode === "reset");
-  if (v.code) { $("auCode").value = ""; setTimeout(() => $("auCode").focus(), 50); }
+  if (v.code) { $("auCode").value = ""; setTimeout(() => $("auCode").focus(), 50); auCountdown(); }
+  auSave();
 }
 function auBusy(on) { $("auSubmit").disabled = on; }
 async function sendCode() {
+  if (Date.now() - AU.sentAt < 60000) return { message: "rate limit" };
   const r = AU.codeType === "recovery"
     ? await sb.auth.resetPasswordForEmail(AU.email, { redirectTo: SITE })
     : await sb.auth.resend({ type: "signup", email: AU.email, options: { emailRedirectTo: SITE } });
+  if (!r.error) AU.sentAt = Date.now();
   return r.error;
 }
 $("auForm").addEventListener("submit", async (e) => {
@@ -146,9 +171,11 @@ $("auForm").addEventListener("submit", async (e) => {
   if (!sb) return;
   const email = $("auEmail").value.trim().toLowerCase(), pass = $("auPass").value;
   auSay("");
+  const prevEmail = AU.email;
   if (["in", "up", "forgot"].includes(AU.mode)) {
     if (!EMAIL_OK(email)) { auSay(t("si_bad"), true); $("auEmail").focus(); return; }
     AU.email = email;
+    if (prevEmail !== email) AU.sentAt = 0; // a different address gets its own code straight away
   }
   auBusy(true);
   try {
@@ -169,15 +196,17 @@ $("auForm").addEventListener("submit", async (e) => {
       if (data && data.user && Array.isArray(data.user.identities) && data.user.identities.length === 0) {
         auView("in"); $("auEmail").value = email; auSay(t("au_e_exists"), true); return;
       }
-      AU.codeType = "signup"; $("auPass").value = "";
+      AU.codeType = "signup"; AU.sentAt = Date.now(); $("auPass").value = "";
       auView("code"); auSay(t("au_sent", { e: email }));
     } else if (AU.mode === "code") {
       const token = $("auCode").value.replace(/\D/g, "");
       if (token.length < 6) { auSay(t("au_e_code"), true); return; }
       const { error } = await sb.auth.verifyOtp({ email: AU.email, token, type: "email" });
       if (error) { auSay(auError(error), true); return; }
-      auSay(t("au_ok_in"));
+      AU.sentAt = 0; AU.mode = "in"; auSave(); auSay(t("au_ok_in"));
     } else if (AU.mode === "forgot") {
+      if (AU.codeType === "recovery" && prevEmail === email && Date.now() - AU.sentAt < 60000) { auView("reset"); auSay(t("au_already", { time: sentClock() })); return; }
+      if (AU.codeType !== "recovery") AU.sentAt = 0;
       AU.codeType = "recovery";
       const error = await sendCode();
       if (error) { auSay(auError(error), true); return; }
@@ -192,6 +221,7 @@ $("auForm").addEventListener("submit", async (e) => {
       const { error: e3 } = await sb.auth.updateUser({ password: np });
       S.resetting = false; $("auNewPass").value = "";
       if (e3) { auSay(auError(e3), true); return; }
+      AU.sentAt = 0; AU.mode = "in"; auSave();
       toast(t("au_ok_reset")); auSay(t("au_ok_reset"));
       if (S.user && location.hash === "#signin") location.hash = S.profile ? "#request" : "#profile";
     }
@@ -200,14 +230,15 @@ $("auForm").addEventListener("submit", async (e) => {
 $("auShow").addEventListener("click", () => { const p = $("auPass"); p.type = p.type === "password" ? "text" : "password"; $("auShow").textContent = t(p.type === "password" ? "au_show" : "au_hide"); });
 $("auToForgot").addEventListener("click", (e) => { e.preventDefault(); auSay(""); auView("forgot"); });
 $("auToUp").addEventListener("click", (e) => { e.preventDefault(); auSay(""); auView("up"); });
-$("auToIn").addEventListener("click", (e) => { e.preventDefault(); auSay(""); auView("in"); });
+$("auToIn").addEventListener("click", (e) => { e.preventDefault(); auSay(""); clearInterval(auTimer); auView("in"); });
 $("auResend").addEventListener("click", async (e) => {
-  e.preventDefault(); if (!AU.email) return;
+  e.preventDefault(); if (!AU.email || Date.now() - AU.sentAt < 60000) return;
   const error = await sendCode();
-  auSay(error ? auError(error) : t("au_sent", { e: AU.email }), !!error);
+  if (!error) auView(AU.mode);
+  auSay(error ? auError(error) : t("au_sent_new", { e: AU.email, time: sentClock() }), !!error);
 });
 document.addEventListener("lara:lang", () => auView(AU.mode));
-auView("in");
+auView(auRestore());
 // Show "Continue with Google" automatically once Google is switched on in Supabase.
 S.googleOn = !!CFG.ENABLE_GOOGLE;
 if (configured) {
