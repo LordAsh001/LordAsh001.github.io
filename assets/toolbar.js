@@ -21,7 +21,8 @@ var TOOLS = [
   { url: "/energy-atlas/", name: "Nigeria Energy Atlas", note: "Power plants, fuels, grid and energy security" },
   { url: "/peoples-atlas/", name: "Nigeria Peoples & Cultures Atlas", note: "Peoples, languages, festivals and heritage" },
   { url: "/waste-atlas/",       name: "Nigeria Waste Sites Atlas", note: "Open dumpsites mapped from satellite" },
-  { url: "/literature-landscape/", name: "Nigeria Literature Landscape", note: "Writers, music, film, comedy, journalism and creators" }
+  { url: "/literature-landscape/", name: "Nigeria Literature Landscape", note: "Writers, music, film, comedy, journalism and creators" },
+  { url: "/lara/",               name: "LARA · Legal Access to Research for Africa", note: "Find a legal copy of a journal article" }
 ];
 var HOME = "/#resources";
 var HOME_LABEL = "Shagbaor Hycent Amool";
@@ -121,6 +122,7 @@ function build() {
   var nav = document.createElement("nav");
   nav.className = "sitebar";
   nav.setAttribute("aria-label", "Site");
+  nav.setAttribute("dir", "ltr"); /* English labels: keep left-to-right on pages switched to Arabic */
   nav.innerHTML =
     '<div class="sitebar-in">' +
       '<a class="sb-home" href="' + HOME + '" title="Back to ' + esc(HOME_LABEL) + "'s website\">" +

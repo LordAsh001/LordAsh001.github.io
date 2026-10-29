@@ -24,6 +24,7 @@ var TOOL = /\/symbiosis\//.test(path) ? "symbiosis"
   : /\/energy-atlas\//.test(path) ? "energy-atlas"
   : /\/peoples-atlas\//.test(path) ? "peoples-atlas"
   : /\/waste-atlas\//.test(path) ? "waste-atlas"
+  : /\/lara\//.test(path) ? "lara"
   : "website";
 
 /* ---------- analytics (GoatCounter: no cookies, no personal data) ---------- */
@@ -80,6 +81,9 @@ else if (t.id === "startTour" || t.id === "helpTour") track("tour", "Took the to
 else if (t.matches(".case-btn")) track("case-opened", "Opened a case study");
 else if (t.matches(".mm-item")) track("stream-opened", "Opened a waste stream");
 else if (t.matches(".qopt")) track("quiz-answered", "Answered a quiz question");
+} else if (TOOL === "lara") {
+if (t.matches("[data-tab]")) track("section/" + t.getAttribute("data-tab"), "Opened section: " + t.getAttribute("data-tab"));
+else if (t.id === "checkBtn") track("doi-check", "Checked a paper for a legal copy", true);
 } else if (TOOL === "sustainatable") {
 if (t.matches(".el") && !t.matches(".big")) track("goal-opened", "Opened a goal");
 else if (t.matches(".modes [data-m]")) track("view/" + t.getAttribute("data-m"), "Switched view: " + t.getAttribute("data-m"));

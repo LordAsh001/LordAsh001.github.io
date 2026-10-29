@@ -20,6 +20,7 @@ var NOTES = [
   [/\/peoples-atlas\//, "Cultural areas, histories and rulers are indicative, from the sources cited. The atlas takes no position on land, chieftaincy or boundary questions. Map boundaries are approximate and not official."],
   [/\/waste-atlas\//, MAP + " A mapped site shows visible waste on the date given; it does not mean any person, community or company broke the law."],
   [/\/literature-landscape\//, "Profiles come from public sources such as Wikidata and Wikipedia; inclusion or ranking is not an endorsement. Photos are from Wikimedia Commons, credited with each photo."],
+  [/\/lara\//, "LARA links only to legal copies and does not host or share articles. It is not affiliated with any publisher, database or Research4Life. Check each copy's licence before reusing it."],
   [/\/(tea-studio|eia-studio|symbiosis)\//, TOOLNOTE],
   [/\/laureate\//, "Free preparation resource, not affiliated with any funder. Deadlines, eligibility and requirements change: always check the funder's official page before you apply."],
   [/sustainatable|citadel/, "Free learning resource. Summaries of goals, guidelines and conventions are simplified: check the official source or your institution's rules before relying on them."]
@@ -43,12 +44,12 @@ function mountNotice() {
   /* permanent line in the footer, where the page has one */
   var f = document.querySelector("footer");
   if (f && !f.querySelector(".lg-foot")) {
-    var fp = document.createElement("span"); fp.className = "lg-foot"; fp.innerHTML = note + link; f.appendChild(fp);
+    var fp = document.createElement("span"); fp.className = "lg-foot"; fp.setAttribute("dir", "ltr"); fp.innerHTML = note + link; f.appendChild(fp);
   }
   /* dismissible notice, shown again after 30 days */
   var key = "lg-ok:" + path.split("/")[1], last = +store(key) || 0;
   if (Date.now() - last < 30 * 864e5) return;
-  var bar = document.createElement("div"); bar.className = "lg-bar"; bar.setAttribute("role", "note");
+  var bar = document.createElement("div"); bar.className = "lg-bar"; bar.setAttribute("role", "note"); bar.setAttribute("dir", "ltr");
   bar.innerHTML = "<p>" + note + link + '</p><button type="button">OK</button>';
   bar.querySelector("button").addEventListener("click", function () { store(key, String(Date.now())); bar.remove(); });
   document.body.appendChild(bar);
