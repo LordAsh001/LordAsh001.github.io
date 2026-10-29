@@ -95,22 +95,125 @@ function renderAuth() {
     h("button", { class: "small ghost", type: "button", onclick: async () => { await sb.auth.signOut(); toast(t("signed_out")); } }, t("sign_out")));
   else box.append(h("a", { href: "#signin", class: "small" }, t("si_h")));
 }
-$("signinBtn").addEventListener("click", async () => {
+// ---------- sign in / create account (email + password, codes by email) ----------
+// Codes instead of links: university email scanners "click" links and use them up.
+const AU = { mode: "in", email: "", codeType: "" };
+const EMAIL_OK = (e) => /^\S+@\S+\.\S+$/.test(e);
+function auSay(msg, bad) { $("signinState").textContent = msg || ""; $("signinState").classList.toggle("errtext", !!bad); }
+function auError(err) {
+  const m = ((err && err.message) || "").toLowerCase();
+  if (m.includes("invalid login")) return t("au_e_login");
+  if (m.includes("not confirmed")) return t("au_e_unconfirmed");
+  if (m.includes("already registered") || m.includes("already been registered")) return t("au_e_exists");
+  if (m.includes("expired") || m.includes("invalid") && m.includes("token")) return t("au_e_code");
+  if (m.includes("weak") || m.includes("at least") || m.includes("password should")) return t("au_e_weak");
+  if (m.includes("security purposes") || m.includes("rate limit") || m.includes("after")) return t("au_e_wait");
+  if (m.includes("error sending")) return t("au_e_send");
+  return friendly(err);
+}
+function auView(mode) {
+  AU.mode = mode;
+  const v = {
+    in:     { head: "au_h_in",     lead: "au_lead_in",     btn: "au_btn_in",     pass: true,  code: false, newpass: false, email: true },
+    up:     { head: "au_h_up",     lead: "au_lead_up",     btn: "au_btn_up",     pass: true,  code: false, newpass: false, email: true },
+    code:   { head: "au_h_code",   lead: "au_lead_code",   btn: "au_btn_code",   pass: false, code: true,  newpass: false, email: false },
+    forgot: { head: "au_h_forgot", lead: "au_lead_forgot", btn: "au_btn_forgot", pass: false, code: false, newpass: false, email: true },
+    reset:  { head: "au_h_reset",  lead: "au_lead_reset",  btn: "au_btn_reset",  pass: false, code: true,  newpass: true,  email: false },
+  }[mode];
+  $("auHead").textContent = t(v.head);
+  $("auLead").textContent = t(v.lead, { e: AU.email });
+  $("auSubmit").textContent = t(v.btn);
+  $("auEmailRow").hidden = !v.email; $("auPassRow").hidden = !v.pass;
+  $("auCodeRow").hidden = !v.code; $("auNewPassRow").hidden = !v.newpass;
+  $("auPassHint").hidden = mode !== "up";
+  $("auPass").autocomplete = mode === "up" ? "new-password" : "current-password";
+  $("auGoogle").hidden = !(S.googleOn && (mode === "in" || mode === "up"));
+  $("auToForgot").hidden = mode !== "in";
+  $("auToUp").hidden = mode !== "in";
+  $("auToIn").hidden = mode === "in";
+  $("auResend").hidden = !(mode === "code" || mode === "reset");
+  if (v.code) { $("auCode").value = ""; setTimeout(() => $("auCode").focus(), 50); }
+}
+function auBusy(on) { $("auSubmit").disabled = on; }
+async function sendCode() {
+  const r = AU.codeType === "recovery"
+    ? await sb.auth.resetPasswordForEmail(AU.email, { redirectTo: SITE })
+    : await sb.auth.resend({ type: "signup", email: AU.email, options: { emailRedirectTo: SITE } });
+  return r.error;
+}
+$("auForm").addEventListener("submit", async (e) => {
+  e.preventDefault();
   if (!sb) return;
-  const email = $("signinEmail").value.trim();
-  if (!/^\S+@\S+\.\S+$/.test(email)) { $("signinState").textContent = t("si_bad"); return; }
-  $("signinBtn").disabled = true;
-  const { error } = await sb.auth.signInWithOtp({ email, options: { emailRedirectTo: SITE } });
-  $("signinBtn").disabled = false;
-  $("signinState").textContent = error ? friendly(error) : t("si_sent");
+  const email = $("auEmail").value.trim().toLowerCase(), pass = $("auPass").value;
+  auSay("");
+  if (["in", "up", "forgot"].includes(AU.mode)) {
+    if (!EMAIL_OK(email)) { auSay(t("si_bad"), true); $("auEmail").focus(); return; }
+    AU.email = email;
+  }
+  auBusy(true);
+  try {
+    if (AU.mode === "in") {
+      if (!pass) { auSay(t("au_e_nopass"), true); return; }
+      const { error } = await sb.auth.signInWithPassword({ email, password: pass });
+      if (!error) { auSay(t("au_ok_in")); $("auPass").value = ""; return; }
+      if ((error.message || "").toLowerCase().includes("not confirmed")) {
+        AU.codeType = "signup"; const e2 = await sendCode();
+        auView("code"); auSay(e2 ? auError(e2) : t("au_sent", { e: email }), !!e2); return;
+      }
+      auSay(auError(error), true);
+    } else if (AU.mode === "up") {
+      if (pass.length < 8) { auSay(t("au_e_weak"), true); $("auPass").focus(); return; }
+      const { data, error } = await sb.auth.signUp({ email, password: pass, options: { emailRedirectTo: SITE } });
+      if (error) { auSay(auError(error), true); return; }
+      if (data && data.session) { auSay(t("au_ok_in")); return; } // email confirmation switched off
+      if (data && data.user && Array.isArray(data.user.identities) && data.user.identities.length === 0) {
+        auView("in"); $("auEmail").value = email; auSay(t("au_e_exists"), true); return;
+      }
+      AU.codeType = "signup"; $("auPass").value = "";
+      auView("code"); auSay(t("au_sent", { e: email }));
+    } else if (AU.mode === "code") {
+      const token = $("auCode").value.replace(/\D/g, "");
+      if (token.length < 6) { auSay(t("au_e_code"), true); return; }
+      const { error } = await sb.auth.verifyOtp({ email: AU.email, token, type: "email" });
+      if (error) { auSay(auError(error), true); return; }
+      auSay(t("au_ok_in"));
+    } else if (AU.mode === "forgot") {
+      AU.codeType = "recovery";
+      const error = await sendCode();
+      if (error) { auSay(auError(error), true); return; }
+      auView("reset"); auSay(t("au_sent", { e: email }));
+    } else if (AU.mode === "reset") {
+      const token = $("auCode").value.replace(/\D/g, ""), np = $("auNewPass").value;
+      if (token.length < 6) { auSay(t("au_e_code"), true); return; }
+      if (np.length < 8) { auSay(t("au_e_weak"), true); $("auNewPass").focus(); return; }
+      S.resetting = true;
+      const { error } = await sb.auth.verifyOtp({ email: AU.email, token, type: "recovery" });
+      if (error) { S.resetting = false; auSay(auError(error), true); return; }
+      const { error: e3 } = await sb.auth.updateUser({ password: np });
+      S.resetting = false; $("auNewPass").value = "";
+      if (e3) { auSay(auError(e3), true); return; }
+      toast(t("au_ok_reset")); auSay(t("au_ok_reset"));
+      if (S.user && location.hash === "#signin") location.hash = S.profile ? "#request" : "#profile";
+    }
+  } finally { auBusy(false); }
 });
+$("auShow").addEventListener("click", () => { const p = $("auPass"); p.type = p.type === "password" ? "text" : "password"; $("auShow").textContent = t(p.type === "password" ? "au_show" : "au_hide"); });
+$("auToForgot").addEventListener("click", (e) => { e.preventDefault(); auSay(""); auView("forgot"); });
+$("auToUp").addEventListener("click", (e) => { e.preventDefault(); auSay(""); auView("up"); });
+$("auToIn").addEventListener("click", (e) => { e.preventDefault(); auSay(""); auView("in"); });
+$("auResend").addEventListener("click", async (e) => {
+  e.preventDefault(); if (!AU.email) return;
+  const error = await sendCode();
+  auSay(error ? auError(error) : t("au_sent", { e: AU.email }), !!error);
+});
+document.addEventListener("lara:lang", () => auView(AU.mode));
+auView("in");
 // Show "Continue with Google" automatically once Google is switched on in Supabase.
-$("googleBtn").hidden = !CFG.ENABLE_GOOGLE;
-$("googleOr").hidden = $("googleBtn").hidden;
+S.googleOn = !!CFG.ENABLE_GOOGLE;
 if (configured) {
   fetch(CFG.SUPABASE_URL.replace(/\/$/, "") + "/auth/v1/settings", { headers: { apikey: CFG.SUPABASE_ANON_KEY } })
     .then((r) => (r.ok ? r.json() : null))
-    .then((j) => { if (j && j.external && j.external.google) { $("googleBtn").hidden = false; $("googleOr").hidden = false; } })
+    .then((j) => { if (j && j.external && j.external.google) { S.googleOn = true; auView(AU.mode); } })
     .catch(() => {});
 }
 $("googleBtn").addEventListener("click", () => sb && sb.auth.signInWithOAuth({ provider: "google", options: { redirectTo: SITE } }));
@@ -749,9 +852,9 @@ if ("serviceWorker" in navigator && location.protocol === "https:") navigator.se
 async function onSession(session) {
   S.user = session ? session.user : null;
   await loadProfile();
-  if (S.user && !S.profile) { setNote(t("welcome"), "ok"); if (location.hash === "#signin" || !location.hash) location.hash = "#profile"; }
+  if (S.user && !S.profile) { setNote(t("welcome"), "ok"); if ((location.hash === "#signin" && !S.resetting) || !location.hash) location.hash = "#profile"; }
   else setNote("");
-  if (S.user && location.hash === "#signin") location.hash = "#request";
+  if (S.user && location.hash === "#signin" && !S.resetting) location.hash = "#request";
   subscribe();
   await loadRequests();
 }

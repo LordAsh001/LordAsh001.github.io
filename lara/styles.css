@@ -65,7 +65,7 @@ section[hidden]{display:none}
 @media (max-width:420px){.route{grid-template-columns:1fr}.route li{border-inline-end:0;border-bottom:1px solid var(--line)}.route li:last-child{border-bottom:0}}
 
 label.f{display:grid;gap:6px;font-weight:500;font-size:.92rem;min-width:0}
-input[type=text],input[type=url],input[type=email],select,textarea{font:inherit;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:7px;padding:9px 11px;width:100%}
+input[type=text],input[type=url],input[type=email],input[type=password],select,textarea{font:inherit;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:7px;padding:9px 11px;width:100%}
 textarea{min-height:80px;resize:vertical}
 input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
 .grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
@@ -208,3 +208,11 @@ html[dir="rtl"] #doiInput,html[dir="rtl"] #emTo{text-align:right}
 .google-btn:hover{background:#f7f8f8}
 .or-line{display:flex;align-items:center;gap:10px;margin:.6rem 0}
 .or-line::before,.or-line::after{content:"";flex:1;border-top:1px solid var(--line)}
+
+/* sign-in */
+.pw-wrap{display:flex;gap:6px;align-items:stretch}
+.pw-wrap input{flex:1}
+.pw-toggle{white-space:nowrap}
+.auth-links{gap:.35rem;margin-top:.25rem}
+#auEmail,#auPass,#auNewPass,#auCode{direction:ltr}
+#auCode{font-size:1.4rem;letter-spacing:.35em;font-family:var(--f-mono);text-align:center}

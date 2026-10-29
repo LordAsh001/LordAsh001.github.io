@@ -12,12 +12,12 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,750&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Sans+Arabic:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
-<link rel="stylesheet" href="styles.css?v=7">
-<script src="config.js?v=7"></script>
-<script src="errors.js?v=7"></script>
-<script src="i18n.js?v=7"></script>
-<script src="letters.js?v=7"></script>
-<script type="module" src="app.js?v=7"></script>
+<link rel="stylesheet" href="styles.css?v=8">
+<script src="config.js?v=8"></script>
+<script src="errors.js?v=8"></script>
+<script src="i18n.js?v=8"></script>
+<script src="letters.js?v=8"></script>
+<script type="module" src="app.js?v=8"></script>
 </head>
 <body>
 <div class="wrap">
@@ -185,16 +185,33 @@
 
     <!-- SIGN IN -->
     <section id="tab-signin" class="stack" hidden>
-      <div class="panel" style="max-width:520px">
-        <h2 data-i18n="si_h">Sign in or join</h2>
-        <p class="small muted" data-i18n="si_p">Enter your email and we'll send you a one-time sign-in link. No password needed. New members are signed up automatically.</p>
-        <button id="googleBtn" class="google-btn" type="button" hidden><svg viewBox="0 0 48 48" width="18" height="18" aria-hidden="true"><path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3C33.7 32.7 29.2 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34 6.1 29.3 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.4-.4-3.5z"/><path fill="#FF3D00" d="m6.3 14.7 6.6 4.8C14.7 15.1 19 12 24 12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34 6.1 29.3 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2C29.2 35.1 26.7 36 24 36c-5.2 0-9.6-3.3-11.3-8l-6.5 5C9.5 39.6 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-.8 2.2-2.2 4.2-4.1 5.6l6.2 5.2C37 39.2 44 34 44 24c0-1.3-.1-2.4-.4-3.5z"/></svg><span data-i18n="si_google">Continue with Google</span></button>
-        <p class="small muted or-line" id="googleOr" hidden><span data-i18n="si_or">or use any email address</span></p>
-        <label class="f"><span data-i18n="si_email">Email</span><input type="email" id="signinEmail" autocomplete="email" placeholder="you@example.com"></label>
-        <div class="row">
-          <button class="primary" id="signinBtn" type="button" data-i18n="si_btn">Email me a sign-in link</button>
+      <div class="panel auth-panel" style="max-width:520px">
+        <h2 id="auHead" data-i18n="au_h_in">Sign in</h2>
+        <p class="small muted" id="auLead"></p>
+
+        <div id="auGoogle" hidden>
+          <button id="googleBtn" class="google-btn" type="button"><svg viewBox="0 0 48 48" width="18" height="18" aria-hidden="true"><path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3C33.7 32.7 29.2 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34 6.1 29.3 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.4-.4-3.5z"/><path fill="#FF3D00" d="m6.3 14.7 6.6 4.8C14.7 15.1 19 12 24 12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34 6.1 29.3 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2C29.2 35.1 26.7 36 24 36c-5.2 0-9.6-3.3-11.3-8l-6.5 5C9.5 39.6 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-.8 2.2-2.2 4.2-4.1 5.6l6.2 5.2C37 39.2 44 34 44 24c0-1.3-.1-2.4-.4-3.5z"/></svg><span data-i18n="si_google">Continue with Google</span></button>
+          <p class="small muted or-line"><span data-i18n="au_or">or with your email and a password</span></p>
         </div>
-        <p class="small" id="signinState"></p>
+
+        <form id="auForm" class="stack" novalidate>
+          <label class="f" id="auEmailRow"><span data-i18n="si_email">Email</span><input type="email" id="auEmail" autocomplete="email" placeholder="you@example.com" required></label>
+          <label class="f" id="auPassRow"><span id="auPassLabel" data-i18n="au_pass">Password</span>
+            <span class="pw-wrap"><input type="password" id="auPass" autocomplete="current-password" minlength="8"><button type="button" class="ghost small pw-toggle" id="auShow" data-i18n="au_show">Show</button></span>
+            <span class="small muted" id="auPassHint" hidden data-i18n="au_pass_hint">At least 8 characters.</span>
+          </label>
+          <label class="f" id="auCodeRow" hidden><span data-i18n="au_code">6-digit code from your email</span><input type="text" id="auCode" inputmode="numeric" autocomplete="one-time-code" maxlength="10" placeholder="123456"></label>
+          <label class="f" id="auNewPassRow" hidden><span data-i18n="au_newpass">New password</span><input type="password" id="auNewPass" autocomplete="new-password" minlength="8"><span class="small muted" data-i18n="au_pass_hint">At least 8 characters.</span></label>
+          <div class="row"><button class="primary" id="auSubmit" type="submit" data-i18n="au_btn_in">Sign in</button></div>
+        </form>
+        <p class="small" id="signinState" role="status" aria-live="polite"></p>
+
+        <div class="small stack auth-links">
+          <a href="#" id="auToForgot" data-i18n="au_forgot">Forgot your password? (or never set one)</a>
+          <a href="#" id="auToUp" data-i18n="au_to_up">New to LARA? Create an account</a>
+          <a href="#" id="auToIn" hidden data-i18n="au_to_in">Already have an account? Sign in</a>
+          <a href="#" id="auResend" hidden data-i18n="au_resend">Didn't get the code? Send it again</a>
+        </div>
         <p class="small muted"><span data-i18n="si_agree">By joining you agree to the ground rules and our privacy notice.</span> <a href="#rules" data-i18n="tab_rules">Ground rules</a> · <a href="privacy.html" data-i18n="privacy">Privacy</a></p>
       </div>
     </section>
