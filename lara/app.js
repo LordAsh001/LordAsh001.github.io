@@ -104,7 +104,15 @@ $("signinBtn").addEventListener("click", async () => {
   $("signinBtn").disabled = false;
   $("signinState").textContent = error ? friendly(error) : t("si_sent");
 });
+// Show "Continue with Google" automatically once Google is switched on in Supabase.
 $("googleBtn").hidden = !CFG.ENABLE_GOOGLE;
+$("googleOr").hidden = $("googleBtn").hidden;
+if (configured) {
+  fetch(CFG.SUPABASE_URL.replace(/\/$/, "") + "/auth/v1/settings", { headers: { apikey: CFG.SUPABASE_ANON_KEY } })
+    .then((r) => (r.ok ? r.json() : null))
+    .then((j) => { if (j && j.external && j.external.google) { $("googleBtn").hidden = false; $("googleOr").hidden = false; } })
+    .catch(() => {});
+}
 $("googleBtn").addEventListener("click", () => sb && sb.auth.signInWithOAuth({ provider: "google", options: { redirectTo: SITE } }));
 
 // ---------- profile ----------
@@ -114,7 +122,8 @@ async function loadProfile() {
   const { data } = await sb.from("profiles").select("*").eq("id", S.user.id).maybeSingle();
   S.profile = data || null;
   const p = S.profile || {};
-  $("pName").value = p.name || ""; $("pRole").value = p.role || "requester"; $("pInst").value = p.institution || "";
+  const meta = (S.user && S.user.user_metadata) || {};
+  $("pName").value = p.name || meta.full_name || meta.name || ""; $("pRole").value = p.role || "requester"; $("pInst").value = p.institution || "";
   $("pCountry").value = p.country || ""; $("pLoc").value = p.location || ""; $("pField").value = p.field || "";
   $("pPledge").checked = !!p.pledge; $("pNotify").checked = p.notify !== false; pledgeVis();
   $("verifiedNote").textContent = S.profile ? (p.verified_academic ? t("verified_yes") : t("verified_no")) : "";
@@ -629,6 +638,7 @@ document.querySelectorAll("#adminFilter button").forEach((b) => b.addEventListen
 async function loadReports() {
   const box = $("reportList"); box.replaceChildren();
   const ebox = $("errorList"); ebox.replaceChildren();
+  backupState();
   if (!S.profile || !S.profile.is_admin) { box.append(emptyState(t("admin_only"), "")); return; }
   let q = sb.from("reports").select("*, request:requests(id,doi,title,status), reporter:profiles(name,institution,country)").order("created_at", { ascending: false }).limit(200);
   if (S.adminFilter === "open") q = q.eq("status", "open");
@@ -666,6 +676,28 @@ async function loadReports() {
       h("div", { class: "row" }, h("button", { class: "small ghost", type: "button", onclick: async () => { await sb.from("client_errors").delete().eq("id", er.id); loadReports(); } }, t("err_fixed")))));
   }
 }
+// ---------- backup (admins) ----------
+function backupState() {
+  let last = 0; try { last = +localStorage.getItem("lara_last_backup") || 0; } catch {}
+  const days = last ? Math.floor((Date.now() - last) / 86400000) : null;
+  $("bkState").textContent = last ? t("bk_last", { a: ago(new Date(last).toISOString()) }) + (days >= 7 ? " · " + t("bk_due") : "") : t("bk_never");
+  $("bkState").classList.toggle("errtext", !last || days >= 7);
+}
+$("bkBtn").addEventListener("click", async () => {
+  $("bkBtn").disabled = true; $("bkState").textContent = t("bk_making");
+  const { data, error } = await sb.rpc("admin_backup");
+  $("bkBtn").disabled = false;
+  if (error) { $("bkState").textContent = friendly(error); return; }
+  const blob = new Blob([JSON.stringify(data, null, 1)], { type: "application/json" });
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "lara-backup-" + new Date().toISOString().slice(0, 10) + ".json";
+  document.body.appendChild(a); a.click(); a.remove();
+  setTimeout(() => URL.revokeObjectURL(a.href), 5000);
+  try { localStorage.setItem("lara_last_backup", String(Date.now())); } catch {}
+  backupState(); toast(t("bk_done"));
+});
+
 function browserName(ua) {
   const m = ua.match(/(Edg|OPR|Firefox|SamsungBrowser|Chrome|Version)\/(\d+)/);
   const os = /Android/.test(ua) ? "Android" : /iPhone|iPad/.test(ua) ? "iOS" : /Windows/.test(ua) ? "Windows" : /Mac OS/.test(ua) ? "Mac" : /Linux/.test(ua) ? "Linux" : "";

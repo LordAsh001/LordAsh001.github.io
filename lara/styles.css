@@ -202,3 +202,9 @@ html[dir="rtl"] #doiInput,html[dir="rtl"] #emTo{text-align:right}
 .ext-steps { margin: .25rem 0 .75rem; padding-inline-start: 1.25rem; display: grid; gap: .2rem; }
 .tools-box details.sub { margin-top: .5rem; border-top: 1px solid var(--line, rgba(127,127,127,.25)); padding-top: .5rem; }
 .tools-box details.sub > summary { cursor: pointer; }
+
+/* Google sign-in */
+.google-btn{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;padding:.7rem 1rem;font-weight:600;background:#fff;color:#1f1f1f;border:1px solid #dadce0;border-radius:10px;cursor:pointer}
+.google-btn:hover{background:#f7f8f8}
+.or-line{display:flex;align-items:center;gap:10px;margin:.6rem 0}
+.or-line::before,.or-line::after{content:"";flex:1;border-top:1px solid var(--line)}
