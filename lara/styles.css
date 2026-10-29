@@ -195,7 +195,7 @@ dialog.composer::backdrop{background:rgba(0,0,0,.45)}
 dialog.composer textarea{min-height:240px;font-size:.92rem;line-height:1.5}
 .slip{grid-template-columns:118px minmax(0,1fr)}
 .slip .stub .pill{white-space:normal;line-height:1.3;justify-self:start}
-#doiInput,#emTo,.doi,.doi-mark,.mono,table.refs a{direction:ltr;unicode-bidi:isolate}
+#doiInput,#emTo,#pbEmail,.doi,.doi-mark,.mono,table.refs a{direction:ltr;unicode-bidi:isolate}
 html[dir="rtl"] #doiInput,html[dir="rtl"] #emTo{text-align:right}
 
 /* browser extension box */

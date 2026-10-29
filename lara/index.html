@@ -12,11 +12,12 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,750&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Sans+Arabic:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
-<link rel="stylesheet" href="styles.css?v=5">
-<script src="config.js?v=5"></script>
-<script src="i18n.js?v=5"></script>
-<script src="letters.js?v=5"></script>
-<script type="module" src="app.js?v=5"></script>
+<link rel="stylesheet" href="styles.css?v=6">
+<script src="config.js?v=6"></script>
+<script src="errors.js?v=6"></script>
+<script src="i18n.js?v=6"></script>
+<script src="letters.js?v=6"></script>
+<script type="module" src="app.js?v=6"></script>
 </head>
 <body>
 <div class="wrap">
@@ -229,17 +230,35 @@
     <!-- ADMIN -->
     <section id="tab-admin" class="stack" hidden>
       <h2 data-i18n="admin_h">Reports to review</h2>
+      <div class="row" id="adminFilter">
+        <button type="button" class="small" data-f="open" data-i18n="admin_f_open">Open</button>
+        <button type="button" class="small ghost" data-f="all" data-i18n="admin_f_all">All</button>
+      </div>
       <div id="reportList" class="stack"></div>
+      <h2 data-i18n="err_h">Errors in people's browsers</h2>
+      <p class="small muted" data-i18n="err_p">Crashes are recorded automatically. The same error is counted, not repeated. Forward anything unclear to whoever maintains the code.</p>
+      <div id="errorList" class="stack"></div>
     </section>
   </main>
 
   <footer class="foot">
-    <div><a href="#rules" data-i18n="tab_rules">Ground rules</a> · <a href="privacy.html" data-i18n="privacy">Privacy</a></div>
+    <div><a href="#rules" data-i18n="tab_rules">Ground rules</a> · <a href="privacy.html" data-i18n="privacy">Privacy</a> · <a href="#" id="problemLink" data-i18n="pb_link">Report a problem</a></div>
     <div data-i18n="foot_data">Open data from Unpaywall, Crossref, OpenAlex, CORE, Europe PMC, Semantic Scholar, arXiv, DOAJ, DataCite, Zenodo and Open Policy Finder.</div>
   </footer>
 </div>
 
 <!-- Email composer -->
+<dialog id="problem" class="composer">
+  <form method="dialog" class="stack" id="problemForm">
+    <div class="row" style="justify-content:space-between"><h2 data-i18n="pb_h">Report a problem</h2><button type="button" class="ghost small" id="pbClose" data-i18n="close">Close</button></div>
+    <p class="small" data-i18n="pb_p">Something not working, a wrong result, or a concern about a request or a member? Tell us what happened. The person who runs LARA reads every report.</p>
+    <label class="f"><span data-i18n="pb_what">What happened?</span><textarea id="pbText" rows="6" maxlength="2000" data-i18n-ph="pb_what_ph" placeholder="What were you trying to do, and what went wrong?"></textarea></label>
+    <label class="f"><span data-i18n="pb_email">Your email, if you'd like a reply (optional)</span><input type="email" id="pbEmail" maxlength="200"></label>
+    <p class="small muted" data-i18n="pb_note">We also receive which screen you were on, your browser and your language, to help us fix it.</p>
+    <div class="row"><button type="button" class="primary" id="pbSend" data-i18n="pb_send">Send report</button><span class="small" id="pbState"></span></div>
+  </form>
+</dialog>
+
 <dialog id="composer" class="composer">
   <form method="dialog" class="stack" id="composerForm">
     <div class="row" style="justify-content:space-between"><h2 data-i18n="em_h">Write to the author</h2><button type="button" class="ghost small" id="emClose" data-i18n="close">Close</button></div>

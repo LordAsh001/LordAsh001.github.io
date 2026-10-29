@@ -72,7 +72,8 @@ $("langSelect").value = I.lang;
 $("langSelect").addEventListener("change", (e) => { I.setLang(e.target.value); renderAll(); if (S.lookup || S.doi) renderCheck(); renderRefs(); });
 document.addEventListener("lara:lang", () => { $("countryList").replaceChildren(...AFRICA.map((c) => h("option", { value: c }))); });
 $("countryList").replaceChildren(...AFRICA.map((c) => h("option", { value: c })));
-document.querySelectorAll("[data-contact]").forEach((el) => { if (CFG.CONTACT_EMAIL) el.textContent = CFG.CONTACT_EMAIL; });
+const CONTACT = CFG.CONTACT_EMAIL || "lara@shagbaor.com";
+document.querySelectorAll("[data-contact]").forEach((el) => { el.replaceChildren(link(CONTACT, "mailto:" + CONTACT)); });
 
 // ---------- tabs ----------
 const TABS = ["request", "refs", "board", "mine", "impact", "profile", "signin", "rules", "admin"];
@@ -170,9 +171,35 @@ async function addNote(r, text) {
 async function report(r, reason) {
   reason = (reason || "").trim();
   if (reason.length < 3) { toast(t("report_need")); return; }
-  const { error } = await sb.from("reports").insert({ request_id: r.id, reporter_id: S.user.id, reason: reason.slice(0, 500) });
+  const tok = (await sb.auth.getSession()).data.session?.access_token;
+  const res = await window.LARA_FEEDBACK({ action: "problem", request_id: r.id, message: reason.slice(0, 2000) }, tok);
+  if (!res.error) { toast(t("report_sent")); return; }
+  const { error } = await sb.from("reports").insert({ request_id: r.id, reporter_id: S.user.id, reason: reason.slice(0, 2000) });
   toast(error ? friendly(error) : t("report_sent"));
 }
+
+// ---------- report a problem (anyone, signed in or not) ----------
+$("problemLink").addEventListener("click", (e) => {
+  e.preventDefault();
+  $("pbState").textContent = ""; $("pbSend").disabled = false;
+  if (S.user && S.user.email && !$("pbEmail").value) $("pbEmail").value = S.user.email;
+  const d = $("problem"); if (d.showModal) d.showModal(); else d.setAttribute("open", "");
+  $("pbText").focus();
+});
+$("pbClose").addEventListener("click", () => $("problem").close());
+$("pbSend").addEventListener("click", async () => {
+  const message = $("pbText").value.trim(), contact = $("pbEmail").value.trim();
+  if (message.length < 3) { $("pbState").textContent = t("pb_need"); $("pbText").focus(); return; }
+  if (contact && !/^\S+@\S+\.\S+$/.test(contact)) { $("pbState").textContent = t("pb_bad_email"); $("pbEmail").focus(); return; }
+  $("pbSend").disabled = true; $("pbState").textContent = t("pb_sending");
+  const tok = sb ? (await sb.auth.getSession()).data.session?.access_token : undefined;
+  const res = await window.LARA_FEEDBACK({ action: "problem", message, contact }, tok);
+  $("pbSend").disabled = false;
+  if (res.error) { $("pbState").textContent = res.error === "not_connected" ? t("not_connected_short") : res.error; return; }
+  $("pbText").value = "";
+  $("pbState").textContent = contact ? t("pb_thanks_reply") : t("pb_thanks");
+  toast(t("pb_thanks"));
+});
 
 // ---------- DOI / title check ----------
 function searchLinks(doi, title) {
@@ -593,22 +620,58 @@ $("exportBtn").addEventListener("click", async () => {
 });
 
 // ---------- admin ----------
+S.adminFilter = "open";
+document.querySelectorAll("#adminFilter button").forEach((b) => b.addEventListener("click", () => {
+  S.adminFilter = b.dataset.f;
+  document.querySelectorAll("#adminFilter button").forEach((x) => x.classList.toggle("ghost", x !== b));
+  loadReports();
+}));
 async function loadReports() {
   const box = $("reportList"); box.replaceChildren();
+  const ebox = $("errorList"); ebox.replaceChildren();
   if (!S.profile || !S.profile.is_admin) { box.append(emptyState(t("admin_only"), "")); return; }
-  const { data, error } = await sb.from("reports").select("*, request:requests(id,doi,title,status), reporter:profiles(name)").order("created_at", { ascending: false }).limit(200);
+  let q = sb.from("reports").select("*, request:requests(id,doi,title,status), reporter:profiles(name,institution,country)").order("created_at", { ascending: false }).limit(200);
+  if (S.adminFilter === "open") q = q.eq("status", "open");
+  const { data, error } = await q;
   if (error) { box.append(h("p", null, friendly(error))); return; }
-  if (!data.length) { box.append(emptyState(t("admin_none"), "")); return; }
+  if (!data.length) box.append(emptyState(t("admin_none"), ""));
   for (const rp of data) {
     const r = rp.request || {};
-    box.append(h("div", { class: "panel" },
-      h("div", { class: "row" }, h("span", { class: "pill " + (rp.status === "open" ? "st-open" : "st-done") }, rp.status === "open" ? t("admin_open") : t("admin_resolved")), h("span", { class: "small muted" }, ago(rp.created_at) + " · " + ((rp.reporter && rp.reporter.name) || ""))),
-      h("p", null, rp.reason),
-      h("p", { class: "small" }, (r.title || "") + " · ", link(r.doi || "", "https://doi.org/" + (r.doi || "")), " · " + t(STATUS_KEYS[r.status] || "st_open")),
+    const who = rp.reporter ? [rp.reporter.name, rp.reporter.institution, rp.reporter.country].filter(Boolean).join(", ") : t("admin_anon");
+    const kind = rp.kind === "problem" ? t("admin_k_problem") : t("admin_k_request");
+    box.append(h("div", { class: "panel stack" },
       h("div", { class: "row" },
+        h("span", { class: "pill " + (rp.status === "open" ? "st-open" : "st-done") }, rp.status === "open" ? t("admin_open") : t("admin_resolved")),
+        h("span", { class: "pill" }, kind),
+        h("span", { class: "small muted" }, ago(rp.created_at) + " · " + who)),
+      h("p", { style: "white-space:pre-wrap" }, rp.reason),
+      rp.request_id ? h("p", { class: "small" }, (r.title || "") + " · ", link(r.doi || "", "https://doi.org/" + (r.doi || "")), " · " + t(STATUS_KEYS[r.status] || "st_open")) : null,
+      (rp.page || rp.browser || rp.lang) ? h("p", { class: "small muted" }, [rp.page && t("admin_screen", { s: rp.page }), rp.lang && t("admin_lang", { l: rp.lang }), rp.browser && browserName(rp.browser)].filter(Boolean).join(" · ")) : null,
+      h("div", { class: "row" },
+        rp.contact ? h("a", { class: "btn small", href: `mailto:${encodeURIComponent(rp.contact)}?subject=${encodeURIComponent(t("admin_reply_subj"))}&body=${encodeURIComponent("\n\n> " + rp.reason.split("\n").join("\n> "))}` }, t("admin_reply", { e: rp.contact })) : null,
         rp.status === "open" ? h("button", { class: "small", type: "button", onclick: async () => { await sb.from("reports").update({ status: "resolved" }).eq("id", rp.id); loadReports(); } }, t("admin_mark")) : null,
-        r.id && !["done", "closed"].includes(r.status) ? h("button", { class: "small ghost", type: "button", onclick: async () => { const { error: e } = await sb.from("requests").update({ status: "closed", close_reason: "not-found", resolved_at: new Date().toISOString() }).eq("id", r.id); toast(e ? friendly(e) : t("admin_closed")); loadReports(); loadRequests(); } }, t("admin_close")) : null)));
+        r.id && !["done", "closed"].includes(r.status) ? h("button", { class: "small ghost", type: "button", onclick: async () => { const { error: e } = await sb.from("requests").update({ status: "closed", close_reason: "not-found", resolved_at: new Date().toISOString() }).eq("id", r.id); toast(e ? friendly(e) : t("admin_closed")); loadReports(); loadRequests(); } }, t("admin_close")) : null,
+        h("button", { class: "small ghost", type: "button", onclick: async () => { if (!confirm(t("admin_del_confirm"))) return; await sb.from("reports").delete().eq("id", rp.id); loadReports(); } }, t("admin_delete")))));
   }
+  // errors
+  const { data: errs, error: e2 } = await sb.from("client_errors").select("*").order("last_at", { ascending: false }).limit(100);
+  if (e2) { ebox.append(h("p", { class: "small" }, friendly(e2))); return; }
+  if (!errs.length) { ebox.append(emptyState(t("err_none"), "")); return; }
+  ebox.append(h("div", { class: "row" }, h("button", { class: "small ghost", type: "button", onclick: async () => { if (!confirm(t("err_clear_confirm"))) return; await sb.from("client_errors").delete().gte("id", 0); loadReports(); } }, t("err_clear"))));
+  for (const er of errs) {
+    ebox.append(h("div", { class: "panel" },
+      h("div", { class: "row" }, h("span", { class: "pill st-open" }, t("err_times", { n: er.count })), h("span", { class: "small muted" }, t("err_last", { a: ago(er.last_at), f: ago(er.first_at) }))),
+      h("p", { class: "small", style: "word-break:break-word;font-family:var(--f-mono)" }, er.message),
+      h("p", { class: "small muted" }, [er.source, er.page, er.lang, browserName(er.browser || "")].filter(Boolean).join(" · ")),
+      h("div", { class: "row" }, h("button", { class: "small ghost", type: "button", onclick: async () => { await sb.from("client_errors").delete().eq("id", er.id); loadReports(); } }, t("err_fixed")))));
+  }
+}
+function browserName(ua) {
+  const m = ua.match(/(Edg|OPR|Firefox|SamsungBrowser|Chrome|Version)\/(\d+)/);
+  const os = /Android/.test(ua) ? "Android" : /iPhone|iPad/.test(ua) ? "iOS" : /Windows/.test(ua) ? "Windows" : /Mac OS/.test(ua) ? "Mac" : /Linux/.test(ua) ? "Linux" : "";
+  if (!m) return os || ua.slice(0, 40);
+  const name = { Edg: "Edge", OPR: "Opera", Version: "Safari", SamsungBrowser: "Samsung Internet" }[m[1]] || m[1];
+  return `${name} ${m[2]}${os ? " · " + os : ""}`;
 }
 
 function renderAll() { renderAuth(); renderBoard(); renderMine(); renderImpact(); renderSaved(); }
