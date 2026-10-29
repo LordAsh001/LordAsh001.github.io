@@ -490,7 +490,8 @@
               "label": "free databases searched per DOI"
             }
           ],
-          "classroom": "show students how to find a legal free copy of a paper before they give up on it."
+          "classroom": "show students how to find a legal free copy of a paper before they give up on it.",
+          "doi": "10.5281/zenodo.23762808"
         },
         {
           "name": "Techno-Economic Studio",
