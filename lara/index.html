@@ -12,11 +12,11 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,750&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Sans+Arabic:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
-<link rel="stylesheet" href="styles.css?v=4">
-<script src="config.js?v=4"></script>
-<script src="i18n.js?v=4"></script>
-<script src="letters.js?v=4"></script>
-<script type="module" src="app.js?v=4"></script>
+<link rel="stylesheet" href="styles.css?v=5">
+<script src="config.js?v=5"></script>
+<script src="i18n.js?v=5"></script>
+<script src="letters.js?v=5"></script>
+<script type="module" src="app.js?v=5"></script>
 </head>
 <body>
 <div class="wrap">
@@ -77,8 +77,11 @@
       <details class="panel tools-box">
         <summary data-i18n="bm_h">Add LARA to your browser</summary>
         <p class="small" data-i18n="ext_p1">Install the LARA extension for Chrome, Edge or Brave. On any journal article page, click the LARA icon in your toolbar and LARA checks that paper for a legal free copy. You can also highlight a DOI or a title, right-click, and choose "Find on LARA".</p>
+        <p id="extStore" hidden><a class="btn primary" id="extStoreBtn" target="_blank" rel="noopener"></a></p>
+        <div id="extManual">
         <p><a class="btn primary" href="lara-extension.zip" download data-i18n="ext_dl">Download the LARA extension</a></p>
         <ol class="small ext-steps" data-i18n-html="ext_steps"><li>Unzip the downloaded file.</li><li>Open <b>chrome://extensions</b> (in Edge: <b>edge://extensions</b>).</li><li>Turn on <b>Developer mode</b>.</li><li>Click <b>Load unpacked</b> and choose the unzipped folder.</li><li>Click the puzzle icon in your toolbar and pin LARA.</li></ol>
+        </div>
         <details class="sub">
           <summary class="small" data-i18n="bm_other">On a phone, or can't install extensions? Use the bookmark button</summary>
           <p class="small" data-i18n="bm_p1">Drag this button to your bookmarks bar. When you're on a journal article page, click it and LARA checks that paper for a legal free copy.</p>

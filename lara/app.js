@@ -621,6 +621,25 @@ $("boardFilter").addEventListener("click", (e) => {
 });
 $("boardSearch").addEventListener("input", renderBoard);
 
+// ---------- browser extension: one-click store button once the store links exist ----------
+// Fill these in after each store approves LARA. Until then the manual download is shown.
+const EXT_STORES = {
+  chrome: "",   // https://chromewebstore.google.com/detail/...
+  edge: "",     // https://microsoftedge.microsoft.com/addons/detail/...
+  firefox: "",  // https://addons.mozilla.org/firefox/addon/...
+};
+(function extensionButton() {
+  const ua = navigator.userAgent;
+  const which = /Edg\//.test(ua) ? "edge" : /Firefox\//.test(ua) ? "firefox" : /Chrome\//.test(ua) ? "chrome" : "";
+  const url = EXT_STORES[which] || "";
+  if (!url) return;
+  const label = { chrome: "Chrome", edge: "Edge", firefox: "Firefox" }[which];
+  $("extStoreBtn").href = url;
+  $("extStoreBtn").textContent = t("ext_add", { b: label });
+  $("extStore").hidden = false;
+  $("extManual").hidden = true;
+})();
+
 // ---------- bookmarklet ----------
 (function () {
   const code = `javascript:(function(){var m=document.querySelector('meta[name="citation_doi"],meta[name="dc.identifier"],meta[name="DC.identifier"],meta[name="prism.doi"],meta[name="dc.Identifier"]');var v=m&&m.content||'';if(!/10\\.\\d{4,9}\\//.test(v)){var x=(location.href+' '+(document.body?document.body.innerText.slice(0,30000):'')).match(/10\\.\\d{4,9}\\/[^\\s"'<>]+/);v=x?x[0]:''}v=v.replace(/^(https?:\\/\\/(dx\\.)?doi\\.org\\/|doi:)/i,'');window.open('${SITE}?doi='+encodeURIComponent(v)+'#request','_blank')})();`;
