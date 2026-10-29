@@ -40,7 +40,7 @@
     logged: "Logged. Thank you", posted: "Posted to the request board",
     saved_h: "Saved papers", saved_p: "Papers you save stay on this device, so you can open the links later, even on a slow connection.",
     saved_none: "Nothing saved yet. Use \"Save to this device\" on a search result.", saved_toast: "Saved on this device", remove: "Remove",
-    bm_h: "Add the LARA button to your browser", bm_p1: "Drag this button to your bookmarks bar. When you're on a journal article page, click it and LARA checks that paper for a legal free copy.",
+    bm_h: "Add LARA to your browser", ext_p1: "Install the LARA extension for Chrome, Edge or Brave. On any journal article page, click the LARA icon in your toolbar and LARA checks that paper for a legal free copy. You can also highlight a DOI or a title, right-click, and choose \"Find on LARA\".", ext_dl: "Download the LARA extension", ext_steps: "<li>Unzip the downloaded file.</li><li>Open <b>chrome://extensions</b> (in Edge: <b>edge://extensions</b>).</li><li>Turn on <b>Developer mode</b>.</li><li>Click <b>Load unpacked</b> and choose the unzipped folder.</li><li>Click the puzzle icon in your toolbar and pin LARA.</li>", bm_other: "On a phone, or can't install extensions? Use the bookmark button", bm_p1: "Drag this button to your bookmarks bar. When you're on a journal article page, click it and LARA checks that paper for a legal free copy.",
     bm_btn: "Find it on LARA", bm_p2: "On a phone, bookmark any page, then edit the bookmark and paste the button's code as its address. You can also install LARA on your phone's home screen from your browser menu.",
     bm_drag: "Drag this button to your bookmarks bar instead of clicking it.",
     refs_h: "Check a whole reference list", refs_p: "Paste up to 40 references, one per line or separated by blank lines. LARA finds each one's DOI, then you can check them for free copies.",
@@ -115,7 +115,7 @@
     not_connected: "This site isn't connected to its database yet. Fill in config.js (see README.md). The search links still work.",
     not_connected_short: "This site isn't connected to its database yet.", not_connected_links: "This site isn't connected to its database yet, so only the search links are available.",
     not_reachable: "We couldn't reach the database. Check your connection and refresh the page. Saved papers still work.",
-    lt_surname: "[Surname]", lt_inst: "[your institution]", lt_journal: "[journal]", lt_title: "[article title]", lt_name: "[your name]", lt_field: ", working in {f}",
+    lt_surname: "[Surname]", lt_inst: "[your institution]", lt_journal: "[journal]", lt_title: "[article title]", lt_name: "[your name]", lt_field: ", working in {f}", lt_country: ", {c}",
     lt_subject: "Request for a copy of your article (doi:{doi})",
     lt_body: "Dear Dr {surname},\n\nI am a researcher at {inst}{country}{field}. My institution does not subscribe to {journal}, and I would be grateful if you could send me a copy of your article:\n\n\"{title}\"\nhttps://doi.org/{doi}{policy}\n\nI need it for my own research and will not share it further.\n\nThank you for your time and for your work.\n\nKind regards,\n{name}\n{inst}",
     lt_policy: "If it helps, your publisher's policy allows authors to share the accepted manuscript.",
@@ -161,7 +161,7 @@
     logged: "Enregistré. Merci", posted: "Publié sur le tableau des demandes",
     saved_h: "Articles enregistrés", saved_p: "Les articles enregistrés restent sur cet appareil : vous pouvez rouvrir les liens plus tard, même avec une connexion lente.",
     saved_none: "Rien d'enregistré. Utilisez « Enregistrer sur cet appareil » sur un résultat.", saved_toast: "Enregistré sur cet appareil", remove: "Retirer",
-    bm_h: "Ajouter le bouton LARA à votre navigateur", bm_p1: "Faites glisser ce bouton dans votre barre de favoris. Sur la page d'un article, cliquez-le et LARA cherche une copie légale gratuite.",
+    bm_h: "Ajouter LARA à votre navigateur", ext_p1: "Installez l'extension LARA pour Chrome, Edge ou Brave. Sur la page d'un article, cliquez sur l'icône LARA dans la barre d'outils et LARA cherche une copie légale gratuite. Vous pouvez aussi sélectionner un DOI ou un titre, faire un clic droit et choisir « Find on LARA ».", ext_dl: "Télécharger l'extension LARA", ext_steps: "<li>Décompressez le fichier téléchargé.</li><li>Ouvrez <b>chrome://extensions</b> (dans Edge : <b>edge://extensions</b>).</li><li>Activez le <b>mode développeur</b>.</li><li>Cliquez sur <b>Charger l'extension non empaquetée</b> et choisissez le dossier décompressé.</li><li>Cliquez sur l'icône en forme de pièce de puzzle et épinglez LARA.</li>", bm_other: "Sur téléphone, ou impossible d'installer une extension ? Utilisez le bouton favori", bm_p1: "Faites glisser ce bouton dans votre barre de favoris. Sur la page d'un article, cliquez-le et LARA cherche une copie légale gratuite.",
     bm_btn: "Chercher sur LARA", bm_p2: "Sur téléphone, ajoutez une page aux favoris, puis modifiez-la et collez le code du bouton comme adresse. Vous pouvez aussi installer LARA sur l'écran d'accueil depuis le menu du navigateur.",
     bm_drag: "Faites glisser ce bouton dans votre barre de favoris au lieu de cliquer.",
     refs_h: "Vérifier toute une liste de références", refs_p: "Collez jusqu'à 40 références, une par ligne ou séparées par des lignes vides. LARA trouve le DOI de chacune, puis vous pouvez chercher des copies gratuites.",
@@ -282,7 +282,7 @@
     logged: "Registado. Obrigado", posted: "Publicado no quadro de pedidos",
     saved_h: "Artigos guardados", saved_p: "Os artigos guardados ficam neste dispositivo, para abrir as ligações mais tarde, mesmo com ligação lenta.",
     saved_none: "Nada guardado. Use \"Guardar neste dispositivo\" num resultado.", saved_toast: "Guardado neste dispositivo", remove: "Remover",
-    bm_h: "Adicione o botão LARA ao navegador", bm_p1: "Arraste este botão para a barra de favoritos. Na página de um artigo, clique nele e o LARA procura uma cópia legal gratuita.",
+    bm_h: "Adicione o LARA ao navegador", ext_p1: "Instale a extensão LARA para Chrome, Edge ou Brave. Na página de um artigo, clique no ícone LARA na barra de ferramentas e o LARA procura uma cópia legal gratuita. Também pode selecionar um DOI ou um título, clicar com o botão direito e escolher \"Find on LARA\".", ext_dl: "Descarregar a extensão LARA", ext_steps: "<li>Descompacte o ficheiro descarregado.</li><li>Abra <b>chrome://extensions</b> (no Edge: <b>edge://extensions</b>).</li><li>Ative o <b>Modo de programador</b>.</li><li>Clique em <b>Carregar expandida</b> e escolha a pasta descompactada.</li><li>Clique no ícone de peça de puzzle e fixe o LARA.</li>", bm_other: "No telemóvel, ou não pode instalar extensões? Use o botão de favorito", bm_p1: "Arraste este botão para a barra de favoritos. Na página de um artigo, clique nele e o LARA procura uma cópia legal gratuita.",
     bm_btn: "Procurar no LARA", bm_p2: "No telemóvel, adicione uma página aos favoritos, edite-a e cole o código do botão como endereço. Também pode instalar o LARA no ecrã inicial a partir do menu do navegador.",
     bm_drag: "Arraste este botão para a barra de favoritos em vez de clicar.",
     refs_h: "Verificar uma lista de referências", refs_p: "Cole até 40 referências, uma por linha ou separadas por linhas em branco. O LARA encontra o DOI de cada uma e depois pode procurar cópias gratuitas.",
@@ -403,7 +403,7 @@
     logged: "تم التسجيل. شكرًا", posted: "نُشر في لوحة الطلبات",
     saved_h: "المقالات المحفوظة", saved_p: "تبقى المقالات المحفوظة على هذا الجهاز لتفتح روابطها لاحقًا، حتى مع اتصال بطيء.",
     saved_none: "لا شيء محفوظ بعد. استخدم «احفظ على هذا الجهاز» في نتيجة بحث.", saved_toast: "تم الحفظ على هذا الجهاز", remove: "إزالة",
-    bm_h: "أضف زر LARA إلى متصفحك", bm_p1: "اسحب هذا الزر إلى شريط الإشارات المرجعية. عندما تكون في صفحة مقال، انقر عليه ليبحث LARA عن نسخة قانونية مجانية.",
+    bm_h: "أضف LARA إلى متصفحك", ext_p1: "ثبّت إضافة LARA لمتصفح Chrome أو Edge أو Brave. في صفحة أي مقال، انقر على أيقونة LARA في شريط الأدوات ليبحث LARA عن نسخة قانونية مجانية. يمكنك أيضًا تحديد DOI أو عنوان، ثم النقر بزر الفأرة الأيمن واختيار «Find on LARA».", ext_dl: "تنزيل إضافة LARA", ext_steps: "<li>فك ضغط الملف الذي نزّلته.</li><li>افتح <b>chrome://extensions</b> (في Edge: <b>edge://extensions</b>).</li><li>فعّل <b>وضع المطوّر</b>.</li><li>انقر على <b>تحميل إضافة غير مضغوطة</b> واختر المجلد.</li><li>انقر على أيقونة قطعة الأحجية وثبّت LARA.</li>", bm_other: "على الهاتف، أو لا يمكنك تثبيت الإضافات؟ استخدم زر الإشارة المرجعية", bm_p1: "اسحب هذا الزر إلى شريط الإشارات المرجعية. عندما تكون في صفحة مقال، انقر عليه ليبحث LARA عن نسخة قانونية مجانية.",
     bm_btn: "ابحث في LARA", bm_p2: "على الهاتف، أضف أي صفحة إلى الإشارات المرجعية ثم عدّلها والصق رمز الزر كعنوان. يمكنك أيضًا تثبيت LARA على الشاشة الرئيسية من قائمة المتصفح.",
     bm_drag: "اسحب هذا الزر إلى شريط الإشارات بدلًا من النقر عليه.",
     refs_h: "افحص قائمة مراجع كاملة", refs_p: "الصق حتى 40 مرجعًا، مرجع في كل سطر أو مفصولة بأسطر فارغة. يجد LARA معرّف DOI لكل مرجع، ثم يمكنك البحث عن نسخ مجانية.",
@@ -478,7 +478,7 @@
     not_connected: "هذا الموقع غير متصل بقاعدة بياناته بعد. روابط البحث تعمل.",
     not_connected_short: "هذا الموقع غير متصل بقاعدة بياناته بعد.", not_connected_links: "الموقع غير متصل بقاعدة البيانات بعد، لذا تتوفر روابط البحث فقط.",
     not_reachable: "تعذّر الوصول إلى قاعدة البيانات. تحقق من الاتصال وحدّث الصفحة. المقالات المحفوظة ما زالت متاحة.",
-    lt_surname: "[اسم العائلة]", lt_inst: "[مؤسستك]", lt_journal: "[المجلة]", lt_title: "[عنوان المقال]", lt_name: "[اسمك]", lt_field: "، في مجال {f}",
+    lt_surname: "[اسم العائلة]", lt_inst: "[مؤسستك]", lt_journal: "[المجلة]", lt_title: "[عنوان المقال]", lt_name: "[اسمك]", lt_field: "، في مجال {f}", lt_country: "، {c}",
     lt_subject: "طلب نسخة من مقالكم (doi:{doi})",
     lt_body: "حضرة الدكتور/ة {surname} المحترم/ة،\n\nأنا باحث/ة في {inst}{country}{field}. مؤسستي غير مشتركة في {journal}، وسأكون ممتنًا لو تفضلتم بإرسال نسخة من مقالكم:\n\n«{title}»\nhttps://doi.org/{doi}{policy}\n\nأحتاجه لبحثي الخاص ولن أشاركه مع غيري.\n\nشكرًا لوقتكم ولعملكم.\n\nمع خالص التحية،\n{name}\n{inst}",
     lt_policy: "للعلم، تسمح سياسة الناشر للمؤلفين بمشاركة المخطوطة المقبولة.",
@@ -497,7 +497,12 @@
   const api = {
     get lang() { return lang; },
     t(key, vars) { const d = DICT[lang] || en; return fill(d[key] != null ? d[key] : en[key] != null ? en[key] : key, vars); },
-    tl(l, key, vars) { const d = DICT[l] || en; return fill(d[key] != null ? d[key] : en[key] != null ? en[key] : key, vars); },
+    tl(l, key, vars) {
+      const x = (window.LARA_LETTERS || {})[l] || {};
+      const d = DICT[l] || {};
+      const v = x[key] != null ? x[key] : d[key] != null ? d[key] : en[key] != null ? en[key] : key;
+      return fill(v, vars);
+    },
     apply(root) {
       document.documentElement.lang = lang;
       document.documentElement.dir = lang === "ar" ? "rtl" : "ltr";

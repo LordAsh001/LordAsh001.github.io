@@ -1,8 +1,8 @@
 // LARA: offline support. Network first for the app files (so updates show at once),
 // falling back to the saved copy when there's no connection. Database and
 // search requests are never cached here.
-const CACHE = "lara-v3";
-const SHELL = ["./", "index.html", "styles.css?v=3", "app.js?v=3", "i18n.js?v=3", "config.js?v=3", "privacy.html", "icon.svg", "manifest.webmanifest"];
+const CACHE = "lara-v4";
+const SHELL = ["./", "index.html", "styles.css?v=4", "app.js?v=4", "i18n.js?v=4", "letters.js?v=4", "config.js?v=4", "privacy.html", "icon.svg", "manifest.webmanifest"];
 
 self.addEventListener("install", (e) => {
   e.waitUntil(caches.open(CACHE).then((c) => c.addAll(SHELL)).catch(() => {}));

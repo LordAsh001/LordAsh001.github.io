@@ -298,7 +298,7 @@ function policyLine(p) {
   if (!p) return "";
   if (!p.accepted) return t("pol_no");
   const where = p.where && p.where.length ? t("pol_where", { w: p.where.slice(0, 3).join(", ") }) : "";
-  return (p.embargo ? t("pol_embargo", { e: p.embargo }) : t("pol_yes")) + where;
+  return (p.embargo ? t("pol_embargo", { e: localEmbargo(I.lang, p.embargo) }) : t("pol_yes")) + where;
 }
 
 async function submitRequest(doi, meta, title, note, status) {
@@ -331,15 +331,38 @@ function renderSaved() {
 }
 
 // ---------- email composer ----------
+// "12 months" -> "12 Monate", "12个月", "12 か月"... using the browser's own number formatting
+function localEmbargo(lang, s) {
+  const m = /^(\d+)\s*(day|week|month|year)s?/i.exec(s || "");
+  if (!m) return s;
+  try { return new Intl.NumberFormat(lang, { style: "unit", unit: m[2].toLowerCase(), unitDisplay: "long" }).format(+m[1]); } catch { return s; }
+}
+function letterLangs() {
+  const sel = $("emLang"), langs = (window.LARA_LETTER_LANGS || []).slice();
+  if (!langs.length || sel.dataset.filled) return;
+  const top = langs.slice(0, 4), rest = langs.slice(4).sort((a, b) => a.e.localeCompare(b.e));
+  sel.textContent = "";
+  for (const l of [...top, ...rest]) {
+    const o = document.createElement("option");
+    o.value = l.c; o.textContent = l.n === l.e ? l.n : `${l.n} · ${l.e}`;
+    sel.appendChild(o);
+  }
+  sel.dataset.filled = "1";
+}
+function letterDir(lang) {
+  const l = (window.LARA_LETTER_LANGS || []).find((x) => x.c === lang);
+  const dir = l && l.rtl ? "rtl" : "ltr";
+  $("emSubject").dir = dir; $("emBody").dir = dir;
+}
 function letter(lang, ctx) {
   const m = S.profile || {};
   const who = (ctx.corr && ctx.corr[0] && ctx.corr[0].name) || "";
   const last = who ? who.split(" ").slice(-1)[0] : "";
   const vars = {
-    surname: last || I.tl(lang, "lt_surname"), inst: m.institution || I.tl(lang, "lt_inst"), country: m.country ? ", " + m.country : "",
+    surname: last || I.tl(lang, "lt_surname"), inst: m.institution || I.tl(lang, "lt_inst"), country: m.country ? I.tl(lang, "lt_country", { c: m.country }) : "",
     field: m.field ? I.tl(lang, "lt_field", { f: m.field }) : "", journal: ctx.meta.journal || I.tl(lang, "lt_journal"),
     title: ctx.meta.title || I.tl(lang, "lt_title"), doi: ctx.doi, name: m.name || I.tl(lang, "lt_name"),
-    policy: ctx.policy && ctx.policy.accepted ? "\n\n" + I.tl(lang, ctx.policy.embargo ? "lt_policy_emb" : "lt_policy", { e: ctx.policy.embargo }) : "",
+    policy: ctx.policy && ctx.policy.accepted ? "\n\n" + I.tl(lang, ctx.policy.embargo ? "lt_policy_emb" : "lt_policy", { e: localEmbargo(lang, ctx.policy.embargo) }) : "",
   };
   return { subject: I.tl(lang, "lt_subject", vars), body: I.tl(lang, "lt_body", vars) };
 }
@@ -355,7 +378,9 @@ function composeLinks() {
 function openComposer(ctx) {
   S.composer = ctx;
   const lang = I.lang;
+  letterLangs();
   $("emLang").value = lang;
+  letterDir(lang);
   const l = letter(lang, ctx);
   $("emSubject").value = l.subject; $("emBody").value = l.body;
   $("emTo").value = ctx.to || "";
@@ -369,7 +394,7 @@ function openComposer(ctx) {
   if (d.showModal) d.showModal(); else d.setAttribute("open", "");
 }
 ["emTo", "emSubject", "emBody"].forEach((id) => $(id).addEventListener("input", composeLinks));
-$("emLang").addEventListener("change", () => { if (!S.composer) return; const l = letter($("emLang").value, S.composer); $("emSubject").value = l.subject; $("emBody").value = l.body; composeLinks(); });
+$("emLang").addEventListener("change", () => { if (!S.composer) return; letterDir($("emLang").value); const l = letter($("emLang").value, S.composer); $("emSubject").value = l.subject; $("emBody").value = l.body; composeLinks(); });
 $("emClose").addEventListener("click", () => $("composer").close());
 ["emGmail", "emOutlook", "emOffice", "emYahoo", "emMailto"].forEach((id) => $(id).addEventListener("click", (e) => {
   if (!$("emTo").value.trim()) { e.preventDefault(); $("emState").textContent = t("em_need_to"); $("emTo").focus(); return; }
