@@ -1,0 +1,29 @@
+# Keeps LARA's free Supabase project awake.
+# Supabase pauses free projects after about a week with no activity; this asks
+# LARA's database for its public impact numbers once a day, which counts as activity.
+# It reads the public (publishable) key from the live site, so no secrets are stored here.
+name: LARA keep-alive
+
+on:
+  schedule:
+    - cron: "17 6 * * *"   # every day at 06:17 UTC
+  workflow_dispatch: {}     # lets you run it by hand from the Actions tab
+
+permissions:
+  contents: read
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Ask LARA's database for its public numbers
+        run: |
+          set -euo pipefail
+          cfg=$(curl -fsS "https://shagbaor.com/lara/config.js?ts=$(date +%s)")
+          url=$(printf '%s' "$cfg" | grep -o 'SUPABASE_URL: *"[^"]*"' | sed 's/.*"\(.*\)"/\1/')
+          key=$(printf '%s' "$cfg" | grep -o 'SUPABASE_ANON_KEY: *"[^"]*"' | sed 's/.*"\(.*\)"/\1/')
+          code=$(curl -sS -o /tmp/out.json -w '%{http_code}' -X POST "$url/rest/v1/rpc/public_stats" \
+            -H "apikey: $key" -H "Authorization: Bearer $key" -H "Content-Type: application/json" -d '{}')
+          echo "HTTP $code"; head -c 300 /tmp/out.json; echo
+          test "$code" = "200"
