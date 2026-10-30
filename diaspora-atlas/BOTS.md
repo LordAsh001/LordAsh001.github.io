@@ -36,6 +36,6 @@ Every issue carries the `diaspora-atlas` label, as do suggestions sent from the 
 ## Install notes
 
 - Settings → Actions → General → Workflow permissions must be **Read and write** (already the case for the other atlases' bots).
-- Optional: add a repository secret `CENSUS_API_KEY` (free from api.census.gov/data/key_signup.html) if the US Census API starts refusing requests without a key.
+- **Needed for the US bot:** a free US Census API key (sign up at https://api.census.gov/data/key_signup.html), saved as the repository secret `CENSUS_API_KEY` (Settings → Secrets and variables → Actions → New repository secret). Without it the US bot skips quietly and the page keeps its built-in US figure.
 - To test a bot, open the Actions tab, choose a "Diaspora Atlas bot" workflow and press **Run workflow**. The first source-watcher and emergency-watch runs only record a baseline and open one "started" issue.
 - Offline tests: `python tests/test_diaspora_bots.py` (no network needed).
