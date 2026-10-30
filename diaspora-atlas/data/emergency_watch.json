@@ -1,0 +1,1128 @@
+{
+ "countries": {
+  "372": {
+   "slug": "ireland",
+   "hash": "0d6366e0a2869b6f",
+   "lines": [
+    "Telephone: 112 or 999 (ambulance, fire, police)"
+   ],
+   "checked": "2026-10-30T01:28:57+00:00"
+  },
+  "276": {
+   "slug": "germany",
+   "hash": "f20aabc6822a0bd0",
+   "lines": [
+    "Ambulance: 112",
+    "Fire: 112",
+    "Police: 110"
+   ],
+   "checked": "2026-10-30T01:28:58+00:00"
+  },
+  "250": {
+   "slug": "france",
+   "hash": "37330f1920ab4472",
+   "lines": [
+    "Telephone 112 (ambulance, fire, police)",
+    "Ambulance: 15",
+    "Fire: 18",
+    "Police: 17",
+    "Deaf and hard of hearing emergency number (SMS, chat, video and fax): 114"
+   ],
+   "checked": "2026-10-30T01:28:59+00:00"
+  },
+  "380": {
+   "slug": "italy",
+   "hash": "af4406ba47b0147a",
+   "lines": [
+    "Ambulance: 118",
+    "Fire: 115",
+    "Police: 112",
+    "You can also download the 112 Where Are U app , the official European emergency number app. It is only available in some parts of Italy."
+   ],
+   "checked": "2026-10-30T01:29:01+00:00"
+  },
+  "724": {
+   "slug": "spain",
+   "hash": "2ebdaa2ed4d081f7",
+   "lines": [
+    "Telephone: 112 (ambulance, fire, police)"
+   ],
+   "checked": "2026-10-30T01:29:02+00:00"
+  },
+  "620": {
+   "slug": "portugal",
+   "hash": "2ebdaa2ed4d081f7",
+   "lines": [
+    "Telephone: 112 (ambulance, fire, police)"
+   ],
+   "checked": "2026-10-30T01:29:04+00:00"
+  },
+  "528": {
+   "slug": "netherlands",
+   "hash": "2ebdaa2ed4d081f7",
+   "lines": [
+    "Telephone: 112 (ambulance, fire, police)"
+   ],
+   "checked": "2026-10-30T01:29:05+00:00"
+  },
+  "056": {
+   "slug": "belgium",
+   "hash": "909d985fff1011b8",
+   "lines": [
+    "Telephone: 112 (ambulance, fire, police)",
+    "Download the  112 BE app , the official Belgian emergency app for ambulance, fire and police services. This allows you to contact emergency services directly and helps responders identify your location and personal details."
+   ],
+   "checked": "2026-10-30T01:29:05+00:00"
+  },
+  "040": {
+   "slug": "austria",
+   "hash": "5780c04f345880e6",
+   "lines": [
+    "Ambulance or rescue: 144",
+    "Fire: 122",
+    "Police: 133",
+    "European emergency number: 112",
+    "You can also download the 112 Where Are U app , the European emergency number app."
+   ],
+   "checked": "2026-10-30T01:29:07+00:00"
+  },
+  "752": {
+   "slug": "sweden",
+   "hash": "2ebdaa2ed4d081f7",
+   "lines": [
+    "Telephone: 112 (ambulance, fire, police)"
+   ],
+   "checked": "2026-10-30T01:29:07+00:00"
+  },
+  "208": {
+   "slug": "denmark",
+   "hash": "0a47b2fbb31bdf3f",
+   "lines": [
+    "Telephone: 112 (ambulance, fire, police)."
+   ],
+   "checked": "2026-10-30T01:29:08+00:00"
+  },
+  "246": {
+   "slug": "finland",
+   "hash": "2ebdaa2ed4d081f7",
+   "lines": [
+    "Telephone: 112 (ambulance, fire, police)"
+   ],
+   "checked": "2026-10-30T01:29:10+00:00"
+  },
+  "616": {
+   "slug": "poland",
+   "hash": "3ce1476a38213b7a",
+   "lines": [
+    "Ambulance: 999",
+    "Fire: 998",
+    "Police: 997"
+   ],
+   "checked": "2026-10-30T01:29:10+00:00"
+  },
+  "348": {
+   "slug": "hungary",
+   "hash": "2ebdaa2ed4d081f7",
+   "lines": [
+    "Telephone: 112 (ambulance, fire, police)"
+   ],
+   "checked": "2026-10-30T01:29:12+00:00"
+  },
+  "300": {
+   "slug": "greece",
+   "hash": "ff9ef55300d58980",
+   "lines": [
+    "Telephone: 112 (ambulance, fire, police)",
+    "Calling 999 from a UK mobile in Greece will automatically transfer you to the Greek emergency services."
+   ],
+   "checked": "2026-10-30T01:29:12+00:00"
+  },
+  "203": {
+   "slug": "czech-republic",
+   "hash": "da39a3ee5e6b4b0d",
+   "lines": [],
+   "checked": "2026-10-30T01:29:13+00:00"
+  },
+  "642": {
+   "slug": "romania",
+   "hash": "2ebdaa2ed4d081f7",
+   "lines": [
+    "Telephone: 112 (ambulance, fire, police)"
+   ],
+   "checked": "2026-10-30T01:29:13+00:00"
+  },
+  "100": {
+   "slug": "bulgaria",
+   "hash": "2ebdaa2ed4d081f7",
+   "lines": [
+    "Telephone: 112 (ambulance, fire, police)"
+   ],
+   "checked": "2026-10-30T01:29:14+00:00"
+  },
+  "440": {
+   "slug": "lithuania",
+   "hash": "2ebdaa2ed4d081f7",
+   "lines": [
+    "Telephone: 112 (ambulance, fire, police)"
+   ],
+   "checked": "2026-10-30T01:29:15+00:00"
+  },
+  "233": {
+   "slug": "estonia",
+   "hash": "2ebdaa2ed4d081f7",
+   "lines": [
+    "Telephone: 112 (ambulance, fire, police)"
+   ],
+   "checked": "2026-10-30T01:29:16+00:00"
+  },
+  "428": {
+   "slug": "latvia",
+   "hash": "7bf9ad7be49624bf",
+   "lines": [
+    "Ambulance: 113",
+    "Fire: 112",
+    "Police: 110",
+    "Riga Tourist Police: +371 6718 1818"
+   ],
+   "checked": "2026-10-30T01:29:16+00:00"
+  },
+  "442": {
+   "slug": "luxembourg",
+   "hash": "2ae2ff904eace7a7",
+   "lines": [
+    "Ambulance: 112",
+    "Fire: 112",
+    "Police: 113"
+   ],
+   "checked": "2026-10-30T01:29:17+00:00"
+  },
+  "703": {
+   "slug": "slovakia",
+   "hash": "476fa24effdb79d8",
+   "lines": [
+    "Ambulance: 155",
+    "Fire: 150",
+    "Police: 158"
+   ],
+   "checked": "2026-10-30T01:29:18+00:00"
+  },
+  "705": {
+   "slug": "slovenia",
+   "hash": "9d2df36955acc11b",
+   "lines": [
+    "Police: 113",
+    "Ambulance, fire and mountain rescue: 112"
+   ],
+   "checked": "2026-10-30T01:29:19+00:00"
+  },
+  "191": {
+   "slug": "croatia",
+   "hash": "2ebdaa2ed4d081f7",
+   "lines": [
+    "Telephone: 112 (ambulance, fire, police)"
+   ],
+   "checked": "2026-10-30T01:29:20+00:00"
+  },
+  "470": {
+   "slug": "malta",
+   "hash": "2ebdaa2ed4d081f7",
+   "lines": [
+    "Telephone: 112 (ambulance, fire, police)"
+   ],
+   "checked": "2026-10-30T01:29:20+00:00"
+  },
+  "196": {
+   "slug": "cyprus",
+   "hash": "2ebdaa2ed4d081f7",
+   "lines": [
+    "Telephone: 112 (ambulance, fire, police)"
+   ],
+   "checked": "2026-10-30T01:29:21+00:00"
+  },
+  "840": {
+   "slug": "usa",
+   "hash": "a1107dda4537af73",
+   "lines": [
+    "Telephone: 911 (ambulance, fire, police)."
+   ],
+   "checked": "2026-10-30T01:29:22+00:00"
+  },
+  "124": {
+   "slug": "canada",
+   "hash": "5b63f86012803db5",
+   "lines": [
+    "Telephone: 911 (ambulance, fire, police)"
+   ],
+   "checked": "2026-10-30T01:29:23+00:00"
+  },
+  "484": {
+   "slug": "mexico",
+   "hash": "5b63f86012803db5",
+   "lines": [
+    "Telephone: 911 (ambulance, fire, police)"
+   ],
+   "checked": "2026-10-30T01:29:23+00:00"
+  },
+  "076": {
+   "slug": "brazil",
+   "hash": "bd98d7a42e632cde",
+   "lines": [
+    "Ambulance: 192",
+    "Fire: 193",
+    "Police: 190 or 911"
+   ],
+   "checked": "2026-10-30T01:29:24+00:00"
+  },
+  "032": {
+   "slug": "argentina",
+   "hash": "339540c036371995",
+   "lines": [
+    "Ambulance: 107",
+    "Fire: 100",
+    "Police: 911 or 101",
+    "To contact the emergency line (911) in Buenos Aires from outside Argentina call: +54 11 4309 9600, extensions 261099 or 261098",
+    "Tourist Police (‘Comisaría del Turista’): +54 911 5050 9260 (24 hours)",
+    "Tourist Police WhatsApp: +54 911 5050 9260",
+    "Tourist Police (‘Comisaría del Turista’): +54 261 413 2135 (24 hours)"
+   ],
+   "checked": "2026-10-30T01:29:26+00:00"
+  },
+  "862": {
+   "slug": "venezuela",
+   "hash": "5b63f86012803db5",
+   "lines": [
+    "Telephone: 911 (ambulance, fire, police)"
+   ],
+   "checked": "2026-10-30T01:29:27+00:00"
+  },
+  "192": {
+   "slug": "cuba",
+   "hash": "488121fd10567513",
+   "lines": [
+    "Ambulance: 104",
+    "Fire: 105",
+    "Police: 106"
+   ],
+   "checked": "2026-10-30T01:29:27+00:00"
+  },
+  "388": {
+   "slug": "jamaica",
+   "hash": "3d5f38b4d9b8c8f0",
+   "lines": [
+    "Ambulance: 110",
+    "Fire: 110",
+    "Police: 119"
+   ],
+   "checked": "2026-10-30T01:29:28+00:00"
+  },
+  "780": {
+   "slug": "trinidad-and-tobago",
+   "hash": "76526a40896659d9",
+   "lines": [
+    "Ambulance: 811",
+    "Fire: 990",
+    "Police: 999"
+   ],
+   "checked": "2026-10-30T01:29:29+00:00"
+  },
+  "392": {
+   "slug": "japan",
+   "hash": "da98b28070b4ffb0",
+   "lines": [
+    "Ambulance: 119",
+    "Fire: 119",
+    "Police: 110"
+   ],
+   "checked": "2026-10-30T01:29:29+00:00"
+  },
+  "356": {
+   "slug": "india",
+   "hash": "08f763c013e0025b",
+   "lines": [
+    "Telephone: 112 (ambulance, fire, police)",
+    "You can also download the 112 India mobile app which can track your location to support response in an emergency."
+   ],
+   "checked": "2026-10-30T01:29:31+00:00"
+  },
+  "458": {
+   "slug": "malaysia",
+   "hash": "26872737f3b89832",
+   "lines": [
+    "Police and ambulance: 999",
+    "Fire: 994",
+    "Ambulance (from a mobile): 112"
+   ],
+   "checked": "2026-10-30T01:29:31+00:00"
+  },
+  "360": {
+   "slug": "indonesia",
+   "hash": "e23132aefdbc44c7",
+   "lines": [
+    "Ambulance: 118",
+    "Fire: 112",
+    "Police: 110"
+   ],
+   "checked": "2026-10-30T01:29:32+00:00"
+  },
+  "608": {
+   "slug": "philippines",
+   "hash": "b8be8723b7cb92bc",
+   "lines": [
+    "Telephone: 911 (ambulance, fire, police)"
+   ],
+   "checked": "2026-10-30T01:29:32+00:00"
+  },
+  "764": {
+   "slug": "thailand",
+   "hash": "07a81803e9a481ea",
+   "lines": [
+    "Telephone: 191 (ambulance, fire, police)",
+    "Ambulance: 1669",
+    "Fire: 199",
+    "Police: 191",
+    "Tourist police: 1155"
+   ],
+   "checked": "2026-10-30T01:29:34+00:00"
+  },
+  "702": {
+   "slug": "singapore",
+   "hash": "aa70d7ec176146bd",
+   "lines": [
+    "Ambulance and fire: 995",
+    "Police: 999"
+   ],
+   "checked": "2026-10-30T01:29:34+00:00"
+  },
+  "586": {
+   "slug": "pakistan",
+   "hash": "dca0131e2e308a41",
+   "lines": [
+    "Telephone: 1122 (ambulance, fire)",
+    "Police: 15"
+   ],
+   "checked": "2026-10-30T01:29:35+00:00"
+  },
+  "144": {
+   "slug": "sri-lanka",
+   "hash": "a4913b64159fc579",
+   "lines": [
+    "Ambulance: 011 2691111 or 1990",
+    "Fire and Rescue: 111",
+    "Police: 118/119",
+    "Emergency Police Mobile Squad: 011 5717171",
+    "Tourist Police: 011 2421052"
+   ],
+   "checked": "2026-10-30T01:29:36+00:00"
+  },
+  "364": {
+   "slug": "iran",
+   "hash": "e1db31c993df9969",
+   "lines": [
+    "Ambulance: 115",
+    "Fire: 125",
+    "Police: 110",
+    "Or in an emergency you can also call FCDO : 020 7008 5000 (24 hours)."
+   ],
+   "checked": "2026-10-30T01:29:36+00:00"
+  },
+  "044": {
+   "slug": "bahamas",
+   "hash": "3ed4f67307efce8b",
+   "lines": [
+    "Telephone: 911 or 919 (ambulance, fire, police)"
+   ],
+   "checked": "2026-10-30T01:29:37+00:00"
+  },
+  "218": {
+   "slug": "ecuador",
+   "hash": "5b63f86012803db5",
+   "lines": [
+    "Telephone: 911 (ambulance, fire, police)"
+   ],
+   "checked": "2026-10-30T01:29:37+00:00"
+  },
+  "591": {
+   "slug": "panama",
+   "hash": "183241ed0c08efb5",
+   "lines": [
+    "Telephone: 911 (ambulance, fire, police)",
+    "Ambulance: 103",
+    "Fire: 103",
+    "Police: 104"
+   ],
+   "checked": "2026-10-30T01:29:38+00:00"
+  },
+  "084": {
+   "slug": "belize",
+   "hash": "b730c3b15b4f37ec",
+   "lines": [
+    "Telephone: 911 or 90 (ambulance, fire, police)"
+   ],
+   "checked": "2026-10-30T01:29:39+00:00"
+  },
+  "214": {
+   "slug": "dominican-republic",
+   "hash": "50a24551f497f42b",
+   "lines": [
+    "Telephone: 911 (ambulance, fire, police)",
+    "The 911 emergency number does not have full coverage across the country. If you’re outside Santo Domingo, you can telephone the tourist police in an emergency: +1 809 200 3500."
+   ],
+   "checked": "2026-10-30T01:29:40+00:00"
+  },
+  "068": {
+   "slug": "bolivia",
+   "hash": "8658881b341759b0",
+   "lines": [
+    "Ambulance: 118",
+    "Police: 110",
+    "Fire: 119"
+   ],
+   "checked": "2026-10-30T01:29:40+00:00"
+  },
+  "288": {
+   "slug": "ghana",
+   "hash": "f325d8bf9ba6dc90",
+   "lines": [
+    "999 or 112 (ambulance, fire, police, coast guard and mountain rescue)",
+    "192 (police)"
+   ],
+   "checked": "2026-10-30T01:29:42+00:00"
+  },
+  "156": {
+   "slug": "china",
+   "hash": "d16f76695e6d6497",
+   "lines": [
+    "Ambulance: 120",
+    "Fire: 119",
+    "Police: 110",
+    "Traffic Police: 122"
+   ],
+   "checked": "2026-10-30T01:29:42+00:00"
+  },
+  "410": {
+   "slug": "south-korea",
+   "hash": "1e1cc3846831da16",
+   "lines": [
+    "Ambulance: 119",
+    "Fire: 119",
+    "Police: 112",
+    "The Korea Tourism Organisation (KTO) operates a travel hotline to provide assistance in multiple languages, including English. The hotline also offers interpretation services, including support for three-way calls (e.g. between British nationals, the hotline and emergency services) from 7am to midnight. Call 1330 to contact the travel hotline.",
+    "Dasan Call Centre (+82 2 120) – available 9am to 6pm Monday-Friday",
+    "Danuri Call Centre (1577 1366) – available 24/7"
+   ],
+   "checked": "2026-10-30T01:29:43+00:00"
+  },
+  "662": {
+   "slug": "st-lucia",
+   "hash": "5b63f86012803db5",
+   "lines": [
+    "Telephone: 911 (ambulance, fire, police)"
+   ],
+   "checked": "2026-10-30T01:29:44+00:00"
+  },
+  "212": {
+   "slug": "dominica",
+   "hash": "341186e9d8647981",
+   "lines": [
+    "Telephone: 999 (ambulance, fire, police)"
+   ],
+   "checked": "2026-10-30T01:29:44+00:00"
+  },
+  "028": {
+   "slug": "antigua-and-barbuda",
+   "hash": "074e66353b4f53e4",
+   "lines": [
+    "Telephone: 999 or 911 (ambulance, fire, police)"
+   ],
+   "checked": "2026-10-30T01:29:45+00:00"
+  },
+  "060": {
+   "slug": "bermuda",
+   "hash": "b7d8b592743079a0",
+   "lines": [
+    "Telephone: 911 (ambulance, fire, police, maritime rescue)"
+   ],
+   "checked": "2026-10-30T01:29:45+00:00"
+  },
+  "136": {
+   "slug": "cayman-islands",
+   "hash": "2d590a0baef1b804",
+   "lines": [
+    "Telephone: 911 (ambulance, fire, police, police marine unit)"
+   ],
+   "checked": "2026-10-30T01:29:46+00:00"
+  },
+  "188": {
+   "slug": "costa-rica",
+   "hash": "5b63f86012803db5",
+   "lines": [
+    "Telephone: 911 (ambulance, fire, police)"
+   ],
+   "checked": "2026-10-30T01:29:46+00:00"
+  },
+  "558": {
+   "slug": "nicaragua",
+   "hash": "5b63f86012803db5",
+   "lines": [
+    "Telephone: 911 (ambulance, fire, police)"
+   ],
+   "checked": "2026-10-30T01:29:47+00:00"
+  },
+  "729": {
+   "slug": "sudan",
+   "hash": "341186e9d8647981",
+   "lines": [
+    "Telephone: 999 (ambulance, fire, police)"
+   ],
+   "checked": "2026-10-30T01:29:47+00:00"
+  },
+  "728": {
+   "slug": "south-sudan",
+   "hash": "da39a3ee5e6b4b0d",
+   "lines": [],
+   "checked": "2026-10-30T01:29:49+00:00"
+  },
+  "710": {
+   "slug": "south-africa",
+   "hash": "edf14f870b62d6b2",
+   "lines": [
+    "All emergencies from mobiles: 112",
+    "Ambulance and fire: 10177",
+    "Police: 10111"
+   ],
+   "checked": "2026-10-30T01:29:49+00:00"
+  },
+  "508": {
+   "slug": "mozambique",
+   "hash": "8ac59bb1f37bb9ea",
+   "lines": [
+    "Call 112 (ambulance, fire, police)",
+    "Ambulance: 848888 or 823388",
+    "Fire: 198",
+    "Police: 112"
+   ],
+   "checked": "2026-10-30T01:29:50+00:00"
+  },
+  "072": {
+   "slug": "botswana",
+   "hash": "2aa7846ad57ee163",
+   "lines": [
+    "Ambulance: 997",
+    "Fire: 998",
+    "Police: 999"
+   ],
+   "checked": "2026-10-30T01:29:50+00:00"
+  },
+  "516": {
+   "slug": "namibia",
+   "hash": "0c98fa91ffe2630c",
+   "lines": [
+    "Telephone: 10111, 999, 112 (ambulance, fire, police)"
+   ],
+   "checked": "2026-10-30T01:29:51+00:00"
+  },
+  "894": {
+   "slug": "zambia",
+   "hash": "b1865d3e5a8ef390",
+   "lines": [
+    "Police: 991",
+    "Ambulance: 992",
+    "Fire: 993"
+   ],
+   "checked": "2026-10-30T01:29:51+00:00"
+  },
+  "716": {
+   "slug": "zimbabwe",
+   "hash": "2ebdaa2ed4d081f7",
+   "lines": [
+    "Telephone: 112 (ambulance, fire, police)"
+   ],
+   "checked": "2026-10-30T01:29:52+00:00"
+  },
+  "024": {
+   "slug": "angola",
+   "hash": "57e2d56af7a46fc7",
+   "lines": [
+    "Ambulance: 112",
+    "Fire: 118",
+    "Police: 110"
+   ],
+   "checked": "2026-10-30T01:29:52+00:00"
+  },
+  "404": {
+   "slug": "kenya",
+   "hash": "341186e9d8647981",
+   "lines": [
+    "Telephone: 999 (ambulance, fire, police)"
+   ],
+   "checked": "2026-10-30T01:29:54+00:00"
+  },
+  "834": {
+   "slug": "tanzania",
+   "hash": "2ebdaa2ed4d081f7",
+   "lines": [
+    "Telephone: 112 (ambulance, fire, police)"
+   ],
+   "checked": "2026-10-30T01:29:54+00:00"
+  },
+  "800": {
+   "slug": "uganda",
+   "hash": "341186e9d8647981",
+   "lines": [
+    "Telephone: 999 (ambulance, fire, police)"
+   ],
+   "checked": "2026-10-30T01:29:55+00:00"
+  },
+  "231": {
+   "slug": "ethiopia",
+   "hash": "21b17a03bafed8c1",
+   "lines": [
+    "Police and emergency: 911",
+    "Ambulance (Addis Ababa): 907"
+   ],
+   "checked": "2026-10-30T01:29:55+00:00"
+  },
+  "646": {
+   "slug": "rwanda",
+   "hash": "b41445f02cfe437a",
+   "lines": [
+    "Ambulance: 112",
+    "Police: 112",
+    "Fire: 111"
+   ],
+   "checked": "2026-10-30T01:29:56+00:00"
+  },
+  "818": {
+   "slug": "egypt",
+   "hash": "929ca35e132532de",
+   "lines": [
+    "Ambulance: 123",
+    "Fire: 180",
+    "Police: 122",
+    "Tourist police: 126"
+   ],
+   "checked": "2026-10-30T01:29:57+00:00"
+  },
+  "434": {
+   "slug": "libya",
+   "hash": "cffd88e82c980f11",
+   "lines": [
+    "Telephone: 1415 (ambulance, fire, police)"
+   ],
+   "checked": "2026-10-30T01:29:58+00:00"
+  },
+  "788": {
+   "slug": "tunisia",
+   "hash": "a82ffaff0f331efb",
+   "lines": [
+    "Ambulance: 190",
+    "Fire and car accidents: 198",
+    "Police (when in towns and cities): 197"
+   ],
+   "checked": "2026-10-30T01:29:59+00:00"
+  },
+  "012": {
+   "slug": "algeria",
+   "hash": "8fbdef04e3a61049",
+   "lines": [
+    "Ambulance: 1021",
+    "Fire: 14",
+    "Police: 17 or 1548"
+   ],
+   "checked": "2026-10-30T01:30:01+00:00"
+  },
+  "504": {
+   "slug": "morocco",
+   "hash": "652a426d004eeb89",
+   "lines": [
+    "Ambulance: 150",
+    "Fire: 150",
+    "Police: 190",
+    "Gendarmerie (military police): 177"
+   ],
+   "checked": "2026-10-30T01:30:02+00:00"
+  },
+  "690": {
+   "slug": "seychelles",
+   "hash": "341186e9d8647981",
+   "lines": [
+    "Telephone: 999 (ambulance, fire, police)"
+   ],
+   "checked": "2026-10-30T01:30:03+00:00"
+  },
+  "784": {
+   "slug": "united-arab-emirates",
+   "hash": "a2a327c6871ed202",
+   "lines": [
+    "Ambulance: 998",
+    "Fire: 997",
+    "Police: 999"
+   ],
+   "checked": "2026-10-30T01:30:04+00:00"
+  },
+  "414": {
+   "slug": "kuwait",
+   "hash": "2ebdaa2ed4d081f7",
+   "lines": [
+    "Telephone: 112 (ambulance, fire, police)"
+   ],
+   "checked": "2026-10-30T01:30:05+00:00"
+  },
+  "634": {
+   "slug": "qatar",
+   "hash": "341186e9d8647981",
+   "lines": [
+    "Telephone: 999 (ambulance, fire, police)"
+   ],
+   "checked": "2026-10-30T01:30:06+00:00"
+  },
+  "048": {
+   "slug": "bahrain",
+   "hash": "341186e9d8647981",
+   "lines": [
+    "Telephone: 999 (ambulance, fire, police)"
+   ],
+   "checked": "2026-10-30T01:30:07+00:00"
+  },
+  "682": {
+   "slug": "saudi-arabia",
+   "hash": "abf78ffe7ac864e8",
+   "lines": [
+    "Telephone: 911 (ambulance, fire, police)",
+    "If you do not have a Saudi SIM card, call 112 in an emergency."
+   ],
+   "checked": "2026-10-30T01:30:08+00:00"
+  },
+  "376": {
+   "slug": "israel",
+   "hash": "ac4a4b28e58786d0",
+   "lines": [
+    "Ambulance: 101",
+    "Fire: 102",
+    "Police: 100"
+   ],
+   "checked": "2026-10-30T01:30:09+00:00"
+  },
+  "422": {
+   "slug": "lebanon",
+   "hash": "5391a472ef2175b6",
+   "lines": [
+    "Ambulance: 140",
+    "Fire: 175",
+    "Police: 112"
+   ],
+   "checked": "2026-10-30T01:30:09+00:00"
+  },
+  "400": {
+   "slug": "jordan",
+   "hash": "5b63f86012803db5",
+   "lines": [
+    "Telephone: 911 (ambulance, fire, police)"
+   ],
+   "checked": "2026-10-30T01:30:10+00:00"
+  },
+  "756": {
+   "slug": "switzerland",
+   "hash": "691cb99531d47937",
+   "lines": [
+    "Telephone: 112 (ambulance, fire, police)",
+    "Ambulance: 144",
+    "Fire: 118",
+    "Police: 117"
+   ],
+   "checked": "2026-10-30T01:30:12+00:00"
+  },
+  "578": {
+   "slug": "norway",
+   "hash": "d3fd027a8b944445",
+   "lines": [
+    "Fire: 110",
+    "Police: 112",
+    "Ambulance: 113"
+   ],
+   "checked": "2026-10-30T01:30:13+00:00"
+  },
+  "643": {
+   "slug": "russia",
+   "hash": "2ebdaa2ed4d081f7",
+   "lines": [
+    "Telephone: 112 (ambulance, fire, police)"
+   ],
+   "checked": "2026-10-30T01:30:14+00:00"
+  },
+  "804": {
+   "slug": "ukraine",
+   "hash": "28bcd01bd2d74369",
+   "lines": [
+    "Ambulance: 103",
+    "Fire: 101",
+    "Police: 102",
+    "Or in an emergency you can call our 24-hour helpline and select the option for ‘consular services for British nationals’:",
+    "For a domestic call from Ukraine, call +380 (0)44 490 3660",
+    "For an international call to the UK call +44 (0)20 7008 5000"
+   ],
+   "checked": "2026-10-30T01:30:15+00:00"
+  },
+  "688": {
+   "slug": "serbia",
+   "hash": "5d74b8af9ff3148e",
+   "lines": [
+    "All emergencies: 112",
+    "Ambulance: 194",
+    "Fire: 193",
+    "Police: 192"
+   ],
+   "checked": "2026-10-30T01:30:16+00:00"
+  },
+  "792": {
+   "slug": "turkey",
+   "hash": "2ebdaa2ed4d081f7",
+   "lines": [
+    "Telephone: 112 (ambulance, fire, police)"
+   ],
+   "checked": "2026-10-30T01:30:17+00:00"
+  },
+  "352": {
+   "slug": "iceland",
+   "hash": "2ebdaa2ed4d081f7",
+   "lines": [
+    "Telephone: 112 (ambulance, fire, police)"
+   ],
+   "checked": "2026-10-30T01:30:18+00:00"
+  },
+  "438": {
+   "slug": "liechtenstein",
+   "hash": "5e8ea1965aa71f8a",
+   "lines": [
+    "Fire: 118",
+    "Police: 117",
+    "Ambulance: 144"
+   ],
+   "checked": "2026-10-30T01:30:19+00:00"
+  },
+  "562": {
+   "slug": "niger",
+   "hash": "bde84bfcc5c72187",
+   "lines": [
+    "Ambulance: 15",
+    "Fire: 18",
+    "Police: 17"
+   ],
+   "checked": "2026-10-30T01:30:20+00:00"
+  },
+  "120": {
+   "slug": "cameroon",
+   "hash": "b7d640402567ee1e",
+   "lines": [
+    "Ambulance: 112",
+    "Fire: 119",
+    "Police: 117"
+   ],
+   "checked": "2026-10-30T01:30:21+00:00"
+  },
+  "204": {
+   "slug": "benin",
+   "hash": "82e2df2e0af924b0",
+   "lines": [
+    "Fire and ambulance: 118",
+    "Police: 117"
+   ],
+   "checked": "2026-10-30T01:30:23+00:00"
+  },
+  "384": {
+   "slug": "cote-d-ivoire",
+   "hash": "2f9e8c9a2cf0a56f",
+   "lines": [
+    "Ambulance: 185",
+    "Fire: 180",
+    "Police: 110, 111 or 170"
+   ],
+   "checked": "2026-10-30T01:30:24+00:00"
+  },
+  "768": {
+   "slug": "togo",
+   "hash": "61949cc5adf82e79",
+   "lines": [
+    "Ambulance: 8200",
+    "Fire: 118",
+    "Police: 117 or 177"
+   ],
+   "checked": "2026-10-30T01:30:25+00:00"
+  },
+  "266": {
+   "slug": "gabon",
+   "hash": "9e947f730962ada6",
+   "lines": [
+    "Ambulance: 117. Depending on your mobile network, call: 1300, 0174 or 0880 for SOS Médecins. Operators may only speak French.",
+    "Fire: 177",
+    "Police: 177"
+   ],
+   "checked": "2026-10-30T01:30:25+00:00"
+  },
+  "148": {
+   "slug": "chad",
+   "hash": "f44e9ee4da5497bf",
+   "lines": [
+    "Ambulance and fire: 1212",
+    "Police: 2020"
+   ],
+   "checked": "2026-10-30T01:30:26+00:00"
+  },
+  "854": {
+   "slug": "burkina-faso",
+   "hash": "780418d23ea31df4",
+   "lines": [
+    "Ambulance: 18",
+    "Fire: 18",
+    "Police: 17"
+   ],
+   "checked": "2026-10-30T01:30:27+00:00"
+  },
+  "466": {
+   "slug": "mali",
+   "hash": "8b27201b55bd991a",
+   "lines": [
+    "Police: 17",
+    "Ambulance: 15",
+    "Fire: 18"
+   ],
+   "checked": "2026-10-30T01:30:28+00:00"
+  },
+  "430": {
+   "slug": "liberia",
+   "hash": "7054ac8a129cd9e2",
+   "lines": [
+    "Police: +231 770 800 911"
+   ],
+   "checked": "2026-10-30T01:30:29+00:00"
+  },
+  "694": {
+   "slug": "sierra-leone",
+   "hash": "d07984128c992fa1",
+   "lines": [
+    "Telephone: 117 (ambulance, fire, police)"
+   ],
+   "checked": "2026-10-30T01:30:29+00:00"
+  },
+  "686": {
+   "slug": "senegal",
+   "hash": "bb7ac44c248afe42",
+   "lines": [
+    "Ambulance: 15",
+    "Fire: 18",
+    "Police: 17",
+    "Call 123 for the military police, who may be more responsive if you are in the countryside."
+   ],
+   "checked": "2026-10-30T01:30:30+00:00"
+  },
+  "270": {
+   "slug": "the-gambia",
+   "hash": "e2de3c123954bd23",
+   "lines": [
+    "There is no equivalent to the UK’s 999 emergency number in The Gambia. Individual police stations and fire stations have their own numbers (these are often mobile numbers, as many do not have a landline). There are no publications listing these numbers so it is best to visit in-person to ask for emergency contact details at local stations."
+   ],
+   "checked": "2026-10-30T01:30:31+00:00"
+  },
+  "324": {
+   "slug": "guinea",
+   "hash": "828a5b2e45893e48",
+   "lines": [
+    "The British Embassy in Conakry can only provide limited emergency consular assistance. Access to the Embassy is strictly by appointment only. Please send an email to BritishEmbassy.Conakry@fcdo.gov.uk for consular assistance or to make an appointment. If you need urgent consular help, call +44 (0) 1908 516 666."
+   ],
+   "checked": "2026-10-30T01:30:32+00:00"
+  },
+  "624": {
+   "slug": "guinea-bissau",
+   "hash": "04b898c2a2f12318",
+   "lines": [
+    "Ambulance: 1313",
+    "Fire: 1313",
+    "Police: 117"
+   ],
+   "checked": "2026-10-30T01:30:33+00:00"
+  },
+  "132": {
+   "slug": "cape-verde",
+   "hash": "d2870d7524878cbd",
+   "lines": [
+    "Ambulance: 130",
+    "Fire: 131",
+    "Police: 132"
+   ],
+   "checked": "2026-10-30T01:30:34+00:00"
+  },
+  "226": {
+   "slug": "equatorial-guinea",
+   "hash": "fe00503179345c45",
+   "lines": [
+    "Ambulance: 3101",
+    "Police: 666 404040 or 666 303030"
+   ],
+   "checked": "2026-10-30T01:30:34+00:00"
+  },
+  "678": {
+   "slug": "sao-tome-and-principe",
+   "hash": "65c251fd08987d15",
+   "lines": [
+    "Ambulance: 222 22 22",
+    "Fire: 112",
+    "Police: 113 or 222 22 22"
+   ],
+   "checked": "2026-10-30T01:30:35+00:00"
+  },
+  "140": {
+   "slug": "central-african-republic",
+   "hash": "78b4c67d6d8ae570",
+   "lines": [
+    "Telephone: 117 (ambulance, fire, police)",
+    "Ambulance: 610600",
+    "Fire: 118",
+    "Military police (‘gendarmerie’): 2161 2200"
+   ],
+   "checked": "2026-10-30T01:30:36+00:00"
+  },
+  "178": {
+   "slug": "congo",
+   "hash": "8a164796986e9d38",
+   "lines": [
+    "There’s no central number for emergency services in the Republic of Congo. You can report crimes to local police on 06 665 4804. Few police will speak English."
+   ],
+   "checked": "2026-10-30T01:30:36+00:00"
+  },
+  "180": {
+   "slug": "democratic-republic-of-the-congo",
+   "hash": "54fe764fa7704fd5",
+   "lines": [
+    "If you have a medical emergency which requires an ambulance, contact a hospital to make this request. If you are in Kinshasa, you can contact the fire service on 118, and the police on 112."
+   ],
+   "checked": "2026-10-30T01:30:37+00:00"
+  },
+  "478": {
+   "slug": "mauritania",
+   "hash": "ea29e59c345bc6c7",
+   "lines": [
+    "Ambulance: 101",
+    "Fire: 118",
+    "Police: 117"
+   ],
+   "checked": "2026-10-30T01:30:38+00:00"
+  },
+  "554": {
+   "slug": "new-zealand",
+   "hash": "923390fa3726a1f8",
+   "lines": [
+    "Telephone: 111 (ambulance, fire, police)"
+   ],
+   "checked": "2026-10-30T01:30:38+00:00"
+  },
+  "036": {
+   "slug": "australia",
+   "hash": "610aa28b0006f4c8",
+   "lines": [
+    "Telephone: 000 (ambulance, fire, police)"
+   ],
+   "checked": "2026-10-30T01:30:39+00:00"
+  }
+ },
+ "checked": "2026-10-30T01:30:39+00:00"
+}
