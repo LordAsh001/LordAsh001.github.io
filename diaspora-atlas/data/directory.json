@@ -1,0 +1,3893 @@
+{
+ "checked": "2026-10",
+ "countries": {
+  "840": {
+   "n": "United States",
+   "m": [
+    {
+     "t": "Embassy",
+     "c": "Washington, D.C.",
+     "a": "3519 International Court NW, Washington, DC 20008",
+     "p": [
+      "+1 202 800 7201 (ext. 100)"
+     ],
+     "e": [
+      "info@nigeriaembassyusa.org",
+      "publiccomplaints@nigeriaembassyusa.org"
+     ],
+     "w": "https://washingtondc.foreignaffairs.gov.ng",
+     "hd": {
+      "name": "Lateef Kayode Are",
+      "title": "Ambassador",
+      "status": "presented credentials May 2026",
+      "source": "https://leadership.ng/pictorial-kayode-are-presents-letter-of-credence-to-trump-resumes-as-nigerias-ambassador-to-us/"
+     },
+     "src": [
+      "https://www.nigeriaconsulateatlanta.org/diplomatic-missions-in-the-us/",
+      "https://travel.state.gov/content/travel/en/consularnotification/ConsularNotificationandAccess/Nigeria.html",
+      "https://en.wikipedia.org/wiki/List_of_diplomatic_missions_of_Nigeria"
+     ],
+     "sec": false,
+     "ll": [
+      -77.036,
+      38.895
+     ],
+     "ck": "2026-10"
+    },
+    {
+     "t": "Consulate-General",
+     "c": "New York",
+     "a": "828 Second Avenue, New York, NY 10017",
+     "p": [
+      "+1 212 808 0301",
+      "+1 917 818 8726 (visa inquiries)",
+      "+1 917 818 7102 (passport inquiries)"
+     ],
+     "e": [
+      "cgnny@nigeriahouse.com"
+     ],
+     "w": "https://nigeriahouse.com",
+     "h": "Mon–Fri 10:00–13:00",
+     "src": [
+      "https://www.nigeriaconsulateatlanta.org/diplomatic-missions-in-the-us/",
+      "https://travel.state.gov/content/travel/en/consularnotification/ConsularNotificationandAccess/Nigeria.html"
+     ],
+     "sec": false,
+     "ll": [
+      -74.006,
+      40.714
+     ],
+     "ck": "2026-10"
+    },
+    {
+     "t": "Consulate-General",
+     "c": "Atlanta",
+     "a": "8060 Roswell Rd, Atlanta, GA 30350",
+     "p": [
+      "+1 770 394 6261"
+     ],
+     "e": [
+      "info@nigeria-consulate-atl.org"
+     ],
+     "w": "https://www.nigeriaconsulateatlanta.org/",
+     "h": "Mon–Fri 9:00–17:00; consular days Mon, Tue, Thu",
+     "src": [
+      "https://www.nigeriaconsulateatlanta.org/diplomatic-missions-in-the-us/",
+      "https://travel.state.gov/content/travel/en/consularnotification/ConsularNotificationandAccess/Nigeria.html"
+     ],
+     "sec": false,
+     "ll": [
+      -84.388,
+      33.749
+     ],
+     "ck": "2026-10"
+    }
+   ],
+   "a": [
+    {
+     "n": "Nigerians in Diaspora Organisation Americas (NIDOA)",
+     "k": "NIDO",
+     "c": "continental (Americas)",
+     "w": "https://nidoa.org/",
+     "ab": "Continental NIDO body for Nigerians across the Americas with chapters in the US, Canada and Brazil; rival charters reunified in Nov 2024.",
+     "src": [
+      "https://nidoa.org/",
+      "https://thisdaylive.com/index.php/2024/11/22/nigerian-groups-in-the-americas-resolve-dispute-unite"
+     ],
+     "ck": "2026-10"
+    },
+    {
+     "n": "Association of Nigerian Physicians in the Americas (ANPA)",
+     "k": "professional",
+     "c": "nationwide",
+     "w": "https://anpa.org/",
+     "e": "info@anpa.org",
+     "ab": "Nonprofit of physicians, dentists and allied health professionals of Nigerian origin in the US, Canada and Caribbean; runs medical missions and CME in Nigeria.",
+     "src": [
+      "https://anpa.org/"
+     ],
+     "ck": "2026-10"
+    },
+    {
+     "n": "National Association of Nigerian Nurses in North America (NANNNA)",
+     "k": "professional",
+     "c": "nationwide",
+     "w": "https://nannna.nursingnetwork.com/",
+     "ab": "Professional association of Nigerian nurses in North America; holds an annual scientific conference on global health.",
+     "src": [
+      "https://www.eventcreate.com/e/nannna2026",
+      "https://www.guidestar.org/profile/90-0646460"
+     ],
+     "ck": "2026-10"
+    },
+    {
+     "n": "Nigerian American Public Affairs Committee (NAPAC-USA)",
+     "k": "umbrella",
+     "c": "nationwide",
+     "w": "https://napacusa.org/",
+     "ab": "Advocacy and civic-engagement body aiming to be a platform and voice for Nigerians in the United States.",
+     "src": [
+      "https://napacusa.org/join-napac",
+      "https://thisdaylive.com/index.php/2025/01/10/napac-usa-announces-new-executive-leadership-team"
+     ],
+     "ck": "2026-10"
+    }
+   ],
+   "mn": "The Permanent Mission of Nigeria to the UN is also at 828 Second Avenue, New York (not a bilateral mission). Atlanta and New York consular jurisdictions not confirmed."
+  },
+  "124": {
+   "n": "Canada",
+   "m": [
+    {
+     "t": "High Commission",
+     "c": "Ottawa",
+     "a": "295 Metcalfe Street, Ottawa, Ontario K2P 1R9",
+     "p": [
+      "+1 613 236 0521",
+      "+1 343 688 1012 (passports)",
+      "+1 343 688 1061 (consular)"
+     ],
+     "e": [
+      "generalinquiries@nigeriahcottawa.ca",
+      "chancery@nigeriahcottawa.ca"
+     ],
+     "w": "https://nigeriahcottawa.ca",
+     "h": "Mon–Fri 9:00–16:00; consular section Tue–Fri 10:00–13:00",
+     "hd": {
+      "name": "Isaac Folorunso Adewole",
+      "title": "High Commissioner",
+      "status": "presented credentials Sep 2026",
+      "source": "https://fmino.gov.ng/high-commissioner-isaac-adewole-presents-letters-of-credence-to-canadas-governor-general-the-right-honourable-louise-arbour/"
+     },
+     "src": [
+      "https://nigeriahcottawa.ca"
+     ],
+     "sec": false,
+     "ll": [
+      -75.698,
+      45.411
+     ],
+     "ck": "2026-10"
+    }
+   ],
+   "a": [
+    {
+     "n": "NIDOA Canada – Calgary Chapter",
+     "k": "NIDO",
+     "c": "Calgary",
+     "w": "https://nidoacalgary.com/",
+     "ab": "Calgary chapter of NIDO Americas offering networking, mentorship, events and philanthropy.",
+     "src": [
+      "https://nidoacalgary.com/about-nidoa/"
+     ],
+     "ck": "2026-10"
+    },
+    {
+     "n": "Nigerian Canadian Association of the Greater Toronto Area (NCA GTA)",
+     "k": "umbrella",
+     "c": "Toronto",
+     "ab": "Non-profit community hub in Ontario focused on integration, housing and social services.",
+     "src": [
+      "https://assist.applyboard.com/hc/en-us/articles/44876172011789-Nigerian-Community-Centres-in-Canada-A-Guide-for-New-International-Students-2026"
+     ],
+     "ck": "2026-10"
+    },
+    {
+     "n": "Nigerian-Canadian Association of Calgary (NCAC)",
+     "k": "umbrella",
+     "c": "Calgary",
+     "ab": "Calgary community association based at The Nigerian House.",
+     "src": [
+      "https://assist.applyboard.com/hc/en-us/articles/44876172011789-Nigerian-Community-Centres-in-Canada-A-Guide-for-New-International-Students-2026"
+     ],
+     "ck": "2026-10"
+    },
+    {
+     "n": "Nigerian Canadian Association Ottawa",
+     "k": "umbrella",
+     "c": "Ottawa",
+     "ab": "Community association of Nigerians in Ottawa.",
+     "src": [
+      "https://blackottawascene.com/community-profile-nigerian-canadian-association-ottawa/"
+     ],
+     "ck": "2026-10"
+    }
+   ]
+  },
+  "484": {
+   "n": "Mexico",
+   "m": [
+    {
+     "t": "Embassy",
+     "c": "Mexico City",
+     "a": "Sierra Gorda 145, Lomas de Chapultepec, Miguel Hidalgo, 11010 Ciudad de México",
+     "p": [
+      "+52 55 5245 1487",
+      "+52 55 5245 1489"
+     ],
+     "e": [
+      "info@nigerianembmexico.org",
+      "consularsection@nigerianembmexico.org"
+     ],
+     "w": "https://www.nigerianembmexico.org",
+     "h": "Mon–Thu 10:00–14:00; Fri 10:00–13:00",
+     "j": "Mexico, Guatemala, Honduras, Nicaragua (ambassador-designate's accreditation, per Legit.ng Oct 2026)",
+     "hd": {
+      "name": "Reno Omokri",
+      "title": "Ambassador",
+      "status": "posted Mar 2026 (State House); Mexican agrément reported Oct 2026, credentials not yet reported",
+      "source": "https://www.legit.ng/politics/1737235-mexico-clears-reno-omokri-serve-nigerias-ambassador-4-country-accreditation/"
+     },
+     "src": [
+      "https://nigerianembmexico.org/contact",
+      "https://www.legit.ng/politics/1737235-mexico-clears-reno-omokri-serve-nigerias-ambassador-4-country-accreditation/"
+     ],
+     "sec": false,
+     "ll": [
+      -99.128,
+      19.428
+     ],
+     "ck": "2026-10"
+    }
+   ],
+   "a": [],
+   "an": "NIDO Americas (see United States) is the continental body covering the Americas."
+  },
+  "076": {
+   "n": "Brazil",
+   "m": [
+    {
+     "t": "Embassy",
+     "c": "Brasília",
+     "a": "SEN – Avenida das Nações, Lote 05, Asa Norte, CEP 70800-400, Brasília DF",
+     "p": [
+      "+55 61 3226 1717"
+     ],
+     "e": [
+      "admin@nigerianembassy-brasilia.org"
+     ],
+     "w": "http://www.nigerianembassy-brasilia.org/",
+     "src": [
+      "https://embassy-finder.com/nigeria_in_brasilia_brazil"
+     ],
+     "sec": true,
+     "ll": [
+      -47.93,
+      -15.78
+     ],
+     "ck": "2026-10"
+    },
+    {
+     "t": "Consulate-General",
+     "c": "São Paulo",
+     "a": "Av. Brasil, 681, Jardim América, São Paulo",
+     "p": [
+      "+55 11 3884 5664",
+      "+55 11 3057 2950",
+      "+55 11 3052 3388"
+     ],
+     "e": [
+      "contact@ncsp-br.org"
+     ],
+     "src": [
+      "https://www.finelib.com/listing/Consulate-General-of-Nigeria-Sao-Paulo-Brazil/51543",
+      "https://www.saopaulo.sp.leg.br/blog/camara-recebe-visita-do-consul-da-nigeria/"
+     ],
+     "sec": true,
+     "nt": "Last confirmed in a 2016 São Paulo city council record; check that it is still open.",
+     "ll": [
+      -46.636,
+      -23.547
+     ],
+     "ck": "2026-10"
+    }
+   ],
+   "a": [],
+   "mn": "No ambassador to Brazil appears in the Mar 2026 State House posting list.",
+   "an": "NIDO Americas (see United States) is the continental body covering the Americas."
+  },
+  "032": {
+   "n": "Argentina",
+   "m": [
+    {
+     "t": "Embassy",
+     "c": "Buenos Aires",
+     "a": "Rosales 2674, 1636 Olivos, Buenos Aires",
+     "p": [
+      "+54 11 4799 7006"
+     ],
+     "hd": {
+      "name": "Muhammed Ubandoma Aliyu",
+      "title": "Ambassador",
+      "status": "posted Mar 2026 (State House)",
+      "source": "https://statehouse.gov.ng/president-tinubu-approves-the-postings-of-ambassadors/"
+     },
+     "src": [
+      "https://embassy-finder.com/nigeria_in_buenos-aires_argentina",
+      "https://statehouse.gov.ng/president-tinubu-approves-the-postings-of-ambassadors/"
+     ],
+     "sec": true,
+     "ll": [
+      -58.377,
+      -34.613
+     ],
+     "ck": "2026-10"
+    }
+   ],
+   "a": []
+  },
+  "862": {
+   "n": "Venezuela",
+   "m": [
+    {
+     "t": "Embassy",
+     "c": "Caracas",
+     "p": [
+      "+58 212 993 1520"
+     ],
+     "w": "https://caracas.foreignaffairs.gov.ng",
+     "h": "Mon–Fri 8:00–17:00",
+     "hd": {
+      "name": "Philip Olorundare Awoniyi",
+      "title": "Ambassador",
+      "status": "in post (mission website, undated)",
+      "source": "https://caracas.foreignaffairs.gov.ng"
+     },
+     "src": [
+      "https://caracas.foreignaffairs.gov.ng"
+     ],
+     "sec": false,
+     "ll": [
+      -66.879,
+      10.488
+     ],
+     "ck": "2026-10"
+    }
+   ],
+   "a": []
+  },
+  "192": {
+   "n": "Cuba",
+   "m": [
+    {
+     "t": "Embassy",
+     "c": "Havana",
+     "a": "5ta Avenida No. 1401, entre 14 y 16, Miramar, La Habana",
+     "p": [
+      "+53 7 208 6220",
+      "+53 7 208 6221"
+     ],
+     "src": [
+      "https://embassies.net/nigeria-in-cuba/havana"
+     ],
+     "sec": true,
+     "ll": [
+      -82.383,
+      23.133
+     ],
+     "ck": "2026-10"
+    }
+   ],
+   "a": []
+  },
+  "388": {
+   "n": "Jamaica",
+   "m": [
+    {
+     "t": "High Commission",
+     "c": "Kingston",
+     "a": "5 Waterloo Road, Kingston 10",
+     "p": [
+      "+1 876 926 6400",
+      "+1 876 926 6408"
+     ],
+     "e": [
+      "nhcchancery@outlook.com"
+     ],
+     "hd": {
+      "name": "Bintu Bwala Ekikor",
+      "title": "Acting High Commissioner",
+      "status": "chargé d'affaires a.i. (Jamaica MFAFT diplomatic list, Aug 2026)",
+      "source": "https://mfaft.gov.jm/site/wp-content/uploads/2026/08/Resident-Diplomatic-Corps-REV-August-2026.pdf"
+     },
+     "src": [
+      "https://mfaft.gov.jm/site/wp-content/uploads/2026/08/Resident-Diplomatic-Corps-REV-August-2026.pdf",
+      "https://statehouse.gov.ng/president-tinubu-approves-the-postings-of-ambassadors/"
+     ],
+     "sec": false,
+     "nt": "Jane Adams Michael was posted as High Commissioner in Mar 2026 (State House) but the Aug 2026 Jamaican list still shows an acting head.",
+     "ll": [
+      -76.794,
+      17.997
+     ],
+     "ck": "2026-10"
+    }
+   ],
+   "a": []
+  },
+  "780": {
+   "n": "Trinidad and Tobago",
+   "m": [
+    {
+     "t": "High Commission",
+     "c": "Port of Spain",
+     "a": "3 Maxwell-Phillip Street, St. Clair, Port of Spain",
+     "p": [
+      "+1 868 622 4002"
+     ],
+     "e": [
+      "nigerianpos@tstt.net.tt"
+     ],
+     "hd": {
+      "name": "Jerrymon Samuel Manwe",
+      "title": "High Commissioner",
+      "status": "presented credentials Jul 2026",
+      "source": "https://fmino.gov.ng/presentation-of-letters-of-credence-by-the-high-commissioner-of-nigeria-to-the-president-of-trinidad-and-tobago/"
+     },
+     "src": [
+      "https://embassy-finder.com/fa/nigeria_in_port-of-spain_trinidad-and-tobago",
+      "https://foreignaffairs.gov.ng/news/wp-content/uploads/2026/07/Press-Release-No-2026-157-1-1.pdf"
+     ],
+     "sec": true,
+     "ll": [
+      -61.519,
+      10.667
+     ],
+     "ck": "2026-10"
+    }
+   ],
+   "a": [],
+   "an": "NIDO Americas (see United States) is the continental body covering the Americas."
+  },
+  "036": {
+   "n": "Australia",
+   "m": [
+    {
+     "t": "High Commission",
+     "c": "Canberra",
+     "a": "26 Guilfoyle Street, Yarralumla ACT 2600",
+     "w": "https://nigeria-can.org.au/",
+     "h": "Immigration and consular: Tue–Thu 10:00–12:00 and 13:00–16:00 (passport applicants by appointment)",
+     "hd": {
+      "name": "Olufemi Olusegun Pedro",
+      "title": "High Commissioner",
+      "status": "presented credentials Jun 2026",
+      "source": "https://nigeria-can.org.au/presentation-of-letters-of-credence/"
+     },
+     "src": [
+      "https://nigeria-can.org.au/",
+      "https://nigeria-can.org.au/presentation-of-letters-of-credence/"
+     ],
+     "sec": false,
+     "ll": [
+      149.128,
+      -35.283
+     ],
+     "ck": "2026-10"
+    }
+   ],
+   "a": [
+    {
+     "n": "Nigerian Community Association Queensland",
+     "k": "umbrella",
+     "c": "Brisbane (Fairfield)",
+     "w": "https://nigeriansinqld.org.au/",
+     "e": "admin@nigeriansinqld.org.au",
+     "ab": "Queensland community association with branches in Toowoomba, Darling Downs and the Gold Coast.",
+     "src": [
+      "https://www.liveup.org.au/activities/nigerian-community-association-queensland"
+     ],
+     "ck": "2026-10"
+    },
+    {
+     "n": "Nigerian Association of WA (NAWA)",
+     "k": "umbrella",
+     "c": "Perth",
+     "w": "https://www.nawa.com.au/",
+     "e": "info@nawa.com.au",
+     "ab": "Community group for Nigerians in the Perth region.",
+     "src": [
+      "https://www.liveup.org.au/activities/nigerian-association-of-wa"
+     ],
+     "ck": "2026-10"
+    }
+   ]
+  },
+  "156": {
+   "n": "China",
+   "m": [
+    {
+     "t": "Embassy",
+     "c": "Beijing",
+     "a": "No. 2 Dong Wu Jie, San Li Tun, Beijing",
+     "p": [
+      "+86 10 6532 3631",
+      "+86 10 6532 3632",
+      "+86 10 6532 3633",
+      "+86 10 6532 2517",
+      "+86 10 6532 0046"
+     ],
+     "hd": {
+      "name": "Abdulrahman Bello Dambazau",
+      "title": "Ambassador",
+      "status": "in post (copy of credentials received by China MFA, May 2026)",
+      "source": "https://www.mfa.gov.cn/eng/xw/wjbxw/202606/t20260603_11936886.html"
+     },
+     "src": [
+      "https://english.beijing.gov.cn/beijinginfo/facts/embassies/202005/t20200513_1895979.html",
+      "https://www.mfa.gov.cn/eng/xw/wjbxw/202606/t20260603_11936886.html"
+     ],
+     "sec": false,
+     "ll": [
+      116.397,
+      39.907
+     ],
+     "ck": "2026-10"
+    },
+    {
+     "t": "Consulate-General",
+     "c": "Guangzhou",
+     "a": "Room 2801, Grand Tower, 228 Tianhe Road, Tianhe District, Guangzhou 510620",
+     "p": [
+      "+86 20 8521 9781"
+     ],
+     "w": "https://guangzhou.foreignaffairs.gov.ng",
+     "j": "Guangdong, Hainan, Guangxi",
+     "src": [
+      "https://embassies.net/nigeria-in-china/guangzhou",
+      "https://guangzhou.foreignaffairs.gov.ng/?p=162"
+     ],
+     "sec": true,
+     "ll": [
+      113.25,
+      23.117
+     ],
+     "ck": "2026-10"
+    },
+    {
+     "t": "Consulate-General",
+     "c": "Shanghai",
+     "a": "Unit 1102-4, ASA Building, 188 Jiang Ning Road, Jing'an District, Shanghai 200041",
+     "p": [
+      "+86 21 3252 0606"
+     ],
+     "e": [
+      "shanghai@ngconsulate.org"
+     ],
+     "w": "http://shanghai.ngconsulate.org",
+     "src": [
+      "https://embassy-finder.com/nigeria_in_shanghai_china_congen"
+     ],
+     "sec": true,
+     "ll": [
+      121.458,
+      31.222
+     ],
+     "ck": "2026-10"
+    },
+    {
+     "t": "Consulate-General",
+     "c": "Hong Kong SAR",
+     "a": "Room 2403, 24/F, Great Eagle Centre, 23 Harbour Road, Wan Chai, Hong Kong",
+     "p": [
+      "+852 2827 8813"
+     ],
+     "e": [
+      "info@nigeria-consulate.org.hk"
+     ],
+     "w": "http://www.nigeria-consulate.org.hk",
+     "src": [
+      "https://www.consulate-info.com/consulate/19569/Nigeria-in-Hong-Kong"
+     ],
+     "sec": true,
+     "ll": [
+      114.17,
+      22.32
+     ],
+     "ck": "2026-10"
+    }
+   ],
+   "a": [
+    {
+     "n": "Nigerians in Diaspora Organisation (NiDO) East China Chapter",
+     "k": "NIDO",
+     "c": "Shanghai and East China",
+     "w": "https://app.glueup.cn/org/nido/about",
+     "ab": "NIDO chapter for Nigerians in Shanghai, Anhui, Fujian, Jiangsu, Jiangxi and Zhejiang.",
+     "src": [
+      "https://app.glueup.cn/org/nido/about"
+     ],
+     "ck": "2026-10"
+    }
+   ],
+   "mn": "Nigeria also has a trade office in Taiwan (New Taipei) per Wikipedia; not included here.",
+   "an": "Largest Nigerian community is in Guangzhou; no Guangzhou body with a confirmable web presence found."
+  },
+  "392": {
+   "n": "Japan",
+   "m": [
+    {
+     "t": "Embassy",
+     "c": "Tokyo",
+     "a": "3-6-1 Toranomon, Minato-ku, Tokyo 105-0001",
+     "p": [
+      "+81 3 5425 8011"
+     ],
+     "hd": {
+      "name": "Olumilua Oluwayimika Ayotunwa",
+      "title": "Ambassador",
+      "status": "posted Mar 2026 (State House)",
+      "source": "https://statehouse.gov.ng/president-tinubu-approves-the-postings-of-ambassadors/"
+     },
+     "src": [
+      "https://embassies.net/nigeria-in-japan",
+      "https://statehouse.gov.ng/president-tinubu-approves-the-postings-of-ambassadors/"
+     ],
+     "sec": true,
+     "ll": [
+      139.692,
+      35.69
+     ],
+     "ck": "2026-10"
+    }
+   ],
+   "a": [
+    {
+     "n": "Nigerian Union Japan",
+     "k": "umbrella",
+     "c": "Tokyo",
+     "ab": "National Nigerian community body in Japan, first founded in 1990, with regional chapters.",
+     "src": [
+      "https://newtelegraphng.com/nigerians-in-japan-celebrate-unity-culture-bridging-continents/",
+      "https://en.wikipedia.org/wiki/Nigerians_in_Japan"
+     ],
+     "ck": "2026-10"
+    },
+    {
+     "n": "Nigerian Union Kyushu",
+     "k": "umbrella",
+     "c": "Fukuoka / Kyushu region",
+     "ab": "Regional chapter for Nigerians in Fukuoka, Kitakyushu, Kumamoto, Kagoshima and nearby areas.",
+     "src": [
+      "https://newtelegraphng.com/nigerians-in-japan-celebrate-unity-culture-bridging-continents/"
+     ],
+     "ck": "2026-10"
+    }
+   ]
+  },
+  "410": {
+   "n": "South Korea",
+   "m": [
+    {
+     "t": "Embassy",
+     "c": "Seoul",
+     "a": "13 Jangmun-ro 6-gil, Yongsan-gu, Seoul",
+     "p": [
+      "+82 2 797 2370",
+      "+82 2 797 3280"
+     ],
+     "w": "https://seoul.foreignaffairs.gov.ng",
+     "h": "Mon–Fri 8:00–17:00",
+     "hd": {
+      "name": "Nora Ladi Daduut",
+      "title": "Ambassador",
+      "status": "posted Mar 2026 (State House)",
+      "source": "https://statehouse.gov.ng/president-tinubu-approves-the-postings-of-ambassadors/"
+     },
+     "src": [
+      "https://seoul.foreignaffairs.gov.ng",
+      "https://embassies.net/nigeria-in-south-korea",
+      "https://statehouse.gov.ng/president-tinubu-approves-the-postings-of-ambassadors/"
+     ],
+     "sec": true,
+     "ll": [
+      126.978,
+      37.566
+     ],
+     "ck": "2026-10"
+    }
+   ],
+   "a": [
+    {
+     "n": "Nigerians in Diaspora Organisation (NIDO) South Korea",
+     "k": "NIDO",
+     "c": "Seoul",
+     "ab": "South Korea chapter of NIDO, representing the Nigerian community in Korea.",
+     "src": [
+      "https://nidcom.gov.ng/you-are-the-faces-of-nigeria-president-buhari-tells-nigerians-in-south-korea-restates-commitment-to-deepening-democracy-at-home/"
+     ],
+     "ck": "2026-10"
+    }
+   ]
+  },
+  "356": {
+   "n": "India",
+   "m": [
+    {
+     "t": "High Commission",
+     "c": "New Delhi",
+     "a": "Chandragupta Marg, New Delhi 110021",
+     "p": [
+      "+91 11 2412 2141",
+      "+91 11 2412 2144"
+     ],
+     "hd": {
+      "name": "Muhammad Saidu Dahiru",
+      "title": "High Commissioner",
+      "status": "posted Mar 2026 (State House)",
+      "source": "https://statehouse.gov.ng/president-tinubu-approves-the-postings-of-ambassadors/"
+     },
+     "src": [
+      "https://embassies.net/nigeria-in-india",
+      "https://statehouse.gov.ng/president-tinubu-approves-the-postings-of-ambassadors/"
+     ],
+     "sec": true,
+     "ll": [
+      77.215,
+      28.621
+     ],
+     "ck": "2026-10"
+    }
+   ],
+   "a": []
+  },
+  "458": {
+   "n": "Malaysia",
+   "m": [
+    {
+     "t": "High Commission",
+     "c": "Kuala Lumpur",
+     "a": "No. 6, Jalan Madge, off Jalan U Thant, 55000 Kuala Lumpur",
+     "p": [
+      "+60 3 4251 7843",
+      "+60 3 4252 4302"
+     ],
+     "hd": {
+      "name": "Sulu Gambari Olatunji Ahmed",
+      "title": "High Commissioner",
+      "status": "posted Mar 2026 (State House)",
+      "source": "https://statehouse.gov.ng/president-tinubu-approves-the-postings-of-ambassadors/"
+     },
+     "src": [
+      "https://embassies.net/nigeria-in-malaysia",
+      "https://statehouse.gov.ng/president-tinubu-approves-the-postings-of-ambassadors/"
+     ],
+     "sec": true,
+     "ll": [
+      101.687,
+      3.141
+     ],
+     "ck": "2026-10"
+    }
+   ],
+   "a": [
+    {
+     "n": "Oodua Progressive Union (OPU) Malaysia",
+     "k": "cultural/ethnic",
+     "ab": "Malaysian chapter of the Yoruba socio-cultural body; hosts annual Oodua Day.",
+     "src": [
+      "https://newtelegraphng.com/diaspora-group-seeks-cultural-integration-business-cooperation-between-nigeria-malaysia/"
+     ],
+     "ck": "2026-10"
+    },
+    {
+     "n": "UTM International Student Society (ISS) of Nigeria",
+     "k": "student",
+     "c": "Johor Bahru / Kuala Lumpur",
+     "ab": "Nigerian student society at Universiti Teknologi Malaysia.",
+     "src": [
+      "https://news.utm.my/2022/07/utm-international-student-society-iss-of-nigeria-paid-a-courtesy-call-to-the-high-commission-of-the-federal-republic-of-nigeria-to-malaysia/"
+     ],
+     "ck": "2026-10"
+    }
+   ],
+   "an": "High Commission reports 16–17 Nigerian ethnic/community associations in Malaysia (Sep 2026); no national umbrella confirmed online."
+  },
+  "360": {
+   "n": "Indonesia",
+   "m": [
+    {
+     "t": "Embassy",
+     "c": "Jakarta",
+     "a": "Jl. Denpasar Raya Blok A-13 No. 3, Kuningan Timur, Jakarta Selatan 12950",
+     "p": [
+      "+62 21 526 0922",
+      "+62 21 526 0923",
+      "+62 21 522 7842"
+     ],
+     "w": "https://jakarta.foreignaffairs.gov.ng",
+     "hd": {
+      "name": "Usman Ari Ogah",
+      "title": "Ambassador",
+      "status": "in post (mission website, undated)",
+      "source": "https://jakarta.foreignaffairs.gov.ng/officer"
+     },
+     "src": [
+      "https://embassies.net/nigeria-in-indonesia",
+      "https://jakarta.foreignaffairs.gov.ng/officer"
+     ],
+     "sec": true,
+     "ll": [
+      106.845,
+      -6.215
+     ],
+     "ck": "2026-10"
+    }
+   ],
+   "a": []
+  },
+  "608": {
+   "n": "Philippines",
+   "m": [
+    {
+     "t": "Embassy",
+     "c": "Manila (Pasay City)",
+     "a": "2627 Roxas Boulevard, Pasay City 1300, Metro Manila",
+     "p": [
+      "+63 2 843 9866",
+      "+63 2 843 9870"
+     ],
+     "hd": {
+      "name": "Ibok-Ete Ekwe Ibas (Vice Adm., rtd)",
+      "title": "Ambassador",
+      "status": "posted Mar 2026 (State House)",
+      "source": "https://statehouse.gov.ng/president-tinubu-approves-the-postings-of-ambassadors/"
+     },
+     "src": [
+      "https://embassies.net/nigeria-in-philippines",
+      "https://statehouse.gov.ng/president-tinubu-approves-the-postings-of-ambassadors/"
+     ],
+     "sec": true,
+     "ll": [
+      120.982,
+      14.604
+     ],
+     "ck": "2026-10"
+    }
+   ],
+   "a": []
+  },
+  "764": {
+   "n": "Thailand",
+   "m": [
+    {
+     "t": "Embassy",
+     "c": "Bangkok",
+     "a": "412 Sukhumvit Soi 71, Prakhanong Sub-District, Wattana District, Bangkok 10110",
+     "p": [
+      "+66 2 711 3076"
+     ],
+     "hd": {
+      "name": "Bello Dogon-Daji Haliru",
+      "title": "Ambassador",
+      "status": "posted Mar 2026 (State House)",
+      "source": "https://statehouse.gov.ng/president-tinubu-approves-the-postings-of-ambassadors/"
+     },
+     "src": [
+      "https://embassies.net/nigeria-in-thailand",
+      "https://statehouse.gov.ng/president-tinubu-approves-the-postings-of-ambassadors/"
+     ],
+     "sec": true,
+     "ll": [
+      100.501,
+      13.754
+     ],
+     "ck": "2026-10"
+    }
+   ],
+   "a": []
+  },
+  "702": {
+   "n": "Singapore",
+   "m": [
+    {
+     "t": "High Commission",
+     "c": "Singapore",
+     "a": "143 Cecil Street, #15-01 GB Building, Singapore 069542",
+     "p": [
+      "+65 6220 4902",
+      "+65 6732 1743"
+     ],
+     "src": [
+      "https://embassies.net/nigeria-in-singapore",
+      "https://en.wikipedia.org/wiki/List_of_diplomatic_missions_of_Nigeria"
+     ],
+     "sec": true,
+     "ll": [
+      103.85,
+      1.29
+     ],
+     "ck": "2026-10"
+    }
+   ],
+   "a": [],
+   "mn": "No High Commissioner to Singapore appears in the Mar 2026 State House posting list."
+  },
+  "586": {
+   "n": "Pakistan",
+   "m": [
+    {
+     "t": "High Commission",
+     "c": "Islamabad",
+     "p": [
+      "+92 51 230 7691"
+     ],
+     "src": [
+      "https://embassies.net/nigeria-in-pakistan",
+      "https://en.wikipedia.org/wiki/List_of_diplomatic_missions_of_Nigeria"
+     ],
+     "sec": true,
+     "nt": "Street address not confirmed.",
+     "ll": [
+      73.043,
+      33.721
+     ],
+     "ck": "2026-10"
+    }
+   ],
+   "a": [],
+   "mn": "No High Commissioner to Pakistan appears in the Mar 2026 State House posting list."
+  },
+  "144": {
+   "n": "Sri Lanka",
+   "m": [],
+   "a": [],
+   "mn": "No resident Nigerian mission; the High Commission in Colombo closed in 2017 (Wikipedia). Covering mission not confirmed."
+  },
+  "364": {
+   "n": "Iran",
+   "m": [
+    {
+     "t": "Embassy",
+     "c": "Tehran",
+     "a": "No. 323/3, Zafar Street, Africa Boulevard, Tehran",
+     "p": [
+      "+98 21 2263 6317"
+     ],
+     "w": "https://tehran.foreignaffairs.gov.ng",
+     "h": "Sun–Thu 10:00–16:00",
+     "hd": {
+      "name": "Hamza Mohammed Salau",
+      "title": "Ambassador",
+      "status": "posted Mar 2026 (State House)",
+      "source": "https://statehouse.gov.ng/president-tinubu-approves-the-postings-of-ambassadors/"
+     },
+     "src": [
+      "https://tehran.foreignaffairs.gov.ng",
+      "https://embassies.net/nigeria-in-iran",
+      "https://statehouse.gov.ng/president-tinubu-approves-the-postings-of-ambassadors/"
+     ],
+     "sec": true,
+     "nt": "Sources give different phone numbers; the embassy website number is shown.",
+     "ll": [
+      51.422,
+      35.694
+     ],
+     "ck": "2026-10"
+    }
+   ],
+   "a": []
+  },
+  "044": {
+   "n": "Bahamas",
+   "m": [],
+   "a": [],
+   "mn": "No resident Nigerian mission. Covering mission not confirmed."
+  },
+  "218": {
+   "n": "Ecuador",
+   "m": [],
+   "a": [],
+   "mn": "No resident Nigerian mission. Covering mission not confirmed."
+  },
+  "591": {
+   "n": "Panama",
+   "m": [],
+   "a": [],
+   "mn": "No resident Nigerian mission. Covering mission not confirmed."
+  },
+  "662": {
+   "n": "Saint Lucia",
+   "m": [],
+   "a": [],
+   "mn": "No resident Nigerian mission. Covering mission not confirmed."
+  },
+  "084": {
+   "n": "Belize",
+   "m": [],
+   "a": [],
+   "mn": "No resident Nigerian mission. Covering mission not confirmed."
+  },
+  "212": {
+   "n": "Dominica",
+   "m": [],
+   "a": [],
+   "mn": "No resident Nigerian mission. Covering mission not confirmed."
+  },
+  "028": {
+   "n": "Antigua and Barbuda",
+   "m": [],
+   "a": [],
+   "mn": "No resident Nigerian mission. Covering mission not confirmed."
+  },
+  "060": {
+   "n": "Bermuda",
+   "m": [],
+   "a": [],
+   "mn": "No resident Nigerian mission. Covering mission not confirmed."
+  },
+  "214": {
+   "n": "Dominican Republic",
+   "m": [],
+   "a": [],
+   "mn": "No resident Nigerian mission. Covering mission not confirmed."
+  },
+  "068": {
+   "n": "Bolivia",
+   "m": [],
+   "a": [],
+   "mn": "No resident Nigerian mission. Covering mission not confirmed."
+  },
+  "136": {
+   "n": "Cayman Islands",
+   "m": [],
+   "a": [],
+   "mn": "No resident Nigerian mission. Covering mission not confirmed."
+  },
+  "188": {
+   "n": "Costa Rica",
+   "m": [],
+   "a": [],
+   "mn": "No resident Nigerian mission. Covering mission not confirmed."
+  },
+  "558": {
+   "n": "Nicaragua",
+   "m": [],
+   "a": [],
+   "mn": "No resident Nigerian mission; covered by the Embassy in Mexico City (ambassador-designate Reno Omokri accredited to Mexico, Guatemala, Honduras and Nicaragua, per Legit.ng, Oct 2026)."
+  },
+  "729": {
+   "n": "Sudan",
+   "m": [
+    {
+     "t": "Embassy",
+     "c": "Khartoum",
+     "a": "17 Macnimer Street, P.O. Box 1538, Khartoum, Sudan",
+     "p": [
+      "+249 183 770148",
+      "+249 183 771491"
+     ],
+     "e": [
+      "nigeria.khartoum@foreignaffairs.gov.ng"
+     ],
+     "hd": {
+      "name": "Danladi Yakubu Nyaku",
+      "title": "Ambassador",
+      "status": "posted Mar 2026 (State House)",
+      "source": "https://statehouse.gov.ng/president-tinubu-approves-the-postings-of-ambassadors/"
+     },
+     "src": [
+      "https://nigerianconsulatesa.org/docs/embassy-of-nigeria-khartoum/",
+      "https://en.wikipedia.org/wiki/List_of_diplomatic_missions_of_Nigeria"
+     ],
+     "sec": false,
+     "ll": [
+      32.532,
+      15.552
+     ],
+     "ck": "2026-10"
+    }
+   ],
+   "a": [],
+   "mn": "Address is the pre-war Khartoum chancery. No source found confirming whether the Nigerian embassy relocated to Port Sudan during the war (Nigeria evacuated nationals via Port Sudan in 2023); check the current operating location with the Ministry of Foreign Affairs before travelling."
+  },
+  "728": {
+   "n": "South Sudan",
+   "m": [
+    {
+     "t": "Embassy",
+     "c": "Juba",
+     "a": "Anja Road, off Airport Road, Juba, South Sudan",
+     "p": [
+      "+211 920 030 800"
+     ],
+     "e": [
+      "nigeria.juba@foreignaffairs.gov.ng"
+     ],
+     "src": [
+      "https://nigerianconsulatesa.org/docs/embassy-of-nigeria-juba-2/",
+      "https://en.wikipedia.org/wiki/List_of_diplomatic_missions_of_Nigeria"
+     ],
+     "sec": false,
+     "ll": [
+      31.582,
+      4.852
+     ],
+     "ck": "2026-10"
+    }
+   ],
+   "a": []
+  },
+  "710": {
+   "n": "South Africa",
+   "m": [
+    {
+     "t": "High Commission",
+     "c": "Pretoria",
+     "a": "971 Francis Baard Street, Arcadia, Pretoria 0083",
+     "p": [
+      "+27 12 342 0668",
+      "+27 12 342 0805"
+     ],
+     "e": [
+      "nigeria.pretoria@foreignaffairs.gov.ng"
+     ],
+     "hd": {
+      "title": "High Commissioner",
+      "status": "not confirmed",
+      "note": "The March 2026 State House list posted Ita Enang to South Africa, but he presented credentials in Germany in July 2026. The current head of mission is not confirmed.",
+      "source": "https://statehouse.gov.ng/president-tinubu-approves-the-postings-of-ambassadors/"
+     },
+     "src": [
+      "https://dirco.gov.za/foreign-representation-in-south-africa-n/",
+      "https://nigerianconsulatesa.org/docs/high-commission-of-nigeria-pretoria/"
+     ],
+     "sec": false,
+     "ll": [
+      28.188,
+      -25.745
+     ],
+     "ck": "2026-10"
+    },
+    {
+     "t": "Consulate-General",
+     "c": "Johannesburg",
+     "a": "16 Rivonia Road, Illovo, Johannesburg",
+     "p": [
+      "+27 11 442 3620"
+     ],
+     "e": [
+      "cgjhb@nigerianconsulatesa.org"
+     ],
+     "w": "https://nigerianconsulatesa.org/",
+     "j": "Gauteng, Eastern Cape, Free State, KwaZulu-Natal, Mpumalanga and Western Cape provinces; consular services for Nigerians in Lesotho and Eswatini",
+     "src": [
+      "https://dirco.gov.za/foreign-representation-in-south-africa-n/",
+      "https://nigerianconsulatesa.org/",
+      "https://johannesburg.foreignaffairs.gov.ng/?p=160"
+     ],
+     "sec": false,
+     "ll": [
+      28.044,
+      -26.202
+     ],
+     "ck": "2026-10"
+    }
+   ],
+   "a": [
+    {
+     "n": "Nigerian Union South Africa (NUSA)",
+     "k": "umbrella",
+     "c": "nationwide",
+     "ab": "Umbrella body representing Nigerians in South Africa; speaks on attacks on Nigerians and runs community outreach.",
+     "src": [
+      "https://nannews.ng/nusa-remains-voice-of-nigerians-in-south-africa-nwobi/",
+      "https://saharareporters.com/2026/07/06/nigerian-union-south-africa-demands-probe-killings-two-nigerians"
+     ],
+     "ck": "2026-10"
+    },
+    {
+     "n": "Nigerian Citizens Association South Africa (NICASA)",
+     "k": "umbrella",
+     "c": "nationwide",
+     "ab": "National association of Nigerian citizens in South Africa; advocates on welfare, xenophobia and stranded Nigerians.",
+     "src": [
+      "https://nairametrics.com/2026/06/19/hundreds-of-nigerians-are-stranded-without-shelter-food-in-south-africa-nicasa/",
+      "https://nannews.ng/new-nicasa-president-general-urges-compatriots-in-s-africa-to-form-united-front/"
+     ],
+     "ck": "2026-10"
+    }
+   ]
+  },
+  "508": {
+   "n": "Mozambique",
+   "m": [
+    {
+     "t": "High Commission",
+     "c": "Maputo",
+     "a": "821 Avenida Kenneth Kaunda, P.O. Box 4693, Maputo",
+     "p": [
+      "+258 1 492 457",
+      "+258 1 490 105"
+     ],
+     "hd": {
+      "name": "Ogechukwu Kingsley Onaga",
+      "title": "High Commissioner",
+      "status": "posted Mar 2026 (State House)",
+      "source": "https://statehouse.gov.ng/president-tinubu-approves-the-postings-of-ambassadors/"
+     },
+     "src": [
+      "https://embassies.net/nigeria-in-mozambique/maputo",
+      "https://en.wikipedia.org/wiki/List_of_diplomatic_missions_of_Nigeria"
+     ],
+     "sec": true,
+     "ll": [
+      32.583,
+      -25.966
+     ],
+     "ck": "2026-10"
+    }
+   ],
+   "a": [],
+   "mn": "not official); phone numbers are in an old format as listed there — verify.",
+   "an": "A 'Nigerian Community in Mozambique' is reported in news (Mar 2026) but no formal name or web presence found. (source: https://aimnews.org/2026/03/11/nigerians-protest-at-illegal-detention/)"
+  },
+  "072": {
+   "n": "Botswana",
+   "m": [
+    {
+     "t": "High Commission",
+     "c": "Gaborone",
+     "a": "Plot 1086/92, Queens Road, The Mall, P.O. Box 274, Gaborone",
+     "p": [
+      "+267 391 3561"
+     ],
+     "hd": {
+      "name": "Shaga John Shamah",
+      "title": "High Commissioner",
+      "status": "posted Mar 2026 (State House)",
+      "source": "https://statehouse.gov.ng/president-tinubu-approves-the-postings-of-ambassadors/"
+     },
+     "src": [
+      "https://embassies.net/nigeria-in-botswana/gaborone",
+      "https://en.wikipedia.org/wiki/List_of_diplomatic_missions_of_Nigeria"
+     ],
+     "sec": true,
+     "ll": [
+      25.909,
+      -24.655
+     ],
+     "ck": "2026-10"
+    }
+   ],
+   "a": []
+  },
+  "516": {
+   "n": "Namibia",
+   "m": [
+    {
+     "t": "High Commission",
+     "c": "Windhoek",
+     "a": "4 Gen. Murtala Mohammed Avenue, Eros, Windhoek",
+     "p": [
+      "+264 61 232105"
+     ],
+     "w": "https://nigeriahighcommissionwindhoek.org/",
+     "h": "Mon–Fri 8:30–16:00 (phone line); visa section Tue 10:00–13:00",
+     "hd": {
+      "name": "Esther Arewa",
+      "title": "High Commissioner",
+      "status": "posted Mar 2026 (State House)",
+      "source": "https://statehouse.gov.ng/president-tinubu-approves-the-postings-of-ambassadors/"
+     },
+     "src": [
+      "https://nigeriahighcommissionwindhoek.org/",
+      "https://en.wikipedia.org/wiki/List_of_diplomatic_missions_of_Nigeria"
+     ],
+     "sec": false,
+     "ll": [
+      17.083,
+      -22.559
+     ],
+     "ck": "2026-10"
+    }
+   ],
+   "a": [],
+   "mn": "Mission website still names Terhemen Tarzoor as High Commissioner (likely outdated); Esther Arewa posted Mar 2026."
+  },
+  "894": {
+   "n": "Zambia",
+   "m": [
+    {
+     "t": "High Commission",
+     "c": "Lusaka",
+     "a": "28 Bwinjimfumu Road, Lusaka",
+     "p": [
+      "+260 211 261 873"
+     ],
+     "hd": {
+      "name": "Alexandra Clark-Omeru",
+      "title": "High Commissioner",
+      "status": "posted Mar 2026 (State House)",
+      "source": "https://statehouse.gov.ng/president-tinubu-approves-the-postings-of-ambassadors/"
+     },
+     "src": [
+      "https://embassies.net/nigeria-in-zambia/lusaka",
+      "https://en.wikipedia.org/wiki/List_of_diplomatic_missions_of_Nigeria"
+     ],
+     "sec": true,
+     "ll": [
+      28.287,
+      -15.407
+     ],
+     "ck": "2026-10"
+    }
+   ],
+   "a": []
+  },
+  "716": {
+   "n": "Zimbabwe",
+   "m": [
+    {
+     "t": "Embassy",
+     "c": "Harare",
+     "a": "36 Samora Machel Avenue, Harare",
+     "p": [
+      "+263 4 253900"
+     ],
+     "src": [
+      "https://embassy-finder.com/nigeria_in_harare_zimbabwe",
+      "https://en.wikipedia.org/wiki/List_of_diplomatic_missions_of_Nigeria"
+     ],
+     "sec": true,
+     "ll": [
+      31.053,
+      -17.828
+     ],
+     "ck": "2026-10"
+    }
+   ],
+   "a": []
+  },
+  "024": {
+   "n": "Angola",
+   "m": [
+    {
+     "t": "Embassy",
+     "c": "Luanda",
+     "a": "Rua Houari Boumedienne 120, CP 479, Luanda",
+     "p": [
+      "+244 222 340 084"
+     ],
+     "src": [
+      "https://embassies.net/nigeria-in-angola/luanda",
+      "https://en.wikipedia.org/wiki/List_of_diplomatic_missions_of_Nigeria"
+     ],
+     "sec": true,
+     "ll": [
+      13.234,
+      -8.837
+     ],
+     "ck": "2026-10"
+    }
+   ],
+   "a": []
+  },
+  "404": {
+   "n": "Kenya",
+   "m": [
+    {
+     "t": "High Commission",
+     "c": "Nairobi",
+     "a": "Lenana Road, Kilimani, P.O. Box 30516, Nairobi",
+     "p": [
+      "+254 20 386 4116"
+     ],
+     "j": "Kenya; also accredited to Seychelles (per Wikipedia)",
+     "hd": {
+      "name": "Ibrahim Danlami",
+      "title": "High Commissioner",
+      "status": "posted Mar 2026 (State House)",
+      "source": "https://statehouse.gov.ng/president-tinubu-approves-the-postings-of-ambassadors/"
+     },
+     "src": [
+      "https://embassy-finder.com/nigeria_in_nairobi_kenya",
+      "https://en.wikipedia.org/wiki/List_of_diplomatic_missions_of_Nigeria"
+     ],
+     "sec": true,
+     "ll": [
+      36.817,
+      -1.283
+     ],
+     "ck": "2026-10"
+    }
+   ],
+   "a": [],
+   "mn": "not official); listed website/email (nigeriankenya.or.ke) not verified as live, omitted."
+  },
+  "834": {
+   "n": "Tanzania",
+   "m": [
+    {
+     "t": "High Commission",
+     "c": "Dar es Salaam",
+     "a": "Ali Hassan Mwinyi Road / Kaunda Drive junction, Dar es Salaam",
+     "hd": {
+      "name": "Romata Mohammed Omobolanle",
+      "title": "High Commissioner",
+      "status": "posted Mar 2026 (State House)",
+      "source": "https://statehouse.gov.ng/president-tinubu-approves-the-postings-of-ambassadors/"
+     },
+     "src": [
+      "https://embassies.net/nigeria-in-tanzania/dar-es-salaam",
+      "https://en.wikipedia.org/wiki/List_of_diplomatic_missions_of_Nigeria"
+     ],
+     "sec": true,
+     "ll": [
+      39.27,
+      -6.823
+     ],
+     "ck": "2026-10"
+    }
+   ],
+   "a": []
+  },
+  "800": {
+   "n": "Uganda",
+   "m": [
+    {
+     "t": "High Commission",
+     "c": "Kampala",
+     "a": "33 Nakasero Road, Kampala",
+     "p": [
+      "+256 41 423 3691",
+      "+256 41 423 3692"
+     ],
+     "w": "https://nighicomkampala.ng",
+     "src": [
+      "https://visitkampala.kcca.go.ug/business_details/nigerian-high-commission",
+      "https://en.wikipedia.org/wiki/List_of_diplomatic_missions_of_Nigeria"
+     ],
+     "sec": false,
+     "ll": [
+      32.582,
+      0.316
+     ],
+     "ck": "2026-10"
+    }
+   ],
+   "a": [],
+   "mn": "Details from Kampala Capital City Authority directory; mission website could not be opened."
+  },
+  "231": {
+   "n": "Ethiopia",
+   "m": [
+    {
+     "t": "Embassy and Permanent Mission to the African Union and UNECA",
+     "c": "Addis Ababa",
+     "a": "Senegal Street, W-9, K-21 Gulele KK, Kebele 06, House No. 001, P.O. Box 1019, Addis Ababa",
+     "h": "Mon–Fri 8:00–17:00",
+     "j": "Ethiopia; Permanent Representation to the African Union and UN Economic Commission for Africa",
+     "hd": {
+      "name": "Nasir Aminu",
+      "title": "Ambassador",
+      "status": "chargé d'affaires a.i. in Feb 2026 (MFA press release); posted as Ambassador to Ethiopia Mar 2026 (State House, listed as Aminu Nasir)",
+      "source": "https://foreignaffairs.gov.ng/news/wp-content/uploads/2026/02/Press-Release-No-2026-011.pdf"
+     },
+     "src": [
+      "https://atlanta.foreignaffairs.gov.ng/diplomatic-missions",
+      "https://foreignaffairs.gov.ng/news/wp-content/uploads/2026/02/Press-Release-No-2026-011.pdf",
+      "https://thesun.ng/nigeria-assumes-full-functions-in-ethiopia-au-un/"
+     ],
+     "sec": false,
+     "ll": [
+      38.747,
+      9.025
+     ],
+     "ck": "2026-10"
+    }
+   ],
+   "a": [],
+   "mn": "The ambassador to Ethiopia is concurrently Nigeria's Permanent Representative to the AU; no separate AU mission address found."
+  },
+  "646": {
+   "n": "Rwanda",
+   "m": [
+    {
+     "t": "High Commission",
+     "c": "Kigali",
+     "a": "No. 56, KG 13 Avenue, Nyarutarama, Gasabo District, Kigali",
+     "w": "https://kigali.foreignaffairs.gov.ng/",
+     "h": "Mon–Fri 8:00–17:00",
+     "hd": {
+      "name": "Aisha Aliyu Musa",
+      "title": "High Commissioner",
+      "status": "in post (mission website lists her from Jul 2021 'till date')",
+      "source": "https://kigali.foreignaffairs.gov.ng/?p=160"
+     },
+     "src": [
+      "https://atlanta.foreignaffairs.gov.ng/diplomatic-missions",
+      "https://kigali.foreignaffairs.gov.ng/?p=160"
+     ],
+     "sec": false,
+     "ll": [
+      30.059,
+      -1.95
+     ],
+     "ck": "2026-10"
+    }
+   ],
+   "a": []
+  },
+  "818": {
+   "n": "Egypt",
+   "m": [
+    {
+     "t": "Embassy",
+     "c": "Cairo",
+     "a": "13 Gabalaya Street, Zamalek, Cairo",
+     "w": "https://cairo.foreignaffairs.gov.ng/",
+     "h": "Sun–Thu 9:00–15:00",
+     "hd": {
+      "name": "Ahmed Mohammed Monguno",
+      "title": "Ambassador",
+      "status": "posted Mar 2026 (State House)",
+      "source": "https://statehouse.gov.ng/president-tinubu-approves-the-postings-of-ambassadors/"
+     },
+     "src": [
+      "https://en.wikipedia.org/wiki/Embassy_of_Nigeria,_Cairo",
+      "https://cairo.foreignaffairs.gov.ng/"
+     ],
+     "sec": false,
+     "ll": [
+      31.25,
+      30.063
+     ],
+     "ck": "2026-10"
+    }
+   ],
+   "a": [
+    {
+     "n": "Nigerians in Diaspora Organisation, Egypt Chapter (NIDOEG)",
+     "k": "NIDO",
+     "ab": "Egypt chapter of NIDO; leadership re-elected in 2024.",
+     "src": [
+      "https://japathinz.com/nidoaf-2024-introducing-nido-egypt-chapter/"
+     ],
+     "ck": "2026-10"
+    }
+   ]
+  },
+  "434": {
+   "n": "Libya",
+   "m": [
+    {
+     "t": "Embassy",
+     "c": "Tripoli",
+     "a": "Shara'a Narjis, Hai Al-Zuhoor, P.O. Box 4417, Tripoli",
+     "p": [
+      "+218 21 444 3036",
+      "+218 21 444 3037"
+     ],
+     "e": [
+      "nigeria@nigeriantripoli.org"
+     ],
+     "w": "https://nigeriantripoli.org/",
+     "hd": {
+      "name": "Samaila Mohammed Goni",
+      "title": "Chargé d'affaires en titre / Head of Mission",
+      "status": "in post (embassy website; date not stated)",
+      "source": "https://nigeriantripoli.org/"
+     },
+     "src": [
+      "https://nigeriantripoli.org/"
+     ],
+     "sec": false,
+     "ll": [
+      13.187,
+      32.887
+     ],
+     "ck": "2026-10"
+    }
+   ],
+   "a": []
+  },
+  "788": {
+   "n": "Tunisia",
+   "m": [
+    {
+     "t": "Embassy",
+     "c": "Tunis",
+     "a": "17 Rue Fatma Ennachi, El Menzah V, 2092 Tunis",
+     "p": [
+      "+216 71 792 589",
+      "+216 71 787 276"
+     ],
+     "hd": {
+      "name": "Kulu Haruna Abubakar",
+      "title": "Ambassador",
+      "status": "posted Mar 2026 (State House)",
+      "source": "https://statehouse.gov.ng/president-tinubu-approves-the-postings-of-ambassadors/"
+     },
+     "src": [
+      "https://embassies.net/nigeria-in-tunisia/el-menzah",
+      "https://en.wikipedia.org/wiki/List_of_diplomatic_missions_of_Nigeria"
+     ],
+     "sec": true,
+     "ll": [
+      10.166,
+      36.819
+     ],
+     "ck": "2026-10"
+    }
+   ],
+   "a": []
+  },
+  "012": {
+   "n": "Algeria",
+   "m": [
+    {
+     "t": "Embassy",
+     "c": "Algiers",
+     "a": "54 Rue du Vercors, Air de France, Algiers",
+     "p": [
+      "+213 21 95 03 74",
+      "+213 21 95 03 89"
+     ],
+     "hd": {
+      "name": "Mohammed Mahmud Lele",
+      "title": "Ambassador",
+      "status": "posted Mar 2026 (State House)",
+      "source": "https://statehouse.gov.ng/president-tinubu-approves-the-postings-of-ambassadors/"
+     },
+     "src": [
+      "https://embassies.net/nigeria-in-algeria/algiers",
+      "https://en.wikipedia.org/wiki/List_of_diplomatic_missions_of_Nigeria",
+      "https://www.thisdaylive.com/2025/08/04/nigeria-algeria-deepen-diplomatic-ties-as-new-embassy-chancery-project-commences-in-algiers/"
+     ],
+     "sec": true,
+     "ll": [
+      3.087,
+      36.732
+     ],
+     "ck": "2026-10"
+    }
+   ],
+   "a": [],
+   "mn": "not official). Groundbreaking for a new chancery in Dely Ibrahim, Algiers, took place in Aug 2025; the address may change."
+  },
+  "504": {
+   "n": "Morocco",
+   "m": [
+    {
+     "t": "Embassy",
+     "c": "Rabat",
+     "a": "70 Avenue Omar Ibn El Khattab, Agdal, Rabat",
+     "hd": {
+      "name": "Bako Adamu Umar",
+      "title": "Ambassador",
+      "status": "posted Mar 2026 (State House)",
+      "source": "https://statehouse.gov.ng/president-tinubu-approves-the-postings-of-ambassadors/"
+     },
+     "src": [
+      "https://embassies.net/nigeria-in-morocco/rabat",
+      "https://en.wikipedia.org/wiki/List_of_diplomatic_missions_of_Nigeria"
+     ],
+     "sec": true,
+     "ll": [
+      -6.833,
+      34.013
+     ],
+     "ck": "2026-10"
+    }
+   ],
+   "a": [],
+   "mn": "not official); listed phone numbers use an outdated format and are omitted."
+  },
+  "690": {
+   "n": "Seychelles",
+   "m": [],
+   "a": [],
+   "mn": "No resident Nigerian mission; covered by the High Commission in Nairobi, Kenya (per Wikipedia list of Nigerian missions)."
+  },
+  "784": {
+   "n": "United Arab Emirates",
+   "m": [
+    {
+     "t": "Embassy",
+     "c": "Abu Dhabi",
+     "a": "Villa 432/2, Al Nahyan Street 26, Al Manazir, Al Karama area, Abu Dhabi",
+     "p": [
+      "+971 2 443 1503"
+     ],
+     "src": [
+      "https://embassies.net/nigeria-in-united-arab-emirates/abu-dhabi",
+      "https://en.wikipedia.org/wiki/List_of_diplomatic_missions_of_Nigeria"
+     ],
+     "sec": true,
+     "ll": [
+      54.397,
+      24.451
+     ],
+     "ck": "2026-10"
+    },
+    {
+     "t": "Consulate-General",
+     "c": "Dubai",
+     "src": [
+      "https://en.wikipedia.org/wiki/List_of_diplomatic_missions_of_Nigeria"
+     ],
+     "sec": true,
+     "ll": [
+      55.309,
+      25.077
+     ],
+     "ck": "2026-10"
+    }
+   ],
+   "a": [],
+   "mn": "not official). Dubai Consulate-General listed by Wikipedia; contact details could not be verified."
+  },
+  "414": {
+   "n": "Kuwait",
+   "m": [
+    {
+     "t": "Embassy",
+     "c": "Kuwait City",
+     "a": "Villa 161, Street 806, Block 8, Al-Zahra area, South Surra, Kuwait City",
+     "p": [
+      "+965 2535 4570"
+     ],
+     "j": "Kuwait; also accredited to Bahrain (per Wikipedia)",
+     "src": [
+      "https://embassies.net/nigeria-in-kuwait",
+      "https://en.wikipedia.org/wiki/List_of_diplomatic_missions_of_Nigeria"
+     ],
+     "sec": true,
+     "ll": [
+      47.974,
+      29.367
+     ],
+     "ck": "2026-10"
+    }
+   ],
+   "a": []
+  },
+  "634": {
+   "n": "Qatar",
+   "m": [
+    {
+     "t": "Embassy",
+     "c": "Doha",
+     "hd": {
+      "name": "Mahmud Yakubu",
+      "title": "Ambassador",
+      "status": "posted Mar 2026 (State House)",
+      "source": "https://statehouse.gov.ng/president-tinubu-approves-the-postings-of-ambassadors/"
+     },
+     "src": [
+      "https://en.wikipedia.org/wiki/List_of_diplomatic_missions_of_Nigeria"
+     ],
+     "sec": false,
+     "ll": [
+      51.531,
+      25.285
+     ],
+     "ck": "2026-10"
+    }
+   ],
+   "a": [
+    {
+     "n": "Nigerians in Diaspora Organisation Qatar (NIDO-Qatar)",
+     "k": "NIDO",
+     "c": "Doha",
+     "w": "https://www.nidoqatar.org",
+     "ab": "Main Nigerian community body in Qatar; holds town halls, sports competitions and NIN enrolment drives.",
+     "src": [
+      "https://qatar-tribune.com/article/133779/nation/nigerian-community-holds-town-hall-meeting-in-doha",
+      "https://qatar-tribune.com/article/141158/nation/nigerian-community-football-competition-kicks-off-new-edition",
+      "https://s.thepeninsula.qa/article/03/02/2022/nigerian-community-in-qatar-gets-new-president",
+      "https://gulf-times.com/story/465629/NIDO-Qatar-launches-new-website-member-ID-cards"
+     ],
+     "ck": "2026-10"
+    }
+   ],
+   "mn": "Address not verified (the one directory entry found was clearly erroneous and was not used)."
+  },
+  "048": {
+   "n": "Bahrain",
+   "m": [],
+   "a": [],
+   "mn": "No resident Nigerian mission; covered by the Embassy in Kuwait City (per Wikipedia list of Nigerian missions)."
+  },
+  "682": {
+   "n": "Saudi Arabia",
+   "m": [
+    {
+     "t": "Embassy",
+     "c": "Riyadh",
+     "a": "Diplomatic Quarter, P.O. Box 94386, Riyadh 11693",
+     "hd": {
+      "name": "Yakubu N. Gambo",
+      "title": "Ambassador",
+      "status": "posted Mar 2026 (State House)",
+      "source": "https://statehouse.gov.ng/president-tinubu-approves-the-postings-of-ambassadors/"
+     },
+     "src": [
+      "https://embassies.net/nigeria-in-saudi-arabia",
+      "https://en.wikipedia.org/wiki/List_of_diplomatic_missions_of_Nigeria"
+     ],
+     "sec": true,
+     "ll": [
+      46.722,
+      24.688
+     ],
+     "ck": "2026-10"
+    },
+    {
+     "t": "Consulate-General",
+     "c": "Jeddah",
+     "a": "19A Oroubah Street, Mushrefan District, P.O. Box 655, Jeddah",
+     "src": [
+      "https://embassies.net/nigeria-in-saudi-arabia",
+      "https://en.wikipedia.org/wiki/List_of_diplomatic_missions_of_Nigeria"
+     ],
+     "sec": true,
+     "ll": [
+      39.186,
+      21.49
+     ],
+     "ck": "2026-10"
+    }
+   ],
+   "a": [],
+   "mn": "not official); phone numbers there are in outdated/erroneous formats and are omitted.",
+   "an": "Nigerian Mission directed the various community associations to form one umbrella body (Aug 2026); none named. (source: https://von.gov.ng/nigeria-renews-commitment-to-saudi-diaspora-engagement/)"
+  },
+  "376": {
+   "n": "Israel",
+   "m": [
+    {
+     "t": "Embassy",
+     "c": "Tel Aviv",
+     "a": "1/2 Rachel Street, Tel Aviv",
+     "hd": {
+      "name": "Nkechi Linda Ufochukwu",
+      "title": "Ambassador",
+      "status": "posted Mar 2026 (State House)",
+      "source": "https://statehouse.gov.ng/president-tinubu-approves-the-postings-of-ambassadors/"
+     },
+     "src": [
+      "https://embassies.net/nigeria-in-israel",
+      "https://en.wikipedia.org/wiki/List_of_diplomatic_missions_of_Nigeria"
+     ],
+     "sec": true,
+     "ll": [
+      34.781,
+      32.081
+     ],
+     "ck": "2026-10"
+    }
+   ],
+   "a": [],
+   "mn": "not official); verify."
+  },
+  "422": {
+   "n": "Lebanon",
+   "m": [
+    {
+     "t": "Embassy",
+     "c": "Beirut",
+     "hd": {
+      "name": "Segun Ige Wasa",
+      "title": "Ambassador",
+      "status": "posted Mar 2026 (State House)",
+      "source": "https://statehouse.gov.ng/president-tinubu-approves-the-postings-of-ambassadors/"
+     },
+     "src": [
+      "https://en.wikipedia.org/wiki/List_of_diplomatic_missions_of_Nigeria"
+     ],
+     "sec": false,
+     "ll": [
+      35.502,
+      33.893
+     ],
+     "ck": "2026-10"
+    }
+   ],
+   "a": [],
+   "mn": "Address not verified (directory entry found appeared to be for Damascus and was not used)."
+  },
+  "400": {
+   "n": "Jordan",
+   "m": [
+    {
+     "t": "Embassy",
+     "c": "Amman",
+     "a": "Yahya Khateeb Street, Abdoun, Amman 11181",
+     "p": [
+      "+962 6 592 3481",
+      "+962 6 592 3482"
+     ],
+     "src": [
+      "https://embassies.net/nigeria-in-jordan",
+      "https://en.wikipedia.org/wiki/List_of_diplomatic_missions_of_Nigeria"
+     ],
+     "sec": true,
+     "ll": [
+      35.945,
+      31.955
+     ],
+     "ck": "2026-10"
+    }
+   ],
+   "a": []
+  },
+  "826": {
+   "n": "United Kingdom",
+   "m": [
+    {
+     "t": "High Commission",
+     "c": "London",
+     "a": "Nigeria House, 9 Northumberland Avenue, London WC2N 5BX",
+     "p": [
+      "+44 20 7839 1244"
+     ],
+     "e": [
+      "hc@nigeriahc.org.uk"
+     ],
+     "w": "https://nigeriahc.org.uk",
+     "h": "Official hours 10:00–17:30; immigration/consular submissions 9:00–13:00",
+     "hd": {
+      "name": "Aminu Muhammad Dalhatu",
+      "title": "High Commissioner",
+      "status": "presented credentials May 2026",
+      "source": "https://thesun.ng/nigerian-envoy-dalhatu-meets-king-charles-begins-uk-diplomatic-tenure/"
+     },
+     "src": [
+      "https://nigeriahc.org.uk/contact-us",
+      "https://thesun.ng/nigerian-envoy-dalhatu-meets-king-charles-begins-uk-diplomatic-tenure/"
+     ],
+     "sec": false,
+     "ll": [
+      -0.126,
+      51.509
+     ],
+     "ck": "2026-10"
+    }
+   ],
+   "a": [
+    {
+     "n": "Nigerians in Diaspora Organisation Europe (NIDOE / NIDO Europe)",
+     "k": "NIDO",
+     "c": "London (Europe-wide)",
+     "w": "https://www.nidoeurope.org/",
+     "s": "https://x.com/NIDOEurope1",
+     "ab": "European arm of the global NIDO network, registered in England and Wales in 2002, headquartered in London, with about 19 chapters in 18 European countries.",
+     "src": [
+      "https://www.nidoeurope.org/about/",
+      "https://find-and-update.company-information.service.gov.uk/company/04465577"
+     ],
+     "ck": "2026-10"
+    },
+    {
+     "n": "NIDO UK South",
+     "k": "NIDO",
+     "c": "London",
+     "w": "https://nidouksouth.org/",
+     "e": "Info@nidouksouth.org",
+     "s": "https://x.com/NIDOUKSOUTH",
+     "ab": "UK South chapter of the Nigerians in Diaspora Organisation.",
+     "src": [
+      "https://nidouksouth.org/contacts/",
+      "https://x.com/NIDOUKSOUTH"
+     ],
+     "ck": "2026-10"
+    },
+    {
+     "n": "NIDO UK Chapter",
+     "k": "NIDO",
+     "w": "https://nidoukchapter.org/",
+     "ab": "UK chapter of the Nigerians in Diaspora Organisation.",
+     "src": [
+      "https://nidoukchapter.org/"
+     ],
+     "ck": "2026-10"
+    },
+    {
+     "n": "Medical Association of Nigerians Across Great Britain (MANSAG)",
+     "k": "professional",
+     "c": "nationwide",
+     "ab": "Registered charity of Nigerian doctors in the UK; holds an annual scientific conference and runs mentoring.",
+     "src": [
+      "https://register-of-charities.charitycommission.gov.uk/en/charity-search/-/charity-details/3963192/full-print",
+      "https://medicalmirror.org/nigerian-diaspora-medics-a-powerhouse-for-the-future-of-healthcare-in-nigeria-keynote-speaker-mansag-scientific-conference-2024/"
+     ],
+     "ck": "2026-10"
+    },
+    {
+     "n": "Nigerian Doctors in the United Kingdom (NDUK)",
+     "k": "professional",
+     "c": "nationwide",
+     "w": "https://www.ndukgroup.co.uk",
+     "e": "Admin@ndukgroup.co.uk",
+     "s": "https://twitter.com/NigerianDrsUk",
+     "ab": "Not-for-profit network supporting Nigerian-origin doctors and dentists working or planning to work in the UK.",
+     "src": [
+      "https://app.medall.org/c/nigerian-doctors-in-the-united-kingdom-nduk/about"
+     ],
+     "ck": "2026-10"
+    },
+    {
+     "n": "Nigeria Nurses Charitable Association (NNCA UK)",
+     "k": "professional",
+     "c": "nationwide",
+     "e": "info@nncauk.org",
+     "ab": "Registered charity representing Nigerian nurses in the UK.",
+     "src": [
+      "https://register-of-charities.charitycommission.gov.uk/en/charity-search/-/charity-details/3981243/contact-information"
+     ],
+     "ck": "2026-10"
+    }
+   ]
+  },
+  "372": {
+   "n": "Ireland",
+   "m": [
+    {
+     "t": "Embassy",
+     "c": "Dublin",
+     "a": "56 Leeson Park, Ranelagh, Dublin 6",
+     "p": [
+      "+353 1 660 4366"
+     ],
+     "w": "https://dublin.foreignaffairs.gov.ng",
+     "j": "Ireland, Iceland",
+     "hd": {
+      "name": "O.C.J. Okocha SAN",
+      "title": "Ambassador",
+      "status": "posted Mar 2026 (State House); received Letters of Credence in Abuja 25 Jun 2026 (MFA)",
+      "source": "https://foreignaffairs.gov.ng/news/?p=253448"
+     },
+     "src": [
+      "https://dublin.foreignaffairs.gov.ng/?p=160",
+      "https://foreignaffairs.gov.ng/news/?p=253448",
+      "https://embassies.net/nigeria-in-ireland/dublin",
+      "https://www.finelib.com/cities/abuja/government/nigeria-embassies-overseas"
+     ],
+     "sec": true,
+     "ll": [
+      -6.249,
+      53.333
+     ],
+     "ck": "2026-10"
+    }
+   ],
+   "a": [
+    {
+     "n": "Nigerians in Diaspora Organisation Europe – Ireland (NIDO Ireland)",
+     "k": "NIDO",
+     "w": "https://www.nidoireland.ie/",
+     "s": "https://x.com/NIDOE_Ireland",
+     "ab": "Irish chapter of NIDO Europe (a rival 'Ireland Chapter' group exists; the two were in litigation in 2023).",
+     "src": [
+      "https://www.irishtimes.com/ireland/social-affairs/2023/11/23/nigerian-diaspora-organisation-in-ireland-takes-legal-case-against-rival-group/",
+      "https://x.com/NIDOE_Ireland"
+     ],
+     "ck": "2026-10"
+    }
+   ]
+  },
+  "276": {
+   "n": "Germany",
+   "m": [
+    {
+     "t": "Embassy",
+     "c": "Berlin",
+     "a": "Neue Jakobstraße 4, 10179 Berlin",
+     "p": [
+      "+49 30 212300"
+     ],
+     "e": [
+      "info@nigeriaembassygermany.org",
+      "visa@nigeriaembassygermany.org"
+     ],
+     "w": "https://nigeriaembassygermany.org",
+     "h": "Mon–Fri 10:00–14:00",
+     "hd": {
+      "name": "Ita Enang",
+      "title": "Ambassador",
+      "status": "presented credentials Jul 2026",
+      "source": "https://nannews.ng/enang-presents-credentials-to-german-president-seeks-stronger-nigeria-germany-ties/"
+     },
+     "src": [
+      "https://www.auswaertiges-amt.de/de/service/laender/nigeria-node/vertretungennigeria/205796",
+      "https://nigeriaembassygermany.org/contact-us.htm"
+     ],
+     "sec": false,
+     "ll": [
+      13.411,
+      52.524
+     ],
+     "ck": "2026-10"
+    },
+    {
+     "t": "Consulate-General",
+     "c": "Frankfurt am Main",
+     "a": "Weißfrauenstraße 12, 60311 Frankfurt am Main",
+     "p": [
+      "+49 69 697637280"
+     ],
+     "e": [
+      "info@nigeria-consulate-frankfurt.de"
+     ],
+     "h": "Mon–Fri 9:00–17:00",
+     "j": "Hessen, Baden-Württemberg, Bayern, Nordrhein-Westfalen, Rheinland-Pfalz",
+     "hd": {
+      "name": "Yakubu Audu Dadu",
+      "title": "Consul-General",
+      "status": "in post (German Federal Foreign Office list)",
+      "source": "https://www.auswaertiges-amt.de/de/service/laender/nigeria-node/vertretungennigeria/205796"
+     },
+     "src": [
+      "https://www.auswaertiges-amt.de/de/service/laender/nigeria-node/vertretungennigeria/205796"
+     ],
+     "sec": false,
+     "ll": [
+      8.684,
+      50.116
+     ],
+     "ck": "2026-10"
+    }
+   ],
+   "a": [
+    {
+     "n": "Nigerians in Diaspora Organisation (NIDO) Germany e.V.",
+     "k": "NIDO",
+     "c": "Berlin",
+     "w": "https://nido-germany.de/",
+     "s": "https://www.facebook.com/NIDOGermany",
+     "ab": "German chapter of NIDO, a registered association of Nigerians in Germany.",
+     "src": [
+      "https://nido-germany.de/?p=11154",
+      "https://theafricancourier.de/tag/nido-germany"
+     ],
+     "ck": "2026-10"
+    }
+   ],
+   "mn": "Ita Enang was first listed for South Africa in the March 2026 State House postings and later presented credentials in Germany."
+  },
+  "250": {
+   "n": "France",
+   "m": [
+    {
+     "t": "Embassy",
+     "c": "Paris",
+     "a": "173 avenue Victor Hugo, 75116 Paris",
+     "p": [
+      "+33 1 47 04 68 65"
+     ],
+     "w": "https://www.nigeriafrance.org",
+     "j": "France, Monaco",
+     "hd": {
+      "name": "Ayodele Oke",
+      "title": "Ambassador",
+      "status": "presented credentials Oct 2026",
+      "source": "https://www.thisdaylive.com/2026/10/07/oke-pledges-new-era-in-nigeria-france-relations/"
+     },
+     "src": [
+      "https://en.gouv.mc/Policy-Practice/Monaco-Worldwide/Diplomacy-and-International-Presence/bilateral-relations/All-the-countries/Nigeria",
+      "https://www.thisdaylive.com/2026/10/07/oke-pledges-new-era-in-nigeria-france-relations/"
+     ],
+     "sec": false,
+     "ll": [
+      2.349,
+      48.853
+     ],
+     "ck": "2026-10"
+    },
+    {
+     "t": "Permanent Delegation to UNESCO",
+     "c": "Paris",
+     "a": "Maison de l'UNESCO, Bureau MS1.59–MS1.71, 1 rue Miollis, 75732 Paris Cedex 15",
+     "src": [
+      "https://ich.unesco.org/en-state/nigeria-NG?info=contacts",
+      "https://en.wikipedia.org/wiki/List_of_diplomatic_missions_of_Nigeria"
+     ],
+     "sec": false,
+     "ll": [
+      2.349,
+      48.853
+     ],
+     "ck": "2026-10"
+    }
+   ],
+   "a": [
+    {
+     "n": "NIDOE France",
+     "k": "NIDO",
+     "c": "Paris",
+     "w": "https://www.nidoefrance.org/",
+     "e": "nidoefrance@gmail.com",
+     "s": "https://www.instagram.com/nidoefrance/",
+     "ab": "France chapter of Nigerians in Diaspora Organisation Europe.",
+     "src": [
+      "https://www.nidoefrance.org/contact"
+     ],
+     "ck": "2026-10"
+    }
+   ]
+  },
+  "380": {
+   "n": "Italy",
+   "m": [
+    {
+     "t": "Embassy",
+     "c": "Rome",
+     "a": "Via Orazio 14/18, 00193 Rome (entrance: Via Cassiodoro 2c)",
+     "p": [
+      "+39 06 9837482"
+     ],
+     "e": [
+      "chancery@nigerianrome.org"
+     ],
+     "w": "https://www.nigerianrome.org",
+     "h": "Consular/immigration Mon–Fri 9:00–12:00 (closed to general public Fridays per site)",
+     "j": "Italy, Albania",
+     "hd": {
+      "name": "Samuel Rueben Abimbola Tolulope",
+      "title": "Ambassador",
+      "status": "posted Mar 2026 (State House); received Letters of Credence in Abuja 6 Jul 2026 (MFA)",
+      "source": "https://fmino.gov.ng/minister-of-state-for-foreign-affairs-presents-letters-of-credence-to-more-ambassadors-designate/"
+     },
+     "src": [
+      "https://www.nigerianrome.org/",
+      "https://fmino.gov.ng/minister-of-state-for-foreign-affairs-presents-letters-of-credence-to-more-ambassadors-designate/"
+     ],
+     "sec": false,
+     "ll": [
+      12.511,
+      41.892
+     ],
+     "ck": "2026-10"
+    }
+   ],
+   "a": [
+    {
+     "n": "NIDOE Italy Chapter",
+     "k": "NIDO",
+     "w": "https://nidoeitaly.services-app.org/home/",
+     "e": "nidoe.italy@gmail.com",
+     "ab": "Italy chapter of Nigerians in Diaspora Organisation Europe.",
+     "src": [
+      "https://nidoeitaly.services-app.org/home/",
+      "https://www.theafricancourier.de/nigerian-diaspora-italy-elects-new-executive-committee/"
+     ],
+     "ck": "2026-10"
+    }
+   ]
+  },
+  "724": {
+   "n": "Spain",
+   "m": [
+    {
+     "t": "Embassy",
+     "c": "Madrid",
+     "a": "Calle Guisando 23 bis, 28002 Madrid",
+     "p": [
+      "+34 91 563 09 11",
+      "+34 91 563 31 44"
+     ],
+     "hd": {
+      "name": "Okezie Victor Ikpeazu",
+      "title": "Ambassador",
+      "status": "presented credentials Sep 2026",
+      "source": "https://www.arise.tv/ikpeazu-presents-credentials-to-king-of-spain-seeks-stronger-economic-partnership/"
+     },
+     "src": [
+      "https://embassies.net/nigeria-in-spain/madrid",
+      "https://www.arise.tv/ikpeazu-presents-credentials-to-king-of-spain-seeks-stronger-economic-partnership/"
+     ],
+     "sec": true,
+     "ll": [
+      -3.703,
+      40.416
+     ],
+     "ck": "2026-10"
+    }
+   ],
+   "a": [
+    {
+     "n": "NIDOE Spain Chapter",
+     "k": "NIDO",
+     "ab": "Spain chapter of Nigerians in Diaspora Organisation Europe, listed on the Nigerian Embassy Madrid website alongside the Nigerians Resident Council Spain and Nigerians National Association Spain.",
+     "src": [
+      "https://www.nigeriaembassymadrid.org/nigerians-indigenous-people-association-culture-in-spain/"
+     ],
+     "ck": "2026-10"
+    }
+   ]
+  },
+  "620": {
+   "n": "Portugal",
+   "m": [
+    {
+     "t": "Embassy",
+     "c": "Lisbon",
+     "a": "Av. Dom Vasco da Gama 3, Restelo, 1400-127 Lisbon",
+     "p": [
+      "+351 213 031 290"
+     ],
+     "e": [
+      "admin@nigeriaemblisbon.org",
+      "enquiries@nigeriaemblisbon.org",
+      "consular@nigeriaemblisbon.org"
+     ],
+     "w": "https://nigeriaemblisbon.org",
+     "hd": {
+      "name": "Erelu Angela Adebayo",
+      "title": "Ambassador",
+      "status": "presented credentials Jul 2026",
+      "source": "https://foreignaffairs.gov.ng/news/wp-content/uploads/2026/07/Press-Release-No-2026-176.pdf"
+     },
+     "src": [
+      "https://nigeriaemblisbon.org/home.html",
+      "https://foreignaffairs.gov.ng/news/wp-content/uploads/2026/07/Press-Release-No-2026-176.pdf"
+     ],
+     "sec": false,
+     "ll": [
+      -9.15,
+      38.725
+     ],
+     "ck": "2026-10"
+    }
+   ],
+   "a": [],
+   "an": "NIDO Europe lists chapters in 18 European countries."
+  },
+  "528": {
+   "n": "Netherlands",
+   "m": [
+    {
+     "t": "Embassy",
+     "c": "The Hague",
+     "a": "Wagenaarweg 5, 2597 LL The Hague",
+     "p": [
+      "+31 70 350 17 03"
+     ],
+     "hd": {
+      "name": "Haidara Mohammed Idris",
+      "title": "Ambassador",
+      "status": "posted Mar 2026 (State House)",
+      "source": "https://statehouse.gov.ng/president-tinubu-approves-the-postings-of-ambassadors/"
+     },
+     "src": [
+      "https://www.government.nl/topics/embassies-consulates-and-other-representations/overview-countries-and-regions/nigeria/embassy-of-the-federal-republic-of-nigeria-s-gravenhage"
+     ],
+     "sec": false,
+     "ll": [
+      4.299,
+      52.077
+     ],
+     "ck": "2026-10"
+    }
+   ],
+   "a": [
+    {
+     "n": "NIDOE Netherlands (Stichting NIDO-Netherlands)",
+     "k": "NIDO",
+     "w": "https://www.nidoe.nl/",
+     "e": "Admin@nidoe.nl",
+     "ab": "Main organisation of the Nigerian diaspora in the Netherlands; marked 20 years in 2022.",
+     "src": [
+      "https://www.nidoe.nl/",
+      "https://connectingdiaspora.org/nidoe-nl-20-years/"
+     ],
+     "ck": "2026-10"
+    }
+   ]
+  },
+  "056": {
+   "n": "Belgium",
+   "m": [
+    {
+     "t": "Embassy and Mission to the European Union",
+     "c": "Brussels",
+     "a": "Avenue de Tervuren 288, 1150 Brussels",
+     "p": [
+      "+32 2 762 52 00"
+     ],
+     "e": [
+      "info@nigeriabrussels.org"
+     ],
+     "w": "https://nigeriabrussels.org",
+     "j": "Belgium, Luxembourg, European Union; head of delegation to OACPS",
+     "hd": {
+      "name": "Adebayo E. Adeyemi",
+      "title": "Ambassador",
+      "status": "presented credentials Sep 2026",
+      "source": "https://nigeriabrussels.org/"
+     },
+     "src": [
+      "https://nigeriabrussels.org/",
+      "https://en.wikipedia.org/wiki/List_of_diplomatic_missions_of_Nigeria"
+     ],
+     "sec": false,
+     "ll": [
+      4.349,
+      50.85
+     ],
+     "ck": "2026-10"
+    }
+   ],
+   "a": [
+    {
+     "n": "NIDOE BeLux",
+     "k": "NIDO",
+     "w": "https://www.nidoebelux.org/",
+     "s": "https://x.com/NIDOEBeLux",
+     "ab": "Belgium–Luxembourg chapter of Nigerians in Diaspora Organisation Europe.",
+     "src": [
+      "https://x.com/NIDOEBeLux",
+      "https://www.nidoebelux.org/Docs/NIDO_BeLux_Newsletter_Mar17.pdf"
+     ],
+     "ck": "2026-10"
+    }
+   ],
+   "mn": "Embassy site names the ambassador 'Adebayo E. Adeyemi' (credentials to King Philippe 23 Sep 2026); the State House list has 'Ayeni Adebayo Emmanuel'. A separate Wikipedia note says the Brussels embassy is concurrently accredited to the EU (no separate EU mission)."
+  },
+  "756": {
+   "n": "Switzerland",
+   "m": [
+    {
+     "t": "Embassy",
+     "c": "Bern",
+     "a": "Zieglerstrasse 45, 3007 Bern",
+     "p": [
+      "+41 31 384 26 00"
+     ],
+     "e": [
+      "admin@nigerianembbern.gov.ng"
+     ],
+     "j": "Switzerland, Liechtenstein",
+     "hd": {
+      "name": "Akande Wahab Adekola",
+      "title": "Ambassador",
+      "status": "posted Mar 2026 (State House)",
+      "source": "https://statehouse.gov.ng/president-tinubu-approves-the-postings-of-ambassadors/"
+     },
+     "src": [
+      "https://ngconsulate.info/mission/nigerian-embassy-bern-switzerland",
+      "https://www.finelib.com/cities/abuja/government/nigeria-embassies-overseas"
+     ],
+     "sec": true,
+     "ll": [
+      7.447,
+      46.948
+     ],
+     "ck": "2026-10"
+    },
+    {
+     "t": "Permanent Mission to the UN Office and other international organisations",
+     "c": "Geneva",
+     "a": "Chemin du Petit-Saconnex 28A, 1209 Geneva",
+     "p": [
+      "+41 22 730 14 14"
+     ],
+     "hd": {
+      "name": "Abiodun Richards Adejola",
+      "title": "Ambassador / Permanent Representative",
+      "status": "in post (UN Geneva Blue Book; listed since 17 Jun 2021)",
+      "source": "https://ungeneva.org/en/blue-book/missions/member-states/nigeria"
+     },
+     "src": [
+      "https://ungeneva.org/en/blue-book/missions/member-states/nigeria"
+     ],
+     "sec": false,
+     "ll": [
+      6.146,
+      46.202
+     ],
+     "ck": "2026-10"
+    }
+   ],
+   "a": []
+  },
+  "040": {
+   "n": "Austria",
+   "m": [
+    {
+     "t": "Embassy and Permanent Mission to the UN in Vienna",
+     "c": "Vienna",
+     "a": "Rennweg 25, 1030 Vienna",
+     "p": [
+      "+43 1 712 6686"
+     ],
+     "e": [
+      "nigeria.vienna@foreignaffairs.gov.ng",
+      "info@nigeriaembassyvienna.com"
+     ],
+     "w": "http://www.nigeriaembassyvienna.com",
+     "j": "Austria, Slovakia; UN Vienna, IAEA, UNIDO, CTBTO PrepCom",
+     "hd": {
+      "name": "Fatima Florence Ajimobi",
+      "title": "Ambassador",
+      "status": "posted Mar 2026 (State House)",
+      "source": "https://statehouse.gov.ng/president-tinubu-approves-the-postings-of-ambassadors/"
+     },
+     "src": [
+      "https://ngconsulate.info/mission/nigerian-embassy-vienna-austria",
+      "https://en.wikipedia.org/wiki/List_of_diplomatic_missions_of_Nigeria"
+     ],
+     "sec": true,
+     "ll": [
+      16.372,
+      48.208
+     ],
+     "ck": "2026-10"
+    }
+   ],
+   "a": [
+    {
+     "n": "NIDOE Austria",
+     "k": "NIDO",
+     "c": "Vienna",
+     "w": "https://www.nidoeaustria.org/",
+     "ab": "Austrian chapter of Nigerians in Diaspora Organisation Europe.",
+     "src": [
+      "https://www.theafricancourier.de/?p=27789"
+     ],
+     "ck": "2026-10"
+    }
+   ],
+   "mn": "confirm with the embassy."
+  },
+  "752": {
+   "n": "Sweden",
+   "m": [
+    {
+     "t": "Embassy",
+     "c": "Stockholm",
+     "a": "Tyrgatan 8, Stockholm (postal: P.O. Box 628, SE-101 32 Stockholm)",
+     "p": [
+      "+46 8 246 390"
+     ],
+     "e": [
+      "nigeria.stockholm@foreignaffairs.gov.ng"
+     ],
+     "w": "https://nigerianembassy.se",
+     "j": "Sweden, Denmark, Finland, Norway",
+     "hd": {
+      "name": "Lola Akande",
+      "title": "Ambassador",
+      "status": "posted Mar 2026 (State House)",
+      "source": "https://statehouse.gov.ng/president-tinubu-approves-the-postings-of-ambassadors/"
+     },
+     "src": [
+      "https://finlandabroad.fi/web/nga/representation-of-country-in-finland/-/asset_publisher/6N0Sw03aEXPZ/contactInfoOrganization/id/123444",
+      "https://ngconsulate.info/mission/nigerian-embassy-stockholm-sweden",
+      "https://en.wikipedia.org/wiki/List_of_diplomatic_missions_of_Nigeria"
+     ],
+     "sec": true,
+     "ll": [
+      18.069,
+      59.329
+     ],
+     "ck": "2026-10"
+    }
+   ],
+   "a": [
+    {
+     "n": "NIDO Sweden",
+     "k": "NIDO",
+     "c": "Stockholm",
+     "w": "https://www.nidosweden.se/",
+     "ab": "Nigerians in Diaspora Organisation chapter launched in Stockholm in 2002, a forum of Nigerian scholars and professionals in Sweden.",
+     "src": [
+      "https://www.nidosweden.se/about/"
+     ],
+     "ck": "2026-10"
+    },
+    {
+     "n": "Nigerian Union Sweden",
+     "k": "umbrella",
+     "s": "https://www.facebook.com/nigerianunionsweden/",
+     "ab": "Community union of Nigerians in Sweden.",
+     "src": [
+      "https://www.facebook.com/nigerianunionsweden/"
+     ],
+     "ck": "2026-10"
+    }
+   ]
+  },
+  "578": {
+   "n": "Norway",
+   "m": [],
+   "a": [
+    {
+     "n": "Union of Nigerian Nationals Norway",
+     "k": "umbrella",
+     "w": "https://nigerianunion.no/",
+     "ab": "National union of Nigerians living in Norway.",
+     "src": [
+      "https://nigerianunion.no/"
+     ],
+     "ck": "2026-10"
+    }
+   ],
+   "mn": "No resident mission; covered by the Embassy of Nigeria in Stockholm, Sweden."
+  },
+  "208": {
+   "n": "Denmark",
+   "m": [],
+   "a": [
+    {
+     "n": "Community of Nigerian Students and Professionals in Jutland",
+     "k": "student",
+     "c": "Jutland",
+     "s": "https://www.facebook.com/Community-of-Nigerian-Students-and-professionals-in-Jutland-Denmark-100069999960514/",
+     "ab": "Community group for Nigerian students and professionals in Jutland.",
+     "src": [
+      "https://www.facebook.com/Community-of-Nigerian-Students-and-professionals-in-Jutland-Denmark-100069999960514/"
+     ],
+     "ck": "2026-10"
+    }
+   ],
+   "mn": "No resident mission; covered by the Embassy of Nigeria in Stockholm, Sweden."
+  },
+  "246": {
+   "n": "Finland",
+   "m": [],
+   "a": [
+    {
+     "n": "Association of Nigerian Community in Finland (ANCF)",
+     "k": "umbrella",
+     "c": "Helsinki",
+     "w": "https://nigeriansinfinland.com/",
+     "e": "thenigerianassociation@gmail.com",
+     "s": "https://x.com/niginfinland",
+     "ab": "Founded 2019, connects and supports Nigerians across Finland; member of the Moniheli network.",
+     "src": [
+      "https://nigeriansinfinland.com/about/",
+      "https://moniheli.fi/en/jarjestoprofiili/association-of-nigerian-community-in-finland-ry/"
+     ],
+     "ck": "2026-10"
+    },
+    {
+     "n": "Nigerian Muslims in Finland (NMF)",
+     "k": "faith",
+     "w": "https://www.nmfcommunity.org/",
+     "ab": "Community organisation of Nigerian Muslims in Finland.",
+     "src": [
+      "https://www.nmfcommunity.org/about-nmf"
+     ],
+     "ck": "2026-10"
+    }
+   ],
+   "mn": "No resident mission; covered by the Embassy of Nigeria in Stockholm, Sweden."
+  },
+  "616": {
+   "n": "Poland",
+   "m": [
+    {
+     "t": "Embassy",
+     "c": "Warsaw",
+     "a": "ul. Kosiarzy 22B, 02-953 Warsaw",
+     "p": [
+      "+48 22 651 53 05"
+     ],
+     "e": [
+      "contactus@nigeriaembassypoland.org"
+     ],
+     "hd": {
+      "name": "Chioma Priscilla Ohakim",
+      "title": "Ambassador",
+      "status": "posted Mar 2026 (State House)",
+      "source": "https://statehouse.gov.ng/president-tinubu-approves-the-postings-of-ambassadors/"
+     },
+     "src": [
+      "https://ngconsulate.info/mission/nigerian-embassy-warsaw-poland",
+      "https://en.wikipedia.org/wiki/List_of_diplomatic_missions_of_Nigeria"
+     ],
+     "sec": true,
+     "ll": [
+      21.012,
+      52.23
+     ],
+     "ck": "2026-10"
+    }
+   ],
+   "a": [],
+   "an": "NIDO Europe lists chapters in 18 European countries."
+  },
+  "348": {
+   "n": "Hungary",
+   "m": [
+    {
+     "t": "Embassy",
+     "c": "Budapest",
+     "p": [
+      "+36 1 212 2021",
+      "+36 1 212 2022"
+     ],
+     "e": [
+      "nigeria.budapest@foreignaffairs.gov.ng"
+     ],
+     "j": "Hungary, Bosnia and Herzegovina, Croatia, Slovenia, Serbia",
+     "hd": {
+      "name": "Abasi Braimah",
+      "title": "Ambassador",
+      "status": "posted Mar 2026 (State House); received Letters of Credence in Abuja 6 Jul 2026 (MFA)",
+      "source": "https://fmino.gov.ng/minister-of-state-for-foreign-affairs-presents-letters-of-credence-to-more-ambassadors-designate/"
+     },
+     "src": [
+      "https://ngconsulate.info/mission/nigerian-embassy-budapest-hungary",
+      "https://www.finelib.com/cities/abuja/government/nigeria-embassies-overseas",
+      "https://fmino.gov.ng/minister-of-state-for-foreign-affairs-presents-letters-of-credence-to-more-ambassadors-designate/"
+     ],
+     "sec": true,
+     "ll": [
+      19.04,
+      47.498
+     ],
+     "ck": "2026-10"
+    }
+   ],
+   "a": [],
+   "mn": "Street address omitted: directories conflict (Virányos út 4/A, H-1125 vs Rómer Flóris utca 57, H-1023).",
+   "an": "NIDO Europe lists chapters in 18 European countries."
+  },
+  "300": {
+   "n": "Greece",
+   "m": [
+    {
+     "t": "Embassy",
+     "c": "Athens",
+     "a": "Streit 13, 152 37 Filothei, Athens",
+     "p": [
+      "+30 210 802 1188",
+      "+30 210 802 1168"
+     ],
+     "e": [
+      "nigeria.athens@foreignaffairs.gov.ng"
+     ],
+     "hd": {
+      "name": "Ifeanyi Lawrence Ugwuanyi",
+      "title": "Ambassador",
+      "status": "posted Mar 2026 (State House)",
+      "source": "https://statehouse.gov.ng/president-tinubu-approves-the-postings-of-ambassadors/"
+     },
+     "src": [
+      "https://ngconsulate.info/mission/nigerian-embassy-athens-greece",
+      "https://www.finelib.com/cities/abuja/government/nigeria-embassies-overseas"
+     ],
+     "sec": true,
+     "ll": [
+      23.728,
+      37.984
+     ],
+     "ck": "2026-10"
+    }
+   ],
+   "a": [],
+   "mn": "Street number differs between directories (13 vs 17 Streit).",
+   "an": "NIDO Europe lists chapters in 18 European countries."
+  },
+  "203": {
+   "n": "Czechia",
+   "m": [
+    {
+     "t": "Embassy",
+     "c": "Prague",
+     "a": "Na Čihadle 917/32, 160 00 Prague 6",
+     "p": [
+      "+420 220 561 165"
+     ],
+     "e": [
+      "nigeria.prague@foreignaffairs.gov.ng"
+     ],
+     "src": [
+      "https://ngconsulate.info/mission/nigerian-embassy-prague-czech-republic",
+      "https://en.wikipedia.org/wiki/List_of_diplomatic_missions_of_Nigeria"
+     ],
+     "sec": true,
+     "ll": [
+      14.421,
+      50.088
+     ],
+     "ck": "2026-10"
+    }
+   ],
+   "a": []
+  },
+  "642": {
+   "n": "Romania",
+   "m": [
+    {
+     "t": "Embassy",
+     "c": "Bucharest",
+     "a": "77C Voluntari, Ilfov County (Bucharest area)",
+     "p": [
+      "+40 21 312 8685",
+      "+40 21 312 7937"
+     ],
+     "e": [
+      "info@nigeriaembromania.gov.ng"
+     ],
+     "j": "Romania, Bulgaria",
+     "src": [
+      "https://ngconsulate.info/mission/nigerian-embassy-bucharest-romania",
+      "https://www.finelib.com/cities/abuja/government/nigeria-embassies-overseas"
+     ],
+     "sec": true,
+     "ll": [
+      26.106,
+      44.432
+     ],
+     "ck": "2026-10"
+    }
+   ],
+   "a": [],
+   "mn": "Street name differs between directories (Strada Petru Cercel 77C vs Drumul Protocoalei 77C, Voluntari)."
+  },
+  "100": {
+   "n": "Bulgaria",
+   "m": [
+    {
+     "t": "Liaison Office",
+     "c": "Sofia",
+     "a": "Zh.k. Lagera, ul. Baba Iliytsa 2, bl. 80A, 1612 Sofia",
+     "p": [
+      "+359 2 951 5097"
+     ],
+     "h": "Mon–Fri 8:00–12:00, 13:00–16:30",
+     "src": [
+      "https://ngconsulate.info/mission/nigerian-liaison-office-sofia-bulgaria",
+      "https://en.wikipedia.org/wiki/List_of_diplomatic_missions_of_Nigeria"
+     ],
+     "sec": true,
+     "ll": [
+      23.324,
+      42.698
+     ],
+     "ck": "2026-10"
+    }
+   ],
+   "a": [],
+   "mn": "Former embassy downgraded to a liaison office under the Embassy in Bucharest (Wikipedia)."
+  },
+  "643": {
+   "n": "Russia",
+   "m": [
+    {
+     "t": "Embassy",
+     "c": "Moscow",
+     "a": "5 Mamonovsky Pereulok, 123001 Moscow",
+     "p": [
+      "+7 495 690 3785",
+      "+7 495 690 3783"
+     ],
+     "e": [
+      "info@nigerianembassy.ru"
+     ],
+     "j": "Russia, Belarus",
+     "hd": {
+      "name": "Joseph Sola Iji",
+      "title": "Ambassador",
+      "status": "posted Mar 2026 (State House)",
+      "source": "https://statehouse.gov.ng/president-tinubu-approves-the-postings-of-ambassadors/"
+     },
+     "src": [
+      "https://ngconsulate.info/mission/nigerian-embassy-moscow-russia",
+      "https://www.finelib.com/cities/abuja/government/nigeria-embassies-overseas"
+     ],
+     "sec": true,
+     "ll": [
+      37.618,
+      55.752
+     ],
+     "ck": "2026-10"
+    }
+   ],
+   "a": []
+  },
+  "804": {
+   "n": "Ukraine",
+   "m": [],
+   "a": [],
+   "mn": "No resident mission listed; Wikipedia lists Ukraine under the Nigerian Embassy in Vilnius, Lithuania (embassy reported moved to Vilnius). Not confirmed from an official source."
+  },
+  "688": {
+   "n": "Serbia",
+   "m": [],
+   "a": [],
+   "mn": "Embassy in Belgrade closed; covered by the Embassy of Nigeria in Budapest, Hungary (concurrent accreditation confirmed by MFA, Jul 2026)."
+  },
+  "792": {
+   "n": "Türkiye",
+   "m": [
+    {
+     "t": "Embassy",
+     "c": "Ankara",
+     "a": "Uğur Mumcu Sokak No. 56, Büyükesat (G.O.P.), 06700 Ankara",
+     "p": [
+      "+90 312 448 10 76",
+      "+90 312 448 10 79"
+     ],
+     "e": [
+      "nigeria.ankara@foreignaffairs.gov.ng"
+     ],
+     "hd": {
+      "name": "Usman Isa Dakingari Suleiman",
+      "title": "Ambassador",
+      "status": "posted Jan 2026 (ambassador-designate, allAfrica report)",
+      "source": "https://allafrica.com/stories/202601230035.html"
+     },
+     "src": [
+      "https://ngconsulate.info/mission/nigerian-embassy-ankara-turkey",
+      "https://www.finelib.com/cities/abuja/government/nigeria-embassies-overseas"
+     ],
+     "sec": true,
+     "ll": [
+      32.854,
+      39.92
+     ],
+     "ck": "2026-10"
+    }
+   ],
+   "a": [
+    {
+     "n": "Nigerian Community in Turkey",
+     "k": "umbrella",
+     "ab": "Community body of Nigerians living in Türkiye.",
+     "src": [
+      "https://www.opinionnigeria.com/just-in-some-nigerians-in-turkey-want-to-return-home-president-nigerian-community/"
+     ],
+     "ck": "2026-10"
+    }
+   ],
+   "mn": "No consulate in Istanbul found."
+  },
+  "336": {
+   "n": "Holy See",
+   "m": [
+    {
+     "t": "Embassy",
+     "c": "Rome",
+     "a": "Borgo Santo Spirito 16, 00193 Rome",
+     "p": [
+      "+39 06 6839 2018"
+     ],
+     "e": [
+      "chancery@nigerianholysee.gov.ng"
+     ],
+     "hd": {
+      "name": "Paul Oga Adikwu",
+      "title": "Ambassador",
+      "status": "posted Mar 2026 (State House)",
+      "source": "https://statehouse.gov.ng/president-tinubu-approves-the-postings-of-ambassadors/"
+     },
+     "src": [
+      "https://ngconsulate.info/mission/nigerian-embassy-holy-see-vatican",
+      "https://en.wikipedia.org/wiki/List_of_diplomatic_missions_of_Nigeria"
+     ],
+     "sec": true,
+     "ll": [
+      12.511,
+      41.892
+     ],
+     "ck": "2026-10"
+    }
+   ],
+   "a": []
+  },
+  "440": {
+   "n": "Lithuania",
+   "m": [
+    {
+     "t": "Embassy",
+     "c": "Vilnius",
+     "j": "Lithuania, Estonia, Latvia, Georgia, Moldova, Ukraine (per Wikipedia)",
+     "src": [
+      "https://en.wikipedia.org/wiki/List_of_diplomatic_missions_of_Nigeria",
+      "https://www.urm.lt/default/en/news/nigerias-embassy-to-move-to-vilnius"
+     ],
+     "sec": false,
+     "ll": [
+      25.28,
+      54.689
+     ],
+     "ck": "2026-10"
+    }
+   ],
+   "a": [],
+   "mn": "Contact details not verified."
+  },
+  "233": {
+   "n": "Estonia",
+   "m": [],
+   "a": [],
+   "mn": "No resident mission; covered by the Embassy of Nigeria in Vilnius, Lithuania (per Wikipedia)."
+  },
+  "428": {
+   "n": "Latvia",
+   "m": [],
+   "a": [],
+   "mn": "No resident mission; covered by the Embassy of Nigeria in Vilnius, Lithuania (per Wikipedia)."
+  },
+  "442": {
+   "n": "Luxembourg",
+   "m": [],
+   "a": [],
+   "mn": "No resident mission; covered by the Embassy of Nigeria in Brussels (per embassy website)."
+  },
+  "352": {
+   "n": "Iceland",
+   "m": [],
+   "a": [],
+   "mn": "No resident mission; covered by the Embassy of Nigeria in Dublin (concurrent accreditation, MFA Jun 2026)."
+  },
+  "703": {
+   "n": "Slovakia",
+   "m": [],
+   "a": [],
+   "mn": "No resident mission; covered by the Embassy of Nigeria in Vienna (per ngconsulate.info directory)."
+  },
+  "705": {
+   "n": "Slovenia",
+   "m": [],
+   "a": [],
+   "mn": "No resident mission; covered by the Embassy of Nigeria in Budapest (MFA, Jul 2026); one directory lists Bucharest."
+  },
+  "191": {
+   "n": "Croatia",
+   "m": [],
+   "a": [],
+   "mn": "No resident mission; covered by the Embassy of Nigeria in Budapest (MFA, Jul 2026)."
+  },
+  "438": {
+   "n": "Liechtenstein",
+   "m": [],
+   "a": [],
+   "mn": "No resident mission; covered by the Embassy of Nigeria in Bern (per ngconsulate.info directory)."
+  },
+  "470": {
+   "n": "Malta",
+   "m": [],
+   "a": [
+    {
+     "n": "The Nigerian Association in Malta and Gozo",
+     "k": "umbrella",
+     "c": "Siggiewi",
+     "e": "nigerianassociation.malta.1597@gmail.com",
+     "ab": "NGO founded 2017 supporting Nigerians in Malta and Gozo with integration, culture and welfare; about 1,000 registered members.",
+     "src": [
+      "https://dev.annalindhfoundation.org/members/nigerian-association-malta-and-gozo"
+     ],
+     "ck": "2026-10"
+    }
+   ],
+   "mn": "No resident mission; covering mission not confirmed."
+  },
+  "196": {
+   "n": "Cyprus",
+   "m": [],
+   "a": [],
+   "mn": "No resident mission; covering mission not confirmed."
+  },
+  "562": {
+   "n": "Niger",
+   "m": [
+    {
+     "t": "Embassy",
+     "c": "Niamey",
+     "hd": {
+      "name": "Maimuna Ibrahim Besto",
+      "title": "Ambassador",
+      "status": "posted Mar 2026 (State House)",
+      "source": "https://statehouse.gov.ng/president-tinubu-approves-the-postings-of-ambassadors/"
+     },
+     "src": [
+      "https://en.wikipedia.org/wiki/List_of_diplomatic_missions_of_Nigeria",
+      "https://embassies.net/nigeria-in-niger/niamey",
+      "https://embassy-finder.com/nigeria_in_niamey_niger"
+     ],
+     "sec": true,
+     "ll": [
+      2.11,
+      13.514
+     ],
+     "ck": "2026-10"
+    }
+   ],
+   "a": [],
+   "mn": "No Nigerian consulate in Zinder, Maradi or elsewhere in Niger could be confirmed; only the Niamey embassy is listed. Secondary directories give conflicting street addresses and phone numbers for Niamey, so these are left out."
+  },
+  "120": {
+   "n": "Cameroon",
+   "m": [
+    {
+     "t": "High Commission",
+     "c": "Yaoundé",
+     "a": "Quartier Bastos, BP 448, Yaoundé",
+     "w": "https://yaounde.foreignaffairs.gov.ng/",
+     "src": [
+      "https://yaounde.foreignaffairs.gov.ng/?p=172",
+      "https://en.wikipedia.org/wiki/List_of_diplomatic_missions_of_Nigeria",
+      "https://embassies.net/nigeria-in-cameroon/yaounde",
+      "https://embassy-finder.com/es/nigeria_in_cameroon"
+     ],
+     "sec": true,
+     "ll": [
+      11.517,
+      3.867
+     ],
+     "ck": "2026-10"
+    },
+    {
+     "t": "Consulate-General",
+     "c": "Douala",
+     "w": "https://douala.foreignaffairs.gov.ng/",
+     "hd": {
+      "name": "Efe A. Clark-Omeru",
+      "title": "Consul General",
+      "status": "in post (mission website)",
+      "source": "https://douala.foreignaffairs.gov.ng/officer"
+     },
+     "src": [
+      "https://douala.foreignaffairs.gov.ng/officer",
+      "https://en.wikipedia.org/wiki/List_of_diplomatic_missions_of_Nigeria"
+     ],
+     "sec": false,
+     "ll": [
+      9.704,
+      4.048
+     ],
+     "ck": "2026-10"
+    },
+    {
+     "t": "Consulate-General",
+     "c": "Buea",
+     "a": "PMB 30, Buea, South-West Region",
+     "w": "https://buea.foreignaffairs.gov.ng/",
+     "j": "South-West and North-West Regions of Cameroon",
+     "src": [
+      "https://buea.foreignaffairs.gov.ng/?p=160",
+      "https://en.wikipedia.org/wiki/List_of_diplomatic_missions_of_Nigeria",
+      "https://embassy-finder.com/es/nigeria_in_cameroon"
+     ],
+     "sec": true,
+     "ll": [
+      9.242,
+      4.153
+     ],
+     "ck": "2026-10"
+    }
+   ],
+   "a": []
+  },
+  "204": {
+   "n": "Benin",
+   "m": [
+    {
+     "t": "Embassy",
+     "c": "Cotonou",
+     "a": "Avenue de France, Marina, BP 2019, Cotonou 1",
+     "hd": {
+      "name": "Mopelola Adeola-Ibrahim",
+      "title": "Ambassador",
+      "status": "presented credentials Jul 2026",
+      "source": "https://foreignaffairs.gov.ng/news/presentation-of-letters-of-credence-by-nigerian-ambassador-to-president-romuald-wadagni-of-the-republic-of-benin/"
+     },
+     "src": [
+      "https://en.wikipedia.org/wiki/List_of_diplomatic_missions_of_Nigeria",
+      "https://embassy-finder.com/nigeria_in_cotonou_benin",
+      "https://foreignaffairs.gov.ng/news/presentation-of-letters-of-credence-by-nigerian-ambassador-to-president-romuald-wadagni-of-the-republic-of-benin/"
+     ],
+     "sec": true,
+     "ll": [
+      2.418,
+      6.365
+     ],
+     "ck": "2026-10"
+    }
+   ],
+   "a": [
+    {
+     "n": "Nigerian Youths Coalition, Bénin Republic",
+     "k": "umbrella",
+     "ab": "Association of young Nigerians living in Benin Republic; elected new president in March 2025.",
+     "src": [
+      "https://guardian.ng/saturday-magazine/youth-magazine/ebuka-okonkwo-elected-president-of-nigerian-youths-in-benin/"
+     ],
+     "ck": "2026-10"
+    }
+   ],
+   "mn": "No separate Nigerian consulate in Benin found.",
+   "an": "No national umbrella body confirmed online."
+  },
+  "288": {
+   "n": "Ghana",
+   "m": [
+    {
+     "t": "High Commission",
+     "c": "Accra",
+     "a": "20/21 Onyasia Crescent, Roman Ridge, Accra",
+     "p": [
+      "+233 30 277 6158"
+     ],
+     "hd": {
+      "name": "Shehu Ilu Barde",
+      "title": "High Commissioner",
+      "status": "in post (presented copies of credentials to Foreign Minister Jul 2026; referred to as High Commissioner by Daily Graphic, Oct 2026)",
+      "source": "https://foreignaffairs.gov.ng/news/the-high-commissioner-designate-of-nigeria-to-ghana-amb-shehu-ilu-barde-presented-copies-of-his-letters-of-credence-copies-dusage-to-hon-samuel-okudzeto-ablakwa-mp-minister-of-foreig/"
+     },
+     "src": [
+      "https://atlanta.foreignaffairs.gov.ng/diplomatic-missions",
+      "https://en.wikipedia.org/wiki/High_Commission_of_Nigeria,_Accra",
+      "https://embassy-finder.com/nigeria_in_accra_ghana",
+      "https://www.graphic.com.gh/news/general-news/ghana-news-nigeria-at-66-high-commission-commits-to-deepening-relations-with-ghana.html"
+     ],
+     "sec": true,
+     "ll": [
+      -0.197,
+      5.556
+     ],
+     "ck": "2026-10"
+    }
+   ],
+   "a": [
+    {
+     "n": "Nigeria Union of Traders Association Ghana (NUTAG)",
+     "k": "business",
+     "c": "Accra",
+     "ab": "Association of Nigerian retail traders in Ghana; has represented members in disputes with GUTA over shop closures.",
+     "src": [
+      "https://www.graphic.com.gh/news/general-news/nutag-calls-for-government-intervention-in-trade-impasse.html",
+      "https://citinewsroom.com/?p=671457"
+     ],
+     "ck": "2026-10"
+    },
+    {
+     "n": "Nigerians in Diaspora Organisation (NIDO) Ghana",
+     "k": "NIDO",
+     "ab": "Ghana chapter of NIDO; runs a women's wing that supports trafficked Nigerian women and girls.",
+     "src": [
+      "https://www.ghanamma.com/2026/02/21/how-nigerian-women-are-lured-into-prostitution-in-ghana-community-womens-leader-ani/",
+      "https://ghanaiantimes.com.gh/vandalisation-of-shops-in-ksi-be-circumspect-in-reportage-nigerian-group-cautions-media"
+     ],
+     "ck": "2026-10"
+    },
+    {
+     "n": "All Nigerian Community (ANC) Ghana",
+     "k": "umbrella",
+     "c": "Accra",
+     "ab": "Umbrella body of Nigerians in Ghana; took part in Nigeria @65 events in Accra (2025).",
+     "src": [
+      "https://businessday.ng/life/article/nigerians-in-ghana-urged-to-reflect-countrys-positive-image-resilient-spirit/"
+     ],
+     "ck": "2026-10"
+    },
+    {
+     "n": "Arewa Community in Ghana",
+     "k": "cultural/ethnic",
+     "ab": "Association of Northern Nigerians (Arewa) in Ghana.",
+     "src": [
+      "https://businessday.ng/life/article/nigerians-in-ghana-urged-to-reflect-countrys-positive-image-resilient-spirit/"
+     ],
+     "ck": "2026-10"
+    }
+   ]
+  },
+  "384": {
+   "n": "Côte d'Ivoire",
+   "m": [
+    {
+     "t": "Embassy",
+     "c": "Abidjan",
+     "a": "Boulevard de la République (near Stade Félix Houphouët-Boigny), Abidjan",
+     "hd": {
+      "name": "Ezenwa Chukwuemeka Nwaobiala",
+      "title": "Ambassador",
+      "status": "presented credentials Jun 2026",
+      "source": "https://fmino.gov.ng/presentation-of-letters-of-credence-by-h-e-ambassador-ezenwa-chukwuemeka-nwaobiala-to-the-president-of-the-republic-of-cote-divoire/"
+     },
+     "src": [
+      "https://atlanta.foreignaffairs.gov.ng/diplomatic-missions",
+      "https://embassy-finder.com/nigeria_in_abidjan_ivory-coast",
+      "https://fmino.gov.ng/presentation-of-letters-of-credence-by-h-e-ambassador-ezenwa-chukwuemeka-nwaobiala-to-the-president-of-the-republic-of-cote-divoire/"
+     ],
+     "sec": true,
+     "ll": [
+      -4.002,
+      5.354
+     ],
+     "ck": "2026-10"
+    }
+   ],
+   "a": [
+    {
+     "n": "Nigerian Community in Côte d'Ivoire (Communauté nigériane en Côte d'Ivoire)",
+     "k": "umbrella",
+     "c": "Abidjan",
+     "ab": "Umbrella body of Nigerians in Côte d'Ivoire with an elected central president.",
+     "src": [
+      "https://www.fratmat.info/article/222933/politique/an-62-de-lindependance-la-communaute-nigeriane-aux-cotes-de-la-cote-divoire",
+      "https://newscentraltv.com/?p=192914"
+     ],
+     "ck": "2026-10"
+    }
+   ]
+  },
+  "768": {
+   "n": "Togo",
+   "m": [
+    {
+     "t": "Embassy",
+     "c": "Lomé",
+     "a": "311 Boulevard du 13 Janvier, BP 1189, Lomé",
+     "p": [
+      "+228 22 21 34 55"
+     ],
+     "w": "https://lome.foreignaffairs.gov.ng/",
+     "hd": {
+      "name": "Grace Folashade Bent",
+      "title": "Ambassador",
+      "status": "posted Mar 2026 (State House)",
+      "source": "https://statehouse.gov.ng/president-tinubu-approves-the-postings-of-ambassadors/"
+     },
+     "src": [
+      "https://embassy-finder.com/nigeria_in_lome_togo",
+      "https://lome.foreignaffairs.gov.ng/h-e-adebowale-j-adesina-ambassador-of-the-federal-republic-of-nigeria-to-the-republic-of-togo-presents-letters-of-credence/",
+      "https://en.wikipedia.org/wiki/List_of_diplomatic_missions_of_Nigeria",
+      "https://statehouse.gov.ng/president-tinubu-approves-the-postings-of-ambassadors/"
+     ],
+     "sec": true,
+     "ll": [
+      1.222,
+      6.129
+     ],
+     "ck": "2026-10"
+    }
+   ],
+   "a": [],
+   "mn": "Wikipedia lists the Lomé mission as a High Commission (Togo joined the Commonwealth in 2022); Nigerian sources and directories call it an Embassy."
+  },
+  "266": {
+   "n": "Gabon",
+   "m": [
+    {
+     "t": "Embassy",
+     "c": "Libreville",
+     "a": "Avenue Léon Mba, Quartier l'Université, BP 1191, Libreville",
+     "p": [
+      "+241 11 73 22 03"
+     ],
+     "hd": {
+      "name": "Joseph John Galgadi",
+      "title": "Ambassador",
+      "status": "posted Mar 2026 (State House); received letters of credence in Abuja Jul 2026",
+      "source": "https://fmino.gov.ng/minister-of-state-for-foreign-affairs-presents-letters-of-credence-to-more-ambassadors-designate/"
+     },
+     "src": [
+      "https://embassy-finder.com/nigeria_in_libreville_gabon",
+      "https://en.wikipedia.org/wiki/List_of_diplomatic_missions_of_Nigeria",
+      "https://fmino.gov.ng/minister-of-state-for-foreign-affairs-presents-letters-of-credence-to-more-ambassadors-designate/"
+     ],
+     "sec": true,
+     "ll": [
+      9.454,
+      0.392
+     ],
+     "ck": "2026-10"
+    }
+   ],
+   "a": []
+  },
+  "148": {
+   "n": "Chad",
+   "m": [
+    {
+     "t": "Embassy",
+     "c": "N'Djamena",
+     "a": "BP 752, N'Djamena",
+     "p": [
+      "+235 22 52 24 98"
+     ],
+     "hd": {
+      "name": "Abubakar Musa Musa",
+      "title": "Ambassador",
+      "status": "posted Mar 2026 (State House)",
+      "source": "https://statehouse.gov.ng/president-tinubu-approves-the-postings-of-ambassadors/"
+     },
+     "src": [
+      "https://embassy-finder.com/nigeria_in_ndjamena_chad",
+      "https://en.wikipedia.org/wiki/List_of_diplomatic_missions_of_Nigeria",
+      "https://statehouse.gov.ng/president-tinubu-approves-the-postings-of-ambassadors/"
+     ],
+     "sec": true,
+     "ll": [
+      15.044,
+      12.107
+     ],
+     "ck": "2026-10"
+    }
+   ],
+   "a": []
+  },
+  "854": {
+   "n": "Burkina Faso",
+   "m": [
+    {
+     "t": "Embassy",
+     "c": "Ouagadougou",
+     "a": "Hospital Road, BP 132, Ouagadougou",
+     "p": [
+      "+226 50 30 66 67"
+     ],
+     "hd": {
+      "name": "Syndoph Paebi Endoni",
+      "title": "Ambassador",
+      "status": "in post (arrived Aug 2026; credentials to be presented)",
+      "source": "https://gazettengr.com/?p=497211"
+     },
+     "src": [
+      "https://embassy-finder.com/nigeria_in_ouagadougou_burkina-faso",
+      "https://en.wikipedia.org/wiki/List_of_diplomatic_missions_of_Nigeria",
+      "https://gazettengr.com/?p=497211"
+     ],
+     "sec": true,
+     "ll": [
+      -1.534,
+      12.366
+     ],
+     "ck": "2026-10"
+    }
+   ],
+   "a": [],
+   "an": "Nigerian community representatives met the Embassy in Ouagadougou (Sep 2026), but no named association found. (source: https://nannews.ng/nigerians-in-b-faso-pledge-peaceful-coexistence-against-transnational-crime/)"
+  },
+  "466": {
+   "n": "Mali",
+   "m": [
+    {
+     "t": "Embassy",
+     "c": "Bamako",
+     "a": "Badalabougou East, BP 57, Bamako",
+     "hd": {
+      "name": "Geoffrey Ijomah David Chima",
+      "title": "Ambassador",
+      "status": "posted Mar 2026 (State House); received letters of credence in Abuja Jul 2026",
+      "source": "https://foreignaffairs.gov.ng/news/ambassador-designate-of-nigeria-to-mali-dr-geoffrey-ijomah-david-chima-receives-letters-of-credence/"
+     },
+     "src": [
+      "https://embassy-finder.com/nigeria_in_bamako_mali",
+      "https://en.wikipedia.org/wiki/List_of_diplomatic_missions_of_Nigeria",
+      "https://foreignaffairs.gov.ng/news/ambassador-designate-of-nigeria-to-mali-dr-geoffrey-ijomah-david-chima-receives-letters-of-credence/"
+     ],
+     "sec": true,
+     "ll": [
+      -7.975,
+      12.609
+     ],
+     "ck": "2026-10"
+    }
+   ],
+   "a": []
+  },
+  "430": {
+   "n": "Liberia",
+   "m": [
+    {
+     "t": "Embassy",
+     "c": "Monrovia",
+     "a": "Nigeria House, Oldest Congotown, Tubman Boulevard, Sinkor, Monrovia",
+     "src": [
+      "https://embassy-finder.com/nigeria_in_monrovia_liberia",
+      "https://en.wikipedia.org/wiki/List_of_diplomatic_missions_of_Nigeria"
+     ],
+     "sec": true,
+     "ll": [
+      -10.797,
+      6.301
+     ],
+     "ck": "2026-10"
+    }
+   ],
+   "a": [
+    {
+     "n": "Nigeria Community and Descendants Union",
+     "k": "umbrella",
+     "ab": "Brings together Nigerians in Liberia and Liberians of Nigerian parentage.",
+     "src": [
+      "https://gazettengr.com/over-200000-nigerians-live-in-liberia-envoy/"
+     ],
+     "ck": "2026-10"
+    },
+    {
+     "n": "Yoruba Community Union and Descendants Union of Liberia",
+     "k": "cultural/ethnic",
+     "ab": "Yoruba community and descendants association in Liberia.",
+     "src": [
+      "https://allafrica.com/stories/202410020024.html"
+     ],
+     "ck": "2026-10"
+    }
+   ]
+  },
+  "694": {
+   "n": "Sierra Leone",
+   "m": [
+    {
+     "t": "High Commission",
+     "c": "Freetown",
+     "a": "37 Siaka Stevens Street, PMB 291, Freetown",
+     "p": [
+      "+232 22 224224"
+     ],
+     "hd": {
+      "name": "Ayo Luther Ogbomode",
+      "title": "High Commissioner",
+      "status": "presented credentials Jul 2026",
+      "source": "https://fmino.gov.ng/presentation-of-letters-of-credence-ambassador-ayo-luther-ogbomode-mni-to-president-of-the-republic-of-sierra-leone/"
+     },
+     "src": [
+      "https://embassy-finder.com/fr/nigeria_in_freetown_sierra-leone",
+      "https://en.wikipedia.org/wiki/List_of_diplomatic_missions_of_Nigeria",
+      "https://fmino.gov.ng/presentation-of-letters-of-credence-ambassador-ayo-luther-ogbomode-mni-to-president-of-the-republic-of-sierra-leone/"
+     ],
+     "sec": true,
+     "ll": [
+      -13.236,
+      8.487
+     ],
+     "ck": "2026-10"
+    }
+   ],
+   "a": [
+    {
+     "n": "Nigeria National Union in Sierra Leone",
+     "k": "umbrella",
+     "c": "Freetown",
+     "ab": "Umbrella union of Nigerians in Sierra Leone.",
+     "src": [
+      "https://awokonewspapersl.com/their-behaviour-does-not-represent-our-views-onomake/"
+     ],
+     "ck": "2026-10"
+    },
+    {
+     "n": "Nigerians in Diaspora Organisation (NIDO) Sierra Leone",
+     "k": "NIDO",
+     "c": "Freetown",
+     "ab": "Sierra Leone branch of NIDO, launched in Freetown in 2019.",
+     "src": [
+      "https://nidcom.gov.ng/nigerians-in-diaspora-organisation-launched-in-freetown/"
+     ],
+     "ck": "2026-10"
+    }
+   ]
+  },
+  "686": {
+   "n": "Senegal",
+   "m": [
+    {
+     "t": "Embassy",
+     "c": "Dakar",
+     "a": "Avenue Cheikh Anta Diop, Fann, BP 3129, Dakar",
+     "p": [
+      "+221 33 824 69 22"
+     ],
+     "j": "Senegal, Mauritania",
+     "hd": {
+      "name": "Abdussalam Habu Zayyad",
+      "title": "Ambassador",
+      "status": "in post (presented copies of credentials to Foreign Minister Sep 2026; presented credentials in Mauritania Oct 2026)",
+      "source": "https://fr.apanews.net/diplomacy/diplomatie-le-senegal-renforce-ses-relations-avec-le-nigeria-et-lunion-europeenne/"
+     },
+     "src": [
+      "https://embassy-finder.com/nigeria_in_dakar_senegal",
+      "https://en.wikipedia.org/wiki/List_of_diplomatic_missions_of_Nigeria",
+      "https://fr.apanews.net/diplomacy/diplomatie-le-senegal-renforce-ses-relations-avec-le-nigeria-et-lunion-europeenne/",
+      "https://fmino.gov.ng/nigeria-mauritania-deepen-ties-as-nigerias-ambassador-presents-credentials-to-president-ghazouani/"
+     ],
+     "sec": true,
+     "ll": [
+      -17.444,
+      14.694
+     ],
+     "ck": "2026-10"
+    }
+   ],
+   "a": []
+  },
+  "270": {
+   "n": "Gambia",
+   "m": [
+    {
+     "t": "High Commission",
+     "c": "Banjul (Bakau)",
+     "a": "52 Garba Jahumpa Avenue, Bakau",
+     "p": [
+      "+220 449 4305"
+     ],
+     "hd": {
+      "name": "Tasiu Musa Maigari",
+      "title": "High Commissioner",
+      "status": "posted Mar 2026 (State House)",
+      "source": "https://statehouse.gov.ng/president-tinubu-approves-the-postings-of-ambassadors/"
+     },
+     "src": [
+      "https://embassy-finder.com/nigeria_in_banjul_gambia",
+      "https://en.wikipedia.org/wiki/List_of_diplomatic_missions_of_Nigeria",
+      "https://statehouse.gov.ng/president-tinubu-approves-the-postings-of-ambassadors/"
+     ],
+     "sec": true,
+     "ll": [
+      -16.578,
+      13.453
+     ],
+     "ck": "2026-10"
+    }
+   ],
+   "a": [
+    {
+     "n": "Nigerians in Diaspora Organisation (NIDO) Gambia Chapter",
+     "k": "NIDO",
+     "c": "nationwide",
+     "ab": "Successor (since 2022, under the NIDO framework) to the Nigerian Community in The Gambia, founded 1950 as the Nigerian Welfare Association.",
+     "src": [
+      "https://thepoint.gm/africa/gambia/national-news/nido-gambia-chapter-inaugurates-new-executives",
+      "https://thepoint.gm/africa/gambia/national-news/nigerian-community-in-gambia-holds-royal-night-awards"
+     ],
+     "ck": "2026-10"
+    }
+   ]
+  },
+  "324": {
+   "n": "Guinea",
+   "m": [
+    {
+     "t": "Embassy",
+     "c": "Conakry",
+     "a": "Almamya, Kaloum, BP 54, Conakry",
+     "w": "https://conakry.foreignaffairs.gov.ng/",
+     "src": [
+      "https://embassy-finder.com/nigeria_in_conakry_guinea",
+      "https://en.wikipedia.org/wiki/List_of_diplomatic_missions_of_Nigeria",
+      "https://foreignaffairs.gov.ng/news/h-e-geoffrey-onyeama-presented-letters-of-credence-to-amb-innocent-alaoma-iwejuo-nigerias-ambassador-designate-to-the-republic-of-guinea/"
+     ],
+     "sec": true,
+     "ll": [
+      -13.677,
+      9.538
+     ],
+     "ck": "2026-10"
+    }
+   ],
+   "a": [],
+   "mn": "Wikipedia labels the Conakry mission a High Commission; Nigerian MFA refers to an Ambassador to Guinea. No 2026 posting to Guinea appears in the State House list; current head not confirmed."
+  },
+  "624": {
+   "n": "Guinea-Bissau",
+   "m": [
+    {
+     "t": "Embassy",
+     "c": "Bissau",
+     "a": "CP 199, Bissau",
+     "j": "Guinea-Bissau, Cabo Verde (per Wikipedia)",
+     "src": [
+      "https://embassy-finder.com/nigeria_in_bissau_guinea-bissau",
+      "https://en.wikipedia.org/wiki/List_of_diplomatic_missions_of_Nigeria"
+     ],
+     "sec": true,
+     "ll": [
+      -15.598,
+      11.864
+     ],
+     "ck": "2026-10"
+    }
+   ],
+   "a": []
+  },
+  "132": {
+   "n": "Cabo Verde",
+   "m": [],
+   "a": [],
+   "mn": "No resident Nigerian mission; Wikipedia lists Cabo Verde as covered by the Nigerian Embassy in Bissau (Guinea-Bissau) — not confirmed by an official source."
+  },
+  "226": {
+   "n": "Equatorial Guinea",
+   "m": [
+    {
+     "t": "Embassy",
+     "c": "Malabo",
+     "a": "Airport Road, Malabo",
+     "hd": {
+      "name": "Yvonne Ehinosen Odumah",
+      "title": "Ambassador",
+      "status": "posted Mar 2026 (State House)",
+      "source": "https://statehouse.gov.ng/president-tinubu-approves-the-postings-of-ambassadors/"
+     },
+     "src": [
+      "https://embassy-finder.com/nigeria_in_malabo_equatorial-guinea",
+      "https://en.wikipedia.org/wiki/List_of_diplomatic_missions_of_Nigeria",
+      "https://statehouse.gov.ng/president-tinubu-approves-the-postings-of-ambassadors/"
+     ],
+     "sec": true,
+     "ll": [
+      8.782,
+      3.756
+     ],
+     "ck": "2026-10"
+    },
+    {
+     "t": "Consulate-General",
+     "c": "Bata",
+     "w": "https://bata.foreignaffairs.gov.ng/",
+     "src": [
+      "https://bata.foreignaffairs.gov.ng/gallery",
+      "https://en.wikipedia.org/wiki/List_of_diplomatic_missions_of_Nigeria"
+     ],
+     "sec": false,
+     "ll": [
+      9.766,
+      1.864
+     ],
+     "ck": "2026-10"
+    }
+   ],
+   "a": []
+  },
+  "678": {
+   "n": "São Tomé and Príncipe",
+   "m": [
+    {
+     "t": "Embassy",
+     "c": "São Tomé",
+     "a": "Avenida Kwame Nkrumah, CP 1000, São Tomé",
+     "hd": {
+      "name": "Monica Okwuchukwu Enebechi",
+      "title": "Ambassador",
+      "status": "posted Mar 2026 (State House)",
+      "source": "https://statehouse.gov.ng/president-tinubu-approves-the-postings-of-ambassadors/"
+     },
+     "src": [
+      "https://embassy-finder.com/nigeria_in_sao-tome_sao-tome-and-principe",
+      "https://en.wikipedia.org/wiki/List_of_diplomatic_missions_of_Nigeria",
+      "https://statehouse.gov.ng/president-tinubu-approves-the-postings-of-ambassadors/"
+     ],
+     "sec": true,
+     "ll": [
+      6.73,
+      0.338
+     ],
+     "ck": "2026-10"
+    }
+   ],
+   "a": []
+  },
+  "140": {
+   "n": "Central African Republic",
+   "m": [
+    {
+     "t": "Embassy",
+     "c": "Bangui",
+     "a": "Avenue des Martyrs, BP 1010, Bangui",
+     "p": [
+      "+236 21 61 07 44"
+     ],
+     "src": [
+      "https://embassy-finder.com/nigeria_in_bangui_central-african-republic",
+      "https://en.wikipedia.org/wiki/List_of_diplomatic_missions_of_Nigeria"
+     ],
+     "sec": true,
+     "ll": [
+      18.555,
+      4.361
+     ],
+     "ck": "2026-10"
+    }
+   ],
+   "a": []
+  },
+  "178": {
+   "n": "Republic of the Congo",
+   "m": [
+    {
+     "t": "Embassy",
+     "c": "Brazzaville",
+     "a": "11 Avenue Lyautey, BP 790, Brazzaville",
+     "src": [
+      "https://embassy-finder.com/nigeria_in_brazzaville_congo-brazzaville",
+      "https://en.wikipedia.org/wiki/List_of_diplomatic_missions_of_Nigeria"
+     ],
+     "sec": true,
+     "ll": [
+      15.283,
+      -4.266
+     ],
+     "ck": "2026-10"
+    }
+   ],
+   "a": []
+  },
+  "180": {
+   "n": "DR Congo",
+   "m": [
+    {
+     "t": "Embassy",
+     "c": "Kinshasa",
+     "a": "141 Boulevard du 30 Juin, Gombe, Kinshasa",
+     "p": [
+      "+243 817 005 143"
+     ],
+     "hd": {
+      "name": "Umar Magaji",
+      "title": "Ambassador",
+      "status": "posted Mar 2026 (State House)",
+      "source": "https://statehouse.gov.ng/president-tinubu-approves-the-postings-of-ambassadors/"
+     },
+     "src": [
+      "https://embassy-finder.com/nigeria_in_kinshasa_congo-kinshasa",
+      "https://en.wikipedia.org/wiki/List_of_diplomatic_missions_of_Nigeria",
+      "https://statehouse.gov.ng/president-tinubu-approves-the-postings-of-ambassadors/"
+     ],
+     "sec": true,
+     "ll": [
+      15.314,
+      -4.328
+     ],
+     "ck": "2026-10"
+    }
+   ],
+   "a": []
+  },
+  "478": {
+   "n": "Mauritania",
+   "m": [],
+   "a": [],
+   "mn": "No resident Nigerian mission; covered by the Embassy in Dakar, Senegal (Ambassador Abdussalam Habu Zayyad presented credentials to President Ghazouani, 20 Oct 2026, resident in Dakar). (source: https://fmino.gov.ng/nigeria-mauritania-deepen-ties-as-nigerias-ambassador-presents-credentials-to-president-ghazouani/)"
+  },
+  "554": {
+   "n": "New Zealand",
+   "m": [],
+   "a": [
+    {
+     "n": "Association of Nigerians in New Zealand (Naijakiwis)",
+     "k": "umbrella",
+     "c": "Auckland",
+     "w": "https://www.naijakiwis.co.nz/",
+     "e": "info@naijakiwis.co.nz",
+     "ab": "Registered charity supporting the wellbeing, culture and integration of Nigerians in New Zealand.",
+     "src": [
+      "https://register.charities.govt.nz/Charity/CC50974"
+     ],
+     "ck": "2026-10"
+    },
+    {
+     "n": "Nigerian Canterbury Association of New Zealand (NCANZ)",
+     "k": "umbrella",
+     "c": "Christchurch",
+     "w": "http://www.nigeriancanterbury.org",
+     "e": "info@nigeriancanterbury.org",
+     "ab": "Incorporated society formed in 2010 supporting Nigerians in Canterbury and the South Island.",
+     "src": [
+      "https://register.charities.govt.nz/Charity/CC44773",
+      "https://www.ethniccommunities.govt.nz/community-directory/show/nigerian-canterbury-association-of-new-zealand-inc"
+     ],
+     "ck": "2026-10"
+    }
+   ]
+  }
+ }
+}
