@@ -45,6 +45,15 @@ def sitemap_urls(url, depth=0, budget=None):
     return {u for u in locs if "nigeria" in u.lower()}
 
 
+def robots_sitemaps(url):
+    parts = re.match(r"(https?://[^/]+)", url).group(1)
+    try:
+        txt = http_get(parts + "/robots.txt", retries=1, timeout=20)
+    except Exception:  # noqa: BLE001
+        return []
+    return [m.strip() for m in re.findall(r"(?im)^\s*sitemap:\s*(\S+)", txt)][:5]
+
+
 def main():
     cfg = json.loads((HERE / "sources.json").read_text(encoding="utf-8"))["sources"]
     state = read_json("watch_state.json", {"sources": {}})
@@ -67,7 +76,17 @@ def main():
                     found.append((src, new[:8]))
                 st["hashes"] = (list(items) + [h for h in st.get("hashes", []) if h not in items])[:MAX_KEEP]
             else:
-                urls = sitemap_urls(src["url"])
+                try:
+                    urls = sitemap_urls(src["url"])
+                except Exception:  # noqa: BLE001 - fall back to the sitemaps named in robots.txt
+                    urls = set()
+                    for sm in robots_sitemaps(src["url"]):
+                        try:
+                            urls |= sitemap_urls(sm)
+                        except Exception:  # noqa: BLE001
+                            pass
+                    if not urls and not robots_sitemaps(src["url"]):
+                        raise
                 known = set(st.get("urls", []))
                 new = sorted(urls - known)
                 if st.get("urls") is not None and new:
