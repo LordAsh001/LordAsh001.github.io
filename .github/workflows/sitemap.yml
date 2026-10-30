@@ -1,0 +1,38 @@
+# Keeps sitemap.xml listing every tool under Open resources. Runs when content.json changes and weekly
+# (Sunday 04:47 UTC) to refresh "last changed" dates after the atlas bots update their data.
+name: "Site: rebuild sitemap"
+on:
+  push:
+    branches: [main]
+    paths: ["content.json"]
+  schedule:
+    - cron: "47 4 * * 0"
+  workflow_dispatch: {}
+permissions:
+  contents: write
+concurrency:
+  group: sitemap
+  cancel-in-progress: false
+jobs:
+  sitemap:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0  # full history for "last changed" dates
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Rebuild sitemap.xml
+        run: python .github/scripts/build_sitemap.py
+      - name: Commit if changed
+        run: |
+          git config user.name  "sitemap-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add sitemap.xml
+          if ! git diff --cached --quiet; then
+            git commit -m "Rebuild sitemap ($(date -u +%Y-%m-%d))"
+            for i in 1 2 3; do git pull --rebase --quiet && git push --quiet && break || sleep 10; done
+          fi
