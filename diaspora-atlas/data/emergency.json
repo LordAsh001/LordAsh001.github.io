@@ -1,0 +1,802 @@
+{
+ "checked": "2026-10-29",
+ "sources": "GOV.UK foreign travel advice (Getting help), Australian Smartraveller, European Commission 112 page",
+ "countries": {
+  "372": {
+   "n": "Ireland",
+   "general": "112",
+   "note": "112 is the single European emergency number, free from fixed and mobile phones across the EU",
+   "source": "https://digital-strategy.ec.europa.eu/en/policies/112"
+  },
+  "276": {
+   "n": "Germany",
+   "general": "112",
+   "note": "112 is the single European emergency number, free from fixed and mobile phones across the EU",
+   "source": "https://digital-strategy.ec.europa.eu/en/policies/112"
+  },
+  "250": {
+   "n": "France",
+   "general": "112",
+   "note": "112 is the single European emergency number, free from fixed and mobile phones across the EU",
+   "source": "https://digital-strategy.ec.europa.eu/en/policies/112"
+  },
+  "380": {
+   "n": "Italy",
+   "general": "112",
+   "note": "112 is the single European emergency number, free from fixed and mobile phones across the EU",
+   "source": "https://digital-strategy.ec.europa.eu/en/policies/112"
+  },
+  "724": {
+   "n": "Spain",
+   "general": "112",
+   "note": "112 is the single European emergency number, free from fixed and mobile phones across the EU",
+   "source": "https://digital-strategy.ec.europa.eu/en/policies/112"
+  },
+  "620": {
+   "n": "Portugal",
+   "general": "112",
+   "note": "112 is the single European emergency number, free from fixed and mobile phones across the EU",
+   "source": "https://digital-strategy.ec.europa.eu/en/policies/112"
+  },
+  "528": {
+   "n": "Netherlands",
+   "general": "112",
+   "note": "112 is the single European emergency number, free from fixed and mobile phones across the EU",
+   "source": "https://digital-strategy.ec.europa.eu/en/policies/112"
+  },
+  "056": {
+   "n": "Belgium",
+   "general": "112",
+   "note": "112 is the single European emergency number, free from fixed and mobile phones across the EU",
+   "source": "https://digital-strategy.ec.europa.eu/en/policies/112"
+  },
+  "040": {
+   "n": "Austria",
+   "general": "112",
+   "note": "112 is the single European emergency number, free from fixed and mobile phones across the EU",
+   "source": "https://digital-strategy.ec.europa.eu/en/policies/112"
+  },
+  "752": {
+   "n": "Sweden",
+   "general": "112",
+   "note": "112 is the single European emergency number, free from fixed and mobile phones across the EU",
+   "source": "https://digital-strategy.ec.europa.eu/en/policies/112"
+  },
+  "208": {
+   "n": "Denmark",
+   "general": "112",
+   "note": "112 is the single European emergency number, free from fixed and mobile phones across the EU",
+   "source": "https://digital-strategy.ec.europa.eu/en/policies/112"
+  },
+  "246": {
+   "n": "Finland",
+   "general": "112",
+   "note": "112 is the single European emergency number, free from fixed and mobile phones across the EU",
+   "source": "https://digital-strategy.ec.europa.eu/en/policies/112"
+  },
+  "616": {
+   "n": "Poland",
+   "general": "112",
+   "note": "112 is the single European emergency number, free from fixed and mobile phones across the EU",
+   "source": "https://digital-strategy.ec.europa.eu/en/policies/112"
+  },
+  "348": {
+   "n": "Hungary",
+   "general": "112",
+   "note": "112 is the single European emergency number, free from fixed and mobile phones across the EU",
+   "source": "https://digital-strategy.ec.europa.eu/en/policies/112"
+  },
+  "300": {
+   "n": "Greece",
+   "general": "112",
+   "note": "112 is the single European emergency number, free from fixed and mobile phones across the EU",
+   "source": "https://digital-strategy.ec.europa.eu/en/policies/112"
+  },
+  "203": {
+   "n": "Czechia",
+   "general": "112",
+   "note": "112 is the single European emergency number, free from fixed and mobile phones across the EU",
+   "source": "https://digital-strategy.ec.europa.eu/en/policies/112"
+  },
+  "642": {
+   "n": "Romania",
+   "general": "112",
+   "note": "112 is the single European emergency number, free from fixed and mobile phones across the EU",
+   "source": "https://digital-strategy.ec.europa.eu/en/policies/112"
+  },
+  "100": {
+   "n": "Bulgaria",
+   "general": "112",
+   "note": "112 is the single European emergency number, free from fixed and mobile phones across the EU",
+   "source": "https://digital-strategy.ec.europa.eu/en/policies/112"
+  },
+  "440": {
+   "n": "Lithuania",
+   "general": "112",
+   "note": "112 is the single European emergency number, free from fixed and mobile phones across the EU",
+   "source": "https://digital-strategy.ec.europa.eu/en/policies/112"
+  },
+  "233": {
+   "n": "Estonia",
+   "general": "112",
+   "note": "112 is the single European emergency number, free from fixed and mobile phones across the EU",
+   "source": "https://digital-strategy.ec.europa.eu/en/policies/112"
+  },
+  "428": {
+   "n": "Latvia",
+   "general": "112",
+   "note": "112 is the single European emergency number, free from fixed and mobile phones across the EU",
+   "source": "https://digital-strategy.ec.europa.eu/en/policies/112"
+  },
+  "442": {
+   "n": "Luxembourg",
+   "general": "112",
+   "note": "112 is the single European emergency number, free from fixed and mobile phones across the EU",
+   "source": "https://digital-strategy.ec.europa.eu/en/policies/112"
+  },
+  "703": {
+   "n": "Slovakia",
+   "general": "112",
+   "note": "112 is the single European emergency number, free from fixed and mobile phones across the EU",
+   "source": "https://digital-strategy.ec.europa.eu/en/policies/112"
+  },
+  "705": {
+   "n": "Slovenia",
+   "general": "112",
+   "note": "112 is the single European emergency number, free from fixed and mobile phones across the EU",
+   "source": "https://digital-strategy.ec.europa.eu/en/policies/112"
+  },
+  "191": {
+   "n": "Croatia",
+   "general": "112",
+   "note": "112 is the single European emergency number, free from fixed and mobile phones across the EU",
+   "source": "https://digital-strategy.ec.europa.eu/en/policies/112"
+  },
+  "470": {
+   "n": "Malta",
+   "general": "112",
+   "note": "112 is the single European emergency number, free from fixed and mobile phones across the EU",
+   "source": "https://digital-strategy.ec.europa.eu/en/policies/112"
+  },
+  "196": {
+   "n": "Cyprus",
+   "general": "112",
+   "note": "112 is the single European emergency number, free from fixed and mobile phones across the EU",
+   "source": "https://digital-strategy.ec.europa.eu/en/policies/112"
+  },
+  "840": {
+   "n": "United States",
+   "police": "911",
+   "ambulance": "911",
+   "fire": "911",
+   "source": "https://www.smartraveller.gov.au/destinations/americas/united-states-america"
+  },
+  "124": {
+   "n": "Canada",
+   "police": "911",
+   "ambulance": "911",
+   "fire": "911",
+   "source": "https://www.smartraveller.gov.au/destinations/americas/canada"
+  },
+  "484": {
+   "n": "Mexico",
+   "police": "911",
+   "ambulance": "911",
+   "fire": "911",
+   "source": "https://www.smartraveller.gov.au/destinations/americas/mexico"
+  },
+  "076": {
+   "n": "Brazil",
+   "police": "190",
+   "ambulance": "192",
+   "fire": "193",
+   "note": "Operators may not speak English",
+   "source": "https://www.smartraveller.gov.au/destinations/americas/brazil"
+  },
+  "032": {
+   "n": "Argentina",
+   "police": "911",
+   "ambulance": "107",
+   "fire": "100",
+   "note": "Tourist police (multilingual): 0800 999 5000",
+   "source": "https://www.smartraveller.gov.au/destinations/americas/argentina"
+  },
+  "862": {
+   "n": "Venezuela",
+   "police": "911",
+   "ambulance": "911",
+   "fire": "911",
+   "note": "Operators may not speak English",
+   "source": "https://www.smartraveller.gov.au/destinations/americas/venezuela"
+  },
+  "192": {
+   "n": "Cuba",
+   "police": "106",
+   "ambulance": "104",
+   "fire": "105",
+   "source": "https://www.smartraveller.gov.au/destinations/americas/cuba"
+  },
+  "388": {
+   "n": "Jamaica",
+   "police": "119",
+   "ambulance": "119",
+   "fire": "119",
+   "source": "https://www.smartraveller.gov.au/destinations/americas/jamaica",
+   "note": "Australian travel advice lists 119 for all services; UK travel advice lists 119 (police) and 110 (ambulance and fire)"
+  },
+  "780": {
+   "n": "Trinidad and Tobago",
+   "police": "999",
+   "ambulance": "811 or 990",
+   "fire": "990",
+   "source": "https://www.smartraveller.gov.au/destinations/americas/trinidad-and-tobago"
+  },
+  "392": {
+   "n": "Japan",
+   "police": "110",
+   "ambulance": "119",
+   "fire": "119",
+   "source": "https://www.smartraveller.gov.au/destinations/asia/japan"
+  },
+  "356": {
+   "n": "India",
+   "police": "100",
+   "ambulance": "102",
+   "fire": "101",
+   "source": "https://www.smartraveller.gov.au/destinations/asia/india",
+   "general": "112",
+   "note": "112 reaches ambulance, fire and police (UK and Australian travel advice); Australian travel advice also lists 100 (police), 102 (ambulance), 101 (fire)"
+  },
+  "458": {
+   "n": "Malaysia",
+   "police": "999",
+   "ambulance": "999",
+   "fire": "999",
+   "source": "https://www.smartraveller.gov.au/destinations/asia/malaysia",
+   "note": "Australian travel advice lists 999 for all services; UK travel advice lists 999 (police and ambulance), 994 (fire) and 112 (ambulance from a mobile)"
+  },
+  "360": {
+   "n": "Indonesia",
+   "police": "110 or 112",
+   "ambulance": "118 or 119",
+   "fire": "113",
+   "source": "https://www.smartraveller.gov.au/destinations/asia/indonesia",
+   "note": "Australian travel advice lists 113 for fire; UK travel advice lists 112 (fire), 118 (ambulance), 110 (police)"
+  },
+  "608": {
+   "n": "Philippines",
+   "police": "117",
+   "ambulance": "911",
+   "fire": "911",
+   "general": "911",
+   "source": "https://www.smartraveller.gov.au/destinations/asia/philippines",
+   "note": "UK travel advice lists 911 for ambulance, fire and police; Australian travel advice lists 117 (police hotline) and 911 (ambulance, fire)"
+  },
+  "764": {
+   "n": "Thailand",
+   "police": "191 (tourist police 1155)",
+   "ambulance": "1669 (1724 in Bangkok)",
+   "fire": "199",
+   "source": "https://www.smartraveller.gov.au/destinations/asia/thailand"
+  },
+  "702": {
+   "n": "Singapore",
+   "police": "999",
+   "ambulance": "995",
+   "fire": "995",
+   "source": "https://www.smartraveller.gov.au/destinations/asia/singapore"
+  },
+  "586": {
+   "n": "Pakistan",
+   "police": "15",
+   "ambulance": "1122 or 115",
+   "fire": "1122 or 16",
+   "source": "https://www.smartraveller.gov.au/destinations/asia/pakistan"
+  },
+  "144": {
+   "n": "Sri Lanka",
+   "police": "118 or 119",
+   "ambulance": "110",
+   "fire": "110",
+   "source": "https://www.smartraveller.gov.au/destinations/asia/sri-lanka",
+   "note": "Australian travel advice lists 110 (ambulance and fire); UK travel advice lists 1990 or 011 2691111 (ambulance) and 111 (fire and rescue). Both list 118 or 119 for police"
+  },
+  "364": {
+   "n": "Iran",
+   "police": "110",
+   "ambulance": "115",
+   "fire": "125",
+   "source": "https://www.smartraveller.gov.au/destinations/middle-east/iran"
+  },
+  "044": {
+   "n": "Bahamas",
+   "police": "911 or 919",
+   "ambulance": "911 or 919",
+   "fire": "911 or 919",
+   "source": "https://www.smartraveller.gov.au/destinations/americas/bahamas"
+  },
+  "218": {
+   "n": "Ecuador",
+   "general": "911 (Quito, Ibarra); 112 (Guayaquil, Cuenca, Loja); 101 (all other areas)",
+   "note": "UK travel advice lists 911 for ambulance, fire and police; Australian travel advice lists 911 (Quito, Ibarra), 112 (Guayaquil, Cuenca, Loja), 101 (other areas). ECU 911 app allows requesting help in English",
+   "source": "https://www.smartraveller.gov.au/destinations/americas/ecuador"
+  },
+  "591": {
+   "n": "Panama",
+   "police": "104",
+   "ambulance": "911",
+   "fire": "911",
+   "source": "https://www.smartraveller.gov.au/destinations/americas/panama"
+  },
+  "084": {
+   "n": "Belize",
+   "police": "911",
+   "ambulance": "911",
+   "fire": "911",
+   "source": "https://www.smartraveller.gov.au/destinations/americas/belize"
+  },
+  "214": {
+   "n": "Dominican Republic",
+   "general": "911",
+   "note": "Tourist police (POLITUR) also via 911",
+   "source": "https://www.smartraveller.gov.au/destinations/americas/dominican-republic"
+  },
+  "068": {
+   "n": "Bolivia",
+   "police": "110 (English-speaking tourist police: 800 14 0081)",
+   "ambulance": "165",
+   "fire": "119",
+   "source": "https://www.smartraveller.gov.au/destinations/americas/bolivia",
+   "note": "Australian travel advice lists 165 for ambulance; UK travel advice lists 118"
+  },
+  "288": {
+   "n": "Ghana",
+   "police": "191",
+   "ambulance": "193",
+   "fire": "192",
+   "source": "https://www.smartraveller.gov.au/destinations/africa/ghana",
+   "note": "UK travel advice lists 999 or 112 (all services) and 192 (police); Australian travel advice lists 191 (police), 193 (ambulance), 192 (fire)"
+  },
+  "156": {
+   "n": "China",
+   "police": "110",
+   "ambulance": "120",
+   "fire": "119",
+   "source": "https://www.gov.uk/foreign-travel-advice/china/getting-help"
+  },
+  "410": {
+   "n": "South Korea",
+   "police": "112",
+   "ambulance": "119",
+   "fire": "119",
+   "source": "https://www.gov.uk/foreign-travel-advice/south-korea/getting-help"
+  },
+  "662": {
+   "n": "Saint Lucia",
+   "general": "911",
+   "source": "https://www.gov.uk/foreign-travel-advice/st-lucia/getting-help"
+  },
+  "212": {
+   "n": "Dominica",
+   "general": "999",
+   "source": "https://www.gov.uk/foreign-travel-advice/dominica/getting-help"
+  },
+  "028": {
+   "n": "Antigua and Barbuda",
+   "general": "999 or 911",
+   "source": "https://www.gov.uk/foreign-travel-advice/antigua-and-barbuda/getting-help"
+  },
+  "060": {
+   "n": "Bermuda",
+   "general": "911",
+   "source": "https://www.gov.uk/foreign-travel-advice/bermuda/getting-help"
+  },
+  "136": {
+   "n": "Cayman Islands",
+   "general": "911",
+   "source": "https://www.gov.uk/foreign-travel-advice/cayman-islands/getting-help"
+  },
+  "188": {
+   "n": "Costa Rica",
+   "general": "911",
+   "source": "https://www.gov.uk/foreign-travel-advice/costa-rica/getting-help"
+  },
+  "558": {
+   "n": "Nicaragua",
+   "general": "911",
+   "source": "https://www.gov.uk/foreign-travel-advice/nicaragua/getting-help"
+  },
+  "729": {
+   "n": "Sudan",
+   "general": "999",
+   "source": "https://www.gov.uk/foreign-travel-advice/sudan/getting-help",
+   "note": "Emergency services have been severely affected by the conflict and are often unresponsive (UK travel advice)"
+  },
+  "728": {
+   "n": "South Sudan",
+   "note": "No central emergency numbers in South Sudan",
+   "source": "https://www.gov.uk/foreign-travel-advice/south-sudan/getting-help"
+  },
+  "710": {
+   "n": "South Africa",
+   "police": "10111",
+   "ambulance": "10177",
+   "fire": "10177",
+   "general": "112 (from mobiles)",
+   "source": "https://www.gov.uk/foreign-travel-advice/south-africa/getting-help"
+  },
+  "508": {
+   "n": "Mozambique",
+   "police": "112",
+   "ambulance": "848888 or 823388",
+   "fire": "198",
+   "general": "112",
+   "source": "https://www.gov.uk/foreign-travel-advice/mozambique/getting-help"
+  },
+  "072": {
+   "n": "Botswana",
+   "police": "999",
+   "ambulance": "997",
+   "fire": "998",
+   "source": "https://www.gov.uk/foreign-travel-advice/botswana/getting-help"
+  },
+  "516": {
+   "n": "Namibia",
+   "general": "10111, 999 or 112",
+   "source": "https://www.gov.uk/foreign-travel-advice/namibia/getting-help"
+  },
+  "894": {
+   "n": "Zambia",
+   "police": "991",
+   "ambulance": "992",
+   "fire": "993",
+   "source": "https://www.gov.uk/foreign-travel-advice/zambia/getting-help"
+  },
+  "716": {
+   "n": "Zimbabwe",
+   "general": "112 (Econet mobiles 112; NetOne mobiles 114; landline 0800 3222 911)",
+   "source": "https://www.gov.uk/foreign-travel-advice/zimbabwe/getting-help"
+  },
+  "024": {
+   "n": "Angola",
+   "police": "110",
+   "ambulance": "112",
+   "fire": "118",
+   "source": "https://www.gov.uk/foreign-travel-advice/angola/getting-help"
+  },
+  "404": {
+   "n": "Kenya",
+   "general": "999",
+   "source": "https://www.gov.uk/foreign-travel-advice/kenya/getting-help"
+  },
+  "834": {
+   "n": "Tanzania",
+   "general": "112",
+   "source": "https://www.gov.uk/foreign-travel-advice/tanzania/getting-help"
+  },
+  "800": {
+   "n": "Uganda",
+   "general": "999",
+   "source": "https://www.gov.uk/foreign-travel-advice/uganda/getting-help"
+  },
+  "231": {
+   "n": "Ethiopia",
+   "police": "911",
+   "ambulance": "907 (Addis Ababa)",
+   "general": "911",
+   "source": "https://www.gov.uk/foreign-travel-advice/ethiopia/getting-help"
+  },
+  "646": {
+   "n": "Rwanda",
+   "police": "112",
+   "ambulance": "112",
+   "fire": "111",
+   "source": "https://www.gov.uk/foreign-travel-advice/rwanda/getting-help"
+  },
+  "818": {
+   "n": "Egypt",
+   "police": "122 (tourist police 126)",
+   "ambulance": "123",
+   "fire": "180",
+   "source": "https://www.gov.uk/foreign-travel-advice/egypt/getting-help"
+  },
+  "434": {
+   "n": "Libya",
+   "general": "1415",
+   "source": "https://www.gov.uk/foreign-travel-advice/libya/getting-help"
+  },
+  "788": {
+   "n": "Tunisia",
+   "police": "197 (towns); National Guard 193 (rural areas)",
+   "ambulance": "190",
+   "fire": "198",
+   "source": "https://www.gov.uk/foreign-travel-advice/tunisia/getting-help"
+  },
+  "012": {
+   "n": "Algeria",
+   "police": "17 or 1548",
+   "ambulance": "1021",
+   "fire": "14",
+   "source": "https://www.gov.uk/foreign-travel-advice/algeria/getting-help"
+  },
+  "504": {
+   "n": "Morocco",
+   "police": "190 (gendarmerie 177)",
+   "ambulance": "150",
+   "fire": "150",
+   "source": "https://www.gov.uk/foreign-travel-advice/morocco/getting-help"
+  },
+  "690": {
+   "n": "Seychelles",
+   "general": "999",
+   "source": "https://www.gov.uk/foreign-travel-advice/seychelles/getting-help"
+  },
+  "784": {
+   "n": "United Arab Emirates",
+   "police": "999",
+   "ambulance": "998",
+   "fire": "997",
+   "source": "https://www.gov.uk/foreign-travel-advice/united-arab-emirates/getting-help"
+  },
+  "414": {
+   "n": "Kuwait",
+   "general": "112",
+   "source": "https://www.gov.uk/foreign-travel-advice/kuwait/getting-help"
+  },
+  "634": {
+   "n": "Qatar",
+   "general": "999",
+   "source": "https://www.gov.uk/foreign-travel-advice/qatar/getting-help"
+  },
+  "048": {
+   "n": "Bahrain",
+   "general": "999",
+   "source": "https://www.gov.uk/foreign-travel-advice/bahrain/getting-help"
+  },
+  "682": {
+   "n": "Saudi Arabia",
+   "general": "911 (112 if you do not have a Saudi SIM card)",
+   "source": "https://www.gov.uk/foreign-travel-advice/saudi-arabia/getting-help"
+  },
+  "376": {
+   "n": "Israel",
+   "police": "100",
+   "ambulance": "101",
+   "fire": "102",
+   "source": "https://www.gov.uk/foreign-travel-advice/israel/getting-help"
+  },
+  "422": {
+   "n": "Lebanon",
+   "police": "112",
+   "ambulance": "140",
+   "fire": "175",
+   "source": "https://www.gov.uk/foreign-travel-advice/lebanon/getting-help"
+  },
+  "400": {
+   "n": "Jordan",
+   "general": "911",
+   "source": "https://www.gov.uk/foreign-travel-advice/jordan/getting-help"
+  },
+  "756": {
+   "n": "Switzerland",
+   "police": "117",
+   "ambulance": "144",
+   "fire": "118",
+   "general": "112",
+   "source": "https://www.gov.uk/foreign-travel-advice/switzerland/getting-help"
+  },
+  "578": {
+   "n": "Norway",
+   "police": "112",
+   "ambulance": "113",
+   "fire": "110",
+   "source": "https://www.gov.uk/foreign-travel-advice/norway/getting-help"
+  },
+  "643": {
+   "n": "Russia",
+   "general": "112",
+   "source": "https://www.gov.uk/foreign-travel-advice/russia/getting-help"
+  },
+  "804": {
+   "n": "Ukraine",
+   "police": "102",
+   "ambulance": "103",
+   "fire": "101",
+   "source": "https://www.gov.uk/foreign-travel-advice/ukraine/getting-help"
+  },
+  "688": {
+   "n": "Serbia",
+   "police": "192",
+   "ambulance": "194",
+   "fire": "193",
+   "general": "112",
+   "source": "https://www.gov.uk/foreign-travel-advice/serbia/getting-help"
+  },
+  "792": {
+   "n": "Türkiye",
+   "general": "112",
+   "source": "https://www.gov.uk/foreign-travel-advice/turkey/getting-help"
+  },
+  "352": {
+   "n": "Iceland",
+   "general": "112",
+   "source": "https://www.gov.uk/foreign-travel-advice/iceland/getting-help"
+  },
+  "438": {
+   "n": "Liechtenstein",
+   "police": "117",
+   "ambulance": "144",
+   "fire": "118",
+   "source": "https://www.gov.uk/foreign-travel-advice/liechtenstein/getting-help"
+  },
+  "562": {
+   "n": "Niger",
+   "police": "17",
+   "ambulance": "15",
+   "fire": "18",
+   "source": "https://www.gov.uk/foreign-travel-advice/niger/getting-help"
+  },
+  "120": {
+   "n": "Cameroon",
+   "police": "117",
+   "ambulance": "112",
+   "fire": "119",
+   "source": "https://www.gov.uk/foreign-travel-advice/cameroon/getting-help"
+  },
+  "204": {
+   "n": "Benin",
+   "police": "117",
+   "ambulance": "118",
+   "fire": "118",
+   "source": "https://www.gov.uk/foreign-travel-advice/benin/getting-help",
+   "note": "Emergency response is very limited; you may need local advice to get help (UK travel advice)"
+  },
+  "384": {
+   "n": "Côte d'Ivoire",
+   "police": "110, 111 or 170",
+   "ambulance": "185",
+   "fire": "180",
+   "source": "https://www.gov.uk/foreign-travel-advice/cote-d-ivoire/getting-help"
+  },
+  "768": {
+   "n": "Togo",
+   "police": "117 or 177",
+   "ambulance": "8200",
+   "fire": "118",
+   "source": "https://www.gov.uk/foreign-travel-advice/togo/getting-help"
+  },
+  "266": {
+   "n": "Gabon",
+   "police": "177",
+   "ambulance": "117 (SOS Médecins: 1300, 0174 or 0880 depending on network)",
+   "fire": "177",
+   "note": "Operators may only speak French; none of these numbers are guaranteed to be reliable (UK travel advice)",
+   "source": "https://www.gov.uk/foreign-travel-advice/gabon/getting-help"
+  },
+  "148": {
+   "n": "Chad",
+   "police": "2020",
+   "ambulance": "1212",
+   "fire": "1212",
+   "source": "https://www.gov.uk/foreign-travel-advice/chad/getting-help",
+   "note": "UK travel advice lists 2020 (police) and 1212 (ambulance and fire); Australian travel advice lists 17 (police), 18, and 2251 4242 for medical help in N'Djamena"
+  },
+  "854": {
+   "n": "Burkina Faso",
+   "police": "17",
+   "ambulance": "18",
+   "fire": "18",
+   "note": "Numbers given for Ouagadougou; services unlikely to respond outside the capital",
+   "source": "https://www.gov.uk/foreign-travel-advice/burkina-faso/getting-help"
+  },
+  "466": {
+   "n": "Mali",
+   "police": "17",
+   "ambulance": "15",
+   "fire": "18",
+   "source": "https://www.gov.uk/foreign-travel-advice/mali/getting-help",
+   "note": "Emergency response capacity is very limited (UK travel advice)"
+  },
+  "430": {
+   "n": "Liberia",
+   "police": "+231 770 800 911",
+   "note": "Emergency services are unreliable",
+   "source": "https://www.gov.uk/foreign-travel-advice/liberia/getting-help"
+  },
+  "694": {
+   "n": "Sierra Leone",
+   "general": "117",
+   "source": "https://www.gov.uk/foreign-travel-advice/sierra-leone/getting-help"
+  },
+  "686": {
+   "n": "Senegal",
+   "police": "17 (gendarmerie 123)",
+   "ambulance": "15",
+   "fire": "18",
+   "source": "https://www.gov.uk/foreign-travel-advice/senegal/getting-help"
+  },
+  "270": {
+   "n": "Gambia",
+   "note": "No national emergency number equivalent to 999",
+   "source": "https://www.gov.uk/foreign-travel-advice/the-gambia/getting-help"
+  },
+  "324": {
+   "n": "Guinea",
+   "note": "No official emergency services; for urgent medical help contact a private clinic in Conakry",
+   "source": "https://www.gov.uk/foreign-travel-advice/guinea/getting-help"
+  },
+  "624": {
+   "n": "Guinea-Bissau",
+   "police": "117",
+   "ambulance": "1313",
+   "fire": "1313",
+   "source": "https://www.gov.uk/foreign-travel-advice/guinea-bissau/getting-help"
+  },
+  "132": {
+   "n": "Cabo Verde",
+   "police": "132",
+   "ambulance": "130",
+   "fire": "131",
+   "source": "https://www.gov.uk/foreign-travel-advice/cape-verde/getting-help"
+  },
+  "226": {
+   "n": "Equatorial Guinea",
+   "police": "666 404040 or 666 303030",
+   "ambulance": "3101",
+   "source": "https://www.gov.uk/foreign-travel-advice/equatorial-guinea/getting-help",
+   "note": "Emergency numbers and response are unreliable (UK travel advice)"
+  },
+  "678": {
+   "n": "São Tomé and Príncipe",
+   "police": "113 or 222 22 22",
+   "ambulance": "222 22 22",
+   "fire": "112",
+   "source": "https://www.gov.uk/foreign-travel-advice/sao-tome-and-principe/getting-help"
+  },
+  "140": {
+   "n": "Central African Republic",
+   "ambulance": "610600",
+   "fire": "118",
+   "general": "117",
+   "note": "Numbers may be unreliable; services unlikely to respond outside Bangui",
+   "source": "https://www.gov.uk/foreign-travel-advice/central-african-republic/getting-help"
+  },
+  "178": {
+   "n": "Republic of the Congo",
+   "police": "06 665 4804",
+   "source": "https://www.gov.uk/foreign-travel-advice/congo/getting-help",
+   "note": "No central emergency number; 06 665 4804 is for reporting crimes to local police. Numbers can be unreliable (UK travel advice)"
+  },
+  "180": {
+   "n": "DR Congo",
+   "police": "112 (Kinshasa)",
+   "fire": "118 (Kinshasa)",
+   "note": "No general emergency medical number; contact a hospital directly",
+   "source": "https://www.gov.uk/foreign-travel-advice/democratic-republic-of-the-congo/getting-help"
+  },
+  "478": {
+   "n": "Mauritania",
+   "police": "117",
+   "ambulance": "101",
+   "fire": "118",
+   "source": "https://www.gov.uk/foreign-travel-advice/mauritania/getting-help",
+   "note": "The authorities may not answer calls to these numbers (UK travel advice)"
+  },
+  "554": {
+   "n": "New Zealand",
+   "general": "111",
+   "source": "https://www.gov.uk/foreign-travel-advice/new-zealand/getting-help"
+  },
+  "826": {
+   "n": "United Kingdom",
+   "general": "999 or 112",
+   "note": "Police, ambulance, fire and coastguard",
+   "source": "https://www.gov.uk/guidance/999-and-112-the-uks-national-emergency-numbers"
+  },
+  "036": {
+   "n": "Australia",
+   "general": "000 (112 also works from mobiles)",
+   "source": "https://www.infrastructure.gov.au/media-communications/phone/triple-zero/how-call-triple-zero-000"
+  }
+ }
+}

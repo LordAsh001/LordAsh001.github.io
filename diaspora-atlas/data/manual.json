@@ -1,0 +1,13 @@
+{
+ "_about": "Official figures entered by hand for countries without a data feed. Keys are ISO 3166 numeric codes. basis: B = born in Nigeria, C = Nigerian citizens. A figure replaces the UN estimate on the map only when it is at least as recent; older figures show in the country profile.",
+ "countries": {
+  "036": {
+   "name": "Australia",
+   "value": 12883,
+   "year": 2021,
+   "basis": "B",
+   "source": "Australian Bureau of Statistics, Census 2021",
+   "url": "https://www.abs.gov.au/census/find-census-data/quickstats/2021/9124_AUS"
+  }
+ }
+}
