@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-29",
+ "updated": "2026-10-30",
  "sources": [
   {
    "source": "Opportunities for Africans",
@@ -9,7 +9,7 @@
   {
    "source": "Opportunity Desk",
    "ok": true,
-   "items": 5
+   "items": 6
   },
   {
    "source": "Opportunities Corners",
@@ -18,8 +18,8 @@
   },
   {
    "source": "Scholarship Region",
-   "ok": false,
-   "error": "not well-formed (invalid token): line 1, column 119"
+   "ok": true,
+   "items": 10
   },
   {
    "source": "Opportunities for Youth",
@@ -56,6 +56,26 @@
   }
  ],
  "items": [
+  {
+   "title": "WAAW Foundation Scholarship For African Undergraduates 2026/27 | How To Apply",
+   "link": "https://www.scholarshipregion.com/waaw-foundation-scholarship/",
+   "date": "2026-10-30",
+   "source": "Scholarship Region",
+   "official": false,
+   "ids": [],
+   "summary": "WAAW Foundation Scholarship offers financial awards that enable college students in Africa to pursue their studies in STEM-related disciplines. With the $500 scholarship, you are free to focus on ach…",
+   "seen": "2026-10-30"
+  },
+  {
+   "title": "2027 Simon Fraser University Scholarship in Canada | Fully Funded",
+   "link": "https://www.scholarshipregion.com/simon-fraser-university-scholarship/",
+   "date": "2026-10-30",
+   "source": "Scholarship Region",
+   "official": false,
+   "ids": [],
+   "summary": "The Simon Fraser University Scholarship offers study opportunities for international students who are interested in pursuing master’s and doctoral degrees in Canada. As a selected applicant, you will…",
+   "seen": "2026-10-30"
+  },
   {
    "title": "2027/2028 Commonwealth Scholarship and Fellowship Plan (CSFP) nomination interview from 2nd to 5th November, 2026",
    "link": "https://education.gov.ng/2027-2028-commonwealth-scholarship-and-fellowship-plan-csfp-nomination-interview-from-2nd-to-5th-november-2026/",
@@ -121,6 +141,112 @@
    ],
    "summary": "The Swedish Institute (SI) Global Scholarship 2027 is a fully funded opportunity for international students to pursue a Master’s Program in Sweden. Swedish universities are now accepting applications…",
    "seen": "2026-10-29"
+  },
+  {
+   "title": "Mozilla Foundation Fellowships 2027-2028 (up to $125,000)",
+   "link": "https://opportunitydesk.org/2026/10/29/mozilla-foundation-fellowships-2027-2028/",
+   "date": "2026-10-29",
+   "source": "Opportunity Desk",
+   "official": false,
+   "ids": [],
+   "summary": "Deadline: December 17, 2026 Applications are open for the Mozilla Foundation Fellowships 2027-2028. Mozilla Foundation will award 10 Fellowships for the 2027–2028 period. They are looking for extraor…",
+   "seen": "2026-10-30"
+  },
+  {
+   "title": "Green Global Fellowship 2027 for Emerging Leaders",
+   "link": "https://opportunitydesk.org/2026/10/29/green-global-fellowship-2027/",
+   "date": "2026-10-29",
+   "source": "Opportunity Desk",
+   "official": false,
+   "ids": [],
+   "summary": "Deadline: January 7, 2027 Applications are invited for the Green Global Fellowship 2027. The Green Fellows Programme invites applications from emerging leaders committed to advancing sustainability t…",
+   "seen": "2026-10-30"
+  },
+  {
+   "title": "Clemson University Graduate Scholarships in United States 2027 | Fully Funded",
+   "link": "https://www.scholarshipregion.com/clemson-university-graduate-scholarship/",
+   "date": "2026-10-29",
+   "source": "Scholarship Region",
+   "official": false,
+   "ids": [],
+   "summary": "The Clemson University Graduate Scholarship offers a fully funded graduate opportunity for intending Masters students to study in the United States. The Clemson University Scholarships provides a ful…",
+   "seen": "2026-10-30"
+  },
+  {
+   "title": "University of Liverpool Graduate Teaching Fellowship in UK 2027 | Fully Funded",
+   "link": "https://www.scholarshipregion.com/university-of-liverpool-graduate-teaching-fellowship/",
+   "date": "2026-10-29",
+   "source": "Scholarship Region",
+   "official": false,
+   "ids": [],
+   "summary": "The University of Liverpool is calling on students from all around the world to apply for its 2027 four-year fully funded Graduate Teaching Fellowships for Economics PhD students. The fellowship incl…",
+   "seen": "2026-10-30"
+  },
+  {
+   "title": "7 Australian Universities Offering Scholarships to International Undergraduate Students (2027)",
+   "link": "https://www.scholarshipregion.com/australian-universities-offering-scholarships/",
+   "date": "2026-10-29",
+   "source": "Scholarship Region",
+   "official": false,
+   "ids": [],
+   "summary": "According to the official scholarship information published by Australian universities, international undergraduate students can access a range of funding options, including tuition-fee reductions, m…",
+   "seen": "2026-10-30"
+  },
+  {
+   "title": "University of Angers Eiffel Excellence Scholarship in France 2027 | Fully Funded",
+   "link": "https://www.scholarshipregion.com/angers-eiffel-excellence-scholarship/",
+   "date": "2026-10-29",
+   "source": "Scholarship Region",
+   "official": false,
+   "ids": [
+    "eiffel"
+   ],
+   "summary": "The University of Angers Eiffel Scholarship 2027 is open to international postgraduate applicants seeking to study in France. The scholarship is funded by the French Ministry of Foreign Affairs (Camp…",
+   "seen": "2026-10-30"
+  },
+  {
+   "title": "2027 EPFL Summer Research Program (School of Life Sciences) for International Students | Fully Funded",
+   "link": "https://www.scholarshipregion.com/epfl-summer-research-program/",
+   "date": "2026-10-29",
+   "source": "Scholarship Region",
+   "official": false,
+   "ids": [],
+   "summary": "The École polytechnique fédérale de Lausanne (EPFL) welcomes applications for its fully funded EPFL Summer Research Program for international students. The EPFL School of Life Sciences Summer Researc…",
+   "seen": "2026-10-30"
+  },
+  {
+   "title": "University of Birmingham Darwin Trust Studentship in UK 2027 | Fully Funded",
+   "link": "https://www.scholarshipregion.com/university-of-birmingham-darwin-trust-studentship/",
+   "date": "2026-10-29",
+   "source": "Scholarship Region",
+   "official": false,
+   "ids": [],
+   "summary": "The University of Birmingham is offering fully funded studentships for home and international students to pursue a PhD in Microbiology in the Biosciences Graduate Research School. The Darwin Trust of…",
+   "seen": "2026-10-30"
+  },
+  {
+   "title": "2027 Erasmus Mundus CLMCE Scholarship To Study in UK, France, Denmark (Fully Funded)",
+   "link": "https://www.scholarshipregion.com/erasmus-mundus-clmce-scholarship/",
+   "date": "2026-10-29",
+   "source": "Scholarship Region",
+   "official": false,
+   "ids": [
+    "erasmus"
+   ],
+   "summary": "The Erasmus Mundus CLMCE Scholarship is a 24-month full-time Erasmus Mundus Joint Master programme offered by universities in the UK, France, Denmark, the Netherlands, and Poland. The Erasmus Mundus …",
+   "seen": "2026-10-30"
+  },
+  {
+   "title": "2027 China University of Petroleum Scholarships For International Students | Fully Funded",
+   "link": "https://www.scholarshipregion.com/china-university-of-petroleum-scholarship/",
+   "date": "2026-10-29",
+   "source": "Scholarship Region",
+   "official": false,
+   "ids": [
+    "csc-china"
+   ],
+   "summary": "The China University of Petroleum (CUP) is calling for applications for the Chinese Government Scholarships 2027 in Beijing- one of the most beautiful cities in China. The China University of Petrole…",
+   "seen": "2026-10-30"
   },
   {
    "title": "British Council Green & Digital Employability and Enterprise Programme 2027 (£150,000 grant)",
@@ -1581,132 +1707,6 @@
    "ids": [],
    "summary": "Introduction Applications are now open for the John S. Knight (JSK) Journalism Fellowships 2027–2028 at Stanford University in the United States. This prestigious programme offers experienced journal…",
    "seen": "2026-10-16"
-  },
-  {
-   "title": "Shiraka Training Programme 2027: Fully Funded Local Governance Training in the Netherlands for Government Professionals from 12 MENA Countries",
-   "link": "https://opportunitiesforyouth.org/2026/10/16/shiraka-training-programme-2027/",
-   "date": "2026-10-16",
-   "source": "Opportunities for Youth",
-   "official": false,
-   "ids": [],
-   "summary": "The Shiraka Training Programme 2027 offers government professionals from selected Middle East and North Africa (MENA) countries an opportunity to strengthen their knowledge and practical skills throu…",
-   "seen": "2026-10-16"
-  },
-  {
-   "title": "The DAAD In-Country/In-Region Masters/PhD Scholarship Programme 2027 for Sub-Saharan African students (Fully Funded)",
-   "link": "https://www.opportunitiesforafricans.com/the-daad-in-country-in-region-masters-phd-scholarship-programme-2027/",
-   "date": "2026-10-16",
-   "source": "Opportunities for Africans",
-   "official": false,
-   "ids": [
-    "daad-epos"
-   ],
-   "summary": "Application Deadline: November, 12, 2026 Applications are now open for the 2027 DAAD In-Country/In-Region Masters/PhD Scholarship Programme. The programme aims at fostering strong, internationally or…",
-   "seen": "2026-10-17"
-  },
-  {
-   "title": "Apply Now: Allianz x Social Shifters MoveNow Social Innovation Challenge 2026 | $90,000 in Funding for Young Innovators",
-   "link": "https://opportunitydesk.org/2026/10/16/allianz-x-social-shifters-movenow-social-innovation-challenge-2026-for-young-innovators/",
-   "date": "2026-10-16",
-   "source": "Opportunity Desk",
-   "official": false,
-   "ids": [],
-   "summary": "The MoveNow Social Innovation Challenge supports a global ecosystem of young impact founders, enabling youth-led solutions for and from underserved communities to take root and thrive.",
-   "seen": "2026-10-17"
-  },
-  {
-   "title": "EJN Reporting Fellowships 2026 for Journalists to Cover BBNJ COP1 in New York City, USA",
-   "link": "https://opportunitydesk.org/2026/10/16/ejn-reporting-fellowships-2026-for-journalists-to-cover-bbnj-cop1/",
-   "date": "2026-10-16",
-   "source": "Opportunity Desk",
-   "official": false,
-   "ids": [],
-   "summary": "Deadline: October 27, 2026 Applications are open for the EJN Reporting Fellowships 2026 for Journalists to Cover BBNJ COP1 in New York City, USA. To ensure rich and diverse coverage of the BBNJ COP w…",
-   "seen": "2026-10-17"
-  },
-  {
-   "title": "John S. Knight Journalism Fellowships 2027-2028 ($135,000 stipend)",
-   "link": "https://opportunitydesk.org/2026/10/16/john-s-knight-journalism-fellowships-2027-2028/",
-   "date": "2026-10-16",
-   "source": "Opportunity Desk",
-   "official": false,
-   "ids": [],
-   "summary": "Deadline: December 2, 2026 Applications are open for the John S. Knight Journalism Fellowships 2027-2028. At the John S. Knight Journalism Fellowships, they believe the people closest to journalism’s…",
-   "seen": "2026-10-17"
-  },
-  {
-   "title": "Harvard Kennedy School Center for Public Leadership Equity Fellowship 2027-2028",
-   "link": "https://opportunitydesk.org/2026/10/16/hks-cpl-equity-fellowship-2027-2028/",
-   "date": "2026-10-16",
-   "source": "Opportunity Desk",
-   "official": false,
-   "ids": [],
-   "summary": "Deadline: December 1, 2026 Ready to build a better future? Apply for the Harvard Kennedy School Center for Public Leadership Equity Fellowship 2027-2028. Fellows will participate in a yearlong co-cur…",
-   "seen": "2026-10-17"
-  },
-  {
-   "title": "Weidenfeld-Hoffmann Scholarships and Leadership Programme 2027-2028",
-   "link": "https://opportunitydesk.org/2026/10/16/weidenfeld-hoffmann-scholarships-and-leadership-programme-2027-2028/",
-   "date": "2026-10-16",
-   "source": "Opportunity Desk",
-   "official": false,
-   "ids": [
-    "weidenfeld"
-   ],
-   "summary": "Deadline: January 6, 2027 Applications are open for the Weidenfeld-Hoffmann Scholarships and Leadership Programme 2026. The Weidenfeld-Hoffmann Scholarships and Leadership Programme cultivates the le…",
-   "seen": "2026-10-17"
-  },
-  {
-   "title": "France Émile Boutmy Scholarship (Sciences Po) 2027 | Fully Funded",
-   "link": "https://www.scholarshipregion.com/sciences-po-emile-boutmy-scholarship/",
-   "date": "2026-10-16",
-   "source": "Scholarship Region",
-   "official": false,
-   "ids": [],
-   "summary": "Sciences Po Émile Boutmy Scholarships are awarded to top students whose profiles match the admissions priorities of Sciences Po and individual course requirements. The France Emile Boutmy Scholarship…",
-   "seen": "2026-10-17"
-  },
-  {
-   "title": "France Sciences Po MasterCard Scholarships For Africans 2027 (Fully Funded)",
-   "link": "https://www.scholarshipregion.com/sciences-po-mastercard-scholarships/",
-   "date": "2026-10-16",
-   "source": "Scholarship Region",
-   "official": false,
-   "ids": [],
-   "summary": "Sciences Po MasterCard Scholarships offers full funding, monthly stipends and accommodation for international students to earn a Master’s degree in France. The scholarship is is designed for students…",
-   "seen": "2026-10-17"
-  },
-  {
-   "title": "7 Universities in Finland Offering English-Taught Bachelor’s Degrees and Scholarships (2027)",
-   "link": "https://www.scholarshipregion.com/universities-in-finland-offering-english-taught-bachelors-degrees/",
-   "date": "2026-10-16",
-   "source": "Scholarship Region",
-   "official": false,
-   "ids": [],
-   "summary": "Finland is becoming an option worth considering for you if you want to study abroad in English. According to Study in Finland, the country’s official study information portal, hundreds of English-tau…",
-   "seen": "2026-10-17"
-  },
-  {
-   "title": "University of Gottingen DAAD Scholarship 2027 in Germany | Fully Funded",
-   "link": "https://www.scholarshipregion.com/university-of-gottingen-daad-scholarship/",
-   "date": "2026-10-16",
-   "source": "Scholarship Region",
-   "official": false,
-   "ids": [
-    "daad-epos"
-   ],
-   "summary": "The University of Gottingen DAAD Scholarship is one of DAAD’s Development-Related Postgraduate Programmes (EPOS) for students from developing countries. The DAAD EPOS Scholarship at the University of…",
-   "seen": "2026-10-17"
-  },
-  {
-   "title": "2027 ENS Scholarships in France (École Normale Supérieure Scholarship) | Fully Funded",
-   "link": "https://www.scholarshipregion.com/ecole-normale-superieure-ens-scholarship/",
-   "date": "2026-10-16",
-   "source": "Scholarship Region",
-   "official": false,
-   "ids": [],
-   "summary": "The ENS Scholarship is an international selection Competition which offers scholarships to international students to pursue a Diploma or a Master’s Degree Program in France. The ENS France Scholarshi…",
-   "seen": "2026-10-17"
   }
  ]
 }
