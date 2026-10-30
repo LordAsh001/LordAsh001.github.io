@@ -850,7 +850,7 @@ function start(DATA, EU, US, MAN, DIRS, LIVE) {
     const r = byId.get(id);
     let html;
     if (id === NG) html = `<strong>Nigeria</strong>Country of origin`;
-    else if (r) html = `<strong>${esc(r.n)}</strong><span class="num">${fmt(r.v)}</span> people · rank ${r.rank}<br>${esc(r.vSrc)}, ${r.vYear}` +
+    else if (r) html = `<strong>${esc(r.n)}</strong><span class="num">${fmt(r.v)}</span> ${r.useNat && r.nat.basis === "C" ? "Nigerian citizens" : "people"} · rank ${r.rank}<br>${esc(r.vSrc)}, ${r.vYear}` +
       (measure === "change" ? `<br>${r.t ? (r.chg == null ? "New in UN data" : "UN: " + sgn(r.chg) + " since " + PREV) : "No UN trend"}` : "");
     else html = `<strong>${esc(name || "Unknown")}</strong>No Nigeria-specific figure`;
     if (measure === "money" && id !== NG) { const v = BIL.get(id); html = `<strong>${esc((r && r.n) || name || "Unknown")}</strong>${v ? `<span class="num">${usd(v)}</span> sent to Nigeria (estimate, ${EXTRA.rem.bil.year})` : "No remittance estimate"}`; }
@@ -1042,7 +1042,7 @@ function start(DATA, EU, US, MAN, DIRS, LIVE) {
     const rowsKv = (r.useNat ? other : other.concat(kv)).concat(r.useNat ? kv.slice(0, 2) : []);
     panel.innerHTML = `
       <div><span class="eyebrow">Rank ${r.rank} of ${rows.length}</span><h3 style="margin-top:4px;font-size:1.35rem">${esc(r.n)}</h3></div>
-      <div><div class="big">${fmt(r.v)}</div><div class="sub">Nigeria-born people · ${esc(r.vSrc)}, ${r.vYear}${r.useNat && n.moe ? ` (± ${fmt(n.moe)})` : ""}${r.share != null ? ` · ${r.share < 0.1 ? "<0.1" : r.share.toFixed(1)}% of the UN total` : ""}</div></div>
+      <div><div class="big">${fmt(r.v)}</div><div class="sub">${r.useNat && n.basis === "C" ? "Nigerian citizens" : "Nigeria-born people"} · ${esc(r.vSrc)}, ${r.vYear}${r.useNat && n.moe ? ` (± ${fmt(n.moe)})` : ""}${r.share != null ? ` · ${r.share < 0.1 ? "<0.1" : r.share.toFixed(1)}% of the UN total` : ""}</div></div>
       ${chip ? `<div>${chip}</div>` : ""}
       ${spark}
       ${w == null ? "" : `<div><div class="split" aria-hidden="true"><i style="width:${w}%;background:var(--women)"></i><i style="flex:1;background:var(--men)"></i></div>
