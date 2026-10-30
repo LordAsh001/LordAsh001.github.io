@@ -62,8 +62,10 @@ def main():
     root, fx = tmp / "repo", tmp / "fx"
     (root / "diaspora-atlas").mkdir(parents=True)
     fx.mkdir()
-    shutil.copytree(REPO / "diaspora-atlas" / "data", root / "diaspora-atlas" / "data")
     data = root / "diaspora-atlas" / "data"
+    data.mkdir()
+    for name in ("directory.json", "emergency.json", "manual.json"):  # hand-curated inputs only
+        shutil.copy(REPO / "diaspora-atlas" / "data" / name, data / name)
     import fetch_eurostat, fetch_us_acs, fetch_uis, fetch_worldbank, fetch_bilateral, watch_un  # noqa: E401
 
     # Eurostat
