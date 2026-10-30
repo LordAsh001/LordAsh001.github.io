@@ -913,6 +913,40 @@
           ],
           "classroom": "give each group one creative field: draw a random set of Living profiles, check one statistic against its source, and present how that field has changed since independence.",
           "doi": "10.5281/zenodo.23589297"
+        },
+        {
+          "name": "Nigeria Diaspora Atlas",
+          "text": "See where Nigerians live abroad, country by country: people born in Nigeria, students, and money sent home, from UN, national statistics, UNESCO and World Bank data. Each country lists Nigeria's embassies and consulates, Nigerian associations and emergency numbers, and the atlas has step-by-step consular help for passports, NIN and lost documents. Every figure links to its source, bots keep the data current, and anyone can suggest a correction.",
+          "link_label": "Open tool",
+          "sdgs": [
+            10,
+            17
+          ],
+          "hidden": false,
+          "url": "/diaspora-atlas/",
+          "kind": "Interactive map · free",
+          "audience": [
+            "Researchers",
+            "Practitioners",
+            "Educators",
+            "Students"
+          ],
+          "level": "All levels",
+          "numbers": [
+            {
+              "value": "2.09M",
+              "label": "Nigeria-born people abroad (UN, 2024)"
+            },
+            {
+              "value": "105",
+              "label": "Nigerian missions listed"
+            },
+            {
+              "value": "89",
+              "label": "countries with a figure"
+            }
+          ],
+          "classroom": "give each group a host country, compare its Nigerian population, students and remittances, and explain what draws Nigerians there and what support they can find."
         }
       ],
       "note": "Using one of these in a course or workshop? I'd love to hear how it went: [amool@unbc.ca](mailto:amool@unbc.ca). Free to use for teaching and learning."
