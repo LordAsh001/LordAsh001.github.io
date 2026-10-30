@@ -1,8 +1,8 @@
 """US Census Bureau American Community Survey: people born in Nigeria -> data/us_acs.json.
 
 Table B05006 (place of birth for the foreign-born population), 1-year estimates. The Nigeria variable is
-found by its label each year, so a renumbered table does not break the bot. An API key is optional:
-set the repository secret CENSUS_API_KEY if the Census API starts refusing keyless requests.
+found by its label each year, so a renumbered table does not break the bot. The Census API needs a free key:
+set it as the repository secret CENSUS_API_KEY (https://api.census.gov/data/key_signup.html).
 """
 import datetime
 import json
@@ -52,6 +52,10 @@ def main():
     if not years:
         for e in errors:
             print("ERROR", e, file=sys.stderr)
+        if not os.environ.get("CENSUS_API_KEY"):
+            print("The Census API refused keyless requests. Add a free key as the repository secret CENSUS_API_KEY "
+                  "(https://api.census.gov/data/key_signup.html); until then the page keeps its built-in US figure.")
+            sys.exit(0)
         sys.exit(1)
     latest_year = max(years, key=int)
     latest = years[latest_year]
