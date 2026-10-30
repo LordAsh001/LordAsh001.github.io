@@ -1,0 +1,431 @@
+{
+ "links": {
+  "https://washingtondc.foreignaffairs.gov.ng": {
+   "fails": 1,
+   "label": "United States: Embassy, Washington, D.C.",
+   "last": "<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: Hostname mismatch, certificate is not valid f",
+   "checked": "2026-10-30T01:27:04+00:00"
+  },
+  "https://nigeriahouse.com": {
+   "fails": 1,
+   "label": "United States: Consulate-General, New York",
+   "last": "<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: certificate has expired (_ssl.c:1010)>",
+   "checked": "2026-10-30T01:27:05+00:00"
+  },
+  "https://www.nigeriaconsulateatlanta.org/": {
+   "fails": 0,
+   "label": "United States: Consulate-General, Atlanta",
+   "last": 200,
+   "checked": "2026-10-30T01:27:08+00:00"
+  },
+  "https://nidoa.org/": {
+   "fails": 0,
+   "label": "United States: Nigerians in Diaspora Organisation Americas (NIDOA)",
+   "last": 200,
+   "checked": "2026-10-30T01:27:09+00:00"
+  },
+  "https://anpa.org/": {
+   "fails": 1,
+   "label": "United States: Association of Nigerian Physicians in the Americas (ANPA)",
+   "last": 403,
+   "checked": "2026-10-30T01:27:10+00:00"
+  },
+  "https://nannna.nursingnetwork.com/": {
+   "fails": 0,
+   "label": "United States: National Association of Nigerian Nurses in North America (NANNNA)",
+   "last": 200,
+   "checked": "2026-10-30T01:27:11+00:00"
+  },
+  "https://napacusa.org/": {
+   "fails": 0,
+   "label": "United States: Nigerian American Public Affairs Committee (NAPAC-USA)",
+   "last": 200,
+   "checked": "2026-10-30T01:27:12+00:00"
+  },
+  "https://nigeriahcottawa.ca": {
+   "fails": 0,
+   "label": "Canada: High Commission, Ottawa",
+   "last": 200,
+   "checked": "2026-10-30T01:27:13+00:00"
+  },
+  "https://nidoacalgary.com/": {
+   "fails": 0,
+   "label": "Canada: NIDOA Canada – Calgary Chapter",
+   "last": 200,
+   "checked": "2026-10-30T01:27:14+00:00"
+  },
+  "https://www.nigerianembmexico.org": {
+   "fails": 0,
+   "label": "Mexico: Embassy, Mexico City",
+   "last": 200,
+   "checked": "2026-10-30T01:27:15+00:00"
+  },
+  "http://www.nigerianembassy-brasilia.org/": {
+   "fails": 1,
+   "label": "Brazil: Embassy, Brasília",
+   "last": "<urlopen error [Errno -2] Name or service not known>",
+   "checked": "2026-10-30T01:27:15+00:00"
+  },
+  "https://caracas.foreignaffairs.gov.ng": {
+   "fails": 1,
+   "label": "Venezuela: Embassy, Caracas",
+   "last": "<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: Hostname mismatch, certificate is not valid f",
+   "checked": "2026-10-30T01:27:19+00:00"
+  },
+  "https://nigeria-can.org.au/": {
+   "fails": 1,
+   "label": "Australia: High Commission, Canberra",
+   "last": 403,
+   "checked": "2026-10-30T01:27:21+00:00"
+  },
+  "https://nigeriansinqld.org.au/": {
+   "fails": 0,
+   "label": "Australia: Nigerian Community Association Queensland",
+   "last": 200,
+   "checked": "2026-10-30T01:27:22+00:00"
+  },
+  "https://www.nawa.com.au/": {
+   "fails": 0,
+   "label": "Australia: Nigerian Association of WA (NAWA)",
+   "last": 200,
+   "checked": "2026-10-30T01:27:23+00:00"
+  },
+  "https://guangzhou.foreignaffairs.gov.ng": {
+   "fails": 1,
+   "label": "China: Consulate-General, Guangzhou",
+   "last": "<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: Hostname mismatch, certificate is not valid f",
+   "checked": "2026-10-30T01:27:26+00:00"
+  },
+  "http://shanghai.ngconsulate.org": {
+   "fails": 1,
+   "label": "China: Consulate-General, Shanghai",
+   "last": "<urlopen error [Errno -2] Name or service not known>",
+   "checked": "2026-10-30T01:27:26+00:00"
+  },
+  "http://www.nigeria-consulate.org.hk": {
+   "fails": 1,
+   "label": "China: Consulate-General, Hong Kong SAR",
+   "last": "<urlopen error [Errno -2] Name or service not known>",
+   "checked": "2026-10-30T01:27:27+00:00"
+  },
+  "https://app.glueup.cn/org/nido/about": {
+   "fails": 0,
+   "label": "China: Nigerians in Diaspora Organisation (NiDO) East China Chapter",
+   "last": 200,
+   "checked": "2026-10-30T01:27:30+00:00"
+  },
+  "https://seoul.foreignaffairs.gov.ng": {
+   "fails": 1,
+   "label": "South Korea: Embassy, Seoul",
+   "last": "<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: Hostname mismatch, certificate is not valid f",
+   "checked": "2026-10-30T01:27:34+00:00"
+  },
+  "https://jakarta.foreignaffairs.gov.ng": {
+   "fails": 1,
+   "label": "Indonesia: Embassy, Jakarta",
+   "last": "<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: Hostname mismatch, certificate is not valid f",
+   "checked": "2026-10-30T01:27:37+00:00"
+  },
+  "https://tehran.foreignaffairs.gov.ng": {
+   "fails": 1,
+   "label": "Iran: Embassy, Tehran",
+   "last": "<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: Hostname mismatch, certificate is not valid f",
+   "checked": "2026-10-30T01:27:39+00:00"
+  },
+  "https://nigerianconsulatesa.org/": {
+   "fails": 0,
+   "label": "South Africa: Consulate-General, Johannesburg",
+   "last": 200,
+   "checked": "2026-10-30T01:27:41+00:00"
+  },
+  "https://nigeriahighcommissionwindhoek.org/": {
+   "fails": 0,
+   "label": "Namibia: High Commission, Windhoek",
+   "last": 200,
+   "checked": "2026-10-30T01:27:44+00:00"
+  },
+  "https://nighicomkampala.ng": {
+   "fails": 1,
+   "label": "Uganda: High Commission, Kampala",
+   "last": "<urlopen error [Errno -2] Name or service not known>",
+   "checked": "2026-10-30T01:27:45+00:00"
+  },
+  "https://kigali.foreignaffairs.gov.ng/": {
+   "fails": 1,
+   "label": "Rwanda: High Commission, Kigali",
+   "last": "<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: Hostname mismatch, certificate is not valid f",
+   "checked": "2026-10-30T01:27:47+00:00"
+  },
+  "https://cairo.foreignaffairs.gov.ng/": {
+   "fails": 1,
+   "label": "Egypt: Embassy, Cairo",
+   "last": "<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: Hostname mismatch, certificate is not valid f",
+   "checked": "2026-10-30T01:27:49+00:00"
+  },
+  "https://nigeriantripoli.org/": {
+   "fails": 0,
+   "label": "Libya: Embassy, Tripoli",
+   "last": 200,
+   "checked": "2026-10-30T01:27:53+00:00"
+  },
+  "https://www.nidoqatar.org": {
+   "fails": 1,
+   "label": "Qatar: Nigerians in Diaspora Organisation Qatar (NIDO-Qatar)",
+   "last": "<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: Hostname mismatch, certificate is not valid f",
+   "checked": "2026-10-30T01:27:54+00:00"
+  },
+  "https://nigeriahc.org.uk": {
+   "fails": 0,
+   "label": "United Kingdom: High Commission, London",
+   "last": 200,
+   "checked": "2026-10-30T01:27:56+00:00"
+  },
+  "https://www.nidoeurope.org/": {
+   "fails": 0,
+   "label": "United Kingdom: Nigerians in Diaspora Organisation Europe (NIDOE / NIDO Europe)",
+   "last": 200,
+   "checked": "2026-10-30T01:27:57+00:00"
+  },
+  "https://x.com/NIDOEurope1": {
+   "fails": 0,
+   "label": "United Kingdom: Nigerians in Diaspora Organisation Europe (NIDOE / NIDO Europe)",
+   "last": 200,
+   "checked": "2026-10-30T01:27:58+00:00"
+  },
+  "https://nidouksouth.org/": {
+   "fails": 0,
+   "label": "United Kingdom: NIDO UK South",
+   "last": 200,
+   "checked": "2026-10-30T01:27:58+00:00"
+  },
+  "https://x.com/NIDOUKSOUTH": {
+   "fails": 0,
+   "label": "United Kingdom: NIDO UK South",
+   "last": 200,
+   "checked": "2026-10-30T01:27:59+00:00"
+  },
+  "https://nidoukchapter.org/": {
+   "fails": 0,
+   "label": "United Kingdom: NIDO UK Chapter",
+   "last": 200,
+   "checked": "2026-10-30T01:28:03+00:00"
+  },
+  "https://www.ndukgroup.co.uk": {
+   "fails": 1,
+   "label": "United Kingdom: Nigerian Doctors in the United Kingdom (NDUK)",
+   "last": "<urlopen error [Errno -2] Name or service not known>",
+   "checked": "2026-10-30T01:28:05+00:00"
+  },
+  "https://twitter.com/NigerianDrsUk": {
+   "fails": 0,
+   "label": "United Kingdom: Nigerian Doctors in the United Kingdom (NDUK)",
+   "last": 200,
+   "checked": "2026-10-30T01:28:06+00:00"
+  },
+  "https://dublin.foreignaffairs.gov.ng": {
+   "fails": 1,
+   "label": "Ireland: Embassy, Dublin",
+   "last": "<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: Hostname mismatch, certificate is not valid f",
+   "checked": "2026-10-30T01:28:08+00:00"
+  },
+  "https://www.nidoireland.ie/": {
+   "fails": 1,
+   "label": "Ireland: Nigerians in Diaspora Organisation Europe – Ireland (NIDO Ireland)",
+   "last": "<urlopen error [Errno -2] Name or service not known>",
+   "checked": "2026-10-30T01:28:09+00:00"
+  },
+  "https://x.com/NIDOE_Ireland": {
+   "fails": 0,
+   "label": "Ireland: Nigerians in Diaspora Organisation Europe – Ireland (NIDO Ireland)",
+   "last": 200,
+   "checked": "2026-10-30T01:28:10+00:00"
+  },
+  "https://nigeriaembassygermany.org": {
+   "fails": 0,
+   "label": "Germany: Embassy, Berlin",
+   "last": 200,
+   "checked": "2026-10-30T01:28:11+00:00"
+  },
+  "https://nido-germany.de/": {
+   "fails": 0,
+   "label": "Germany: Nigerians in Diaspora Organisation (NIDO) Germany e.V.",
+   "last": 200,
+   "checked": "2026-10-30T01:28:12+00:00"
+  },
+  "https://www.facebook.com/NIDOGermany": {
+   "fails": 0,
+   "label": "Germany: Nigerians in Diaspora Organisation (NIDO) Germany e.V.",
+   "last": 200,
+   "checked": "2026-10-30T01:28:13+00:00"
+  },
+  "https://www.nigeriafrance.org": {
+   "fails": 0,
+   "label": "France: Embassy, Paris",
+   "last": 200,
+   "checked": "2026-10-30T01:28:15+00:00"
+  },
+  "https://www.nidoefrance.org/": {
+   "fails": 0,
+   "label": "France: NIDOE France",
+   "last": 200,
+   "checked": "2026-10-30T01:28:16+00:00"
+  },
+  "https://www.instagram.com/nidoefrance/": {
+   "fails": 1,
+   "label": "France: NIDOE France",
+   "last": 429,
+   "checked": "2026-10-30T01:28:17+00:00"
+  },
+  "https://www.nigerianrome.org": {
+   "fails": 0,
+   "label": "Italy: Embassy, Rome",
+   "last": 200,
+   "checked": "2026-10-30T01:28:20+00:00"
+  },
+  "https://nidoeitaly.services-app.org/home/": {
+   "fails": 0,
+   "label": "Italy: NIDOE Italy Chapter",
+   "last": 200,
+   "checked": "2026-10-30T01:28:20+00:00"
+  },
+  "https://nigeriaemblisbon.org": {
+   "fails": 0,
+   "label": "Portugal: Embassy, Lisbon",
+   "last": 200,
+   "checked": "2026-10-30T01:28:22+00:00"
+  },
+  "https://www.nidoe.nl/": {
+   "fails": 0,
+   "label": "Netherlands: NIDOE Netherlands (Stichting NIDO-Netherlands)",
+   "last": 200,
+   "checked": "2026-10-30T01:28:23+00:00"
+  },
+  "https://nigeriabrussels.org": {
+   "fails": 1,
+   "label": "Belgium: Embassy and Mission to the European Union, Brussels",
+   "last": 403,
+   "checked": "2026-10-30T01:28:24+00:00"
+  },
+  "https://www.nidoebelux.org/": {
+   "fails": 0,
+   "label": "Belgium: NIDOE BeLux",
+   "last": 200,
+   "checked": "2026-10-30T01:28:25+00:00"
+  },
+  "https://x.com/NIDOEBeLux": {
+   "fails": 0,
+   "label": "Belgium: NIDOE BeLux",
+   "last": 200,
+   "checked": "2026-10-30T01:28:26+00:00"
+  },
+  "http://www.nigeriaembassyvienna.com": {
+   "fails": 0,
+   "label": "Austria: Embassy and Permanent Mission to the UN in Vienna, Vienna",
+   "last": 200,
+   "checked": "2026-10-30T01:28:28+00:00"
+  },
+  "https://www.nidoeaustria.org/": {
+   "fails": 0,
+   "label": "Austria: NIDOE Austria",
+   "last": 200,
+   "checked": "2026-10-30T01:28:31+00:00"
+  },
+  "https://nigerianembassy.se": {
+   "fails": 0,
+   "label": "Sweden: Embassy, Stockholm",
+   "last": 200,
+   "checked": "2026-10-30T01:28:32+00:00"
+  },
+  "https://www.nidosweden.se/": {
+   "fails": 1,
+   "label": "Sweden: NIDO Sweden",
+   "last": "<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: Hostname mismatch, certificate is not valid f",
+   "checked": "2026-10-30T01:28:32+00:00"
+  },
+  "https://www.facebook.com/nigerianunionsweden/": {
+   "fails": 0,
+   "label": "Sweden: Nigerian Union Sweden",
+   "last": 200,
+   "checked": "2026-10-30T01:28:33+00:00"
+  },
+  "https://nigerianunion.no/": {
+   "fails": 1,
+   "label": "Norway: Union of Nigerian Nationals Norway",
+   "last": "<urlopen error [Errno -2] Name or service not known>",
+   "checked": "2026-10-30T01:28:34+00:00"
+  },
+  "https://www.facebook.com/Community-of-Nigerian-Students-and-professionals-in-Jutland-Denmark-100069999960514/": {
+   "fails": 0,
+   "label": "Denmark: Community of Nigerian Students and Professionals in Jutland",
+   "last": 200,
+   "checked": "2026-10-30T01:28:35+00:00"
+  },
+  "https://nigeriansinfinland.com/": {
+   "fails": 0,
+   "label": "Finland: Association of Nigerian Community in Finland (ANCF)",
+   "last": 200,
+   "checked": "2026-10-30T01:28:36+00:00"
+  },
+  "https://x.com/niginfinland": {
+   "fails": 0,
+   "label": "Finland: Association of Nigerian Community in Finland (ANCF)",
+   "last": 200,
+   "checked": "2026-10-30T01:28:37+00:00"
+  },
+  "https://www.nmfcommunity.org/": {
+   "fails": 0,
+   "label": "Finland: Nigerian Muslims in Finland (NMF)",
+   "last": 200,
+   "checked": "2026-10-30T01:28:38+00:00"
+  },
+  "https://yaounde.foreignaffairs.gov.ng/": {
+   "fails": 1,
+   "label": "Cameroon: High Commission, Yaoundé",
+   "last": "<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: Hostname mismatch, certificate is not valid f",
+   "checked": "2026-10-30T01:28:40+00:00"
+  },
+  "https://douala.foreignaffairs.gov.ng/": {
+   "fails": 1,
+   "label": "Cameroon: Consulate-General, Douala",
+   "last": "<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: Hostname mismatch, certificate is not valid f",
+   "checked": "2026-10-30T01:28:43+00:00"
+  },
+  "https://buea.foreignaffairs.gov.ng/": {
+   "fails": 1,
+   "label": "Cameroon: Consulate-General, Buea",
+   "last": "<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: Hostname mismatch, certificate is not valid f",
+   "checked": "2026-10-30T01:28:45+00:00"
+  },
+  "https://lome.foreignaffairs.gov.ng/": {
+   "fails": 1,
+   "label": "Togo: Embassy, Lomé",
+   "last": "<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: Hostname mismatch, certificate is not valid f",
+   "checked": "2026-10-30T01:28:47+00:00"
+  },
+  "https://conakry.foreignaffairs.gov.ng/": {
+   "fails": 1,
+   "label": "Guinea: Embassy, Conakry",
+   "last": "<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: Hostname mismatch, certificate is not valid f",
+   "checked": "2026-10-30T01:28:49+00:00"
+  },
+  "https://bata.foreignaffairs.gov.ng/": {
+   "fails": 1,
+   "label": "Equatorial Guinea: Consulate-General, Bata",
+   "last": "<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: Hostname mismatch, certificate is not valid f",
+   "checked": "2026-10-30T01:28:50+00:00"
+  },
+  "https://www.naijakiwis.co.nz/": {
+   "fails": 0,
+   "label": "New Zealand: Association of Nigerians in New Zealand (Naijakiwis)",
+   "last": 200,
+   "checked": "2026-10-30T01:28:52+00:00"
+  },
+  "http://www.nigeriancanterbury.org": {
+   "fails": 0,
+   "label": "New Zealand: Nigerian Canterbury Association of New Zealand (NCANZ)",
+   "last": 200,
+   "checked": "2026-10-30T01:28:53+00:00"
+  }
+ },
+ "checked": "2026-10-30T01:28:53+00:00"
+}
