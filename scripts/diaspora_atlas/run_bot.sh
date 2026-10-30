@@ -13,7 +13,17 @@ git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 git add diaspora-atlas/data
 if ! git diff --cached --quiet; then
   git commit -m "Diaspora Atlas: ${LABEL} ($(date -u +%Y-%m-%d))"
-  for i in 1 2 3; do git pull --rebase --quiet && git push --quiet && break || sleep 10; done
+  for i in 1 2 3; do
+    if git pull --rebase --quiet; then
+      git push --quiet && break
+    else
+      # another bot changed the same data files meanwhile (usually manifest.json): keep this run's version
+      git checkout --theirs -- diaspora-atlas/data 2>/dev/null || true
+      git add diaspora-atlas/data
+      GIT_EDITOR=true git rebase --continue --quiet 2>/dev/null || git rebase --abort
+    fi
+    sleep 10
+  done
 fi
 
 if [ -s "$ATLAS_ISSUE_FILE" ]; then
