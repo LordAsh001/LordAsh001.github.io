@@ -1,0 +1,32 @@
+{
+ "_about": "Pages and sites the source watcher checks for new information about Nigerians abroad. trust: official | research | community | secondary. kind: page (new sentences) or sitemap (new pages whose address mentions Nigeria). match: regular expression a sentence must contain (case-insensitive); 'number' sentences must also contain a figure.",
+ "sources": [
+  {"id": "ons-migration", "kind": "page", "trust": "official", "country": "826", "url": "https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/internationalmigration", "match": "nigeria", "number": true},
+  {"id": "migration-observatory-uk", "kind": "page", "trust": "research", "country": "826", "url": "https://migrationobservatory.ox.ac.uk/resources/briefings/migrants-in-the-uk-an-overview/", "match": "nigeria", "number": true},
+  {"id": "statcan-fogs", "kind": "page", "trust": "official", "country": "124", "url": "https://www12.statcan.gc.ca/census-recensement/2021/as-sa/fogs-spg/page.cfm?lang=E&topic=9&dguid=2021A000011124", "match": "nigeria", "number": true},
+  {"id": "intelpoint-canada", "kind": "page", "trust": "secondary", "country": "124", "url": "https://intelpoint.co/insights/an-average-of-6960-nigerians-became-canadian-citizens-each-half-year-between-2022-and-2025/", "match": "nigeria", "number": true},
+  {"id": "abs-quickstats-nigeria", "kind": "page", "trust": "official", "country": "036", "url": "https://www.abs.gov.au/census/find-census-data/quickstats/2021/9124_AUS", "match": "nigeria", "number": true},
+  {"id": "conapa", "kind": "page", "trust": "community", "country": "036", "url": "https://conapa.org.au/", "match": "nigeria", "number": false},
+  {"id": "nigerians-in-qld", "kind": "page", "trust": "community", "country": "036", "url": "https://nigeriansinqld.org.au/about/who-we-are/", "match": "nigeria", "number": false},
+  {"id": "mpi-nigeria", "kind": "page", "trust": "research", "country": "", "url": "https://www.migrationpolicy.org/journal/country-profile/nigeria-aims-capitalize-regional-integration-amid-evolving-emigration", "match": "nigeria", "number": true},
+  {"id": "countryeconomy-uae", "kind": "page", "trust": "secondary", "country": "784", "url": "https://countryeconomy.com/countries/compare/united-arab-emirates/nigeria?sc=XE23", "match": "migra|emigra|immigra", "number": true},
+  {"id": "statehouse-ambassadors", "kind": "page", "trust": "official", "country": "", "url": "https://statehouse.gov.ng/?s=ambassador", "match": "ambassador|high commissioner|envoy|credentials", "number": false},
+  {"id": "nidcom-news", "kind": "page", "trust": "official", "country": "", "url": "https://nidcom.gov.ng/", "match": "diaspora|nigerians in|evacuat|registry", "number": false},
+  {"id": "rpw-uk", "kind": "page", "trust": "official", "country": "826", "url": "https://remittanceprices.worldbank.org/corridor/united-kingdom/nigeria", "match": "average|total cost", "number": true},
+  {"id": "rpw-us", "kind": "page", "trust": "official", "country": "840", "url": "https://remittanceprices.worldbank.org/corridor/united-states/nigeria", "match": "average|total cost", "number": true},
+  {"id": "rpw-canada", "kind": "page", "trust": "official", "country": "124", "url": "https://remittanceprices.worldbank.org/corridor/canada/nigeria", "match": "average|total cost", "number": true},
+  {"id": "rpw-germany", "kind": "page", "trust": "official", "country": "276", "url": "https://remittanceprices.worldbank.org/corridor/germany/nigeria", "match": "average|total cost", "number": true},
+  {"id": "rpw-italy", "kind": "page", "trust": "official", "country": "380", "url": "https://remittanceprices.worldbank.org/corridor/italy/nigeria", "match": "average|total cost", "number": true},
+  {"id": "rpw-spain", "kind": "page", "trust": "official", "country": "724", "url": "https://remittanceprices.worldbank.org/corridor/spain/nigeria", "match": "average|total cost", "number": true},
+  {"id": "rpw-netherlands", "kind": "page", "trust": "official", "country": "528", "url": "https://remittanceprices.worldbank.org/corridor/netherlands/nigeria", "match": "average|total cost", "number": true},
+  {"id": "rpw-ghana", "kind": "page", "trust": "official", "country": "288", "url": "https://remittanceprices.worldbank.org/corridor/ghana/nigeria", "match": "average|total cost", "number": true},
+  {"id": "rpw-south-africa", "kind": "page", "trust": "official", "country": "710", "url": "https://remittanceprices.worldbank.org/corridor/south-africa/nigeria", "match": "average|total cost", "number": true},
+  {"id": "site-ons", "kind": "sitemap", "trust": "official", "country": "826", "url": "https://www.ons.gov.uk/sitemap.xml"},
+  {"id": "site-abs", "kind": "sitemap", "trust": "official", "country": "036", "url": "https://www.abs.gov.au/sitemap.xml"},
+  {"id": "site-migration-observatory", "kind": "sitemap", "trust": "research", "country": "826", "url": "https://migrationobservatory.ox.ac.uk/sitemap.xml"},
+  {"id": "site-intelpoint", "kind": "sitemap", "trust": "secondary", "country": "", "url": "https://intelpoint.co/sitemap.xml"},
+  {"id": "site-canadavisa", "kind": "sitemap", "trust": "secondary", "country": "124", "url": "https://www.canadavisa.com/sitemap.xml"},
+  {"id": "site-marketreporters", "kind": "sitemap", "trust": "secondary", "country": "124", "url": "https://marketreporters.com/sitemap.xml"},
+  {"id": "site-canadavisaexpert", "kind": "sitemap", "trust": "secondary", "country": "124", "url": "https://canadavisaexpert.com/sitemap.xml"}
+ ]
+}
