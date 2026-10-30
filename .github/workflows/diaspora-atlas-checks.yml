@@ -18,6 +18,8 @@ jobs:
       GH_TOKEN: ${{ github.token }}
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: main  # start from the newest data, not the commit that queued the run
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
