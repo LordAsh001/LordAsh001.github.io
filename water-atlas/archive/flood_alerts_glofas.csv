@@ -832,44 +832,44 @@ date,point_id,name,river,basin,country,state,lat,lon,upstream_area_km2,prob_2yr_
 2026-10-29,G5370,Lom A Betare Oya,Lom,Sanaga,Cameroon,,5.917,14.133,7159.0,0.0,0.0,0.0,Inactive,No Data,as currently ongoing,2026-10-29
 2026-10-29,G5371,Kadey A Pana,Kadey,Congo,Cameroon,,4.2,14.683,20368.0,0.0,0.0,0.0,Inactive,No Data,as currently ongoing,2026-10-29
 2026-10-29,G5373,Djerem A Mbakaou Echelle Ii -Aval-,Djerem,Sanaga,Cameroon,,6.333,12.817,21761.0,0.0,0.0,0.0,Inactive,No Data,as currently ongoing,2026-10-29
-2026-10-30,G1019,Geidam,Yobe,Chad,Nigeria,Yobe,12.99,11.97,123973.0,0.0,0.0,0.0,Inactive,No Data,as currently ongoing,2026-10-29
-2026-10-30,G1024,Gashua,Yobe,Chad,Nigeria,Yobe,12.862,11.045,82217.0,0.0,0.0,0.0,Inactive,No Data,as currently ongoing,2026-10-29
-2026-10-30,G1028,W,Niger,Niger,Niger,,12.583,2.617,673099.0,0.0,0.0,0.0,Inactive,No Data,as currently ongoing,2026-10-29
-2026-10-30,G1031,Dapchi,Komadugu Gana,Chad,Nigeria,Yobe,12.493,11.507,13820.0,0.0,0.0,0.0,Inactive,No Data,as currently ongoing,2026-10-29
-2026-10-30,G1032,Hadejia,Hadejia,Chad,Nigeria,Jigawa,12.441,10.031,22591.0,0.0,0.0,0.0,Inactive,No Data,in 11-14 days (on 2026-11-12),2026-10-29
-2026-10-30,G1035,Katagum,Jamaare,Chad,Nigeria,Bauchi,12.281,10.368,19426.0,0.0,0.0,0.0,Inactive,No Data,as currently ongoing,2026-10-29
-2026-10-30,G1042,Malanville,Niger,Niger,Benin,,11.867,3.383,1192664.0,0.0,0.0,0.0,Inactive,No Data,as currently ongoing,2026-10-29
-2026-10-30,G1043,Wudil,Hadejia,Chad,Nigeria,Kano,11.797,8.834,16958.0,0.0,0.0,0.0,Inactive,No Data,in 11-14 days (on 2026-11-10),2026-10-29
-2026-10-30,G1077,Ibi,Benue,Niger,Nigeria,Taraba,8.2,9.733,259392.0,0.0,0.0,0.0,Inactive,No Data,as currently ongoing,2026-10-29
-2026-10-30,G1083,Lokoja,Niger,Niger,Nigeria,Kogi,7.8,6.767,1991762.0,0.0,0.0,0.0,Inactive,No Data,in 1 day (on 2026-10-30),2026-10-29
-2026-10-30,G1894,Alibori A Route Kandi-Banikoara -Aval-,Alibori,Niger,Benin,,11.233,2.65,7837.0,0.0,0.0,0.0,Inactive,No Data,as currently ongoing,2026-10-29
-2026-10-30,G1895,Sokoto A Kende,Sokoto,Niger,Nigeria,Kebbi,11.518,4.25,182359.0,0.0,0.0,0.0,Inactive,No Data,as currently ongoing,2026-10-29
-2026-10-30,G1897,Niger A Jebba Downstream Dam,Niger,Niger,Nigeria,Niger,9.167,4.833,1536818.0,0.0,0.0,0.0,Inactive,No Data,in 1 day (on 2026-10-30),2026-10-29
-2026-10-30,G1898,Niger A Onitsha,Niger,Niger,Nigeria,Delta,6.19,6.754,2003184.0,0.0,0.0,0.0,Inactive,No Data,as currently ongoing,2026-10-29
-2026-10-30,G1899,Na,Anambra,Niger,Nigeria,Anambra,6.524,6.885,8551.0,0.0,0.0,0.0,Inactive,No Data,in 1 day (on 2026-10-30),2026-10-29
-2026-10-30,G1900,Benue A Makurdi,Benue,Niger,Nigeria,Benue,7.75,8.533,304484.0,0.0,0.0,0.0,Inactive,No Data,in 1 day (on 2026-10-30),2026-10-29
-2026-10-30,G4779,Faro A Djelepo,Faro,Niger,Cameroon,,8.65,12.817,24455.0,0.0,0.0,0.0,Inactive,No Data,as currently ongoing,2026-10-29
-2026-10-30,G4794,Oueme A Hetin Sota,Oueme,Oueme,Benin,,6.591,2.497,48585.0,0.0,0.0,0.0,Inactive,No Data,as currently ongoing,2026-10-29
-2026-10-30,G4862,Mape A Au Pont De Magba Amont,Noun,Sanaga,Cameroon,,5.988,11.261,3610.0,0.0,0.0,0.0,Inactive,No Data,in 11-14 days (on 2026-11-12),2026-10-29
-2026-10-30,G4865,Mungo A Mundame,Mungo,Coastal,Cameroon,,4.567,9.533,2453.0,0.0,0.0,0.0,Inactive,No Data,as currently ongoing,2026-10-29
-2026-10-30,G4908,Majia At Tsernaoua,Majia,Niger,Niger,,13.88,5.33,2420.0,0.0,0.0,0.0,Inactive,No Data,as currently ongoing,2026-10-29
-2026-10-30,G4924,Jamaare River At Foggo,Jamaare,Chad,Nigeria,Bauchi,11.424,9.951,9682.0,0.0,0.0,0.0,Inactive,No Data,as currently ongoing,2026-10-29
-2026-10-30,G4927,Okpara A Kaboua,Okpara,Oueme,Benin,,8.25,2.717,9483.0,0.0,0.0,0.0,Inactive,No Data,as currently ongoing,2026-10-29
-2026-10-30,G4932,Dudurun Warwade At Chai-Chai,Dudurun Warwade,Chad,Nigeria,Jigawa,12.015,9.268,1839.0,0.0,0.0,0.0,Inactive,No Data,as currently ongoing,2026-10-29
-2026-10-30,G4943,Irane A Koutakroukrou Rte Kandi-Segbana,Irane,Niger,Benin,,11.067,3.067,1421.0,0.0,0.0,0.0,Inactive,No Data,as currently ongoing,2026-10-29
-2026-10-30,G5004,Benue A Wuro Boki,Benue,Niger,Nigeria,Adamawa,9.383,12.767,102603.0,0.0,0.0,0.0,Inactive,No Data,as currently ongoing,2026-10-29
-2026-10-30,G5005,Benoue A Buffle Noir,Benoue,Niger,Cameroon,,8.117,13.833,3201.0,0.0,0.0,0.0,Inactive,No Data,as currently ongoing,2026-10-29
-2026-10-30,G5011,Mayo Kebi A Cossi,Mayo Kebi,Niger,Cameroon,,9.617,13.867,26541.0,0.0,0.0,0.0,Inactive,No Data,as currently ongoing,2026-10-29
-2026-10-30,G5025,Kaduna A Wuya,Kaduna,Niger,Nigeria,Niger,9.117,5.833,64888.0,0.0,0.0,0.0,Inactive,No Data,as currently ongoing,2026-10-29
-2026-10-30,G5039,Metchem A Gouri,Metchem,Niger,Cameroon,,6.283,10.033,2203.0,0.0,0.0,0.0,Inactive,No Data,as currently ongoing,2026-10-29
-2026-10-30,G5048,Niger A Baro,Niger,Niger,Nigeria,Kogi,8.583,6.383,1631977.0,0.0,0.0,0.0,Inactive,No Data,in 2 days (on 2026-10-31),2026-10-29
-2026-10-30,G5049,Benue A Umaisha,Benue,Niger,Nigeria,Kogi,7.983,7.2,334808.0,0.0,0.0,0.0,Inactive,No Data,as currently ongoing,2026-10-29
-2026-10-30,G5105,Katsina Ala A Katsina Ala,Katsina Ala,Niger,Nigeria,Benue,7.25,9.336,17976.0,0.0,0.0,0.0,Inactive,No Data,as currently ongoing,2026-10-29
-2026-10-30,G5112,Jamaare River At Bunga,Jamaare,Chad,Nigeria,Bauchi,10.93,9.606,7356.0,0.0,0.0,0.0,Inactive,No Data,as currently ongoing,2026-10-29
-2026-10-30,G5122,Mbam A Bac De Goura,Mbam,Sanaga,Cameroon,,4.567,11.367,42992.0,0.0,0.0,0.0,Inactive,No Data,as currently ongoing,2026-10-29
-2026-10-30,G5136,Sanaga A Nachtigal,Sanaga,Sanaga,Cameroon,,4.35,11.633,76326.0,0.0,0.0,0.0,Inactive,No Data,as currently ongoing,2026-10-29
-2026-10-30,G5310,Goulbi De Maradi A Nielloua,Logone,Niger,Niger,,13.15,7.22,4264.0,0.0,0.0,0.0,Inactive,No Data,as currently ongoing,2026-10-29
-2026-10-30,G5364,Kadei A Batouri,Kadei,Congo,Cameroon,,4.423,14.325,8828.0,0.0,0.0,0.0,Inactive,No Data,as currently ongoing,2026-10-29
-2026-10-30,G5370,Lom A Betare Oya,Lom,Sanaga,Cameroon,,5.917,14.133,7159.0,0.0,0.0,0.0,Inactive,No Data,as currently ongoing,2026-10-29
-2026-10-30,G5371,Kadey A Pana,Kadey,Congo,Cameroon,,4.2,14.683,20368.0,0.0,0.0,0.0,Inactive,No Data,as currently ongoing,2026-10-29
-2026-10-30,G5373,Djerem A Mbakaou Echelle Ii -Aval-,Djerem,Sanaga,Cameroon,,6.333,12.817,21761.0,0.0,0.0,0.0,Inactive,No Data,as currently ongoing,2026-10-29
+2026-10-30,G1019,Geidam,Yobe,Chad,Nigeria,Yobe,12.99,11.97,123973.0,0.0,0.0,0.0,Inactive,No Data,as currently ongoing,2026-10-30
+2026-10-30,G1024,Gashua,Yobe,Chad,Nigeria,Yobe,12.862,11.045,82217.0,0.0,0.0,0.0,Inactive,No Data,as currently ongoing,2026-10-30
+2026-10-30,G1028,W,Niger,Niger,Niger,,12.583,2.617,673099.0,0.0,0.0,0.0,Inactive,No Data,as currently ongoing,2026-10-30
+2026-10-30,G1031,Dapchi,Komadugu Gana,Chad,Nigeria,Yobe,12.493,11.507,13820.0,0.0,0.0,0.0,Inactive,No Data,as currently ongoing,2026-10-30
+2026-10-30,G1032,Hadejia,Hadejia,Chad,Nigeria,Jigawa,12.441,10.031,22591.0,0.0,0.0,0.0,Inactive,No Data,in 7 days (on 2026-11-06),2026-10-30
+2026-10-30,G1035,Katagum,Jamaare,Chad,Nigeria,Bauchi,12.281,10.368,19426.0,0.0,0.0,0.0,Inactive,No Data,as currently ongoing,2026-10-30
+2026-10-30,G1042,Malanville,Niger,Niger,Benin,,11.867,3.383,1192664.0,0.0,0.0,0.0,Inactive,No Data,as currently ongoing,2026-10-30
+2026-10-30,G1043,Wudil,Hadejia,Chad,Nigeria,Kano,11.797,8.834,16958.0,0.0,0.0,0.0,Inactive,No Data,in 8-10 days (on 2026-11-08),2026-10-30
+2026-10-30,G1077,Ibi,Benue,Niger,Nigeria,Taraba,8.2,9.733,259392.0,0.0,0.0,0.0,Inactive,No Data,as currently ongoing,2026-10-30
+2026-10-30,G1083,Lokoja,Niger,Niger,Nigeria,Kogi,7.8,6.767,1991762.0,0.0,0.0,0.0,Inactive,No Data,as currently ongoing,2026-10-30
+2026-10-30,G1894,Alibori A Route Kandi-Banikoara -Aval-,Alibori,Niger,Benin,,11.233,2.65,7837.0,0.0,0.0,0.0,Inactive,No Data,as currently ongoing,2026-10-30
+2026-10-30,G1895,Sokoto A Kende,Sokoto,Niger,Nigeria,Kebbi,11.518,4.25,182359.0,0.0,0.0,0.0,Inactive,No Data,as currently ongoing,2026-10-30
+2026-10-30,G1897,Niger A Jebba Downstream Dam,Niger,Niger,Nigeria,Niger,9.167,4.833,1536818.0,0.0,0.0,0.0,Inactive,No Data,as currently ongoing,2026-10-30
+2026-10-30,G1898,Niger A Onitsha,Niger,Niger,Nigeria,Delta,6.19,6.754,2003184.0,0.0,0.0,0.0,Inactive,No Data,as currently ongoing,2026-10-30
+2026-10-30,G1899,Na,Anambra,Niger,Nigeria,Anambra,6.524,6.885,8551.0,0.0,0.0,0.0,Inactive,No Data,in 2 days (on 2026-11-01),2026-10-30
+2026-10-30,G1900,Benue A Makurdi,Benue,Niger,Nigeria,Benue,7.75,8.533,304484.0,0.0,0.0,0.0,Inactive,No Data,as currently ongoing,2026-10-30
+2026-10-30,G4779,Faro A Djelepo,Faro,Niger,Cameroon,,8.65,12.817,24455.0,0.0,0.0,0.0,Inactive,No Data,as currently ongoing,2026-10-30
+2026-10-30,G4794,Oueme A Hetin Sota,Oueme,Oueme,Benin,,6.591,2.497,48585.0,0.0,0.0,0.0,Inactive,No Data,as currently ongoing,2026-10-30
+2026-10-30,G4862,Mape A Au Pont De Magba Amont,Noun,Sanaga,Cameroon,,5.988,11.261,3610.0,0.0,0.0,0.0,Inactive,No Data,in 11-14 days (on 2026-11-13),2026-10-30
+2026-10-30,G4865,Mungo A Mundame,Mungo,Coastal,Cameroon,,4.567,9.533,2453.0,0.0,0.0,0.0,Inactive,No Data,as currently ongoing,2026-10-30
+2026-10-30,G4908,Majia At Tsernaoua,Majia,Niger,Niger,,13.88,5.33,2420.0,0.0,0.0,0.0,Inactive,No Data,as currently ongoing,2026-10-30
+2026-10-30,G4924,Jamaare River At Foggo,Jamaare,Chad,Nigeria,Bauchi,11.424,9.951,9682.0,0.0,0.0,0.0,Inactive,No Data,as currently ongoing,2026-10-30
+2026-10-30,G4927,Okpara A Kaboua,Okpara,Oueme,Benin,,8.25,2.717,9483.0,0.0,0.0,0.0,Inactive,No Data,as currently ongoing,2026-10-30
+2026-10-30,G4932,Dudurun Warwade At Chai-Chai,Dudurun Warwade,Chad,Nigeria,Jigawa,12.015,9.268,1839.0,0.0,0.0,0.0,Inactive,No Data,as currently ongoing,2026-10-30
+2026-10-30,G4943,Irane A Koutakroukrou Rte Kandi-Segbana,Irane,Niger,Benin,,11.067,3.067,1421.0,0.0,0.0,0.0,Inactive,No Data,as currently ongoing,2026-10-30
+2026-10-30,G5004,Benue A Wuro Boki,Benue,Niger,Nigeria,Adamawa,9.383,12.767,102603.0,0.0,0.0,0.0,Inactive,No Data,as currently ongoing,2026-10-30
+2026-10-30,G5005,Benoue A Buffle Noir,Benoue,Niger,Cameroon,,8.117,13.833,3201.0,0.0,0.0,0.0,Inactive,No Data,as currently ongoing,2026-10-30
+2026-10-30,G5011,Mayo Kebi A Cossi,Mayo Kebi,Niger,Cameroon,,9.617,13.867,26541.0,0.0,0.0,0.0,Inactive,No Data,as currently ongoing,2026-10-30
+2026-10-30,G5025,Kaduna A Wuya,Kaduna,Niger,Nigeria,Niger,9.117,5.833,64888.0,0.0,0.0,0.0,Inactive,No Data,as currently ongoing,2026-10-30
+2026-10-30,G5039,Metchem A Gouri,Metchem,Niger,Cameroon,,6.283,10.033,2203.0,0.0,0.0,0.0,Inactive,No Data,as currently ongoing,2026-10-30
+2026-10-30,G5048,Niger A Baro,Niger,Niger,Nigeria,Kogi,8.583,6.383,1631977.0,0.0,0.0,0.0,Inactive,No Data,in 1 day (on 2026-10-31),2026-10-30
+2026-10-30,G5049,Benue A Umaisha,Benue,Niger,Nigeria,Kogi,7.983,7.2,334808.0,0.0,0.0,0.0,Inactive,No Data,as currently ongoing,2026-10-30
+2026-10-30,G5105,Katsina Ala A Katsina Ala,Katsina Ala,Niger,Nigeria,Benue,7.25,9.336,17976.0,0.0,0.0,0.0,Inactive,No Data,in 3 days (on 2026-11-02),2026-10-30
+2026-10-30,G5112,Jamaare River At Bunga,Jamaare,Chad,Nigeria,Bauchi,10.93,9.606,7356.0,0.0,0.0,0.0,Inactive,No Data,as currently ongoing,2026-10-30
+2026-10-30,G5122,Mbam A Bac De Goura,Mbam,Sanaga,Cameroon,,4.567,11.367,42992.0,0.0,0.0,0.0,Inactive,No Data,as currently ongoing,2026-10-30
+2026-10-30,G5136,Sanaga A Nachtigal,Sanaga,Sanaga,Cameroon,,4.35,11.633,76326.0,0.0,0.0,0.0,Inactive,No Data,as currently ongoing,2026-10-30
+2026-10-30,G5310,Goulbi De Maradi A Nielloua,Logone,Niger,Niger,,13.15,7.22,4264.0,0.0,0.0,0.0,Inactive,No Data,as currently ongoing,2026-10-30
+2026-10-30,G5364,Kadei A Batouri,Kadei,Congo,Cameroon,,4.423,14.325,8828.0,0.0,0.0,0.0,Inactive,No Data,as currently ongoing,2026-10-30
+2026-10-30,G5370,Lom A Betare Oya,Lom,Sanaga,Cameroon,,5.917,14.133,7159.0,0.0,0.0,0.0,Inactive,No Data,as currently ongoing,2026-10-30
+2026-10-30,G5371,Kadey A Pana,Kadey,Congo,Cameroon,,4.2,14.683,20368.0,0.0,0.0,0.0,Inactive,No Data,as currently ongoing,2026-10-30
+2026-10-30,G5373,Djerem A Mbakaou Echelle Ii -Aval-,Djerem,Sanaga,Cameroon,,6.333,12.817,21761.0,0.0,0.0,0.0,Inactive,No Data,as currently ongoing,2026-10-30
