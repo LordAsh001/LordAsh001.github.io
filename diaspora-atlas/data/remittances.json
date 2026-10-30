@@ -1,0 +1,34 @@
+{
+ "checked": "2026-10-30T01:05:06+00:00",
+ "total": {
+  "value_usd": 22789097830,
+  "year": 2025,
+  "source": "World Bank (BX.TRF.PWKR.CD.DT)",
+  "url": "https://data.worldbank.org/indicator/BX.TRF.PWKR.CD.DT?locations=NG",
+  "series": {
+   "2021": 19483402059,
+   "2022": 20127614151,
+   "2023": 19549549365,
+   "2024": 22126757545,
+   "2025": 22789097830
+  }
+ },
+ "gdp": {
+  "value": 7.84,
+  "year": 2025,
+  "note": "Changes in the share of GDP also reflect exchange-rate moves, such as the fall in Nigeria's GDP in US dollars after the 2023–24 naira devaluation, not only changes in remittances.",
+  "url": "https://data.worldbank.org/indicator/BX.TRF.PWKR.DT.GD.ZS?locations=NG",
+  "series": {
+   "2021": 3.2,
+   "2022": 3.11,
+   "2023": 4.01,
+   "2024": 8.77,
+   "2025": 7.84
+  }
+ },
+ "avg": {
+  "value_pct": 4.64,
+  "year": 2023,
+  "url": "https://data.worldbank.org/indicator/SI.RMT.COST.IB.ZS?locations=NG"
+ }
+}
