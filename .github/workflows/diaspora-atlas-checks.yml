@@ -1,0 +1,29 @@
+# Monthly (16th, 07:13 UTC): directory link check and emergency-number watch for the Nigeria Diaspora Atlas.
+name: "Diaspora Atlas bot: directory and emergency checks"
+on:
+  schedule:
+    - cron: "13 7 16 * *"
+  workflow_dispatch: {}
+permissions:
+  contents: write
+  issues: write
+concurrency:
+  group: diaspora-atlas-data
+  cancel-in-progress: false
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Directory link check
+        continue-on-error: true
+        run: bash scripts/diaspora_atlas/run_bot.sh check_directory.py "Directory links"
+      - name: Emergency-number watch
+        continue-on-error: true
+        run: bash scripts/diaspora_atlas/run_bot.sh watch_emergency.py "Emergency numbers"

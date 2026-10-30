@@ -1,0 +1,25 @@
+# Quarterly (2 Jan/Apr/Jul/Oct, 08:29 UTC): checklist issue for the hand-curated parts of the Nigeria Diaspora Atlas.
+name: "Diaspora Atlas bot: quarterly review"
+on:
+  schedule:
+    - cron: "29 8 2 1,4,7,10 *"
+  workflow_dispatch: {}
+permissions:
+  contents: write
+  issues: write
+concurrency:
+  group: diaspora-atlas-data
+  cancel-in-progress: false
+jobs:
+  review:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Open review checklist
+        run: bash scripts/diaspora_atlas/run_bot.sh quarterly_review.py "Quarterly review"

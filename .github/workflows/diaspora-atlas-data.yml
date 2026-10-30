@@ -1,0 +1,43 @@
+# Monthly (9th, 05:37 UTC): official statistics for the Nigeria Diaspora Atlas.
+# Eurostat, US Census Bureau (ACS), UNESCO UIS, World Bank (remittances, KNOMAD bilateral) and the UN edition watch.
+name: "Diaspora Atlas bot: monthly data refresh"
+on:
+  schedule:
+    - cron: "37 5 9 * *"
+  workflow_dispatch: {}
+permissions:
+  contents: write
+  issues: write
+concurrency:
+  group: diaspora-atlas-data
+  cancel-in-progress: false
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      GH_TOKEN: ${{ github.token }}
+      CENSUS_API_KEY: ${{ secrets.CENSUS_API_KEY }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Eurostat (EU and EFTA countries)
+        continue-on-error: true
+        run: bash scripts/diaspora_atlas/run_bot.sh fetch_eurostat.py "Eurostat"
+      - name: US Census Bureau (ACS)
+        continue-on-error: true
+        run: bash scripts/diaspora_atlas/run_bot.sh fetch_us_acs.py "US Census ACS"
+      - name: UNESCO students abroad
+        continue-on-error: true
+        run: bash scripts/diaspora_atlas/run_bot.sh fetch_uis.py "UNESCO students"
+      - name: World Bank remittances
+        continue-on-error: true
+        run: bash scripts/diaspora_atlas/run_bot.sh fetch_worldbank.py "World Bank remittances"
+      - name: World Bank/KNOMAD remittances by country
+        continue-on-error: true
+        run: bash scripts/diaspora_atlas/run_bot.sh fetch_bilateral.py "Remittances by country"
+      - name: UN International Migrant Stock edition watch
+        continue-on-error: true
+        run: bash scripts/diaspora_atlas/run_bot.sh watch_un.py "UN migrant stock watch"
