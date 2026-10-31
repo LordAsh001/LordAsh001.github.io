@@ -704,10 +704,12 @@ document.querySelectorAll('nav.tabs [data-view]').forEach(b=>b.onclick=()=>{
   document.querySelectorAll('nav.tabs [data-view]').forEach(x=>x.setAttribute('aria-selected',x===b));
   document.querySelectorAll('section.view').forEach(s=>s.classList.toggle('active',s.id==='view-'+b.dataset.view));
   if(b.dataset.view==='map') setTimeout(()=>map.invalidateSize(),50);
-  try{history.replaceState(null,'','#'+b.dataset.view)}catch(e){}
+  try{const u='#'+b.dataset.view; if(location.hash!==u&&!(u==='#map'&&!location.hash)) history.pushState(null,'',u)}catch(e){}
   try{window.SiteTrack&&window.SiteTrack('tab/'+b.dataset.view,'Opened tab: '+b.textContent.trim())}catch(e){}
 });
 const h=location.hash.slice(1); if(h){const b=document.querySelector(`nav.tabs [data-view="${h}"]`); if(b) setTimeout(()=>b.click(),0);}
+// Back / Forward move between tabs
+window.addEventListener('popstate',()=>{const v=location.hash.slice(1)||'map';const b=document.querySelector(`nav.tabs [data-view="${v}"]`); if(b&&b.getAttribute('aria-selected')!=='true') b.click();});
 
 // ---------- Data ----------
 const ASSETS=ASSETS_RAW.map(r=>({id:r[0],name:r[1],cat:r[2],state:r[3],lat:r[4],lon:r[5],cap:r[6],unit:r[7],status:r[8],notes:r[9]}));
