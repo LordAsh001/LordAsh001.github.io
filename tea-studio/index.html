@@ -4068,8 +4068,13 @@ document.addEventListener("keydown",e=>{
 function bootExtras(){
   const u=$("#btnUndo"), r=$("#btnRedo"), h=$("#btnHelp"), s=$("#btnShare"); if(u) u.onclick=undo; if(r) r.onclick=redo; if(h) h.onclick=()=>openHelp(); if(s) s.onclick=shareLink;
   HIST.last=PROJ?JSON.stringify(PROJ):null; histButtons();
-  loadFromHash().then(ok=>{ if(ok) render(); });
+  loadFromHash().then(ok=>{ if(ok) render(); else stepFromHash(); try{ if(!/^#\/[a-z]/.test(location.hash)) history.replaceState(null,"",location.pathname+location.search+"#/"+UI.step); }catch(e){} });
 }
+/* ---------- each step has its own address (#/basis, #/results …) so links, reloads and Back/Forward move between steps ---------- */
+const _goStep=go;
+function stepFromHash(){ const id=(location.hash||"").replace(/^#\/?/,""); if(id&&id!==UI.step&&(STEPS.some(x=>x.id===id)||id==="library"||id==="sources")) _goStep(id); }
+go=function(step){ _goStep(step); const h="#/"+UI.step; if(location.hash!==h&&!/[#&]p=/.test(location.hash)){ try{ history.pushState(null,"",h); }catch(e){} } };
+window.addEventListener("popstate",stepFromHash);
 /* ============================================================
    REPORT — one content model rendered to PDF (jsPDF) and DOCX
    ============================================================ */
