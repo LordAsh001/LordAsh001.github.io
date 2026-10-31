@@ -1446,13 +1446,26 @@ function start(DATA, EU, US, MAN, DIRS, LIVE) {
     tabBtns.forEach(b => b.setAttribute("aria-selected", String(b.dataset.tab === v)));
     if (scroll) { const t = document.querySelector(".tabs"); const y = t.getBoundingClientRect().top + window.scrollY; if (window.scrollY > y) window.scrollTo({ top: y }); }
   }
-  tabBtns.forEach(b => b.addEventListener("click", () => showView(b.dataset.tab, true)));
-  document.addEventListener("click", e => { const a = e.target.closest("[data-goto]"); if (a) { e.preventDefault(); showView(a.dataset.goto, true); } });
+  /* each section has its own address (#directory, #consular …) so links, reloads and Back/Forward return to it */
+  const VIEWS = tabBtns.map(b => b.dataset.tab);
+  function openView(v) {
+    showView(v, true);
+    const cur = location.hash.slice(1);
+    try {
+      if (v === "map") { if (VIEWS.includes(cur)) history.pushState(null, "", location.pathname + location.search); }
+      else if (cur !== v) history.pushState(null, "", "#" + v);
+    } catch (e) {}
+  }
+  tabBtns.forEach(b => b.addEventListener("click", () => openView(b.dataset.tab)));
+  document.addEventListener("click", e => { const a = e.target.closest("[data-goto]"); if (a) { e.preventDefault(); openView(a.dataset.goto); } });
 
   /* ---------- start ---------- */
   paint();
   layerVis(); scaleMarks();
   function fromHash() {
+    const v = location.hash.slice(1);
+    if (VIEWS.includes(v) && v !== "map") { showView(v); return; }
+    if (document.querySelector('.view[data-view="map"]').hidden) showView("map");
     const m = /^#c(\d{3})$/.exec(location.hash);
     if (m && byId.has(m[1])) select(m[1]); else if (m && DIRS[m[1]]) openCountry(m[1]); else overview();
   }
