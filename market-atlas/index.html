@@ -1847,8 +1847,11 @@ function showTab(t){
   if (t==="tracker") renderTracker();
   if (t==="calendar") renderCalendar();
   if (t==="export"){ renderExport(); exportRoute(); } else clearExportMap();
+  // keep the tab in the address so links, reloads and Back/Forward return to it
+  try { const cur = (location.hash||"").replace("#","")==="fuel" ? "route" : (location.hash||"").replace("#",""); if (cur!==t && !(t==="explore" && !cur)) history.pushState(null, "", "#"+t); } catch(e){}
 }
 document.querySelectorAll(".tabs button").forEach(b=>b.onclick=()=>showTab(b.dataset.tab));
+window.addEventListener("popstate", ()=>{ let t=(location.hash||"").replace("#","")||"explore"; if (t==="fuel") t="route"; const b=document.querySelector(`.tabs button[data-tab="${t}"]`); if (b && b.getAttribute("aria-selected")!=="true") showTab(t); });
 
 // ---------- Explore pane ----------
 function placeRow(p, right=""){
