@@ -67,10 +67,12 @@ function go(v) {
   T("section/" + v, "Opened section: " + v);
   $$(".view").forEach((s) => s.classList.toggle("on", s.id === "v-" + v));
   $$(".tab").forEach((t) => t.setAttribute("aria-selected", t.dataset.v === v));
-  try { history.replaceState(null, "", "#" + v); } catch (e) {}
+  try { if (location.hash !== "#" + v) history[location.hash ? "pushState" : "replaceState"](null, "", "#" + v); } catch (e) {}
   window.scrollTo({ top: 0 });
 }
 $$(".tab").forEach((t) => t.addEventListener("click", () => go(t.dataset.v)));
+/* Back / Forward move between sections */
+window.addEventListener("popstate", () => { const v = (location.hash || "#home").slice(1); if (document.getElementById("v-" + v)) go(v); });
 document.addEventListener("click", (e) => { const g = e.target.closest("[data-go]"); if (g) go(g.dataset.go); });
 
 /* ---------------- scholarships ---------------- */
