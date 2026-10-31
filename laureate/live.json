@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-30",
+ "updated": "2026-10-31",
  "sources": [
   {
    "source": "Opportunities for Africans",
@@ -9,7 +9,7 @@
   {
    "source": "Opportunity Desk",
    "ok": true,
-   "items": 6
+   "items": 4
   },
   {
    "source": "Opportunities Corners",
@@ -19,7 +19,7 @@
   {
    "source": "Scholarship Region",
    "ok": true,
-   "items": 10
+   "items": 8
   },
   {
    "source": "Opportunities for Youth",
@@ -57,6 +57,26 @@
  ],
  "items": [
   {
+   "title": "MIT Summer Research Program 2027 in USA (Fully Funded)",
+   "link": "https://opportunitiescorners.com/mit-summer-research-program-2027/",
+   "date": "2026-10-31",
+   "source": "Opportunities Corners",
+   "official": false,
+   "ids": [],
+   "summary": "The applications are now open for the MIT Summer Research Program (MSRP) 2027 in the USA. This is an excellent opportunity for talented undergraduate students to participate in a fully funded summer …",
+   "seen": "2026-10-31"
+  },
+  {
+   "title": "Community Solutions Program 2027 in USA (Fully Funded)",
+   "link": "https://opportunitiescorners.com/community-solutions-program-2027/",
+   "date": "2026-10-31",
+   "source": "Opportunities Corners",
+   "official": false,
+   "ids": [],
+   "summary": "The Community Solutions Program (CSP) 2027 is a fully funded leadership development program in the USA. It aims to empower community leaders to develop solutions to local economic, social, political,…",
+   "seen": "2026-10-31"
+  },
+  {
    "title": "WAAW Foundation Scholarship For African Undergraduates 2026/27 | How To Apply",
    "link": "https://www.scholarshipregion.com/waaw-foundation-scholarship/",
    "date": "2026-10-30",
@@ -75,6 +95,110 @@
    "ids": [],
    "summary": "The Simon Fraser University Scholarship offers study opportunities for international students who are interested in pursuing master’s and doctoral degrees in Canada. As a selected applicant, you will…",
    "seen": "2026-10-30"
+  },
+  {
+   "title": "The American University of Cairo (AUC) Mastercard Foundation Scholars Program 2027 (Fully Funded)",
+   "link": "https://www.opportunitiesforafricans.com/the-american-university-of-cairo-auc-mastercard-foundation-scholars-program-2027/",
+   "date": "2026-10-30",
+   "source": "Opportunities for Africans",
+   "official": false,
+   "ids": [
+    "mastercard"
+   ],
+   "summary": "Application Deadline: May 6, 2027 Applications are now open for the 2027 American University of Cairo (AUC) Mastercard Foundation Scholars Program. The Mastercard Foundation Scholars Program at Ameri…",
+   "seen": "2026-10-31"
+  },
+  {
+   "title": "Global Burden of Disease (GBD) Fellowship 2027",
+   "link": "https://opportunitydesk.org/2026/10/30/gbd-fellowship-2027/",
+   "date": "2026-10-30",
+   "source": "Opportunity Desk",
+   "official": false,
+   "ids": [],
+   "summary": "Deadline: December 21, 2026 Applications are open for the Global Burden of Disease (GBD) Fellowship 2027. The GBD Fellowship is an early-career, cohort-based postdoctoral training program at the Inst…",
+   "seen": "2026-10-31"
+  },
+  {
+   "title": "Morgan Stanley Sustainable Finance Fellowship Program 2027 (Paid)",
+   "link": "https://opportunitydesk.org/2026/10/30/morgan-stanley-sustainable-finance-fellowship-program-2027/",
+   "date": "2026-10-30",
+   "source": "Opportunity Desk",
+   "official": false,
+   "ids": [],
+   "summary": "Deadline: November 13, 2026 Applications are invited for the Morgan Stanley Sustainable Finance Fellowship Program 2027. The Sustainable Finance Summer Fellowship provides a unique opportunity to wor…",
+   "seen": "2026-10-31"
+  },
+  {
+   "title": "FASPE Fellowship 2027 in Berlin and Poland (Fully Funded)",
+   "link": "https://opportunitiescorners.com/faspe-fellowship-2027/",
+   "date": "2026-10-30",
+   "source": "Opportunities Corners",
+   "official": false,
+   "ids": [],
+   "summary": "The Applications are now open for the FASPE Fellowship 2027. It is a Fully Funded two-week study program in Berlin and Poland. The Fellowship is open to enrolled students, recent graduates, and early…",
+   "seen": "2026-10-31"
+  },
+  {
+   "title": "Texas State University Scholarship in United States 2027 | Fully Funded",
+   "link": "https://www.scholarshipregion.com/texas-state-university-scholarship/",
+   "date": "2026-10-30",
+   "source": "Scholarship Region",
+   "official": false,
+   "ids": [],
+   "summary": "Applications for the 2027 Texas State University Scholarships are open for international and domestic students to study in the USA. The scholarship is a fully funded PhD studentship that includes tui…",
+   "seen": "2026-10-31"
+  },
+  {
+   "title": "Anthony Udokwu Foundation Yahweh University Scholarship 2027 | How To Apply",
+   "link": "https://www.scholarshipregion.com/anthony-udokwu-foundation-yahweh-university-scholarship/",
+   "date": "2026-10-30",
+   "source": "Scholarship Region",
+   "official": false,
+   "ids": [],
+   "summary": "The Anthony Udokwu Foundation is pleased to announce the 2027/28 University Scholarship Application. The Anthony Udokwu Scholarship offers full tuition support, monthly stipends, empowerment, and men…",
+   "seen": "2026-10-31"
+  },
+  {
+   "title": "University of Georgia Graduate Research Assistantship in 2027 (Masters and PhD) | Fully Funded",
+   "link": "https://www.scholarshipregion.com/georgia-graduate-research-assistantship/",
+   "date": "2026-10-30",
+   "source": "Scholarship Region",
+   "official": false,
+   "ids": [],
+   "summary": "The University of Georgia is offering fully funded graduate research assistantships to incoming Master’s and Doctoral students to study in the USA. The University of Georgia Graduate Research Assista…",
+   "seen": "2026-10-31"
+  },
+  {
+   "title": "2027 Switzerland ETH Zurich Excellence Scholarship & Opportunity Programme (ESOP) | Fully Funded",
+   "link": "https://www.scholarshipregion.com/eth-zurich-excellence-scholarship/",
+   "date": "2026-10-30",
+   "source": "Scholarship Region",
+   "official": false,
+   "ids": [
+    "eth"
+   ],
+   "summary": "ETH Zurich in Switzerland provides support for outstanding students seeking to pursue a Master’s degree at the institution through the Excellence Scholarship & Opportunity Programme (ESOP). ETH Zuric…",
+   "seen": "2026-10-31"
+  },
+  {
+   "title": "Trent University Scholarships in Canada 2027 | How To Apply",
+   "link": "https://www.scholarshipregion.com/trent-university-scholarship/",
+   "date": "2026-10-30",
+   "source": "Scholarship Region",
+   "official": false,
+   "ids": [],
+   "summary": "Trent University in Canada offers scholarships and awards to international students seeking to pursue bachelor’s degrees at the institution. The Trent University International Scholarships are awarde…",
+   "seen": "2026-10-31"
+  },
+  {
+   "title": "SA-CERN Excellence Scholarships 2027 (SA-CERN Bursary) | Fully Funded",
+   "link": "https://www.scholarshipregion.com/sa-cern-excellence-scholarships/",
+   "date": "2026-10-30",
+   "source": "Scholarship Region",
+   "official": false,
+   "ids": [],
+   "summary": "Applications are now open for the 2027 SA-CERN Programme Excellence MSc/PhD Bursary Programme. The SA-CERN programme is a national programme funded by the Department of Science and Innovation and the…",
+   "seen": "2026-10-31"
   },
   {
    "title": "2027/2028 Commonwealth Scholarship and Fellowship Plan (CSFP) nomination interview from 2nd to 5th November, 2026",
@@ -1587,126 +1711,6 @@
    "ids": [],
    "summary": "The Dahdaleh Global Health Graduate Scholarship 2027–2028 at York University in Canada is a competitive graduate research funding opportunity for outstanding domestic and international students pursu…",
    "seen": "2026-10-20"
-  },
-  {
-   "title": "Simons Foundation 2027 Fellows-to-Faculty Award Program: $600,000 Research Grant and Postdoctoral Funding for Early-Career Scientists",
-   "link": "https://opportunitiesforyouth.org/2026/10/19/simons-foundation-2027-fellows-to-faculty-program/",
-   "date": "2026-10-19",
-   "source": "Opportunities for Youth",
-   "official": false,
-   "ids": [],
-   "summary": "The Simons Foundation 2027 Fellows-to-Faculty Award Program is a research funding and career development opportunity designed to help talented early-career scientists transition from mentored researc…",
-   "seen": "2026-10-20"
-  },
-  {
-   "title": "DIW Berlin Graduate Center PhD Program 2027 in Germany: Fully Funded Five-Year Economics Doctoral Scholarship for International Students",
-   "link": "https://opportunitiesforyouth.org/2026/10/19/diw-berlin-graduate-center-phd-program-2027-in-germany-fully-funded-five-year-economics-doctoral-scholarship-for-international-students/",
-   "date": "2026-10-19",
-   "source": "Opportunities for Youth",
-   "official": false,
-   "ids": [],
-   "summary": "The DIW Berlin Graduate Center PhD Program 2027 offers an opportunity for highly qualified graduates to pursue advanced doctoral studies in economics in Berlin, Germany, with financial support throug…",
-   "seen": "2026-10-20"
-  },
-  {
-   "title": "United Nations Young Professionals Programme 2026 (Fully Funded)",
-   "link": "https://opportunitiescorners.com/united-nations-young-professionals-program-2026/",
-   "date": "2026-10-18",
-   "source": "Opportunities Corners",
-   "official": false,
-   "ids": [],
-   "summary": "The United Nations Young Professionals Programme (YPP) 2026 offers eligible young professionals a chance to start an international career with the United Nations Secretariat. Designed for early-caree…",
-   "seen": "2026-10-18"
-  },
-  {
-   "title": "CEU Yehuda Elkana Fellowship 2027: Fully Funded PhD in Higher Education Policy in Austria",
-   "link": "https://opportunitiesforyouth.org/2026/10/18/ceu-yehuda-elkana-fellowship-2027-fully-funded-phd-in-higher-education-policy-in-austria/",
-   "date": "2026-10-18",
-   "source": "Opportunities for Youth",
-   "official": false,
-   "ids": [],
-   "summary": "The Central European University (CEU) Yehuda Elkana Fellowship offers an exciting opportunity for early-career scholars interested in pursuing doctoral research related to higher education policy. Ba…",
-   "seen": "2026-10-18"
-  },
-  {
-   "title": "Research & Innovation for Climate (RICH) Hub 2026: Climate AI Innovation Support and Potential Grants of Up to $200,000",
-   "link": "https://opportunitiesforyouth.org/2026/10/18/research-innovation-for-climate-rich-hub-2026-climate-ai-innovation-support-and-potential-grants-of-up-to-200000/",
-   "date": "2026-10-18",
-   "source": "Opportunities for Youth",
-   "official": false,
-   "ids": [],
-   "summary": "The Research & Innovation for Climate (RICH) Hub is inviting expressions of interest from innovators developing artificial intelligence (AI) and data-driven technologies that address climate change a…",
-   "seen": "2026-10-18"
-  },
-  {
-   "title": "Keio University Japan ADB Scholarship 2027 (Fully Funded)",
-   "link": "https://opportunitiescorners.com/keio-university-japan-adb-scholarship-2027/",
-   "date": "2026-10-18",
-   "source": "Opportunities Corners",
-   "official": false,
-   "ids": [],
-   "summary": "The Keio University Japan ADB Scholarship 2027 is now open for applications for students seeking admission in April or September 2027. The Asian Development Bank (ADB) offers a fully funded master’s …",
-   "seen": "2026-10-19"
-  },
-  {
-   "title": "International Youth Foundation (IYF) Youth Research & Learning Fellow 2026: Paid Remote Fellowship for U.S. University Students, Earning Up to $28 per Hour",
-   "link": "https://opportunitiesforyouth.org/2026/10/17/iyf-youth-research-learning-fellow-2026/",
-   "date": "2026-10-17",
-   "source": "Opportunities for Youth",
-   "official": false,
-   "ids": [],
-   "summary": "The International Youth Foundation (IYF) Youth Research & Learning Fellow 2026 is a paid, remote fellowship opportunity for university students in the United States who are interested in education, y…",
-   "seen": "2026-10-17"
-  },
-  {
-   "title": "Global Investigative Journalism Conference 2027 in Netherlands (Fully Funded)",
-   "link": "https://opportunitiescorners.com/global-investigative-journalism-conference-2027/",
-   "date": "2026-10-17",
-   "source": "Opportunities Corners",
-   "official": false,
-   "ids": [],
-   "summary": "The applications are now open for the Global Investigative Journalism Conference 2027 in the Netherlands. Organized by the Global Investigative Journalism Network (GIJN) in collaboration with the Dut…",
-   "seen": "2026-10-18"
-  },
-  {
-   "title": "Palantir Meritocracy Fellowship 2026: A Five-Week Programme Combining Technology, Leadership, and Real-World Software Engineering",
-   "link": "https://opportunitiesforyouth.org/2026/10/17/palantir-meritocracy-fellowship-2026-a-five-week-programme-combining-technology-leadership-and-real-world-software-engineering/",
-   "date": "2026-10-17",
-   "source": "Opportunities for Youth",
-   "official": false,
-   "ids": [],
-   "summary": "Overview of the Palantir Meritocracy Fellowship The Palantir Meritocracy Fellowship is a development programme designed to identify talented individuals, challenge their intellectual abilities, and g…",
-   "seen": "2026-10-18"
-  },
-  {
-   "title": "African Peacebuilding and Developmental Dynamics (APDD) Individual Research Fellowships 2027",
-   "link": "https://opportunitydesk.org/2026/10/16/apdd-individual-research-fellowships-2027/",
-   "date": "2026-10-16",
-   "source": "Opportunity Desk",
-   "official": false,
-   "ids": [],
-   "summary": "Deadline: January 15, 2027 Applications are open for the African Peacebuilding and Developmental Dynamics (APDD) Individual Research Fellowships 2027. Since its inception in 2012, the Individual Rese…",
-   "seen": "2026-10-16"
-  },
-  {
-   "title": "WWF Russell E. Train Fellowships 2027 (up to $15,000)",
-   "link": "https://opportunitydesk.org/2026/10/16/wwf-russell-e-train-fellowships-2027/",
-   "date": "2026-10-16",
-   "source": "Opportunity Desk",
-   "official": false,
-   "ids": [],
-   "summary": "Deadline: December 15, 2026 Applications are open for the WWF Russell E. Train Fellowships 2027. EFN invites applications from the current and next generation of conservation scientists, leaders, and…",
-   "seen": "2026-10-16"
-  },
-  {
-   "title": "John S. Knight Journalism Fellowships 2027–2028 at Stanford University: Apply for a $135,000 Fellowship for Journalists",
-   "link": "https://opportunitiesforyouth.org/2026/10/16/john-s-knight-journalism-fellowships-2027-2028-at-stanford-university-apply-for-a-135000-fellowship-for-journalists/",
-   "date": "2026-10-16",
-   "source": "Opportunities for Youth",
-   "official": false,
-   "ids": [],
-   "summary": "Introduction Applications are now open for the John S. Knight (JSK) Journalism Fellowships 2027–2028 at Stanford University in the United States. This prestigious programme offers experienced journal…",
-   "seen": "2026-10-16"
   }
  ]
 }
