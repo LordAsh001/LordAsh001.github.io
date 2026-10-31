@@ -217,7 +217,7 @@ a.ext{color:var(--accent);font-weight:600}
 .az{display:flex;flex-wrap:wrap;gap:2px;margin:0 0 8px}
 .az button,.az span{width:24px;height:24px;display:grid;place-items:center;font:600 12px var(--f-mono);border-radius:4px}
 .az button{background:var(--sunk);border:0;color:var(--ink);cursor:pointer}.az button:hover{background:var(--accent);color:var(--accent-ink)}
-.az span{color:var(--line)}
+.az span{color:var(--muted);opacity:.45}
 dl.gloss{display:grid;grid-template-columns:minmax(110px,max-content) minmax(0,1fr);gap:8px 16px;margin:4px 0 12px}
 dl.gloss dt{font-weight:700}dl.gloss dd{margin:0;color:var(--ink)}
 @media (max-width:520px){dl.gloss{grid-template-columns:minmax(0,1fr);gap:2px}dl.gloss dd{margin-bottom:8px}}
@@ -1658,7 +1658,7 @@ function selectState(n,keepPeople){S.state=n;S.lga=null;if(!keepPeople){S.people
 function selectLga(l){S.lga=l;S.people=null;S.fest=null;render();panelTop();}
 function selectPeople(id){S.people=id;S.fest=null;if(S.view!=="peoples")setView("peoples",true);render();panelTop();}
 function selectFest(id){S.fest=id;S.people=null;render();panelTop();}
-function setView(v,quiet){S.view=v;document.querySelectorAll("nav.tabs button").forEach(b=>b.setAttribute("aria-selected",b.dataset.v===v));if(v!=="peoples")S.people=null;if(v!=="festivals")S.fest=null;if(v!=="heritage")S.her=null;if(v!=="rulers"){S.throne=null;S.ruler=null;}$("#modewrap").hidden=v!=="peoples";if(!quiet)render();}
+function setView(v,quiet){S.view=v;document.querySelectorAll("nav.tabs button").forEach(b=>b.setAttribute("aria-selected",b.dataset.v===v));if(v!=="peoples")S.people=null;if(v!=="festivals")S.fest=null;if(v!=="heritage")S.her=null;if(v!=="rulers"){S.throne=null;S.ruler=null;}$("#modewrap").hidden=v!=="peoples";try{const cur=(location.hash||"").slice(1);if(cur!==v&&!(v==="peoples"&&!cur)&&document.querySelector(`nav.tabs button[data-v="${v}"]`))history.pushState(null,"","#"+v)}catch(e){}if(!quiet)render();}
 document.querySelectorAll("nav.tabs button").forEach(b=>b.onclick=()=>setView(b.dataset.v));
 function panelTop(){const r=panel.getBoundingClientRect();if(r.top<0||r.top>innerHeight*.8){if(innerWidth<=900)panel.scrollIntoView({behavior:matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth",block:"start"});}panel.scrollTop=0;}
 
@@ -2473,7 +2473,9 @@ function refreshSubs(){if(S.view==="contribute"){const el=$("#subs");if(el){el.i
     if(S.view==="contribute")render();
   }catch(e){dbState="off";if(S.view==="contribute")render();}
 })();
-const h=(location.hash||"").slice(1);if(["festivals","contribute"].includes(h))setView(h);
+const h=(location.hash||"").slice(1);if(h&&h!=="peoples"&&(h==="contribute"||document.querySelector(`nav.tabs button[data-v="${h}"]`)))setView(h);
+/* Back / Forward move between the atlas sections */
+window.addEventListener("popstate",()=>{const v=(location.hash||"").slice(1)||"peoples";if(v!==S.view&&(v==="contribute"||document.querySelector(`nav.tabs button[data-v="${v}"]`)))setView(v);});
 </script>
 
 <script>
