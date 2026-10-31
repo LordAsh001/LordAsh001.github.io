@@ -456,10 +456,12 @@ function renderCheck() {
     const title = h("input", { type: "text", value: meta.title || "", maxlength: "600", "aria-label": t("title") });
     const note = h("textarea", { maxlength: "400", placeholder: t("note_ph") });
     const tried = h("input", { type: "checkbox" });
+    const share = h("input", { type: "checkbox" });
     s4.append(h("label", { class: "f" }, t("title"), title), h("label", { class: "f" }, t("note_label"), note),
       h("label", { class: "check" }, tried, h("span", null, t("tried"))),
+      h("label", { class: "check" }, share, h("span", null, t("share_email"))),
       h("div", { class: "row" },
-        h("button", { class: "primary", type: "button", onclick: () => { if (!tried.checked) { toast(t("tick_first")); return; } submitRequest(doi, meta, title.value, note.value, "open"); } }, t("post_board")),
+        h("button", { class: "primary", type: "button", onclick: () => { if (!tried.checked) { toast(t("tick_first")); return; } submitRequest(doi, meta, title.value, note.value, "open", share.checked); } }, t("post_board")),
         copies.length ? h("button", { class: "ghost", type: "button", onclick: () => submitRequest(doi, meta, title.value, "", "done") }, t("log_found")) : null),
       h("p", { class: "small muted" }, t("log_found_why")));
   }
@@ -473,9 +475,10 @@ function policyLine(p) {
   return (p.embargo ? t("pol_embargo", { e: localEmbargo(I.lang, p.embargo) }) : t("pol_yes")) + where;
 }
 
-async function submitRequest(doi, meta, title, note, status) {
+async function submitRequest(doi, meta, title, note, status, share) {
   const row = { doi, title: (title || "").trim().slice(0, 600), journal: (meta.journal || "").slice(0, 300), year: meta.year || null,
     authors: (meta.authors || []).slice(0, 8).join(", ").slice(0, 600), note: (note || "").trim().slice(0, 400), requester_id: S.user.id, status,
+    share_email: !!share && status === "open",
     route: status === "done" ? "oa" : null, legal_link: status === "done" && S.lookup && S.lookup.copies && S.lookup.copies[0] ? S.lookup.copies[0].url : "" };
   const { error } = await sb.from("requests").insert(row);
   if (error) { toast(friendly(error)); return; }
@@ -530,6 +533,18 @@ function letter(lang, ctx) {
   const m = S.profile || {};
   const who = (ctx.corr && ctx.corr[0] && ctx.corr[0].name) || "";
   const last = who ? who.split(" ").slice(-1)[0] : "";
+  if (ctx.vol) {
+    // A volunteer writing on the requester's behalf: say so plainly.
+    const rq = ctx.request.requester || {};
+    const v = {
+      surname: last || I.tl(lang, "lt_surname"), rname: rq.name || "", rinst: rq.institution || "",
+      rcountry: rq.country ? I.tl(lang, "lt_country", { c: rq.country }) : "",
+      title: ctx.meta.title || I.tl(lang, "lt_title"), doi: ctx.doi, name: m.name || I.tl(lang, "lt_name"), site: SITE,
+      policy: ctx.policy && ctx.policy.accepted ? "\n\n" + I.tl(lang, ctx.policy.embargo ? "lt_policy_emb" : "lt_policy", { e: localEmbargo(lang, ctx.policy.embargo) }) : "",
+    };
+    v.cc = I.tl(lang, ctx.cc ? "lt_v_cc" : "lt_v_nocc", v);
+    return { subject: I.tl(lang, "lt_v_subject", v), body: I.tl(lang, "lt_v_body", v) };
+  }
   const vars = {
     surname: last || I.tl(lang, "lt_surname"), inst: m.institution || I.tl(lang, "lt_inst"), country: m.country ? I.tl(lang, "lt_country", { c: m.country }) : "",
     field: m.field ? I.tl(lang, "lt_field", { f: m.field }) : "", journal: ctx.meta.journal || I.tl(lang, "lt_journal"),
@@ -540,14 +555,22 @@ function letter(lang, ctx) {
 }
 function composeLinks() {
   const to = $("emTo").value.trim(), su = $("emSubject").value, body = $("emBody").value;
-  const e = encodeURIComponent;
-  $("emGmail").href = `https://mail.google.com/mail/?view=cm&fs=1&to=${e(to)}&su=${e(su)}&body=${e(body)}`;
-  $("emOutlook").href = `https://outlook.live.com/mail/0/deeplink/compose?to=${e(to)}&subject=${e(su)}&body=${e(body)}`;
-  $("emOffice").href = `https://outlook.office.com/mail/deeplink/compose?to=${e(to)}&subject=${e(su)}&body=${e(body)}`;
-  $("emYahoo").href = `https://compose.mail.yahoo.com/?to=${e(to)}&subject=${e(su)}&body=${e(body)}`;
-  $("emMailto").href = `mailto:${e(to)}?subject=${e(su)}&body=${e(body)}`;
+  const cc = (S.composer && S.composer.cc) || "";
+  const e = encodeURIComponent, c = cc ? `&cc=${e(cc)}` : "";
+  $("emGmail").href = `https://mail.google.com/mail/?view=cm&fs=1&to=${e(to)}${c}&su=${e(su)}&body=${e(body)}`;
+  $("emOutlook").href = `https://outlook.live.com/mail/0/deeplink/compose?to=${e(to)}${c}&subject=${e(su)}&body=${e(body)}`;
+  $("emOffice").href = `https://outlook.office.com/mail/deeplink/compose?to=${e(to)}${c}&subject=${e(su)}&body=${e(body)}`;
+  $("emYahoo").href = `https://compose.mail.yahoo.com/?to=${e(to)}${c}&subject=${e(su)}&body=${e(body)}`;
+  $("emMailto").href = `mailto:${e(to)}?${cc ? `cc=${e(cc)}&` : ""}subject=${e(su)}&body=${e(body)}`;
 }
-function openComposer(ctx) {
+async function openComposer(ctx) {
+  const r = ctx.request, uid = S.user && S.user.id;
+  ctx.vol = !!(r && uid && r.volunteer_id === uid && r.requester_id !== uid);
+  ctx.cc = "";
+  if (ctx.vol && r.share_email && sb) {
+    const { data } = await sb.rpc("requester_email", { req: r.id });
+    if (typeof data === "string" && data.includes("@")) ctx.cc = data;
+  }
   S.composer = ctx;
   const lang = I.lang;
   letterLangs();
@@ -557,10 +580,13 @@ function openComposer(ctx) {
   $("emSubject").value = l.subject; $("emBody").value = l.body;
   $("emTo").value = ctx.to || "";
   $("emWho").textContent = ctx.corr && ctx.corr.length ? t("em_who", { n: ctx.corr.map((c) => c.name).join(", ") }) : t("email_where_none");
+  $("emCcRow").hidden = !ctx.cc; $("emCc").value = ctx.cc;
+  $("emVol").hidden = !ctx.vol;
+  $("emVol").textContent = ctx.vol ? t(ctx.cc ? "em_vol_cc" : "em_vol_nocc", { n: (r.requester && r.requester.name) || t("a_member") }) : "";
   $("emPolicy").textContent = ctx.policy ? policyLine(ctx.policy) : "";
   $("emState").textContent = "";
   $("emSend").hidden = !(S.emailOn && S.user && S.profile);
-  $("emSendNote").textContent = S.emailOn ? (S.user && S.profile ? t("em_send_note") : t("em_need_signin")) : "";
+  $("emSendNote").textContent = S.emailOn ? (S.user && S.profile ? (ctx.cc ? t("em_send_note_cc", { n: (r.requester && r.requester.name) || t("a_member") }) : t("em_send_note")) : t("em_need_signin")) : "";
   composeLinks();
   const d = $("composer");
   if (d.showModal) d.showModal(); else d.setAttribute("open", "");
@@ -577,7 +603,7 @@ $("emSend").addEventListener("click", async () => {
   const to = $("emTo").value.trim();
   if (!/^\S+@\S+\.\S+$/.test(to)) { $("emState").textContent = t("em_need_to"); $("emTo").focus(); return; }
   $("emSend").disabled = true; $("emState").textContent = t("em_sending");
-  const { error } = await callFn("send-email", { action: "author", to, subject: $("emSubject").value, body: $("emBody").value, request_id: S.composer && S.composer.request ? S.composer.request.id : null });
+  const { error } = await callFn("send-email", { action: "author", to, subject: $("emSubject").value, body: $("emBody").value, request_id: S.composer && S.composer.request ? S.composer.request.id : null, cc_requester: !!(S.composer && S.composer.cc) });
   $("emSend").disabled = false;
   if (error) { $("emState").textContent = error.message; if (error.code === "email_not_configured") { S.emailOn = false; $("emSend").hidden = true; } return; }
   $("emState").textContent = t("em_sent");
@@ -650,6 +676,7 @@ function slip(r) {
   body.append(h("div", { class: "small" }, t("requested_by") + " ", h("b", null, req.name || t("a_member")), " ", badge(req), ", " + [req.institution, req.location, req.country].filter(Boolean).join(", ") + (req.field ? " · " + req.field : "")));
   if (r.note) body.append(h("p", { class: "small muted" }, "“" + r.note + "”"));
   if (r.volunteer) { const n = volunteerRecord(r.volunteer_id); body.append(h("div", { class: "small" }, t("volunteer") + ": ", h("b", null, r.volunteer.name), " ", badge(r.volunteer), n ? " · " + t("helped_n", { n }) : "")); }
+  if (r.share_email && S.user && (r.requester_id === S.user.id || r.volunteer_id === S.user.id) && !["done", "closed"].includes(r.status)) body.append(h("div", { class: "small muted" }, "✉ " + t("share_badge")));
   if (r.legal_link) body.append(h("div", { class: "small" }, t("legal_copy") + ": ", link(r.legal_link.replace(/^https?:\/\//, "").slice(0, 70), r.legal_link)));
   if (r.status === "done" && r.route) body.append(h("div", { class: "small" }, t("obtained_via") + ": " + t(ROUTE_KEYS[r.route] || "route_other")));
   const notes = (r.notes || []).slice().sort((a, b) => new Date(a.created_at) - new Date(b.created_at));
@@ -688,6 +715,13 @@ function actions(r) {
       h("button", { class: "small ghost", type: "button", onclick: () => updateRequest(r, { status: "closed" }, t("closed_nf"), "notfound") }, t("no_route")));
   }
   if (mine) {
+    const sh = h("input", { type: "checkbox", checked: !!r.share_email, onchange: async () => {
+      sh.disabled = true;
+      const { error } = await sb.from("requests").update({ share_email: sh.checked }).eq("id", r.id);
+      sh.disabled = false;
+      if (error) { sh.checked = !sh.checked; toast(friendly(error)); } else { r.share_email = sh.checked; toast(t("share_saved")); }
+    } });
+    box.append(h("label", { class: "check small" }, sh, h("span", null, t("share_email"))));
     const sel = h("select", { "aria-label": t("how_received") }, Object.entries(ROUTE_KEYS).map(([k, v]) => h("option", { value: k, selected: (r.status === "link" && k === "oa") || (r.status === "author" && k === "author") }, t(v))));
     box.append(sel,
       h("button", { class: "small primary", type: "button", onclick: () => updateRequest(r, { status: "done", route: sel.value }, t("marked_received"), "received") }, t("received")),

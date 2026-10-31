@@ -12,12 +12,12 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,750&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Sans+Arabic:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
-<link rel="stylesheet" href="styles.css?v=12">
-<script src="config.js?v=12"></script>
-<script src="errors.js?v=12"></script>
-<script src="i18n.js?v=12"></script>
-<script src="letters.js?v=12"></script>
-<script type="module" src="app.js?v=12"></script>
+<link rel="stylesheet" href="styles.css?v=13">
+<script src="config.js?v=13"></script>
+<script src="errors.js?v=13"></script>
+<script src="i18n.js?v=13"></script>
+<script src="letters.js?v=13"></script>
+<script type="module" src="app.js?v=13"></script>
 </head>
 <body>
 <div class="wrap">
@@ -355,7 +355,9 @@
   <form method="dialog" class="stack" id="composerForm">
     <div class="row" style="justify-content:space-between"><h2 data-i18n="em_h">Write to the author</h2><button type="button" class="ghost small" id="emClose" data-i18n="close">Close</button></div>
     <label class="f"><span data-i18n="em_to">Author's email</span><input type="email" id="emTo" data-i18n-ph="em_to_ph" placeholder="From the article's first page or the publisher page"></label>
+    <p class="small callout" id="emVol" hidden></p>
     <p class="small muted" id="emWho"></p>
+    <label class="f" id="emCcRow" hidden><span data-i18n="em_cc">Copied in: the requester</span><input type="email" id="emCc" readonly></label>
     <label class="f"><span data-i18n="em_lang">Letter language</span>
       <select id="emLang"><option value="en">English</option><option value="fr">Français</option><option value="pt">Português</option><option value="ar">العربية</option></select>
     </label>

@@ -111,6 +111,8 @@
     foot_data: "Open data from Unpaywall, Crossref, OpenAlex, CORE, Europe PMC, Semantic Scholar, arXiv, DOAJ, DataCite, Zenodo and Open Policy Finder.",
     em_h: "Write to the author", close: "Close", em_to: "Author's email", em_to_ph: "From the article's first page or the publisher page",
     em_who: "Write to: {n}.", em_lang: "Letter language", em_subject: "Subject", em_body: "Message", em_send: "Send from LARA",
+    em_send_note_cc: "It goes out in your name, with {n} copied in. When the author replies, the reply goes to them; you get a copy of what you sent.",
+    share_email: "Volunteers may copy my email address into their letter to the author, so the author can send the paper straight to me.", em_cc: "Copied in: the requester", em_vol_cc: "You're writing on behalf of {n}. They are copied in, so the author can reply to them directly. You never handle the paper.", em_vol_nocc: "You're writing on behalf of {n}. They haven't agreed to share their email, so the letter asks the author to reply to you. You can ask them in a note to tick “share my email” on their request, then open this letter again.", share_badge: "Email may be shared with the author", share_saved: "Saved",
     em_send_note: "It goes out in your name. Replies come straight to your inbox, and you get a copy.",
     em_need_signin: "Sign in to send from LARA, or use your own email below.",
     em_or: "Or send it from your own email account. Your message is filled in for you:", em_app: "My email app",
@@ -127,6 +129,7 @@
     lt_body: "Dear Dr {surname},\n\nI am a researcher at {inst}{country}{field}. My institution does not subscribe to {journal}, and I would be grateful if you could send me a copy of your article:\n\n\"{title}\"\nhttps://doi.org/{doi}{policy}\n\nI need it for my own research and will not share it further.\n\nThank you for your time and for your work.\n\nKind regards,\n{name}\n{inst}",
     lt_policy: "If it helps, your publisher's policy allows authors to share the accepted manuscript.",
     lt_policy_emb: "If it helps, your publisher's policy allows authors to share the accepted manuscript after {e}.",
+    lt_v_subject: "Request for a copy of your article for a researcher (doi:{doi})", lt_v_body: "Dear Dr {surname},\n\nI volunteer with LARA (Legal Access to Research for Africa), which helps researchers whose institutions cannot afford journal subscriptions to find legal copies of papers.\n\n{rname}, a researcher at {rinst}{rcountry}, has asked for your article:\n\n\"{title}\"\nhttps://doi.org/{doi}{policy}\n\nThey do not have access through their institution. Would you be willing to send them a copy for their own research?{cc}\n\nThank you for your time and for your work.\n\nKind regards,\n{name}\nLARA volunteer · {site}", lt_v_cc: "\n\nI have copied {rname} into this email, so you can reply to them directly.", lt_v_nocc: "\n\nIf you are willing, please reply to this email and I will put you in touch with them.",
   };
 
   const fr = {
@@ -239,6 +242,8 @@
     foot_data: "Données ouvertes d'Unpaywall, Crossref, OpenAlex, CORE, Europe PMC, Semantic Scholar, arXiv, DOAJ, DataCite, Zenodo et Open Policy Finder.",
     em_h: "Écrire à l'auteur", close: "Fermer", em_to: "E-mail de l'auteur", em_to_ph: "Sur la première page de l'article ou la page de l'éditeur",
     em_who: "Destinataire : {n}.", em_lang: "Langue de la lettre", em_subject: "Objet", em_body: "Message", em_send: "Envoyer depuis LARA",
+    em_send_note_cc: "Il part en votre nom, avec {n} en copie. La réponse de l'auteur lui parviendra directement ; vous recevez une copie de votre message.",
+    share_email: "Les bénévoles peuvent mettre mon adresse e-mail en copie de leur lettre à l'auteur, pour que l'auteur m'envoie l'article directement.", em_cc: "En copie : le demandeur", em_vol_cc: "Vous écrivez au nom de {n}. Cette personne est en copie : l'auteur peut lui répondre directement. Vous ne manipulez jamais l'article.", em_vol_nocc: "Vous écrivez au nom de {n}. Cette personne n'a pas accepté de partager son e-mail, donc la lettre demande à l'auteur de vous répondre. Vous pouvez lui demander dans une note de cocher « partager mon e-mail » sur sa demande, puis rouvrir cette lettre.", share_badge: "E-mail partageable avec l'auteur", share_saved: "Enregistré",
     em_send_note: "Le message part à votre nom. Les réponses arrivent directement dans votre boîte, et vous recevez une copie.",
     em_need_signin: "Connectez-vous pour envoyer depuis LARA, ou utilisez votre propre messagerie ci-dessous.",
     em_or: "Ou envoyez-le depuis votre propre messagerie. Votre message est prérempli :", em_app: "Mon application e-mail",
@@ -255,6 +260,7 @@
     lt_body: "Bonjour Dr {surname},\n\nJe suis chercheur à {inst}{country}{field}. Mon établissement n'est pas abonné à {journal}, et je vous serais reconnaissant de bien vouloir m'envoyer une copie de votre article :\n\n« {title} »\nhttps://doi.org/{doi}{policy}\n\nJ'en ai besoin pour mes propres recherches et ne le diffuserai pas.\n\nMerci pour votre temps et pour vos travaux.\n\nCordialement,\n{name}\n{inst}",
     lt_policy: "Pour information, la politique de votre éditeur permet aux auteurs de partager le manuscrit accepté.",
     lt_policy_emb: "Pour information, la politique de votre éditeur permet aux auteurs de partager le manuscrit accepté après {e}.",
+    lt_v_subject: "Demande d'une copie de votre article pour un chercheur (doi:{doi})", lt_v_body: "Bonjour Dr {surname},\n\nJe suis bénévole pour LARA (Legal Access to Research for Africa), qui aide les chercheurs dont l'établissement ne peut pas payer les abonnements aux revues à trouver des copies légales d'articles.\n\n{rname}, chercheur à {rinst}{rcountry}, souhaite lire votre article :\n\n« {title} »\nhttps://doi.org/{doi}{policy}\n\nSon établissement n'y donne pas accès. Accepteriez-vous de lui en envoyer une copie pour ses propres recherches ?{cc}\n\nMerci pour votre temps et pour vos travaux.\n\nCordialement,\n{name}\nBénévole LARA · {site}", lt_v_cc: "\n\nJ'ai mis {rname} en copie de ce message, pour que vous puissiez lui répondre directement.", lt_v_nocc: "\n\nSi vous êtes d'accord, répondez simplement à ce message et je vous mettrai en contact.",
   };
 
   const pt = {
@@ -367,6 +373,8 @@
     foot_data: "Dados abertos de Unpaywall, Crossref, OpenAlex, CORE, Europe PMC, Semantic Scholar, arXiv, DOAJ, DataCite, Zenodo e Open Policy Finder.",
     em_h: "Escrever ao autor", close: "Fechar", em_to: "E-mail do autor", em_to_ph: "Na primeira página do artigo ou na página da editora",
     em_who: "Para: {n}.", em_lang: "Idioma da carta", em_subject: "Assunto", em_body: "Mensagem", em_send: "Enviar pelo LARA",
+    em_send_note_cc: "É enviado em seu nome, com {n} em cópia. A resposta do autor vai diretamente para essa pessoa; recebe uma cópia do que enviou.",
+    share_email: "Os voluntários podem pôr o meu e-mail em cópia na carta ao autor, para que o autor me envie o artigo diretamente.", em_cc: "Em cópia: o requerente", em_vol_cc: "Está a escrever em nome de {n}. Essa pessoa está em cópia, por isso o autor pode responder-lhe diretamente. Nunca manuseia o artigo.", em_vol_nocc: "Está a escrever em nome de {n}. Essa pessoa não aceitou partilhar o e-mail, por isso a carta pede ao autor que lhe responda a si. Pode pedir-lhe numa nota que marque «partilhar o meu e-mail» no pedido e depois voltar a abrir esta carta.", share_badge: "E-mail pode ser partilhado com o autor", share_saved: "Guardado",
     em_send_note: "Sai em seu nome. As respostas chegam diretamente à sua caixa e recebe uma cópia.",
     em_need_signin: "Entre para enviar pelo LARA, ou use o seu próprio e-mail abaixo.",
     em_or: "Ou envie a partir da sua conta de e-mail. A mensagem já vai preenchida:", em_app: "A minha app de e-mail",
@@ -383,6 +391,7 @@
     lt_body: "Caro(a) Dr(a). {surname},\n\nSou investigador(a) em {inst}{country}{field}. A minha instituição não assina {journal} e ficaria muito grato(a) se me pudesse enviar uma cópia do seu artigo:\n\n\"{title}\"\nhttps://doi.org/{doi}{policy}\n\nPreciso dele para a minha investigação e não o partilharei.\n\nObrigado(a) pelo seu tempo e pelo seu trabalho.\n\nCom os melhores cumprimentos,\n{name}\n{inst}",
     lt_policy: "Para sua informação, a política da sua editora permite aos autores partilhar o manuscrito aceite.",
     lt_policy_emb: "Para sua informação, a política da sua editora permite aos autores partilhar o manuscrito aceite após {e}.",
+    lt_v_subject: "Pedido de cópia do seu artigo para um investigador (doi:{doi})", lt_v_body: "Caro(a) Dr(a). {surname},\n\nSou voluntário(a) do LARA (Legal Access to Research for Africa), que ajuda investigadores cujas instituições não podem pagar assinaturas de revistas a encontrar cópias legais de artigos.\n\n{rname}, investigador(a) em {rinst}{rcountry}, pediu o seu artigo:\n\n\"{title}\"\nhttps://doi.org/{doi}{policy}\n\nA sua instituição não lhe dá acesso. Estaria disposto(a) a enviar-lhe uma cópia para a sua própria investigação?{cc}\n\nObrigado(a) pelo seu tempo e pelo seu trabalho.\n\nCom os melhores cumprimentos,\n{name}\nVoluntário(a) do LARA · {site}", lt_v_cc: "\n\nColoquei {rname} em cópia neste e-mail, para que possa responder-lhe diretamente.", lt_v_nocc: "\n\nSe estiver disposto(a), basta responder a este e-mail e eu ponho-vos em contacto.",
   };
 
   const ar = {
@@ -495,6 +504,8 @@
     foot_data: "بيانات مفتوحة من Unpaywall وCrossref وOpenAlex وCORE وEurope PMC وSemantic Scholar وarXiv وDOAJ وDataCite وZenodo وOpen Policy Finder.",
     em_h: "راسل المؤلف", close: "إغلاق", em_to: "بريد المؤلف", em_to_ph: "من الصفحة الأولى للمقال أو صفحة الناشر",
     em_who: "إلى: {n}.", em_lang: "لغة الرسالة", em_subject: "الموضوع", em_body: "الرسالة", em_send: "أرسل من LARA",
+    em_send_note_cc: "تُرسل باسمك، مع إضافة {n} في النسخة. يصل رد المؤلف إليه مباشرة، وتصلك نسخة مما أرسلت.",
+    share_email: "يمكن للمتطوعين إضافة بريدي الإلكتروني نسخةً في رسالتهم إلى المؤلف، ليرسل المؤلف البحث إليّ مباشرة.", em_cc: "نسخة إلى: صاحب الطلب", em_vol_cc: "أنت تكتب نيابةً عن {n}. هو مُضاف في النسخة، فيمكن للمؤلف الرد عليه مباشرة. لن تتعامل مع البحث بنفسك.", em_vol_nocc: "أنت تكتب نيابةً عن {n}. لم يوافق على مشاركة بريده، لذا تطلب الرسالة من المؤلف الرد عليك. يمكنك أن تطلب منه في ملاحظة تفعيل «مشاركة بريدي» في طلبه، ثم افتح هذه الرسالة مجددًا.", share_badge: "يمكن مشاركة البريد مع المؤلف", share_saved: "تم الحفظ",
     em_send_note: "تُرسل باسمك، وتصل الردود إلى بريدك مباشرةً، وتصلك نسخة منها.",
     em_need_signin: "سجّل الدخول للإرسال من LARA، أو استخدم بريدك أدناه.",
     em_or: "أو أرسلها من حساب بريدك. الرسالة معبأة مسبقًا:", em_app: "تطبيق البريد لديّ",
@@ -511,6 +522,7 @@
     lt_body: "حضرة الدكتور/ة {surname} المحترم/ة،\n\nأنا باحث/ة في {inst}{country}{field}. مؤسستي غير مشتركة في {journal}، وسأكون ممتنًا لو تفضلتم بإرسال نسخة من مقالكم:\n\n«{title}»\nhttps://doi.org/{doi}{policy}\n\nأحتاجه لبحثي الخاص ولن أشاركه مع غيري.\n\nشكرًا لوقتكم ولعملكم.\n\nمع خالص التحية،\n{name}\n{inst}",
     lt_policy: "للعلم، تسمح سياسة الناشر للمؤلفين بمشاركة المخطوطة المقبولة.",
     lt_policy_emb: "للعلم، تسمح سياسة الناشر للمؤلفين بمشاركة المخطوطة المقبولة بعد {e}.",
+    lt_v_subject: "طلب نسخة من مقالكم لباحث (doi:{doi})", lt_v_body: "حضرة الدكتور/ة {surname} المحترم/ة،\n\nأنا متطوع/ة في LARA (الوصول القانوني إلى البحث العلمي لأفريقيا)، وهي مبادرة تساعد الباحثين الذين لا تستطيع مؤسساتهم تحمّل اشتراكات المجلات على إيجاد نسخ قانونية من الأبحاث.\n\nطلب {rname}، وهو باحث في {rinst}{rcountry}، مقالكم:\n\n«{title}»\nhttps://doi.org/{doi}{policy}\n\nلا تتيح له مؤسسته الوصول إليه. هل تتفضلون بإرسال نسخة منه إليه لبحثه الخاص؟{cc}\n\nشكرًا لوقتكم ولعملكم.\n\nمع خالص التحية،\n{name}\nمتطوع/ة في LARA · {site}", lt_v_cc: "\n\nأضفت {rname} في نسخة من هذه الرسالة، لتتمكنوا من الرد عليه مباشرة.", lt_v_nocc: "\n\nإن وافقتم، يُرجى الرد على هذه الرسالة وسأضعكم على تواصل معه.",
   };
 
   const DICT = { en, fr, pt, ar };
