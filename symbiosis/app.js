@@ -1275,6 +1275,8 @@ $('.tabs').addEventListener('keydown', e => {
 /* =================== theme =================== */
 const THEMES = ['system','light','dark'];
 let theme = store.get('theme', 'system');
+/* follow the light/dark choice made anywhere on shagbaor.com (shared "theme" key) */
+try { const site = localStorage.getItem('theme'); if (site === 'light' || site === 'dark') theme = site; } catch(e){}
 function applyTheme(){
   const root = document.documentElement;
   theme === 'system' ? root.removeAttribute('data-theme') : root.setAttribute('data-theme', theme);
@@ -1283,7 +1285,13 @@ function applyTheme(){
   const dark = theme === 'dark' || (theme === 'system' && matchMedia('(prefers-color-scheme: dark)').matches);
   document.querySelector('meta[name="theme-color"]')?.setAttribute('content', dark ? '#161F1C' : '#FFFFFF');
 }
-function cycleTheme(){ theme = THEMES[(THEMES.indexOf(theme) + 1) % 3]; store.set('theme', theme); applyTheme(); renderPark(compute()); toast('Theme: ' + theme); }
+function cycleTheme(){
+  /* one click always flips what you see: light <-> dark (shared with the rest of the site) */
+  const dark = theme === 'dark' || (theme === 'system' && matchMedia('(prefers-color-scheme: dark)').matches);
+  theme = dark ? 'light' : 'dark'; store.set('theme', theme);
+  try { localStorage.setItem('theme', theme); } catch(e){}
+  applyTheme(); renderPark(compute()); toast(theme === 'dark' ? 'Dark mode' : 'Light mode');
+}
 $('#themeBtn').onclick = cycleTheme;
 try { matchMedia('(prefers-color-scheme: dark)').addEventListener('change', applyTheme); } catch(e){}
 
