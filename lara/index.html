@@ -4,31 +4,20 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>LARA · Legal Access to Research for Africa</title>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"LARA · Legal Access to Research for Africa","applicationCategory":"EducationalApplication","operatingSystem":"Web","description":"Free platform that helps researchers at African institutions find legal copies of journal articles: open-access search across free scholarly databases, author request letters, Research4Life and diaspora volunteers.","url":"https://shagbaor.com/lara/","author":{"@type":"Person","name":"Shagbaor Hycent Amool","affiliation":"University of Northern British Columbia"},"isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0"},"identifier":"https://doi.org/10.5281/zenodo.23762808","license":"https://opensource.org/licenses/MIT","inLanguage":["en","fr","pt","ar"]}</script>
 <meta name="description" content="Get journal articles legally: check free open-access copies across major databases, write to authors, and get help from African researchers in the diaspora.">
 <meta name="theme-color" content="#0B6E45">
-<link rel="canonical" href="https://shagbaor.com/lara/">
-<meta name="author" content="Shagbaor Hycent Amool">
-<meta property="og:type" content="website">
-<meta property="og:title" content="LARA · Legal Access to Research for Africa">
-<meta property="og:description" content="Find a legal copy of a paywalled journal article: free open-access search, author request letters, Research4Life and African researchers in the diaspora.">
-<meta property="og:url" content="https://shagbaor.com/lara/">
-<meta property="og:image" content="https://shagbaor.com/images/tool-lara.jpg">
-<meta name="twitter:card" content="summary_large_image">
-<script>try{var t=localStorage.getItem("theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
-<script src="/assets/traction.js" defer></script>
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="icon" href="icon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="icon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,750&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Sans+Arabic:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
-<link rel="stylesheet" href="styles.css?v=10">
-<script src="config.js?v=10"></script>
-<script src="errors.js?v=10"></script>
-<script src="i18n.js?v=10"></script>
-<script src="letters.js?v=10"></script>
-<script type="module" src="app.js?v=10"></script>
+<link rel="stylesheet" href="styles.css?v=11">
+<script src="config.js?v=11"></script>
+<script src="errors.js?v=11"></script>
+<script src="i18n.js?v=11"></script>
+<script src="letters.js?v=11"></script>
+<script type="module" src="app.js?v=11"></script>
 </head>
 <body>
 <div class="wrap">
@@ -52,6 +41,7 @@
     <nav class="tabs" aria-label="Sections">
       <a href="#request" data-tab="request" data-i18n="tab_request">Find a paper</a>
       <a href="#refs" data-tab="refs" data-i18n="tab_refs">Reference list</a>
+      <a href="#journal" data-tab="journal" data-i18n="tab_journal">Find a journal</a>
       <a href="#board" data-tab="board" data-i18n="tab_board">Request board</a>
       <a href="#mine" data-tab="mine" data-i18n="tab_mine">My requests</a>
       <a href="#impact" data-tab="impact" data-i18n="tab_impact">Impact</a>
@@ -227,6 +217,75 @@
       </div>
     </section>
 
+    <!-- FIND A JOURNAL -->
+    <section id="tab-journal" class="stack" hidden>
+      <div class="panel stack">
+        <h2 data-i18n="jf_h">Find a journal for your paper</h2>
+        <p class="small muted" data-i18n="jf_p">Tell us what your paper is about. LARA looks at which journals published similar research in the last eight years, and shows their fees, whether they're open access, and whether they're on trusted lists.</p>
+        <form id="jfForm" class="stack" novalidate>
+          <label class="f"><span data-i18n="jf_topic">What is your paper about?</span>
+            <textarea id="jfTopic" rows="2" maxlength="300" data-i18n-ph="jf_topic_ph" placeholder="Your working title, or one sentence. E.g. Malaria in pregnant women in rural Benue State"></textarea>
+            <span class="small muted" data-i18n="jf_topic_hint">Use the main words a reader would search for. No need to be perfect.</span>
+          </label>
+          <label class="f"><span data-i18n="jf_kind">What kind of paper is it?</span>
+            <select id="jfKind">
+              <option value="research" data-i18n="jf_k_research">Original research (my own study, data or experiment)</option>
+              <option value="review" data-i18n="jf_k_review">Review of other studies</option>
+              <option value="case" data-i18n="jf_k_case">Case study or case report</option>
+              <option value="short" data-i18n="jf_k_short">Short communication or letter</option>
+            </select>
+          </label>
+          <div class="row"><button class="primary" id="jfBtn" type="submit" data-i18n="jf_btn">Find journals</button><span class="small" id="jfState" role="status" aria-live="polite"></span></div>
+        </form>
+      </div>
+
+      <div id="jfResults" class="stack" hidden>
+        <p class="small" id="jfMatched"></p>
+        <div class="panel jf-filters">
+          <div class="row wrap">
+            <label class="check"><input type="checkbox" id="jfFree"> <span data-i18n="jf_f_free">Free to publish</span></label>
+            <label class="check"><input type="checkbox" id="jfOpen"> <span data-i18n="jf_f_open">Free to read (open access)</span></label>
+            <label class="check"><input type="checkbox" id="jfDoaj"> <span data-i18n="jf_f_doaj">Listed in DOAJ</span></label>
+            <label class="check"><input type="checkbox" id="jfAfrica"> <span data-i18n="jf_f_africa">African journals only</span></label>
+          </div>
+          <label class="f inline"><span data-i18n="jf_sort">Sort by</span>
+            <select id="jfSort">
+              <option value="match" data-i18n="jf_s_match">Best match for your topic</option>
+              <option value="fee" data-i18n="jf_s_fee">Lowest fee to publish</option>
+              <option value="fast" data-i18n="jf_s_fast">Fastest to publication</option>
+              <option value="cited" data-i18n="jf_s_cited">Most cited</option>
+              <option value="africa" data-i18n="jf_s_africa">Most used by Africa-based authors</option>
+            </select>
+          </label>
+        </div>
+        <div id="jfList" class="stack"></div>
+        <button type="button" class="ghost" id="jfMore" hidden data-i18n="jf_more">Show more journals</button>
+        <details class="panel" id="jfUnverifiedBox" hidden>
+          <summary><span data-i18n="jf_unv_h">Journals not on any quality list: check very carefully</span> <span class="pill st-open" id="jfUnvCount"></span></summary>
+          <p class="small" data-i18n="jf_unv_p">These journals published papers on your topic, but none of them appears in DOAJ or the national and international lists LARA checks. Some are fine; some are "predatory" journals that take a fee and publish without real peer review. Ask a supervisor before submitting to any of them.</p>
+          <div id="jfUnverified" class="stack"></div>
+        </details>
+        <p class="small muted" data-i18n-html="jf_source">Data: <a href="https://openalex.org" target="_blank" rel="noopener">OpenAlex</a> and <a href="https://doaj.org" target="_blank" rel="noopener">DOAJ</a>. Fees and policies change, so always confirm them on the journal's own website before you submit.</p>
+      </div>
+
+      <details class="panel guide" id="jfGuide" open>
+        <summary><h2 data-i18n="jg_h">Your first paper, step by step</h2></summary>
+        <ol class="steps">
+          <li data-i18n-html="jg_s1"><b>Pick three journals.</b> Choose ones that publish papers like yours and that you can afford. Rank them: a dream journal, a realistic one, and a safe one.</li>
+          <li data-i18n-html="jg_s2"><b>Read the Guide for Authors.</b> Every journal has one. It tells you the word limit, the sections to include, how to format references and how to submit. Follow it closely: editors notice.</li>
+          <li data-i18n-html="jg_s3"><b>Check the journal is real.</b> Is it on DOAJ or a national list? Does it have a real address, and editors you can look up? Be careful with journals that email you asking for papers, promise publication in days, or ask for money before peer review. <a href="https://thinkchecksubmit.org" target="_blank" rel="noopener">Think. Check. Submit.</a> has a simple checklist.</li>
+          <li data-i18n-html="jg_s4"><b>Polish your paper.</b> Ask a supervisor or colleague to read it. Check every reference: LARA's <a href="#refs">Reference list</a> tab can help you find them.</li>
+          <li data-i18n-html="jg_s5"><b>Write a short cover letter.</b> Three or four sentences to the editor: what you found, why it matters, and why it suits this journal.</li>
+          <li data-i18n-html="jg_s6"><b>Submit on the journal's website.</b> You'll create an account and upload your files. Send your paper to one journal at a time: sending the same paper to two journals at once isn't allowed.</li>
+          <li data-i18n-html="jg_s7"><b>Wait for the editor.</b> The editor may reject it quickly without review. That's common, and it frees you to try the next journal. Otherwise it goes to peer review, which often takes weeks to months.</li>
+          <li data-i18n-html="jg_s8"><b>Answer the reviewers.</b> You'll usually be asked to make changes. Reply to every comment politely, one by one, and say what you changed.</li>
+          <li data-i18n-html="jg_s9"><b>Rejected? Keep going.</b> Use the feedback, improve the paper and send it to the next journal on your list. Many published papers were rejected somewhere first.</li>
+          <li data-i18n-html="jg_s10"><b>Accepted!</b> Check the proofs carefully. Then share your work: post your accepted manuscript where the journal allows, and add the paper to your ORCID profile.</li>
+        </ol>
+        <div class="callout small" data-i18n-html="jg_fees"><b>About publication fees.</b> Many open-access journals charge a fee to publish. Before you pay anything, check whether the journal offers a waiver or discount: many do for authors in lower-income countries. And remember that most subscription journals let you publish for free.</div>
+      </details>
+    </section>
+
     <!-- RULES -->
     <section id="tab-rules" class="stack" hidden>
       <div class="panel">
@@ -277,7 +336,6 @@
   <footer class="foot">
     <div><a href="#rules" data-i18n="tab_rules">Ground rules</a> · <a href="privacy.html" data-i18n="privacy">Privacy</a> · <a href="#" id="problemLink" data-i18n="pb_link">Report a problem</a></div>
     <div data-i18n="foot_data">Open data from Unpaywall, Crossref, OpenAlex, CORE, Europe PMC, Semantic Scholar, arXiv, DOAJ, DataCite, Zenodo and Open Policy Finder.</div>
-    <div class="small">Cite LARA: Amool, S. H. (2026). <i>LARA: Legal Access to Research for Africa</i> (Version 1.0) [Computer software]. Zenodo. <a href="https://doi.org/10.5281/zenodo.23762808" target="_blank" rel="noopener">https://doi.org/10.5281/zenodo.23762808</a></div>
   </footer>
 </div>
 

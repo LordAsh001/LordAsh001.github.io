@@ -76,7 +76,7 @@ const CONTACT = CFG.CONTACT_EMAIL || "lara@shagbaor.com";
 document.querySelectorAll("[data-contact]").forEach((el) => { el.replaceChildren(link(CONTACT, "mailto:" + CONTACT)); });
 
 // ---------- tabs ----------
-const TABS = ["request", "refs", "board", "mine", "impact", "profile", "signin", "rules", "admin"];
+const TABS = ["request", "refs", "journal", "board", "mine", "impact", "profile", "signin", "rules", "admin"];
 function showTab() {
   let tab = (location.hash || "#request").slice(1);
   if (!TABS.includes(tab)) tab = "request";
@@ -699,6 +699,102 @@ function actions(r) {
   }
   return box.childNodes.length ? box : null;
 }
+
+
+// ---------- find a journal ----------
+const JF = { data: null, shown: 12 };
+const FEE_ORDER = { none: 0, subscription: 1, optional: 2, unknown: 3, apc: 4 };
+function money(amount, currency) {
+  try { return new Intl.NumberFormat(I.lang, { style: "currency", currency: currency || "USD", maximumFractionDigits: 0 }).format(amount); }
+  catch { return (currency || "US$") + " " + Math.round(amount); }
+}
+function feeLine(j) {
+  const f = j.fee || {};
+  const price = f.usd ? money(f.usd, "USD") : f.prices && f.prices[0] ? money(f.prices[0].price, f.prices[0].currency) : "";
+  if (f.model === "none") return { cls: "fee-free", text: t("jf_fee_none") };
+  if (f.model === "subscription") return { cls: "fee-free", text: t("jf_fee_sub") };
+  if (f.model === "optional") return { cls: "fee-free", text: t("jf_fee_optional", { p: price }) };
+  if (f.model === "apc") return { cls: "fee-paid", text: price ? t("jf_fee_apc", { p: price }) : t("jf_fee_apc_np") };
+  return { cls: "fee-unknown", text: t("jf_fee_unknown") };
+}
+function freeToPublish(j) { return ["none", "subscription", "optional"].includes(j.fee && j.fee.model); }
+function jfFiltered(list) {
+  let out = list.filter((j) => (!$("jfFree").checked || freeToPublish(j)) && (!$("jfOpen").checked || j.openAccess)
+    && (!$("jfDoaj").checked || j.doaj) && (!$("jfAfrica").checked || j.african));
+  const s = $("jfSort").value;
+  const fee = (j) => (freeToPublish(j) ? 0 : j.fee && j.fee.usd != null ? j.fee.usd : 1e9);
+  if (s === "fee") out = out.slice().sort((a, b) => fee(a) - fee(b) || b.score - a.score);
+  if (s === "fast") out = out.slice().sort((a, b) => (a.weeks || 999) - (b.weeks || 999) || b.score - a.score);
+  if (s === "cited") out = out.slice().sort((a, b) => (b.cited2y || 0) - (a.cited2y || 0));
+  if (s === "africa") out = out.slice().sort((a, b) => b.africaPapers - a.africaPapers || b.score - a.score);
+  return out;
+}
+function journalCard(j, simple) {
+  const fee = feeLine(j);
+  const n = (x) => new Intl.NumberFormat(I.lang).format(x);
+  const facts = [];
+  if (j.fieldPapers) facts.push(t("jf_fact_field", { n: n(j.fieldPapers) }) + (j.africaPapers ? " " + t("jf_fact_africa", { n: n(j.africaPapers) }) : ""));
+  if (j.weeks) facts.push(t("jf_fact_weeks", { n: j.weeks }));
+  if (j.review) facts.push(t("jf_fact_review", { r: j.review }));
+  if (j.cited2y != null) facts.push(t("jf_fact_cited", { n: j.cited2y }));
+  const doajLink = "https://doaj.org/search/journals?source=" + encodeURIComponent(JSON.stringify({ query: { query_string: { query: j.issn || j.name, default_operator: "AND" } } }));
+  return h("article", { class: "panel journal" },
+    h("div", { class: "jhead" },
+      h("div", null,
+        h("h3", null, j.homepage ? link(j.name, j.homepage) : j.name),
+        h("div", { class: "small muted" }, [j.publisher, j.country ? countryName(j.country) : ""].filter(Boolean).join(" · "))),
+      h("div", { class: "badges" },
+        h("span", { class: "pill " + fee.cls }, fee.text),
+        j.openAccess ? h("span", { class: "pill st-done" }, t("jf_b_open")) : h("span", { class: "pill" }, t("jf_b_sub")),
+        j.doaj ? h("span", { class: "pill st-done" }, "DOAJ ✓") : null,
+        j.african ? h("span", { class: "pill st-link" }, j.ajol ? t("jf_b_ajol") : t("jf_b_africa")) : null)),
+    j.fee && j.fee.model === "apc" && j.waiver ? h("p", { class: "small" }, j.waiver.has ? h("span", null, "✓ " + t("jf_waiver_yes") + " ", j.waiver.url ? link(t("jf_waiver_link"), j.waiver.url) : null) : t("jf_waiver_no")) : null,
+    facts.length ? h("p", { class: "small" }, facts.join(" · ")) : null,
+    !simple && j.lists && j.lists.length ? h("p", { class: "small muted" }, t("jf_lists") + ": " + j.lists.join(", ")) : null,
+    !simple && j.example && j.example.title ? h("p", { class: "small muted" }, t("jf_example") + " ", j.example.doi ? link(j.example.title, "https://doi.org/" + j.example.doi) : j.example.title, j.example.year ? " (" + j.example.year + ")" : "") : null,
+    h("div", { class: "row wrap" },
+      j.guide ? h("a", { class: "btn small primary", href: j.guide, target: "_blank", rel: "noopener" }, t("jf_guide")) : null,
+      j.homepage ? h("a", { class: "btn small" + (j.guide ? "" : " primary"), href: j.homepage, target: "_blank", rel: "noopener" }, j.guide ? t("jf_site") : t("jf_site_guide")) : null,
+      j.doaj ? h("a", { class: "btn small ghost", href: doajLink, target: "_blank", rel: "noopener" }, t("jf_doaj_rec")) : null,
+      j.fee && j.fee.url ? h("a", { class: "btn small ghost", href: j.fee.url, target: "_blank", rel: "noopener" }, t("jf_fee_page")) : null));
+}
+let countryNames;
+function countryName(cc) {
+  try { countryNames = countryNames || new Intl.DisplayNames([I.lang], { type: "region" }); return countryNames.of(cc) || cc; } catch { return cc; }
+}
+function renderJournals() {
+  const d = JF.data; if (!d) return;
+  const verified = d.journals.filter((j) => j.verified), unverified = d.journals.filter((j) => !j.verified);
+  $("jfResults").hidden = false;
+  const kind = $("jfKind").value;
+  $("jfMatched").textContent = (d.topics && d.topics.length ? t("jf_matched", { t: d.topics.join(" · ") }) : "") + (kind !== "research" ? " " + t("jf_tip_" + kind) : "");
+  const list = jfFiltered(verified);
+  const box = $("jfList"); box.replaceChildren();
+  if (!list.length) box.append(emptyState(verified.length ? t("jf_none_filter") : t("jf_none"), verified.length ? t("jf_none_filter_p") : t("jf_none_p")));
+  list.slice(0, JF.shown).forEach((j) => box.append(journalCard(j)));
+  $("jfMore").hidden = list.length <= JF.shown;
+  const ul = jfFiltered(unverified);
+  $("jfUnverifiedBox").hidden = !ul.length;
+  $("jfUnvCount").textContent = ul.length;
+  $("jfUnverified").replaceChildren(...ul.map((j) => journalCard(j, true)));
+}
+["jfFree", "jfOpen", "jfDoaj", "jfAfrica", "jfSort"].forEach((id) => $(id).addEventListener("change", () => { JF.shown = 12; renderJournals(); }));
+$("jfMore").addEventListener("click", () => { JF.shown += 12; renderJournals(); });
+$("jfForm").addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const topic = $("jfTopic").value.trim();
+  if (topic.split(/\s+/).filter(Boolean).length < 2) { $("jfState").textContent = t("jf_e_short"); $("jfTopic").focus(); return; }
+  $("jfBtn").disabled = true; $("jfState").textContent = t("jf_searching");
+  const { data, error } = await callFn("journals", { topic, kind: $("jfKind").value });
+  $("jfBtn").disabled = false;
+  if (error) { $("jfState").textContent = error.message; return; }
+  $("jfState").textContent = "";
+  JF.data = data; JF.shown = 12;
+  $("jfGuide").open = false;
+  renderJournals();
+  $("jfResults").scrollIntoView({ behavior: "smooth", block: "start" });
+});
+document.addEventListener("lara:lang", () => { countryNames = null; renderJournals(); });
 
 // ---------- renders ----------
 function emptyState(title, sub, a) { return h("div", { class: "empty" }, h("b", { class: "ink" }, title), sub ? h("span", { class: "small" }, sub) : null, a || null); }

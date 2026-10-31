@@ -218,3 +218,22 @@ html[dir="rtl"] #doiInput,html[dir="rtl"] #emTo{text-align:right}
 #auCode{font-size:1.4rem;letter-spacing:.35em;font-family:var(--f-mono);text-align:center}
 
 .disabled-link{pointer-events:none;color:var(--muted);text-decoration:none}
+
+/* find a journal */
+.jf-filters{display:grid;gap:10px}
+.row.wrap{flex-wrap:wrap}
+label.f.inline{display:flex;flex-wrap:wrap;align-items:center;gap:8px;grid-template-columns:none}
+label.f.inline select{width:auto;max-width:100%;min-width:0}
+.journal .jhead{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;align-items:flex-start}
+.journal h3{margin:0 0 2px;font-size:1.05rem}
+.journal .badges{display:flex;flex-wrap:wrap;gap:6px}
+.pill.fee-free{background:var(--done-bg);color:var(--done)}
+.pill.fee-paid{background:var(--warn-bg);color:var(--ink)}
+.pill.fee-unknown{background:var(--closed-bg);color:var(--closed)}
+.guide summary h2{display:inline;font-size:1.15rem}
+.guide summary{cursor:pointer}
+ol.steps{display:grid;gap:10px;padding-inline-start:1.3rem;margin:.8rem 0}
+.callout{background:var(--accent-soft);border-radius:8px;padding:10px 12px}
+.journal .pill{white-space:normal;max-width:100%}
+.journal .jhead>div{min-width:0}
+.journal h3 a{word-break:break-word}
