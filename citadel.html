@@ -1088,7 +1088,8 @@ function wireStarters(scope,ta){$$('[data-st]',scope).forEach(b=>b.onclick=()=>{
 /* ============ navigation ============ */
 const TABS=[['path','Start here'],['learn','Courses'],['project','My research project'],['tools','Writing tools'],['practice','Practice'],['lab','Paraphrase lab'],['lib','Library'],['write','Writing desk'],['styles','Style guide'],['res','Resources'],['guide','Guide']];
 let current='path';
-function go(id){current=id;P=null;$$('#tabs button').forEach(b=>b.setAttribute('aria-selected',b.dataset.go===id));({path:renderPath,learn:renderLearn,project:renderProject,tools:renderTools,practice:renderPractice,lab:renderLab,lib:renderLib,write:renderWrite,styles:renderStyles,res:renderRes,guide:renderGuide})[id]();try{history.replaceState(null,'','#'+id)}catch(e){}window.scrollTo(0,0)}
+function go(id){current=id;P=null;$$('#tabs button').forEach(b=>b.setAttribute('aria-selected',b.dataset.go===id));({path:renderPath,learn:renderLearn,project:renderProject,tools:renderTools,practice:renderPractice,lab:renderLab,lib:renderLib,write:renderWrite,styles:renderStyles,res:renderRes,guide:renderGuide})[id]();try{if(location.hash!=='#'+id)history[location.hash?'pushState':'replaceState'](null,'','#'+id)}catch(e){}window.scrollTo(0,0)}
+window.addEventListener('popstate',()=>{const h=(location.hash||'').slice(1)||'path';if(h!==current&&TABS.some(t=>t[0]===h))go(h)});
 $('#tabs').innerHTML=TABS.map(([id,l])=>`<button role="tab" data-go="${id}">${l}</button>`).join('');
 document.addEventListener('click',e=>{const g=e.target.closest('[data-go]');if(g){go(g.dataset.go)}});
 $('#themeBtn').onclick=()=>{const cur=document.documentElement.getAttribute('data-theme');const dark=cur?cur==='dark':matchMedia('(prefers-color-scheme: dark)').matches;S.theme=dark?'light':'dark';document.documentElement.setAttribute('data-theme',S.theme);save()};

@@ -121,11 +121,14 @@ dialog[open]{animation:pop .22s ease}
 @media (max-width:560px){.sb-hide,.sb-lbl{display:none}}
 @media print{.sitebar{display:none}}
 .sitebar{position:sticky;top:0;z-index:50;--sb-max:1120px;--sb-pad:20px;--sb-bg:color-mix(in srgb,var(--bg) 88%,transparent);--sb-line:var(--line);--sb-ink:var(--ink);--sb-muted:var(--ink3);--sb-hover:var(--keybg);--sb-font:var(--body);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+/* small phones: keep the About columns inside the screen */
+.about>*,.cols>*{min-width:0}
+.cite,.cite a{overflow-wrap:anywhere}
 </style>
 <style id="fullscreen-layout">
 /* Full-screen layout: use the whole viewport width, and fit the periodic table to the screen height on desktops */
-main{max-width:none;padding-inline:clamp(16px,3vw,56px)}
-.sitebar{--sb-max:none;--sb-pad:clamp(16px,3vw,56px)}
+main{max-width:1680px;padding-inline:clamp(16px,3vw,56px)}
+.sitebar{--sb-max:1680px;--sb-pad:clamp(16px,3vw,56px)}
 @media (min-width:900px) and (min-height:620px){
   .table{grid-auto-rows:minmax(112px,calc((100vh - 210px) / 5));grid-auto-rows:minmax(112px,calc((100dvh - 210px) / 5))}
   .el{aspect-ratio:auto}
@@ -290,7 +293,8 @@ $("copy").onclick=async()=>{const t=$("cite").innerText;try{await navigator.clip
 /* remember the chosen view in the address (#connections, #lens) so links, reloads and the Back button return to it */
 (function(){var H={goals:"",conn:"connections",lens:"lens"};function setM(m){if(!(m in H))return;mode=m;document.querySelectorAll(".modes button").forEach(function(x){x.setAttribute("aria-selected",String(x.dataset.m===m))})}
 var r=location.hash.slice(1);Object.keys(H).forEach(function(k){if(H[k]&&H[k]===r)setM(k)});
-document.querySelectorAll(".modes button").forEach(function(b){b.addEventListener("click",function(){try{history.replaceState(null,"",H[b.dataset.m]?"#"+H[b.dataset.m]:location.pathname+location.search)}catch(e){}})});})();
+document.querySelectorAll(".modes button").forEach(function(b){b.addEventListener("click",function(){var u=H[b.dataset.m]?"#"+H[b.dataset.m]:location.pathname+location.search;if(u===(H[b.dataset.m]?location.hash:location.pathname+location.search)&&(H[b.dataset.m]||!location.hash))return;try{history.pushState(null,"",u)}catch(e){}})});
+window.addEventListener("popstate",function(){var r=location.hash.slice(1),m="goals";Object.keys(H).forEach(function(k){if(H[k]&&H[k]===r)m=k});if(m!==mode){setM(m);csel=null;if(dlg.open)dlg.close();render()}});})();
 render();
 </script>
 </body>
