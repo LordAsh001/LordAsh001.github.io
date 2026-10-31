@@ -25,6 +25,8 @@ var TOOL = /\/symbiosis\//.test(path) ? "symbiosis"
   : /\/peoples-atlas\//.test(path) ? "peoples-atlas"
   : /\/waste-atlas\//.test(path) ? "waste-atlas"
   : /\/lara\//.test(path) ? "lara"
+  : /\/diaspora-atlas\//.test(path) ? "diaspora-atlas"
+  : /\/literature-landscape\//.test(path) ? "literature-landscape"
   : "website";
 
 /* ---------- analytics (GoatCounter: no cookies, no personal data) ---------- */

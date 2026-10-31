@@ -22,6 +22,7 @@ var TOOLS = [
   { url: "/peoples-atlas/", name: "Nigeria Peoples & Cultures Atlas", note: "Peoples, languages, festivals and heritage" },
   { url: "/waste-atlas/",       name: "Nigeria Waste Sites Atlas", note: "Open dumpsites mapped from satellite" },
   { url: "/literature-landscape/", name: "Nigeria Literature Landscape", note: "Writers, music, film, comedy, journalism and creators" },
+  { url: "/diaspora-atlas/",     name: "Nigeria Diaspora Atlas", note: "Nigerians abroad, missions and consular help" },
   { url: "/lara/",               name: "LARA · Legal Access to Research for Africa", note: "Find a legal copy of a journal article" }
 ];
 var HOME = "/#resources";

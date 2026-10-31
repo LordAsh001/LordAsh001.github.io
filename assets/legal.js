@@ -20,6 +20,7 @@ var NOTES = [
   [/\/peoples-atlas\//, "Cultural areas, histories and rulers are indicative, from the sources cited. The atlas takes no position on land, chieftaincy or boundary questions. Map boundaries are approximate and not official."],
   [/\/waste-atlas\//, MAP + " A mapped site shows visible waste on the date given; it does not mean any person, community or company broke the law."],
   [/\/literature-landscape\//, "Profiles come from public sources such as Wikidata and Wikipedia; inclusion or ranking is not an endorsement. Photos are from Wikimedia Commons, credited with each photo."],
+  [/\/diaspora-atlas\//, MAP + " Figures are estimates from the cited sources and dates. Mission addresses, phone numbers and procedures change: confirm with the embassy or consulate before you travel or apply."],
   [/\/lara\//, "LARA links only to legal copies and does not host or share articles. It is not affiliated with any publisher, database or Research4Life. Check each copy's licence before reusing it."],
   [/\/(tea-studio|eia-studio|symbiosis)\//, TOOLNOTE],
   [/\/laureate\//, "Free preparation resource, not affiliated with any funder. Deadlines, eligibility and requirements change: always check the funder's official page before you apply."],
