@@ -326,6 +326,37 @@ def collect_wfp():
     return parse_wfp_csv(get(res["url"]))
 
 
+# ---------------------------------------------------------------- community price agents
+# Prices posted on the atlas by registered community agents (Price agents tab). They live in the
+# site's Supabase project; the publishable key in /lara/config.js reads only what the public can see
+# (live posts, not prices held for a check).
+SITE_CONFIG = "https://shagbaor.com/lara/config.js"
+
+
+def collect_community(days: int = 45):
+    import requests as _rq
+    cfg = _rq.get(SITE_CONFIG, timeout=30, headers={"User-Agent": "NigeriaMarketAtlasBot/1.0"}).text
+    url = re.search(r'SUPABASE_URL:\s*"([^"]+)"', cfg).group(1).rstrip("/")
+    key = re.search(r'SUPABASE_ANON_KEY:\s*"([^"]+)"', cfg).group(1)
+    since = (date.today() - timedelta(days=days)).isoformat()
+    r = _rq.get(f"{url}/rest/v1/ma_prices", timeout=40, headers={"apikey": key, "Authorization": f"Bearer {key}"}, params={
+        "select": "commodity,unit,per,price,observed_on,state,ma_posts(market_id,market_name,state)",
+        "status": "eq.live", "commodity": "neq.other", "per": "not.is.null", "observed_on": f"gte.{since}",
+        "order": "observed_on.desc", "limit": "5000"})
+    r.raise_for_status()
+    out = []
+    for p in r.json():
+        post = p.get("ma_posts") or {}
+        mid = post.get("market_id")
+        out.append({"src": "community_agents", "c": p["commodity"], "price": float(p["price"]), "unit": p["unit"],
+                    "per": float(p["per"]), "date": p["observed_on"], "scope": "market" if mid else "state",
+                    "where": [mid] if mid else (post.get("state") or p.get("state")),
+                    "name": post.get("market_name") or p.get("state"), "state": post.get("state") or p.get("state")})
+    if not out:
+        raise RuntimeError("no community prices in the last %d days yet" % days)
+    return out
+
+
 REGISTRY = {
     "kasuwa_api": collect_kasuwa,
     "lagos_tracker": collect_lagos,
@@ -335,4 +366,5 @@ REGISTRY = {
     "avestack": collect_avestack,
     "opaindex": collect_opaindex,
     "wfp_hdx": collect_wfp,
+    "community_agents": collect_community,
 }
