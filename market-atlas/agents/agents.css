@@ -1,0 +1,33 @@
+/* Nigeria Market Atlas · Community price agents */
+#pane-agents h2{margin:0 0 4px;font-size:18px}
+#pane-agents h3{font-size:14px}
+.ag-feed{display:flex;flex-direction:column;gap:12px}
+.ag-post{gap:6px;min-width:0;overflow:hidden}
+.ag-head{font-size:14px;line-height:1.35}
+.ag-name{font-weight:700;color:var(--ink)}
+a.ag-name{color:var(--indigo);text-decoration:none}
+a.ag-name:hover{text-decoration:underline}
+.ag-badge{display:inline-block;margin-left:6px;font-size:10.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;padding:1px 6px;border-radius:4px;background:color-mix(in srgb,var(--leaf) 18%,transparent);color:var(--leaf);vertical-align:2px}
+.ag-table{width:100%;border-collapse:collapse;font-size:13px;table-layout:fixed}
+.ag-table td:first-child{overflow-wrap:anywhere}
+.ag-table td{padding:5px 4px;border-top:1px solid var(--line);vertical-align:top}
+.ag-table td.num{text-align:right;font-weight:700;white-space:nowrap;width:7.5em}
+.ag-table td .small{margin-top:1px}
+.ag-table tr.held td{opacity:.75;font-style:italic}
+.ag-filters,.ag-grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(150px,100%),1fr));gap:10px}
+.ag-form{gap:12px}
+.ag-form input,.ag-form select,.ag-form textarea,.ag-filters select,.ag-cap{width:100%;box-sizing:border-box;font:inherit;font-size:14px;padding:8px 10px;border:1px solid var(--line);border-radius:6px;background:var(--panel);color:var(--ink)}
+.ag-form textarea,.ag-cap{resize:vertical;line-height:1.45}
+.ag-handle{display:flex;align-items:center;gap:4px;flex-wrap:wrap}
+.ag-handle input{flex:1;min-width:140px}
+.ag-check{display:flex;gap:8px;align-items:flex-start;line-height:1.45}
+.ag-check input{margin-top:3px;width:auto}
+.ag-links a,#pane-agents .small a{color:var(--indigo)}
+.ag-rows{display:flex;flex-direction:column;gap:10px}
+.ag-row{position:relative;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(120px,100%),1fr));gap:8px;padding:10px 34px 10px 10px;border:1px solid var(--line);border-radius:var(--r);background:var(--soft)}
+.ag-x{position:absolute;top:6px;right:6px;width:26px;height:26px;border:0;border-radius:50%;background:transparent;color:var(--muted);font-size:20px;line-height:1;cursor:pointer}
+.ag-x:hover{background:var(--line);color:var(--ink)}
+.ag-canvas{width:100%;height:auto;border:1px solid var(--line);border-radius:8px;background:#fff}
+.btn.small{padding:5px 10px;font-size:12.5px}
+a.btn{text-decoration:none;display:inline-flex;align-items:center}
+.ag-profile h2{line-height:1.25}
