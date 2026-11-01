@@ -28,7 +28,8 @@ jobs:
       - name: Make sure the review label exists
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: gh label create literature-landscape-review --color B0502A --description "Literature Landscape: verify before updating" --repo "$GITHUB_REPOSITORY" 2>/dev/null || true
+        run: |
+          gh label create literature-landscape-review --color B0502A --description "Literature Landscape - verify before updating" --repo "$GITHUB_REPOSITORY" 2>/dev/null || true
       - name: Comb news sources
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
