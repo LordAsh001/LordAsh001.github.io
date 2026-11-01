@@ -1,5 +1,5 @@
 -- Nigeria Market Atlas · Community price agents
--- Runs in the same Supabase project as LARA (shared sign-in), in its own ma_* tables.
+-- Runs in the Market Atlas's own Supabase project. It shares no accounts or data with any other tool.
 -- Safe to run more than once.
 
 -- ---------------------------------------------------------------- tables
@@ -70,11 +70,19 @@ insert into public.ma_ranges (commodity, min_base, max_base) values
 on conflict (commodity) do nothing;
 
 -- ---------------------------------------------------------------- helpers
--- true for the atlas editor (LARA admin account) and for the database owner working in the SQL editor
+-- the atlas editors: add a row with an account's id (Authentication > Users) to give it the Review button
+create table if not exists public.ma_editors (
+  user_id uuid primary key references auth.users(id) on delete cascade,
+  added_at timestamptz not null default now()
+);
+alter table public.ma_editors enable row level security;
+revoke all on public.ma_editors from anon, authenticated;
+
+-- true for an editor, and for the database owner working in the SQL editor
 create or replace function public.ma_is_editor() returns boolean
 language sql stable security definer set search_path = public as $$
   select coalesce(current_setting('role', true), 'none') not in ('anon', 'authenticated')
-      or coalesce(public.is_admin(auth.uid()), false);
+      or exists (select 1 from public.ma_editors where user_id = auth.uid());
 $$;
 
 -- ---------------------------------------------------------------- triggers

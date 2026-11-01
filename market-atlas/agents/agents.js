@@ -1,14 +1,15 @@
 /* Nigeria Market Atlas · Community price agents
    Traders, farmers and extension workers sign up, post prices from their own market, get a public page
    (#agent/<handle>) and a ready-made price card and caption to share on LinkedIn, Facebook and WhatsApp.
-   Sign-in and data live in the Supabase project the site already uses for LARA (tables ma_*; see schema.sql).
+   Sign-in and data live in the Market Atlas's own Supabase project (settings in agents/config.js, tables in
+   schema.sql). It shares nothing with LARA or any other tool.
    Loaded after the main atlas script, so it uses the atlas helpers ($, esc, naira, fmtDate, toast, copyText,
    COMMODITIES, MARKETS, map, showTab, store). */
 (function () {
 "use strict";
 
 const SB_LIB = "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/+esm";
-const CONFIG = "/lara/config.js";               // shared site settings: Supabase address and publishable key
+const CONFIG = "agents/config.js";              // this project's Supabase address and publishable key
 const PAGE = "https://shagbaor.com/market-atlas/";
 const RESEND_WAIT = 5 * 60 * 1000;              // each new code cancels the last one, so wait before asking again
 const MAX_ROWS = 30;
@@ -28,12 +29,19 @@ window.MA_AGENTS = A;
 
 /* ---------------------------------------------------------------- data access */
 function loadScript(src) { return new Promise((res, rej) => { const s = document.createElement("script"); s.src = src; s.onload = res; s.onerror = () => rej(new Error("Could not load " + src)); document.head.appendChild(s); }); }
+let SETTINGS = null;
+async function settings() {
+  if (SETTINGS) return SETTINGS;
+  if (!window.MA_AGENTS_CONFIG) { try { await loadScript(CONFIG + "?v=" + Date.now().toString(36).slice(0, 5)); } catch (e) {} }
+  SETTINGS = window.MA_AGENTS_CONFIG || {};
+  return SETTINGS;
+}
+const isConfigured = C => !!C.SUPABASE_URL && !/YOUR-/.test(C.SUPABASE_URL + C.SUPABASE_ANON_KEY);
 function connect() {
   if (A.ready) return A.ready;
   A.ready = (async () => {
-    if (!window.LARA_CONFIG) await loadScript(CONFIG);
-    const C = window.LARA_CONFIG || {};
-    if (!C.SUPABASE_URL || /YOUR-/.test(C.SUPABASE_URL + C.SUPABASE_ANON_KEY)) throw new Error("not configured");
+    const C = await settings();
+    if (!isConfigured(C)) throw new Error("not configured");
     const { createClient } = await import(SB_LIB);
     A.sb = createClient(C.SUPABASE_URL, C.SUPABASE_ANON_KEY);
     const { data } = await A.sb.auth.getSession();
@@ -58,7 +66,7 @@ function friendly(err) {
   const m = ((err && (err.message || err.error_description)) || String(err || "")).toLowerCase();
   if (m.includes("invalid login")) return "That email and password don't match. Check them, or reset your password.";
   if (m.includes("not confirmed")) return "Please confirm your email first: we've sent you a code.";
-  if (m.includes("already registered") || m.includes("already been registered")) return "That email already has an account. Sign in instead (the same account works for LARA).";
+  if (m.includes("already registered") || m.includes("already been registered")) return "That email already has an account. Sign in instead.";
   if (m.includes("token") && (m.includes("expired") || m.includes("invalid"))) return "That code is wrong or has expired. Use the newest code we sent.";
   if (m.includes("password") && (m.includes("least") || m.includes("weak"))) return "Use a password of at least 8 characters.";
   if (m.includes("rate limit") || m.includes("security purposes")) return "Please wait a few minutes before asking for another code.";
@@ -98,6 +106,7 @@ function route(h, push) {
 }
 function go(view, arg) { route(view === "agent" ? "agent/" + arg : view === "home" ? "agents" : "agents/" + view + (arg ? "/" + arg : ""), true); P().scrollTop = 0; }
 window.addEventListener("popstate", () => {
+  if ($("#t-agents").hidden) return;           // not set up yet
   const h = location.hash.slice(1);
   if (h === "agents" || h.startsWith("agents/") || h.startsWith("agent/")) {
     if ($("#t-agents").getAttribute("aria-selected") !== "true") _origShowTab("agents");
@@ -257,7 +266,7 @@ function renderJoin() {
         <div class="field"><label for="apLi">LinkedIn profile link (optional)</label><input id="apLi" type="url" maxlength="200" value="${esc((a.links || {}).linkedin || "")}" placeholder="https://www.linkedin.com/in/…"></div>
         <div class="field"><label for="apFb">Facebook profile link (optional)</label><input id="apFb" type="url" maxlength="200" value="${esc((a.links || {}).facebook || "")}" placeholder="https://www.facebook.com/…"></div>
       </div>
-      ${editing ? "" : `<label class="small ag-check"><input type="checkbox" id="apAgree"> I will post only prices I have seen or paid myself, and I agree that my posts are published on the atlas and shared as open data (CC BY 4.0) with my name. See the <a href="/privacy.html#price-agents" target="_blank" rel="noopener">privacy notice</a>.</label>`}
+      ${editing ? "" : `<label class="small ag-check"><input type="checkbox" id="apAgree"> I will post only prices I have seen or paid myself, and I agree that my posts are published on the atlas and shared as open data (CC BY 4.0) with my name. See the <a href="agents/privacy.html" target="_blank" rel="noopener">privacy notice</a>.</label>`}
       <div class="btns"><button class="btn" type="submit">${editing ? "Save changes" : "Create my agent page"}</button></div>
       <div id="apMsg" class="small" role="status"></div>
     </form>
@@ -302,9 +311,9 @@ function renderJoin() {
 function renderAuth() {
   const el = P(); const au = A.au;
   const T = {
-    in: ["Sign in", "Use your email and password. Already use LARA? It's the same account.", "Sign in"],
-    up: ["Become a price agent", "Create a free account with any email address. We'll send a 6-digit code to confirm it. The email comes from LARA, which looks after sign-in for the tools on shagbaor.com.", "Create account"],
-    code: ["Check your email", `Enter the 6-digit code we sent to ${au.email}. The email is headed “LARA”, which looks after sign-in for shagbaor.com. It can take a few minutes to arrive; check spam too.`, "Confirm"],
+    in: ["Sign in", "Use the email and password of your price-agent account.", "Sign in"],
+    up: ["Become a price agent", "Create a free account with any email address. We'll send a 6-digit code to confirm it.", "Create account"],
+    code: ["Check your email", `Enter the 6-digit code we sent to ${au.email}. It can take a few minutes to arrive; check spam too.`, "Confirm"],
     forgot: ["Reset your password", "Enter your email and we'll send you a 6-digit code.", "Send code"],
     reset: ["Choose a new password", `Enter the code we sent to ${au.email} and your new password.`, "Save new password"],
   }[au.mode];
@@ -325,7 +334,7 @@ function renderAuth() {
         ${au.mode === "forgot" ? `<a href="#" data-au="in">Back to sign in</a>` : ""}
       </div>
     </form>
-    <p class="small muted">Your email is used only to sign you in and is never shown on the atlas. See the <a href="/privacy.html#price-agents" target="_blank" rel="noopener">privacy notice</a>.</p>`;
+    <p class="small muted">Your email is used only to sign you in and is never shown on the atlas. See the <a href="agents/privacy.html" target="_blank" rel="noopener">privacy notice</a>.</p>`;
   wire(el);
   el.querySelectorAll("[data-au]").forEach(a => a.onclick = e => { e.preventDefault(); A.au.mode = a.dataset.au; renderAuth(); });
   const say = (t, bad) => { const m = $("#auMsg"); m.textContent = t || ""; m.className = "small" + (bad ? " bad" : ""); };
@@ -353,7 +362,7 @@ function renderAuth() {
         const { data, error } = await A.sb.auth.signUp({ email: au.email, password: pw, options: { data: { market_agent: true } } });
         if (error) { say(friendly(error), true); return; }
         if (data && data.session) { await afterSignIn(); return; }
-        if (data && data.user && Array.isArray(data.user.identities) && data.user.identities.length === 0) { au.mode = "in"; renderAuth(); say("That email already has an account. Sign in instead (the same account works for LARA).", true); return; }
+        if (data && data.user && Array.isArray(data.user.identities) && data.user.identities.length === 0) { au.mode = "in"; renderAuth(); say("That email already has an account. Sign in instead.", true); return; }
         au.type = "signup"; au.sentAt = Date.now(); au.mode = "code"; renderAuth();
       } else if (au.mode === "code") {
         const token = $("#auCode").value.replace(/\D/g, ""); if (token.length < 6) { say("Enter the 6-digit code.", true); return; }
@@ -586,7 +595,13 @@ showTab = function (t) {
   if (t === "agents") { const h = location.hash.slice(1); route(h.startsWith("agent") ? h : "agents", false); }
 };
 document.querySelectorAll(".tabs button").forEach(b => b.onclick = () => showTab(b.dataset.tab));
-// open straight to a shared link: #agent/<handle>, #agents, #agents/post …
-const h0 = location.hash.slice(1);
-if (h0 === "agents" || h0.startsWith("agents/") || h0.startsWith("agent/")) showTab("agents");
+// The tab only appears once the project's own database is set up (agents/config.js).
+const tabBtn = $("#t-agents"); tabBtn.hidden = true;
+settings().then(C => {
+  const h0 = location.hash.slice(1), wanted = h0 === "agents" || h0.startsWith("agents/") || h0.startsWith("agent/");
+  if (!isConfigured(C)) { if (wanted) showTab("explore"); return; }
+  tabBtn.hidden = false;
+  SOURCES.community_agents = { name: "Community price agents on this atlas (Price agents tab)", url: PAGE + "#agents", kind: "Registered community agents (not verified)", conf: "low" };
+  if (wanted) showTab("agents");   // open straight to a shared link: #agent/<handle>, #agents, #agents/post …
+});
 })();
