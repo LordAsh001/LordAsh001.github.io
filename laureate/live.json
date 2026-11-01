@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-31",
+ "updated": "2026-11-01",
  "sources": [
   {
    "source": "Opportunities for Africans",
@@ -9,12 +9,12 @@
   {
    "source": "Opportunity Desk",
    "ok": true,
-   "items": 4
+   "items": 3
   },
   {
    "source": "Opportunities Corners",
    "ok": true,
-   "items": 4
+   "items": 5
   },
   {
    "source": "Scholarship Region",
@@ -28,8 +28,8 @@
   },
   {
    "source": "Commonwealth Scholarship Commission",
-   "ok": false,
-   "error": "not well-formed (invalid token): line 1, column 0"
+   "ok": true,
+   "items": 2
   },
   {
    "source": "Erasmus Mundus catalogue (EACEA)",
@@ -57,6 +57,16 @@
  ],
  "items": [
   {
+   "title": "GovAI Summer Fellowship 2027 in London (Fully Funded)",
+   "link": "https://opportunitiescorners.com/govai-summer-fellowship-2027-in-london/",
+   "date": "2026-11-01",
+   "source": "Opportunities Corners",
+   "official": false,
+   "ids": [],
+   "summary": "Would you like to spend the summer of 2027 in the UK? Applications are now open for the GovAI Summer Fellowship 2027 in London, a fully funded three-month program running from June 7 to August 27. Th…",
+   "seen": "2026-11-01"
+  },
+  {
    "title": "MIT Summer Research Program 2027 in USA (Fully Funded)",
    "link": "https://opportunitiescorners.com/mit-summer-research-program-2027/",
    "date": "2026-10-31",
@@ -75,6 +85,48 @@
    "ids": [],
    "summary": "The Community Solutions Program (CSP) 2027 is a fully funded leadership development program in the USA. It aims to empower community leaders to develop solutions to local economic, social, political,…",
    "seen": "2026-10-31"
+  },
+  {
+   "title": "Mastercard Foundation Scholars Program at Sciences Po 2027 (Fully-funded)",
+   "link": "https://opportunitydesk.org/2026/10/31/mastercard-foundation-scholars-program-at-sciences-po-2027/",
+   "date": "2026-10-31",
+   "source": "Opportunity Desk",
+   "official": false,
+   "ids": [
+    "mastercard"
+   ],
+   "summary": "Deadline: December 14, 2026 Applications are open for the Mastercard Foundation Scholars Program at Sciences Po 2027. The Mastercard Foundation Scholars Program at Sciences Po is designed for student…",
+   "seen": "2026-11-01"
+  },
+  {
+   "title": "IREX Community Solutions Program (CSP) 2026-2027 (Fully-funded)",
+   "link": "https://opportunitydesk.org/2026/10/31/irex-community-solutions-program-2027/",
+   "date": "2026-10-31",
+   "source": "Opportunity Desk",
+   "official": false,
+   "ids": [],
+   "summary": "Deadline: November 24, 2026 Applications are open for the IREX Community Solutions Program (CSP) 2026-2027. The Community Solutions Program (CSP) is a professional leadership development program for …",
+   "seen": "2026-11-01"
+  },
+  {
+   "title": "Erasmus PlantHealth3 Scholarship 2027/29 (Fully Funded)",
+   "link": "https://opportunitiescorners.com/erasmus-planthealth3-scholarship/",
+   "date": "2026-10-31",
+   "source": "Opportunities Corners",
+   "official": false,
+   "ids": [],
+   "summary": "5 European Universities, 4 Countries, and One Combined Master’s Degree. Applications are now open for the fully funded Erasmus PlantHealth3 Scholarship, funded by the European Union under the Erasmus…",
+   "seen": "2026-11-01"
+  },
+  {
+   "title": "Universal Youth Leadership Summit Malaysia 2027 (Fully Funded)",
+   "link": "https://opportunitiescorners.com/universal-youth-leadership-summit-malaysia-2027/",
+   "date": "2026-10-31",
+   "source": "Opportunities Corners",
+   "official": false,
+   "ids": [],
+   "summary": "The Universal Youth Leadership Summit Malaysia 2027 invites young leaders, students, professionals, and changemakers from around the world to Kuala Lumpur, Malaysia. Under the theme “Roots & Rights,”…",
+   "seen": "2026-11-01"
   },
   {
    "title": "WAAW Foundation Scholarship For African Undergraduates 2026/27 | How To Apply",
@@ -1660,56 +1712,6 @@
    "official": false,
    "ids": [],
    "summary": "BOC Sciences is proud to have established a Scholarship Program that awards $1,000 once a year to college students who are pursuing a chemistry-related field of study. The scholarship aims to support…",
-   "seen": "2026-10-20"
-  },
-  {
-   "title": "9 Best Universities In Canada Offering Scholarships For International Students 2027",
-   "link": "https://www.scholarshipregion.com/universities-in-canada-offering-scholarships/",
-   "date": "2026-10-19",
-   "source": "Scholarship Region",
-   "official": false,
-   "ids": [],
-   "summary": "Canada attracts international students with its recognised universities and diverse learning environment, but tuition and living expenses can make studying abroad costly. According to EduCanada, the …",
-   "seen": "2026-10-20"
-  },
-  {
-   "title": "University of Oxford Master of Public Policy Scholarship in UK 2027 | Fully Funded",
-   "link": "https://www.scholarshipregion.com/oxford-master-of-public-policy-scholarship/",
-   "date": "2026-10-19",
-   "source": "Scholarship Region",
-   "official": false,
-   "ids": [],
-   "summary": "The University of Oxford Blavatnik School of Government is welcoming applications for its 2027 Master of Public Policy Scholarships for UK and international students. Candidates who apply for the pro…",
-   "seen": "2026-10-20"
-  },
-  {
-   "title": "Stanford University JSK Fellowship Programin USA 2027 | Fully Funded",
-   "link": "https://www.scholarshipregion.com/stanford-university-jsk-fellowship/",
-   "date": "2026-10-19",
-   "source": "Scholarship Region",
-   "official": false,
-   "ids": [],
-   "summary": "Stanford University is welcoming applications for its fully funded John S. Knight (JSK) Journalism Fellowship for eligible candidates worldwide. The Stanford University JSK Fellowship covers tuition …",
-   "seen": "2026-10-20"
-  },
-  {
-   "title": "2027 Liverpool John Moores University Vice Chancellors Scholarship in UK | Fully Funded",
-   "link": "https://www.scholarshipregion.com/liverpool-john-moores-university-vice-chancellors-scholarship/",
-   "date": "2026-10-19",
-   "source": "Scholarship Region",
-   "official": false,
-   "ids": [],
-   "summary": "Application for the Liverpool John Moores University Vice Chancellors Scholarship is now open. The LJMU VC PhD Scholarship offers a fully funded doctoral opportunity that includes tuition, living sti…",
-   "seen": "2026-10-20"
-  },
-  {
-   "title": "Dahdaleh Global Health Graduate Scholarship 2027–2028 at York University, Canada: Up to CAD $30,000 for Domestic and International Graduate Researchers",
-   "link": "https://opportunitiesforyouth.org/2026/10/19/dahdaleh-global-health-graduate-scholarship-2027-2028/",
-   "date": "2026-10-19",
-   "source": "Opportunities for Youth",
-   "official": false,
-   "ids": [],
-   "summary": "The Dahdaleh Global Health Graduate Scholarship 2027–2028 at York University in Canada is a competitive graduate research funding opportunity for outstanding domestic and international students pursu…",
    "seen": "2026-10-20"
   }
  ]
