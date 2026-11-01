@@ -33,11 +33,8 @@ const FEEDS = [
   { name: "Brittle Paper", url: "https://brittlepaper.com/feed/", field: "literature" },
   { name: "BellaNaija", url: "https://www.bellanaija.com/feed/", field: null },
   { name: "Premium Times · Arts", url: "https://www.premiumtimesng.com/entertainment/feed", field: null },
-  { name: "The Guardian Nigeria · Life", url: "https://guardian.ng/category/life/feed/", field: null },
   { name: "NotJustOk", url: "https://notjustok.com/feed/", field: "music" },
-  { name: "Music In Africa", url: "https://www.musicinafrica.net/rss.xml", field: "music" },
   { name: "Nollywood Reinvented", url: "https://nollywoodreinvented.com/feed", field: "film" },
-  { name: "TheCable Lifestyle", url: "https://lifestyle.thecable.ng/feed/", field: null },
   { name: "Punch · Entertainment", url: "https://punchng.com/topics/entertainment/feed/", field: null },
   { name: "Vanguard · Entertainment", url: "https://www.vanguardngr.com/category/entertainment/feed/", field: null }
 ];
@@ -60,7 +57,7 @@ const decode = s => String(s || "").replace(/<!\[CDATA\[([\s\S]*?)\]\]>/g, "$1")
 const tag = (xml, t) => { const m = xml.match(new RegExp(`<${t}[^>]*>([\\s\\S]*?)</${t}>`, "i")); return m ? decode(m[1]) : ""; };
 
 async function fetchFeed(f) {
-  const r = await fetch(f.url, { headers: { "User-Agent": UA, Accept: "application/rss+xml, application/xml, text/xml" }, redirect: "follow" });
+  const r = await fetch(f.url, { headers: { "User-Agent": UA, Accept: "application/rss+xml, application/xml, text/xml" }, redirect: "follow", signal: AbortSignal.timeout(25000) });
   if (!r.ok) throw new Error("HTTP " + r.status);
   const xml = await r.text();
   return [...xml.matchAll(/<item[\s>][\s\S]*?<\/item>/gi)].map(m => {
@@ -129,34 +126,75 @@ for (const x of [...(prev.items || []), ...all]) {
 }
 const items = [...byKey.values()].sort((a, b) => b.date.localeCompare(a.date)).slice(0, MAX_ITEMS);
 
-// ---- review issues for possible deaths / awards / new works of people on the site ----
+// ---- review: precise, person-specific patterns ----
+const REL = /\b(husband|wife|father|mother|son|daughter|brother|sister|mum|mom|dad|uncle|aunt|grandmother|grandfather|manager|colleague|friend|fan|co-star)\b/i;
+function personKind(n, title) {
+  const N = esc(n);
+  const death1 = new RegExp(`${N}([^.!?]{0,40}?)\\b(dies|died|is dead|dead at|passes away|passed away|passes on|passed on|has died)\\b`, "iu");
+  const death2 = new RegExp(`\\b(death of|mourns?|mourning|laid to rest|burial of|funeral of|RIP|tribute to (the )?late|remembering)\\s+(the\\s+)?(late\\s+)?(veteran\\s+)?(\\w+\\s+)?${N}`, "iu");
+  const relAfter = new RegExp(`${N}['’]s\\s+(late\\s+)?${REL.source.slice(2, -2)}`, "iu"); // "X's mother" is about a relative
+  const m1 = title.match(death1);
+  if (!relAfter.test(title) && ((m1 && !REL.test(m1[1])) || death2.test(title))) return "death";
+  const award = new RegExp(`${N}([^.!?]{0,50}?)\\b(wins?|won|bags?|clinch(es|ed)?|scoops?|named|nominated|nominations?|shortlisted|longlisted|honou?red|receives?|emerges?)\\b|\\b(award|prize|honour|honor)\\b[^.!?]{0,30}\\bto\\s+${N}`, "iu");
+  const ma = title.match(award);
+  if (ma && !/\b(never|not|yet to|didn['’]t|fails? to|snub\w*)\b/i.test(ma[1] || "")) return "award";
+  const release = new RegExp(`${N}[^.!?]{0,40}?\\b(releases?|released|drops?|unveils?|announces? new|premieres?|debuts?)\\b|${N}['’]s\\s+(new|latest|debut)\\s+(album|single|ep|book|novel|film|movie|series|collection)`, "iu");
+  if (release.test(title)) return "release";
+  return null;
+}
 const issued = new Set(state.issued || []);
-const toIssue = [];
+const toIssue = [], digest = [];
 for (const it of items) {
   for (const n of it.people) {
     const p = people.get(n); if (!p) continue;
-    let kind = null;
-    if (it.kinds.includes("death") && p.living) kind = "Possible death";
-    else if (it.kinds.includes("award") && p.curated) kind = "Award or nomination";
-    else if (it.kinds.includes("release") && p.curated) kind = "New work";
-    if (!kind) continue;
-    const key = kind + "|" + n + "|" + it.title.slice(0, 80);
-    if (issued.has(key)) continue;
-    toIssue.push({ key, kind, name: n, p, it });
+    const k = personKind(n, it.title);
+    if (!k) continue;
+    if (k === "death" && p.living) toIssue.push({ key: "death|" + n, kind: "Possible death", name: n, p, it });
+    else if (k !== "death" && p.curated) digest.push({ key: k + "|" + n + "|" + it.title.slice(0, 80), kind: k === "award" ? "Award or nomination" : "New work", name: n, p, it });
   }
 }
-let opened = 0;
+const GH = (path, opt = {}) => fetch(`https://api.github.com/repos/${REPO}${path}`, { ...opt, headers: { Authorization: `Bearer ${TOKEN}`, Accept: "application/vnd.github+json", "User-Agent": UA, ...(opt.headers || {}) } });
+let opened = 0, digested = 0;
 if (TOKEN) {
-  for (const t of toIssue.slice(0, 15)) {
-    const body = `**${t.kind}** reported for **${t.name}** (${[...t.p.fields].join(", ")}${t.p.curated ? ", hand-written profile" : ""}).\n\n- Headline: ${t.it.title}\n- Source: ${t.it.source} — ${t.it.link}\n- Date: ${t.it.date.slice(0, 10)}\n${t.p.qid ? `- Wikidata: https://www.wikidata.org/wiki/${t.p.qid}\n` : ""}\nCheck the report against a second reliable source before updating the Landscape (move to Lived / add the award / add the work). Close this issue when done.\n\n_Opened automatically by the Literature Landscape news-watch bot._`;
-    const r = await fetch(`https://api.github.com/repos/${REPO}/issues`, { method: "POST", headers: { Authorization: `Bearer ${TOKEN}`, Accept: "application/vnd.github+json", "User-Agent": UA }, body: JSON.stringify({ title: `[literature-landscape] ${t.kind}: ${t.name}`, body, labels: ["literature-landscape-review"] }) });
+  // one-time clean-up of the noisy first run (individual award/new-work issues)
+  if (!state.v2) {
+    const r = await GH(`/issues?labels=literature-landscape-review&state=open&per_page=100`);
+    const list = r.ok ? await r.json() : []; for (const x of (Array.isArray(list) ? list : [])) {
+      await GH(`/issues/${x.number}/comments`, { method: "POST", body: JSON.stringify({ body: "Closed automatically: the news-watch bot now uses stricter matching. Awards and new works are collected in a single weekly review digest; only possible deaths get their own issue." }) });
+      await GH(`/issues/${x.number}`, { method: "PATCH", body: JSON.stringify({ state: "closed", state_reason: "not_planned" }) });
+      await sleep(800);
+    }
+    state.v2 = true;
+  }
+  // possible deaths: one issue each
+  const seenNames = new Set();
+  for (const t of toIssue) {
+    if (issued.has(t.key) || seenNames.has(t.name)) continue; seenNames.add(t.name);
+    const body = `**Possible death** reported for **${t.name}** (${[...t.p.fields].join(", ")}${t.p.curated ? ", hand-written profile" : ""}).\n\n- Headline: ${t.it.title}\n- Source: ${t.it.source} — ${t.it.link}\n- Date: ${t.it.date.slice(0, 10)}\n${t.p.qid ? `- Wikidata: https://www.wikidata.org/wiki/${t.p.qid}\n` : ""}\nConfirm with a second reliable source, then move the person to Lived / the Hall of Fame. Close this issue when done.\n\n_Opened automatically by the Literature Landscape news-watch bot._`;
+    const r = await GH(`/issues`, { method: "POST", body: JSON.stringify({ title: `[literature-landscape] Possible death: ${t.name}`, body, labels: ["literature-landscape-review"] }) });
     if (r.ok) { issued.add(t.key); opened++; } else console.warn("Issue failed", r.status, await r.text());
     await sleep(1500);
   }
+  // awards & new works: one rolling digest issue, one comment per run
+  const fresh = digest.filter(d => !issued.has(d.key));
+  if (fresh.length) {
+    const title = "[literature-landscape] Review digest: awards and new works";
+    const r = await GH(`/issues?labels=literature-landscape-review&state=open&per_page=100`);
+    const list = r.ok ? await r.json() : []; let num = ((Array.isArray(list) ? list : []).find(x => x.title === title) || {}).number;
+    if (!num) {
+      const c = await GH(`/issues`, { method: "POST", body: JSON.stringify({ title, labels: ["literature-landscape-review"], body: "Awards, nominations and new works reported in the news for people with hand-written profiles. Each daily run adds a comment. Tick items off by updating their profile highlights (or ignore them), and close this issue whenever you like — a new one opens automatically.\n\n_Maintained by the Literature Landscape news-watch bot._" }) });
+      num = c.ok ? (await c.json()).number : null;
+    }
+    if (num) {
+      const lines = fresh.slice(0, 40).map(d => `- [ ] **${d.name}** — ${d.kind}: [${d.it.title.replace(/[\[\]]/g, "")}](${d.it.link}) · ${d.it.source}, ${d.it.date.slice(0, 10)}`);
+      const c = await GH(`/issues/${num}/comments`, { method: "POST", body: JSON.stringify({ body: `### ${new Date().toISOString().slice(0, 10)}\n${lines.join("\n")}` }) });
+      if (c.ok) { fresh.forEach(d => issued.add(d.key)); digested = fresh.length; }
+    }
+  }
 }
-const alerts = toIssue.map(t => ({ kind: t.kind, name: t.name, title: t.it.title, link: t.it.link, date: t.it.date }));
+const alerts = [...toIssue, ...digest].map(t => ({ kind: t.kind, name: t.name, title: t.it.title, link: t.it.link, date: t.it.date }));
 
 await fs.writeFile(OUT, JSON.stringify({ updated: new Date().toISOString(), keepDays: KEEP_DAYS, sources, items, alerts: alerts.slice(0, 50) }));
-await fs.writeFile(STATE, JSON.stringify({ issued: [...issued].slice(-2000) }));
-console.log(`${items.length} items kept · ${all.length} fetched · ${sources.filter(s => s.ok).length}/${sources.length} sources ok · ${toIssue.length} review alerts · ${opened} issues opened`);
+await fs.writeFile(STATE, JSON.stringify({ v2: !!state.v2, issued: [...issued].slice(-3000) }));
+console.log(`${items.length} items kept · ${all.length} fetched · ${sources.filter(s => s.ok).length}/${sources.length} sources ok · ${toIssue.length} death alerts · ${opened} issues opened · ${digested} digest items`);
 sources.filter(s => !s.ok).forEach(s => console.log("  source failed:", s.name, s.error));
