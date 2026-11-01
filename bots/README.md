@@ -14,7 +14,7 @@ These scripts keep the prices in the Nigeria Market Atlas up to date. Once a day
 | `avestack` | Avestack food price index | Wholesale prices with their main market | Taken from the unit text. Marked *undated*, low confidence |
 | `opaindex` | Opaindex (re-publishes NBS) | New NBS Selected Food Prices Watch months | ₦/kg national |
 | `wfp_hdx` | WFP food prices for Nigeria on HDX (CC BY-IGO) | Monthly market prices from WFP monitors (last 6 months) | Taken from the CSV unit column |
-| `community_agents` | Price agents on this atlas (Price agents tab), read from the site's Supabase database with the public key | Live prices from the last 45 days (prices held for a check are not visible to the bot). Items outside the atlas list are left out | Taken from the unit the agent chose (50 kg bag, 25-litre keg…) or the size they gave for another measure |
+| `community_agents` | Price agents on this atlas (Price agents tab), read from the Market Atlas's own Supabase project with its public key (`market-atlas/agents/config.js`; off until that file is filled in) | Live prices from the last 45 days (prices held for a check are not visible to the bot). Items outside the atlas list are left out | Taken from the unit the agent chose (50 kg bag, 25-litre keg…) or the size they gave for another measure |
 
 `export_prices.py` (a separate step) writes `export-prices.json` for the Export Camp tab:
 

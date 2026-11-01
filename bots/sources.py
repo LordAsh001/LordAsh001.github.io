@@ -6,6 +6,7 @@ import csv
 import io
 import re
 from datetime import date, datetime, timedelta
+from pathlib import Path
 
 from bs4 import BeautifulSoup
 
@@ -327,17 +328,25 @@ def collect_wfp():
 
 
 # ---------------------------------------------------------------- community price agents
-# Prices posted on the atlas by registered community agents (Price agents tab). They live in the
-# site's Supabase project; the publishable key in /lara/config.js reads only what the public can see
-# (live posts, not prices held for a check).
-SITE_CONFIG = "https://shagbaor.com/lara/config.js"
+# Prices posted on the atlas by registered community agents (Price agents tab). They live in the Market
+# Atlas's own Supabase project; the publishable key in market-atlas/agents/config.js reads only what the
+# public can see (live posts, not prices held for a check). Until that file is filled in, this source is off.
+AGENTS_CONFIG = Path(__file__).resolve().parent.parent / "market-atlas" / "agents" / "config.js"
+
+
+def agents_settings():
+    try:
+        cfg = AGENTS_CONFIG.read_text(encoding="utf-8")
+        url = re.search(r'SUPABASE_URL:\s*"([^"]+)"', cfg).group(1).rstrip("/")
+        key = re.search(r'SUPABASE_ANON_KEY:\s*"([^"]+)"', cfg).group(1)
+    except (OSError, AttributeError):
+        return None
+    return None if "YOUR-" in url + key else (url, key)
 
 
 def collect_community(days: int = 45):
     import requests as _rq
-    cfg = _rq.get(SITE_CONFIG, timeout=30, headers={"User-Agent": "NigeriaMarketAtlasBot/1.0"}).text
-    url = re.search(r'SUPABASE_URL:\s*"([^"]+)"', cfg).group(1).rstrip("/")
-    key = re.search(r'SUPABASE_ANON_KEY:\s*"([^"]+)"', cfg).group(1)
+    url, key = agents_settings()
     since = (date.today() - timedelta(days=days)).isoformat()
     r = _rq.get(f"{url}/rest/v1/ma_prices", timeout=40, headers={"apikey": key, "Authorization": f"Bearer {key}"}, params={
         "select": "commodity,unit,per,price,observed_on,state,ma_posts(market_id,market_name,state)",
@@ -356,7 +365,6 @@ def collect_community(days: int = 45):
         raise RuntimeError("no community prices in the last %d days yet" % days)
     return out
 
-
 REGISTRY = {
     "kasuwa_api": collect_kasuwa,
     "lagos_tracker": collect_lagos,
@@ -366,5 +374,6 @@ REGISTRY = {
     "avestack": collect_avestack,
     "opaindex": collect_opaindex,
     "wfp_hdx": collect_wfp,
-    "community_agents": collect_community,
 }
+if agents_settings():
+    REGISTRY["community_agents"] = collect_community
