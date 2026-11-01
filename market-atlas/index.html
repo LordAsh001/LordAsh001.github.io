@@ -197,6 +197,7 @@ td:first-child{font-family:var(--f-body)}
 }
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 </style>
+<link rel="stylesheet" href="agents/agents.css?v=1">
 </head>
 <body>
 
@@ -217,6 +218,7 @@ td:first-child{font-family:var(--f-body)}
       <div class="tabs" role="tablist">
         <button role="tab" id="t-explore" aria-selected="true" data-tab="explore">Explore</button>
         <button role="tab" id="t-prices" aria-selected="false" data-tab="prices">Prices</button>
+        <button role="tab" id="t-agents" aria-selected="false" data-tab="agents">Price agents</button>
         <button role="tab" id="t-tracker" aria-selected="false" data-tab="tracker">Tracker</button>
         <button role="tab" id="t-calendar" aria-selected="false" data-tab="calendar">Calendar</button>
         <button role="tab" id="t-route" aria-selected="false" data-tab="route">Logistics</button>
@@ -230,6 +232,7 @@ td:first-child{font-family:var(--f-body)}
       <div class="pane" id="pane-route" hidden></div>
       <div class="pane" id="pane-export" hidden></div>
       <div class="pane" id="pane-data" hidden></div>
+      <div class="pane" id="pane-agents" hidden></div>
     </aside>
     <div class="splitter" id="splitter" role="separator" aria-orientation="vertical" aria-label="Resize the panel and the map" tabindex="0"><span class="grip"></span><button type="button" class="splbtn" id="splPanel" aria-label="Widen the panel">‹</button><button type="button" class="splbtn" id="splMap" aria-label="Widen the map">›</button></div>
     <div class="mapwrap">
@@ -1427,6 +1430,7 @@ Object.assign(SOURCES, {
   avestack:{name:"Avestack: farm produce & food price index", url:"https://avestack.com/resources/market-reports/", kind:"Aggregator (wholesale, undated)", conf:"low"},
   opaindex:{name:"Opaindex: agriculture prices Nigeria (NBS series)", url:"https://opaindex.com/reports/agriculture-prices-nigeria", kind:"NBS re-publisher (monthly)", conf:"high"},
   wfp_hdx:{name:"WFP food prices for Nigeria (HDX open data)", url:"https://data.humdata.org/dataset/wfp-food-prices-for-nigeria", kind:"WFP market monitors (monthly)", conf:"high"},
+  community_agents:{name:"Community price agents on this atlas (Price agents tab)", url:"https://shagbaor.com/market-atlas/#agents", kind:"Registered community agents (not verified)", conf:"low"},
   wb_rtfp:{name:"World Bank Real-Time Food Prices, Nigeria (73 markets, monthly)", url:"https://microdata.worldbank.org/index.php/catalog/4503", kind:"Modelled estimates (monthly)", conf:"medium"},
   fao_glance:{name:"FAO in Nigeria: Nigeria at a glance", url:"https://www.fao.org/nigeria/fao-in-nigeria/nigeria-at-a-glance/en/", kind:"Context", conf:"high"},
   tradegov:{name:"US Trade.gov: Nigeria agriculture sector guide (Sep 2025)", url:"https://www.trade.gov/country-commercial-guides/nigeria-agriculture-sector", kind:"Context", conf:"high"}
@@ -1848,7 +1852,7 @@ function showTab(t){
   if (t==="calendar") renderCalendar();
   if (t==="export"){ renderExport(); exportRoute(); } else clearExportMap();
   // keep the tab in the address so links, reloads and Back/Forward return to it
-  try { const cur = (location.hash||"").replace("#","")==="fuel" ? "route" : (location.hash||"").replace("#",""); if (cur!==t && !(t==="explore" && !cur)) history.pushState(null, "", "#"+t); } catch(e){}
+  try { let cur = (location.hash||"").replace("#",""); if (cur==="fuel") cur="route"; if (/^agents?\//.test(cur)) cur="agents"; if (cur!==t && !(t==="explore" && !cur)) history.pushState(null, "", "#"+t); } catch(e){}
 }
 document.querySelectorAll(".tabs button").forEach(b=>b.onclick=()=>showTab(b.dataset.tab));
 window.addEventListener("popstate", ()=>{ let t=(location.hash||"").replace("#","")||"explore"; if (t==="fuel") t="route"; const b=document.querySelector(`.tabs button[data-tab="${t}"]`); if (b && b.getAttribute("aria-selected")!=="true") showTab(t); });
@@ -4084,6 +4088,7 @@ initFuelStore();
 loadExportFeed();
 
 </script>
+<script src="agents/agents.js?v=1"></script>
 
 </body>
 </html>
