@@ -1,0 +1,48 @@
+name: Literature Landscape news watch
+
+on:
+  schedule:
+    - cron: "41 5 * * *"   # every day 05:41 UTC
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "literature-landscape/bot/news-watch.mjs"
+
+permissions:
+  contents: write
+  issues: write
+
+concurrency:
+  group: literature-landscape-news
+  cancel-in-progress: false
+
+jobs:
+  news:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Make sure the review label exists
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: gh label create literature-landscape-review --color B0502A --description "Literature Landscape: verify before updating" --repo "$GITHUB_REPOSITORY" 2>/dev/null || true
+      - name: Comb news sources
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: node literature-landscape/bot/news-watch.mjs
+      - name: Commit changes
+        run: |
+          git config user.name "literature-landscape-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          mkdir -p /tmp/out
+          cp literature-landscape/data/news.json literature-landscape/data/news-state.json /tmp/out/
+          git fetch origin main
+          git reset --hard origin/main
+          cp /tmp/out/news.json /tmp/out/news-state.json literature-landscape/data/
+          git add literature-landscape/data/news.json literature-landscape/data/news-state.json
+          if git diff --cached --quiet; then echo "No changes"; exit 0; fi
+          git commit -m "Literature Landscape: daily news watch"
+          git push origin HEAD:main
