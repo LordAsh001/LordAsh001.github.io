@@ -1,13 +1,12 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Nigeria Literature Landscape</title>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"Nigeria Literature Landscape","description":"Free, source-linked database of Nigeria's writers, poets, musicians, filmmakers, photographers, comedians, journalists and digital creators, with sourced statistics, timelines, awards, a Hall of Fame and a map of creative infrastructure.","url":"https://shagbaor.com/literature-landscape/","creator":{"@type":"Person","name":"Shagbaor Hycent Amool","affiliation":"University of Northern British Columbia"},"spatialCoverage":"Nigeria","isAccessibleForFree":true,"identifier":"https://doi.org/10.5281/zenodo.23589297","license":"https://creativecommons.org/licenses/by/4.0/"}</script>
 <meta name="description" content="Nigeria's writers, poets, playwrights, musicians, filmmakers, comedians, journalists and digital creators — profiles, verifiable statistics, timelines from 1789 to today, and a Hall of Fame.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231E7A55'/%3E%3Cpath d='M14 46V18c6-3 12-3 18 1 6-4 12-4 18-1v28c-6-3-12-3-18 1-6-4-12-4-18-1Z' fill='none' stroke='%23fff' stroke-width='4' stroke-linejoin='round'/%3E%3Cpath d='M32 19v28' stroke='%23fff' stroke-width='4'/%3E%3C/svg%3E">
-<script>(function(){var t=null;try{t=localStorage.getItem("theme")}catch(e){}if(t!=="light"&&t!=="dark")t=window.matchMedia&&matchMedia("(prefers-color-scheme: light)").matches?"light":"dark";document.documentElement.setAttribute("data-theme",t)})()</script>
+<script>try{var t=localStorage.getItem("theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <script src="/assets/traction.js" defer></script>
@@ -130,6 +129,7 @@ h3{font:600 17px/1.3 var(--sans);margin:0 0 8px}
 .links a:hover{border-color:var(--accent);color:var(--accent)}
 ul.clean{margin:0;padding-left:18px}
 ul.clean li{margin:0 0 6px}
+ul.news{list-style:none;padding:0;margin:0}ul.news li{padding:10px 0;border-bottom:1px solid var(--line)}ul.news a{font-weight:600;text-decoration:none;color:var(--ink)}ul.news a:hover{color:var(--accent)}.nm-meta{font-size:12px;color:var(--muted);margin-bottom:4px}
 ul.works{list-style:none;padding-left:0}ul.works li{font-size:14px;margin:0 0 5px}
 .awards li{font-size:14px}
 .x{border:0;background:none;color:var(--ink);font-size:22px;cursor:pointer;width:36px;height:36px;border-radius:8px}
@@ -267,7 +267,7 @@ async function loadPageInfo(titles) {
     const chunk = need.slice(i, i + 50);
     chunk.forEach(t => pageInfo[t] = pageInfo[t] || {});
     try {
-      const j = await getJSON(WP_API + Q + qs({ action: "query", format: "json", origin: "*", redirects: 1, prop: "pageimages|pageprops|description", piprop: "thumbnail", pilicense: "free", pithumbsize: 240, ppprop: "wikibase_item", titles: chunk.join("|") }));
+      const j = await getJSON(WP_API + Q + qs({ action: "query", format: "json", origin: "*", redirects: 1, prop: "pageimages|pageprops|description", piprop: "thumbnail", pithumbsize: 240, ppprop: "wikibase_item", titles: chunk.join("|") }));
       const map = {}; (j.query.normalized || []).forEach(n => map[n.to] = n.from); (j.query.redirects || []).forEach(r => map[r.to] = map[r.from] || r.from);
       Object.values(j.query.pages || {}).forEach(p => {
         const orig = map[p.title] || p.title;
@@ -323,6 +323,20 @@ function route() {
 }
 function setPersonHash(key) { const { tab, sub } = parseHash(); location.hash = "#/" + tab + (sub ? "/" + sub : "") + "@" + key; }
 
+/* ---------- news (daily bot) ---------- */
+let NEWS = null;
+const KIND_LABEL = { death: "Remembrance", award: "Award", release: "New work" };
+function newsHTML(items, opts = {}) {
+  if (!items.length) return `<p class="src">${opts.empty || "No headlines in the last few weeks."}</p>`;
+  return `<ul class="news">${items.map(it => `<li>
+    <div class="nm-meta">${esc(new Date(it.date).toLocaleDateString(undefined, { day: "numeric", month: "short", year: "numeric" }))} · ${esc(it.source)}
+      ${(it.kinds || []).map(k => `<span class="pill" style="--tc:${k === "death" ? "var(--gold)" : k === "award" ? "var(--accent)" : "var(--accent2)"}">${KIND_LABEL[k] || k}</span>`).join("")}
+      ${opts.fields !== false ? (it.fields || []).map(f => S[f] ? `<span class="pill" style="${sectorVar(f)}">${esc(S[f].name)}</span>` : "").join("") : ""}</div>
+    <a href="${esc(it.link)}" target="_blank" rel="noopener">${esc(it.title)} ↗</a>
+    ${it.people && it.people.length ? `<div class="src">Mentions: ${it.people.map(esc).join(", ")}</div>` : ""}</li>`).join("")}</ul>`;
+}
+function newsNote() { return `<p class="src" style="margin-top:8px">Headlines gathered daily by the news-watch bot from Nigerian arts and entertainment outlets${NEWS && NEWS.updated ? ` · last checked ${esc(NEWS.updated.slice(0, 10))}` : ""}. Each links to the original publisher; the Landscape itself only changes after a report is verified.</p>`; }
+
 /* ---------- overview ---------- */
 function statCard(x) {
   return `<div class="card stat"><div class="l">${esc(x.label)}${x.year ? `<span class="yr">${esc(x.year)}</span>` : ""}</div><div class="v">${esc(x.value)}</div>${x.note ? `<p class="n">${esc(x.note)}</p>` : ""}<div class="src">Source: ${srcLink(x.src, x.srcName)}</div></div>`;
@@ -343,6 +357,12 @@ function renderOverview(m) {
         <div class="mini"><span><b data-count="${s.id}">…</b>people on record</span><span><b>${s.timeline.length}</b>milestones</span><span><b>${s.stats.length}</b>sourced statistics</span></div>
       </button>`).join("")}
       <button class="card sector-card" style="--tc:var(--accent2)" data-go="infrastructure"><h3>Infrastructure</h3><p>Cinemas, stages, studios, publishers, labels, media houses, festivals and schools</p><div class="mini"><span><b>${DATA.infrastructure.items.length}</b>places &amp; institutions</span><span><b>${DATA.infrastructure.categories.length}</b>categories</span></div></button></div>
+  </section>
+  <section class="section">
+    <h2>In the news</h2>
+    <p class="sub">The latest headlines across all nine fields.</p>
+    ${NEWS ? newsHTML((NEWS.items || []).slice(0, 10)) : `<p class="src">The news watch has not run yet.</p>`}
+    ${NEWS ? newsNote() : ""}
   </section>
   <section class="section">
     <h2>Latest milestones</h2>
@@ -366,7 +386,7 @@ async function sectorCount(s) {
 }
 /* ---------- sector ---------- */
 function renderSector(m, s, sub) {
-  const subs = [["profiles", "Living"], ["hall", "Lived · Hall of Fame"], ["directory", "Full directory"], ["timeline", "Timeline"], ["awards", "Awards"]];
+  const subs = [["profiles", "Living"], ["hall", "Lived · Hall of Fame"], ["directory", "Full directory"], ["news", "News"], ["timeline", "Timeline"], ["awards", "Awards"]];
   m.setAttribute("style", sectorVar(s.id));
   m.innerHTML = `
     <h2><span class="dot" style="width:12px;height:12px;vertical-align:4px;margin-right:8px"></span>${esc(s.name)}</h2>
@@ -378,6 +398,7 @@ function renderSector(m, s, sub) {
   const v = $("#subview", m);
   if (sub === "directory") renderDirectory(v, s);
   else if (sub === "hall") renderPeople(v, s, true);
+  else if (sub === "news") v.innerHTML = `<h3>${esc(s.name)} in the news</h3>` + newsHTML(((NEWS && NEWS.items) || []).filter(it => (it.fields || []).includes(s.id)).slice(0, 60), { fields: false }) + newsNote();
   else if (sub === "timeline") v.innerHTML = timelineHTML(s.timeline.map(t => ({ ...t, s })), false);
   else if (sub === "awards") v.innerHTML = `<div class="grid g-cards">${s.awards.map(a => `<div class="card"><h3>${esc(a.name)}</h3><p class="n" style="color:var(--muted);font-size:13.5px;margin:0 0 8px">Since ${esc(a.since)} · ${esc(a.about)}</p><div class="src">${srcLink(a.src)}</div></div>`).join("")}</div>`;
   else renderPeople(v, s, false);
@@ -758,7 +779,7 @@ async function runDownload(dlg) {
     } else {
       const keys = Object.keys(out);
       if (keys.length === 1) download(`${base}_${keys[0]}.csv`, toCSV(out[keys[0]]), "text/csv");
-      else { msg.innerHTML = `<span class="spin"></span>Packing files…`; const Z = await loadZip(); const z = new Z(); keys.forEach(k => z.file(`${k}.csv`, toCSV(out[k]))); z.file("README.txt", `Nigeria Literature Landscape — data export (${stamp})\n${location.href.split("#")[0]}\nCurated content CC BY 4.0; Wikidata-derived rows CC0.\nCite: Amool, S. H. (2026). Nigeria Literature Landscape (Version 1.0) [Software and dataset]. Zenodo. https://doi.org/10.5281/zenodo.23589297`); download(base + ".zip", await z.generateAsync({ type: "blob" }), "application/zip"); }
+      else { msg.innerHTML = `<span class="spin"></span>Packing files…`; const Z = await loadZip(); const z = new Z(); keys.forEach(k => z.file(`${k}.csv`, toCSV(out[k]))); z.file("README.txt", `Nigeria Literature Landscape — data export (${stamp})\n${location.href.split("#")[0]}\nCurated content CC BY 4.0; Wikidata-derived rows CC0.\nCite: Amool, S. H. (2026). Nigeria Literature Landscape [Interactive database].`); download(base + ".zip", await z.generateAsync({ type: "blob" }), "application/zip"); }
     }
     msg.textContent = "Done — check your downloads.";
   } catch (e) { msg.textContent = "Something went wrong (" + e.message + "). Please try again."; }
@@ -869,6 +890,7 @@ async function openPerson(key) {
     <div class="dr-sec" id="drAwardsSec" hidden><h3>Awards &amp; honours <span class="c" id="drAwN"></span></h3><ul class="clean awards" id="drAwards"></ul><p class="src">From Wikidata ${qid ? srcLink("https://www.wikidata.org/wiki/" + qid + "#P166", "check the record") : ""}</p></div>
     <div class="dr-sec" id="drWorksSec"><h3>Works <span class="c" id="drWkN"></span></h3><div id="drWorks"><p class="loading"><span class="spin"></span>Listing every recorded work…</p></div>
       <p class="src" style="margin-top:8px">Every work recorded on Wikidata with this person as author, performer, actor, director, producer, writer, composer, cinematographer or creator, with the year of release or publication where recorded. Each title links to its record for verification. Missing a work? <a href="#/contribute">Add it</a>.</p></div>
+    ${(() => { const its = ((NEWS && NEWS.items) || []).filter(it => (it.people || []).includes(name)).slice(0, 8); return its.length ? `<div class="dr-sec"><h3>In the news</h3>${newsHTML(its)}</div>` : ""; })()}
     ${L.length ? `<div class="dr-sec"><h3>Read more &amp; verify</h3><div class="links">${L.map(([t, u]) => `<a href="${esc(u)}" target="_blank" rel="noopener">${esc(t)} ↗</a>`).join("")}</div></div>` : ""}
     <div class="dr-sec"><h3>Help keep this accurate</h3><div class="btnrow">
       <button class="btn sm" data-contrib="update">Suggest an update</button>
@@ -1009,7 +1031,8 @@ function renderAbout(m) {
     <div class="card"><h3>1 · Curated and sourced</h3><p style="font-size:14px;margin:0">Statistics, timelines, profiles and the Hall of Fame are written by hand. Each statistic and milestone links to the page it came from (government agencies, PwC, DataReportal, award bodies, reputable news). Where sources disagree, the note says so.</p></div>
     <div class="card"><h3>2 · Live from Wikidata &amp; Wikipedia</h3><p style="font-size:14px;margin:0">Profiles pull biographies, photos, birth and death dates, awards, notable works, works counts and official links live when you open them. The full directory lists every Nigerian creative recorded on Wikidata, across every genre, language and tradition.</p></div>
     <div class="card"><h3>3 · Refreshed by a bot</h3><p style="font-size:14px;margin:0">A scheduled bot runs weekly. It reads each profile's official social accounts from Wikidata, fetches YouTube subscriber counts from YouTube's official API, collects the dated follower counts recorded on Wikidata, and flags any profile whose Wikidata record gains a date of death for human review.</p></div>
-    <div class="card"><h3>4 · Screened contributions</h3><p style="font-size:14px;margin:0">Anyone — including the people profiled — can submit additions and corrections. Submissions go to a private review queue and are checked against the sources provided before publication.</p></div>
+    <div class="card"><h3>4 · Daily news watch</h3><p style="font-size:14px;margin:0">A second bot combs Nigerian arts and entertainment news every day — publisher feeds such as Brittle Paper, BellaNaija, Premium Times, The Guardian, NotJustOk and Music In Africa, plus news searches for each field. It matches headlines to people on the Landscape and flags possible deaths, awards and new works for review; nothing on the site changes until a report is verified.</p></div>
+    <div class="card"><h3>5 · Screened contributions</h3><p style="font-size:14px;margin:0">Anyone — including the people profiled — can submit additions and corrections. Submissions go to a private review queue and are checked against the sources provided before publication.</p></div>
   </div>
   <section class="section"><h3>Bot status</h3>
     <p style="font-size:14px">${FOL && FOL.updated ? `Last run ${esc(FOL.updated.slice(0, 10))} · ${Object.keys(FOL.people || {}).length} profiles with social data · sources: ${esc((FOL.sources || []).join(", "))}.` : "The first run is pending."}</p>
@@ -1027,7 +1050,7 @@ function renderAbout(m) {
     <li>Wikidata is community-edited and uneven: many Nigerian creatives — especially in indigenous-language film, music and literature — are missing or thinly recorded. Contributions help close that gap.</li>
     <li>Platforms such as Instagram, X and TikTok do not offer free public follower APIs, so those counts appear only where a dated figure exists on Wikidata. Each count shows its date and source.</li>
     <li>Box office and industry figures come from different bodies with different scopes; the notes state the scope (for example, the 2025 box office covers Nigeria, Ghana and Liberia).</li></ul></section>
-  <section class="section"><h3>Cite this resource</h3><p class="note">Amool, S. H. (2026). <i>Nigeria Literature Landscape: an interactive database and open dataset of Nigeria's writers, musicians, filmmakers and other creatives, and the creative economy</i> (Version 1.0) [Software and dataset]. Zenodo. <a href="https://doi.org/10.5281/zenodo.23589297" target="_blank" rel="noopener">https://doi.org/10.5281/zenodo.23589297</a></p><p class="note">Archived on Zenodo with a DOI; the DOI always resolves to the latest archived version. Live version: https://shagbaor.com/literature-landscape/</p></section>`;
+  <section class="section"><h3>Cite this resource</h3><p class="note">Amool, S. H. (2026). <i>Nigeria Literature Landscape</i> [Interactive database]. https://shagbaor.com/literature-landscape/</p></section>`;
 }
 
 /* ---------- boot ---------- */
@@ -1037,8 +1060,8 @@ function renderAbout(m) {
   } catch (e) { $("#main").innerHTML = `<p class="note">Could not load the data file. Please refresh.</p>`; return; }
   DATA.sectors.forEach(s => S[s.id] = s);
   ALL_OCCS = [...new Set(DATA.sectors.flatMap(s => s.occupations))];
-  const [f, c, x] = await Promise.all(["followers.json", "directory/curated.json", "directory/index.json"].map(n => getJSON("data/" + n, { cache: "no-cache" }).catch(() => null)));
-  FOL = f; CUR = c; DIRIDX = x;
+  const [f, c, x, n] = await Promise.all(["followers.json", "directory/curated.json", "directory/index.json", "news.json"].map(n => getJSON("data/" + n, { cache: "no-cache" }).catch(() => null)));
+  FOL = f; CUR = c; DIRIDX = x; NEWS = n;
   window.addEventListener("hashchange", route);
   route();
 })();
