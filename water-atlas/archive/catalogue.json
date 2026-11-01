@@ -197,10 +197,10 @@
    "source": "GloFAS, Copernicus Emergency Management Service",
    "licence": "Copernicus licence; free with attribution",
    "update": "Daily",
-   "rows": 915,
+   "rows": 956,
    "first": "2026-10-10",
-   "last": "2026-10-31",
-   "bytes": 129831,
+   "last": "2026-11-01",
+   "bytes": 135606,
    "fields": [
     {
      "name": "date",
@@ -482,10 +482,10 @@
    "source": "Nigerian Meteorological Agency (NiMet) Weather API",
    "licence": "Credit NiMet",
    "update": "Daily",
-   "rows": 3630,
+   "rows": 3795,
    "first": "2026-10-10",
-   "last": "2026-10-31",
-   "bytes": 297871,
+   "last": "2026-11-01",
+   "bytes": 310972,
    "fields": [
     {
      "name": "issued",
@@ -558,8 +558,35 @@
     "snapshots/2026-10/wpdx.json.gz"
    ],
    "bytes": 951222
+  },
+  {
+   "month": "2026-11",
+   "files": [
+    "snapshots/2026-11/aqueduct.json.gz",
+    "snapshots/2026-11/aquifers.json.gz",
+    "snapshots/2026-11/atlas.json.gz",
+    "snapshots/2026-11/bgs_groundwater_nigeria.json.gz",
+    "snapshots/2026-11/conflicts.json.gz",
+    "snapshots/2026-11/curated.json.gz",
+    "snapshots/2026-11/fao_dams.json.gz",
+    "snapshots/2026-11/flood_health.json.gz",
+    "snapshots/2026-11/flood_lga.json.gz",
+    "snapshots/2026-11/floodhistory.json.gz",
+    "snapshots/2026-11/floodwatch.json.gz",
+    "snapshots/2026-11/gauges.json.gz",
+    "snapshots/2026-11/groundwater.json.gz",
+    "snapshots/2026-11/health.json.gz",
+    "snapshots/2026-11/ndcd_water.json.gz",
+    "snapshots/2026-11/oilspills.json.gz",
+    "snapshots/2026-11/reports.json.gz",
+    "snapshots/2026-11/roads.json.gz",
+    "snapshots/2026-11/srp.json.gz",
+    "snapshots/2026-11/waterpoints.json.gz",
+    "snapshots/2026-11/wpdx.json.gz"
+   ],
+   "bytes": 1462553
   }
  ],
  "citation": "Amool, S. H. (2026). Nigeria Water Resources Atlas: data archive [Data set]. https://shagbaor.com/water-atlas/archive/",
- "generated": "2026-10-31T22:40Z"
+ "generated": "2026-11-01T02:26Z"
 }
