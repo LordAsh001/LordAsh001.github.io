@@ -197,10 +197,10 @@
    "source": "GloFAS, Copernicus Emergency Management Service",
    "licence": "Copernicus licence; free with attribution",
    "update": "Daily",
-   "rows": 956,
+   "rows": 997,
    "first": "2026-10-10",
-   "last": "2026-11-01",
-   "bytes": 135604,
+   "last": "2026-11-02",
+   "bytes": 141377,
    "fields": [
     {
      "name": "date",
@@ -482,10 +482,10 @@
    "source": "Nigerian Meteorological Agency (NiMet) Weather API",
    "licence": "Credit NiMet",
    "update": "Daily",
-   "rows": 3795,
+   "rows": 3960,
    "first": "2026-10-10",
-   "last": "2026-11-01",
-   "bytes": 311467,
+   "last": "2026-11-02",
+   "bytes": 325063,
    "fields": [
     {
      "name": "issued",
@@ -588,5 +588,5 @@
   }
  ],
  "citation": "Amool, S. H. (2026). Nigeria Water Resources Atlas: data archive [Data set]. https://shagbaor.com/water-atlas/archive/",
- "generated": "2026-11-01T21:19Z"
+ "generated": "2026-11-02T00:58Z"
 }
