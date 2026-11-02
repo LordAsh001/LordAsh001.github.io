@@ -3,14 +3,14 @@
   "ons-migration": {
    "blocked": false,
    "hashes": [],
-   "checked": "2026-10-30T01:09:38+00:00"
+   "checked": "2026-11-02T15:46:40+00:00"
   },
   "migration-observatory-uk": {
    "blocked": false,
    "hashes": [
     "d5d6455dcbbb8385"
    ],
-   "checked": "2026-10-30T01:09:40+00:00"
+   "checked": "2026-11-02T15:46:42+00:00"
   },
   "statcan-fogs": {
    "blocked": false,
@@ -30,14 +30,15 @@
     "47209baa606e7b5f",
     "e3e8d3e39cb8d558"
    ],
-   "checked": "2026-10-30T01:10:11+00:00"
+   "checked": "2026-11-02T15:47:13+00:00"
   },
   "abs-quickstats-nigeria": {
    "blocked": false,
    "hashes": [
     "c51dc5da22e37a5d"
    ],
-   "checked": "2026-10-30T01:10:13+00:00"
+   "checked": "2026-10-30T01:10:13+00:00",
+   "error": "GET failed after 3 tries: https://www.abs.gov.au/census/find-census-data/quickstats/2021/9124_AUS: HTTP Error 503: Service Temporarily Unavailable"
   },
   "conapa": {
    "blocked": false,
@@ -65,7 +66,7 @@
     "27cf793d089e25f0",
     "bdd345153a3e3760"
    ],
-   "checked": "2026-10-30T01:10:14+00:00"
+   "checked": "2026-11-02T15:47:49+00:00"
   },
   "nigerians-in-qld": {
    "blocked": false,
@@ -83,7 +84,7 @@
     "b880a5de1417da8a",
     "c552cc490ec8cdad"
    ],
-   "checked": "2026-10-30T01:10:16+00:00"
+   "checked": "2026-11-02T15:47:51+00:00"
   },
   "mpi-nigeria": {
    "blocked": false,
@@ -128,18 +129,19 @@
     "2bd430eb7d5e1baa",
     "0723a277dd5ca45b"
    ],
-   "checked": "2026-10-30T01:10:17+00:00"
+   "checked": "2026-11-02T15:47:53+00:00"
   },
   "countryeconomy-uae": {
    "blocked": false,
    "hashes": [],
-   "checked": "2026-10-30T01:10:18+00:00"
+   "checked": "2026-11-02T15:47:54+00:00"
   },
   "statehouse-ambassadors": {
    "blocked": false,
    "hashes": [
-    "3214f091521f138c",
+    "66447e75abf4c342",
     "02b09f7ffe47b0ca",
+    "d92414eb2e7a1cc6",
     "f509ebabee4d1425",
     "a042a2fcffe33716",
     "b99cd9985dc7da7f",
@@ -151,9 +153,10 @@
     "ca65fcb2abcd5bba",
     "b76bc49f8e239685",
     "eb97652938889e6b",
+    "3214f091521f138c",
     "1246830ed2d7ecc5"
    ],
-   "checked": "2026-10-30T01:10:23+00:00"
+   "checked": "2026-11-02T15:47:59+00:00"
   },
   "nidcom-news": {
    "blocked": false,
@@ -193,7 +196,7 @@
     "a9e7358423c46ec4",
     "d99bf6009b6f83a3"
    ],
-   "checked": "2026-10-30T01:10:24+00:00"
+   "checked": "2026-11-02T15:48:00+00:00"
   },
   "rpw-uk": {
    "blocked": false,
@@ -201,7 +204,7 @@
     "5adc7f2a45395afd",
     "48e1819c88e2056a"
    ],
-   "checked": "2026-10-30T01:10:27+00:00"
+   "checked": "2026-11-02T15:48:02+00:00"
   },
   "rpw-us": {
    "blocked": false,
@@ -209,7 +212,7 @@
     "5adc7f2a45395afd",
     "48e1819c88e2056a"
    ],
-   "checked": "2026-10-30T01:10:30+00:00"
+   "checked": "2026-11-02T15:48:03+00:00"
   },
   "rpw-canada": {
    "blocked": false,
@@ -217,7 +220,7 @@
     "5adc7f2a45395afd",
     "48e1819c88e2056a"
    ],
-   "checked": "2026-10-30T01:10:32+00:00"
+   "checked": "2026-11-02T15:48:05+00:00"
   },
   "rpw-germany": {
    "blocked": false,
@@ -225,7 +228,7 @@
     "5adc7f2a45395afd",
     "48e1819c88e2056a"
    ],
-   "checked": "2026-10-30T01:10:35+00:00"
+   "checked": "2026-11-02T15:48:08+00:00"
   },
   "rpw-italy": {
    "blocked": false,
@@ -233,7 +236,7 @@
     "5adc7f2a45395afd",
     "48e1819c88e2056a"
    ],
-   "checked": "2026-10-30T01:10:37+00:00"
+   "checked": "2026-11-02T15:48:10+00:00"
   },
   "rpw-spain": {
    "blocked": false,
@@ -241,7 +244,7 @@
     "5adc7f2a45395afd",
     "48e1819c88e2056a"
    ],
-   "checked": "2026-10-30T01:10:39+00:00"
+   "checked": "2026-11-02T15:48:12+00:00"
   },
   "rpw-netherlands": {
    "blocked": false,
@@ -249,7 +252,7 @@
     "5adc7f2a45395afd",
     "48e1819c88e2056a"
    ],
-   "checked": "2026-10-30T01:10:42+00:00"
+   "checked": "2026-11-02T15:48:14+00:00"
   },
   "rpw-ghana": {
    "blocked": false,
@@ -257,7 +260,7 @@
     "5adc7f2a45395afd",
     "48e1819c88e2056a"
    ],
-   "checked": "2026-10-30T01:10:43+00:00"
+   "checked": "2026-11-02T15:48:15+00:00"
   },
   "rpw-south-africa": {
    "blocked": false,
@@ -270,12 +273,12 @@
   "site-abs": {
    "blocked": false,
    "urls": [],
-   "checked": "2026-10-30T01:11:32+00:00"
+   "checked": "2026-11-02T15:49:17+00:00"
   },
   "site-migration-observatory": {
    "blocked": false,
    "urls": [],
-   "checked": "2026-10-30T01:11:51+00:00"
+   "checked": "2026-11-02T15:49:34+00:00"
   },
   "site-intelpoint": {
    "blocked": false,
@@ -1043,7 +1046,7 @@
     "https://intelpoint.co/report/the-nigerian-insurance-industry/",
     "https://intelpoint.co/report/the-nigerian-workplace-report-2024/"
    ],
-   "checked": "2026-10-30T01:11:58+00:00"
+   "checked": "2026-11-02T15:49:43+00:00"
   },
   "site-canadavisa": {
    "blocked": false,
@@ -1052,12 +1055,12 @@
   "site-marketreporters": {
    "blocked": false,
    "urls": [],
-   "checked": "2026-10-30T01:12:20+00:00"
+   "checked": "2026-11-02T15:50:14+00:00"
   },
   "site-canadavisaexpert": {
    "blocked": false,
    "error": "GET failed after 2 tries: https://canadavisaexpert.com/sitemap.xml: <urlopen error timed out>"
   }
  },
- "checked": "2026-10-30T01:15:00+00:00"
+ "checked": "2026-11-02T15:53:45+00:00"
 }
