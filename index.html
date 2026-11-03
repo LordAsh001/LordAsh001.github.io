@@ -114,6 +114,7 @@ p{margin:0}
 .fig-ctrl{position:absolute;left:12px;bottom:12px;display:flex;gap:8px;flex-wrap:wrap}
 .btn{font:500 13px var(--sans);display:inline-flex;align-items:center;gap:8px;border-radius:999px;padding:7px 14px;border:1px solid var(--ink);background:var(--ink);color:var(--paper);cursor:pointer}
 .btn.ghost{background:color-mix(in srgb,var(--card) 80%,transparent);color:var(--ink);border-color:var(--rule)}
+.book-btn{text-decoration:none}
 .btn .dot{width:8px;height:8px;border-radius:50%;background:var(--accent)}
 .btn[aria-pressed="false"] .dot{background:var(--ochre)}
 figcaption{margin-top:12px;font-size:13.5px;color:var(--muted);line-height:1.5}
@@ -960,8 +961,10 @@ window.initSim=function(){
     var cvUrl=hero.cv?safeUrl(hero.cv):'';
     var cvBtn=cvUrl?'<a class="btn ghost cv-btn" href="'+esc(cvUrl)+'" download target="_blank" rel="noopener"><svg aria-hidden="true" width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2v8M4.5 6.5 8 10l3.5-3.5M3 13h10"/></svg>Download CV <span class="mono">PDF</span></a>'+(hero.cv_updated?'<span class="cv-date mono">Updated '+esc(hero.cv_updated)+'</span>':''):'';
     var vid=ytId(hero.video);
-    if(cvBtn||vid){
-      h+='<p class="cv-row hero-actions rise d2">'+cvBtn+(vid?'<button class="btn ghost" type="button" id="vid-btn" aria-expanded="false" aria-controls="vid-box"><svg aria-hidden="true" width="12" height="12" viewBox="0 0 12 12"><path d="M2 1l9 5-9 5z" fill="currentColor"/></svg>'+esc(hero.video_label||'Watch a 1-minute welcome')+'</button>':'')+'</p>';
+    var bkUrl=hero.booking?safeUrl(hero.booking):'';
+    var bookBtn=bkUrl?'<a class="btn book-btn" href="'+esc(bkUrl)+'"><svg aria-hidden="true" width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="12" height="11" rx="2"/><path d="M2 6.5h12M5.5 1.5v3M10.5 1.5v3"/></svg>'+esc(hero.booking_label||'Book a meeting')+'</a>':'';
+    if(cvBtn||vid||bookBtn){
+      h+='<p class="cv-row hero-actions rise d2">'+bookBtn+cvBtn+(vid?'<button class="btn ghost" type="button" id="vid-btn" aria-expanded="false" aria-controls="vid-box"><svg aria-hidden="true" width="12" height="12" viewBox="0 0 12 12"><path d="M2 1l9 5-9 5z" fill="currentColor"/></svg>'+esc(hero.video_label||'Watch a 1-minute welcome')+'</button>':'')+'</p>';
       if(vid) h+='<div class="video-wrap" id="vid-box" data-id="'+esc(vid)+'" hidden></div>';
     }
     if(hero.abstract||arr(hero.keywords).length){
@@ -1023,7 +1026,7 @@ window.initSim=function(){
             if(m) li+='<button class="copy-btn" type="button" data-copy="'+esc(m[1])+'">Copy</button>';
             return '<li>'+li+'</li>';
           }).join('')+'</ul>':'')+'</div>';
-        }).join('')+'</div>'+(cvBtn?'<p class="cv-row">'+cvBtn+'</p>':'');
+        }).join('')+'</div>'+((cvBtn||bookBtn)?'<p class="cv-row">'+bookBtn+cvBtn+'</p>':'');
       var kit=contact.kit||{}, bios=arr(kit.bios).filter(function(b){return b&&b.text;});
       if(kit.show!==false && bios.length){
         h+='<div class="kit" id="kit"><h3>'+esc(kit.title||'Speaker & press kit')+'</h3>'+(kit.intro?'<p>'+inline(kit.intro)+'</p>':'')+
