@@ -9,7 +9,7 @@ import subprocess
 
 ROOT = pathlib.Path(__file__).resolve().parents[2]
 SITE = "https://shagbaor.com"
-EXTRA_PAGES = ["/terms.html", "/privacy.html", "/lara/privacy.html"]
+EXTRA_PAGES = ["/book/", "/terms.html", "/privacy.html", "/lara/privacy.html"]
 
 
 def last_changed(*paths):
