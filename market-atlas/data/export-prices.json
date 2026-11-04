@@ -1,110 +1,6 @@
 {
- "generated": "2026-11-03T12:51:56+00:00",
+ "generated": "2026-11-04T13:02:51+00:00",
  "records": [
-  {
-   "src": "wb_pinksheet",
-   "c": "cocoa",
-   "label": "Cocoa beans (ICCO average)",
-   "usd_t": 7030.0,
-   "date": "2025-09-01",
-   "basis": "monthly average"
-  },
-  {
-   "src": "wb_pinksheet",
-   "c": "coffee_rob",
-   "label": "Coffee, Robusta",
-   "usd_t": 4660.0,
-   "date": "2025-09-01",
-   "basis": "monthly average"
-  },
-  {
-   "src": "wb_pinksheet",
-   "c": "groundnut",
-   "label": "Groundnuts (US runners 40/50, CIF Rotterdam)",
-   "usd_t": 1235,
-   "date": "2025-09-01",
-   "basis": "monthly average"
-  },
-  {
-   "src": "wb_pinksheet",
-   "c": "palmoil",
-   "label": "Palm oil (Malaysia/Indonesia, CIF Rotterdam)",
-   "usd_t": 1037,
-   "date": "2025-09-01",
-   "basis": "monthly average"
-  },
-  {
-   "src": "wb_pinksheet",
-   "c": "pko",
-   "label": "Palm kernel oil",
-   "usd_t": 2414,
-   "date": "2025-09-01",
-   "basis": "monthly average"
-  },
-  {
-   "src": "wb_pinksheet",
-   "c": "soy",
-   "label": "Soybeans (US, CIF Rotterdam)",
-   "usd_t": 404,
-   "date": "2025-09-01",
-   "basis": "monthly average"
-  },
-  {
-   "src": "wb_pinksheet",
-   "c": "soyoil",
-   "label": "Soybean oil",
-   "usd_t": 1159,
-   "date": "2025-09-01",
-   "basis": "monthly average"
-  },
-  {
-   "src": "wb_pinksheet",
-   "c": "soymeal",
-   "label": "Soybean meal",
-   "usd_t": 358,
-   "date": "2025-09-01",
-   "basis": "monthly average"
-  },
-  {
-   "src": "wb_pinksheet",
-   "c": "maize",
-   "label": "Maize (US No. 2 yellow, FOB Gulf)",
-   "usd_t": 197.4,
-   "date": "2025-09-01",
-   "basis": "monthly average"
-  },
-  {
-   "src": "wb_pinksheet",
-   "c": "rice",
-   "label": "Rice (Thai 5% broken, FOB Bangkok)",
-   "usd_t": 374,
-   "date": "2025-09-01",
-   "basis": "monthly average"
-  },
-  {
-   "src": "wb_pinksheet",
-   "c": "wheat",
-   "label": "Wheat (US HRW, FOB Gulf)",
-   "usd_t": 233.8,
-   "date": "2025-09-01",
-   "basis": "monthly average"
-  },
-  {
-   "src": "wb_pinksheet",
-   "c": "sugar",
-   "label": "Sugar, world (ISA)",
-   "usd_t": 350.0,
-   "date": "2025-09-01",
-   "basis": "monthly average"
-  },
-  {
-   "src": "wb_pinksheet",
-   "c": "cotton",
-   "label": "Cotton (Cotlook A index)",
-   "usd_t": 1720.0,
-   "date": "2025-09-01",
-   "basis": "monthly average"
-  },
   {
    "src": "wb_pinksheet",
    "c": "cocoa",
@@ -1354,6 +1250,110 @@
    "basis": "monthly average"
   },
   {
+   "src": "wb_pinksheet",
+   "c": "cocoa",
+   "label": "Cocoa beans (ICCO average)",
+   "usd_t": 5750.0,
+   "date": "2026-10-01",
+   "basis": "monthly average"
+  },
+  {
+   "src": "wb_pinksheet",
+   "c": "coffee_rob",
+   "label": "Coffee, Robusta",
+   "usd_t": 3630.0,
+   "date": "2026-10-01",
+   "basis": "monthly average"
+  },
+  {
+   "src": "wb_pinksheet",
+   "c": "groundnut",
+   "label": "Groundnuts (US runners 40/50, CIF Rotterdam)",
+   "usd_t": 1600,
+   "date": "2026-10-01",
+   "basis": "monthly average"
+  },
+  {
+   "src": "wb_pinksheet",
+   "c": "palmoil",
+   "label": "Palm oil (Malaysia/Indonesia, CIF Rotterdam)",
+   "usd_t": 1120,
+   "date": "2026-10-01",
+   "basis": "monthly average"
+  },
+  {
+   "src": "wb_pinksheet",
+   "c": "pko",
+   "label": "Palm kernel oil",
+   "usd_t": 2287,
+   "date": "2026-10-01",
+   "basis": "monthly average"
+  },
+  {
+   "src": "wb_pinksheet",
+   "c": "soy",
+   "label": "Soybeans (US, CIF Rotterdam)",
+   "usd_t": 515,
+   "date": "2026-10-01",
+   "basis": "monthly average"
+  },
+  {
+   "src": "wb_pinksheet",
+   "c": "soyoil",
+   "label": "Soybean oil",
+   "usd_t": 1546,
+   "date": "2026-10-01",
+   "basis": "monthly average"
+  },
+  {
+   "src": "wb_pinksheet",
+   "c": "soymeal",
+   "label": "Soybean meal",
+   "usd_t": 453,
+   "date": "2026-10-01",
+   "basis": "monthly average"
+  },
+  {
+   "src": "wb_pinksheet",
+   "c": "maize",
+   "label": "Maize (US No. 2 yellow, FOB Gulf)",
+   "usd_t": 226.5,
+   "date": "2026-10-01",
+   "basis": "monthly average"
+  },
+  {
+   "src": "wb_pinksheet",
+   "c": "rice",
+   "label": "Rice (Thai 5% broken, FOB Bangkok)",
+   "usd_t": 489,
+   "date": "2026-10-01",
+   "basis": "monthly average"
+  },
+  {
+   "src": "wb_pinksheet",
+   "c": "wheat",
+   "label": "Wheat (US HRW, FOB Gulf)",
+   "usd_t": 317,
+   "date": "2026-10-01",
+   "basis": "monthly average"
+  },
+  {
+   "src": "wb_pinksheet",
+   "c": "sugar",
+   "label": "Sugar, world (ISA)",
+   "usd_t": 430.0,
+   "date": "2026-10-01",
+   "basis": "monthly average"
+  },
+  {
+   "src": "wb_pinksheet",
+   "c": "cotton",
+   "label": "Cotton (Cotlook A index)",
+   "usd_t": 2000,
+   "date": "2026-10-01",
+   "basis": "monthly average"
+  },
+  {
    "src": "amis",
    "c": "maize",
    "label": "Maize, US No. 3 yellow, FOB Gulf (IGC)",
@@ -2070,14 +2070,14 @@
   "wb_pinksheet": {
    "ok": true,
    "records": 169,
-   "checked": "2026-11-03T12:51:55+00:00",
-   "last_success": "2026-11-03T12:51:55+00:00"
+   "checked": "2026-11-04T13:02:50+00:00",
+   "last_success": "2026-11-04T13:02:50+00:00"
   },
   "amis": {
    "ok": true,
    "records": 89,
-   "checked": "2026-11-03T12:51:56+00:00",
-   "last_success": "2026-11-03T12:51:56+00:00"
+   "checked": "2026-11-04T13:02:51+00:00",
+   "last_success": "2026-11-04T13:02:51+00:00"
   }
  }
 }
