@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-04",
+ "updated": "2026-11-05",
  "sources": [
   {
    "source": "Opportunities for Africans",
@@ -9,17 +9,17 @@
   {
    "source": "Opportunity Desk",
    "ok": true,
-   "items": 4
+   "items": 5
   },
   {
    "source": "Opportunities Corners",
    "ok": true,
-   "items": 4
+   "items": 6
   },
   {
    "source": "Scholarship Region",
    "ok": true,
-   "items": 7
+   "items": 8
   },
   {
    "source": "Opportunities for Youth",
@@ -57,6 +57,86 @@
  ],
  "items": [
   {
+   "title": "CRASSH Visiting Fellowships for Scholars from the Global South 2027 (Funded)",
+   "link": "https://opportunitydesk.org/2026/11/05/crassh-visiting-fellowships-for-scholars-from-the-global-south-2027/",
+   "date": "2026-11-05",
+   "source": "Opportunity Desk",
+   "official": false,
+   "ids": [],
+   "summary": "Deadline: January 22, 2027 Applications are open for the CRASSH Visiting Fellowships for Scholars from the Global South 2027. The Centre for Research in the Arts, Humanities and Social Sciences (CRAS…",
+   "seen": "2026-11-05"
+  },
+  {
+   "title": "Cannes Lions Scholarship 2027 (Fully-funded)",
+   "link": "https://opportunitydesk.org/2026/11/05/cannes-lions-scholarship-2027/",
+   "date": "2026-11-05",
+   "source": "Opportunity Desk",
+   "official": false,
+   "ids": [],
+   "summary": "Deadline: December 4, 2026 Applications are open for the Cannes Lions Scholarship 2027. For Cannes Lions 2027, they are offering 10 fully funded scholarships to underrepresented talent within the cre…",
+   "seen": "2026-11-05"
+  },
+  {
+   "title": "Young Security Conference 2026/2027 in Germany (Fully Funded)",
+   "link": "https://opportunitiescorners.com/oung-security-conference-in-germany/",
+   "date": "2026-11-05",
+   "source": "Opportunities Corners",
+   "official": false,
+   "ids": [],
+   "summary": "Applications are now open for the Young Security Conference 2026/2027 in Munich, Germany. This fully funded international fellowship is inviting outstanding early-career researchers, young profession…",
+   "seen": "2026-11-05"
+  },
+  {
+   "title": "Santa Fe Institute Summer Program 2027 in USA (Fully Funded)",
+   "link": "https://opportunitiescorners.com/santa-fe-institute-summer-program-2027/",
+   "date": "2026-11-05",
+   "source": "Opportunities Corners",
+   "official": false,
+   "ids": [],
+   "summary": "The applications are now open for the Santa Fe Institute UCR Program 2027. It is a Fully Funded 10-week residential program for participants to work on research projects under the guidance of Mentors…",
+   "seen": "2026-11-05"
+  },
+  {
+   "title": "2027 Government of Denmark Scholarship at University of Copenhagen | Step-by-Step Process",
+   "link": "https://www.scholarshipregion.com/government-of-denmark-scholarship-copenhagen/",
+   "date": "2026-11-05",
+   "source": "Scholarship Region",
+   "official": false,
+   "ids": [],
+   "summary": "The University of Copenhagen is offering the Government of Denmark Scholarship opportunities to International students to study in Denmark. The Danish Government Scholarships are granted either as fu…",
+   "seen": "2026-11-05"
+  },
+  {
+   "title": "2027 Warwick Business School Scholarship in UK | Fully Funded",
+   "link": "https://www.scholarshipregion.com/warwick-business-school-scholarship/",
+   "date": "2026-11-05",
+   "source": "Scholarship Region",
+   "official": false,
+   "ids": [],
+   "summary": "The Warwick Business School (WBS) is inviting applications from domestic and international candidates for its 2027 MRes/PhD Scholarships in Finance and Economics. The fully funded Warwick Business Sc…",
+   "seen": "2026-11-05"
+  },
+  {
+   "title": "Chief Of Army Staff Literary Competition For Nigerians (₦10m Prizes)",
+   "link": "https://www.scholarshipregion.com/chief-of-army-staff-literary-competition/",
+   "date": "2026-11-05",
+   "source": "Scholarship Region",
+   "official": false,
+   "ids": [],
+   "summary": "The Nigerian Army has announced the second edition of the Chief Of Army Staff Literary Competition 2027. The COAS Competition awards up to ₦10 million in prizes, and is open to students at all levels…",
+   "seen": "2026-11-05"
+  },
+  {
+   "title": "Shanghai Jiao Tong University Scholarship 2027 (SJTU) in China | Fully Funded",
+   "link": "https://www.scholarshipregion.com/shanghai-jiao-tong-university-scholarship/",
+   "date": "2026-11-05",
+   "source": "Scholarship Region",
+   "official": false,
+   "ids": [],
+   "summary": "The Shanghai Jiao Tong University Scholarship seeks to attract the brightest talents globally to pursue Master’s and PhD programs in China, promoting diversity and academic collaboration. The SJTU Sc…",
+   "seen": "2026-11-05"
+  },
+  {
    "title": "JAPAN-EUROPE MASTER ON ADVANCED ROBOTICS",
    "link": "https://jemaro.ec-nantes.fr/",
    "date": "2026-11-04",
@@ -65,6 +145,18 @@
    "ids": [],
    "summary": "JEMARO - Project overview https://ec.europa.eu/programmes/erasmus-plus/projects/eplus-project-det…",
    "seen": "2026-11-04"
+  },
+  {
+   "title": "Erasmus Mundus Joint Master's programme in Surface, Electro, Radiation, and Photo-chemistry",
+   "link": "https://master-serp.com/",
+   "date": "2026-11-04",
+   "source": "Erasmus Mundus catalogue (EACEA)",
+   "official": true,
+   "ids": [
+    "erasmus"
+   ],
+   "summary": "SERP - project overview https://erasmus-plus.ec.europa.eu/projects/search/details/101180445",
+   "seen": "2026-11-05"
   },
   {
    "title": "Institute for Policy Integrity Economic Fellowship 2027",
@@ -145,6 +237,86 @@
    "ids": [],
    "summary": "The Hasselt University in Belgium is offering fully funded International Course programme (ICP) Scholarships for students from developing countries. The fully funded ICP Connect Scholarships cover tu…",
    "seen": "2026-11-04"
+  },
+  {
+   "title": "The Cannes Lions 2027 Scholarships for underrepresented talent in the creative industry (Fully Funded to Cannes Lions)",
+   "link": "https://www.opportunitiesforafricans.com/the-cannes-lions-2027-scholarships/",
+   "date": "2026-11-04",
+   "source": "Opportunities for Africans",
+   "official": false,
+   "ids": [],
+   "summary": "Application Deadline: 4 December 2026, 00:01 GMT Applications are now open for the 2027 Cannes Lions Scholarships. The LIONS Scholarship is designed to support the next generation of talent, placing……",
+   "seen": "2026-11-05"
+  },
+  {
+   "title": "The FirstRand Oxford Blavatnik School of Government Scholarship 2027/2028 for a Master of Public Policy at the University of Oxford (Fully Funded)",
+   "link": "https://www.opportunitiesforafricans.com/the-firstrand-oxford-blavatnik-school-of-government-scholarship-2027-2028-for-a-master-of-public-policy/",
+   "date": "2026-11-04",
+   "source": "Opportunities for Africans",
+   "official": false,
+   "ids": [],
+   "summary": "Application Deadline: February 25, 2027 Applications are now open for the 2027 FirstRand Oxford Blavatnik School of Government Scholarship. FirstRand Empowerment Foundation (FREF) has entered into a …",
+   "seen": "2026-11-05"
+  },
+  {
+   "title": "CEPS & Heinrich Böll Stiftung Climate Leadership Programme 2027 (Fully-funded)",
+   "link": "https://opportunitydesk.org/2026/11/04/ceps-heinrich-boll-stiftung-climate-leadership-programme-2027/",
+   "date": "2026-11-04",
+   "source": "Opportunity Desk",
+   "official": false,
+   "ids": [],
+   "summary": "Deadline: November 10, 2026 Applications are open for the CEPS & Heinrich Böll Stiftung Climate Leadership Programme 2027. The Climate Leadership Programme is a joint initiative of CEPS and Heinrich-…",
+   "seen": "2026-11-05"
+  },
+  {
+   "title": "EDSAFE AI Fellowship 2027",
+   "link": "https://opportunitydesk.org/2026/11/04/edsafe-ai-fellowship-2027/",
+   "date": "2026-11-04",
+   "source": "Opportunity Desk",
+   "official": false,
+   "ids": [],
+   "summary": "Deadline: November 30, 2026 Applications for the EDSAFE AI Fellowship 2027 are now open. The EDSAFE AI Fellowship is a leadership development program designed to connect and empower underrepresented …",
+   "seen": "2026-11-05"
+  },
+  {
+   "title": "New Generation Leaders Summit 2027 in Thailand (Fully Funded)",
+   "link": "https://opportunitiescorners.com/new-generation-leaders-summit-2027-in-thailand/",
+   "date": "2026-11-04",
+   "source": "Opportunities Corners",
+   "official": false,
+   "ids": [],
+   "summary": "The New Generation Leaders Summit 2027 is inviting young leaders, students, social entrepreneurs, activists, and young professionals from around the world to participate in an international leadershi…",
+   "seen": "2026-11-05"
+  },
+  {
+   "title": "Beijing Government Scholarships 2027 for International Students | Fully Funded",
+   "link": "https://www.scholarshipregion.com/beijing-government-scholarship/",
+   "date": "2026-11-04",
+   "source": "Scholarship Region",
+   "official": false,
+   "ids": [],
+   "summary": "Let us explore the Beijing Government Scholarships 2027 for international students looking to study in China. The Beijing Government Scholarship is for excellent international students who seeks to p…",
+   "seen": "2026-11-05"
+  },
+  {
+   "title": "Global MINDS Scholarship in Europe 2027 | Fully Funded",
+   "link": "https://www.scholarshipregion.com/erasmus-mundus-global-minds-scholarship/",
+   "date": "2026-11-04",
+   "source": "Scholarship Region",
+   "official": false,
+   "ids": [],
+   "summary": "The Global MINDS Scholarship is a master’s degree opportunity for international students to study in top universities across Europe. The programme is funded by several foundations and organizations o…",
+   "seen": "2026-11-05"
+  },
+  {
+   "title": "University of Victoria Masters Scholarship in Canada 2027 | Fully Funded",
+   "link": "https://www.scholarshipregion.com/university-of-victoria-masters-scholarship/",
+   "date": "2026-11-04",
+   "source": "Scholarship Region",
+   "official": false,
+   "ids": [],
+   "summary": "The University of Victoria Masters Scholarship is an opportunity for prospective graduate students interested in remote sensing, Geographic Information Systems (GIS), forest ecology, wildfire science…",
+   "seen": "2026-11-05"
   },
   {
    "title": "Harvard Pollman Fellowship in Real Estate and Urban Development 2027 (up to $55,000)",
@@ -1539,180 +1711,6 @@
    "ids": [],
    "summary": "Deadline: October 25, 2026 Applications are open for the AIRC Non-Resident Research Fellowship in AI and Social Sciences 2027. Artificial intelligence is reshaping how people work, learn, communicate…",
    "seen": "2026-10-23"
-  },
-  {
-   "title": "Swedish Institute (SI) Scholarship for Global Professionals 2027 (Fully-funded)",
-   "link": "https://opportunitydesk.org/2026/10/22/si-scholarship-for-global-professionals-2027/",
-   "date": "2026-10-22",
-   "source": "Opportunity Desk",
-   "official": false,
-   "ids": [
-    "si"
-   ],
-   "summary": "Deadline: January 15, 2027 Applications are invited for the SI Scholarship for Global Professionals 2027. The SI Scholarship for Global Professionals offers you the opportunity to access world-class …",
-   "seen": "2026-10-23"
-  },
-  {
-   "title": "London Youth Diplomacy Forum 2027 in the UK (Fully Funded)",
-   "link": "https://opportunitiescorners.com/london-youth-diplomacy-forum-2027/",
-   "date": "2026-10-22",
-   "source": "Opportunities Corners",
-   "official": false,
-   "ids": [],
-   "summary": "Applications for the London Youth Diplomacy Forum 2027 are now open for young leaders, students, aspiring diplomats, and early-career professionals. This international youth forum is scheduled to tak…",
-   "seen": "2026-10-23"
-  },
-  {
-   "title": "Government of Denmark Scholarship at SDU 2027 (Southern Denmark University) | How To Apply",
-   "link": "https://www.scholarshipregion.com/government-of-denmark-scholarship-at-sdu/",
-   "date": "2026-10-22",
-   "source": "Scholarship Region",
-   "official": false,
-   "ids": [],
-   "summary": "The Government of Denmark Scholarship is offered in collaboration with the Southern Denmark University for full-time international students commencing their studies at the university. As a recipient …",
-   "seen": "2026-10-23"
-  },
-  {
-   "title": "European Parliament Schuman Traineeships 2027 | Fully Funded",
-   "link": "https://www.scholarshipregion.com/european-parliament-schuman-traineeship/",
-   "date": "2026-10-22",
-   "source": "Scholarship Region",
-   "official": false,
-   "ids": [],
-   "summary": "Applications are now open for the 2027 European Parliament Schuman Traineeship Program. The European Parliament Schuman Traineeship aims to train up to 1000 members at different EU parliament offices…",
-   "seen": "2026-10-23"
-  },
-  {
-   "title": "Montana State University Scholarship in USA 2027 | Fully Funded",
-   "link": "https://www.scholarshipregion.com/montana-state-university-scholarship/",
-   "date": "2026-10-22",
-   "source": "Scholarship Region",
-   "official": false,
-   "ids": [],
-   "summary": "The Montana State University Scholarship offers a graduate master’s assistantship position for students seeking study opportunities in the United States. The Montana State University Graduate Assista…",
-   "seen": "2026-10-23"
-  },
-  {
-   "title": "Bodleian Visiting Fellowships 2027–2028 at the University of Oxford: Funding of Up to £2,200 per Month for International Researchers",
-   "link": "https://opportunitiesforyouth.org/2026/10/22/bodleian-visiting-fellowships-2027-2028-at-the-university-of-oxford-funding-of-up-to-2200-per-month-for-international-researchers/",
-   "date": "2026-10-22",
-   "source": "Opportunities for Youth",
-   "official": false,
-   "ids": [],
-   "summary": "The Bodleian Libraries are part of the University of Oxford and hold extensive collections of historical documents, manuscripts, printed books and other research materials. Their special collections …",
-   "seen": "2026-10-23"
-  },
-  {
-   "title": "Community Changemakers Initiative (CCI) Ghana 2026: Apply for Certification, Mentorship, Capacity-Building and Funding Opportunities for Young Changemakers",
-   "link": "https://opportunitiesforyouth.org/2026/10/22/community-changemakers-initiative-cci-ghana-2026-apply-for-certification-mentorship-capacity-building-and-funding-opportunities-for-young-changemakers/",
-   "date": "2026-10-22",
-   "source": "Opportunities for Youth",
-   "official": false,
-   "ids": [],
-   "summary": "Young people and youth organisations in Ghana who are creating positive change in their communities have an opportunity to gain recognition and strengthen their impact through the Community Changemak…",
-   "seen": "2026-10-23"
-  },
-  {
-   "title": "UNESCO Science for Crisis Response and Solutions Research Continuity Grants for Africa 2026: Apply for Up to US$2,000 in Research Funding",
-   "link": "https://opportunitiesforyouth.org/2026/10/21/unesco-science-for-crisis-response-and-solutions-research-continuity-grants-for-africa-2026-apply-for-up-to-us2000-in-research-funding/",
-   "date": "2026-10-21",
-   "source": "Opportunities for Youth",
-   "official": false,
-   "ids": [],
-   "summary": "Are you an African researcher whose natural-science research has been interrupted by armed conflict, a natural disaster, or a biological hazard? The UNESCO Science for Crisis Response and Solutions (…",
-   "seen": "2026-10-21"
-  },
-  {
-   "title": "UNDP Uganda ICCA-GSI Phase II Call for Proposals 2026: Up to $44,000 Grant for Indigenous and Community-Based Organisations",
-   "link": "https://opportunitiesforyouth.org/2026/10/21/undp-uganda-icca-gsi-phase-ii-call-for-proposals-2026-up-to-44000-grant-for-indigenous-and-community-based-organisations/",
-   "date": "2026-10-21",
-   "source": "Opportunities for Youth",
-   "official": false,
-   "ids": [],
-   "summary": "The United Nations Development Programme (UNDP) Uganda, through the Global Environment Facility Small Grants Programme (GEF-SGP), has announced a call for proposals inviting eligible indigenous Ugand…",
-   "seen": "2026-10-21"
-  },
-  {
-   "title": "Ocean Legal Fellowship Needs Assessment Survey 2026: Opportunity for Early-Career Lawyers in Ocean, Coastal, and Climate Law",
-   "link": "https://opportunitiesforyouth.org/2026/10/21/ocean-legal-fellowship-needs-assessment-survey-2026-opportunity-for-early-career-lawyers-in-ocean-coastal-and-climate-law/",
-   "date": "2026-10-21",
-   "source": "Opportunities for Youth",
-   "official": false,
-   "ids": [],
-   "summary": "Are you an early-career lawyer, recent law graduate, or Master of Laws (LL.M.) student interested in ocean conservation, coastal protection, climate change, and environmental law? The Ocean Legal Fel…",
-   "seen": "2026-10-21"
-  },
-  {
-   "title": "CrossCulture Programme (CCP) Fellowships 2027: Fully Funded International Fellowship for Civil Society Professionals and Volunteers",
-   "link": "https://opportunitiesforyouth.org/2026/10/21/crossculture-programfully-funded-to-germany/",
-   "date": "2026-10-21",
-   "source": "Opportunities for Youth",
-   "official": false,
-   "ids": [],
-   "summary": "The CrossCulture Programme (CCP) Fellowships 2027, organised by the Institut für Auslandsbeziehungen (ifa), offers professionals and volunteers working in civil society an opportunity to strengthen t…",
-   "seen": "2026-10-21"
-  },
-  {
-   "title": "CDC Public Health Informatics Fellowship Program 2027",
-   "link": "https://opportunitydesk.org/2026/10/21/cdc-public-health-informatics-fellowship-program-2027/",
-   "date": "2026-10-21",
-   "source": "Opportunity Desk",
-   "official": false,
-   "ids": [],
-   "summary": "Deadline: November 6, 2026 Applications are open for the CDC Public Health Informatics Fellowship Program 2027. Public health informatics is the systematic application of knowledge about systems that…",
-   "seen": "2026-10-22"
-  },
-  {
-   "title": "Wisconsin Population Health Service Fellowship Program 2027-2029 ($58,000 salary)",
-   "link": "https://opportunitydesk.org/2026/10/21/wisconsin-population-health-service-fellowship-program-2027-2029/",
-   "date": "2026-10-21",
-   "source": "Opportunity Desk",
-   "official": false,
-   "ids": [],
-   "summary": "Deadline: January 10, 2027 Applications are open for the Wisconsin Population Health Service Fellowship Program 2027-2029. The Wisconsin Population Health Service Fellowship Program is a two-year ser…",
-   "seen": "2026-10-22"
-  },
-  {
-   "title": "Institut für Auslandsbeziehungen CrossCulture Programme (CCP) Fellowships 2027",
-   "link": "https://opportunitydesk.org/2026/10/21/ifa-crossculture-programme-fellowships-2027/",
-   "date": "2026-10-21",
-   "source": "Opportunity Desk",
-   "official": false,
-   "ids": [],
-   "summary": "Deadline: December 8, 2026 Applications are invited for the Institut für Auslandsbeziehungen CrossCulture Programme (CCP) Fellowships 2027. The CrossCulture Programme (CCP) funds 50 to 60 professiona…",
-   "seen": "2026-10-22"
-  },
-  {
-   "title": "Chevening British Library Southeast Asian Fellowship 2027 (Funded)",
-   "link": "https://opportunitydesk.org/2026/10/21/chevening-british-library-southeast-asian-fellowship-2027/",
-   "date": "2026-10-21",
-   "source": "Opportunity Desk",
-   "official": false,
-   "ids": [
-    "chevening"
-   ],
-   "summary": "Deadline: October 27, 2026 Applications are open for the Chevening British Library Southeast Asian Fellowship 2027. The fellowship is open to mid-career professionals from Cambodia, Laos, and Thailan…",
-   "seen": "2026-10-22"
-  },
-  {
-   "title": "UNESCO Science for Crisis Response & Solutions Research Continuity Grants for Africa 2026 (up to $2,000)",
-   "link": "https://opportunitydesk.org/2026/10/21/unesco-scrs-grants-for-africa-2026/",
-   "date": "2026-10-21",
-   "source": "Opportunity Desk",
-   "official": false,
-   "ids": [],
-   "summary": "Deadline: November 15, 2026 Applications are open for the UNESCO Science for Crisis Response & Solutions Research Continuity Grants for Africa 2026. This is a new small-grants initiative supporting t…",
-   "seen": "2026-10-22"
-  },
-  {
-   "title": "United Diplomats Global Assembly 2027 in Thailand (Fully Funded)",
-   "link": "https://opportunitiescorners.com/united-diplomats-global-assembly-2027/",
-   "date": "2026-10-21",
-   "source": "Opportunities Corners",
-   "official": false,
-   "ids": [],
-   "summary": "Applications are open for the United Diplomats Global Assembly 2027 in Thailand, an international diplomatic simulation organized by United Diplomats and powered by Global Peace Chain. The five-day a…",
-   "seen": "2026-10-22"
   }
  ]
 }
