@@ -1,0 +1,71 @@
+# Pilot check of the riparian pump-irrigation potential against dry-season cropping seen by Sentinel-2.
+# Results go to the riparian-pilot branch (not the website) under water-atlas/archive/riparian/pilot/.
+# Needs the river reaches saved by a full run of "Riparian pump-irrigation potential".
+name: Riparian potential - Sentinel-2 pilot check
+
+on:
+  workflow_dispatch:
+    inputs:
+      tile:
+        description: "South-west corner of the 1-degree tile, as lat,lon (7,8 = Benue around Makurdi)"
+        type: string
+        default: "7,8"
+      season:
+        description: "Dry season starting in December of this year"
+        type: string
+        default: "2025"
+
+permissions:
+  contents: write
+
+jobs:
+  pilot:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    env:
+      GDAL_DISABLE_READDIR_ON_OPEN: EMPTY_DIR
+      CPL_VSIL_CURL_ALLOWED_EXTENSIONS: .tif
+      GDAL_HTTP_MAX_RETRY: "6"
+      GDAL_HTTP_RETRY_DELAY: "4"
+      GDAL_CACHEMAX: "512"
+      AWS_NO_SIGN_REQUEST: "YES"
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+
+      - name: Install pinned packages
+        run: pip install -r .github/scripts/riparian-requirements.txt matplotlib==3.11.2
+
+      - name: Restore river reaches from the full run
+        id: reaches
+        uses: actions/cache/restore@v4
+        with:
+          path: /tmp/rip/reaches.json
+          key: riparian-reaches-area-${{ hashFiles('water-atlas/archive/riparian/config.json') }}
+
+      - name: Stop if the reaches are missing
+        if: steps.reaches.outputs.cache-hit != 'true'
+        run: |
+          echo "No saved river reaches. Run the workflow 'Riparian pump-irrigation potential' for all of Nigeria first."
+          exit 1
+
+      - name: Sentinel-2 dry-season cropping vs modelled potential
+        run: |
+          T=$(echo "${{ inputs.tile }}" | tr ',' '_')
+          python3 .github/scripts/water_atlas_riparian_pilot.py --tile "${{ inputs.tile }}" --season "${{ inputs.season }}" \
+            --work /tmp/rip --out "water-atlas/archive/riparian/pilot/tile_${T}_season_${{ inputs.season }}"
+
+      - name: Save to the riparian-pilot branch
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          cp -r water-atlas/archive/riparian/pilot /tmp/new_pilot
+          git checkout -B riparian-pilot
+          if git fetch -q origin riparian-pilot; then git checkout FETCH_HEAD -- water-atlas/archive/riparian/pilot 2>/dev/null || true; fi
+          mkdir -p water-atlas/archive/riparian/pilot && cp -r /tmp/new_pilot/. water-atlas/archive/riparian/pilot/
+          git add -f water-atlas/archive/riparian/pilot
+          git commit -m "Riparian pilot: tile ${{ inputs.tile }}, dry season ${{ inputs.season }}" || exit 0
+          git push -f origin riparian-pilot
