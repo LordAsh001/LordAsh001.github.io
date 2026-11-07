@@ -256,10 +256,19 @@ def osm_check(D, tiles):
     res = []
     for la, lo in tiles:
         q = f'[out:json][timeout:180];way["waterway"="river"]({la},{lo},{la + 1},{lo + 1});out geom;'
-        req = urllib.request.Request('https://overpass-api.de/api/interpreter', data=urllib.parse.urlencode({'data': q}).encode(),
-                                     headers={'User-Agent': 'nigeria-water-atlas-research'})
-        with urllib.request.urlopen(req, timeout=240) as r:
-            js = json.load(r)
+        js = None
+        for attempt in range(6):
+            url = ['https://overpass-api.de/api/interpreter', 'https://overpass.kumi.systems/api/interpreter',
+                   'https://overpass.private.coffee/api/interpreter'][attempt % 3]
+            try:
+                req = urllib.request.Request(url, data=urllib.parse.urlencode({'data': q}).encode(),
+                                             headers={'User-Agent': 'nigeria-water-atlas-research'})
+                with urllib.request.urlopen(req, timeout=240) as r:
+                    js = json.load(r)
+                break
+            except Exception as e:
+                log('  Overpass attempt %d failed: %r' % (attempt + 1, e)); time.sleep(20)
+        if js is None: raise RuntimeError('Overpass unavailable')
         lines = [shapely.LineString([(p['lon'], p['lat']) for p in w['geometry']]) for w in js['elements'] if len(w.get('geometry', [])) > 1]
         if not lines: continue
         t = STRtree(lines)
@@ -344,10 +353,22 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--work', default='/tmp/rip'); ap.add_argument('--out', required=True)
     ap.add_argument('--draws', type=int, default=1000); ap.add_argument('--skip', default='')
+    ap.add_argument('--only', default='', help='osm: run only the channel-position check and write channel_offset.json')
     a = ap.parse_args(); skip = set(a.skip.split(','))
     os.makedirs(a.out, exist_ok=True)
     cfg = WR.load_cfg(); root = WR.ROOT
     D = load(a.work, cfg); R = D['R']; N = D['N']
+    if a.only == 'osm':
+        pos = osm_check(D, [(7, 8), (12, 9), (13, 5), (7, 3), (10, 4), (12, 5)])
+        with open(os.path.join(a.out, 'channel_offset_vs_osm.csv'), 'w', newline='') as f:
+            w = csv.DictWriter(f, fieldnames=list(pos[0].keys())); w.writeheader(); w.writerows(pos)
+        off = np.array([p['offset_m'] for p in pos]); vis = np.array([p['visible'] for p in pos])
+        res = {'points': len(off), 'median': float(np.median(off)), 'p90': float(np.percentile(off, 90)),
+               'share_over_100m': float((off > 100).mean()), 'share_over_250m': float((off > 250).mean()),
+               'median_visible': float(np.median(off[vis == 1])) if (vis == 1).any() else None,
+               'median_not_visible': float(np.median(off[vis == 0])) if (vis == 0).any() else None}
+        json.dump(res, open(os.path.join(a.out, 'channel_offset.json'), 'w'), indent=1)
+        log('Channel offset:', res); return
     strip = np.array([r['strip'] for r in R])
     C = cfg['levels']['central']
     land_c = land_for(D, cfg, 1, C['landcover'], C['max_slope_pct'], C['max_lift_m']); land_c[~strip] = 0
