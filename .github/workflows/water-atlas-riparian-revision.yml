@@ -11,6 +11,10 @@ on:
         description: "Monte Carlo draws"
         type: string
         default: "1000"
+      only:
+        description: "Leave empty for everything, or 'osm' for the channel-position check only"
+        type: string
+        default: ""
 
 permissions:
   contents: write
@@ -54,7 +58,7 @@ jobs:
           [ "$(ls /tmp/rip/tiles | wc -l)" -gt 50 ] || { echo "Run the full 'Riparian pump-irrigation potential' workflow first."; exit 1; }
 
       - name: Robustness analyses
-        run: python3 .github/scripts/water_atlas_riparian_revision.py --work /tmp/rip --out water-atlas/archive/riparian/revision --draws "${{ inputs.draws }}"
+        run: python3 .github/scripts/water_atlas_riparian_revision.py --work /tmp/rip --out water-atlas/archive/riparian/revision --draws "${{ inputs.draws }}" --only "${{ inputs.only }}"
 
       - name: Save to the riparian-pilot branch
         run: |
