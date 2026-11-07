@@ -1,0 +1,270 @@
+{
+ "tile": [
+  12,
+  5
+ ],
+ "season": "Dec 2025 - Mar 2026",
+ "scenes": {
+  "early": 47,
+  "late": 23
+ },
+ "thresholds": {
+  "early_max_ndvi": 0.3,
+  "late_min_ndvi": 0.5,
+  "min_green_dates": 2,
+  "late_window_end": "03-15",
+  "max_cloud_pct": 40
+ },
+ "seen_share": 0.998,
+ "bands": [
+  {
+   "band_m": [
+    0,
+    100
+   ],
+   "land_ha": 11298,
+   "central_suitable_land_ha": 7516,
+   "perennially_green_ha": 156,
+   "A_bare_early_green_late": {
+    "dry_season_crop_ha": 715,
+    "crop_on_central_suitable_ha": 508,
+    "crop_excluded_by_landcover_ha": 187,
+    "crop_excluded_by_slope_ha": 20,
+    "crop_excluded_by_lift_ha": 0,
+    "crop_share_pct": 6.329,
+    "excess_over_background_ha": 678
+   },
+   "B_bare_any_green_jan_mar": {
+    "dry_season_crop_ha": 854,
+    "crop_on_central_suitable_ha": 623,
+    "crop_excluded_by_landcover_ha": 206,
+    "crop_excluded_by_slope_ha": 26,
+    "crop_excluded_by_lift_ha": 0,
+    "crop_share_pct": 7.559,
+    "excess_over_background_ha": 767
+   }
+  },
+  {
+   "band_m": [
+    100,
+    250
+   ],
+   "land_ha": 19029,
+   "central_suitable_land_ha": 13658,
+   "perennially_green_ha": 225,
+   "A_bare_early_green_late": {
+    "dry_season_crop_ha": 877,
+    "crop_on_central_suitable_ha": 664,
+    "crop_excluded_by_landcover_ha": 190,
+    "crop_excluded_by_slope_ha": 21,
+    "crop_excluded_by_lift_ha": 2,
+    "crop_share_pct": 4.609,
+    "excess_over_background_ha": 815
+   },
+   "B_bare_any_green_jan_mar": {
+    "dry_season_crop_ha": 1112,
+    "crop_on_central_suitable_ha": 868,
+    "crop_excluded_by_landcover_ha": 213,
+    "crop_excluded_by_slope_ha": 29,
+    "crop_excluded_by_lift_ha": 2,
+    "crop_share_pct": 5.844,
+    "excess_over_background_ha": 965
+   }
+  },
+  {
+   "band_m": [
+    250,
+    500
+   ],
+   "land_ha": 31090,
+   "central_suitable_land_ha": 21495,
+   "perennially_green_ha": 364,
+   "A_bare_early_green_late": {
+    "dry_season_crop_ha": 871,
+    "crop_on_central_suitable_ha": 737,
+    "crop_excluded_by_landcover_ha": 105,
+    "crop_excluded_by_slope_ha": 21,
+    "crop_excluded_by_lift_ha": 8,
+    "crop_share_pct": 2.802,
+    "excess_over_background_ha": 770
+   },
+   "B_bare_any_green_jan_mar": {
+    "dry_season_crop_ha": 1195,
+    "crop_on_central_suitable_ha": 1032,
+    "crop_excluded_by_landcover_ha": 124,
+    "crop_excluded_by_slope_ha": 30,
+    "crop_excluded_by_lift_ha": 9,
+    "crop_share_pct": 3.844,
+    "excess_over_background_ha": 955
+   }
+  },
+  {
+   "band_m": [
+    500,
+    1000
+   ],
+   "land_ha": 60179,
+   "central_suitable_land_ha": 32149,
+   "perennially_green_ha": 629,
+   "A_bare_early_green_late": {
+    "dry_season_crop_ha": 971,
+    "crop_on_central_suitable_ha": 858,
+    "crop_excluded_by_landcover_ha": 50,
+    "crop_excluded_by_slope_ha": 28,
+    "crop_excluded_by_lift_ha": 34,
+    "crop_share_pct": 1.614,
+    "excess_over_background_ha": 776
+   },
+   "B_bare_any_green_jan_mar": {
+    "dry_season_crop_ha": 1495,
+    "crop_on_central_suitable_ha": 1304,
+    "crop_excluded_by_landcover_ha": 97,
+    "crop_excluded_by_slope_ha": 40,
+    "crop_excluded_by_lift_ha": 54,
+    "crop_share_pct": 2.484,
+    "excess_over_background_ha": 1031
+   }
+  },
+  {
+   "band_m": [
+    2000,
+    5000
+   ],
+   "land_ha": 309008,
+   "central_suitable_land_ha": 32104,
+   "perennially_green_ha": 474,
+   "A_bare_early_green_late": {
+    "dry_season_crop_ha": 1000,
+    "crop_on_central_suitable_ha": 470,
+    "crop_excluded_by_landcover_ha": 73,
+    "crop_excluded_by_slope_ha": 60,
+    "crop_excluded_by_lift_ha": 396,
+    "crop_share_pct": 0.324,
+    "excess_over_background_ha": 0
+   },
+   "B_bare_any_green_jan_mar": {
+    "dry_season_crop_ha": 2383,
+    "crop_on_central_suitable_ha": 889,
+    "crop_excluded_by_landcover_ha": 338,
+    "crop_excluded_by_slope_ha": 90,
+    "crop_excluded_by_lift_ha": 1066,
+    "crop_share_pct": 0.771,
+    "excess_over_background_ha": 0
+   }
+  }
+ ],
+ "background_crop_share_pct": {
+  "A_bare_early_green_late": 0.324,
+  "B_bare_any_green_jan_mar": 0.771
+ },
+ "clear_looks_within_500m": {
+  "median": 16.0,
+  "p10": 14.0,
+  "share_with_fewer_than_4": 0.0020552359873037495
+ },
+ "threshold_sensitivity": [
+  {
+   "bare_max_ndvi": 0.25,
+   "green_min_ndvi": 0.45,
+   "crop_share_0_250m_pct": 5.777,
+   "crop_share_background_pct": 0.903,
+   "ratio": 6.4,
+   "crop_ha_0_250m": 1752
+  },
+  {
+   "bare_max_ndvi": 0.25,
+   "green_min_ndvi": 0.5,
+   "crop_share_0_250m_pct": 4.423,
+   "crop_share_background_pct": 0.457,
+   "ratio": 9.67,
+   "crop_ha_0_250m": 1341
+  },
+  {
+   "bare_max_ndvi": 0.25,
+   "green_min_ndvi": 0.55,
+   "crop_share_0_250m_pct": 3.438,
+   "crop_share_background_pct": 0.256,
+   "ratio": 13.42,
+   "crop_ha_0_250m": 1043
+  },
+  {
+   "bare_max_ndvi": 0.3,
+   "green_min_ndvi": 0.45,
+   "crop_share_0_250m_pct": 9.31,
+   "crop_share_background_pct": 1.773,
+   "ratio": 5.25,
+   "crop_ha_0_250m": 2823
+  },
+  {
+   "bare_max_ndvi": 0.3,
+   "green_min_ndvi": 0.5,
+   "crop_share_0_250m_pct": 6.481,
+   "crop_share_background_pct": 0.771,
+   "ratio": 8.41,
+   "crop_ha_0_250m": 1966
+  },
+  {
+   "bare_max_ndvi": 0.3,
+   "green_min_ndvi": 0.55,
+   "crop_share_0_250m_pct": 4.727,
+   "crop_share_background_pct": 0.388,
+   "ratio": 12.2,
+   "crop_ha_0_250m": 1434
+  },
+  {
+   "bare_max_ndvi": 0.35,
+   "green_min_ndvi": 0.45,
+   "crop_share_0_250m_pct": 12.951,
+   "crop_share_background_pct": 2.906,
+   "ratio": 4.46,
+   "crop_ha_0_250m": 3928
+  },
+  {
+   "bare_max_ndvi": 0.35,
+   "green_min_ndvi": 0.5,
+   "crop_share_0_250m_pct": 8.887,
+   "crop_share_background_pct": 1.333,
+   "ratio": 6.67,
+   "crop_ha_0_250m": 2695
+  },
+  {
+   "bare_max_ndvi": 0.35,
+   "green_min_ndvi": 0.55,
+   "crop_share_0_250m_pct": 6.216,
+   "crop_share_background_pct": 0.62,
+   "ratio": 10.03,
+   "crop_ha_0_250m": 1885
+  }
+ ],
+ "by_height_above_river_within_1km": [
+  {
+   "height_m": "0-3",
+   "land_ha": 44075,
+   "crop_share_pct": 8.92
+  },
+  {
+   "height_m": "3-6",
+   "land_ha": 25067,
+   "crop_share_pct": 1.908
+  },
+  {
+   "height_m": "6-10",
+   "land_ha": 24368,
+   "crop_share_pct": 0.594
+  },
+  {
+   "height_m": ">10",
+   "land_ha": 28087,
+   "crop_share_pct": 0.359
+  }
+ ],
+ "reaches": {
+  "n": 166,
+  "observed_crop_ha_250m": 1965,
+  "potential_ha_250m_central": 3855,
+  "land_ha_250m_central": 23913,
+  "use_of_potential_pct": 51.0,
+  "reaches_observed_above_potential": 28,
+  "spearman_obs_vs_potential": 0.01
+ }
+}
