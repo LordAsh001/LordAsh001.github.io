@@ -98,7 +98,7 @@ def need(D, kc, eff, months=None):
     return out if out.shape[1] > 1 else out[:, 0]
 
 
-def route(D, land, qmin, reserve, q, mode='upstream'):
+def route(D, land, qmin, reserve, q, mode='upstream', return_wl=False):
     """Potential per reach. land, q: (N,) or (N,S); qmin: (N,) or (N,S); reserve: scalar or (S,) or (N,) / (N,S)."""
     R = D['R']; N = D['N']
     pos = {r['id']: i for i, r in enumerate(R)}
@@ -122,15 +122,16 @@ def route(D, land, qmin, reserve, q, mode='upstream'):
             if nx is not None: inc[nx] -= qm[i]
         inc = np.maximum(inc, 0) * (1 - res)
         return np.minimum(land, inc * 1000 / q)
-    taken = np.zeros((N, S))
+    taken = np.zeros((N, S)); wl = np.zeros((N, S))
     for i in sorted(range(N), key=lambda i: R[i]['up']):
         a = np.maximum(avail0[i] - taken[i], 0)
-        p = np.minimum(land[i], a * 1000 / q[i])
+        wl[i] = a * 1000 / q[i]
+        p = np.minimum(land[i], wl[i])
         pot[i] = p
         nx = pos.get(R[i]['next'])
         if nx is not None:
             taken[nx] += taken[i] + p * q[i] / 1000
-    return pot
+    return (pot, wl) if return_wl else pot
 
 
 # ------------------------------------------------------------------ 1 low flows
@@ -374,8 +375,8 @@ def main():
     land_c = land_for(D, cfg, 1, C['landcover'], C['max_slope_pct'], C['max_lift_m']); land_c[~strip] = 0
     qmin = np.array([r['qmin'] for r in R]); qy = np.array([r['qy'] for r in R]); order = np.array([r['ord'] for r in R])
     q_c = need(D, C['kc'], C['efficiency'])
-    base = route(D, land_c, qmin, C['reserve_frac_of_dry_flow'], q_c)[:, 0]
-    wl_c = route(D, np.full(N, 1e12), qmin, C['reserve_frac_of_dry_flow'], q_c)[:, 0]
+    base, wl_c = route(D, land_c, qmin, C['reserve_frac_of_dry_flow'], q_c, return_wl=True)
+    base = base[:, 0]; wl_c = wl_c[:, 0]
     out = {'base_central_250m_ha': float(base.sum()), 'land_central_250m_ha': float(land_c.sum())}
     log('Base (should match the atlas run): %.0f ha' % base.sum())
 
