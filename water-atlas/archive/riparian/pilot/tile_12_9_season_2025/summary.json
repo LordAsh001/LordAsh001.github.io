@@ -1,0 +1,111 @@
+{
+ "tile": [
+  12,
+  9
+ ],
+ "season": "Dec 2025 - Mar 2026",
+ "scenes": {
+  "early": 106,
+  "late": 78
+ },
+ "thresholds": {
+  "early_max_ndvi": 0.3,
+  "late_min_ndvi": 0.5,
+  "min_green_dates": 2,
+  "late_window_end": "03-15",
+  "max_cloud_pct": 40
+ },
+ "seen_share": 0.998,
+ "bands": [
+  {
+   "band_m": [
+    0,
+    100
+   ],
+   "land_ha": 8310,
+   "dry_season_crop_ha": 633,
+   "crop_on_central_suitable_ha": 570,
+   "crop_excluded_by_landcover_ha": 46,
+   "crop_excluded_by_slope_ha": 17,
+   "crop_excluded_by_lift_ha": 0,
+   "perennially_green_ha": 44,
+   "central_suitable_land_ha": 7746,
+   "crop_share_pct": 7.62,
+   "excess_over_background_ha": 338
+  },
+  {
+   "band_m": [
+    100,
+    250
+   ],
+   "land_ha": 14244,
+   "dry_season_crop_ha": 1163,
+   "crop_on_central_suitable_ha": 1058,
+   "crop_excluded_by_landcover_ha": 75,
+   "crop_excluded_by_slope_ha": 30,
+   "crop_excluded_by_lift_ha": 0,
+   "perennially_green_ha": 49,
+   "central_suitable_land_ha": 13383,
+   "crop_share_pct": 8.16,
+   "excess_over_background_ha": 657
+  },
+  {
+   "band_m": [
+    250,
+    500
+   ],
+   "land_ha": 23382,
+   "dry_season_crop_ha": 1786,
+   "crop_on_central_suitable_ha": 1637,
+   "crop_excluded_by_landcover_ha": 102,
+   "crop_excluded_by_slope_ha": 46,
+   "crop_excluded_by_lift_ha": 0,
+   "perennially_green_ha": 83,
+   "central_suitable_land_ha": 21758,
+   "crop_share_pct": 7.64,
+   "excess_over_background_ha": 955
+  },
+  {
+   "band_m": [
+    500,
+    1000
+   ],
+   "land_ha": 45384,
+   "dry_season_crop_ha": 3043,
+   "crop_on_central_suitable_ha": 2848,
+   "crop_excluded_by_landcover_ha": 138,
+   "crop_excluded_by_slope_ha": 57,
+   "crop_excluded_by_lift_ha": 0,
+   "perennially_green_ha": 199,
+   "central_suitable_land_ha": 42807,
+   "crop_share_pct": 6.71,
+   "excess_over_background_ha": 1430
+  },
+  {
+   "band_m": [
+    2000,
+    5000
+   ],
+   "land_ha": 231523,
+   "dry_season_crop_ha": 8230,
+   "crop_on_central_suitable_ha": 7893,
+   "crop_excluded_by_landcover_ha": 210,
+   "crop_excluded_by_slope_ha": 105,
+   "crop_excluded_by_lift_ha": 22,
+   "perennially_green_ha": 200,
+   "central_suitable_land_ha": 216024,
+   "crop_share_pct": 3.55,
+   "excess_over_background_ha": 0
+  }
+ ],
+ "background_crop_share_pct": 3.55,
+ "reaches": {
+  "n": 81,
+  "observed_crop_ha_250m": 1796,
+  "potential_ha_250m_central": 807,
+  "land_ha_250m_central": 23423,
+  "use_of_potential_pct": 222.5,
+  "reaches_observed_above_potential": 38,
+  "spearman_obs_vs_potential": 0.102
+ }
+}
