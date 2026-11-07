@@ -41,21 +41,23 @@ jobs:
           python-version: "3.13"
 
       - name: Install pinned packages
-        run: pip install -r .github/scripts/riparian-requirements.txt
+        run: |
+          pip install -r .github/scripts/riparian-requirements.txt
+          echo "TAG=area$(echo '${{ inputs.bbox }}' | tr ',.-' '_pm')" >> "$GITHUB_ENV"
 
       - name: Restore saved river reaches
         id: reaches
         uses: actions/cache/restore@v4
         with:
           path: /tmp/rip/reaches.json
-          key: riparian-reaches-${{ inputs.bbox }}-${{ hashFiles('water-atlas/archive/riparian/config.json') }}
+          key: riparian-reaches-${{ env.TAG }}-${{ hashFiles('water-atlas/archive/riparian/config.json') }}
 
       - name: Restore finished tiles
         uses: actions/cache/restore@v4
         with:
           path: /tmp/rip/tiles
-          key: riparian-tiles-${{ inputs.bbox }}-${{ hashFiles('water-atlas/archive/riparian/config.json', '.github/scripts/water_atlas_riparian.py') }}-${{ github.run_id }}
-          restore-keys: riparian-tiles-${{ inputs.bbox }}-${{ hashFiles('water-atlas/archive/riparian/config.json', '.github/scripts/water_atlas_riparian.py') }}-
+          key: riparian-tiles-${{ env.TAG }}-${{ hashFiles('water-atlas/archive/riparian/config.json', '.github/scripts/water_atlas_riparian.py') }}-${{ github.run_id }}
+          restore-keys: riparian-tiles-${{ env.TAG }}-${{ hashFiles('water-atlas/archive/riparian/config.json', '.github/scripts/water_atlas_riparian.py') }}-
 
       - name: Download RiverATLAS v1.0 and extract Nigeria's reaches
         if: steps.reaches.outputs.cache-hit != 'true'
@@ -77,17 +79,18 @@ jobs:
         uses: actions/cache/save@v4
         with:
           path: /tmp/rip/reaches.json
-          key: riparian-reaches-${{ inputs.bbox }}-${{ hashFiles('water-atlas/archive/riparian/config.json') }}
+          key: riparian-reaches-${{ env.TAG }}-${{ hashFiles('water-atlas/archive/riparian/config.json') }}
 
       - name: Strips, land cover, slope and height above the river (1-degree tiles)
         run: python3 .github/scripts/water_atlas_riparian.py tiles --work $WORK --bbox "${{ inputs.bbox }}"
 
       - name: Save finished tiles (so a rerun resumes)
         if: always()
+        continue-on-error: true
         uses: actions/cache/save@v4
         with:
           path: /tmp/rip/tiles
-          key: riparian-tiles-${{ inputs.bbox }}-${{ hashFiles('water-atlas/archive/riparian/config.json', '.github/scripts/water_atlas_riparian.py') }}-${{ github.run_id }}
+          key: riparian-tiles-${{ env.TAG }}-${{ hashFiles('water-atlas/archive/riparian/config.json', '.github/scripts/water_atlas_riparian.py') }}-${{ github.run_id }}
 
       - name: Water limit, routing and atlas files
         run: python3 .github/scripts/water_atlas_riparian.py combine --work $WORK
