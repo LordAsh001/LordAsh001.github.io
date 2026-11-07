@@ -1,0 +1,113 @@
+# Riparian pump-irrigation potential of Nigeria's rivers that flow all year.
+# Rebuilds water-atlas/data/riparian.json, riparian_reaches.json and water-atlas/archive/riparian/*.csv
+# from open data (RiverATLAS v1.0, Copernicus DEM GLO-30, ESA WorldCover 2021) using the settings in
+# water-atlas/archive/riparian/config.json. Method: water-atlas/archive/riparian/METHOD.md.
+# Run on demand from the Actions tab ("Run workflow"). A bounding box runs a quick test without committing.
+name: Riparian pump-irrigation potential
+
+on:
+  workflow_dispatch:
+    inputs:
+      bbox:
+        description: "Test area only, as west,south,east,north in degrees (e.g. 8,7,9,8). Leave empty for all of Nigeria (results are committed)."
+        type: string
+        default: ""
+
+permissions:
+  contents: write
+
+concurrency:
+  group: water-atlas-riparian
+  cancel-in-progress: false
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    env:
+      GDAL_DISABLE_READDIR_ON_OPEN: EMPTY_DIR
+      CPL_VSIL_CURL_ALLOWED_EXTENSIONS: .tif
+      GDAL_HTTP_MAX_RETRY: "6"
+      GDAL_HTTP_RETRY_DELAY: "4"
+      GDAL_CACHEMAX: "512"
+      VSI_CACHE: "TRUE"
+      AWS_NO_SIGN_REQUEST: "YES"
+      WORK: /tmp/rip
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+
+      - name: Install pinned packages
+        run: pip install -r .github/scripts/riparian-requirements.txt
+
+      - name: Restore saved river reaches
+        id: reaches
+        uses: actions/cache/restore@v4
+        with:
+          path: /tmp/rip/reaches.json
+          key: riparian-reaches-${{ inputs.bbox }}-${{ hashFiles('water-atlas/archive/riparian/config.json') }}
+
+      - name: Restore finished tiles
+        uses: actions/cache/restore@v4
+        with:
+          path: /tmp/rip/tiles
+          key: riparian-tiles-${{ inputs.bbox }}-${{ hashFiles('water-atlas/archive/riparian/config.json', '.github/scripts/water_atlas_riparian.py') }}-${{ github.run_id }}
+          restore-keys: riparian-tiles-${{ inputs.bbox }}-${{ hashFiles('water-atlas/archive/riparian/config.json', '.github/scripts/water_atlas_riparian.py') }}-
+
+      - name: Download RiverATLAS v1.0 and extract Nigeria's reaches
+        if: steps.reaches.outputs.cache-hit != 'true'
+        run: |
+          sudo rm -rf /usr/share/dotnet /usr/local/lib/android /opt/ghc /opt/hostedtoolcache/CodeQL || true
+          df -h /tmp
+          URL=$(python3 -c "import json;print(json.load(open('water-atlas/archive/riparian/config.json'))['sources']['riveratlas']['url'])")
+          ALT=$(python3 -c "import json;print(json.load(open('water-atlas/archive/riparian/config.json'))['sources']['riveratlas']['url_alt'])")
+          curl -L --fail --retry 5 --retry-delay 10 -o /tmp/ra.zip "$URL" || curl -L --fail --retry 5 --retry-delay 10 -o /tmp/ra.zip "$ALT"
+          ls -la /tmp/ra.zip
+          mkdir -p /tmp/ra && unzip -q /tmp/ra.zip -d /tmp/ra && rm /tmp/ra.zip
+          GDB=$(find /tmp/ra -maxdepth 3 -type d -name '*.gdb' | head -1)
+          echo "Geodatabase: $GDB"
+          python3 .github/scripts/water_atlas_riparian.py reaches --gdb "$GDB" --work $WORK --bbox "${{ inputs.bbox }}"
+          rm -rf /tmp/ra
+
+      - name: Save river reaches
+        if: steps.reaches.outputs.cache-hit != 'true'
+        uses: actions/cache/save@v4
+        with:
+          path: /tmp/rip/reaches.json
+          key: riparian-reaches-${{ inputs.bbox }}-${{ hashFiles('water-atlas/archive/riparian/config.json') }}
+
+      - name: Strips, land cover, slope and height above the river (1-degree tiles)
+        run: python3 .github/scripts/water_atlas_riparian.py tiles --work $WORK --bbox "${{ inputs.bbox }}"
+
+      - name: Save finished tiles (so a rerun resumes)
+        if: always()
+        uses: actions/cache/save@v4
+        with:
+          path: /tmp/rip/tiles
+          key: riparian-tiles-${{ inputs.bbox }}-${{ hashFiles('water-atlas/archive/riparian/config.json', '.github/scripts/water_atlas_riparian.py') }}-${{ github.run_id }}
+
+      - name: Water limit, routing and atlas files
+        run: python3 .github/scripts/water_atlas_riparian.py combine --work $WORK
+
+      - name: Keep test results as a download
+        if: ${{ inputs.bbox != '' }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: riparian-test
+          path: |
+            water-atlas/data/riparian*.json
+            water-atlas/archive/riparian/*.csv
+
+      - name: Commit results
+        if: ${{ inputs.bbox == '' }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add water-atlas/data/riparian.json water-atlas/data/riparian_reaches.json water-atlas/archive/riparian
+          if git diff --cached --quiet; then echo "Nothing to commit."; exit 0; fi
+          git commit -m "Riparian pump-irrigation potential: rebuild from open data"
+          git pull --rebase
+          git push
