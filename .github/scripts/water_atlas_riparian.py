@@ -92,7 +92,9 @@ def stage_reaches(args, cfg):
     from shapely.ops import unary_union
     from shapely import STRtree
     src = cfg['sources']['riveratlas']
-    info = pyogrio.read_info(args.gdb, layer=src['layer'])
+    layer = src['layer'] if args.gdb.rstrip('/').lower().endswith('.gdb') else None
+    log('Reading', args.gdb, 'layer', layer or '(default)')
+    info = pyogrio.read_info(args.gdb, layer=layer)
     fields = list(info['fields'])
     log('RiverATLAS layer has', len(fields), 'fields and', info.get('features'), 'reaches')
     want = ['HYRIV_ID', 'NEXT_DOWN', 'MAIN_RIV', 'LENGTH_KM', 'UPLAND_SKM', 'ORD_STRA',
@@ -108,7 +110,7 @@ def stage_reaches(args, cfg):
         log('Field names in the layer:', ', '.join(fields))
         raise SystemExit('Missing RiverATLAS fields: %s (monthly pet %d, pre %d)' % (miss, len(pet), len(pre)))
     bbox = tuple(args.bbox) if args.bbox else tuple(cfg['tiles']['bbox'])
-    meta, fids, geom, data = pyogrio.raw.read(args.gdb, layer=src['layer'], columns=want + pet + pre, bbox=bbox)
+    meta, fids, geom, data = pyogrio.raw.read(args.gdb, layer=layer, columns=want + pet + pre, bbox=bbox)
     cols = {n: data[i] for i, n in enumerate(meta['fields'])}
     geoms = shapely.from_wkb(geom)
     log('Read', len(geoms), 'reaches inside the bounding box')
