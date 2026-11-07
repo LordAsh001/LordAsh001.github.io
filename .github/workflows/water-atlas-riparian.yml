@@ -66,12 +66,15 @@ jobs:
           df -h /tmp
           URL=$(python3 -c "import json;print(json.load(open('water-atlas/archive/riparian/config.json'))['sources']['riveratlas']['url'])")
           ALT=$(python3 -c "import json;print(json.load(open('water-atlas/archive/riparian/config.json'))['sources']['riveratlas']['url_alt'])")
-          curl -L --fail --retry 5 --retry-delay 10 -o /tmp/ra.zip "$URL" || curl -L --fail --retry 5 --retry-delay 10 -o /tmp/ra.zip "$ALT"
+          curl -L --fail --retry 5 --retry-delay 10 -A "Mozilla/5.0 (research data download)" -o /tmp/ra.zip "$URL" || curl -L --fail --retry 5 --retry-delay 10 -o /tmp/ra.zip "$ALT"
           ls -la /tmp/ra.zip
+          unzip -l /tmp/ra.zip | head -40
           mkdir -p /tmp/ra && unzip -q /tmp/ra.zip -d /tmp/ra && rm /tmp/ra.zip
-          GDB=$(find /tmp/ra -maxdepth 3 -type d -name '*.gdb' | head -1)
-          echo "Geodatabase: $GDB"
-          python3 .github/scripts/water_atlas_riparian.py reaches --gdb "$GDB" --work $WORK --bbox "${{ inputs.bbox }}"
+          SRC=$(find /tmp/ra -type d -name '*.gdb' | head -1)
+          [ -z "$SRC" ] && SRC=$(find /tmp/ra -iname '*_af*.shp' | head -1)
+          [ -z "$SRC" ] && SRC=$(find /tmp/ra -iname '*.shp' | head -1)
+          echo "RiverATLAS source: $SRC"
+          python3 .github/scripts/water_atlas_riparian.py reaches --gdb "$SRC" --work $WORK --bbox "${{ inputs.bbox }}"
           rm -rf /tmp/ra
 
       - name: Save river reaches
