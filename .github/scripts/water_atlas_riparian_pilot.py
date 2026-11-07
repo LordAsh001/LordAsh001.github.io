@@ -91,7 +91,8 @@ def read_item(item, tr, shape):
 def composite(items, tr, shape, green, workers=6):
     """Lowest and highest NDVI, number of clear looks and number of looks at or above `green`."""
     lo = np.full(shape, np.inf, np.float32); hi = np.full(shape, -np.inf, np.float32)
-    n = np.zeros(shape, np.uint16); ng = np.zeros(shape, np.uint16)
+    greens = list(green) if isinstance(green, (list, tuple)) else [green]
+    n = np.zeros(shape, np.uint16); ng = {t: np.zeros(shape, np.uint16) for t in greens}
     done = 0
     def job(it):
         try:
@@ -103,11 +104,12 @@ def composite(items, tr, shape, green, workers=6):
             done += 1
             if nd is None: continue
             v = ~np.isnan(nd)
-            n[v] += 1; ng[v & (nd >= green)] += 1
+            n[v] += 1
+            for t in greens: ng[t][v & (nd >= t)] += 1
             np.fmin(lo, np.where(v, nd, np.inf), out=lo); np.fmax(hi, np.where(v, nd, -np.inf), out=hi)
             if done % 10 == 0: log('  %d/%d scenes' % (done, len(items)))
     lo[n == 0] = np.nan; hi[n == 0] = np.nan
-    return lo, hi, n, ng
+    return lo, hi, n, (ng if isinstance(green, (list, tuple)) else ng[greens[0]])
 
 
 def main():
@@ -142,9 +144,11 @@ def main():
     log('Sentinel-2 scenes: %d early (Dec-Jan), %d late (Feb to %s)' % (len(early), len(late), a.late_end))
     dec = [it for it in early if it['properties']['datetime'][5:7] == '12']
     jan = [it for it in early if it['properties']['datetime'][5:7] != '12']
-    dmin, _, nd_, _ = composite(dec, tr, shape, a.late_min_ndvi)
-    jmin, _, nj, gj = composite(jan, tr, shape, a.late_min_ndvi)
-    lmin, lmax, nl, gl = composite(late, tr, shape, a.late_min_ndvi)
+    GT = sorted({a.late_min_ndvi - 0.05, a.late_min_ndvi, a.late_min_ndvi + 0.05})
+    dmin, _, nd_, _ = composite(dec, tr, shape, GT)
+    jmin, _, nj, gjd = composite(jan, tr, shape, GT)
+    lmin, lmax, nl, gld = composite(late, tr, shape, GT)
+    gj, gl = gjd[a.late_min_ndvi], gld[a.late_min_ndvi]
     emin = np.fmin(dmin, jmin); ne = nd_ + nj
     amin = np.fmin(emin, lmin)
     wc = G['wc']
@@ -211,6 +215,38 @@ def main():
     with open(os.path.join(a.out, 'reaches.csv'), 'w', newline='') as f:
         w = csv.writer(f); w.writerow(['hyriv_id', 'length_km', 'dry_month_flow_m3s', 'land_ha_250m_central', 'potential_ha_250m_central', 'observed_dry_season_crop_ha_250m']); w.writerows(rows)
     ob = np.array([x[5] for x in rows]); pt = np.array([x[4] for x in rows]); ld = np.array([x[3] for x in rows])
+    # --- added for the revision: clear looks, threshold sensitivity, height-above-river strata, labelling sample
+    near = base & (d <= 500); far = base & (d > 2000) & (d <= 5000)
+    nobs = (ne + nl)[near]
+    out['clear_looks_within_500m'] = {'median': float(np.median(nobs)), 'p10': float(np.percentile(nobs, 10)),
+                                      'share_with_fewer_than_4': float((nobs < 4).mean())}
+    sens = []
+    for eb in (a.early_max_ndvi - 0.05, a.early_max_ndvi, a.early_max_ndvi + 0.05):
+        for gt in GT:
+            cb = seen & (amin <= eb) & ((gjd[gt] + gld[gt]) >= a.min_green_dates) & ~nonveg
+            sn = float(A[cb & base & (d <= 250)].sum() / max(1, A[base & (d <= 250)].sum()))
+            sf = float(A[cb & far].sum() / max(1, A[far].sum()))
+            sens.append({'bare_max_ndvi': round(eb, 2), 'green_min_ndvi': round(gt, 2), 'crop_share_0_250m_pct': round(100 * sn, 3),
+                         'crop_share_background_pct': round(100 * sf, 3), 'ratio': round(sn / sf, 2) if sf > 0 else None,
+                         'crop_ha_0_250m': round(float(A[cb & base & (d <= 250)].sum()))})
+    out['threshold_sensitivity'] = sens
+    lift = G['lift']; m1 = base & (d <= 1000)
+    out['by_height_above_river_within_1km'] = [
+        {'height_m': lab, 'land_ha': round(float(A[m1 & mk].sum())), 'crop_share_pct': round(100 * float(A[m1 & mk & crop].sum() / max(1, A[m1 & mk].sum())), 3)}
+        for lab, mk in (('0-3', lift <= 3), ('3-6', (lift > 3) & (lift <= 6)), ('6-10', (lift > 6) & (lift <= 10)), ('>10', lift > 10))]
+    rng = np.random.default_rng(20261107 + lat * 100 + lon)
+    pts = []
+    for name, mk in (('near_crop', near & crop), ('near_nocrop', near & ~crop & seen), ('far_crop', far & crop), ('far_nocrop', far & ~crop & seen)):
+        iy, ix = np.nonzero(mk)
+        if not len(iy): continue
+        for k in rng.choice(len(iy), size=min(50, len(iy)), replace=False):
+            y, x = int(iy[k]), int(ix[k])
+            pts.append({'point': len(pts) + 1, 'stratum': name, 'stratum_pixels': int(len(iy)), 'lat': round(tr.f + (y + 0.5) * tr.e, 6),
+                        'lon': round(tr.c + (x + 0.5) * tr.a, 6), 'rule_B_crop': int(crop[y, x]), 'clear_looks': int(ne[y, x] + nl[y, x]),
+                        'distance_m': round(float(d[y, x])), 'label_dry_season_crop (fill in: 1/0)': '', 'water_source_if_known': ''})
+    os.makedirs(a.out, exist_ok=True)
+    with open(os.path.join(a.out, 'labelling_sample.csv'), 'w', newline='') as f:
+        w = csv.DictWriter(f, fieldnames=list(pts[0].keys())); w.writeheader(); w.writerows(pts)
     out['reaches'] = {'n': len(rows), 'observed_crop_ha_250m': round(float(ob.sum())), 'potential_ha_250m_central': round(float(pt.sum())),
                       'land_ha_250m_central': round(float(ld.sum())),
                       'use_of_potential_pct': round(100 * float(ob.sum()) / max(1, float(pt.sum())), 1),
