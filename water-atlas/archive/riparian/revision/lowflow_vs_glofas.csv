@@ -1,0 +1,21 @@
+gauge,river,place,hyriv_id,upland_km2,ra_mean,ra_min,glofas_mean_1979_2000,glofas_min_1979_2000,glofas_mean_1991_2020,glofas_min_1991_2020,basin,mean_ratio,min_ratio_1979_2000,min_ratio_1991_2020
+niger-lokoja,Niger,Lokoja (below the Benue confluence),10732473,2069382.0,5755.748,1125.022,7505.94,1477.687,6551.89,1330.621,"Lower Niger, Anambra and the Delta",1.304,1.313,1.183
+niger-onitsha,Niger,Onitsha,10809991,2095757.0,6481.289,1304.458,7773.98,1485.114,6803.31,1346.113,"Lower Niger, Anambra and the Delta",1.199,1.138,1.032
+niger-aboh,Niger,Aboh (head of the Delta),10836240,2096545.0,6518.507,1317.37,7789.54,1483.318,6818.56,1346.607,"Lower Niger, Anambra and the Delta",1.195,1.126,1.022
+niger-baro,Niger,Baro,10696202,1710039.0,2701.392,567.895,3823.72,1097.02,3337.42,1006.962,Middle Niger and Kaduna,1.415,1.932,1.773
+niger-jebba,Niger,Jebba (below the dam),10666386,1610928.0,1691.445,413.868,3303.58,844.514,2846.58,773.764,Middle Niger and Kaduna,1.953,2.041,1.87
+niger-border,Niger,Benin–Niger border (inflow to Nigeria),10568243,1352485.0,914.329,258.968,2183.8,103.848,1756.86,49.162,Niger above Kainji,2.388,0.401,0.19
+benue-makurdi,Benue,Makurdi,10728553,305933.8,2472.696,471.999,3281.71,176.316,2854.9,149.758,Benue (incl. Gongola),1.327,0.374,0.317
+benue-ibi,Benue,Ibi,10714370,260188.5,1600.059,315.125,1936.15,94.665,1617.67,74.937,Benue (incl. Gongola),1.21,0.3,0.238
+benue-numan,Benue,Numan,10651948,168867.5,863.986,140.278,816.47,60.25,658.86,58.995,Benue (incl. Gongola),0.945,0.43,0.421
+benue-yola,Benue,Jimeta–Yola,10656321,106148.7,639.887,131.403,702.93,60.904,559.33,59.731,Benue (incl. Gongola),1.099,0.463,0.455
+benue-border,Benue,Cameroon border (below Lagdo),10656974,97222.5,632.805,147.806,691.43,61.83,552.09,60.714,Benue (incl. Gongola),1.093,0.418,0.411
+kaduna-kaduna,Kaduna,Kaduna city,10610701,19738.5,177.047,23.839,149.54,60.532,145.33,58.276,Middle Niger and Kaduna,0.845,2.539,2.445
+rima-sokoto,Sokoto–Rima,Sokoto,10520350,137221.0,179.269,31.332,23.69,4.643,25.37,2.22,Sokoto–Rima,0.132,0.148,0.071
+hadejia-hadejia,Hadejia,Hadejia,10540396,22742.6,42.901,8.487,49.33,7.43,53.5,7.055,Komadugu-Yobe (Lake Chad basin),1.15,0.875,0.831
+yobe-gashua,Komadugu-Yobe,Gashua,10527204,49907.9,28.819,0.0,124.72,6.188,126.24,5.999,Komadugu-Yobe (Lake Chad basin),4.328,6188000.0,5999000.0
+gongola-dadinkowa,Gongola,below Dadin Kowa Dam,10620512,33556.9,157.509,30.323,71.38,0.026,67.17,0.065,Benue (incl. Gongola),0.453,0.001,0.002
+katsinaala-town,Katsina-Ala,Katsina-Ala,10753425,17980.0,571.549,141.031,894.65,42.902,824.81,36.436,Benue (incl. Gongola),1.565,0.304,0.258
+cross-ikom,Cross,Ikom,10812489,16843.9,932.308,144.263,1281.72,156.659,1212.61,132.565,Cross River,1.375,1.086,0.919
+ogun-abeokuta,Ogun,Abeokuta,10760983,20426.5,283.871,54.178,0.7,0.12,0.66,0.086,"Western coastal rivers (Ogun, Osun, Benin–Owena)",0.002,0.002,0.002
+anambra-otuocha,Anambra,Otuocha,10803331,2081144.0,6056.796,1198.518,198.32,3.712,187.7,2.664,,0.033,0.003,0.002
