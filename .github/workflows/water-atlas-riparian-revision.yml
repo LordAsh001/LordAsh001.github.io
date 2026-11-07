@@ -1,0 +1,73 @@
+# Robustness analyses of the riparian pump-irrigation potential (low flows vs GloFAS, sensitivity,
+# Morris + Monte Carlo uncertainty, channel position vs OpenStreetMap, soils, figures).
+# Needs the river reaches and tiles saved by a full run of "Riparian pump-irrigation potential".
+# Results go to the riparian-pilot branch (not the website) under water-atlas/archive/riparian/revision/.
+name: Riparian potential - robustness analyses
+
+on:
+  workflow_dispatch:
+    inputs:
+      draws:
+        description: "Monte Carlo draws"
+        type: string
+        default: "1000"
+
+permissions:
+  contents: write
+
+jobs:
+  revision:
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    env:
+      GDAL_DISABLE_READDIR_ON_OPEN: EMPTY_DIR
+      GDAL_HTTP_MAX_RETRY: "6"
+      GDAL_HTTP_RETRY_DELAY: "4"
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+
+      - name: Install pinned packages
+        run: pip install -r .github/scripts/riparian-requirements.txt matplotlib==3.11.2 pyproj==3.8.0
+
+      - name: Restore river reaches from the full run
+        id: reaches
+        uses: actions/cache/restore@v4
+        with:
+          path: /tmp/rip/reaches.json
+          key: riparian-reaches-area-${{ hashFiles('water-atlas/archive/riparian/config.json') }}
+
+      - name: Restore tiles from the full run
+        id: tiles
+        uses: actions/cache/restore@v4
+        with:
+          path: /tmp/rip/tiles
+          key: riparian-tiles-area-none
+          restore-keys: riparian-tiles-area-
+
+      - name: Stop if inputs are missing
+        run: |
+          ls /tmp/rip/reaches.json && ls /tmp/rip/tiles | wc -l
+          [ "$(ls /tmp/rip/tiles | wc -l)" -gt 50 ] || { echo "Run the full 'Riparian pump-irrigation potential' workflow first."; exit 1; }
+
+      - name: Robustness analyses
+        run: python3 .github/scripts/water_atlas_riparian_revision.py --work /tmp/rip --out water-atlas/archive/riparian/revision --draws "${{ inputs.draws }}"
+
+      - name: Save to the riparian-pilot branch
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          cp -r water-atlas/archive/riparian/revision /tmp/new_rev
+          rm -rf water-atlas/archive/riparian/revision
+          for i in 1 2 3 4 5 6; do
+            if git fetch -q origin riparian-pilot; then git checkout -q -f -B riparian-pilot FETCH_HEAD; else git checkout -q -f -B riparian-pilot; fi
+            mkdir -p water-atlas/archive/riparian/revision && cp -r /tmp/new_rev/. water-atlas/archive/riparian/revision/
+            git add -f water-atlas/archive/riparian/revision
+            git commit -qm "Riparian robustness analyses" || exit 0
+            if git push origin riparian-pilot; then exit 0; fi
+            echo "Push clashed with another run; retrying"; sleep $((RANDOM % 20 + 10))
+          done
+          exit 1
