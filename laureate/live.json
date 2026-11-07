@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-06",
+ "updated": "2026-11-07",
  "sources": [
   {
    "source": "Opportunities for Africans",
@@ -14,12 +14,12 @@
   {
    "source": "Opportunities Corners",
    "ok": true,
-   "items": 5
+   "items": 4
   },
   {
    "source": "Scholarship Region",
    "ok": true,
-   "items": 9
+   "items": 7
   },
   {
    "source": "Opportunities for Youth",
@@ -56,6 +56,160 @@
   }
  ],
  "items": [
+  {
+   "title": "Asia Foundation Development Fellows Program 2027 (Fully Funded)",
+   "link": "https://opportunitiescorners.com/asia-foundation-development-fellows-program-2027/",
+   "date": "2026-11-07",
+   "source": "Opportunities Corners",
+   "official": false,
+   "ids": [],
+   "summary": "Applications are now open for the Asia Foundation Development Fellows 2027, a prestigious, fully funded international leadership fellowship for young professionals from Asia and the Pacific. Organize…",
+   "seen": "2026-11-07"
+  },
+  {
+   "title": "Chemical Nano-Engineering",
+   "link": "https://master-cne.eu/",
+   "date": "2026-11-06",
+   "source": "Erasmus Mundus catalogue (EACEA)",
+   "official": true,
+   "ids": [],
+   "summary": "CNE - Project overview https://erasmus-plus.ec.europa.eu/projects/search/details/101324404",
+   "seen": "2026-11-07"
+  },
+  {
+   "title": "Navigating AI Business Transformation in the EU",
+   "link": "https://www.haaga-helia.fi/en/master-k/joint-degree-programme-ai-business-transformation-master-business-administration",
+   "date": "2026-11-06",
+   "source": "Erasmus Mundus catalogue (EACEA)",
+   "official": true,
+   "ids": [],
+   "summary": "NavigAIte EU - Project overview https://erasmus-plus.ec.europa.eu/projects/search/details/101323042",
+   "seen": "2026-11-07"
+  },
+  {
+   "title": "sustainable ocean services and Marine EnviRonment",
+   "link": "https://merconsortium.eu/",
+   "date": "2026-11-06",
+   "source": "Erasmus Mundus catalogue (EACEA)",
+   "official": true,
+   "ids": [],
+   "summary": "sosMER - Project overview https://erasmus-plus.ec.europa.eu/projects/search/details/101314713",
+   "seen": "2026-11-07"
+  },
+  {
+   "title": "CFA Institute Access Scholarship Programme 2026/2027 for aspiring Finance Professionals",
+   "link": "https://www.opportunitiesforafricans.com/cfa-institute-access-scholarship-programme-2026-2027/",
+   "date": "2026-11-06",
+   "source": "Opportunities for Africans",
+   "official": false,
+   "ids": [],
+   "summary": "Application Deadline: 23 November 2026 Applications are now open for the 2027 CFA Institute Program Access Scholarships. The CFA Institute Access Scholarship Programme is designed to make the Charter…",
+   "seen": "2026-11-07"
+  },
+  {
+   "title": "Global Changemakers’ Media Impact Academy 2027 for Youth in the USA (A chance to win a $1,000 grant)",
+   "link": "https://opportunitydesk.org/2026/11/06/global-changemakers-media-impact-academy-2027-for-youth-in-the-usa/",
+   "date": "2026-11-06",
+   "source": "Opportunity Desk",
+   "official": false,
+   "ids": [],
+   "summary": "Deadline: December 18, 2026 Applications are open for the Media Impact Academy, a Nationwide initiative engaging 500 youth across the United States. Designed for young adults navigating early financi…",
+   "seen": "2026-11-07"
+  },
+  {
+   "title": "Spencer Fellowship for Education Reporting 2027 (Funded)",
+   "link": "https://opportunitydesk.org/2026/11/06/spencer-fellowship-for-education-reporting-2027/",
+   "date": "2026-11-06",
+   "source": "Opportunity Desk",
+   "official": false,
+   "ids": [],
+   "summary": "Deadline: February 4, 2027 Do you have a great idea for an education-related journalism project? Do you need the time and resources to complete it? Apply for the Spencer Fellowship for Education Repo…",
+   "seen": "2026-11-07"
+  },
+  {
+   "title": "International Blue Carbon Institute (IBCI) Fellowship Program 2027 ($60,000 grant)",
+   "link": "https://opportunitydesk.org/2026/11/06/ibci-fellowship-program-2027/",
+   "date": "2026-11-06",
+   "source": "Opportunity Desk",
+   "official": false,
+   "ids": [],
+   "summary": "Deadline: November 23, 2026 Applications for the International Blue Carbon Institute (IBCI) Fellowship Program 2027 are now open. The International Blue Carbon Institute (IBCI) Fellowship program adv…",
+   "seen": "2026-11-07"
+  },
+  {
+   "title": "Reagan-Fascell Democracy Fellows Program 2027-2028 (Fully-funded)",
+   "link": "https://opportunitydesk.org/2026/11/06/reagan-fascell-democracy-fellows-program-2027-2028/",
+   "date": "2026-11-06",
+   "source": "Opportunity Desk",
+   "official": false,
+   "ids": [],
+   "summary": "Deadline: January 5, 2027 Applications are open for the Reagan-Fascell Democracy Fellows Program 2027-2028. Named in honor of NED’s principal founders, former president Ronald Reagan and the late con…",
+   "seen": "2026-11-07"
+  },
+  {
+   "title": "Hurford Youth Fellowship 2027 in USA (Fully Funded)",
+   "link": "https://opportunitiescorners.com/hurford-youth-fellowship-2027/",
+   "date": "2026-11-06",
+   "source": "Opportunities Corners",
+   "official": false,
+   "ids": [],
+   "summary": "Applications are now open for the Hurford Youth Fellowship 2027 in the USA. This is a fully funded international fellowship for applicants from around the world. Organized by the National Endowment f…",
+   "seen": "2026-11-07"
+  },
+  {
+   "title": "2027 University College London Research Excellence Scholarship (UCL-RES) in UK | Fully Funded",
+   "link": "https://www.scholarshipregion.com/ucl-research-excellence-scholarship/",
+   "date": "2026-11-06",
+   "source": "Scholarship Region",
+   "official": false,
+   "ids": [],
+   "summary": "The University College London (UCL) is offering its 2027 fully funded Research Excellence Scholarships to outstanding scholars from all nationalities. The UCL Research Excellence Scholarship covers t…",
+   "seen": "2026-11-07"
+  },
+  {
+   "title": "Edinburgh Law School and Ewen Cameron Studentships in UK 2027 | Fully Funded",
+   "link": "https://www.scholarshipregion.com/edinburgh-law-school-and-ewen-cameron-studentships/",
+   "date": "2026-11-06",
+   "source": "Scholarship Region",
+   "official": false,
+   "ids": [],
+   "summary": "The University of Edinburgh is offering fully funded studentship scholarships for international and domestic students to pursue doctoral degrees at the Edinburgh Law School. The Edinburgh Law School …",
+   "seen": "2026-11-07"
+  },
+  {
+   "title": "2027 Chinese Government Scholarship Program | How to Apply",
+   "link": "https://www.scholarshipregion.com/chinese-government-scholarship/",
+   "date": "2026-11-06",
+   "source": "Scholarship Region",
+   "official": false,
+   "ids": [
+    "csc-china"
+   ],
+   "summary": "Kickstart your academic journey with the prestigious Chinese Government Scholarship (CSC). In this article, we will explain the full details of the Chinese Government Scholarship, its benefits and ho…",
+   "seen": "2026-11-07"
+  },
+  {
+   "title": "2027 Norwegian University of Science and Technology Scholarships | Fully Funded",
+   "link": "https://www.scholarshipregion.com/norwegian-university-of-science-and-technology-scholarship/",
+   "date": "2026-11-06",
+   "source": "Scholarship Region",
+   "official": false,
+   "ids": [],
+   "summary": "The Norwegian University of Science and Technology (NTNU) is welcoming applications for a fully funded opportunity to pursue graduate degree at the institution. The Norwegian University of Science an…",
+   "seen": "2026-11-07"
+  },
+  {
+   "title": "2027 InterMaths Erasmus Mundus Joint Master Program in Europe | Fully Funded",
+   "link": "https://www.scholarshipregion.com/intermaths-erasmus-mundus-master-program/",
+   "date": "2026-11-06",
+   "source": "Scholarship Region",
+   "official": false,
+   "ids": [
+    "erasmus"
+   ],
+   "summary": "InterMaths Erasmus Mundus Joint Master Program is a two-year full scholarship in Interdisciplinary Mathematics open to students from all countries. The Erasmus Mundus InterMaths Scholarship includes …",
+   "seen": "2026-11-07"
+  },
   {
    "title": "CRASSH Visiting Fellowships for Scholars from the Global South 2027 (Funded)",
    "link": "https://opportunitydesk.org/2026/11/05/crassh-visiting-fellowships-for-scholars-from-the-global-south-2027/",
@@ -1554,160 +1708,6 @@
    "official": false,
    "ids": [],
    "summary": "The IDM-Africa Fellowship Programme in Infectious Disease Modelling 2026 is an opportunity for qualified early- and mid-career scientists in sub-Saharan Africa to strengthen their expertise in infect…",
-   "seen": "2026-10-25"
-  },
-  {
-   "title": "University of Cambridge Peace, Conflict and Religion Early Career Fellowship 2026: Eligibility, Research Areas, Funding and How to Apply.",
-   "link": "https://opportunitiesforyouth.org/2026/10/24/university-of-cambridge-peace-conflict-and-religion-early-career-fellowship-2026-eligibility-research-areas-funding-and-how-to-apply/",
-   "date": "2026-10-24",
-   "source": "Opportunities for Youth",
-   "official": false,
-   "ids": [],
-   "summary": "The University of Cambridge, through its Cambridge Interfaith Programme (CIP), is inviting applications from outstanding early-career researchers interested in exploring the relationships between pea…",
-   "seen": "2026-10-25"
-  },
-  {
-   "title": "Raisina Young Fellows Programme 2027 (Fully-funded)",
-   "link": "https://opportunitydesk.org/2026/10/23/raisina-young-fellows-programme-2027/",
-   "date": "2026-10-23",
-   "source": "Opportunity Desk",
-   "official": false,
-   "ids": [],
-   "summary": "Deadline: November 2, 2026 Applications are open for the Raisina Young Fellows Programme 2027. The Raisina Young Fellows Programme convenes emerging leaders from around the world to discuss current p…",
-   "seen": "2026-10-23"
-  },
-  {
-   "title": "Community Engagement Exchange Program 2027 in USA (Fully Funded)",
-   "link": "https://opportunitiescorners.com/community-engagement-exchange-program-2027/",
-   "date": "2026-10-23",
-   "source": "Opportunities Corners",
-   "official": false,
-   "ids": [],
-   "summary": "Applications are now open for the Community Engagement Exchange Program 2027 in the USA. Sponsored by the U.S. Department of State and implemented by IREX, this fully funded international exchange pr…",
-   "seen": "2026-10-23"
-  },
-  {
-   "title": "University of Lincoln Global Leaders Scholarship 2027–2028: 50% Tuition Fee Scholarship for International Students in the UK",
-   "link": "https://opportunitiesforyouth.org/2026/10/23/university-of-lincoln-global-leaders-scholarship-2027-2028-50-tuition-fee-scholarship-for-international-students-in-the-uk/",
-   "date": "2026-10-23",
-   "source": "Opportunities for Youth",
-   "official": false,
-   "ids": [],
-   "summary": "The University of Lincoln Global Leaders Scholarship is an opportunity for outstanding international students who wish to pursue undergraduate or postgraduate taught studies in the United Kingdom. Th…",
-   "seen": "2026-10-23"
-  },
-  {
-   "title": "Columbia University Italian Academy Fellowship Program 2027–2028: Fully Funded Research Fellowship in the United States",
-   "link": "https://opportunitiesforyouth.org/2026/10/23/columbia-university-italian-academy-fellowship-program-2027-2028-fully-funded-research-fellowship-in-the-united-states/",
-   "date": "2026-10-23",
-   "source": "Opportunities for Youth",
-   "official": false,
-   "ids": [],
-   "summary": "Scholars, researchers, and academics from around the world are invited to apply for the prestigious Italian Academy Fellowship Program 2027–2028 at Columbia University in New York City, United States…",
-   "seen": "2026-10-23"
-  },
-  {
-   "title": "Columbia University Italian Academy Fellowship Program 2027-2028",
-   "link": "https://opportunitydesk.org/2026/10/23/columbia-university-italian-academy-fellowship-2027-2028/",
-   "date": "2026-10-23",
-   "source": "Opportunity Desk",
-   "official": false,
-   "ids": [],
-   "summary": "Deadline: December 4, 2026 Applications are open for the Columbia University Italian Academy Fellowship Program 2027-2028. The multi-disciplinary Fellowship Program is the heart of the work of the It…",
-   "seen": "2026-10-24"
-  },
-  {
-   "title": "Human Rights Summit 2027 in Canada (Fully Funded)",
-   "link": "https://opportunitiescorners.com/human-rights-summit-2027-in-canada/",
-   "date": "2026-10-23",
-   "source": "Opportunities Corners",
-   "official": false,
-   "ids": [
-    "ubc-isp"
-   ],
-   "summary": "Applications are now open for the Human Rights Summit 2027 in Canada. The summit will take place at the University of British Columbia, Canada, from May 21–24, 2027, for a total of four days. Candida…",
-   "seen": "2026-10-24"
-  },
-  {
-   "title": "FLEX Global Program 2027 in the USA (Fully Funded Exchange Program)",
-   "link": "https://opportunitiescorners.com/flex-global-program-2027-in-the-usa/",
-   "date": "2026-10-23",
-   "source": "Opportunities Corners",
-   "official": false,
-   "ids": [],
-   "summary": "Applications are now open for the FLEX Global Program 2027 in the USA, a fully funded international exchange program for eligible high school students from participating countries. Funded by the U.S.…",
-   "seen": "2026-10-24"
-  },
-  {
-   "title": "WAAW Foundation Scholarship 2026/2027: $500 Undergraduate Scholarship for African Women Studying STEM – Applications Open October 30, 2026",
-   "link": "https://opportunitiesforyouth.org/2026/10/23/waaw-foundation-scholarship-2026-2027/",
-   "date": "2026-10-23",
-   "source": "Opportunities for Youth",
-   "official": false,
-   "ids": [],
-   "summary": "The WAAW Foundation Scholarship 2026/2027 is an undergraduate scholarship opportunity designed to support African women pursuing degrees in Science, Technology, Engineering, and Mathematics (STEM) at…",
-   "seen": "2026-10-24"
-  },
-  {
-   "title": "NobleReach Scholars Program 2027: Apply for a One-Year Paid Fellowship Paying $70,000-$90,000 Plus an $18,000 Stipend",
-   "link": "https://opportunitiesforyouth.org/2026/10/23/noblereach-scholars-program-2027-apply-for-a-one-year-paid-fellowship-paying-70000-90000-plus-an-18000-stipend/",
-   "date": "2026-10-23",
-   "source": "Opportunities for Youth",
-   "official": false,
-   "ids": [],
-   "summary": "Overview of the NobleReach Scholars Program Recent graduates seeking a paid professional opportunity in technology, engineering, cybersecurity, or public-sector innovation can apply for the NobleReac…",
-   "seen": "2026-10-24"
-  },
-  {
-   "title": "Intra-Africa Academic Mobility Scheme 2022–2027: EU-Funded Scholarships and International Study Opportunities for African Students, Trainees and University Staff",
-   "link": "https://opportunitiesforyouth.org/2026/10/23/intra-africa-academic-mobility-scheme-2022-2027-eu-funded-scholarships-and-international-study-opportunities-for-african-students-trainees-and-university-staff/",
-   "date": "2026-10-23",
-   "source": "Opportunities for Youth",
-   "official": false,
-   "ids": [],
-   "summary": "The Intra-Africa Academic Mobility Scheme 2022–2027 is a European Union (EU)-supported initiative designed to strengthen higher education, promote international academic exchanges, and expand learnin…",
-   "seen": "2026-10-24"
-  },
-  {
-   "title": "NNPC/SNEPCo Scholarship 2026 (₦250,000 Award) | Step-by-Step Process",
-   "link": "https://www.scholarshipregion.com/nnpc-snepco-scholarship-award/",
-   "date": "2026-10-23",
-   "source": "Scholarship Region",
-   "official": false,
-   "ids": [
-    "shell"
-   ],
-   "summary": "The NNPC, Shell Nigeria are jointly inviting applications for the NNPC/SNEPCo Scholarship 2026 Award to promote academic excellence and improving the skills of young Nigerians. The NNPC/Shell Scholar…",
-   "seen": "2026-10-25"
-  },
-  {
-   "title": "London School of Economics (LSE) Demography Studentship in UK | Fully Funded",
-   "link": "https://www.scholarshipregion.com/london-school-of-economics-lse-demography-studentship/",
-   "date": "2026-10-23",
-   "source": "Scholarship Region",
-   "official": false,
-   "ids": [],
-   "summary": "The London School of Economics (LSE) is offering fully funded studentship opportunities to home and overseas students seeking to study in the UK. The London School of Economics (LSE) Demography Stude…",
-   "seen": "2026-10-25"
-  },
-  {
-   "title": "7 UK Universities Offering Undergraduate Scholarships (2027)",
-   "link": "https://www.scholarshipregion.com/uk-universities-offering-undergraduate-scholarships/",
-   "date": "2026-10-23",
-   "source": "Scholarship Region",
-   "official": false,
-   "ids": [],
-   "summary": "According to the British Council, the UK remains a major destination for international students seeking internationally recognised university qualifications. However, tuition fees and living expenses…",
-   "seen": "2026-10-25"
-  },
-  {
-   "title": "University of Sydney Studentship in Australia (Fully Funded)",
-   "link": "https://www.scholarshipregion.com/university-of-sydney-studentship/",
-   "date": "2026-10-23",
-   "source": "Scholarship Region",
-   "official": false,
-   "ids": [],
-   "summary": "The University of Sydney is welcoming applications for a fully funded studentship opportunity to study in Australia. The studentship is funded by the Australian Government Research Training Program (…",
    "seen": "2026-10-25"
   }
  ]
