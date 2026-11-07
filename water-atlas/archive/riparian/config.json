@@ -1,0 +1,90 @@
+{
+  "_about": "Every number used by .github/scripts/water_atlas_riparian.py. Change a value here and rerun the workflow 'Riparian pump-irrigation potential' to reproduce or test a different assumption. See METHOD.md.",
+  "version": "1.0",
+  "sources": {
+    "riveratlas": {
+      "name": "RiverATLAS v1.0 (HydroATLAS)",
+      "cite": "Linke, S., Lehner, B., Ouellet Dallaire, C., et al. (2019). Global hydro-environmental sub-basin and river reach characteristics at high spatial resolution. Scientific Data 6, 283. https://doi.org/10.1038/s41597-019-0300-6",
+      "url": "https://data.hydrosheds.org/file/hydroatlas/RiverATLAS_Data_v10.gdb.zip",
+      "url_alt": "https://figshare.com/ndownloader/files/20087486",
+      "layer": "RiverATLAS_v10",
+      "licence": "CC-BY 4.0"
+    },
+    "dem": {
+      "name": "Copernicus DEM GLO-30 (2021 release)",
+      "cite": "European Space Agency (2021). Copernicus Global Digital Elevation Model GLO-30. Distributed by OpenTopography. https://doi.org/10.5069/G9028PQB",
+      "url": "https://copernicus-dem-30m.s3.amazonaws.com/Copernicus_DSM_COG_10_{NS}{lat:02d}_00_{EW}{lon:03d}_00_DEM/Copernicus_DSM_COG_10_{NS}{lat:02d}_00_{EW}{lon:03d}_00_DEM.tif",
+      "licence": "Copernicus DEM licence (free, attribution)"
+    },
+    "landcover": {
+      "name": "ESA WorldCover 10 m 2021 v200",
+      "cite": "Zanaga, D., Van De Kerchove, R., Daems, D., et al. (2022). ESA WorldCover 10 m 2021 v200. https://doi.org/10.5281/zenodo.7254221",
+      "url": "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA_WorldCover_10m_2021_v200_{NS}{lat:02d}{EW}{lon:03d}_Map.tif",
+      "licence": "CC-BY 4.0"
+    },
+    "protected": {
+      "name": "Protected areas with mapped boundaries (WDPA and state records), Nigeria Forest Reserves Atlas",
+      "file": "forest-atlas/data/nigeria_protected_areas.geojson"
+    },
+    "states": {
+      "name": "State boundaries (geoBoundaries ADM1), as used by the atlas",
+      "file": "water-atlas/data/atlas.json"
+    }
+  },
+  "rivers": {
+    "min_dry_flow_m3s": 0.1,
+    "_min_dry_flow_m3s": "A reach counts as flowing all year if its lowest long-term monthly natural flow (RiverATLAS dis_m3_pmn) is at least this many m3/s.",
+    "exclude_lake_pct": 50,
+    "_exclude_lake_pct": "Reaches whose local catchment is at least this % lake or reservoir (lka_pc_cse) are treated as reservoir shoreline, not river, and get no strip.",
+    "snap_to_water_m": 600,
+    "_snap_to_water_m": "Open water mapped by WorldCover within this distance of a RiverATLAS line is taken as the real channel; the line is used only where no water is visible.",
+    "visible_ratio": 0.5,
+    "_visible_ratio": "If a reach has at least this many snapped water pixels per line pixel, its channel is the mapped water only."
+  },
+  "strips_m": [100, 250, 500],
+  "landcover_groups": {
+    "cropland": [40],
+    "grassland": [30],
+    "shrubland": [20],
+    "bare": [60],
+    "wetland": [90],
+    "tree": [10, 95],
+    "built": [50],
+    "water": [80],
+    "other": [70, 100]
+  },
+  "slope_breaks_pct": [2, 5, 8],
+  "lift_breaks_m": [5, 10, 15],
+  "levels": {
+    "low": {
+      "landcover": ["cropland", "grassland"],
+      "max_slope_pct": 2,
+      "max_lift_m": 5,
+      "efficiency": 0.5,
+      "kc": 1.15,
+      "reserve_frac_of_dry_flow": 0.5
+    },
+    "central": {
+      "landcover": ["cropland", "grassland", "shrubland"],
+      "max_slope_pct": 5,
+      "max_lift_m": 10,
+      "efficiency": 0.6,
+      "kc": 1.05,
+      "reserve_frac_of_dry_flow": 0.3
+    },
+    "high": {
+      "landcover": ["cropland", "grassland", "shrubland", "bare", "wetland"],
+      "max_slope_pct": 8,
+      "max_lift_m": 15,
+      "efficiency": 0.75,
+      "kc": 0.95,
+      "reserve_frac_of_dry_flow": 0.2
+    }
+  },
+  "_levels": "low = cautious, central = best estimate, high = optimistic. landcover: classes that may be cropped (tree cover, built-up land, water and protected areas are never counted). efficiency: share of pumped water that reaches the crop roots. kc: FAO-56 crop coefficient at peak growth. reserve: share of the lowest monthly flow left in the river for the environment, people, livestock and fishing.",
+  "effective_rain": "FAO dependable rain: Peff = 0.8P - 25 if P > 75 mm/month, else max(0, 0.6P - 10)",
+  "tiles": {
+    "workers": 4,
+    "bbox": [2.6, 4.2, 14.7, 13.95]
+  }
+}
