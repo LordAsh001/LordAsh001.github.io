@@ -157,6 +157,107 @@
   "A_bare_early_green_late": 1.44,
   "B_bare_any_green_jan_mar": 1.761
  },
+ "clear_looks_within_500m": {
+  "median": 17.0,
+  "p10": 15.0,
+  "share_with_fewer_than_4": 0.0018394635684021035
+ },
+ "threshold_sensitivity": [
+  {
+   "bare_max_ndvi": 0.25,
+   "green_min_ndvi": 0.45,
+   "crop_share_0_250m_pct": 15.083,
+   "crop_share_background_pct": 1.804,
+   "ratio": 8.36,
+   "crop_ha_0_250m": 2658
+  },
+  {
+   "bare_max_ndvi": 0.25,
+   "green_min_ndvi": 0.5,
+   "crop_share_0_250m_pct": 10.14,
+   "crop_share_background_pct": 1.121,
+   "ratio": 9.04,
+   "crop_ha_0_250m": 1787
+  },
+  {
+   "bare_max_ndvi": 0.25,
+   "green_min_ndvi": 0.55,
+   "crop_share_0_250m_pct": 6.069,
+   "crop_share_background_pct": 0.654,
+   "ratio": 9.28,
+   "crop_ha_0_250m": 1069
+  },
+  {
+   "bare_max_ndvi": 0.3,
+   "green_min_ndvi": 0.45,
+   "crop_share_0_250m_pct": 21.423,
+   "crop_share_background_pct": 3.013,
+   "ratio": 7.11,
+   "crop_ha_0_250m": 3775
+  },
+  {
+   "bare_max_ndvi": 0.3,
+   "green_min_ndvi": 0.5,
+   "crop_share_0_250m_pct": 14.107,
+   "crop_share_background_pct": 1.762,
+   "ratio": 8.01,
+   "crop_ha_0_250m": 2486
+  },
+  {
+   "bare_max_ndvi": 0.3,
+   "green_min_ndvi": 0.55,
+   "crop_share_0_250m_pct": 8.42,
+   "crop_share_background_pct": 1.003,
+   "ratio": 8.4,
+   "crop_ha_0_250m": 1484
+  },
+  {
+   "bare_max_ndvi": 0.35,
+   "green_min_ndvi": 0.45,
+   "crop_share_0_250m_pct": 25.761,
+   "crop_share_background_pct": 4.026,
+   "ratio": 6.4,
+   "crop_ha_0_250m": 4539
+  },
+  {
+   "bare_max_ndvi": 0.35,
+   "green_min_ndvi": 0.5,
+   "crop_share_0_250m_pct": 17.226,
+   "crop_share_background_pct": 2.448,
+   "ratio": 7.04,
+   "crop_ha_0_250m": 3035
+  },
+  {
+   "bare_max_ndvi": 0.35,
+   "green_min_ndvi": 0.55,
+   "crop_share_0_250m_pct": 10.418,
+   "crop_share_background_pct": 1.385,
+   "ratio": 7.52,
+   "crop_ha_0_250m": 1836
+  }
+ ],
+ "by_height_above_river_within_1km": [
+  {
+   "height_m": "0-3",
+   "land_ha": 46633,
+   "crop_share_pct": 15.846
+  },
+  {
+   "height_m": "3-6",
+   "land_ha": 9640,
+   "crop_share_pct": 4.118
+  },
+  {
+   "height_m": "6-10",
+   "land_ha": 6785,
+   "crop_share_pct": 0.465
+  },
+  {
+   "height_m": ">10",
+   "land_ha": 6766,
+   "crop_share_pct": 0.169
+  }
+ ],
  "reaches": {
   "n": 96,
   "observed_crop_ha_250m": 2486,
