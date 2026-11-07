@@ -63,9 +63,13 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           cp -r water-atlas/archive/riparian/pilot /tmp/new_pilot
-          git checkout -B riparian-pilot
-          if git fetch -q origin riparian-pilot; then git checkout FETCH_HEAD -- water-atlas/archive/riparian/pilot 2>/dev/null || true; fi
-          mkdir -p water-atlas/archive/riparian/pilot && cp -r /tmp/new_pilot/. water-atlas/archive/riparian/pilot/
-          git add -f water-atlas/archive/riparian/pilot
-          git commit -m "Riparian pilot: tile ${{ inputs.tile }}, dry season ${{ inputs.season }}" || exit 0
-          git push -f origin riparian-pilot
+          rm -rf water-atlas/archive/riparian/pilot
+          for i in 1 2 3 4 5 6; do
+            if git fetch -q origin riparian-pilot; then git checkout -q -f -B riparian-pilot FETCH_HEAD; else git checkout -q -f -B riparian-pilot; fi
+            mkdir -p water-atlas/archive/riparian/pilot && cp -r /tmp/new_pilot/. water-atlas/archive/riparian/pilot/
+            git add -f water-atlas/archive/riparian/pilot
+            git commit -qm "Riparian pilot: tile ${{ inputs.tile }}, dry season ${{ inputs.season }}" || exit 0
+            if git push origin riparian-pilot; then exit 0; fi
+            echo "Push clashed with another run; retrying"; sleep $((RANDOM % 20 + 10))
+          done
+          exit 1
