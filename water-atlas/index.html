@@ -2262,7 +2262,7 @@ async function addRiparian(){
       [fmt.format(N.water_bound_reaches[j]),'Reaches short of water','Water, not land, sets the limit (central)']
     ].map(k=>`<div class="kpi"><b>${k[0]}</b><span>${k[1]}</span><small>${k[2]}</small></div>`).join('');
     hbar($('#rip-st'),R.states.filter(s=>s.pot[j]>0).sort((a,b)=>b.pot[j]-a.pot[j]).map(s=>({l:s.n,v:s.pot[j],c:'var(--g2)',t:`Range ${rng(s.pot)}<br>Suitable land ${ha(s.land[j])}`})),{lw:120,rh:18,f:v=>fmt.format(Math.round(v))+' ha'});
-    hbar($('#rip-bas'),R.basins.filter(b=>b.pot[j]>0).sort((a,b)=>b.pot[j]-a.pot[j]).map(b=>({l:b.n.length>30?b.n.slice(0,29)+'…':b.n,v:b.pot[j],c:'var(--g0)',t:`${esc(b.n)}<br>Range ${rng(b.pot)} · ${fmt.format(b.km)} km of river`})),{lw:200,rh:20,f:v=>fmt.format(Math.round(v))+' ha'});
+    hbar($('#rip-bas'),R.basins.filter(b=>b.pot[j]>0).sort((a,b)=>b.pot[j]-a.pot[j]).map(b=>({l:b.n.replace(/ \(.*\)$/,'').length>22?b.n.replace(/ \(.*\)$/,'').slice(0,21)+'…':b.n.replace(/ \(.*\)$/,''),v:b.pot[j],c:'var(--g0)',t:`${esc(b.n)}<br>Range ${rng(b.pot)} · ${fmt.format(b.km)} km of river`})),{lw:190,rh:20,f:v=>fmt.format(Math.round(v/1000))+'k ha'});
     const lc=R.nat.strip_landcover_250m||{};
     hbar($('#rip-lc'),Object.entries(lc).filter(e=>e[1]>0).sort((a,b)=>b[1]-a[1]).map(([k,v])=>({l:k[0].toUpperCase()+k.slice(1),v,c:['cropland','grassland','shrubland'].includes(k)?'var(--g2)':'var(--g7)'})),{lw:100,rh:18,f:v=>fmt.format(Math.round(v))+' ha'});
     $('#rip-rv').innerHTML=R.rivers.filter(r=>r.pot[j]>0).sort((a,b)=>b.pot[j]-a.pot[j]).map(r=>`<tr><td><b>${esc(r.n)}</b></td><td class="n">${fmt.format(r.km)}</td><td class="n">${haf(r.pot[ix('low')])}</td><td class="n">${haf(r.pot[j])}</td><td class="n">${haf(r.pot[ix('high')])}</td></tr>`).join('');
