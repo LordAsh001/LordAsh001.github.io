@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-06T12:59:52+00:00",
+ "generated": "2026-11-07T11:46:47+00:00",
  "records": [
   {
    "src": "wb_pinksheet",
@@ -1357,14 +1357,6 @@
    "src": "amis",
    "c": "maize",
    "label": "Maize, US No. 3 yellow, FOB Gulf (IGC)",
-   "usd_t": 201.0,
-   "date": "2025-09-30",
-   "basis": "export quotation"
-  },
-  {
-   "src": "amis",
-   "c": "maize",
-   "label": "Maize, US No. 3 yellow, FOB Gulf (IGC)",
    "usd_t": 207.0,
    "date": "2025-10-31",
    "basis": "export quotation"
@@ -1459,10 +1451,10 @@
   },
   {
    "src": "amis",
-   "c": "palmoil",
-   "label": "Palm oil, Indonesia (IGC)",
-   "usd_t": 1115.0,
-   "date": "2025-10-01",
+   "c": "maize",
+   "label": "Maize, US No. 3 yellow, FOB Gulf (IGC)",
+   "usd_t": 218.0,
+   "date": "2026-10-30",
    "basis": "export quotation"
   },
   {
@@ -1555,10 +1547,10 @@
   },
   {
    "src": "amis",
-   "c": "rice",
-   "label": "Rice, Thai 100% Grade B, FOB Bangkok",
-   "usd_t": 355.0,
-   "date": "2025-09-30",
+   "c": "palmoil",
+   "label": "Palm oil, Indonesia (IGC)",
+   "usd_t": 1188.0,
+   "date": "2026-10-01",
    "basis": "export quotation"
   },
   {
@@ -1659,10 +1651,10 @@
   },
   {
    "src": "amis",
-   "c": "soyoil",
-   "label": "Soybean oil, Argentina (IGC)",
-   "usd_t": 1089.0,
-   "date": "2025-10-01",
+   "c": "rice",
+   "label": "Rice, Thai 100% Grade B, FOB Bangkok",
+   "usd_t": 490.0,
+   "date": "2026-10-30",
    "basis": "export quotation"
   },
   {
@@ -1755,10 +1747,10 @@
   },
   {
    "src": "amis",
-   "c": "soy",
-   "label": "Soybeans, US No. 2 yellow, FOB Gulf (IGC)",
-   "usd_t": 394.0,
-   "date": "2025-09-30",
+   "c": "soyoil",
+   "label": "Soybean oil, Argentina (IGC)",
+   "usd_t": 1207.0,
+   "date": "2026-10-01",
    "basis": "export quotation"
   },
   {
@@ -1859,10 +1851,10 @@
   },
   {
    "src": "amis",
-   "c": "wheat",
-   "label": "Wheat, EU (France) Grade 1, FOB Rouen (IGC)",
-   "usd_t": 227.0,
-   "date": "2025-09-30",
+   "c": "soy",
+   "label": "Soybeans, US No. 2 yellow, FOB Gulf (IGC)",
+   "usd_t": 494.0,
+   "date": "2026-10-30",
    "basis": "export quotation"
   },
   {
@@ -1964,9 +1956,9 @@
   {
    "src": "amis",
    "c": "wheat",
-   "label": "Wheat, US HRW 11.5%, FOB Gulf (IGC)",
-   "usd_t": 229.0,
-   "date": "2025-09-30",
+   "label": "Wheat, EU (France) Grade 1, FOB Rouen (IGC)",
+   "usd_t": 262.0,
+   "date": "2026-10-30",
    "basis": "export quotation"
   },
   {
@@ -2064,20 +2056,28 @@
    "usd_t": 330.0,
    "date": "2026-09-30",
    "basis": "export quotation"
+  },
+  {
+   "src": "amis",
+   "c": "wheat",
+   "label": "Wheat, US HRW 11.5%, FOB Gulf (IGC)",
+   "usd_t": 294.0,
+   "date": "2026-10-30",
+   "basis": "export quotation"
   }
  ],
  "status": {
   "wb_pinksheet": {
    "ok": true,
    "records": 169,
-   "checked": "2026-11-06T12:59:52+00:00",
-   "last_success": "2026-11-06T12:59:52+00:00"
+   "checked": "2026-11-07T11:46:31+00:00",
+   "last_success": "2026-11-07T11:46:31+00:00"
   },
   "amis": {
    "ok": true,
    "records": 89,
-   "checked": "2026-11-06T12:59:52+00:00",
-   "last_success": "2026-11-06T12:59:52+00:00"
+   "checked": "2026-11-07T11:46:47+00:00",
+   "last_success": "2026-11-07T11:46:47+00:00"
   }
  }
 }
