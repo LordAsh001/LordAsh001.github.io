@@ -1268,6 +1268,7 @@ const OVERLAYS={
   net:{n:'River network',on:1},
   lakes:{n:'Lakes',on:1},
   roads:{n:'Major roads'},
+  rip:{n:'Riverbank irrigation',need:'riparian_reaches.json'},
   basins:{n:'Basins'},
   flood:{n:'Flood risk 2024'},
   glofas:{n:'GloFAS alerts',fl:1},
@@ -1322,7 +1323,8 @@ function initMap(){
   });
   const b=$('#base');b.innerHTML=Object.entries(BASES).map(([k,v])=>`<button type="button" data-b="${k}" aria-pressed="false" ${k!=='outline'&&!LIVE?'disabled title="Loads on the hosted site"':''}>${v.n}</button>`).join('');
   $$('#base button').forEach(x=>x.onclick=()=>setBase(x.dataset.b));
-  $('#ovl').innerHTML=Object.entries(OVERLAYS).map(([k,v])=>`<button type="button" data-o="${k}" aria-pressed="false" ${v.live&&!LIVE?'disabled title="Loads on the hosted site"':''}>${v.n}</button>`).join('');
+  $('#ovl').innerHTML=Object.entries(OVERLAYS).map(([k,v])=>`<button type="button" data-o="${k}" aria-pressed="false" ${v.live&&!LIVE?'disabled title="Loads on the hosted site"':''}${v.need?' hidden':''}>${v.n}</button>`).join('');
+  Object.entries(OVERLAYS).forEach(([k,v])=>{if(v.need)fetch('data/'+v.need,{method:'HEAD'}).then(r=>{if(r.ok){const b=$(`#ovl button[data-o="${k}"]`);if(b)b.hidden=false}}).catch(()=>{})});
   $$('#ovl button').forEach(x=>x.onclick=()=>toggleOverlay(x.dataset.o));
   Object.entries(OVERLAYS).forEach(([k,v])=>{if(v.on)toggleOverlay(k)});
   if(!LIVE){const n=$('#tilenote');n.hidden=false;n.textContent='Basemap tiles, surface-water imagery and live river readings could not be reached from here, so the atlas is showing its built-in outline map.'}
@@ -1357,6 +1359,7 @@ async function toggleOverlay(k){
   else if(k==='roads'){btn.classList.add('busy');try{const d=await loadJSON('roads.json');const g=L.layerGroup();const r=L.canvas({padding:.3,pane:'roads',tolerance:5});const W=[2.6,1.9,1.1],CN=['Expressway','Trunk road','Primary road'];
     d.r.forEach(x=>{const p=L.polyline(x.g.map(l=>l.map(c=>[c[1],c[0]])),{renderer:r,rc:x.c,color:css('--road'+x.c),weight:W[x.c],opacity:x.c===2?.8:.95,lineCap:'round',lineJoin:'round'});p.bindTooltip(x.ref||x.n?`<b>${esc(x.ref?x.ref.replace(/ \/ /g,', '):x.n[0])}</b> · ${CN[x.c]}`:CN[x.c],{className:'tip',sticky:true});p.addTo(g)});
     ovl[k]=g.addTo(map);map.attributionControl.addAttribution(ROADS_ATTR)}catch(e){toast('Road layer could not be loaded');btn.setAttribute('aria-pressed',false)}btn.classList.remove('busy')}
+  else if(k==='rip'){if(btn)btn.classList.add('busy');try{ovl[k]=(await ripOverlay()).addTo(map)}catch(e){toast('Riverbank irrigation layer could not be loaded');if(btn)btn.setAttribute('aria-pressed',false)}if(btn)btn.classList.remove('busy')}
   else if(k==='wp'){btn.classList.add('busy');try{ovl[k]=(await wpOverlay()).addTo(map)}catch(e){toast('Borehole and well layer could not be loaded');btn.setAttribute('aria-pressed',false)}btn.classList.remove('busy')}
   else if(O.fl){btn.classList.add('busy');try{const g=await floodOverlay(k);if(ovl[k]===undefined||ovl[k]===null)ovl[k]=g.addTo(map)}catch(e){toast(O.n+' could not be loaded');btn.setAttribute('aria-pressed',false)}btn.classList.remove('busy');startFloodTimer()}
   else if(O.wms){ovl[k]=L.tileLayer.wms(GLOFAS_WMS,{layers:O.wms,format:'image/png',transparent:true,version:'1.3.0',opacity:.7,attribution:O.a}).addTo(map)}
@@ -1370,13 +1373,14 @@ const gibsDay=n=>new Date(Date.now()-864e5*n).toISOString().slice(0,10);
 const riskName=c=>({H:'high',M:'medium',L:'low',N:'none'}[c]||'not rated');
 function recolor(){if(tile&&tile._key==='map')setBase('map');statesLayer.setStyle(stateStyle(false));F.forEach(f=>{const c=gcol(f.gp);if(f.poly)f.poly.setStyle({color:c,fillColor:c});if(f.line)f.line.setStyle({color:c});if(f.mk)f.mk.setStyle({fillColor:c,color:css('--panel')})});
   netLayer.eachLayer(l=>l.setStyle({color:css('--river')}));lakeLayer.eachLayer(l=>l.setStyle({color:css('--lake'),fillColor:css('--lake')}));
-  ['flood','wp','basins'].forEach(k=>{if(ovl[k]){map.removeLayer(ovl[k]);ovl[k]=null;toggleOverlay(k)}});
+  ['flood','wp','basins','rip'].forEach(k=>{if(ovl[k]){map.removeLayer(ovl[k]);ovl[k]=null;toggleOverlay(k)}});
   if(ovl.roads)ovl.roads.eachLayer(l=>l.setStyle({color:css('--road'+l.options.rc)}));
   ['stats','basins','flood','rain','wq'].forEach(v=>{if(built[v]){built[v]=0;if(!$('#v-'+v).hidden){built[v]=1;({stats:buildStats,basins:buildBasins,flood:buildFlood,rain:buildRain,wq:buildWq})[v]()}}})}
 function renderLegend(){
   let h=`<div class="t">On the map</div>`+GROUPS.map((g,i)=>`<div class="k"><span class="${i===5?'ln':'sw'}" style="--c:var(--g${i})"></span>${g}</div>`).join('');
   if(ovl.net)h+=`<div class="k"><span class="ln" style="--c:var(--river)"></span>Other rivers and streams</div>`;
   if(ovl.lakes)h+=`<div class="k"><span class="ar" style="--c:var(--lake)"></span>Lakes, reservoirs, swamps</div>`;
+  if(ovl.rip)h+=`<div class="t" style="margin-top:6px">Riverbank pump irrigation within ${esc(RIPW.replace('m',' m'))} of the banks (central)</div><div class="k"><span class="ln" style="--c:var(--g3);border-top-width:4px"></span>20+ ha per km of river</div><div class="k"><span class="ln" style="--c:var(--g3);border-top-width:2.5px;opacity:.8"></span>5 to 20 ha per km</div><div class="k"><span class="ln" style="--c:var(--g3);border-top-width:1.5px;opacity:.55"></span>Under 5 ha per km</div>`;
   if(ovl.roads)h+=`<div class="k"><span class="ln" style="--c:var(--road0);border-top-width:3px"></span>Expressway</div><div class="k"><span class="ln" style="--c:var(--road1)"></span>Trunk road</div><div class="k"><span class="ln" style="--c:var(--road2);border-top-width:1.5px"></span>Primary road</div>`;
   if(ovl.flood)h+=`<div class="t" style="margin-top:6px">Flood risk by LGA, 2024</div><div class="k"><span class="sq" style="--c:var(--s2)"></span>High</div><div class="k"><span class="sq" style="--c:var(--s1)"></span>Medium</div><div class="k"><span class="sq" style="--c:var(--river2)"></span>Low</div>`;
   if(ovl.satflood)h+=`<div class="k"><span class="sq" style="--c:#e8202a"></span>Flood water seen by satellite</div><div class="k"><span class="sq" style="--c:#2c5aa0"></span>Normal open water</div>`;
@@ -2192,6 +2196,7 @@ async function buildIrr(){
   <h3 class="sh">Where the potential lies</h3>${factList(I.potential)}
   <h3 class="sh">The Lower Benue floodplain</h3>${factList(I.benue)}
   <h3 class="sh">Proposed programmes <small class="tag">not yet built</small></h3><p class="lede" style="margin-bottom:8px">These are plans and targets described in project documents, not completed work.</p>${factList(I.plans)}
+  <div id="rip-host"></div>
   <h3 class="sh">Hydropower</h3>
   <div class="grid2"><div><h4 class="h4">Large plants</h4><div class="tbl-wrap" style="max-height:none"><table class="dt"><thead><tr><th>Plant</th><th>River</th><th class="n">Installed MW</th></tr></thead><tbody>${H.existing.map(x=>`<tr class="click" data-id="${x.id}"><td>${esc(x.n)}</td><td>${esc(x.river)}</td><td class="n">${fmt.format(x.mw)}</td></tr>`).join('')}</tbody></table></div><p class="sm-note">${cite(H.existing_src).trim()}</p></div>
   <div><h4 class="h4">Sites shortlisted in a 2016 screening study</h4><div class="tbl-wrap" style="max-height:none"><table class="dt"><thead><tr><th>Site</th><th>River</th><th class="n">MW</th><th class="n">GWh/yr</th><th>Result</th></tr></thead><tbody>${H.sites.map(x=>`<tr><td><span class="mono">${esc(x[0])}</span> ${esc(x[1])}</td><td>${esc(x[2])}</td><td class="n">${esc(String(x[3]))}</td><td class="n">${esc(String(typeof x[4]==='number'?fmt.format(x[4]):x[4]))}</td><td>${esc(x[5])}</td></tr>`).join('')}</tbody></table></div><p class="sm-note">Candidate sites from a study, not approved projects.${cite(H.sites_src)}</p></div></div>
@@ -2204,7 +2209,68 @@ async function buildIrr(){
   const render=()=>{$('#ir-body').innerHTML=rowsOf().map(s=>`<tr${s.dams.length?` class="click" data-id="${s.dams[0]}" title="Open ${esc(s.dams.map(d=>BY[d]?BY[d].n:d).join(', '))} on the map"`:''}><td><b>${esc(s.n)}</b>${s.dams.length?' <span class="tag">dam on map</span>':''}</td><td>${esc(s.rbn)}</td><td>${esc(s.src)}</td><td class="n">${haf(s.pl)}</td><td class="n">${haf(s.dv)}</td><td class="n">${haf(s.ir)}</td><td>${esc(s.status)}</td></tr>`).join('');
     $$('#ir-body tr.click').forEach(tr=>tr.onclick=()=>goSite(tr.dataset.id))};
   $('#ir-rb').onchange=render;$('#ir-sort').onchange=render;render();
+  addRiparian();
   $('#ir-csv').onclick=()=>saveFile('nigeria_federal_irrigation_schemes_2004.csv',toCSV(rowsOf().map(s=>({scheme:s.n,rbda:s.rbn,water_source:s.src,planned_ha:s.pl,developed_ha:s.dv,irrigated_ha_2003_04:s.ir,status_2004:s.status,source:REP.refs.ropisin.c+' p. '+s.p}))),'text/csv');
+}
+/* ---------- riparian pump-irrigation potential (computed by .github/scripts/water_atlas_riparian.py) ---------- */
+let RIPW='250m';
+async function ripOverlay(){
+  const d=await loadJSON('riparian_reaches.json');const j=d.scen.indexOf(RIPW+'_central'),jl=d.scen.indexOf(RIPW+'_low'),jh=d.scen.indexOf(RIPW+'_high');
+  const g=L.layerGroup();const r=L.canvas({padding:.3,pane:'net',tolerance:5});const col=css('--g3');
+  d.r.forEach(x=>{const v=x[1][j];if(!(v>=1))return;const pk=v/Math.max(x[3],.1),c=pk>=20?2:pk>=5?1:0;
+    const p=L.polyline(x[0].map(q=>[q[1],q[0]]),{renderer:r,color:col,weight:[1.4,2.5,3.8][c],opacity:[.55,.8,1][c],lineCap:'round',lineJoin:'round'});
+    p.bindTooltip(`<b>${x[4]>=0?esc(d.names[x[4]]):'River reach'}</b> · ${fmt1.format(x[3])} km<br>${fmt.format(v)} ha irrigable by pump within ${esc(RIPW.replace('m',' m'))} of the banks (central)<br>Range ${fmt.format(x[1][jl])} to ${fmt.format(x[1][jh])} ha · ${fmt1.format(pk)} ha per km<br>Lowest monthly flow ${fmt1.format(x[2])} m³/s (modelled)`,{className:'tip',sticky:true});p.addTo(g)});
+  return g}
+async function addRiparian(){
+  const el=$('#rip-host');if(!el)return;let R;
+  try{R=await loadJSON('riparian.json')}catch(e){return}
+  const S=R.scen,W=[...new Set(S.map(s=>s.split('_')[0]))],C=R.meta.config,LV=C.levels;
+  if(!W.includes(RIPW))RIPW=W[0];
+  const ix=l=>S.indexOf(RIPW+'_'+l),ha=v=>fmt.format(Math.round(v/100)*100)+' ha',rng=a=>`${ha(a[ix('low')])} to ${ha(a[ix('high')])}`;
+  const src=Object.values(R.meta.sources);
+  const citeTxt=()=>`Amool, S. H. (${R.meta.run.slice(0,4)}). Riparian pump-irrigation potential of Nigeria's rivers that flow all year, version ${R.meta.version} (run ${R.meta.run}). In: Nigeria Water Resources Atlas. ${CONFIG.siteUrl}#irrig (accessed ${today}).`;
+  el.innerHTML=`<h3 class="sh">Pumping from rivers that flow all year</h3>
+  <p class="lede" style="margin-bottom:10px">How much land along the banks of Nigeria’s rivers that flow all year could be irrigated in the dry season by pumping straight from the river, if farming stays within a set distance of each bank. For each river reach the atlas takes the <b>smaller</b> of two limits: suitable land in the strip (land cover, slope, height above the river, outside protected areas) and the water the river can spare in its driest month after a share is left in the river and upstream pumping is taken off. Computed from open data with a published, rerunnable method.</p>
+  <div class="callout warn" style="margin-bottom:12px">A screening estimate from modelled river flows (1971–2000) and satellite maps, not a survey or engineering design. Dams, today’s abstraction, soils and land tenure are not included. Check on the ground before investing.</div>
+  <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:12px"><b style="font-size:13px">Distance from each bank:</b><div class="seg" id="rip-w" role="group" aria-label="Distance from each bank">${W.map(w=>`<button type="button" data-w="${w}" aria-pressed="${w===RIPW}">${w.replace('m',' m')}</button>`).join('')}</div></div>
+  <div class="kpis" id="rip-k"></div>
+  <div class="grid2"><div class="box"><h3>By state <small>central estimate, hover for range</small></h3><div id="rip-st"></div></div><div class="box"><h3>By river basin <small>central estimate</small></h3><div id="rip-bas"></div><h3 style="margin-top:14px">Land in the 250 m strips</h3><div id="rip-lc"></div><p class="sm-note">All land within 250 m of the channel on both banks, before slope and height screening.</p></div></div>
+  <h4 class="h4">Along named rivers</h4><p class="sm-note" style="margin-top:0">Reaches traced on the atlas’s river lines, which do not always cover a river’s full course, so these are partial totals.</p>
+  <div class="tbl-wrap" style="max-height:420px"><table class="dt"><thead><tr><th>River</th><th class="n">River km</th><th class="n">Low</th><th class="n">Central</th><th class="n">High</th></tr></thead><tbody id="rip-rv"></tbody></table></div>
+  <p style="display:flex;gap:8px;flex-wrap:wrap;margin:10px 0"><button class="btn primary" type="button" id="rip-map">Show on the map</button><a class="btn" href="archive/riparian/reaches.csv" download>Every reach (CSV)</a><a class="btn" href="archive/riparian/states.csv" download>States (CSV)</a><a class="btn" href="archive/riparian/METHOD.md" target="_blank" rel="noopener">Full method</a><a class="btn" href="archive/riparian/config.json" target="_blank" rel="noopener">Settings used</a><button class="btn" type="button" id="rip-cite">Cite</button></p>
+  <details class="box" style="margin-bottom:14px"><summary><b>Method and assumptions</b></summary>
+  <ol class="rfacts" style="margin-top:8px">
+  <li>Rivers that flow all year: RiverATLAS reaches inside Nigeria whose lowest long-term monthly natural flow is at least ${C.rivers.min_dry_flow_m3s} m³/s (${fmt.format(R.nat.reaches)} reaches, ${fmt.format(R.nat.km)} km). Reaches that are mostly lake or reservoir are left out.</li>
+  <li>Channel: open water mapped by ESA WorldCover within ${C.rivers.snap_to_water_m} m of the river line is taken as the real channel (${fmt.format(R.nat.visible_reaches)} reaches); elsewhere the RiverATLAS line is used.</li>
+  <li>Strips: every 30 m pixel within ${C.strips_m.join(', ')} m of the channel on either bank, each counted once for its nearest reach, inside Nigeria only.</li>
+  <li>Land limit: land cover, slope and height above the river from ESA WorldCover and the Copernicus 30 m elevation model; tree cover, built-up land, water and mapped protected areas are never counted.</li>
+  <li>Water limit: lowest monthly flow, minus the share left in the river, minus everything pumped upstream, divided by the peak crop water need (FAO-56: crop coefficient × evapotranspiration − effective rain, divided by irrigation efficiency). Median peak need: ${R.nat.qneed_median.map(v=>fmt1.format(v)).join(' / ')} L/s per ha (low / central / high).</li></ol>
+  <div class="tbl-wrap" style="max-height:none"><table class="dt"><thead><tr><th></th>${['low','central','high'].map(l=>`<th>${l[0].toUpperCase()+l.slice(1)}</th>`).join('')}</tr></thead><tbody>
+  <tr><td>Land counted</td>${['low','central','high'].map(l=>`<td>${esc(LV[l].landcover.join(', '))}</td>`).join('')}</tr>
+  <tr><td>Steepest slope</td>${['low','central','high'].map(l=>`<td>${LV[l].max_slope_pct}%</td>`).join('')}</tr>
+  <tr><td>Highest pumping lift above river</td>${['low','central','high'].map(l=>`<td>${LV[l].max_lift_m} m</td>`).join('')}</tr>
+  <tr><td>Irrigation efficiency</td>${['low','central','high'].map(l=>`<td>${Math.round(LV[l].efficiency*100)}%</td>`).join('')}</tr>
+  <tr><td>Crop coefficient at peak</td>${['low','central','high'].map(l=>`<td>${LV[l].kc}</td>`).join('')}</tr>
+  <tr><td>Dry-month flow left in the river</td>${['low','central','high'].map(l=>`<td>${Math.round(LV[l].reserve_frac_of_dry_flow*100)}%</td>`).join('')}</tr></tbody></table></div>
+  <p class="sm-note">Data: ${src.map(s=>esc(s.cite||s.name)).join(' · ')}. Run ${esc(R.meta.run)}, ${R.meta.tiles} one-degree tiles. Anyone can rerun it: the script, pinned packages and settings are in the site’s repository (workflow “Riparian pump-irrigation potential”).</p></details>`;
+  const draw=()=>{
+    const j=ix('central'),N=R.nat;
+    $('#rip-k').innerHTML=[
+      [ha(N.pot[j]),'Irrigable by pumping, central estimate',`Range ${rng(N.pot)}`],
+      [ha(N.land[j]),'Suitable land within reach of the river','Before the water limit (central)'],
+      [fmt.format(N.km)+' km','Rivers that flow all year',`${fmt.format(N.reaches)} reaches`],
+      [fmt.format(N.water_bound_reaches[j]),'Reaches short of water','Water, not land, sets the limit (central)']
+    ].map(k=>`<div class="kpi"><b>${k[0]}</b><span>${k[1]}</span><small>${k[2]}</small></div>`).join('');
+    hbar($('#rip-st'),R.states.filter(s=>s.pot[j]>0).sort((a,b)=>b.pot[j]-a.pot[j]).map(s=>({l:s.n,v:s.pot[j],c:'var(--g2)',t:`Range ${rng(s.pot)}<br>Suitable land ${ha(s.land[j])}`})),{lw:120,rh:18,f:v=>fmt.format(Math.round(v))+' ha'});
+    hbar($('#rip-bas'),R.basins.filter(b=>b.pot[j]>0).sort((a,b)=>b.pot[j]-a.pot[j]).map(b=>({l:b.n.length>30?b.n.slice(0,29)+'…':b.n,v:b.pot[j],c:'var(--g0)',t:`${esc(b.n)}<br>Range ${rng(b.pot)} · ${fmt.format(b.km)} km of river`})),{lw:200,rh:20,f:v=>fmt.format(Math.round(v))+' ha'});
+    const lc=R.nat.strip_landcover_250m||{};
+    hbar($('#rip-lc'),Object.entries(lc).filter(e=>e[1]>0).sort((a,b)=>b[1]-a[1]).map(([k,v])=>({l:k[0].toUpperCase()+k.slice(1),v,c:['cropland','grassland','shrubland'].includes(k)?'var(--g2)':'var(--g7)'})),{lw:100,rh:18,f:v=>fmt.format(Math.round(v))+' ha'});
+    $('#rip-rv').innerHTML=R.rivers.filter(r=>r.pot[j]>0).sort((a,b)=>b.pot[j]-a.pot[j]).map(r=>`<tr><td><b>${esc(r.n)}</b></td><td class="n">${fmt.format(r.km)}</td><td class="n">${haf(r.pot[ix('low')])}</td><td class="n">${haf(r.pot[j])}</td><td class="n">${haf(r.pot[ix('high')])}</td></tr>`).join('');
+  };
+  draw();
+  $$('#rip-w button').forEach(b=>b.onclick=()=>{RIPW=b.dataset.w;$$('#rip-w button').forEach(x=>x.setAttribute('aria-pressed',x===b));draw();if(ovl.rip){map.removeLayer(ovl.rip);ovl.rip=null;toggleOverlay('rip')}});
+  $('#rip-map').onclick=async()=>{location.hash='map';setTimeout(()=>{if(!ovl.rip)toggleOverlay('rip');map.invalidateSize();map.fitBounds([[4.2,2.7],[13.9,14.7]])},300)};
+  $('#rip-cite').onclick=()=>copy(citeTxt());
 }
 async function addBasinReports(){
   try{await reports()}catch(e){return}
