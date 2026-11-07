@@ -187,9 +187,10 @@ def read_mosaic(urls, bounds, shape, nearest=True):
 
 
 def process_tile(job):
-    lat, lon, cfg, reaches, prot_wkb, states_wkb, work = job
+    lat, lon, cfg, reaches, prot_wkb, states_wkb, work = job[:7]
+    want_arrays = len(job) > 7 and job[7]  # used by the validation scripts, which need the grids themselves
     out_path = os.path.join(work, 'tiles', 't_%+03d_%+04d.npz' % (lat, lon))
-    if os.path.exists(out_path):
+    if os.path.exists(out_path) and not want_arrays:
         return out_path, 'cached'
     import shapely
     from rasterio.transform import from_origin
@@ -262,6 +263,11 @@ def process_tile(job):
     scls = np.digitize(slope, cfg['slope_breaks_pct'], right=True)
     lcls = np.digitize(np.maximum(lift, 0), cfg['lift_breaks_m'], right=True)
     NS = len(cfg['slope_breaks_pct']) + 1; NL = len(cfg['lift_breaks_m']) + 1; ND = len(cfg['strips_m'])
+    if want_arrays:
+        return {'transform': tr, 'pad': p, 'shape': (H, W), 'dist': d.astype(np.float32), 'rid': rid, 'chan': chan,
+                'water': water, 'wc': wc, 'lc': lc, 'groups': groups + ['protected'], 'slope': slope.astype(np.float32),
+                'lift': lift.astype(np.float32), 'state': st, 'core': core, 'strip': strip,
+                'reach_ids': np.array([0] + [r['i'] for r in reaches], np.int64)}
     rows = np.nonzero(strip)
     lat_row = n - (rows[0] + 0.5) * RES
     area_ha = (dy * RES * DEG_M * np.cos(np.radians(lat_row))) / 1e4
