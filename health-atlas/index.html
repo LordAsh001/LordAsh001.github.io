@@ -1,0 +1,952 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Nigeria Health Atlas</title>
+<meta name="description" content="Open map of Nigeria's 70,235 health facilities, how far each community lives from a public referral hospital, and an evidence base for a national ambulance system.">
+<meta name="author" content="Shagbaor Hycent Amool">
+<meta name="color-scheme" content="light dark">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Nigeria Health Atlas">
+<meta property="og:description" content="Map of Nigeria's health facilities, distance to referral hospitals by state, and where ambulance stations would reach 95% of Nigerians.">
+<meta property="og:url" content="https://shagbaor.com/health-atlas/">
+<meta name="theme-color" content="#a3262a">
+<link rel="canonical" href="https://shagbaor.com/health-atlas/">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23a3262a'/%3E%3Cpath d='M26 14h12v12h12v12H38v12H26V38H14V26h12z' fill='%23fff'/%3E%3C/svg%3E">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"Nigeria Health Atlas","description":"Open map of Nigeria's 70,235 health facilities (GRID3 v4.0), population distance to public referral and tertiary hospitals by state and ward (WorldPop 2025), and a station-siting analysis for a national ambulance system.","url":"https://shagbaor.com/health-atlas/","creator":{"@type":"Person","name":"Shagbaor Hycent Amool","affiliation":"University of Northern British Columbia"},"spatialCoverage":"Nigeria","isAccessibleForFree":true,"license":"https://creativecommons.org/licenses/by/4.0/","distribution":[{"@type":"DataDownload","encodingFormat":"text/csv","contentUrl":"https://shagbaor.com/health-atlas/data/nigeria_health_facilities_grid3_v4.csv"},{"@type":"DataDownload","encodingFormat":"application/json","contentUrl":"https://shagbaor.com/health-atlas/data/analysis.json"}]}</script>
+<script>try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t);}catch(e){}</script>
+<script src="/assets/traction.js" defer></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f7f6f4;--panel:#ffffff;--ink:#1d1a19;--muted:#635c59;--line:#e4dfdc;--accent:#a3262a;--accent-ink:#ffffff;--chip:#f1ecea;
+  --shadow:0 1px 2px rgba(0,0,0,.06),0 4px 16px rgba(0,0,0,.05);
+  --c-pri:#3d8bb8;--c-sec:#e08a1e;--c-ter:#a3262a;--c-unk:#9a948f;--c-st:#1d8a5a;
+  --d1:#2f7d4f;--d2:#8bbf5a;--d3:#f0c24b;--d4:#e5782e;--d5:#b3261e;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){--bg:#121010;--panel:#1b1817;--ink:#ece7e4;--muted:#a9a19d;--line:#322c2a;--accent:#ff7f74;--accent-ink:#1a0606;--chip:#262120;--shadow:0 1px 2px rgba(0,0,0,.4);
+  --c-pri:#6cb6e0;--c-sec:#f2a649;--c-ter:#ff7f74;--c-unk:#8a8380;--c-st:#4fd393;--d1:#4fa872;--d2:#9fcf6c;--d3:#f3cd60;--d4:#f08c45;--d5:#ef5b4f}
+}
+:root[data-theme="dark"]{--bg:#121010;--panel:#1b1817;--ink:#ece7e4;--muted:#a9a19d;--line:#322c2a;--accent:#ff7f74;--accent-ink:#1a0606;--chip:#262120;--shadow:0 1px 2px rgba(0,0,0,.4);
+  --c-pri:#6cb6e0;--c-sec:#f2a649;--c-ter:#ff7f74;--c-unk:#8a8380;--c-st:#4fd393;--d1:#4fa872;--d2:#9fcf6c;--d3:#f3cd60;--d4:#f08c45;--d5:#ef5b4f}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--bg);color:var(--ink);font:15px/1.5 Inter,system-ui,-apple-system,Segoe UI,Roboto,sans-serif;overflow-x:hidden}
+a{color:var(--accent)}
+header{display:flex;align-items:center;gap:12px;padding:12px 20px;border-bottom:1px solid var(--line);background:var(--panel);position:relative;z-index:500}
+header .brand{display:flex;flex-direction:column;min-width:0}
+header h1{font-size:18px;margin:0;font-weight:700;letter-spacing:-.01em}
+header .sub{font-size:12.5px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+nav.tabs{display:flex;gap:4px;margin-left:auto;flex-wrap:wrap}
+nav.tabs button,.btn{font:inherit;font-size:13.5px;border:1px solid var(--line);background:var(--panel);color:var(--ink);padding:6px 12px;border-radius:8px;cursor:pointer;text-decoration:none;display:inline-block}
+nav.tabs button[aria-selected="true"]{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+.btn.primary{background:var(--accent);color:var(--accent-ink);border-color:var(--accent);font-weight:600}
+.btn:focus-visible,nav.tabs button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+main{max-width:1400px;margin:0 auto}
+section.view{display:none;padding:16px 20px 40px}
+section.view.active{display:block}
+#view-map{padding:0}
+.mapwrap{display:grid;grid-template-columns:330px 1fr;height:calc(100vh - 100px);min-height:540px}
+aside.side{background:var(--panel);border-right:1px solid var(--line);overflow:auto;padding:14px 16px}
+#map{height:100%;width:100%;background:var(--bg)}
+.side h3{font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin:16px 0 8px}
+.side h3:first-child{margin-top:0}
+.layer{display:flex;align-items:center;gap:8px;padding:3px 0;font-size:14px;cursor:pointer}
+.layer input{accent-color:var(--accent)}
+.layer .n{margin-left:auto;color:var(--muted);font-size:12px;font-variant-numeric:tabular-nums}
+.sw{width:11px;height:11px;border-radius:50%;flex:none}
+.sw.sq{border-radius:2px;transform:rotate(45deg);width:9px;height:9px}
+select,input[type=search]{font:inherit;font-size:14px;width:100%;padding:7px 9px;border-radius:8px;border:1px solid var(--line);background:var(--bg);color:var(--ink)}
+.results{list-style:none;margin:6px 0 0;padding:0;max-height:220px;overflow:auto}
+.results li button{all:unset;display:block;width:100%;box-sizing:border-box;padding:6px 8px;border-radius:6px;font-size:13px;cursor:pointer}
+.results li button:hover,.results li button:focus-visible{background:var(--chip)}
+.results small{color:var(--muted)}
+.legend{font-size:12.5px;margin-top:8px}
+.legend .row{display:flex;align-items:center;gap:8px;margin:3px 0}
+.legend .box{width:16px;height:12px;border-radius:3px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px 16px;box-shadow:var(--shadow)}
+#stateCard{margin-top:12px;display:none}
+#stateCard h4{margin:0 0 6px;font-size:16px}
+.kv{display:grid;grid-template-columns:auto 1fr;gap:2px 10px;font-size:13px}
+.kv dt{color:var(--muted)}.kv dd{margin:0;font-variant-numeric:tabular-nums}
+.leaflet-popup-content-wrapper,.leaflet-popup-tip{background:var(--panel);color:var(--ink)}
+.leaflet-popup-content{font:13px/1.45 Inter,system-ui,sans-serif;margin:12px 14px}
+.leaflet-container a.leaflet-popup-close-button{color:var(--muted)}
+.leaflet-control-attribution{font-size:10px}
+.pop h5{margin:0 0 4px;font-size:14px}
+.pill{display:inline-block;font-size:11px;padding:1px 8px;border-radius:999px;background:var(--chip);color:var(--ink);margin:0 4px 2px 0}
+.grid{display:grid;gap:14px}
+.grid>*{min-width:0}
+#farChart svg{max-width:780px}
+.stats{grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
+.stat .v{font-size:26px;font-weight:700;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.stat .l{font-size:13px;color:var(--muted)}
+.stat .s{font-size:11.5px;color:var(--muted);margin-top:4px}
+h2{font-size:20px;margin:24px 0 10px;letter-spacing:-.01em}
+h2:first-child{margin-top:4px}
+h3.ch{font-size:15px;margin:0 0 4px}
+.two{grid-template-columns:1fr 1fr}
+.note{font-size:13px;color:var(--muted)}
+.prose{max-width:860px}
+.prose li{margin:4px 0}
+.lead{font-size:16px;max-width:860px}
+table{border-collapse:collapse;width:100%}
+.tablewrap{overflow:auto;border:1px solid var(--line);border-radius:12px;background:var(--panel);max-width:100%}
+.tbl th{position:sticky;top:0;background:var(--panel);font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;cursor:pointer;user-select:none}
+.tbl td,.tbl th{padding:8px 10px;border-bottom:1px solid var(--line);font-size:13.5px;text-align:left;white-space:nowrap}
+.tbl td.num,.tbl th.num{text-align:right;font-variant-numeric:tabular-nums}
+.tbl tr.clickable{cursor:pointer}.tbl tr.clickable:hover td{background:var(--chip)}
+.bench td{white-space:normal;vertical-align:top;min-width:120px}
+.bench td:nth-child(3){min-width:260px}
+.toolbar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:8px 0 12px}
+.toolbar select,.toolbar input{width:auto;flex:0 1 220px}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:8px;overflow:hidden}
+.seg button{all:unset;cursor:pointer;padding:6px 12px;font-size:13.5px;border-right:1px solid var(--line)}
+.seg button:last-child{border-right:0}
+.seg button[aria-pressed="true"]{background:var(--accent);color:var(--accent-ink)}
+.seg button:focus-visible{outline:2px solid var(--accent);outline-offset:-2px}
+svg text{font-family:Inter,system-ui,sans-serif}
+.chart{width:100%;height:auto;display:block}
+.steps{counter-reset:s;list-style:none;padding:0;margin:0;display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+.steps li{counter-increment:s;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px 14px 12px 50px;position:relative;font-size:14px}
+.steps li::before{content:counter(s);position:absolute;left:14px;top:12px;width:24px;height:24px;border-radius:50%;background:var(--accent);color:var(--accent-ink);display:grid;place-items:center;font-weight:700;font-size:13px}
+.steps b{display:block;margin-bottom:2px}
+.dl{display:flex;gap:14px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+.dl>div{flex:1 1 360px;font-size:14px}
+.loading{position:absolute;inset:0;display:grid;place-items:center;z-index:450;background:color-mix(in srgb,var(--bg) 70%,transparent);font-size:14px;color:var(--muted);pointer-events:none}
+.mapcell{position:relative}
+.callout{border-left:4px solid var(--accent);background:var(--panel);padding:10px 14px;border-radius:0 10px 10px 0;font-size:14px;margin:12px 0;max-width:860px}
+footer{font-size:12px;color:var(--muted);padding:12px 20px;border-top:1px solid var(--line)}
+.hero{max-width:900px;padding:8px 0 4px}
+.eyebrow{font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:var(--accent);font-weight:600;margin:0 0 6px}
+.hero-h{font-size:clamp(24px,3.4vw,34px);line-height:1.15;margin:0 0 12px;text-wrap:balance;letter-spacing:-.02em}
+.cta{display:flex;flex-wrap:wrap;gap:10px;margin:16px 0 8px}
+.btn.big{font-size:15px;padding:10px 16px;border-radius:10px}
+.emerg{margin-top:6px}
+.know{grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+.know-card h3{font-size:17px;margin:10px 0 6px;text-wrap:balance}
+.know-card p{font-size:14px;margin:0 0 10px;color:var(--ink)}
+.bigfig{font-size:40px;font-weight:700;letter-spacing:-.03em;color:var(--accent);line-height:1;font-variant-numeric:tabular-nums}
+.people{display:flex;gap:6px;align-items:flex-end;height:40px}
+.people svg{width:22px;height:40px}
+.linkbtn{all:unset;cursor:pointer;color:var(--accent);font-weight:600;font-size:14px}
+.linkbtn:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:4px}
+.flow{list-style:none;padding:0;margin:8px 0 0;display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px;counter-reset:f}
+.flow li{counter-increment:f;position:relative;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:44px 14px 14px;font-size:13.5px;display:flex;flex-direction:column;gap:4px}
+.flow li::before{content:counter(f);position:absolute;left:14px;top:12px;width:24px;height:24px;border-radius:50%;background:var(--accent);color:var(--accent-ink);display:grid;place-items:center;font-weight:700;font-size:13px}
+.flow li b{font-size:14.5px}.flow li span{color:var(--muted)}
+.findgrid{grid-template-columns:minmax(260px,380px) 1fr}
+.formrow{display:flex;flex-direction:column;gap:4px;margin-bottom:10px}
+.formrow label{font-size:13px;font-weight:600}
+select:disabled{opacity:.55}
+#fmap{height:380px;width:100%}
+.empty{padding:6px 0}
+.res{display:grid;gap:10px}
+.resrow{display:grid;grid-template-columns:28px 1fr;gap:10px;align-items:start;padding:10px 0;border-bottom:1px solid var(--line)}
+.resrow:last-child{border-bottom:0}
+.resrow .ico{width:24px;height:24px;border-radius:50%;display:grid;place-items:center;color:#fff;font-weight:700;font-size:12px}
+.resrow h4{margin:0;font-size:12px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted)}
+.resrow .nm{font-size:15.5px;font-weight:600;margin:2px 0}
+.resrow .dt{font-size:13.5px}
+.verdict{font-size:15px;padding:10px 12px;border-radius:10px;background:var(--chip);margin:0 0 6px}
+.callout.warn{max-width:none;font-size:13.5px}
+.maphelp{background:var(--chip);border-radius:10px;padding:10px 12px;font-size:13px;margin-bottom:12px}
+.maphelp p{margin:4px 0 6px}
+.dotk{display:inline-block;width:9px;height:9px;border-radius:50%;vertical-align:0}
+.presets{display:flex;flex-wrap:wrap;gap:6px}
+.chip{font:inherit;font-size:13px;border:1px solid var(--line);background:var(--bg);color:var(--ink);padding:5px 10px;border-radius:999px;cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+.chip:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+#pickPlace[aria-pressed="true"]{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+.picking #map{cursor:crosshair}
+abbr.gl{text-decoration:underline dotted;text-underline-offset:3px;cursor:help;text-decoration-color:var(--muted)}
+.gl-i{display:inline-grid;place-items:center;width:16px;height:16px;border-radius:50%;background:var(--chip);color:var(--muted);font-size:11px;font-weight:700;cursor:help;margin-left:2px}
+#glTip{position:fixed;z-index:2000;max-width:300px;background:var(--ink);color:var(--bg);font-size:13px;line-height:1.45;padding:9px 11px;border-radius:8px;box-shadow:0 8px 24px rgba(0,0,0,.25)}
+#glTip b{display:block;margin-bottom:2px}
+.gloss{display:grid;grid-template-columns:minmax(140px,220px) 1fr;gap:6px 16px;margin-top:12px}
+.gloss dt{font-weight:600}.gloss dd{margin:0;color:var(--ink)}
+.faq details{border-bottom:1px solid var(--line);padding:10px 0}
+.faq summary{cursor:pointer;font-weight:600}
+.faq p{margin:8px 0 0}
+.plain{font-size:14px;margin:8px 0;line-height:1.5}
+@media (max-width:860px){.findgrid{grid-template-columns:1fr}.gloss{grid-template-columns:1fr}.gloss dd{margin-bottom:8px}#fmap{height:300px}}
+@media (prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
+.sitebar{z-index:1100!important}
+@media (max-width:860px){
+  header{flex-wrap:wrap;padding:10px 16px}
+  header .sub{white-space:normal}
+  nav.tabs{margin-left:0;width:100%}
+  .mapwrap{grid-template-columns:1fr;height:auto}
+  .mapcell{height:62vh}
+  aside.side{order:2;border-right:0;border-top:1px solid var(--line)}
+  .two{grid-template-columns:1fr}
+  section.view{padding:14px 16px 32px}
+  .stat .v{font-size:22px}
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="brand">
+    <h1>Nigeria Health Atlas</h1>
+    <div class="sub">Where Nigeria's clinics and hospitals are, who lives far from them, and how ambulances could close the gap</div>
+  </div>
+  <nav class="tabs" role="tablist" aria-label="Atlas sections">
+    <button role="tab" aria-selected="true" data-view="start">Start here</button>
+    <button role="tab" aria-selected="false" data-view="map">Map</button>
+    <button role="tab" aria-selected="false" data-view="find">Find care near you</button>
+    <button role="tab" aria-selected="false" data-view="states">Compare states</button>
+    <button role="tab" aria-selected="false" data-view="ambulance">Ambulance plan</button>
+    <button role="tab" aria-selected="false" data-view="data">Data</button>
+    <button role="tab" aria-selected="false" data-view="about">About &amp; glossary</button>
+  </nav>
+</header>
+<main>
+<!-- ================= MAP ================= -->
+<section class="view" id="view-map" role="tabpanel">
+  <div class="mapwrap">
+    <aside class="side">
+      <div class="maphelp" id="mapHelp">
+        <b>How to read this map</b>
+        <p>Each dot is a health facility. <span class="dotk" style="background:var(--c-pri)"></span> blue dots are clinics and health centres; <span class="dotk" style="background:var(--c-sec)"></span> orange dots are general hospitals; <span class="dotk" style="background:var(--c-ter)"></span> red dots are teaching and specialist hospitals. Click any dot to see its name.</p>
+        <button class="linkbtn" id="hideHelp">Got it</button>
+      </div>
+      <h3>Quick views</h3>
+      <div class="presets" role="group" aria-label="Quick views">
+        <button class="chip" data-preset="all">All facilities</button>
+        <button class="chip" data-preset="hospitals">Hospitals only</button>
+        <button class="chip" data-preset="gaps">Where hospitals are far</button>
+        <button class="chip" data-preset="stations">Proposed ambulance stations</button>
+      </div>
+      <button class="btn" id="pickPlace" style="width:100%;margin-top:10px">Pick a place on the map</button>
+      <h3>Find a facility or state</h3>
+      <input type="search" id="search" placeholder="e.g. Aminu Kano, Jigawa, Ikeja" autocomplete="off" aria-label="Search facilities and states">
+      <ul class="results" id="results"></ul>
+
+      <h3>Health facilities</h3>
+      <div id="lvlLayers"></div>
+      <label class="layer"><input type="checkbox" id="onlyRef"> Only hospitals that take emergencies <span class="gl-i" data-gl="Referral hospital">?</span></label>
+      <label class="layer"><input type="checkbox" id="onlyPub"> Only public facilities</label>
+
+      <h3>Ambulance system</h3>
+      <label class="layer"><input type="checkbox" id="lyrStations"> <span class="sw sq" style="background:var(--c-st)"></span> Proposed ambulance stations <span class="n" id="nStations"></span></label>
+      <label class="layer"><input type="checkbox" id="lyrRings"> Station reach (rings)</label>
+      <div class="toolbar" style="margin:4px 0 0">
+        <span class="note">Reach</span>
+        <div class="seg" id="segMap" role="group" aria-label="Station reach"></div>
+      </div>
+      <label class="layer"><input type="checkbox" id="lyrWards"> Communities, coloured by distance to a public hospital</label>
+
+      <h3>Colour states by</h3>
+      <select id="choro" aria-label="Colour states by">
+        <option value="none">Nothing (outlines only)</option>
+        <option value="far">People living 20 km+ from a public hospital</option>
+        <option value="ref">Public hospitals for every 100,000 people</option>
+        <option value="fac">All facilities for every 100,000 people</option>
+        <option value="tert">People living 40 km+ from a teaching or federal hospital</option>
+      </select>
+      <div class="legend" id="legend"></div>
+
+      <div class="card" id="stateCard" aria-live="polite"></div>
+      <p class="note" style="margin-top:14px">58,367 of the 70,235 facilities in the register have a location and appear here. Click a dot for details, or a state for its profile.</p>
+    </aside>
+    <div class="mapcell"><div id="map" aria-label="Map of health facilities in Nigeria"></div><div class="loading" id="loading">Loading 58,000 facilities…</div></div>
+  </div>
+</section>
+
+<!-- ================= START ================= -->
+<section class="view active" id="view-start" role="tabpanel">
+  <div class="hero">
+    <p class="eyebrow">Nigeria Health Atlas</p>
+    <h2 class="hero-h">How far is the nearest hospital, and how would an ambulance get you there?</h2>
+    <p class="lead">This atlas puts every health facility in Nigeria's national register on one map: about 70,000 clinics, health centres and hospitals. It then asks a simple question for every community: <b>how far away is the nearest public hospital that can treat a serious emergency?</b> The answer shows where an ambulance service would save the most lives.</p>
+    <div class="cta">
+      <button class="btn primary big" data-goto="find">Find care near you</button>
+      <button class="btn big" data-goto="map">Explore the map</button>
+      <button class="btn big" data-goto="ambulance">See the ambulance plan</button>
+    </div>
+    <p class="note emerg">This is a research tool, not an emergency service. <b>In an emergency, call 112.</b></p>
+  </div>
+
+  <h2>Three things to know</h2>
+  <div class="grid know">
+    <div class="card know-card">
+      <div class="people" id="pictogram" aria-hidden="true"></div>
+      <h3 id="k1h">1 in 8 Nigerians live far from a public hospital</h3>
+      <p id="k1p"></p>
+      <button class="linkbtn" data-goto="map" data-preset="gaps">Show me where →</button>
+    </div>
+    <div class="card know-card">
+      <div class="bigfig" id="k2fig">7%</div>
+      <h3>Few patients arrive by ambulance</h3>
+      <p>An industry survey in early 2026 estimated that only about 7 in every 100 emergency patients reach hospital in a public ambulance. Most come by commercial bus (47%) or private car or on foot (31%).</p>
+      <button class="linkbtn" data-goto="ambulance">Why this matters →</button>
+    </div>
+    <div class="card know-card">
+      <div class="bigfig" id="k3fig">1,298</div>
+      <h3>Ambulance stations could reach 95% of people</h3>
+      <p id="k3p"></p>
+      <button class="linkbtn" data-goto="map" data-preset="stations">See the stations →</button>
+    </div>
+  </div>
+
+  <h2>How an ambulance call would work</h2>
+  <p class="note prose">The plan in this atlas follows systems that already work in Lagos, India, Rwanda, the UK and France.</p>
+  <ol class="flow" id="flow">
+    <li><b>Call 112</b><span>One free number, on every mobile network, any time.</span></li>
+    <li><b>A trained call-taker answers</b><span>They ask what happened and decide how urgent it is.</span></li>
+    <li><b>The nearest ambulance is sent</b><span>From a station at a local health facility, aiming to arrive within about 20 minutes.</span></li>
+    <li><b>Care starts on the way</b><span>Trained crew treat the patient and warn the hospital ahead.</span></li>
+    <li><b>The right hospital is ready</b><span>Treatment first, payment later from the national emergency fund.</span></li>
+  </ol>
+
+  <h2>The picture in numbers</h2>
+  <div class="grid stats" id="natStats"></div>
+  <div class="grid two" style="margin-top:14px">
+    <div class="card"><h3 class="ch" id="bandTitle">How far people live from a public referral hospital</h3>
+      <p class="note" style="margin:0 0 8px">Distance "as the crow flies" from each community to the nearest public hospital that takes referrals. Roads are usually about 1.4 times longer.</p>
+      <div id="bandChart"></div></div>
+    <div class="card"><h3 class="ch">Most facilities are small clinics; few are hospitals</h3>
+      <p class="note" style="margin:0 0 8px">Facilities in the national register by level of care. Primary care is a clinic or health centre; secondary and tertiary are hospitals.</p>
+      <div id="levelChart"></div></div>
+  </div>
+  <div class="card" style="margin-top:14px"><h3 class="ch" id="farTitle">Where distance to hospital care is greatest</h3>
+    <p class="note" style="margin:0 0 8px">Share of each state's people living 20 km or more from a public referral hospital. Click a bar to open that state on the map.</p>
+    <div id="farChart"></div></div>
+</section>
+
+<!-- ================= FIND ================= -->
+<section class="view" id="view-find" role="tabpanel">
+  <h2>Find care near you</h2>
+  <p class="lead">Choose your state, local government area and ward, or use your location. The atlas lists the nearest health facilities and how long the trip might take.</p>
+  <div class="grid findgrid">
+    <div class="card">
+      <div class="formrow"><label for="fState">State</label><select id="fState"></select></div>
+      <div class="formrow"><label for="fLga">Local government area (LGA)</label><select id="fLga" disabled></select></div>
+      <div class="formrow"><label for="fWard">Ward</label><select id="fWard" disabled></select></div>
+      <div class="toolbar" style="margin-top:12px"><button class="btn primary" id="fGo" disabled>Show nearest care</button><button class="btn" id="fLoc">Use my location</button></div>
+      <p class="note" id="fMsg" aria-live="polite"></p>
+      <p class="note">You can also open the <a href="#map" data-goto="map">map</a>, choose <b>Pick a place on the map</b>, and click anywhere.</p>
+      <div class="callout warn"><b>In an emergency, call 112.</b> Facility details come from the national register and may be out of date. Call ahead to check a facility is open and offers the care you need.</div>
+    </div>
+    <div class="card" id="fOut"><div class="empty"><p><b>Your results will appear here.</b></p><p class="note">For each place you choose, you will see the nearest public hospital that takes emergencies, the nearest teaching or federal hospital, and the nearest clinic or health centre, with distance and an estimated travel time.</p></div></div>
+  </div>
+  <div class="card" style="margin-top:14px;padding:0;overflow:hidden"><div id="fmap" aria-label="Map of the nearest facilities"></div></div>
+</section>
+
+<!-- ================= STATES ================= -->
+<section class="view" id="view-states" role="tabpanel">
+  <h2>Compare states</h2>
+  <p class="lead">Which states have the fewest hospitals for their people, and where do people live furthest from care? Click a column heading to sort, or a row to open that state on the map.</p>
+  <p class="note">Population is the 2025 estimate. "Mean km" is the average straight-line distance a resident lives from a public hospital that takes referrals.</p>
+  <div class="toolbar"><input type="search" id="stateFilter" placeholder="Filter states" aria-label="Filter states"><a class="btn" href="data/analysis.json" download>Download as JSON</a></div>
+  <div class="tablewrap"><table class="tbl" id="stateTable"></table></div>
+</section>
+
+<!-- ================= AMBULANCE ================= -->
+<section class="view" id="view-ambulance" role="tabpanel">
+  <h2>A plan for ambulances in every state</h2>
+  <p class="lead">Nigeria already has a law and a fund for emergency transport, but most patients still reach hospital by bus, car or on foot. This page uses the facility map to work out how many ambulance stations Nigeria needs and where, and what other countries teach us.</p>
+  <div class="grid stats" id="ambStats"></div>
+
+  <h2>Where the system stands</h2>
+  <div class="prose">
+    <ul>
+      <li><b>The law is there.</b> The National Health Act 2014 sets aside 5% of the Basic Health Care Provision Fund for emergency medical treatment, run by a committee of the National Council on Health (<a href="https://lawglobalhub.com/section-11-nigerian-national-health-act-2014" target="_blank" rel="noopener">s. 11(3)</a>). The National Emergency Medical Service and Ambulance System (NEMSAS) is the vehicle.</li>
+      <li><b>Structures exist on paper in most states.</b> NEMSAS reports EMS structures in 33 states and the FCT, with 21 states operational, as of March 2026 (<a href="https://www.premiumtimesng.com/health/health-news/860878-fg-strengthens-emergency-care-nationwide-seeks-improved-access.html" target="_blank" rel="noopener">Premium Times</a>). NEMSAS itself says "we cannot say we have an equitable distribution or enough ambulances" (<a href="https://guardian.ng/features/health/nemsas-expands-emergency-medical-services/" target="_blank" rel="noopener">The Guardian</a>).</li>
+      <li><b>Few patients use it.</b> An industry report for Q1 2026 estimates that public ambulances carry 7% of emergency cases; 47% arrive by commercial bus and 31% by private car or on foot (<a href="https://guardian.ng/features/health/only-7-of-emergencies-handled-by-public-ambulances-report/" target="_blank" rel="noopener">Salvus Emergency, via The Guardian</a>).</li>
+      <li><b>Few people know the number.</b> NEMSAS reports low awareness of 112 and uneven connection across mobile networks (<a href="https://www.premiumtimesng.com/health/health-news/860878-fg-strengthens-emergency-care-nationwide-seeks-improved-access.html" target="_blank" rel="noopener">Premium Times</a>).</li>
+      <li><b>One state shows it can work.</b> Lagos State Ambulance Service (LASAMBUS) answered 44,152 of 45,277 calls (97.5%) in 2021–2025 from 26 ambulance points and four bases (<a href="https://nairametrics.com/2025/06/13/lagos-state-ambulance-service-responds-to-over-44000-emergencies-hits-97-5-response-rate-in-4-years/" target="_blank" rel="noopener">Nairametrics</a>).</li>
+    </ul>
+  </div>
+
+  <h2>How many stations, and where</h2>
+  <div class="prose"><p>Pick how close an ambulance should be to every community. A closer target means faster help, but more stations. Each station is placed at an existing public health facility. The computer adds stations one at a time, always choosing the spot that reaches the most people not yet covered, until 95 in every 100 Nigerians are within reach.</p>
+  <p class="note">Travel times are estimates: roads are taken as 1.4 times the straight-line distance, at an average of 40 km/h.</p></div>
+  <div class="toolbar"><span class="note">How close should an ambulance be?</span><div class="seg" id="segAmb" role="group" aria-label="Station reach"></div><button class="btn" id="showOnMap">Show these stations on the map</button></div>
+  <div class="grid two">
+    <div class="card"><h3 class="ch" id="curveTitle"></h3><p class="note" style="margin:0 0 8px">Share of Nigeria's 2025 population within reach, as stations are added in order of benefit.</p><div id="curveChart"></div></div>
+    <div class="card"><h3 class="ch">Stations and ambulances by state</h3><p class="note" style="margin:0 0 8px">Stations for 95% reach at the chosen radius. Ambulances: 1 per 100,000 people (lower) to 1 per 50,000 (upper), and never fewer than one per station.</p>
+      <div class="tablewrap" style="max-height:420px"><table class="tbl" id="ambTable"></table></div></div>
+  </div>
+
+  <h2>What works elsewhere</h2>
+  <div class="tablewrap"><table class="tbl bench" id="benchTable"></table></div>
+
+  <h2>A design for Nigeria</h2>
+  <ol class="steps" id="designSteps"></ol>
+  <div class="callout">These figures are planning estimates for discussion, not a costed plan. They rest on facility records that are incomplete in places, straight-line distances and a single average speed. See <a href="#about" data-goto="about">Sources &amp; method</a>.</div>
+</section>
+
+<!-- ================= DATA ================= -->
+<section class="view" id="view-data" role="tabpanel">
+  <h2>Download the data</h2>
+  <div class="grid" id="dlList"></div>
+  <p class="note prose" style="margin-top:14px">Facility records are GRID3's, unchanged except for the three referral flags added here. Credit GRID3 / CIESIN (CC BY 4.0) when you reuse them. The ward population file builds on GRID3 operational wards (CC BY-SA 4.0) and WorldPop, so it is shared under CC BY-SA 4.0.</p>
+</section>
+
+<!-- ================= ABOUT ================= -->
+<section class="view" id="view-about" role="tabpanel">
+  <div class="prose">
+  <h2>Questions people ask</h2>
+  <div class="faq" id="faq"></div>
+  <h2>Glossary</h2>
+  <p class="note">Words with a dotted underline anywhere in the atlas can be tapped for a short explanation.</p>
+  <input type="search" id="glSearch" placeholder="Search the glossary" aria-label="Search the glossary" style="max-width:360px">
+  <dl class="gloss" id="glList"></dl>
+  <h2>Sources</h2>
+  <ul id="srcList"></ul>
+  <h2>Method</h2>
+  <ol>
+    <li><b>Facilities.</b> All 70,235 records of GRID3 NGA Health Facilities v4.0 (CIESIN, Columbia University; integrates NHFR 2024/2026, NPHCDA and GRID3 v2 inputs). The copy used here was checked against the live GRID3 service by state and level of care on 7 November 2026. 58,367 records have coordinates inside Nigeria and are mapped.</li>
+    <li><b>Referral hospital.</b> A hospital-type facility recorded as secondary or tertiary, or typed General, Specialist, Cottage, Federal Medical Centre or Teaching/Tertiary hospital, and not recorded as closed or non-functional. Clinics, health centres, maternity homes and laboratories are left out even where the register gives them a higher level. <b>Public referral hospital</b>: the same, owned by federal, state or local government or the military. <b>Tertiary</b>: tertiary level, Federal Medical Centre or teaching hospital.</li>
+    <li><b>Population.</b> WorldPop 2025 population summed to 9,307 GRID3 operational wards (as published by Kemabonta, 2026). Each ward's population is placed at the median position of its mapped facilities, or at its LGA's median where the ward has none (273 wards). Wards average about 100 km², so this puts people near the main settlement of each ward.</li>
+    <li><b>Distance.</b> Great-circle distance from each ward point to the nearest facility of each class. Bands are reported in straight-line kilometres. For time, roads are taken as 1.4× the straight line and ambulances average 40 km/h (2.1 minutes per straight-line km).</li>
+    <li><b>Stations.</b> Candidate sites are the 41,402 mapped public facilities not recorded as closed or non-functional. A greedy maximal-covering algorithm adds the site that reaches the most unreached people within the radius, until 95% of the population is reached. Three radii are run: 5, 10 and 15 km.</li>
+    <li><b>Fleet.</b> 1 ambulance per 100,000 people is the benchmark used for India's public emergency service; 1 per 50,000 is cited by Kenya's policy institute as WHO guidance. Neither is a formal WHO standard, so both are shown as a range.</li>
+  </ol>
+  <h2>Limitations</h2>
+  <ul>
+    <li>11,706 GRID3 records (16.7%) have no coordinates, and 14,205 have no level of care. Gaps are larger in some northern states, so hospital counts there are likely too low and distances too high.</li>
+    <li>"Functional" status is unknown or not recorded for 49% of records; a mapped hospital may not offer 24-hour emergency care.</li>
+    <li>Straight-line distance understates travel in areas with few roads, rivers without bridges, or insecurity.</li>
+    <li>Placing ward population at facility positions makes distances look shorter than they are for scattered rural settlements.</li>
+    <li>GRID3 flags some records as possible duplicates (for example, Federal Medical Centre Asaba appears twice); they are kept as published.</li>
+    <li>The GRID3 ambulance layer (34 points in 8 states) is too incomplete to show existing ambulances.</li>
+  </ul>
+  <h2>Cite this atlas</h2>
+  <p class="card" style="font-size:13.5px">Amool, S. H. (2026). <i>Nigeria Health Atlas: health facilities, access to referral hospitals and an ambulance-system evidence base</i> [Interactive map and dataset]. https://shagbaor.com/health-atlas/</p>
+  <p class="note">Built <span id="builtDate"></span>. Corrections and missing facilities are welcome through the contact details on the main website.</p>
+  </div>
+</section>
+</main>
+<footer>© 2026 Shagbaor Hycent Amool · Facility data © GRID3 / CIESIN, Columbia University (CC BY 4.0) · Population: WorldPop · For research, education and planning discussion — not a directory for emergencies. In an emergency call 112.</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script>
+(function(){
+"use strict";
+const root=document.documentElement;
+function sysDark(){return window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches}
+let saved=null; try{saved=localStorage.getItem('theme')}catch(e){}
+if(!root.getAttribute('data-theme')) root.setAttribute('data-theme',(saved==='dark'||saved==='light')?saved:(sysDark()?'dark':'light'));
+const css=n=>getComputedStyle(root).getPropertyValue(n).trim();
+const isDark=()=>root.getAttribute('data-theme')==='dark';
+const fmt=n=>n==null?'—':Math.round(n).toLocaleString('en-GB');
+const ordinal=n=>n+(['th','st','nd','rd'][(n%100-20)%10]||['th','st','nd','rd'][n%100]||'th');
+const pct=(x,d=0)=>(x*100).toFixed(d)+'%';
+const mil=n=>(n/1e6).toFixed(n>=1e8?0:1)+' m';
+const esc=s=>String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const STATE_ALIAS={'FCT':'Federal Capital Territory'};
+
+// ---------- Tabs ----------
+const tabs=[...document.querySelectorAll('nav.tabs [data-view]')];
+function openTab(v,push){
+  const b=tabs.find(x=>x.dataset.view===v)||tabs[0];
+  tabs.forEach(x=>x.setAttribute('aria-selected',x===b));
+  document.querySelectorAll('section.view').forEach(s=>s.classList.toggle('active',s.id==='view-'+b.dataset.view));
+  if(b.dataset.view==='map'&&window._map) setTimeout(()=>{_map.invalidateSize(); if(!window._fitted){_map.fitBounds([[4.1,2.6],[13.9,14.7]],{padding:[10,10]}); window._fitted=true;}},50);
+  if(b.dataset.view==='find'&&window._fmap) setTimeout(()=>{_fmap.invalidateSize(); if(window._fBounds) _fmap.fitBounds(window._fBounds,{padding:[30,30]});},50);
+  if(push){try{const u='#'+b.dataset.view; if(location.hash!==u) history.pushState(null,'',u)}catch(e){}}
+  try{window.SiteTrack&&window.SiteTrack('tab/'+b.dataset.view,'Opened tab: '+b.textContent.trim())}catch(e){}
+  if(b.dataset.view!=='map') window.scrollTo(0,0);
+}
+tabs.forEach(b=>b.onclick=()=>openTab(b.dataset.view,true));
+document.addEventListener('click',e=>{const a=e.target.closest('[data-goto]'); if(a){e.preventDefault(); openTab(a.dataset.goto,true); if(a.dataset.preset) setTimeout(()=>applyPreset(a.dataset.preset),120);}});
+window.addEventListener('popstate',()=>openTab(location.hash.slice(1)||'start',false));
+if(location.hash.slice(1)) openTab(location.hash.slice(1),false);
+
+// ---------- Map ----------
+const map=L.map('map',{zoomSnap:0.25,minZoom:5,maxZoom:17,maxBounds:[[1,-1],[16,17]],preferCanvas:true}).setView([9,8.6],6);
+window._map=map;
+let tiles=null;
+function setTiles(){
+  if(tiles) map.removeLayer(tiles);
+  tiles=L.tileLayer(`https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/${isDark()?'World_Dark_Gray_Base':'World_Light_Gray_Base'}/MapServer/tile/{z}/{y}/{x}`,{maxZoom:16,attribution:'Basemap &copy; Esri, HERE, Garmin, &copy; OpenStreetMap contributors · Facilities: GRID3 (CC BY 4.0) · Boundaries: geoBoundaries'}).addTo(map);
+  tiles.bringToBack();
+}
+setTiles();
+
+// Point layer drawn on canvas tiles (fast for ~60,000 points)
+const PointTiles=L.GridLayer.extend({
+  initialize(opts){L.setOptions(this,opts); this.items=[]; this.buckets=new Map();},
+  setItems(items){this.items=items; this.buckets=new Map(); items.forEach((it,i)=>{const k=Math.floor(it.lat)+','+Math.floor(it.lon); if(!this.buckets.has(k)) this.buckets.set(k,[]); this.buckets.get(k).push(i);}); this.redraw();},
+  createTile(c){
+    const t=L.DomUtil.create('canvas'); const s=this.getTileSize(); const r=window.devicePixelRatio||1;
+    t.width=s.x*r; t.height=s.y*r; t.style.width=s.x+'px'; t.style.height=s.y+'px';
+    const ctx=t.getContext('2d'); ctx.scale(r,r);
+    const nw=c.scaleBy(s), z=c.z;
+    const b=L.latLngBounds(map.unproject(nw.add(s),z),map.unproject(nw,z));
+    const pad=this.options.pad?this.options.pad(z):0.3;
+    const la0=Math.floor(b.getSouth()-pad),la1=Math.floor(b.getNorth()+pad),lo0=Math.floor(b.getWest()-pad),lo1=Math.floor(b.getEast()+pad);
+    const draw=[];
+    for(let la=la0;la<=la1;la++)for(let lo=lo0;lo<=lo1;lo++){const a=this.buckets.get(la+','+lo); if(a) for(const i of a) draw.push(i);}
+    this.options.paint(ctx,draw.map(i=>this.items[i]),it=>map.project([it.lat,it.lon],z).subtract(nw),z);
+    return t;
+  },
+  nearest(latlng,maxPx){
+    const z=map.getZoom(), p=map.project(latlng,z); let best=null,bd=maxPx*maxPx;
+    const la=Math.floor(latlng.lat),lo=Math.floor(latlng.lng);
+    for(let a=la-1;a<=la+1;a++)for(let o=lo-1;o<=lo+1;o++){const arr=this.buckets.get(a+','+o); if(!arr) continue;
+      for(const i of arr){const it=this.items[i]; if(this.options.visible&&!this.options.visible(it)) continue; const q=map.project([it.lat,it.lon],z); const d=(q.x-p.x)**2+(q.y-p.y)**2; if(d<bd){bd=d;best=it;}}}
+    return best;
+  }
+});
+
+let FAC=null, A=null, WARDS=null, GEO=null, stateLayer=null;
+const LV={Primary:'--c-pri',Secondary:'--c-sec',Tertiary:'--c-ter',Unknown:'--c-unk'};
+const LVL_PLAIN={Primary:'primary care (clinic or health centre)',Secondary:'secondary care (general hospital)',Tertiary:'tertiary care (teaching or specialist hospital)',Unknown:'level of care not recorded'};
+const lvlOn={Primary:true,Secondary:true,Tertiary:true,Unknown:true};
+const facVisible=it=>lvlOn[it.lvl]&&(!onlyRef.checked||it.ref)&&(!onlyPub.checked||it.pub);
+const facLayer=new PointTiles({zIndex:420,visible:facVisible,pad:z=>0.2,paint(ctx,items,xy,z){
+  const col={}; for(const k in LV) col[k]=css(LV[k]);
+  const rad=z<7?1.6:z<9?2.4:z<11?3.4:4.5;
+  ctx.globalAlpha=z<7?.75:.9; ctx.lineWidth=1; ctx.strokeStyle=isDark()?'rgba(0,0,0,.6)':'rgba(255,255,255,.85)';
+  const order=['Unknown','Primary','Secondary','Tertiary'];
+  for(const L of order){ctx.fillStyle=col[L];
+    for(const it of items){ if(it.lvl!==L||!facVisible(it)) continue; const p=xy(it); const r=it.ref?rad+(z<7?.8:1.4):rad;
+      ctx.beginPath(); ctx.arc(p.x,p.y,r,0,7); ctx.fill(); if(z>=8||it.ref) ctx.stroke(); }}
+}});
+const wardLayer=new PointTiles({zIndex:425,pad:z=>0.3,paint(ctx,items,xy,z){
+  const r=z<7?2:z<9?3:4.5; ctx.globalAlpha=.85;
+  for(const it of items){ctx.fillStyle=distCol(it.km); const p=xy(it); ctx.beginPath(); ctx.arc(p.x,p.y,r,0,7); ctx.fill();}
+}});
+let scen='10';
+const stLayer=new PointTiles({zIndex:430,pad:z=>0.3,paint(ctx,items,xy,z){
+  const R=+scen*1000; const c=css('--c-st');
+  if(document.getElementById('lyrRings').checked){
+    ctx.globalAlpha=.10; ctx.fillStyle=c; ctx.strokeStyle=c;
+    for(const it of items){const p=xy(it); const mpp=40075016.686*Math.cos(it.lat*Math.PI/180)/Math.pow(2,z+8); const pr=R/mpp; ctx.beginPath(); ctx.arc(p.x,p.y,pr,0,7); ctx.fill();}
+    ctx.globalAlpha=.35; ctx.lineWidth=1; for(const it of items){const p=xy(it); const mpp=40075016.686*Math.cos(it.lat*Math.PI/180)/Math.pow(2,z+8); ctx.beginPath(); ctx.arc(p.x,p.y,R/mpp,0,7); ctx.stroke();}
+  }
+  ctx.globalAlpha=1; ctx.fillStyle=c; ctx.strokeStyle=isDark()?'#000':'#fff'; ctx.lineWidth=1.2;
+  const s=z<7?3:z<9?4:5.5;
+  for(const it of items){const p=xy(it); ctx.beginPath(); ctx.moveTo(p.x,p.y-s); ctx.lineTo(p.x+s,p.y); ctx.lineTo(p.x,p.y+s); ctx.lineTo(p.x-s,p.y); ctx.closePath(); ctx.fill(); ctx.stroke();}
+}});
+
+const DCOL=['--d1','--d2','--d3','--d4','--d5'];
+function distCol(km){return css(DCOL[km<5?0:km<10?1:km<20?2:km<40?3:4]);}
+
+// Choropleth
+const choro=document.getElementById('choro');
+const SCALES={
+  far:{get:s=>s.share_over20_pubref,breaks:[.02,.1,.2,.35],fmt:v=>pct(v),label:['under 2%','2–10%','10–20%','20–35%','35% or more'],rev:false},
+  tert:{get:s=>s.share_over40_tert,breaks:[.05,.2,.4,.6],fmt:v=>pct(v),label:['under 5%','5–20%','20–40%','40–60%','60% or more'],rev:false},
+  ref:{get:s=>s.per100k_pubref,breaks:[.5,.8,1.1,1.4],fmt:v=>v.toFixed(2),label:['under 0.5','0.5–0.8','0.8–1.1','1.1–1.4','1.4 or more'],rev:true},
+  fac:{get:s=>s.per100k_fac,breaks:[20,30,40,50],fmt:v=>v.toFixed(0),label:['under 20','20–30','30–40','40–50','50 or more'],rev:true}
+};
+function classOf(v,sc){let i=0; while(i<sc.breaks.length&&v>=sc.breaks[i]) i++; return sc.rev?4-i:i;}
+function stateStyle(f){
+  const m=choro.value, s=A&&A.byState[f.properties.st]; const dark=isDark();
+  if(m==='none'||!s) return {color:dark?'#8a8380':'#7a726e',weight:1,fill:true,fillOpacity:0,fillColor:'#000'};
+  const sc=SCALES[m]; return {color:dark?'#8a8380':'#7a726e',weight:1,fillColor:css(DCOL[classOf(sc.get(s),sc)]),fillOpacity:dark?.5:.55};
+}
+function legend(){
+  const el=document.getElementById('legend'); const m=choro.value; let h='';
+  if(m!=='none'){const sc=SCALES[m]; h+=sc.label.map((l,i)=>`<div class="row"><span class="box" style="background:var(${DCOL[sc.rev?4-i:i]})"></span>${l}</div>`).join(''); if(sc.rev) h+='<div class="note">Red = fewer per person.</div>';}
+  if(document.getElementById('lyrWards').checked){h+='<div style="margin-top:6px"><b style="font-size:12px">Community distance to public referral hospital</b></div>'+A.band_labels.map((l,i)=>`<div class="row"><span class="sw" style="background:var(${DCOL[i]})"></span>${l}</div>`).join('');}
+  el.innerHTML=h;
+}
+choro.onchange=()=>{if(stateLayer) stateLayer.setStyle(stateStyle); legend();};
+
+// Layer controls
+const lvlBox=document.getElementById('lvlLayers');
+const onlyRef=document.getElementById('onlyRef'), onlyPub=document.getElementById('onlyPub');
+function buildLevelControls(counts){
+  const LBL={Primary:'Clinics and health centres',Secondary:'General hospitals',Tertiary:'Teaching and specialist hospitals',Unknown:'Type not recorded'};
+  lvlBox.innerHTML=Object.keys(LV).map(k=>`<label class="layer"><input type="checkbox" data-lvl="${k}" checked> <span class="sw" style="background:var(${LV[k]})"></span> ${LBL[k]} <span class="n">${fmt(counts[k]||0)}</span></label>`).join('');
+  lvlBox.querySelectorAll('input').forEach(i=>i.onchange=()=>{lvlOn[i.dataset.lvl]=i.checked; facLayer.redraw();});
+}
+onlyRef.onchange=onlyPub.onchange=()=>facLayer.redraw();
+function toggle(id,layer,after){const el=document.getElementById(id); el.onchange=()=>{el.checked?layer.addTo(map):map.removeLayer(layer); after&&after();};}
+toggle('lyrStations',stLayer);
+document.getElementById('lyrRings').onchange=e=>{if(e.target.checked&&!map.hasLayer(stLayer)){document.getElementById('lyrStations').checked=true; stLayer.addTo(map);} stLayer.redraw();};
+toggle('lyrWards',wardLayer,legend);
+
+// Popups
+map.on('click',e=>{
+  if(picking){pickBtn.click(); findNear(e.latlng.lat,e.latlng.lng,`Point you picked (${e.latlng.lat.toFixed(3)}, ${e.latlng.lng.toFixed(3)})`); return;}
+  let it=map.hasLayer(stLayer)?stLayer.nearest(e.latlng,9):null;
+  if(it){L.popup().setLatLng([it.lat,it.lon]).setContent(`<div class="pop"><h5>Proposed ambulance station</h5>Host: ${esc(it.host)||'unnamed public facility'}<br>${esc(it.lga)}, ${esc(it.state)}<br><span class="pill">reaches ${fmt(it.gain)} more people within ${scen} km</span>${it.ref?'<span class="pill">at a referral hospital</span>':''}<div class="note">Rank ${fmt(it.rank)} of ${fmt(A.scenarios[scen].n)} in the ${scen} km plan.</div></div>`).openOn(map); return;}
+  it=map.hasLayer(facLayer)?facLayer.nearest(e.latlng,8):null;
+  if(it){showFacility(it); return;}
+  it=map.hasLayer(wardLayer)?wardLayer.nearest(e.latlng,8):null;
+  if(it){L.popup().setLatLng([it.lat,it.lon]).setContent(`<div class="pop"><h5>${esc(it.ward)} ward</h5>${esc(it.lga)}, ${esc(it.state)}<br>Population 2025: ${fmt(it.pop)}<br>Nearest public referral hospital: <b>${it.km} km</b><br>Nearest tertiary hospital: ${it.kmt} km</div>`).openOn(map); return;}
+});
+function showFacility(it){
+  const tags=[]; if(it.ter) tags.push('tertiary'); else if(it.ref) tags.push('referral hospital'); if(it.pub) tags.push('public');
+  L.popup().setLatLng([it.lat,it.lon]).setContent(`<div class="pop"><h5>${esc(it.name)||'Unnamed facility'}</h5>${esc(it.type)} · ${esc(LVL_PLAIN[it.lvl])}<br>${/^Unknown$|^Public$|^Private$/.test(it.own)?esc(it.own==='Unknown'?'Ownership not recorded':it.own):esc(it.own)}<br>${it.ward?esc(it.ward)+' ward, ':''}${esc(it.lga)}, ${esc(it.state)}<br><span class="note">Status in GRID3: ${esc(it.func)}${it.nhfr?' · NHFR '+esc(it.nhfr):''}</span><div>${tags.map(t=>`<span class="pill">${t}</span>`).join('')}</div></div>`).openOn(map);
+}
+
+// Search
+const sIn=document.getElementById('search'), sOut=document.getElementById('results');
+let sTimer=null;
+sIn.oninput=()=>{clearTimeout(sTimer); sTimer=setTimeout(runSearch,150);};
+function runSearch(){
+  const q=sIn.value.trim().toLowerCase(); if(q.length<3||!FAC){sOut.innerHTML=''; return;}
+  const st=A.states.filter(s=>s.state.toLowerCase().includes(q)).slice(0,3);
+  const words=q.split(/\s+/); const hits=[];
+  for(const it of FAC){const n=it.lname; if(words.every(w=>n.includes(w))){hits.push(it); if(hits.length>=25) break;}}
+  hits.sort((a,b)=>(b.ref-a.ref));
+  sOut.innerHTML=st.map(s=>`<li><button data-state="${esc(s.state)}"><b>${esc(s.state)}</b> <small>state profile</small></button></li>`).join('')+
+    hits.slice(0,20).map((it,i)=>`<li><button data-fi="${it.i}">${esc(it.name)} <small>${esc(it.lga)}, ${esc(it.state)} · ${esc(it.type)}</small></button></li>`).join('')||'<li class="note" style="padding:6px">No match</li>';
+}
+sOut.onclick=e=>{const b=e.target.closest('button'); if(!b) return;
+  if(b.dataset.state){showState(b.dataset.state,true); return;}
+  const it=FAC[+b.dataset.fi]; if(!lvlOn[it.lvl]){lvlOn[it.lvl]=true; lvlBox.querySelector(`[data-lvl="${it.lvl}"]`).checked=true;} onlyRef.checked=onlyRef.checked&&it.ref; onlyPub.checked=onlyPub.checked&&it.pub; facLayer.redraw();
+  map.setView([it.lat,it.lon],13); setTimeout(()=>showFacility(it),250);};
+
+// State card
+function showState(name,zoom){
+  const s=A.byState[name]; if(!s) return;
+  openTab('map',true);
+  if(zoom&&stateLayer) stateLayer.eachLayer(l=>{if(l.feature.properties.st===name) map.fitBounds(l.getBounds(),{padding:[20,20]});});
+  const tot=s.pop2025, b=s.bands_pubref;
+  const bar=b.map((v,i)=>`<span title="${A.band_labels[i]}: ${pct(v/tot,1)}" style="display:inline-block;height:12px;width:${(v/tot*100).toFixed(2)}%;background:var(${DCOL[i]})"></span>`).join('');
+  const nat=(A.national.bands_pubref[3]+A.national.bands_pubref[4])/A.national.pop2025;
+  const rankFar=[...A.states].sort((x,y)=>y.share_over20_pubref-x.share_over20_pubref).findIndex(x=>x.state===name)+1;
+  const per=Math.round(s.share_over20_pubref*100), ratio=s.share_over20_pubref/nat;
+  let plain=`About <b>${per} in every 100</b> people in ${esc(name)} live 20 km or more from a public hospital that takes emergencies`;
+  plain+= ratio>=1.5?`, ${ratio.toFixed(1)} times the national level. It ranks ${ordinal(rankFar)} of 37 for distance to care.`: ratio<=0.5?`, well below the national level of ${Math.round(nat*100)} in 100.`:`, close to the national level of ${Math.round(nat*100)} in 100.`;
+  plain+=` There is one public referral hospital for every ${fmt(s.pop2025/Math.max(1,s.pub_referral))} people.`;
+  const card=document.getElementById('stateCard'); card.style.display='block';
+  card.innerHTML=`<h4>${esc(name)}</h4><p class="plain">${plain}</p><dl class="kv">
+    <dt>Population 2025</dt><dd>${fmt(tot)}</dd>
+    <dt>Facilities (GRID3)</dt><dd>${fmt(s.facilities)}${s.no_coords?` <span class="note">(${fmt(s.no_coords)} not mapped)</span>`:''}</dd>
+    <dt>Primary · secondary · tertiary</dt><dd>${fmt(s.primary)} · ${fmt(s.secondary)} · ${fmt(s.tertiary_level)}</dd>
+    <dt>Referral hospitals</dt><dd>${fmt(s.referral)} (${fmt(s.pub_referral)} public)</dd>
+    <dt>Public referral per 100k</dt><dd>${s.per100k_pubref.toFixed(2)}</dd>
+    <dt>Mean distance</dt><dd>${s.mean_km_pubref} km to a public referral hospital</dd>
+    <dt>20 km or more</dt><dd>${pct(s.share_over20_pubref,1)} of people</dd>
+    <dt>Stations for 95% reach</dt><dd>${s.stations['5']} (5 km) · ${s.stations['10']} (10 km) · ${s.stations['15']} (15 km)</dd>
+    <dt>Ambulances</dt><dd>${fmt(s.ambulances_norm100k)}–${fmt(s.ambulances_norm50k)}</dd></dl>
+    <div style="margin-top:8px;border-radius:6px;overflow:hidden;display:flex;line-height:0">${bar}</div>
+    <div class="note" style="margin-top:4px">People by distance to a public referral hospital (green = under 5 km, red = over 40 km).</div>`;
+  if(window.innerWidth<=860) card.scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+
+// ---------- Segmented controls ----------
+function seg(el,onPick){
+  el.innerHTML=['5','10','15'].map(k=>`<button type="button" data-k="${k}" aria-pressed="${k===scen}" title="about ${A.scenarios[k].approx_minutes} minutes by road">${k} km${el.id==='segAmb'?' · ~'+A.scenarios[k].approx_minutes+' min':''}</button>`).join('');
+  el.onclick=e=>{const b=e.target.closest('button'); if(!b) return; setScen(b.dataset.k);};
+}
+function setScen(k){
+  scen=k; document.querySelectorAll('#segMap button,#segAmb button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.k===k));
+  const S=A.scenarios[k];
+  stLayer.setItems(S.stations.map((r,i)=>({lat:r[0],lon:r[1],gain:r[2],host:r[3],state:r[4],lga:r[5],ref:r[6],rank:i+1})));
+  document.getElementById('nStations').textContent=fmt(S.n);
+  renderAmb();
+}
+
+// ---------- Charts (inline SVG) ----------
+function svgEl(w,h,inner,label){return `<svg class="chart" viewBox="0 0 ${w} ${h}" role="img" aria-label="${esc(label)}">${inner}</svg>`;}
+function bandChart(){
+  const n=A.national, b=n.bands_pubref, tot=n.pop2025, W=560, rowH=34, y0=8;
+  const max=Math.max(...b); let s='';
+  b.forEach((v,i)=>{const y=y0+i*rowH, w=Math.max(2,v/max*300);
+    s+=`<text x="0" y="${y+17}" font-size="13" fill="var(--ink)">${A.band_labels[i]}</text>
+        <rect x="90" y="${y+4}" width="${w}" height="20" rx="4" fill="var(${DCOL[i]})"><title>${A.band_labels[i]}: ${fmt(v)} people</title></rect>
+        <text x="${96+w}" y="${y+18}" font-size="12.5" fill="var(--muted)">${mil(v)} · ${pct(v/tot)}</text>`;});
+  const far=(b[3]+b[4])/tot;
+  document.getElementById('bandTitle').textContent=`${pct(far)} of Nigerians, ${mil(b[3]+b[4])} people, live 20 km or more from a public referral hospital`;
+  document.getElementById('bandChart').innerHTML=svgEl(W,y0+b.length*rowH+4,s,'Population by distance to a public referral hospital');
+}
+function levelChart(){
+  const n=A.national, rows=[['Primary',n.primary,'--c-pri'],['Secondary',n.secondary,'--c-sec'],['Tertiary',n.tertiary_level,'--c-ter'],['Not recorded',n.unknown_level,'--c-unk']];
+  const max=Math.max(...rows.map(r=>r[1])), rowH=34; let s='';
+  rows.forEach((r,i)=>{const y=8+i*rowH, w=Math.max(2,r[1]/max*300);
+    s+=`<text x="0" y="${y+17}" font-size="13" fill="var(--ink)">${r[0]}</text><rect x="100" y="${y+4}" width="${w}" height="20" rx="4" fill="var(${r[2]})"><title>${r[0]}: ${fmt(r[1])}</title></rect><text x="${106+w}" y="${y+18}" font-size="12.5" fill="var(--muted)">${fmt(r[1])} · ${pct(r[1]/n.facilities)}</text>`;});
+  document.getElementById('levelChart').innerHTML=svgEl(560,8+rows.length*rowH+4,s,'Facilities by level of care');
+}
+function farChart(){
+  const st=[...A.states].sort((a,b)=>b.share_over20_pubref-a.share_over20_pubref);
+  const rowH=20, W=720, x0=170, scale=440; let s='';
+  const nat=(A.national.bands_pubref[3]+A.national.bands_pubref[4])/A.national.pop2025;
+  st.forEach((r,i)=>{const y=6+i*rowH, v=r.share_over20_pubref, w=Math.max(1,v*scale);
+    s+=`<g class="farrow" data-state="${esc(r.state)}" style="cursor:pointer"><rect x="0" y="${y}" width="${W}" height="${rowH}" fill="transparent"/><text x="${x0-8}" y="${y+14}" font-size="12.5" text-anchor="end" fill="var(--ink)">${esc(r.state)}</text>
+      <rect x="${x0}" y="${y+3}" width="${w}" height="${rowH-6}" rx="3" fill="${v>=.3?'var(--accent)':'var(--c-unk)'}"><title>${r.state}: ${pct(v,1)} (${fmt(v*r.pop2025)} people)</title></rect>
+      <text x="${x0+w+6}" y="${y+14}" font-size="12" fill="var(--muted)">${pct(v,1)}</text></g>`;});
+  const nx=x0+nat*scale, H=6+st.length*rowH+18;
+  s+=`<line x1="${nx}" x2="${nx}" y1="2" y2="${H-14}" stroke="var(--ink)" stroke-dasharray="3 3" opacity=".6"/><text x="${nx+4}" y="${H-2}" font-size="12" fill="var(--muted)">Nigeria ${pct(nat,1)}</text>`;
+  const top=st.filter(r=>r.share_over20_pubref>=.3).map(r=>r.state);
+  document.getElementById('farTitle').textContent=`In ${top.length} states, 30% or more of people live 20 km+ from a public referral hospital`;
+  document.getElementById('farChart').innerHTML=svgEl(W,H,s,'Share of population 20 km or more from a public referral hospital, by state');
+  document.querySelectorAll('#farChart .farrow').forEach(g=>g.onclick=()=>showState(g.dataset.state,true));
+}
+function curveChart(){
+  const S=A.scenarios[scen], W=560,H=260, x0=46,y0=14,x1=W-14,y1=H-34;
+  const keys=['5','10','15'], maxN=Math.max(...keys.map(k=>A.scenarios[k].n));
+  const X=n=>x0+(n/maxN)*(x1-x0), Y=v=>y1-(v)*(y1-y0);
+  let s='';
+  [0,.25,.5,.75,.95].forEach(v=>{s+=`<line x1="${x0}" x2="${x1}" y1="${Y(v)}" y2="${Y(v)}" stroke="var(--line)"/><text x="${x0-6}" y="${Y(v)+4}" font-size="11" text-anchor="end" fill="var(--muted)">${pct(v)}</text>`;});
+  const step=maxN>2000?1000:500; for(let n=0;n<=maxN;n+=step) s+=`<text x="${X(n)}" y="${y1+16}" font-size="11" text-anchor="middle" fill="var(--muted)">${fmt(n)}</text>`;
+  s+=`<text x="${(x0+x1)/2}" y="${H-2}" font-size="11.5" text-anchor="middle" fill="var(--muted)">stations</text>`;
+  keys.forEach(k=>{const C=A.scenarios[k], c=C.curve, stepN=C.n/(c.length-1||1);
+    const d=c.map((v,i)=>`${i?'L':'M'}${X(Math.min(C.n,i*Math.max(1,Math.floor(C.n/200)))).toFixed(1)},${Y(v).toFixed(1)}`).join('');
+    const on=k===scen; s+=`<path d="${d}" fill="none" stroke="${on?'var(--accent)':'var(--c-unk)'}" stroke-width="${on?2.5:1.3}" opacity="${on?1:.7}"/>`;
+    const lx=X(C.n), ly=Y(C.coverage); s+=`<circle cx="${lx}" cy="${ly}" r="3.5" fill="${on?'var(--accent)':'var(--c-unk)'}"/><text x="${Math.min(lx,x1-4)}" y="${ly-8}" font-size="11.5" text-anchor="${lx>x1-60?'end':'middle'}" fill="${on?'var(--ink)':'var(--muted)'}">${k} km: ${fmt(C.n)}</text>`;});
+  document.getElementById('curveTitle').textContent=`${fmt(S.n)} stations put 95% of Nigerians within ${scen} km (~${S.approx_minutes} min) of an ambulance`;
+  document.getElementById('curveChart').innerHTML=svgEl(W,H,s,'Population reached by number of stations');
+}
+
+// ---------- Ambulance section ----------
+function renderAmb(){
+  const S=A.scenarios[scen], n=A.national;
+  const fleetLo=A.states.reduce((t,s)=>t+Math.max(s.ambulances_norm100k,s.stations[scen]),0), fleetHi=A.states.reduce((t,s)=>t+Math.max(s.ambulances_norm50k,s.stations[scen]),0);
+  document.getElementById('ambStats').innerHTML=[
+    [pct(.07),'of emergencies reach hospital by public ambulance','Salvus Emergency, Q1 2026'],
+    [`${fmt(S.n)}`,`stations for 95% within ${scen} km (~${S.approx_minutes} min)`,`${fmt(S.steps['90'])} stations reach 90%`],
+    [`${fmt(fleetLo)}–${fmt(fleetHi)}`,'ambulances for 235 million people','1 per 100,000 to 1 per 50,000 people in each state, at least one per station'],
+    [fmt(n.pub_referral),'public referral hospitals to receive patients',`${fmt(n.referral)} including private`],
+    ['5%','of the Basic Health Care Provision Fund is for emergency treatment','National Health Act 2014, s. 11']
+  ].map(r=>`<div class="card stat"><div class="v">${r[0]}</div><div class="l">${r[1]}</div><div class="s">${r[2]}</div></div>`).join('');
+  curveChart();
+  const rows=A.states.map(s=>({state:s.state,pop:s.pop2025,st:s.stations[scen],lo:Math.max(s.ambulances_norm100k,s.stations[scen]),hi:Math.max(s.ambulances_norm50k,s.stations[scen]),far:s.share_over20_pubref})).sort((a,b)=>b.st-a.st);
+  document.getElementById('ambTable').innerHTML=`<thead><tr><th>State</th><th class="num">Stations</th><th class="num">Ambulances</th><th class="num">20 km+</th></tr></thead><tbody>`+
+    rows.map(r=>`<tr class="clickable" data-state="${esc(r.state)}"><td>${esc(r.state)}</td><td class="num">${fmt(r.st)}</td><td class="num">${fmt(r.lo)}–${fmt(r.hi)}</td><td class="num">${pct(r.far)}</td></tr>`).join('')+
+    `<tr><td><b>Nigeria</b></td><td class="num"><b>${fmt(S.n)}</b></td><td class="num"><b>${fmt(rows.reduce((a,r)=>a+r.lo,0))}–${fmt(rows.reduce((a,r)=>a+r.hi,0))}</b></td><td class="num">${pct((n.bands_pubref[3]+n.bands_pubref[4])/n.pop2025)}</td></tr></tbody>`;
+  document.querySelectorAll('#ambTable tr.clickable').forEach(tr=>tr.onclick=()=>{showOnMap(); showState(tr.dataset.state,true);});
+}
+function showOnMap(){document.getElementById('lyrStations').checked=true; if(!map.hasLayer(stLayer)) stLayer.addTo(map); openTab('map',true); setTimeout(()=>map.invalidateSize(),60);}
+document.getElementById('showOnMap').onclick=showOnMap;
+
+const BENCH=[
+ ['India — 108 and 102','Free national number; private operators run fleets under state contracts; 108 for emergencies, 102 for pregnant women and children.','10,993 ambulances in 35 states and union territories (2024); started with 30 in 2005. Average response 14 min in cities, 31 min rural (2019). Government pays capital and running costs.','Contracted operators with paid, monitored performance can scale fast. Separate maternal transport (102) protects emergency capacity.','https://en.wikipedia.org/wiki/108_(emergency_telephone_number)'],
+ ['Rwanda — SAMU / 912','One national dispatch centre and free number 912, run by the Ministry of Health since 2007.','More than 300 ambulances nationwide; studies found average journeys of about one hour; digital dispatch and hospital pre-alert now being added.','A single dispatch centre and a decision aid that sends patients to the nearest ready hospital cut coordination delays.','https://ughe.org/912rwanda-is-saving-more-lives-in-the-golden-hour/'],
+ ['Ghana — National Ambulance Service','National agency with stations across districts; 307 ambulances added in 2020 under “one constituency, one ambulance”.','By February 2026, 127 of 318 ambulances were grounded. 91 of the 2020 vehicles were out of service by December 2023.','Buying vehicles is the easy part. Budget for maintenance, fuel and replacement from day one.','https://www.myjoyonline.com/127-of-318-ambulances-grounded-as-fleet-ages-national-ambulance-service-official-reveals/'],
+ ['Ethiopia — woreda ambulances','One ambulance per district (woreda), mostly for maternal referral, linked to health extension workers.','812 of 840 planned ambulances delivered by 2014. In one woreda, skilled-attended births about doubled in a year.','A simple, local, free service tied to community health workers changes care-seeking — where local leadership enforces proper use.','https://devpolicy.org/does-the-introduction-of-ambulances-improve-access-to-maternal-health-services-in-rural-ethiopia-20141014/'],
+ ['Kenya — county EMS','Emergency Medical Care Policy 2020–2030; counties run ambulances; insurer-funded emergency package with a toll-free number.','No reliable count of ambulances, so the ratio to population cannot be estimated (KIPPRA, 2024).','Start with a national ambulance register. A system cannot be planned or paid for if its fleet is unknown.','https://kippra.or.ke/strengthening-emergency-medical-care-in-kenya/'],
+ ['Lagos — LASAMBUS','State ambulance service with toll-free 767 and 112, ambulance points across the state.','97.5% of 45,277 calls answered (2021–2025); 26 ambulance points and four bases; 36 mobile ICUs; 196 staff.','A Nigerian state has already built a working service. It is the template for other states.','https://nairametrics.com/2025/06/13/lagos-state-ambulance-service-responds-to-over-44000-emergencies-hits-97-5-response-rate-in-4-years/'],
+ ['United Kingdom — NHS ambulance trusts','Calls triaged into four categories; each has a response-time standard.','Category 1 (life-threatening): mean 7 min, 90% within 15 min. Category 2: mean 18 min, 90% within 40 min.','Triage lets a limited fleet send the fastest help to the sickest patients and publish its performance.','https://www.secamb.nhs.uk/what-we-do/ambulance-response-programme'],
+ ['France — SAMU / Centre 15','A doctor regulates every call and picks the response: advice, a GP, a private ambulance, fire-service rescue or a medical team (SMUR).','One SAMU per département, each based at a reference hospital, often a university hospital.','Putting clinical judgement at dispatch keeps ambulances for true emergencies. Basing dispatch at teaching hospitals fits Nigeria’s tertiary network.','https://www.auvergne-rhone-alpes.ars.sante.fr/les-services-du-samu-centre-15-en-auvergne-rhone-alpes']
+];
+function renderBench(){
+  document.getElementById('benchTable').innerHTML=`<thead><tr><th>System</th><th>Model</th><th>Scale and results</th><th>Lesson for Nigeria</th></tr></thead><tbody>`+
+    BENCH.map(r=>`<tr><td><a href="${r[4]}" target="_blank" rel="noopener"><b>${esc(r[0])}</b></a></td><td>${esc(r[1])}</td><td>${esc(r[2])}</td><td>${esc(r[3])}</td></tr>`).join('')+'</tbody>';
+}
+const DESIGN=[
+ ['One number, one dispatch per state','112 routed to a state Emergency Coordination Centre, with clinical triage at the call (France, UK). Fix 112 across all networks first.'],
+ ['Stations at existing public facilities','Base ambulances at the public facilities this atlas selects, starting with the stations that reach the most people.'],
+ ['Two fleets','Emergency ambulances for trauma and critical illness; a cheaper obstetric and referral transport fleet linked to PHCs (India 102, Ethiopia).'],
+ ['Destination rules','Send each patient to the nearest public referral hospital able to treat them, pre-alerted from the ambulance (Rwanda 912).'],
+ ['Pay for running costs, not just vehicles','Use the 5% BHCPF emergency line to pay per trip and for maintenance, fuel and crews; contract operators on performance (India, Ghana lesson).'],
+ ['Measure and publish','A national ambulance register, response times by category, and a public dashboard. Kenya shows what is lost without one.'],
+ ['Protect bystanders','A Good Samaritan law, as NEMSAS has asked for, so people help without fear of the police.']
+];
+
+// ---------- Overview / tables ----------
+function renderOverview(){
+  const n=A.national;
+  document.getElementById('natStats').innerHTML=[
+    [fmt(n.facilities),'health facilities in GRID3 v4.0',`${fmt(n.mapped)} mapped with coordinates`],
+    [fmt(n.primary),'primary-level facilities',`${pct(n.primary/n.facilities)} of all records`],
+    [fmt(n.referral),'referral hospitals',`${fmt(n.pub_referral)} public · ${fmt(n.tertiary)} tertiary`],
+    [mil(n.pop2025),'people in 2025 (WorldPop)',`1 public referral hospital per ${fmt(n.pop2025/n.pub_referral)} people`],
+    [n.mean_km_pubref+' km','average distance to a public referral hospital','straight line, population-weighted'],
+    [pct((n.bands_tert[3]+n.bands_tert[4])/n.pop2025),'of people live 20 km+ from a tertiary hospital',`${mil(n.bands_tert[4])} live 40 km+ away`]
+  ].map(r=>`<div class="card stat"><div class="v">${r[0]}</div><div class="l">${r[1]}</div><div class="s">${r[2]}</div></div>`).join('');
+  bandChart(); levelChart(); farChart();
+}
+const COLS=[['state','State',s=>esc(s.state),0],['pop2025','Population 2025',s=>fmt(s.pop2025),1],['facilities','Facilities',s=>fmt(s.facilities),1],['per100k_fac','Per 100k',s=>s.per100k_fac.toFixed(0),1],
+ ['referral','Referral hospitals',s=>fmt(s.referral),1],['pub_referral','Public referral',s=>fmt(s.pub_referral),1],['per100k_pubref','Public referral per 100k',s=>s.per100k_pubref.toFixed(2),1],
+ ['mean_km_pubref','Mean km',s=>s.mean_km_pubref,1],['share_over20_pubref','20 km+',s=>pct(s.share_over20_pubref,1),1],['share_over40_tert','40 km+ to tertiary',s=>pct(s.share_over40_tert,1),1],['no_coords','Not mapped',s=>fmt(s.no_coords),1]];
+let sortK='share_over20_pubref', sortD=-1;
+function renderStates(){
+  const q=document.getElementById('stateFilter').value.toLowerCase();
+  const rows=A.states.filter(s=>s.state.toLowerCase().includes(q)).sort((a,b)=>{const x=a[sortK],y=b[sortK]; return (x>y?1:x<y?-1:0)*sortD;});
+  document.getElementById('stateTable').innerHTML=`<thead><tr>${COLS.map(c=>`<th class="${c[3]?'num':''}" data-k="${c[0]}" aria-sort="${c[0]===sortK?(sortD>0?'ascending':'descending'):'none'}">${c[1]}${c[0]===sortK?(sortD>0?' ▲':' ▼'):''}</th>`).join('')}</tr></thead><tbody>`+
+    rows.map(s=>`<tr class="clickable" data-state="${esc(s.state)}">${COLS.map(c=>`<td class="${c[3]?'num':''}">${c[2](s)}</td>`).join('')}</tr>`).join('')+'</tbody>';
+  document.querySelectorAll('#stateTable th').forEach(th=>th.onclick=()=>{const k=th.dataset.k; if(k===sortK) sortD=-sortD; else {sortK=k; sortD=k==='state'?1:-1;} renderStates();});
+  document.querySelectorAll('#stateTable tr.clickable').forEach(tr=>tr.onclick=()=>showState(tr.dataset.state,true));
+}
+document.getElementById('stateFilter').oninput=renderStates;
+
+const DL=[
+ ['Health facilities (CSV)','All 70,235 GRID3 v4.0 records with state, LGA, ward, level, ownership, status, coordinates and the referral flags used here (1 = yes). 9.7 MB.','data/nigeria_health_facilities_grid3_v4.csv'],
+ ['Analysis (JSON)','National and state figures: distance bands, hospitals per 100,000, stations and ambulances for each scenario.','data/analysis.json'],
+ ['Proposed stations, 10 km reach (CSV)','Station sites in order of benefit, with host facility and people reached.','data/proposed_stations_10km.csv'],
+ ['Proposed stations, 5 km and 15 km (CSV)','The same for the other two scenarios.','data/proposed_stations_5km.csv','data/proposed_stations_15km.csv'],
+ ['Ward population and distance (JSON)','9,306 wards: 2025 population and distance to the nearest public referral and tertiary hospital. CC BY-SA 4.0.','data/wards.json']
+];
+function renderDL(){
+  document.getElementById('dlList').innerHTML=DL.map(d=>`<div class="card dl"><div><b>${esc(d[0])}</b><br><span class="note">${esc(d[1])}</span></div><div style="flex:0 0 auto;display:flex;gap:8px">${d.slice(2).map(u=>`<a class="btn primary" href="${u}" download>${u.split('.').pop().toUpperCase()}${d.length>3?' · '+u.match(/(\d+)km/)[1]+' km':''}</a>`).join('')}</div></div>`).join('');
+}
+const SRC=[
+ ['GRID3 NGA – Health Facilities v4.0. CIESIN, Columbia University (2026). CC BY 4.0.','https://data.grid3.org/datasets/GRID3::grid3-nga-health-facilities-v4-0/about'],
+ ['Kemabonta, T. (2026). Nigeria health facilities, combined layer with 2025 ward electricity access [Data set] — source of the ward population table (WorldPop 2025 on GRID3 operational wards v4.0).','https://github.com/Kemabonta/nigeria-health-facilities-ward-ear'],
+ ['State boundaries: geoBoundaries (CC BY 4.0), as used in the Nigeria Energy Atlas.','/energy-atlas/'],
+ ['National Health Act 2014, section 11 (Basic Health Care Provision Fund).','https://lawglobalhub.com/section-11-nigerian-national-health-act-2014'],
+ ['Premium Times (2 March 2026). FG strengthens emergency care nationwide.','https://www.premiumtimesng.com/health/health-news/860878-fg-strengthens-emergency-care-nationwide-seeks-improved-access.html'],
+ ['The Guardian Nigeria. NEMSAS expands emergency medical services.','https://guardian.ng/features/health/nemsas-expands-emergency-medical-services/'],
+ ['The Guardian Nigeria (15 April 2026). Only 7% of emergencies handled by public ambulances — Salvus Emergency Q1 2026 report.','https://guardian.ng/features/health/only-7-of-emergencies-handled-by-public-ambulances-report/'],
+ ['Nairametrics (13 June 2025). LASAMBUS responds to over 44,000 emergencies.','https://nairametrics.com/2025/06/13/lagos-state-ambulance-service-responds-to-over-44000-emergencies-hits-97-5-response-rate-in-4-years/'],
+ ['Factly. What is the state of emergency ambulance services in India (1 per 100,000 benchmark).','https://factly.in/what-is-the-state-of-emergency-ambulance-services-in-india'],
+ ['KIPPRA (7 May 2024). Strengthening emergency medical care in Kenya (1 per 50,000 cited as WHO guidance).','https://kippra.or.ke/strengthening-emergency-medical-care-in-kenya/'],
+ ['Benchmark systems: see links in the Ambulance system table.','#ambulance']
+];
+function renderAbout(){document.getElementById('srcList').innerHTML=SRC.map(s=>`<li><a href="${s[1]}" ${s[1].startsWith('http')?'target="_blank" rel="noopener"':''}>${esc(s[0])}</a></li>`).join(''); document.getElementById('builtDate').textContent=new Date(A.built+'T12:00:00Z').toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'});}
+
+// ---------- Quick views (presets) ----------
+function setLayer(id,layer,on){const el=document.getElementById(id); el.checked=on; if(on&&!map.hasLayer(layer)) layer.addTo(map); if(!on&&map.hasLayer(layer)) map.removeLayer(layer);}
+function applyPreset(k){
+  document.querySelectorAll('.presets .chip').forEach(c=>c.setAttribute('aria-pressed',c.dataset.preset===k));
+  Object.keys(lvlOn).forEach(l=>{lvlOn[l]=true;}); lvlBox.querySelectorAll('input').forEach(i=>i.checked=true);
+  onlyPub.checked=false; onlyRef.checked=false; document.getElementById('lyrRings').checked=false;
+  if(k==='all'){setLayer('lyrStations',stLayer,false); setLayer('lyrWards',wardLayer,false); choro.value='none';}
+  if(k==='hospitals'){onlyRef.checked=true; setLayer('lyrStations',stLayer,false); setLayer('lyrWards',wardLayer,false); choro.value='ref';}
+  if(k==='gaps'){onlyRef.checked=true; onlyPub.checked=true; setLayer('lyrStations',stLayer,false); setLayer('lyrWards',wardLayer,true); choro.value='none';}
+  if(k==='stations'){onlyRef.checked=true; onlyPub.checked=true; setLayer('lyrStations',stLayer,true); document.getElementById('lyrRings').checked=true; setLayer('lyrWards',wardLayer,false); choro.value='none';}
+  facLayer.redraw(); stLayer.redraw(); if(stateLayer) stateLayer.setStyle(stateStyle); legend();
+}
+document.querySelectorAll('.presets .chip').forEach(c=>c.onclick=()=>applyPreset(c.dataset.preset));
+// Map help box
+(function(){const h=document.getElementById('mapHelp'); let seen=null; try{seen=localStorage.getItem('ha-help')}catch(e){} if(seen) h.hidden=true;
+  document.getElementById('hideHelp').onclick=()=>{h.hidden=true; try{localStorage.setItem('ha-help','1')}catch(e){}};})();
+// Pick a place
+let picking=false; const pickBtn=document.getElementById('pickPlace');
+pickBtn.onclick=()=>{picking=!picking; pickBtn.setAttribute('aria-pressed',picking); pickBtn.textContent=picking?'Now click a place on the map…':'Pick a place on the map'; document.body.classList.toggle('picking',picking);};
+
+// ---------- Find care near you ----------
+const KM_MIN=2.1; // minutes per straight-line km (roads 1.4x, 40 km/h)
+function hav(a1,o1,a2,o2){const r=Math.PI/180,dA=(a2-a1)*r,dO=(o2-o1)*r,x=Math.sin(dA/2)**2+Math.cos(a1*r)*Math.cos(a2*r)*Math.sin(dO/2)**2; return 12742*Math.asin(Math.sqrt(x));}
+function nearestOf(lat,lon,pred,k){const out=[]; for(const f of FAC){ if(!pred(f)) continue; const d=hav(lat,lon,f.lat,f.lon); if(out.length<k||d<out[out.length-1].d){out.push({f,d}); out.sort((x,y)=>x.d-y.d); if(out.length>k) out.pop();}} return out;}
+const tmin=d=>{const m=Math.round(d*KM_MIN); return m<60?`about ${Math.max(1,m)} min`:`about ${Math.floor(m/60)} h ${m%60?m%60+' min':''}`;};
+let fmap=null, fLayer=null;
+function ensureFmap(){ if(fmap) return; fmap=L.map('fmap',{zoomSnap:0.25,minZoom:5,maxZoom:17}); window._fmap=fmap;
+  L.tileLayer(`https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/${isDark()?'World_Dark_Gray_Base':'World_Light_Gray_Base'}/MapServer/tile/{z}/{y}/{x}`,{maxZoom:16,attribution:'Basemap &copy; Esri · Facilities: GRID3'}).addTo(fmap);
+  fLayer=L.layerGroup().addTo(fmap); fmap.fitBounds([[4.1,2.6],[13.9,14.7]]);}
+function findNear(lat,lon,label){
+  if(!FAC){document.getElementById('fMsg').textContent='Facilities are still loading. Try again in a moment.'; return;}
+  ensureFmap();
+  const groups=[
+    ['Nearest public hospital that takes emergencies','--c-sec',f=>f.ref&&f.pub,2],
+    ['Nearest teaching, federal or specialist hospital','--c-ter',f=>f.ter,1],
+    ['Nearest clinic or health centre','--c-pri',f=>f.lvl==='Primary',1]];
+  const res=groups.map(g=>({g,hits:nearestOf(lat,lon,g[2],g[3])}));
+  const first=res[0].hits[0];
+  const verdict=!first?'':first.d<5?`Good access: a public hospital is ${first.d.toFixed(1)} km away.`:first.d<20?`Moderate access: the nearest public hospital is ${first.d.toFixed(0)} km away, ${tmin(first.d)} by road.`:`Far from care: the nearest public hospital is ${first.d.toFixed(0)} km away, ${tmin(first.d)} by road. Places like this would gain most from an ambulance service.`;
+  let h=`<p class="note" style="margin:0 0 4px">Results for</p><h3 style="margin:0 0 10px;font-size:18px">${esc(label)}</h3><p class="verdict">${verdict}</p><div class="res">`;
+  res.forEach(({g,hits})=>hits.forEach((x,i)=>{const f=x.f; h+=`<div class="resrow"><span class="ico" style="background:var(${g[1]})">${i+1}</span><div><h4>${i?'Next nearest':g[0]}</h4><div class="nm">${esc(f.name)||'Unnamed facility'}</div><div class="dt">${x.d.toFixed(1)} km away (straight line) · ${tmin(x.d)} by road</div><div class="note">${esc(f.lga)}, ${esc(f.state)} · ${esc(f.type)} · ${f.pub?'public':'private or not recorded'} · status in register: ${esc(f.func)}</div></div></div>`;}));
+  h+=`</div><p class="note" style="margin-top:8px">Travel times are rough estimates. Call ahead to confirm services.</p>`;
+  document.getElementById('fOut').innerHTML=h;
+  fLayer.clearLayers(); const pts=[[lat,lon]];
+  L.circleMarker([lat,lon],{radius:8,color:css('--ink'),weight:2,fillColor:css('--panel'),fillOpacity:1}).bindTooltip(label).addTo(fLayer);
+  res.forEach(({g,hits})=>hits.forEach(x=>{pts.push([x.f.lat,x.f.lon]); L.polyline([[lat,lon],[x.f.lat,x.f.lon]],{color:css(g[1]),weight:2,dashArray:'5 5'}).addTo(fLayer);
+    L.circleMarker([x.f.lat,x.f.lon],{radius:7,color:'#fff',weight:1.5,fillColor:css(g[1]),fillOpacity:1}).bindTooltip(`${x.f.name} · ${x.d.toFixed(1)} km`).addTo(fLayer);}));
+  window._fBounds=L.latLngBounds(pts); openTab('find',true);
+  try{window.SiteTrack&&window.SiteTrack('find','Find care near you')}catch(e){}
+}
+const fState=document.getElementById('fState'), fLga=document.getElementById('fLga'), fWard=document.getElementById('fWard'), fGo=document.getElementById('fGo');
+function initFind(){
+  const states=[...new Set(WARDS.map(w=>w.state))].sort();
+  fState.innerHTML='<option value="">Choose a state</option>'+states.map(x=>`<option>${esc(x)}</option>`).join('');
+  fState.onchange=()=>{const l=[...new Set(WARDS.filter(w=>w.state===fState.value).map(w=>w.lga))].sort();
+    fLga.innerHTML='<option value="">Choose an LGA</option>'+l.map(x=>`<option>${esc(x)}</option>`).join(''); fLga.disabled=!fState.value; fWard.innerHTML=''; fWard.disabled=true; fGo.disabled=true;};
+  fLga.onchange=()=>{const w=WARDS.filter(x=>x.state===fState.value&&x.lga===fLga.value).sort((a,b)=>a.ward.localeCompare(b.ward));
+    fWard.innerHTML='<option value="">Whole LGA</option>'+w.map(x=>`<option value="${WARDS.indexOf(x)}">${esc(x.ward)}</option>`).join(''); fWard.disabled=!fLga.value; fGo.disabled=!fLga.value;};
+  fGo.onclick=()=>{ if(fWard.value){const w=WARDS[+fWard.value]; findNear(w.lat,w.lon,`${w.ward} ward, ${w.lga} LGA, ${w.state}`);} else {
+      const w=WARDS.filter(x=>x.state===fState.value&&x.lga===fLga.value); const P=w.reduce((a,x)=>a+x.pop,0)||1;
+      findNear(w.reduce((a,x)=>a+x.lat*x.pop,0)/P, w.reduce((a,x)=>a+x.lon*x.pop,0)/P, `${fLga.value} LGA (centre), ${fState.value}`);} };
+}
+document.getElementById('fLoc').onclick=()=>{const m=document.getElementById('fMsg');
+  if(!navigator.geolocation){m.textContent='Your browser cannot share a location. Choose a state and LGA instead.'; return;}
+  m.textContent='Finding your location…';
+  navigator.geolocation.getCurrentPosition(p=>{m.textContent=''; findNear(p.coords.latitude,p.coords.longitude,'Your location');},
+    ()=>{m.textContent='Your location was not shared. Choose a state and LGA instead.';},{timeout:10000});};
+
+// ---------- Glossary ----------
+const GLOSSARY={
+ 'Primary health centre':'The first place most people go for care: a clinic, health post or health centre. It handles check-ups, vaccines, childbirth and common illnesses, and refers serious cases to a hospital.',
+ 'Referral hospital':'A hospital that receives patients sent on from clinics and health centres, and can treat serious emergencies. In this atlas: general (secondary) and teaching or specialist (tertiary) hospitals.',
+ 'Public hospital':'A hospital owned by federal, state or local government, or the military. Treatment there is usually cheaper than in private hospitals.',
+ 'Secondary care':'Care at a general hospital: surgery, admission to a ward, emergency care and specialist doctors for common conditions.',
+ 'Tertiary hospital':'The most specialised level of care: teaching hospitals, federal medical centres and specialist hospitals, for complex surgery, intensive care and rare conditions.',
+ 'LGA':'Local government area. Nigeria has 774 LGAs, each made up of several wards.',
+ 'Ward':'The smallest administrative area used here. Nigeria has about 9,300 wards; each is home to about 25,000 people on average.',
+ 'Straight line':'Distance measured directly on the map, as the crow flies. Real road distance is usually about 1.4 times longer.',
+ 'Per 100,000 people':'A fair way to compare places of different sizes: the number of hospitals for every 100,000 residents.',
+ 'NEMSAS':'National Emergency Medical Service and Ambulance System: the federal programme that helps states set up ambulance services and emergency care.',
+ 'BHCPF':'Basic Health Care Provision Fund, created by the National Health Act 2014. By law, 5% of it is for emergency medical treatment.',
+ '112':'Nigeria\'s free national emergency number. It should connect to police, fire and ambulance services on every mobile network.',
+ 'Dispatch centre':'The room where trained staff answer emergency calls, judge how urgent each one is, and send the nearest ambulance.',
+ 'Ambulance station':'A place where an ambulance and its crew wait between calls. In this plan, stations sit at existing public health facilities.',
+ 'Reach':'How close an ambulance station is to a community. A 10 km reach means an ambulance could arrive in roughly 20 minutes.',
+ 'GRID3':'Geo-Referenced Infrastructure and Demographic Data for Development: the project, led by Columbia University with Nigerian partners, that compiles the national health facility register used here.',
+ 'WorldPop':'A research programme at the University of Southampton that estimates where people live, using census data and satellite images.'
+};
+const GL_FIND=[['primary health centre','Primary health centre'],['referral hospital','Referral hospital'],['public hospital','Public hospital'],['tertiary','Tertiary hospital'],['secondary','Secondary care'],['LGA','LGA'],['wards?','Ward'],['straight line','Straight line'],['per 100,000','Per 100,000 people'],['NEMSAS','NEMSAS'],['Basic Health Care Provision Fund','BHCPF'],['dispatch centre','Dispatch centre'],['ambulance stations?','Ambulance station'],['GRID3','GRID3'],['WorldPop','WorldPop']];
+function glossify(root){
+  const used=new Set();
+  const walker=document.createTreeWalker(root,NodeFilter.SHOW_TEXT,{acceptNode:n=>n.parentElement.closest('a,button,abbr,select,option,script,style,h1,h2,h3,h4,th,.gloss,.stat .v,svg,label')?NodeFilter.FILTER_REJECT:NodeFilter.FILTER_ACCEPT});
+  const nodes=[]; while(walker.nextNode()) nodes.push(walker.currentNode);
+  for(const n of nodes){ for(const [re,key] of GL_FIND){ if(used.has(key)) continue; const m=n.nodeValue.match(new RegExp('\\b('+re+')\\b','i')); if(!m) continue;
+      used.add(key); const after=n.splitText(m.index); after.nodeValue=after.nodeValue.slice(m[0].length);
+      const ab=document.createElement('abbr'); ab.className='gl'; ab.tabIndex=0; ab.dataset.gl=key; ab.textContent=m[0]; n.parentNode.insertBefore(ab,after); break; } }
+}
+const tip=document.createElement('div'); tip.id='glTip'; tip.hidden=true; tip.setAttribute('role','tooltip'); document.body.appendChild(tip);
+function showTip(el){const k=el.dataset.gl; tip.innerHTML=`<b>${esc(k)}</b>${esc(GLOSSARY[k])}`; tip.hidden=false; const r=el.getBoundingClientRect(); const w=Math.min(300,window.innerWidth-24);
+  tip.style.left=Math.max(12,Math.min(r.left,window.innerWidth-w-12))+'px'; const below=r.bottom+8, h=tip.offsetHeight; tip.style.top=(below+h>window.innerHeight?r.top-h-8:below)+'px';}
+document.addEventListener('click',e=>{const el=e.target.closest('[data-gl]'); if(el&&GLOSSARY[el.dataset.gl]){e.preventDefault(); e.stopPropagation(); showTip(el);} else tip.hidden=true;},true);
+document.addEventListener('mouseover',e=>{const el=e.target.closest('[data-gl]'); if(el) showTip(el);});
+document.addEventListener('mouseout',e=>{if(e.target.closest('[data-gl]')) tip.hidden=true;});
+document.addEventListener('focusin',e=>{const el=e.target.closest('[data-gl]'); if(el) showTip(el);});
+document.addEventListener('keydown',e=>{if(e.key==='Escape') tip.hidden=true;});
+window.addEventListener('scroll',()=>tip.hidden=true,{passive:true});
+function renderGlossary(){const q=(document.getElementById('glSearch').value||'').toLowerCase();
+  document.getElementById('glList').innerHTML=Object.keys(GLOSSARY).sort().filter(k=>!q||k.toLowerCase().includes(q)||GLOSSARY[k].toLowerCase().includes(q)).map(k=>`<dt>${esc(k)}</dt><dd>${esc(GLOSSARY[k])}</dd>`).join('')||'<p class="note">No term matches.</p>';}
+document.getElementById('glSearch').oninput=renderGlossary;
+const FAQ=[
+ ['Can I use this atlas in an emergency?','No. It is a research and planning tool. In an emergency, call 112, and if you can, go straight to the nearest hospital. Facility details may be out of date.'],
+ ['Where do the facilities come from?','From GRID3\'s national register of health facilities (version 4.0, 2026), which combines the Federal Ministry of Health\'s facility registry, the primary health care agency\'s list and field surveys. Every one of its 70,235 records is included.'],
+ ['Why are some places empty on the map?','About 1 in 6 facilities in the register has no recorded location, so it cannot be drawn. Some states, especially in the north, have more gaps. A place that looks empty may have facilities that have not been mapped yet.'],
+ ['What counts as a hospital that takes emergencies?','A general, specialist, cottage, teaching or federal hospital, or another hospital the register lists at secondary or tertiary level, that is not recorded as closed. Clinics, health centres and maternity homes are not counted, even where the register gives them a higher level.'],
+ ['How are travel times worked out?','From the straight-line distance, assuming roads are 1.4 times longer and an average speed of 40 km/h. Bad roads, rivers, rain and insecurity can make real trips much longer.'],
+ ['Does Nigeria already have ambulances?','Yes, in parts. Lagos runs a working state service, and the federal NEMSAS programme reports emergency structures in most states. But only a small share of patients reach hospital by public ambulance. See the Ambulance plan.'],
+ ['I found a mistake or a missing facility. What can I do?','Use the contact details on the main website. Corrections can also be sent to GRID3 so the national register improves for everyone.']];
+function renderFAQ(){document.getElementById('faq').innerHTML=FAQ.map(q=>`<details><summary>${esc(q[0])}</summary><p>${esc(q[1])}</p></details>`).join('');}
+// ---------- Start page figures ----------
+function renderKnow(){
+  const n=A.national, far=(n.bands_pubref[3]+n.bands_pubref[4])/n.pop2025, k=Math.max(2,Math.round(1/far));
+  const person=(on)=>`<svg viewBox="0 0 22 40"><circle cx="11" cy="7" r="6" fill="${on?'var(--accent)':'var(--c-unk)'}"/><path d="M2 40V22a9 9 0 0 1 18 0v18z" fill="${on?'var(--accent)':'var(--c-unk)'}" opacity="${on?1:.55}"/></svg>`;
+  document.getElementById('pictogram').innerHTML=Array.from({length:k},(_,i)=>person(i===0)).join('');
+  document.getElementById('k1h').textContent=`1 in ${k} Nigerians live far from a public hospital`;
+  document.getElementById('k1p').textContent=`${mil(n.bands_pubref[3]+n.bands_pubref[4])} people live 20 km or more, in a straight line, from a public hospital that can treat a serious emergency. In Jigawa and Gombe it is more than half of all residents.`;
+  const S=A.scenarios['10']; document.getElementById('k3fig').textContent=fmt(S.n);
+  document.getElementById('k3p').textContent=`Placed at existing public health facilities, ${fmt(S.n)} stations would put 95 in every 100 Nigerians within about 20 minutes of an ambulance. The first ${fmt(S.steps['50'])} would already reach half the country.`;
+}
+
+// ---------- Load ----------
+function loadJSON(u){return fetch(u).then(r=>{if(!r.ok) throw new Error(u+' '+r.status); return r.json();});}
+loadJSON('data/analysis.json').then(a=>{
+  A=a; A.byState={}; a.states.forEach(s=>A.byState[s.state]=s);
+  renderOverview(); renderStates(); renderBench(); renderDL(); renderAbout(); renderKnow(); renderGlossary(); renderFAQ();
+  document.getElementById('designSteps').innerHTML=DESIGN.map(d=>`<li><b>${esc(d[0])}</b>${esc(d[1])}</li>`).join('');
+  seg(document.getElementById('segMap')); seg(document.getElementById('segAmb')); setScen('10');
+  legend(); document.querySelectorAll('.lead,.prose,.know-card p,.callout,#view-states .note,.side .note,#view-data .note').forEach(glossify);
+  return loadJSON('/energy-atlas/data/nigeria-states.geojson').then(fc=>{
+    fc.features.forEach(f=>f.properties.st=STATE_ALIAS[f.properties.name]||f.properties.name);
+    map.createPane('states'); map.getPane('states').style.zIndex=350;
+    stateLayer=L.geoJSON(fc,{pane:'states',style:stateStyle,onEachFeature:(f,l)=>{l.bindTooltip(f.properties.st,{sticky:true,direction:'top',opacity:.9}); l.on('click',e=>{const near=(map.hasLayer(facLayer)&&facLayer.nearest(e.latlng,8))||(map.hasLayer(stLayer)&&stLayer.nearest(e.latlng,9))||(map.hasLayer(wardLayer)&&wardLayer.nearest(e.latlng,8)); if(!near&&!picking) showState(f.properties.st,false);});}}).addTo(map);
+  }).catch(()=>{});
+}).catch(e=>{document.getElementById('loading').textContent='Could not load the atlas data. Please refresh.';});
+loadJSON('data/facilities.json').then(f=>{
+  const C=f.cats; const counts={};
+  FAC=f.rows.map((r,i)=>{const lvl=C.level[r[3]]; const L2=LV[lvl]?lvl:'Unknown'; counts[L2]=(counts[L2]||0)+1;
+    return {i,lat:r[0],lon:r[1],type:C.type[r[2]],lvl:L2,own:C.ownership[r[4]],func:C.functional[r[5]],state:C.state[r[6]],lga:C.lga[r[7]],ref:!!(r[8]&1),pub:!!(r[8]&8),ter:!!(r[8]&4),name:r[9],lname:(r[9]||'').toLowerCase(),ward:r[10],nhfr:r[11]};});
+  buildLevelControls(counts); facLayer.setItems(FAC); facLayer.addTo(map);
+  document.getElementById('loading').style.display='none';
+}).catch(e=>{document.getElementById('loading').textContent='Could not load facilities. Please refresh.';});
+loadJSON('data/wards.json').then(w=>{WARDS=w.rows.map(r=>({lat:r[0],lon:r[1],pop:r[2],ward:r[3],lga:r[4],state:r[5],km:r[6],kmt:r[7]})); wardLayer.setItems(WARDS); initFind();}).catch(()=>{});
+
+// Theme changes (switch lives in the shared site bar)
+new MutationObserver(()=>{setTiles(); facLayer.redraw(); stLayer.redraw(); wardLayer.redraw(); if(stateLayer) stateLayer.setStyle(stateStyle);}).observe(root,{attributes:true,attributeFilter:['data-theme']});
+if(window.matchMedia) matchMedia('(prefers-color-scheme: dark)').addEventListener('change',e=>{let s=null; try{s=localStorage.getItem('theme')}catch(_){} if(!s) root.setAttribute('data-theme',e.matches?'dark':'light');});
+})();
+</script>
+</body>
+</html>
