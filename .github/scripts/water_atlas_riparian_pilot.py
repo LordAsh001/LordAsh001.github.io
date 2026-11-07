@@ -88,9 +88,10 @@ def read_item(item, tr, shape):
     return nd
 
 
-def composite(items, tr, shape, how, workers=6):
+def composite(items, tr, shape, how, workers=6, green=None):
     acc = np.full(shape, np.inf if how == 'min' else -np.inf, np.float32)
     n = np.zeros(shape, np.uint16)
+    ng = np.zeros(shape, np.uint16)
     done = 0
     def job(it):
         try:
@@ -103,18 +104,20 @@ def composite(items, tr, shape, how, workers=6):
             if nd is None: continue
             v = ~np.isnan(nd)
             n[v] += 1
+            if green is not None: ng[v & (nd >= green)] += 1
             if how == 'min': np.fmin(acc, np.where(v, nd, np.inf), out=acc)
             else: np.fmax(acc, np.where(v, nd, -np.inf), out=acc)
             if done % 10 == 0: log('  %d/%d scenes' % (done, len(items)))
     acc[n == 0] = np.nan
-    return acc, n
+    return (acc, n, ng) if green is not None else (acc, n)
 
 
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--tile', default='7,8'); ap.add_argument('--season', type=int, default=2025)
     ap.add_argument('--work', default='/tmp/rip'); ap.add_argument('--out', required=True)
-    ap.add_argument('--early-max-ndvi', type=float, default=0.30); ap.add_argument('--late-min-ndvi', type=float, default=0.45)
+    ap.add_argument('--early-max-ndvi', type=float, default=0.30); ap.add_argument('--late-min-ndvi', type=float, default=0.5)
+    ap.add_argument('--min-green-dates', type=int, default=2); ap.add_argument('--late-end', default='03-15')
     ap.add_argument('--max-cloud', type=float, default=40)
     a = ap.parse_args()
     lat, lon = [int(x) for x in a.tile.split(',')]
@@ -137,14 +140,14 @@ def main():
     tr, shape = G['transform'], G['shape']
     y0 = a.season
     early = stac_items([lon, lat, lon + 1, lat + 1], f'{y0}-12-01', f'{y0 + 1}-01-31', a.max_cloud)
-    late = stac_items([lon, lat, lon + 1, lat + 1], f'{y0 + 1}-02-01', f'{y0 + 1}-03-31', a.max_cloud)
-    log('Sentinel-2 scenes: %d early (Dec-Jan), %d late (Feb-Mar)' % (len(early), len(late)))
+    late = stac_items([lon, lat, lon + 1, lat + 1], f'{y0 + 1}-02-01', f'{y0 + 1}-{a.late_end}', a.max_cloud)
+    log('Sentinel-2 scenes: %d early (Dec-Jan), %d late (Feb to %s)' % (len(early), len(late), a.late_end))
     emin, ne = composite(early, tr, shape, 'min')
-    lmax, nl = composite(late, tr, shape, 'max')
+    lmax, nl, ngreen = composite(late, tr, shape, 'max', green=a.late_min_ndvi)
     wc = G['wc']
     nonveg = np.isin(wc, [10, 95, 50, 80])  # tree, mangrove, built-up, water
     seen = (ne > 0) & (nl > 0)
-    crop = seen & (emin <= a.early_max_ndvi) & (lmax >= a.late_min_ndvi) & ~nonveg
+    crop = seen & (emin <= a.early_max_ndvi) & (ngreen >= a.min_green_dates) & ~nonveg
     green = seen & (emin > a.early_max_ndvi + 0.1) & (lmax >= a.late_min_ndvi)
     # bands by distance from the channel (500-1000 m added to see whether farming goes beyond the strips)
     d = G['dist']; base = G['core'] & (G['state'] > 0) & ~G['chan'] & ~G['water'] & (G['rid'] > 0)
@@ -155,9 +158,10 @@ def main():
     L = cfg['levels']['central']; groups = G['groups']
     ok_lc = np.isin(G['lc'], [groups.index(x) for x in L['landcover']])
     ok_sl = G['slope'] <= L['max_slope_pct']; ok_lf = G['lift'] <= L['max_lift_m']
-    bands = [(0, 100), (100, 250), (250, 500), (500, 1000)]
+    bands = [(0, 100), (100, 250), (250, 500), (500, 1000), (2000, 5000)]  # last = background, away from the rivers
     out = {'tile': [lat, lon], 'season': f'Dec {y0} - Mar {y0 + 1}', 'scenes': {'early': len(early), 'late': len(late)},
-           'thresholds': {'early_max_ndvi': a.early_max_ndvi, 'late_min_ndvi': a.late_min_ndvi, 'max_cloud_pct': a.max_cloud},
+           'thresholds': {'early_max_ndvi': a.early_max_ndvi, 'late_min_ndvi': a.late_min_ndvi, 'min_green_dates': a.min_green_dates,
+                          'late_window_end': a.late_end, 'max_cloud_pct': a.max_cloud},
            'seen_share': round(float((seen & base & (d <= 500)).sum() / max(1, (base & (d <= 500)).sum())), 3), 'bands': []}
     for lo_, hi in bands:
         m = base & (d > lo_) & (d <= hi)
@@ -170,6 +174,11 @@ def main():
                              'crop_excluded_by_lift_ha': round(float(A[cm & ok_lc & ok_sl & ~ok_lf].sum())),
                              'perennially_green_ha': round(float(A[m & green].sum())),
                              'central_suitable_land_ha': round(float(A[m & ok_lc & ok_sl & ok_lf].sum()))})
+    bg = out['bands'][-1]; bgd = bg['dry_season_crop_ha'] / max(1, bg['land_ha'])
+    for b in out['bands']:
+        b['crop_share_pct'] = round(100 * b['dry_season_crop_ha'] / max(1, b['land_ha']), 2)
+        b['excess_over_background_ha'] = round(b['dry_season_crop_ha'] - bgd * b['land_ha'])
+    out['background_crop_share_pct'] = round(100 * bgd, 2)
     # per reach: observed cropping within 250 m vs the modelled potential
     pot = {}
     with open(os.path.join(WR.OUT_ARCH, 'reaches.csv')) as f:
