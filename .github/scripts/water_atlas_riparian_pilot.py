@@ -88,10 +88,10 @@ def read_item(item, tr, shape):
     return nd
 
 
-def composite(items, tr, shape, how, workers=6, green=None):
-    acc = np.full(shape, np.inf if how == 'min' else -np.inf, np.float32)
-    n = np.zeros(shape, np.uint16)
-    ng = np.zeros(shape, np.uint16)
+def composite(items, tr, shape, green, workers=6):
+    """Lowest and highest NDVI, number of clear looks and number of looks at or above `green`."""
+    lo = np.full(shape, np.inf, np.float32); hi = np.full(shape, -np.inf, np.float32)
+    n = np.zeros(shape, np.uint16); ng = np.zeros(shape, np.uint16)
     done = 0
     def job(it):
         try:
@@ -103,13 +103,11 @@ def composite(items, tr, shape, how, workers=6, green=None):
             done += 1
             if nd is None: continue
             v = ~np.isnan(nd)
-            n[v] += 1
-            if green is not None: ng[v & (nd >= green)] += 1
-            if how == 'min': np.fmin(acc, np.where(v, nd, np.inf), out=acc)
-            else: np.fmax(acc, np.where(v, nd, -np.inf), out=acc)
+            n[v] += 1; ng[v & (nd >= green)] += 1
+            np.fmin(lo, np.where(v, nd, np.inf), out=lo); np.fmax(hi, np.where(v, nd, -np.inf), out=hi)
             if done % 10 == 0: log('  %d/%d scenes' % (done, len(items)))
-    acc[n == 0] = np.nan
-    return (acc, n, ng) if green is not None else (acc, n)
+    lo[n == 0] = np.nan; hi[n == 0] = np.nan
+    return lo, hi, n, ng
 
 
 def main():
@@ -142,12 +140,22 @@ def main():
     early = stac_items([lon, lat, lon + 1, lat + 1], f'{y0}-12-01', f'{y0 + 1}-01-31', a.max_cloud)
     late = stac_items([lon, lat, lon + 1, lat + 1], f'{y0 + 1}-02-01', f'{y0 + 1}-{a.late_end}', a.max_cloud)
     log('Sentinel-2 scenes: %d early (Dec-Jan), %d late (Feb to %s)' % (len(early), len(late), a.late_end))
-    emin, ne = composite(early, tr, shape, 'min')
-    lmax, nl, ngreen = composite(late, tr, shape, 'max', green=a.late_min_ndvi)
+    dec = [it for it in early if it['properties']['datetime'][5:7] == '12']
+    jan = [it for it in early if it['properties']['datetime'][5:7] != '12']
+    dmin, _, nd_, _ = composite(dec, tr, shape, a.late_min_ndvi)
+    jmin, _, nj, gj = composite(jan, tr, shape, a.late_min_ndvi)
+    lmin, lmax, nl, gl = composite(late, tr, shape, a.late_min_ndvi)
+    emin = np.fmin(dmin, jmin); ne = nd_ + nj
+    amin = np.fmin(emin, lmin)
     wc = G['wc']
     nonveg = np.isin(wc, [10, 95, 50, 80])  # tree, mangrove, built-up, water
     seen = (ne > 0) & (nl > 0)
-    crop = seen & (emin <= a.early_max_ndvi) & (ngreen >= a.min_green_dates) & ~nonveg
+    # rule A: bare early (Dec-Jan), green on 2+ dates late (Feb to mid-March): crops sown in January
+    crop_a = seen & (emin <= a.early_max_ndvi) & (gl >= a.min_green_dates) & ~nonveg
+    # rule B (main): bare at some point Dec to mid-March and green on 2+ dates Jan to mid-March:
+    # also catches crops sown in Nov-Dec (green in Jan-Feb, harvested by March)
+    crop = seen & (amin <= a.early_max_ndvi) & ((gj + gl) >= a.min_green_dates) & ~nonveg
+    crops = {'A_bare_early_green_late': crop_a, 'B_bare_any_green_jan_mar': crop}
     green = seen & (emin > a.early_max_ndvi + 0.1) & (lmax >= a.late_min_ndvi)
     # bands by distance from the channel (500-1000 m added to see whether farming goes beyond the strips)
     d = G['dist']; base = G['core'] & (G['state'] > 0) & ~G['chan'] & ~G['water'] & (G['rid'] > 0)
@@ -165,20 +173,25 @@ def main():
            'seen_share': round(float((seen & base & (d <= 500)).sum() / max(1, (base & (d <= 500)).sum())), 3), 'bands': []}
     for lo_, hi in bands:
         m = base & (d > lo_) & (d <= hi)
-        cm = m & crop
-        out['bands'].append({'band_m': [lo_, hi], 'land_ha': round(float(A[m].sum())),
-                             'dry_season_crop_ha': round(float(A[cm].sum())),
-                             'crop_on_central_suitable_ha': round(float(A[cm & ok_lc & ok_sl & ok_lf].sum())),
-                             'crop_excluded_by_landcover_ha': round(float(A[cm & ~ok_lc].sum())),
-                             'crop_excluded_by_slope_ha': round(float(A[cm & ok_lc & ~ok_sl].sum())),
-                             'crop_excluded_by_lift_ha': round(float(A[cm & ok_lc & ok_sl & ~ok_lf].sum())),
-                             'perennially_green_ha': round(float(A[m & green].sum())),
-                             'central_suitable_land_ha': round(float(A[m & ok_lc & ok_sl & ok_lf].sum()))})
-    bg = out['bands'][-1]; bgd = bg['dry_season_crop_ha'] / max(1, bg['land_ha'])
-    for b in out['bands']:
-        b['crop_share_pct'] = round(100 * b['dry_season_crop_ha'] / max(1, b['land_ha']), 2)
-        b['excess_over_background_ha'] = round(b['dry_season_crop_ha'] - bgd * b['land_ha'])
-    out['background_crop_share_pct'] = round(100 * bgd, 2)
+        b = {'band_m': [lo_, hi], 'land_ha': round(float(A[m].sum())),
+             'central_suitable_land_ha': round(float(A[m & ok_lc & ok_sl & ok_lf].sum())),
+             'perennially_green_ha': round(float(A[m & green].sum()))}
+        for rk, cr in crops.items():
+            cm = m & cr
+            b[rk] = {'dry_season_crop_ha': round(float(A[cm].sum())),
+                     'crop_on_central_suitable_ha': round(float(A[cm & ok_lc & ok_sl & ok_lf].sum())),
+                     'crop_excluded_by_landcover_ha': round(float(A[cm & ~ok_lc].sum())),
+                     'crop_excluded_by_slope_ha': round(float(A[cm & ok_lc & ~ok_sl].sum())),
+                     'crop_excluded_by_lift_ha': round(float(A[cm & ok_lc & ok_sl & ~ok_lf].sum()))}
+        out['bands'].append(b)
+    bg = out['bands'][-1]
+    out['background_crop_share_pct'] = {}
+    for rk in crops:
+        bgd = bg[rk]['dry_season_crop_ha'] / max(1, bg['land_ha'])
+        out['background_crop_share_pct'][rk] = round(100 * bgd, 3)
+        for b in out['bands']:
+            b[rk]['crop_share_pct'] = round(100 * b[rk]['dry_season_crop_ha'] / max(1, b['land_ha']), 3)
+            b[rk]['excess_over_background_ha'] = round(b[rk]['dry_season_crop_ha'] - bgd * b['land_ha'])
     # per reach: observed cropping within 250 m vs the modelled potential
     pot = {}
     with open(os.path.join(WR.OUT_ARCH, 'reaches.csv')) as f:
