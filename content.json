@@ -839,7 +839,8 @@
               "label": "stations for 95% reach within 10 km"
             }
           ],
-          "classroom": "give each group a state, find its communities furthest from a referral hospital, and argue where its first five ambulance stations should go."
+          "classroom": "give each group a state, find its communities furthest from a referral hospital, and argue where its first five ambulance stations should go.",
+          "doi": "10.5281/zenodo.24047973"
         },
         {
           "name": "Nigeria Peoples & Cultures Atlas",
