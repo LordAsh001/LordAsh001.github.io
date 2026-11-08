@@ -808,6 +808,40 @@
           "doi": "10.5281/zenodo.23307712"
         },
         {
+          "name": "Nigeria Health Atlas",
+          "text": "Map all 70,235 health facilities in Nigeria's GRID3 register by level, ownership and status, and see how far every ward lives from a public referral hospital and a tertiary hospital. An ambulance-planning section shows where stations would put 95% of Nigerians within reach, how many ambulances each state needs, and what India, Rwanda, Ghana, Ethiopia, Kenya, Lagos, the UK and France teach. The data downloads as CSV or JSON.",
+          "link_label": "Open tool",
+          "sdgs": [
+            3,
+            11
+          ],
+          "hidden": false,
+          "url": "/health-atlas/",
+          "kind": "Interactive map · free",
+          "audience": [
+            "Researchers",
+            "Practitioners",
+            "Policymakers",
+            "Students"
+          ],
+          "level": "All levels",
+          "numbers": [
+            {
+              "value": "70,235",
+              "label": "health facilities"
+            },
+            {
+              "value": "9,306",
+              "label": "wards measured for hospital access"
+            },
+            {
+              "value": "1,298",
+              "label": "stations for 95% reach within 10 km"
+            }
+          ],
+          "classroom": "give each group a state, find its communities furthest from a referral hospital, and argue where its first five ambulance stations should go."
+        },
+        {
           "name": "Nigeria Peoples & Cultures Atlas",
           "text": "Explore Nigeria's peoples and languages state by state and LGA by LGA, with 2006 census and 2022 projected population for all 774 LGAs. Each people has a profile covering origins and history, language and greetings, traditional institutions, culture and the festivals they celebrate. A festival calendar runs month by month and year by year, and a heritage view maps Nigeria's UNESCO World Heritage sites and intangible heritage. Anyone can suggest a missing people, language, festival, photograph or correction.",
           "link_label": "Open tool",
