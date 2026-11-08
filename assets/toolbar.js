@@ -19,6 +19,7 @@ var TOOLS = [
   { url: "/water-atlas/",       name: "Nigeria Water Resources Atlas", note: "Rivers, dams, groundwater and flood watch" },
   { url: "/market-atlas/",      name: "Nigeria Market Atlas",   note: "Markets, produce prices and trucking costs" },
   { url: "/energy-atlas/", name: "Nigeria Energy Atlas", note: "Power plants, fuels, grid and energy security" },
+  { url: "/health-atlas/",      name: "Nigeria Health Atlas",   note: "Health facilities, hospital access and ambulance planning" },
   { url: "/peoples-atlas/", name: "Nigeria Peoples & Cultures Atlas", note: "Peoples, languages, festivals and heritage" },
   { url: "/waste-atlas/",       name: "Nigeria Waste Sites Atlas", note: "Open dumpsites mapped from satellite" },
   { url: "/literature-landscape/", name: "Nigeria Literature Landscape", note: "Writers, music, film, comedy, journalism and creators" },

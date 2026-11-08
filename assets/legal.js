@@ -16,6 +16,7 @@ var NOTES = [
   [/\/forest-atlas\//, MAP + " Threats and field reports are the cited source's or the reporter's account, not verified findings."],
   [/\/water-atlas\//, MAP + " Flood information is not an official warning: follow NIHSA, NiMet, NEMA and your state emergency agency."],
   [/\/market-atlas\//, MAP + " Prices are indicative and dated to their source; they are not quotes or trading advice."],
+  [/\/health-atlas\//, MAP + " Not a directory for emergencies: in an emergency call 112. Facility records are GRID3's and may be out of date; ambulance figures are planning estimates."],
   [/\/energy-atlas\//, MAP + " Site locations are approximate and the data are not for engineering or investment use."],
   [/\/peoples-atlas\//, "Cultural areas, histories and rulers are indicative, from the sources cited. The atlas takes no position on land, chieftaincy or boundary questions. Map boundaries are approximate and not official."],
   [/\/waste-atlas\//, MAP + " A mapped site shows visible waste on the date given; it does not mean any person, community or company broke the law."],
