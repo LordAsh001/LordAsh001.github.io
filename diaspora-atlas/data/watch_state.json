@@ -3,14 +3,14 @@
   "ons-migration": {
    "blocked": false,
    "hashes": [],
-   "checked": "2026-11-02T15:46:40+00:00"
+   "checked": "2026-11-09T16:13:54+00:00"
   },
   "migration-observatory-uk": {
    "blocked": false,
    "hashes": [
     "d5d6455dcbbb8385"
    ],
-   "checked": "2026-11-02T15:46:42+00:00"
+   "checked": "2026-11-09T16:13:57+00:00"
   },
   "statcan-fogs": {
    "blocked": false,
@@ -30,15 +30,14 @@
     "47209baa606e7b5f",
     "e3e8d3e39cb8d558"
    ],
-   "checked": "2026-11-02T15:47:13+00:00"
+   "checked": "2026-11-09T16:14:28+00:00"
   },
   "abs-quickstats-nigeria": {
    "blocked": false,
    "hashes": [
     "c51dc5da22e37a5d"
    ],
-   "checked": "2026-10-30T01:10:13+00:00",
-   "error": "GET failed after 3 tries: https://www.abs.gov.au/census/find-census-data/quickstats/2021/9124_AUS: HTTP Error 503: Service Temporarily Unavailable"
+   "checked": "2026-11-09T16:14:29+00:00"
   },
   "conapa": {
    "blocked": false,
@@ -66,7 +65,7 @@
     "27cf793d089e25f0",
     "bdd345153a3e3760"
    ],
-   "checked": "2026-11-02T15:47:49+00:00"
+   "checked": "2026-11-09T16:14:30+00:00"
   },
   "nigerians-in-qld": {
    "blocked": false,
@@ -84,7 +83,7 @@
     "b880a5de1417da8a",
     "c552cc490ec8cdad"
    ],
-   "checked": "2026-11-02T15:47:51+00:00"
+   "checked": "2026-11-09T16:14:32+00:00"
   },
   "mpi-nigeria": {
    "blocked": false,
@@ -129,12 +128,12 @@
     "2bd430eb7d5e1baa",
     "0723a277dd5ca45b"
    ],
-   "checked": "2026-11-02T15:47:53+00:00"
+   "checked": "2026-11-09T16:14:32+00:00"
   },
   "countryeconomy-uae": {
    "blocked": false,
    "hashes": [],
-   "checked": "2026-11-02T15:47:54+00:00"
+   "checked": "2026-11-09T16:14:34+00:00"
   },
   "statehouse-ambassadors": {
    "blocked": false,
@@ -156,7 +155,7 @@
     "3214f091521f138c",
     "1246830ed2d7ecc5"
    ],
-   "checked": "2026-11-02T15:47:59+00:00"
+   "checked": "2026-11-09T16:14:39+00:00"
   },
   "nidcom-news": {
    "blocked": false,
@@ -175,28 +174,34 @@
     "efca645090b0a94c",
     "8a2d5c988e6be031",
     "f9c5b69b783dfd04",
-    "a65ea51551818908",
-    "a1801983719ba2ee",
+    "40d4dd5faa00ab53",
     "0bc8816faa12ea0b",
     "c75459973cf56042",
+    "616383f2a8c0de7d",
     "984904e92f5f63ad",
     "6c52986f4f238193",
     "473bb18f988eed9a",
     "e7201b7bba9cde74",
     "c8ff5e55078c7c6d",
+    "e7caecd5e346c142",
+    "81af254c64b86f16",
     "ce28d191c63369e4",
     "f30f42c8a6e5736d",
-    "caaa311c8885d67c",
-    "95fe40f9da2e7478",
-    "4dfdb93b9103448d",
     "2d52f32c09738402",
     "c2d0c4b593e94da2",
     "5125ac2422a8e8fc",
     "d87551994eac4b00",
+    "d6559837d1640898",
+    "911a15ae3e8ef94f",
     "a9e7358423c46ec4",
+    "caaa311c8885d67c",
+    "a65ea51551818908",
+    "a1801983719ba2ee",
+    "95fe40f9da2e7478",
+    "4dfdb93b9103448d",
     "d99bf6009b6f83a3"
    ],
-   "checked": "2026-11-02T15:48:00+00:00"
+   "checked": "2026-11-09T16:14:42+00:00"
   },
   "rpw-uk": {
    "blocked": false,
@@ -204,7 +209,7 @@
     "5adc7f2a45395afd",
     "48e1819c88e2056a"
    ],
-   "checked": "2026-11-02T15:48:02+00:00"
+   "checked": "2026-11-09T16:14:45+00:00"
   },
   "rpw-us": {
    "blocked": false,
@@ -212,7 +217,7 @@
     "5adc7f2a45395afd",
     "48e1819c88e2056a"
    ],
-   "checked": "2026-11-02T15:48:03+00:00"
+   "checked": "2026-11-09T16:14:48+00:00"
   },
   "rpw-canada": {
    "blocked": false,
@@ -220,7 +225,7 @@
     "5adc7f2a45395afd",
     "48e1819c88e2056a"
    ],
-   "checked": "2026-11-02T15:48:05+00:00"
+   "checked": "2026-11-09T16:14:49+00:00"
   },
   "rpw-germany": {
    "blocked": false,
@@ -228,7 +233,7 @@
     "5adc7f2a45395afd",
     "48e1819c88e2056a"
    ],
-   "checked": "2026-11-02T15:48:08+00:00"
+   "checked": "2026-11-09T16:14:52+00:00"
   },
   "rpw-italy": {
    "blocked": false,
@@ -236,7 +241,7 @@
     "5adc7f2a45395afd",
     "48e1819c88e2056a"
    ],
-   "checked": "2026-11-02T15:48:10+00:00"
+   "checked": "2026-11-09T16:14:54+00:00"
   },
   "rpw-spain": {
    "blocked": false,
@@ -244,7 +249,7 @@
     "5adc7f2a45395afd",
     "48e1819c88e2056a"
    ],
-   "checked": "2026-11-02T15:48:12+00:00"
+   "checked": "2026-11-09T16:14:55+00:00"
   },
   "rpw-netherlands": {
    "blocked": false,
@@ -252,7 +257,7 @@
     "5adc7f2a45395afd",
     "48e1819c88e2056a"
    ],
-   "checked": "2026-11-02T15:48:14+00:00"
+   "checked": "2026-11-09T16:14:55+00:00"
   },
   "rpw-ghana": {
    "blocked": false,
@@ -260,7 +265,7 @@
     "5adc7f2a45395afd",
     "48e1819c88e2056a"
    ],
-   "checked": "2026-11-02T15:48:15+00:00"
+   "checked": "2026-11-09T16:14:56+00:00"
   },
   "rpw-south-africa": {
    "blocked": false,
@@ -273,12 +278,12 @@
   "site-abs": {
    "blocked": false,
    "urls": [],
-   "checked": "2026-11-02T15:49:17+00:00"
+   "checked": "2026-11-09T16:15:54+00:00"
   },
   "site-migration-observatory": {
    "blocked": false,
    "urls": [],
-   "checked": "2026-11-02T15:49:34+00:00"
+   "checked": "2026-11-09T16:16:16+00:00"
   },
   "site-intelpoint": {
    "blocked": false,
@@ -1046,7 +1051,7 @@
     "https://intelpoint.co/report/the-nigerian-insurance-industry/",
     "https://intelpoint.co/report/the-nigerian-workplace-report-2024/"
    ],
-   "checked": "2026-11-02T15:49:43+00:00"
+   "checked": "2026-11-09T16:16:25+00:00"
   },
   "site-canadavisa": {
    "blocked": false,
@@ -1055,12 +1060,12 @@
   "site-marketreporters": {
    "blocked": false,
    "urls": [],
-   "checked": "2026-11-02T15:50:14+00:00"
+   "checked": "2026-11-09T16:16:57+00:00"
   },
   "site-canadavisaexpert": {
    "blocked": false,
    "error": "GET failed after 2 tries: https://canadavisaexpert.com/sitemap.xml: <urlopen error timed out>"
   }
  },
- "checked": "2026-11-02T15:53:45+00:00"
+ "checked": "2026-11-09T16:20:27+00:00"
 }
