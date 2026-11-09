@@ -1,7 +1,13 @@
 {
  "source": "Nigerian Electricity Regulatory Commission (nerc.gov.ng)",
- "checked": "2026-11-02T17:00:16+00:00",
+ "checked": "2026-11-09T17:26:00+00:00",
  "documents": [
+  {
+   "url": "https://nerc.gov.ng/wp-content/uploads/2026/11/ORDER-ON-OPERATIONALISATION-OF-MAF-TRANCHE-C.pdf",
+   "title": "ORDER ON OPERATIONALISATION OF MAF TRANCHE C",
+   "category": "Order",
+   "first_seen": "2026-11-09"
+  },
   {
    "url": "https://nerc.gov.ng/wp-content/uploads/2026/11/Operational_Factsheet_Sept-2026-scaled.png",
    "title": "Operational Factsheet Sept 2026 scaled",
