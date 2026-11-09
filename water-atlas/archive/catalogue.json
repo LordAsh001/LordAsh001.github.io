@@ -411,10 +411,10 @@
    "source": "Nigerian Meteorological Agency (NiMet)",
    "licence": "Public warnings; credit NiMet",
    "update": "Hourly",
-   "rows": 9,
+   "rows": 10,
    "first": "2026-09-25",
-   "last": "2026-10-13",
-   "bytes": 6619,
+   "last": "2026-11-09",
+   "bytes": 7368,
    "fields": [
     {
      "name": "warning_id",
@@ -588,5 +588,5 @@
   }
  ],
  "citation": "Amool, S. H. (2026). Nigeria Water Resources Atlas: data archive [Data set]. https://shagbaor.com/water-atlas/archive/",
- "generated": "2026-11-09T14:17Z"
+ "generated": "2026-11-09T22:35Z"
 }
