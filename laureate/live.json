@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-08",
+ "updated": "2026-11-09",
  "sources": [
   {
    "source": "Opportunities for Africans",
@@ -9,12 +9,12 @@
   {
    "source": "Opportunity Desk",
    "ok": true,
-   "items": 5
+   "items": 4
   },
   {
    "source": "Opportunities Corners",
    "ok": true,
-   "items": 4
+   "items": 5
   },
   {
    "source": "Scholarship Region",
@@ -57,6 +57,100 @@
  ],
  "items": [
   {
+   "title": "Generation Regen Challenge to Attend the One Young World Summit 2027 (Fully-funded)",
+   "link": "https://opportunitydesk.org/2026/11/09/generation-regen-challenge-2027/",
+   "date": "2026-11-09",
+   "source": "Opportunity Desk",
+   "official": false,
+   "ids": [],
+   "summary": "Deadline: February 24, 2027 Applications are open for the Generation Regen Challenge 2027. Agriculture is a cornerstone of economic resilience in Canada, the U.S., contributing significantly to GDP, …",
+   "seen": "2026-11-09"
+  },
+  {
+   "title": "ICANN89 Policy Forum 2027 in Canada (Fully Funded)",
+   "link": "https://opportunitiescorners.com/icann89-policy-forum-2027-in-canada/",
+   "date": "2026-11-09",
+   "source": "Opportunities Corners",
+   "official": false,
+   "ids": [],
+   "summary": "Looking for a fully funded international fellowship to attend a global Internet governance conference in Canada? Applications are now open for the ICANN89 Policy Forum 2027 in Vancouver, Canada. The …",
+   "seen": "2026-11-09"
+  },
+  {
+   "title": "Stanford University Summer Internship (Summer Undergraduate Research Fellowship) 2027: Fully Funded",
+   "link": "https://www.scholarshipregion.com/stanford-university-summer-internship/",
+   "date": "2026-11-09",
+   "source": "Scholarship Region",
+   "official": false,
+   "ids": [],
+   "summary": "The Stanford University Summer Internship is a fully funded opportunity for undergraduate students to engage in practical activities to consolidate their theoretical knowledge. The Stanford Universit…",
+   "seen": "2026-11-09"
+  },
+  {
+   "title": "2027 Griffith Vice Chancellors International Scholarship in Australia | How to Apply",
+   "link": "https://www.scholarshipregion.com/griffith-vice-chancellors-international-scholarship/",
+   "date": "2026-11-09",
+   "source": "Scholarship Region",
+   "official": false,
+   "ids": [],
+   "summary": "Griffith Vice Chancellors International Scholarship rewards exceptional students applying for undergraduate and postgraduate coursework degree programs at Griffith University. The Griffith University…",
+   "seen": "2026-11-09"
+  },
+  {
+   "title": "2027 Erasmus Mundus Imaging Scholarship in Finland, Sweden, Italy | Fully Funded",
+   "link": "https://www.scholarshipregion.com/erasmus-mundus-imaging-scholarship/",
+   "date": "2026-11-09",
+   "source": "Scholarship Region",
+   "official": false,
+   "ids": [
+    "erasmus"
+   ],
+   "summary": "The Erasmus Mundus Imaging Scholarship is another fully funded Erasmus+ programme funded by the European Union for international students seeking Masters degrees. The Erasmus Mundus Scholarship will …",
+   "seen": "2026-11-09"
+  },
+  {
+   "title": "UNESCO IHE Delft Rotary Scholarship in the Netherlands 2027 (Fully Funded)",
+   "link": "https://www.scholarshipregion.com/unesco-ihe-delft-rotary-scholarship/",
+   "date": "2026-11-09",
+   "source": "Scholarship Region",
+   "official": false,
+   "ids": [
+    "delft"
+   ],
+   "summary": "The IHE Delft Rotary Scholarships are fully funded awards granted annually to graduate students at IHE Delft Institute for Water Education’s campus in the Netherlands. The 2027 UNESCO IHE Delft Rotar…",
+   "seen": "2026-11-09"
+  },
+  {
+   "title": "7 UK Immigration Rule Changes You Should Know Before 2027",
+   "link": "https://www.scholarshipregion.com/uk-immigration-rule-changes/",
+   "date": "2026-11-09",
+   "source": "Scholarship Region",
+   "official": false,
+   "ids": [],
+   "summary": "The United Kingdom remains one of the most preferred study destinations for international students. Studying in the UK as an international student is an opportunity to advance your education and impr…",
+   "seen": "2026-11-09"
+  },
+  {
+   "title": "University College London Mathematics Scholarship in UK 2027 | How To Apply",
+   "link": "https://www.scholarshipregion.com/university-college-london-mathematics-scholarship/",
+   "date": "2026-11-09",
+   "source": "Scholarship Region",
+   "official": false,
+   "ids": [],
+   "summary": "The University College London is offering scholarship awards to incoming Master’s students from all countries worldwide. The University College London Mathematics Scholarship offers a £16,750 grant t…",
+   "seen": "2026-11-09"
+  },
+  {
+   "title": "Global Talent Fund BIG Scholarships 2027 at the University of Edinburgh, UK (Fully Funded)",
+   "link": "https://www.scholarshipregion.com/global-talent-fund-big-scholarship/",
+   "date": "2026-11-09",
+   "source": "Scholarship Region",
+   "official": false,
+   "ids": [],
+   "summary": "The University of Edinburgh in UK is welcoming applicants from all over the world for the 2027 Global Talent Fund BIG Scholarships. The Global Talent Fund BIG Scholarships provide tuition costs, assi…",
+   "seen": "2026-11-09"
+  },
+  {
    "title": "Stanford Summer Research Program 2027 in USA (Fully Funded)",
    "link": "https://opportunitiescorners.com/stanford-summer-research-program-2027/",
    "date": "2026-11-08",
@@ -65,6 +159,16 @@
    "ids": [],
    "summary": "Applications are now open for the Stanford Summer Research Program 2027 in the United States. The Stanford SURF is an eight-week, fully funded summer program designed for undergraduate students inter…",
    "seen": "2026-11-08"
+  },
+  {
+   "title": "UNIL Summer Program 2027 in Switzerland (Fully Funded)",
+   "link": "https://opportunitiescorners.com/unil-summer-program-2027/",
+   "date": "2026-11-08",
+   "source": "Opportunities Corners",
+   "official": false,
+   "ids": [],
+   "summary": "Applications are open for the UNIL Summer Program 2027 at the University of Lausanne (UNIL), Switzerland. This is an eight-week international research opportunity for undergraduate students from arou…",
+   "seen": "2026-11-09"
   },
   {
    "title": "Asia Foundation Development Fellows Program 2027 (Fully Funded)",
@@ -1603,110 +1707,6 @@
    ],
    "summary": "Deadline: November 30, 2026 Applications are open for the Fulbright U.S.-ASEAN Visiting Scholar Program 2027. The Fulbright U.S.-ASEAN Visiting Scholar Program welcomes university faculty, government…",
    "seen": "2026-10-27"
-  },
-  {
-   "title": "Birmingham Business School Scholarships in UK 2027 | How To Apply",
-   "link": "https://www.scholarshipregion.com/birmingham-business-school-scholarship/",
-   "date": "2026-10-26",
-   "source": "Scholarship Region",
-   "official": false,
-   "ids": [],
-   "summary": "The University of Birmingham is inviting international candidates to apply for the 2026 Birmingham Business School Scholarships. The Birmingham Business School Masters Scholarships offer awards up to…",
-   "seen": "2026-10-27"
-  },
-  {
-   "title": "Awareness Africa University Scholarship For Nigerians | ₦500,000 Award",
-   "link": "https://www.scholarshipregion.com/awareness-africa-university-scholarship/",
-   "date": "2026-10-26",
-   "source": "Scholarship Region",
-   "official": false,
-   "ids": [],
-   "summary": "The Awareness Africa University Scholarship 2026/2027 offers a financial assistance opportunity for African students to begin undergraduate studies at a federal or state university in Nigeria. The sc…",
-   "seen": "2026-10-27"
-  },
-  {
-   "title": "SMART Scholarship-for-Service Program 2027: Fully Funded STEM Scholarships in the USA with Annual Stipends of Up to $46,000",
-   "link": "https://opportunitiesforyouth.org/2026/10/26/smart-scholarship-for-service-program-2027/",
-   "date": "2026-10-26",
-   "source": "Opportunities for Youth",
-   "official": false,
-   "ids": [],
-   "summary": "The SMART Scholarship-for-Service Program offers a significant opportunity for students pursuing science, technology, engineering, and mathematics (STEM) degrees to receive fully funded education at …",
-   "seen": "2026-10-27"
-  },
-  {
-   "title": "Joint MSc in Geography of Environmental Risks and Human Security at UNU-EHS and the University of Bonn, Germany – 2027 Master’s Programme with DAAD EPOS Scholarship Opportunities",
-   "link": "https://opportunitiesforyouth.org/2026/10/26/joint-msc-in-geography-of-environmental-risks-and-human-security-at-unu-ehs-and-the-university-of-bonn-germany-2027-masters-programme-with-daad-epos-scholarship-opportunities/",
-   "date": "2026-10-26",
-   "source": "Opportunities for Youth",
-   "official": false,
-   "ids": [
-    "daad-epos"
-   ],
-   "summary": "The Joint MSc in Geography of Environmental Risks and Human Security is an international postgraduate programme offered by the United Nations University Institute for Environment and Human Security (…",
-   "seen": "2026-10-27"
-  },
-  {
-   "title": "VLIR-UOS ICP Connect Scholarships 2027–2028 in Belgium: Fully Funded Study Opportunities for International Students",
-   "link": "https://opportunitiesforyouth.org/2026/10/26/vlir-uos-icp-connect-scholarships-2027-2028-in-belgium-fully-funded-study-opportunities-for-international-students/",
-   "date": "2026-10-26",
-   "source": "Opportunities for Youth",
-   "official": false,
-   "ids": [],
-   "summary": "The VLIR-UOS ICP Connect Scholarships 2027–2028 offer international students from eligible countries in Africa, Asia, and Latin America the opportunity to pursue selected English-taught bachelor’s an…",
-   "seen": "2026-10-27"
-  },
-  {
-   "title": "Stanford Fisher Family Summer Program 2027, USA (Fully Funded)",
-   "link": "https://opportunitiescorners.com/stanford-fisher-family-summer-program-2027/",
-   "date": "2026-10-25",
-   "source": "Opportunities Corners",
-   "official": false,
-   "ids": [],
-   "summary": "Applications are now open for the Stanford Fisher Family Summer Program 2027, formerly known as the Draper Hills Summer Fellows Program. This fully funded Fellowship in the USA is hosted annually by …",
-   "seen": "2026-10-25"
-  },
-  {
-   "title": "33 Global Trainings, Awards and Travel Abroad Opportunities Currently Open – October 25, 2026",
-   "link": "https://opportunitydesk.org/2026/10/25/33-global-trainings-awards-and-travel-abroad-opportunities-currently-open-october-25-2026/",
-   "date": "2026-10-25",
-   "source": "Opportunity Desk",
-   "official": false,
-   "ids": [],
-   "summary": "1. EJN Virtual Media Workshops on the 30×30 Target and Marine Protected Areas 2027The Earth Journalism Network is inviting journalists to join virtual media workshops focused on the global 30×30 cons…",
-   "seen": "2026-10-26"
-  },
-  {
-   "title": "IDM-Africa Fellowship Programme 2027",
-   "link": "https://opportunitydesk.org/2026/10/24/idm-africa-fellowship-programme-2027/",
-   "date": "2026-10-24",
-   "source": "Opportunity Desk",
-   "official": false,
-   "ids": [],
-   "summary": "Deadline: October 30, 2026 Applications are open for the IDM-Africa Fellowship Programme 2027. IDM-Africa invites applications from early- and mid-career scientists in sub-Saharan Africa (SSA) for it…",
-   "seen": "2026-10-25"
-  },
-  {
-   "title": "Anthropic STEM Fellowship 2027 (up to $167,000)",
-   "link": "https://opportunitydesk.org/2026/10/24/anthropic-stem-fellowship-2027/",
-   "date": "2026-10-24",
-   "source": "Opportunity Desk",
-   "official": false,
-   "ids": [],
-   "summary": "Deadline: October 28, 2026 Applications are open for the Anthropic STEM Fellowship 2027. The Anthropic STEM Fellows Program brings researchers and experts from across science and engineering into Ant…",
-   "seen": "2026-10-25"
-  },
-  {
-   "title": "Swedish Institute Pioneering Women in STEM Scholarship 2027 (Fully-funded)",
-   "link": "https://opportunitydesk.org/2026/10/24/si-pioneering-women-in-stem-scholarship-2027/",
-   "date": "2026-10-24",
-   "source": "Opportunity Desk",
-   "official": false,
-   "ids": [
-    "si"
-   ],
-   "summary": "Deadline: January 15, 2027 Applications are open for the Swedish Institute Pioneering Women in STEM Scholarship 2027. The Pioneering Women in STEM scholarship supports women who want to lead innovati…",
-   "seen": "2026-10-25"
   }
  ]
 }
