@@ -1,0 +1,749 @@
+{
+"note": "kind=guess means the address follows the usual pattern and has not been confirmed. Add sites here.",
+"sites": [
+{
+"state": "Plateau",
+"url": "https://plateaustate.gov.ng/government/lgas/langtang-south",
+"lga": "Langtang South",
+"kind": "found"
+},
+{
+"state": "Nasarawa",
+"url": "https://nasarawastate.gov.ng/",
+"lga": null,
+"kind": "found"
+},
+{
+"state": "Kogi",
+"url": "https://kogistate.gov.ng/structure",
+"lga": null,
+"kind": "found"
+},
+{
+"state": "Adamawa",
+"url": "https://adamawastate.gov.ng/history/",
+"lga": null,
+"kind": "found"
+},
+{
+"state": "Bauchi",
+"url": "https://home.bauchistate.gov.ng/history/",
+"lga": null,
+"kind": "found"
+},
+{
+"state": "Borno",
+"url": "https://bornostate.gov.ng/about",
+"lga": null,
+"kind": "found"
+},
+{
+"state": "Borno",
+"url": "https://bornostate.gov.ng/wb/local-govt-administration",
+"lga": null,
+"kind": "found"
+},
+{
+"state": "Gombe",
+"url": "https://gombestate.gov.ng/discover-gombe/",
+"lga": null,
+"kind": "found"
+},
+{
+"state": "Gombe",
+"url": "https://www.gombestate.gov.ng/histo",
+"lga": null,
+"kind": "found"
+},
+{
+"state": "Kebbi",
+"url": "https://www.kebbistate.gov.ng/about-kebbi-state",
+"lga": null,
+"kind": "found"
+},
+{
+"state": "Kaduna",
+"url": "https://kdsg.gov.ng/home-new/",
+"lga": null,
+"kind": "found"
+},
+{
+"state": "Sokoto",
+"url": "https://sokotostate.gov.ng/the-government/local-governments/binji-local-government/",
+"lga": "Binji",
+"kind": "found"
+},
+{
+"state": "Sokoto",
+"url": "https://sokotostate.gov.ng/the-government/local-governments/gada-local-government/",
+"lga": "Gada",
+"kind": "found"
+},
+{
+"state": "Sokoto",
+"url": "https://sokotostate.gov.ng/the-government/local-governments/sokoto-north-local-government/",
+"lga": "Sokoto North",
+"kind": "found"
+},
+{
+"state": "Anambra",
+"url": "https://ayamelum.an.gov.ng/about-ayamelum",
+"lga": "Ayamelum",
+"kind": "found"
+},
+{
+"state": "Anambra",
+"url": "https://ogbaru.an.gov.ng/about-us",
+"lga": "Ogbaru",
+"kind": "found"
+},
+{
+"state": "Anambra",
+"url": "https://njikoka.an.gov.ng/about-us",
+"lga": "Njikoka",
+"kind": "found"
+},
+{
+"state": "Anambra",
+"url": "https://dunukofia.an.gov.ng",
+"lga": "Dunukofia",
+"kind": "found"
+},
+{
+"state": "Enugu",
+"url": "https://enugustate.gov.ng/about-us-parent/about-us/",
+"lga": null,
+"kind": "found"
+},
+{
+"state": "Ebonyi",
+"url": "https://www.ebonyistate.gov.ng/town.html",
+"lga": null,
+"kind": "found"
+},
+{
+"state": "Cross River",
+"url": "https://news.crossriverstate.gov.ng/",
+"lga": null,
+"kind": "found"
+},
+{
+"state": "Ekiti",
+"url": "https://www.ekitistate.gov.ng/about-ekiti/local-government",
+"lga": null,
+"kind": "found"
+},
+{
+"state": "Ekiti",
+"url": "https://www.ekitistate.gov.ng/about-ekiti/local-government/efon/",
+"lga": "Efon",
+"kind": "found"
+},
+{
+"state": "Ekiti",
+"url": "https://www.ekitistate.gov.ng/about-ekiti/local-government/ekiti-east",
+"lga": "Ekiti East",
+"kind": "found"
+},
+{
+"state": "Ekiti",
+"url": "https://www.ekitistate.gov.ng/about-ekiti/local-government/ijero",
+"lga": "Ijero",
+"kind": "found"
+},
+{
+"state": "Ekiti",
+"url": "https://www.ekitistate.gov.ng/about-ekiti/local-government/oye",
+"lga": "Oye",
+"kind": "found"
+},
+{
+"state": "Ekiti",
+"url": "https://www.ekitistate.gov.ng/about-ekiti/local-government/ilejemeje/",
+"lga": "Ekiti South West",
+"kind": "found"
+},
+{
+"state": "Ekiti",
+"url": "https://www.ekitistate.gov.ng/about-ekiti/local-government/ikole/",
+"lga": "Ikole",
+"kind": "found"
+},
+{
+"state": "Ekiti",
+"url": "https://www.ekitistate.gov.ng/about-ekiti/local-government/moba/",
+"lga": "Moba",
+"kind": "found"
+},
+{
+"state": "Ekiti",
+"url": "https://www.ekitistate.gov.ng/about-ekiti/local-government/ikere/",
+"lga": "Ikere",
+"kind": "found"
+},
+{
+"state": "Ekiti",
+"url": "https://www.ekitistate.gov.ng/about-ekiti/local-government/emure/",
+"lga": "Emure",
+"kind": "found"
+},
+{
+"state": "Ekiti",
+"url": "https://www.ekitistate.gov.ng/about-ekiti/local-government/ido-osi/",
+"lga": "Ido-Osi",
+"kind": "found"
+},
+{
+"state": "Ekiti",
+"url": "https://www.ekitistate.gov.ng/about-ekiti/local-government/ekiti-west/",
+"lga": "Ekiti West",
+"kind": "found"
+},
+{
+"state": "Ekiti",
+"url": "https://www.ekitistate.gov.ng/about-ekiti/local-government/irepodun-ifelodun/",
+"lga": "Irepodun/Ifelodun",
+"kind": "found"
+},
+{
+"state": "Oyo",
+"url": "https://lagelu.oyostate.gov.ng/",
+"lga": "Lagelu",
+"kind": "found"
+},
+{
+"state": "Oyo",
+"url": "https://oyowest.oyostate.gov.ng/",
+"lga": "Oyo West",
+"kind": "found"
+},
+{
+"state": "Oyo",
+"url": "https://ogooluwa.oyostate.gov.ng/",
+"lga": "Ogo Oluwa",
+"kind": "found"
+},
+{
+"state": "Abia",
+"url": "https://abiastate.gov.ng/",
+"lga": null,
+"kind": "guess"
+},
+{
+"state": "Adamawa",
+"url": "https://adamawastate.gov.ng/",
+"lga": null,
+"kind": "guess"
+},
+{
+"state": "Akwa Ibom",
+"url": "https://akwaibomstate.gov.ng/",
+"lga": null,
+"kind": "guess"
+},
+{
+"state": "Anambra",
+"url": "https://anambrastate.gov.ng/",
+"lga": null,
+"kind": "guess"
+},
+{
+"state": "Bauchi",
+"url": "https://bauchistate.gov.ng/",
+"lga": null,
+"kind": "guess"
+},
+{
+"state": "Bayelsa",
+"url": "https://bayelsastate.gov.ng/",
+"lga": null,
+"kind": "guess"
+},
+{
+"state": "Benue",
+"url": "https://benuestate.gov.ng/",
+"lga": null,
+"kind": "guess"
+},
+{
+"state": "Borno",
+"url": "https://bornostate.gov.ng/",
+"lga": null,
+"kind": "guess"
+},
+{
+"state": "Cross River",
+"url": "https://crossriverstate.gov.ng/",
+"lga": null,
+"kind": "guess"
+},
+{
+"state": "Delta",
+"url": "https://deltastate.gov.ng/",
+"lga": null,
+"kind": "guess"
+},
+{
+"state": "Ebonyi",
+"url": "https://ebonyistate.gov.ng/",
+"lga": null,
+"kind": "guess"
+},
+{
+"state": "Edo",
+"url": "https://edostate.gov.ng/",
+"lga": null,
+"kind": "guess"
+},
+{
+"state": "Ekiti",
+"url": "https://ekitistate.gov.ng/",
+"lga": null,
+"kind": "guess"
+},
+{
+"state": "Enugu",
+"url": "https://enugustate.gov.ng/",
+"lga": null,
+"kind": "guess"
+},
+{
+"state": "Federal Capital Territory",
+"url": "https://fcta.gov.ng/",
+"lga": null,
+"kind": "guess"
+},
+{
+"state": "Gombe",
+"url": "https://gombestate.gov.ng/",
+"lga": null,
+"kind": "guess"
+},
+{
+"state": "Imo",
+"url": "https://imostate.gov.ng/",
+"lga": null,
+"kind": "guess"
+},
+{
+"state": "Jigawa",
+"url": "https://jigawastate.gov.ng/",
+"lga": null,
+"kind": "guess"
+},
+{
+"state": "Kaduna",
+"url": "https://kadunastate.gov.ng/",
+"lga": null,
+"kind": "guess"
+},
+{
+"state": "Kano",
+"url": "https://kanostate.gov.ng/",
+"lga": null,
+"kind": "guess"
+},
+{
+"state": "Katsina",
+"url": "https://katsinastate.gov.ng/",
+"lga": null,
+"kind": "guess"
+},
+{
+"state": "Kebbi",
+"url": "https://kebbistate.gov.ng/",
+"lga": null,
+"kind": "guess"
+},
+{
+"state": "Kogi",
+"url": "https://kogistate.gov.ng/",
+"lga": null,
+"kind": "guess"
+},
+{
+"state": "Kwara",
+"url": "https://kwarastate.gov.ng/",
+"lga": null,
+"kind": "guess"
+},
+{
+"state": "Lagos",
+"url": "https://lagosstate.gov.ng/",
+"lga": null,
+"kind": "guess"
+},
+{
+"state": "Niger",
+"url": "https://nigerstate.gov.ng/",
+"lga": null,
+"kind": "guess"
+},
+{
+"state": "Ogun",
+"url": "https://ogunstate.gov.ng/",
+"lga": null,
+"kind": "guess"
+},
+{
+"state": "Ondo",
+"url": "https://ondostate.gov.ng/",
+"lga": null,
+"kind": "guess"
+},
+{
+"state": "Osun",
+"url": "https://osunstate.gov.ng/",
+"lga": null,
+"kind": "guess"
+},
+{
+"state": "Oyo",
+"url": "https://oyostate.gov.ng/",
+"lga": null,
+"kind": "guess"
+},
+{
+"state": "Plateau",
+"url": "https://plateaustate.gov.ng/",
+"lga": null,
+"kind": "guess"
+},
+{
+"state": "Rivers",
+"url": "https://riversstate.gov.ng/",
+"lga": null,
+"kind": "guess"
+},
+{
+"state": "Sokoto",
+"url": "https://sokotostate.gov.ng/",
+"lga": null,
+"kind": "guess"
+},
+{
+"state": "Taraba",
+"url": "https://tarabastate.gov.ng/",
+"lga": null,
+"kind": "guess"
+},
+{
+"state": "Yobe",
+"url": "https://yobestate.gov.ng/",
+"lga": null,
+"kind": "guess"
+},
+{
+"state": "Zamfara",
+"url": "https://zamfarastate.gov.ng/",
+"lga": null,
+"kind": "guess"
+},
+{
+"state": "Oyo",
+"url": "https://afijio.oyostate.gov.ng/",
+"lga": "Afijio",
+"kind": "guess"
+},
+{
+"state": "Oyo",
+"url": "https://akinyele.oyostate.gov.ng/",
+"lga": "Akinyele",
+"kind": "guess"
+},
+{
+"state": "Oyo",
+"url": "https://atiba.oyostate.gov.ng/",
+"lga": "Atiba",
+"kind": "guess"
+},
+{
+"state": "Oyo",
+"url": "https://atisbo.oyostate.gov.ng/",
+"lga": "Atisbo",
+"kind": "guess"
+},
+{
+"state": "Oyo",
+"url": "https://egbeda.oyostate.gov.ng/",
+"lga": "Egbeda",
+"kind": "guess"
+},
+{
+"state": "Oyo",
+"url": "https://ibadannorth.oyostate.gov.ng/",
+"lga": "Ibadan North",
+"kind": "guess"
+},
+{
+"state": "Oyo",
+"url": "https://ibadannortheast.oyostate.gov.ng/",
+"lga": "Ibadan North East",
+"kind": "guess"
+},
+{
+"state": "Oyo",
+"url": "https://ibadannorthwest.oyostate.gov.ng/",
+"lga": "Ibadan North West",
+"kind": "guess"
+},
+{
+"state": "Oyo",
+"url": "https://ibadansoutheast.oyostate.gov.ng/",
+"lga": "Ibadan South East",
+"kind": "guess"
+},
+{
+"state": "Oyo",
+"url": "https://ibadansouthwest.oyostate.gov.ng/",
+"lga": "Ibadan South West",
+"kind": "guess"
+},
+{
+"state": "Oyo",
+"url": "https://ibarapacentral.oyostate.gov.ng/",
+"lga": "Ibarapa Central",
+"kind": "guess"
+},
+{
+"state": "Oyo",
+"url": "https://ibarapaeast.oyostate.gov.ng/",
+"lga": "Ibarapa East",
+"kind": "guess"
+},
+{
+"state": "Oyo",
+"url": "https://ibarapanorth.oyostate.gov.ng/",
+"lga": "Ibarapa North",
+"kind": "guess"
+},
+{
+"state": "Oyo",
+"url": "https://ido.oyostate.gov.ng/",
+"lga": "Ido",
+"kind": "guess"
+},
+{
+"state": "Oyo",
+"url": "https://irepo.oyostate.gov.ng/",
+"lga": "Irepo",
+"kind": "guess"
+},
+{
+"state": "Oyo",
+"url": "https://iseyin.oyostate.gov.ng/",
+"lga": "Iseyin",
+"kind": "guess"
+},
+{
+"state": "Oyo",
+"url": "https://itesiwaju.oyostate.gov.ng/",
+"lga": "Itesiwaju",
+"kind": "guess"
+},
+{
+"state": "Oyo",
+"url": "https://iwajowa.oyostate.gov.ng/",
+"lga": "Iwajowa",
+"kind": "guess"
+},
+{
+"state": "Oyo",
+"url": "https://kajola.oyostate.gov.ng/",
+"lga": "Kajola",
+"kind": "guess"
+},
+{
+"state": "Oyo",
+"url": "https://ogbomoshonorth.oyostate.gov.ng/",
+"lga": "Ogbomosho North",
+"kind": "guess"
+},
+{
+"state": "Oyo",
+"url": "https://ogbomoshosouth.oyostate.gov.ng/",
+"lga": "Ogbomosho South",
+"kind": "guess"
+},
+{
+"state": "Oyo",
+"url": "https://olorunsogo.oyostate.gov.ng/",
+"lga": "Olorunsogo",
+"kind": "guess"
+},
+{
+"state": "Oyo",
+"url": "https://oluyole.oyostate.gov.ng/",
+"lga": "Oluyole",
+"kind": "guess"
+},
+{
+"state": "Oyo",
+"url": "https://onaara.oyostate.gov.ng/",
+"lga": "Ona-Ara",
+"kind": "guess"
+},
+{
+"state": "Oyo",
+"url": "https://orelope.oyostate.gov.ng/",
+"lga": "Orelope",
+"kind": "guess"
+},
+{
+"state": "Oyo",
+"url": "https://oriire.oyostate.gov.ng/",
+"lga": "Ori Ire",
+"kind": "guess"
+},
+{
+"state": "Oyo",
+"url": "https://oyoeast.oyostate.gov.ng/",
+"lga": "Oyo East",
+"kind": "guess"
+},
+{
+"state": "Oyo",
+"url": "https://sakieast.oyostate.gov.ng/",
+"lga": "Saki East",
+"kind": "guess"
+},
+{
+"state": "Oyo",
+"url": "https://sakiwest.oyostate.gov.ng/",
+"lga": "Saki West",
+"kind": "guess"
+},
+{
+"state": "Oyo",
+"url": "https://surulere.oyostate.gov.ng/",
+"lga": "Surulere",
+"kind": "guess"
+},
+{
+"state": "Anambra",
+"url": "https://aguata.an.gov.ng/",
+"lga": "Aguata",
+"kind": "guess"
+},
+{
+"state": "Anambra",
+"url": "https://anambraeast.an.gov.ng/",
+"lga": "Anambra East",
+"kind": "guess"
+},
+{
+"state": "Anambra",
+"url": "https://anambrawest.an.gov.ng/",
+"lga": "Anambra West",
+"kind": "guess"
+},
+{
+"state": "Anambra",
+"url": "https://anaocha.an.gov.ng/",
+"lga": "Anaocha",
+"kind": "guess"
+},
+{
+"state": "Anambra",
+"url": "https://awkanorth.an.gov.ng/",
+"lga": "Awka North",
+"kind": "guess"
+},
+{
+"state": "Anambra",
+"url": "https://awkasouth.an.gov.ng/",
+"lga": "Awka South",
+"kind": "guess"
+},
+{
+"state": "Anambra",
+"url": "https://ayamelum.an.gov.ng/",
+"lga": "Ayamelum",
+"kind": "guess"
+},
+{
+"state": "Anambra",
+"url": "https://dunukofia.an.gov.ng/",
+"lga": "Dunukofia",
+"kind": "guess"
+},
+{
+"state": "Anambra",
+"url": "https://ekwusigo.an.gov.ng/",
+"lga": "Ekwusigo",
+"kind": "guess"
+},
+{
+"state": "Anambra",
+"url": "https://idemilinorth.an.gov.ng/",
+"lga": "Idemili North",
+"kind": "guess"
+},
+{
+"state": "Anambra",
+"url": "https://idemilisouth.an.gov.ng/",
+"lga": "Idemili South",
+"kind": "guess"
+},
+{
+"state": "Anambra",
+"url": "https://ihiala.an.gov.ng/",
+"lga": "Ihiala",
+"kind": "guess"
+},
+{
+"state": "Anambra",
+"url": "https://njikoka.an.gov.ng/",
+"lga": "Njikoka",
+"kind": "guess"
+},
+{
+"state": "Anambra",
+"url": "https://nnewinorth.an.gov.ng/",
+"lga": "Nnewi North",
+"kind": "guess"
+},
+{
+"state": "Anambra",
+"url": "https://nnewisouth.an.gov.ng/",
+"lga": "Nnewi South",
+"kind": "guess"
+},
+{
+"state": "Anambra",
+"url": "https://ogbaru.an.gov.ng/",
+"lga": "Ogbaru",
+"kind": "guess"
+},
+{
+"state": "Anambra",
+"url": "https://onitshanorth.an.gov.ng/",
+"lga": "Onitsha North",
+"kind": "guess"
+},
+{
+"state": "Anambra",
+"url": "https://onitshasouth.an.gov.ng/",
+"lga": "Onitsha South",
+"kind": "guess"
+},
+{
+"state": "Anambra",
+"url": "https://orumbanorth.an.gov.ng/",
+"lga": "Orumba North",
+"kind": "guess"
+},
+{
+"state": "Anambra",
+"url": "https://orumbasouth.an.gov.ng/",
+"lga": "Orumba South",
+"kind": "guess"
+},
+{
+"state": "Anambra",
+"url": "https://oyi.an.gov.ng/",
+"lga": "Oyi",
+"kind": "guess"
+}
+]
+}
