@@ -1,0 +1,1 @@
+# Add one candidate id per line, then commit. See history-atlas/BOTS.md.
