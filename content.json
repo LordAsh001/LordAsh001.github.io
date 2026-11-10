@@ -668,6 +668,34 @@
           "doi": "10.5281/zenodo.23291784"
         },
         {
+          "name": "1stPaper",
+          "text": "Publish your first research paper in a legitimate journal. An 11-step guide takes you from finding a publishable idea to answering reviewers, with tasks to tick off. Post a research idea or join someone else's to form a small research group, with fair authorship agreed up front and mentors who can guide the team.",
+          "link_label": "Open tool",
+          "sdgs": [
+            4,
+            10
+          ],
+          "hidden": false,
+          "url": "/1stpaper/",
+          "kind": "Interactive tool · free",
+          "audience": [
+            "Students",
+            "Researchers"
+          ],
+          "level": "Beginner",
+          "numbers": [
+            {
+              "value": "11",
+              "label": "steps from idea to publication"
+            },
+            {
+              "value": "54",
+              "label": "practical tasks"
+            }
+          ],
+          "classroom": "work through step 1 together and have each student turn a past project into a one-sentence paper idea."
+        },
+        {
           "name": "Nigeria Forest Reserves Atlas",
           "text": "Explore Nigeria’s forest reserves, national parks, game reserves, sanctuaries, Ramsar wetlands and biosphere reserves on one map, with official boundaries, sourced profiles of plants, animals, resources and tourism, a statistics section with downloadable charts, a visit planner and a field-report hub for NGOs. Every record shows its sources and a verification level, and the full dataset downloads as CSV or GeoJSON.",
           "link_label": "Open tool",
