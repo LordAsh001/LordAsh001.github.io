@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>1stPaper</title>
+  <meta name="description" content="1stPaper: a free step-by-step guide and research groups that help students publish their first paper in a legitimate journal.">
+  <meta property="og:title" content="1stPaper — publish your first research paper">
+  <meta property="og:description" content="A free step-by-step guide plus research groups for first-time authors.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231f5f8b'/%3E%3Ctext x='16' y='22' font-family='Georgia,serif' font-size='17' font-weight='700' text-anchor='middle' fill='white'%3E1%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,600;8..60,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script>try{var t=JSON.parse(localStorage.getItem('fp_theme'));if(t)document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <div class="demobar" id="demoBar" hidden>Demo mode — sample data stored in this browser only. <button class="linkbtn" id="resetDemo">Reset demo</button></div>
+  <header class="top">
+    <div class="wrap topin">
+      <a class="brand" href="#/"><span class="logo">1</span><span>1st<b>Paper</b></span></a>
+      <nav id="navLinks" class="nav" aria-label="Main"></nav>
+      <div class="topbtns">
+        <button class="iconbtn" id="themeBtn" aria-label="Switch theme">&#9790;</button>
+        <button class="iconbtn menu" id="menuBtn" aria-label="Menu" aria-expanded="false">&#9776;</button>
+      </div>
+    </div>
+  </header>
+  <main id="main" class="wrap" tabindex="-1"></main>
+  <footer class="wrap foot">
+    <p>1stPaper is free and open. Code MIT, content CC BY 4.0. Built by <a href="https://shagbaor.com/" target="_blank" rel="noopener">Shagbaor Hycent Amool</a>.</p>
+    <p class="muted small">We never sell authorship, guarantee publication, or work with predatory journals.</p>
+  </footer>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <script src="config.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
+  <script src="content.js"></script>
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+  <script data-goatcounter="https://shagbaor.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</body>
+</html>
