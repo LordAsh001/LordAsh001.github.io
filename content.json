@@ -984,6 +984,40 @@
             }
           ],
           "classroom": "give each group a host country, compare its Nigerian population, students and remittances, and explain what draws Nigerians there and what support they can find."
+        },
+        {
+          "name": "Nigeria History Atlas",
+          "text": "Follow Nigeria's history from the earliest evidence to today. A sourced timeline runs from prehistory to the present, and reconstructed maps show how colonial units became 36 states and 774 LGAs. You can follow any federal or state office holder by holder, or pick a date and see who held office. Election results run from federal to state and LGA level, with side-by-side maps and consistency checks of published figures. Each state and LGA has its own page, and records still missing are marked as gaps.",
+          "link_label": "Open tool",
+          "sdgs": [
+            4,
+            16
+          ],
+          "hidden": false,
+          "url": "/history-atlas/",
+          "kind": "Interactive map · free",
+          "audience": [
+            "Researchers",
+            "Practitioners",
+            "Educators",
+            "Students"
+          ],
+          "level": "All levels",
+          "numbers": [
+            {
+              "value": "299",
+              "label": "sourced timeline events"
+            },
+            {
+              "value": "797",
+              "label": "office-holder records"
+            },
+            {
+              "value": "774",
+              "label": "LGAs with their own page"
+            }
+          ],
+          "classroom": "give each group an LGA, trace which units its area has belonged to since 1900, then find a source that dates its creation."
         }
       ],
       "note": "Using one of these in a course or workshop? I'd love to hear how it went: [amool@unbc.ca](mailto:amool@unbc.ca). Free to use for teaching and learning."
