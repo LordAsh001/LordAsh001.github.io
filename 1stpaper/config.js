@@ -11,7 +11,7 @@ window.FIRSTPAPER_CONFIG = {
   links: {
     lara: 'https://shagbaor.com/lara/',
     findJournal: 'https://shagbaor.com/lara/',   // point at LARA's Find a Journal section if it has its own URL
-    citadel: 'https://shagbaor.com/citadel/',
+    citadel: 'https://shagbaor.com/citadel.html',
     laureate: 'https://shagbaor.com/laureate/',
     home: 'https://shagbaor.com/'
   }
