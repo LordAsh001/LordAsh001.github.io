@@ -1,0 +1,28 @@
+# Publish approved records for the Nigeria History Atlas. See history-atlas/BOTS.md.
+name: "History Atlas bot: Approved records"
+on:
+  push:
+    branches: [main]
+    paths: ["history-atlas/data/approved.txt"]
+  workflow_dispatch: {}
+permissions:
+  contents: write
+  issues: write
+concurrency:
+  group: history-atlas-data
+  cancel-in-progress: false
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Run bot
+        run: bash scripts/history_atlas/run_bot.sh apply_approved.py "Approved records"
