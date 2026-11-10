@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-09",
+ "updated": "2026-11-10",
  "sources": [
   {
    "source": "Opportunities for Africans",
@@ -9,7 +9,7 @@
   {
    "source": "Opportunity Desk",
    "ok": true,
-   "items": 4
+   "items": 3
   },
   {
    "source": "Opportunities Corners",
@@ -19,7 +19,7 @@
   {
    "source": "Scholarship Region",
    "ok": true,
-   "items": 7
+   "items": 4
   },
   {
    "source": "Opportunities for Youth",
@@ -56,6 +56,58 @@
   }
  ],
  "items": [
+  {
+   "title": "European master in Advanced Solid Mechanics",
+   "link": "https://www.master-strains.eu/",
+   "date": "2026-11-10",
+   "source": "Erasmus Mundus catalogue (EACEA)",
+   "official": true,
+   "ids": [],
+   "summary": "STRAINS - Project overview https://erasmus-plus.ec.europa.eu/projects/search/details/101324508",
+   "seen": "2026-11-10"
+  },
+  {
+   "title": "CERN Summer Student Program 2027 in Switzerland (Fully Funded)",
+   "link": "https://opportunitiescorners.com/cern-summer-student-program-2027/",
+   "date": "2026-11-10",
+   "source": "Opportunities Corners",
+   "official": false,
+   "ids": [],
+   "summary": "Don’t miss the biggest summer program of the year! Applications are now open for the CERN Summer Student Program 2027 in Switzerland. Candidates of all nationalities are welcome to apply. The CERN Su…",
+   "seen": "2026-11-10"
+  },
+  {
+   "title": "Rockefeller University USA Summer Fellowship 2027 (Fully Funded)",
+   "link": "https://opportunitiescorners.com/rockefeller-university-usa-summer-fellowship-2027/",
+   "date": "2026-11-10",
+   "source": "Opportunities Corners",
+   "official": false,
+   "ids": [],
+   "summary": "Applications are now open for the Rockefeller University USA Summer Fellowship 2027. This Fully Funded Fellowship in New York accepts international students and U.S. Citizens. Summer Fellows will spe…",
+   "seen": "2026-11-10"
+  },
+  {
+   "title": "African Development Bank Shanghai Ocean University Scholarship 2027 (AfDB-SHOU) | Fully Funded",
+   "link": "https://www.scholarshipregion.com/african-development-bank-shanghai-ocean-university-scholarship/",
+   "date": "2026-11-10",
+   "source": "Scholarship Region",
+   "official": false,
+   "ids": [],
+   "summary": "The African Development Bank (AfDB) Group has announced its 2026 fully funded scholarships at the Shanghai Ocean University in China. The African Development Bank Shanghai Ocean University Scholarshi…",
+   "seen": "2026-11-10"
+  },
+  {
+   "title": "Commonwealth Shared Scholarship in UK 2027 (Fully Funded)",
+   "link": "https://www.scholarshipregion.com/commonwealth-shared-scholarship/",
+   "date": "2026-11-10",
+   "source": "Scholarship Region",
+   "official": false,
+   "ids": [
+    "csc-masters"
+   ],
+   "summary": "We recently provided you with a preparation checklist for the Commonwealth Shared Scholarship 2026. Alas! The application opens today. Commonwealth Shared Scholarships, jointly funded by the Commonwe…",
+   "seen": "2026-11-10"
+  },
   {
    "title": "Generation Regen Challenge to Attend the One Young World Summit 2027 (Fully-funded)",
    "link": "https://opportunitydesk.org/2026/11/09/generation-regen-challenge-2027/",
@@ -149,6 +201,76 @@
    "ids": [],
    "summary": "The University of Edinburgh in UK is welcoming applicants from all over the world for the 2027 Global Talent Fund BIG Scholarships. The Global Talent Fund BIG Scholarships provide tuition costs, assi…",
    "seen": "2026-11-09"
+  },
+  {
+   "title": "2027 African Development Bank Group Shanghai Ocean University Scholarship Bachelor, Master’s, and PhD Program (Funded study in Shanghai, China)",
+   "link": "https://www.opportunitiesforafricans.com/2027-african-development-bank-group-shanghai-ocean-university-scholarship-bachelor-masters-and-phd-program/",
+   "date": "2026-11-09",
+   "source": "Opportunities for Africans",
+   "official": false,
+   "ids": [],
+   "summary": "Application Deadline: November 17, 2026 Applications are now open for the 2027 African Development Bank Group Shanghai Ocean University Scholarship. The African Development Bank Group (AfDB) and the …",
+   "seen": "2026-11-10"
+  },
+  {
+   "title": "ICANN Fellowship Program 2027 to Attend ICANN89 Policy Forum in Vancouver, Canada (Funded)",
+   "link": "https://opportunitydesk.org/2026/11/09/icann-fellowship-program-2027/",
+   "date": "2026-11-09",
+   "source": "Opportunity Desk",
+   "official": false,
+   "ids": [],
+   "summary": "Deadline: December 5, 2026 Applications are open for the ICANN Fellowship Program 2027. The goal of the ICANN Fellowship Program is to strengthen the representation of the multistakeholder model by f…",
+   "seen": "2026-11-10"
+  },
+  {
+   "title": "Morgridge Acceleration Program (MAP) Fellowship 2027 (Funded)",
+   "link": "https://opportunitydesk.org/2026/11/09/morgridge-acceleration-program-fellowship-2027/",
+   "date": "2026-11-09",
+   "source": "Opportunity Desk",
+   "official": false,
+   "ids": [],
+   "summary": "Deadline: November 23, 2026 Applications are open for the Morgridge Acceleration Program (MAP) Fellowship 2027. The Morgridge Acceleration Program (MAP) Fellowship is a six-month consulting and leade…",
+   "seen": "2026-11-10"
+  },
+  {
+   "title": "Voices of the Future Global Fellowship 2027 (Fully-funded trip to France)",
+   "link": "https://opportunitydesk.org/2026/11/09/effie-lions-foundation-voices-of-the-future-global-fellowship-2027/",
+   "date": "2026-11-09",
+   "source": "Opportunity Desk",
+   "official": false,
+   "ids": [],
+   "summary": "Voices of the Future is a fully funded, eight-month global fellowship that gives the next generation the real-world experience, skills, and relationships needed to launch a career in marketing.",
+   "seen": "2026-11-10"
+  },
+  {
+   "title": "RIKEN CBS Summer Program 2027 in Japan (Fully Funded)",
+   "link": "https://opportunitiescorners.com/riken-cbs-summer-program-2027/",
+   "date": "2026-11-09",
+   "source": "Opportunities Corners",
+   "official": false,
+   "ids": [],
+   "summary": "The applications are now open for the RIKEN CBS Summer Program 2027 in Japan. It is a fully funded internship at the RIKEN Center for Brain Science (RIKEN CBS). All selected interns will travel to To…",
+   "seen": "2026-11-10"
+  },
+  {
+   "title": "University College London UCL African Graduate Scholarship in UK 2027 | Fully Funded",
+   "link": "https://www.scholarshipregion.com/ucl-african-graduate-scholarship/",
+   "date": "2026-11-09",
+   "source": "Scholarship Region",
+   "official": false,
+   "ids": [],
+   "summary": "The University College London African Graduate Scholarship is a fully funded opportunity for Africans seeking to study in the United Kingdom (UK). The UCL African Graduate Scholarship offers a substa…",
+   "seen": "2026-11-10"
+  },
+  {
+   "title": "Airtel Africa Tech Fellowship for Undergraduates 2026/27 | Fully Funded",
+   "link": "https://www.scholarshipregion.com/airtel-africa-tech-fellowship/",
+   "date": "2026-11-09",
+   "source": "Scholarship Region",
+   "official": false,
+   "ids": [],
+   "summary": "Airtel Africa Foundation is offering full scholarships to undergraduate students enrolled in Nigerian universities in line with its mission is to empower Africans through financial education. The Air…",
+   "seen": "2026-11-10"
   },
   {
    "title": "Stanford Summer Research Program 2027 in USA (Fully Funded)",
@@ -1581,132 +1703,6 @@
    "ids": [],
    "summary": "Deadline: November 2, 2026 Applications are open for the 100x Impact Accelerator 2027/2028. They are looking for future social unicorns—organisations capable of improving the lives of hundreds of mil…",
    "seen": "2026-10-28"
-  },
-  {
-   "title": "IWA & Grundfos “Youth Action for SDG 6” Fellowship 2027-2028",
-   "link": "https://opportunitydesk.org/2026/10/27/iwa-grundfos-youth-action-for-sdg-6-fellowship-2027-2028/",
-   "date": "2026-10-27",
-   "source": "Opportunity Desk",
-   "official": false,
-   "ids": [],
-   "summary": "Deadline: November 5, 2026 Applications are open for the IWA & Grundfos “Youth Action for SDG 6” Fellowship 2027-2028. Established in 2022, the Fellowship supports Young Water Professionals (YWPs) to…",
-   "seen": "2026-10-28"
-  },
-  {
-   "title": "UN Journalism Fellowship 2027 in Qatar (Fully Funded)",
-   "link": "https://opportunitiescorners.com/un-journalism-fellowship-2027-in-qatar/",
-   "date": "2026-10-27",
-   "source": "Opportunities Corners",
-   "official": false,
-   "ids": [],
-   "summary": "Applications are now open for the UN Journalism Fellowship 2027 in Qatar. The United Nations Office of the High Representative for the Least Developed Countries, Landlocked Developing Countries and S…",
-   "seen": "2026-10-28"
-  },
-  {
-   "title": "Indomie Scholarship Program 2026 For Nigerians | Step-by-Step Process",
-   "link": "https://www.scholarshipregion.com/indomie-scholarship-program/",
-   "date": "2026-10-27",
-   "source": "Scholarship Region",
-   "official": false,
-   "ids": [],
-   "summary": "Dufil Prima Foods Plc is inviting applications for the 2026 Indomie Scholarship Program for Nigerian students. The Indomie Scholarship awards a full tuition coverage for selected candidates across un…",
-   "seen": "2026-10-28"
-  },
-  {
-   "title": "2027 National University of Singapore President Graduate Fellowship (PGF) | Fully Funded",
-   "link": "https://www.scholarshipregion.com/national-university-of-singapore-president-graduate-fellowship/",
-   "date": "2026-10-27",
-   "source": "Scholarship Region",
-   "official": false,
-   "ids": [],
-   "summary": "The National University of Singapore (NUS) offers annual President Graduate Fellowships for international and Singaporean students to pursue PhD studies. The NUS President Graduate Fellowship covers …",
-   "seen": "2026-10-28"
-  },
-  {
-   "title": "AMASE Masters Scholarship in Europe 2027 | Fully Funded",
-   "link": "https://www.scholarshipregion.com/amase-masters-scholarship/",
-   "date": "2026-10-27",
-   "source": "Scholarship Region",
-   "official": false,
-   "ids": [
-    "erasmus"
-   ],
-   "summary": "The European School of Materials, with the support of the Erasmus+ Programme, is welcoming applications for its fully funded AMASE Master Scholarship. The AMASE Erasmus Mundus Scholarships provide fu…",
-   "seen": "2026-10-28"
-  },
-  {
-   "title": "Young Lady won Erasmus Mundus Scholarship to study in two Europe Universities, here is how she did it",
-   "link": "https://www.scholarshipregion.com/young-lady-won-erasmus-mundus-scholarship-to-study-in-two-europe-universities/",
-   "date": "2026-10-27",
-   "source": "Scholarship Region",
-   "official": false,
-   "ids": [
-    "erasmus"
-   ],
-   "summary": "A brilliant young lady named Fathia Raji has achieved an outstanding academic milestone after earning the prestigious Erasmus Mundus Joint Masters scholarship to study Mathematical Engineering in Eur…",
-   "seen": "2026-10-28"
-  },
-  {
-   "title": "ICP Connect Study Scholarships (VLIR-OUS) in Belgium 2027 | Fully Funded",
-   "link": "https://www.scholarshipregion.com/icp-connect-study-scholarship/",
-   "date": "2026-10-27",
-   "source": "Scholarship Region",
-   "official": false,
-   "ids": [],
-   "summary": "The ICP Connect Study Scholarship covers tuition fees, travel, insurance, and living expenses (board and lodging) for the full duration of the study programme. The VLIR-OUS Study Scholarship are awar…",
-   "seen": "2026-10-28"
-  },
-  {
-   "title": "Graduate Assistantships Abroad: How to Get Funding for Your Masters or PhD",
-   "link": "https://www.scholarshipregion.com/graduate-assistantships/",
-   "date": "2026-10-27",
-   "source": "Scholarship Region",
-   "official": false,
-   "ids": [],
-   "summary": "Pursuing a masters or PhD abroad is be expensive, with tuition fees and living costs quickly adding up. Graduate assistantships offer a way to reduce these expenses while gaining teaching, research o…",
-   "seen": "2026-10-28"
-  },
-  {
-   "title": "United Arab Emirates University (UAEU) Software Engineering Scholarship 2027 | Fully Funded",
-   "link": "https://www.scholarshipregion.com/united-arab-emirates-university-uaeu-software-engineering-scholarship/",
-   "date": "2026-10-27",
-   "source": "Scholarship Region",
-   "official": false,
-   "ids": [],
-   "summary": "A fully funded Master’s scholarship in Software Engineering is now open for incoming domestic and international students at the United Arab Emirates University (UAEU). The program is offered by the C…",
-   "seen": "2026-10-28"
-  },
-  {
-   "title": "Sir Cyril Taylor Young African Leaders Program 2027 (Fully-funded)",
-   "link": "https://opportunitydesk.org/2026/10/26/sir-cyril-taylor-young-african-leaders-program-2027/",
-   "date": "2026-10-26",
-   "source": "Opportunity Desk",
-   "official": false,
-   "ids": [],
-   "summary": "Deadline: November 19, 2026 Applications are open for the Sir Cyril Taylor Young African Leaders Program 2027. With generous grant support from the Sir Cyril Taylor Charitable Foundation, this initia…",
-   "seen": "2026-10-27"
-  },
-  {
-   "title": "Nexa Lighthouse Funding Program 2027",
-   "link": "https://opportunitydesk.org/2026/10/26/nexa-lighthouse-funding-program-2027/",
-   "date": "2026-10-26",
-   "source": "Opportunity Desk",
-   "official": false,
-   "ids": [],
-   "summary": "Deadline: November 17, 2026 Applications for the Nexa Lighthouse Funding Program 2027 are now open. Nexa Lighthouse is investing in proven innovations across Asia and the Pacific that help local heal…",
-   "seen": "2026-10-27"
-  },
-  {
-   "title": "Fulbright U.S.-ASEAN Visiting Scholar Program 2027 (Fully-funded)",
-   "link": "https://opportunitydesk.org/2026/10/26/fulbright-us-asean-visiting-scholar-program-2027/",
-   "date": "2026-10-26",
-   "source": "Opportunity Desk",
-   "official": false,
-   "ids": [
-    "fulbright"
-   ],
-   "summary": "Deadline: November 30, 2026 Applications are open for the Fulbright U.S.-ASEAN Visiting Scholar Program 2027. The Fulbright U.S.-ASEAN Visiting Scholar Program welcomes university faculty, government…",
-   "seen": "2026-10-27"
   }
  ]
 }
