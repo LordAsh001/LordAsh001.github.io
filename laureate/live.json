@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-10",
+ "updated": "2026-11-11",
  "sources": [
   {
    "source": "Opportunities for Africans",
@@ -8,18 +8,18 @@
   },
   {
    "source": "Opportunity Desk",
-   "ok": true,
-   "items": 3
+   "ok": false,
+   "error": "The read operation timed out"
   },
   {
    "source": "Opportunities Corners",
    "ok": true,
-   "items": 5
+   "items": 4
   },
   {
    "source": "Scholarship Region",
    "ok": true,
-   "items": 4
+   "items": 3
   },
   {
    "source": "Opportunities for Youth",
@@ -57,6 +57,38 @@
  ],
  "items": [
   {
+   "title": "CERN OPENLAB Summer Program 2027 in Switzerland (Fully Funded)",
+   "link": "https://opportunitiescorners.com/cern-openlab-summer-program-2027/",
+   "date": "2026-11-11",
+   "source": "Opportunities Corners",
+   "official": false,
+   "ids": [],
+   "summary": "The applications are now open for the CERN OPENLAB Summer Program 2027. The OPENLAB Summer Program offers a fully funded, 2-month internship for students of all nationalities. There are no citizenshi…",
+   "seen": "2026-11-11"
+  },
+  {
+   "title": "Kings College Commonwealth Shared Scholarships UK 2027 | Fully Funded",
+   "link": "https://www.scholarshipregion.com/kings-college-commonwealth-shared-scholarship/",
+   "date": "2026-11-11",
+   "source": "Scholarship Region",
+   "official": false,
+   "ids": [
+    "csc-masters"
+   ],
+   "summary": "The Kings College Commonwealth Shared Scholarship is for students from eligible low and middle income Commonwealth countries to study approved master’s programmes at King’s College London. The Kings …",
+   "seen": "2026-11-11"
+  },
+  {
+   "title": "University of Saskatchewan Graduate Scholarship 2027 | Fully Funded",
+   "link": "https://www.scholarshipregion.com/university-of-saskatchewan-graduate-scholarship/",
+   "date": "2026-11-11",
+   "source": "Scholarship Region",
+   "official": false,
+   "ids": [],
+   "summary": "The University of Saskatchewan in Canada is inviting applications for a fully funded graduate opportunity for students from around the world. The University of Saskatchewan Graduate Scholarship is of…",
+   "seen": "2026-11-11"
+  },
+  {
    "title": "European master in Advanced Solid Mechanics",
    "link": "https://www.master-strains.eu/",
    "date": "2026-11-10",
@@ -65,6 +97,70 @@
    "ids": [],
    "summary": "STRAINS - Project overview https://erasmus-plus.ec.europa.eu/projects/search/details/101324508",
    "seen": "2026-11-10"
+  },
+  {
+   "title": "Responsible Leadership in Cultural and Religious Heritage",
+   "link": "https://www.relic-ma.eu",
+   "date": "2026-11-10",
+   "source": "Erasmus Mundus catalogue (EACEA)",
+   "official": true,
+   "ids": [],
+   "summary": "RELIC - Project overview https://erasmus-plus.ec.europa.eu/projects/search/details/101325458",
+   "seen": "2026-11-11"
+  },
+  {
+   "title": "Master of Science in Geospatial Technologies",
+   "link": "https://mastergeotech.info/",
+   "date": "2026-11-10",
+   "source": "Erasmus Mundus catalogue (EACEA)",
+   "official": true,
+   "ids": [],
+   "summary": "GeoTech - Project overview https://erasmus-plus.ec.europa.eu/projects/search/details/101325360",
+   "seen": "2026-11-11"
+  },
+  {
+   "title": "Applied Biodiversity Management and Resilient Ecosystem Transitions",
+   "link": "https://www.bioverte.us.edu.pl",
+   "date": "2026-11-10",
+   "source": "Erasmus Mundus catalogue (EACEA)",
+   "official": true,
+   "ids": [],
+   "summary": "BIOVERTE - Project overview https://erasmus-plus.ec.europa.eu/projects/search/details/101325306",
+   "seen": "2026-11-11"
+  },
+  {
+   "title": "Erasmus Mundus Joint Master in Economics of Globalisation and European Integration",
+   "link": "https://www.master-egei.eu/",
+   "date": "2026-11-10",
+   "source": "Erasmus Mundus catalogue (EACEA)",
+   "official": true,
+   "ids": [
+    "erasmus"
+   ],
+   "summary": "EGEI - Project overview",
+   "seen": "2026-11-11"
+  },
+  {
+   "title": "Master in Infectious Diseases and One Health-IDOHNext",
+   "link": "https://www.infectious-diseases-one-health.eu/",
+   "date": "2026-11-10",
+   "source": "Erasmus Mundus catalogue (EACEA)",
+   "official": true,
+   "ids": [],
+   "summary": "IDOH Next - Project overview https://erasmus-plus.ec.europa.eu/projects/search/details/101325204",
+   "seen": "2026-11-11"
+  },
+  {
+   "title": "Erasmus Mundus Joint Master in Food Innovation and Product Design",
+   "link": "https://www.fipdes.eu/",
+   "date": "2026-11-10",
+   "source": "Erasmus Mundus catalogue (EACEA)",
+   "official": true,
+   "ids": [
+    "erasmus"
+   ],
+   "summary": "FIPDes - Project overview https://erasmus-plus.ec.europa.eu/projects/search/details/101325186",
+   "seen": "2026-11-11"
   },
   {
    "title": "CERN Summer Student Program 2027 in Switzerland (Fully Funded)",
@@ -107,6 +203,38 @@
    ],
    "summary": "We recently provided you with a preparation checklist for the Commonwealth Shared Scholarship 2026. Alas! The application opens today. Commonwealth Shared Scholarships, jointly funded by the Commonwe…",
    "seen": "2026-11-10"
+  },
+  {
+   "title": "Commonwealth Shared Scholarships 2027/2028 for full-time Master’s study in the United Kingdom (Fully Funded)",
+   "link": "https://www.opportunitiesforafricans.com/commonwealth-shared-scholarships-2027-2028/",
+   "date": "2026-11-10",
+   "source": "Opportunities for Africans",
+   "official": false,
+   "ids": [
+    "csc-masters"
+   ],
+   "summary": "Application Deadline: 8 December 2026. Applications are now open for the 2027/2028 Commonwealth Shared Scholarships. The Commonwealth Shared Scholarship programme is one of three Master’s programmes …",
+   "seen": "2026-11-11"
+  },
+  {
+   "title": "European Youth Summit 2027 in Spain | Fully Funded Conference",
+   "link": "https://opportunitiescorners.com/european-youth-summit-2027-in-spain/",
+   "date": "2026-11-10",
+   "source": "Opportunities Corners",
+   "official": false,
+   "ids": [],
+   "summary": "Applications are open for the European Youth Summit 2027 in Spain, an international youth gathering that will bring together 300 young leaders, students, entrepreneurs, and young professionals from m…",
+   "seen": "2026-11-11"
+  },
+  {
+   "title": "10 Best European Government Scholarships for International Students (2027)",
+   "link": "https://www.scholarshipregion.com/european-government-scholarships/",
+   "date": "2026-11-10",
+   "source": "Scholarship Region",
+   "official": false,
+   "ids": [],
+   "summary": "Europe is an attractive study destination because of its diverse higher education system, wide range of programmes and internationally recognised universities. According to the European Commission, t…",
+   "seen": "2026-11-11"
   },
   {
    "title": "Generation Regen Challenge to Attend the One Young World Summit 2027 (Fully-funded)",
@@ -1579,130 +1707,6 @@
    ],
    "summary": "Application Deadline: NOVEMBER 30TH, 2026. Applications are now open for the 2026 NNPC/SNEPCo National University Scholarship Programme. The Shell Nigeria Exploration and Production Company Limited (…",
    "seen": "2026-10-29"
-  },
-  {
-   "title": "SA-CERN Programme Excellence MSc/PhD Bursary Program 2027 for young South Africans.",
-   "link": "https://www.opportunitiesforafricans.com/sa-cern-programme-excellence-msc-phd-bursary-program-2027/",
-   "date": "2026-10-28",
-   "source": "Opportunities for Africans",
-   "official": false,
-   "ids": [],
-   "summary": "Application Deadline: Applications are now open for the 2027 SA-CERN Programme Excellence MSc/PhD Bursary Program. The SA-CERN programme is a national programme funded by the Department of Science an…",
-   "seen": "2026-10-29"
-  },
-  {
-   "title": "SDG 6 Fellowship 2027 in UK, Denmark, Malaysia (Fully Funded)",
-   "link": "https://opportunitiescorners.com/sdg-6-fellowship-2027/",
-   "date": "2026-10-28",
-   "source": "Opportunities Corners",
-   "official": false,
-   "ids": [],
-   "summary": "Applications are open for the IWA & Grundfos Youth Action for SDG 6 Fellowship 2027 in the UK, Denmark, and Malaysia. Organized by the International Water Association (IWA) and Grundfos, this interna…",
-   "seen": "2026-10-29"
-  },
-  {
-   "title": "Abiola Ajimobi Foundation Scholarship (SAAF) 2026 | Step-by-Step Process",
-   "link": "https://www.scholarshipregion.com/ajimobi-foundation-scholarship/",
-   "date": "2026-10-27",
-   "source": "Scholarship Region",
-   "official": false,
-   "ids": [],
-   "summary": "Application for the 2026 Abiola Ajimobi Foundation Scholarship has commenced for all interested and qualified Nigerian students. The Ajimobi Foundation Scholarship seeks to offer educational support …",
-   "seen": "2026-10-27"
-  },
-  {
-   "title": "2027 Don Jazzy Tech Scholarship For Nigerians | How To Apply",
-   "link": "https://www.scholarshipregion.com/don-jazzy-tech-scholarship/",
-   "date": "2026-10-27",
-   "source": "Scholarship Region",
-   "official": false,
-   "ids": [],
-   "summary": "The Don Jazzy Tech Scholarship 2027 aims to make technology education more accessible by offering eligible applicants up to 100% (worth ₦447,000) off tuition fees for selected technology and digital-…",
-   "seen": "2026-10-27"
-  },
-  {
-   "title": "EPFL AI Center and Swiss AI Initiative Postdoctoral Fellowships 2026: Research Funding in Switzerland for International Researchers",
-   "link": "https://opportunitiesforyouth.org/2026/10/27/epfl-ai-center-and-swiss-ai-initiative-postdoctoral-fellowships-2026-research-funding-in-switzerland-for-international-researchers/",
-   "date": "2026-10-27",
-   "source": "Opportunities for Youth",
-   "official": false,
-   "ids": [],
-   "summary": "The EPFL AI Center and Swiss AI Initiative Postdoctoral Fellowships 2026 offer an exciting opportunity for outstanding early-career researchers to advance artificial intelligence research in Switzerl…",
-   "seen": "2026-10-27"
-  },
-  {
-   "title": "University of Exeter EPSRC Fully Funded Engineering PhD Studentships 2027 in the UK: Research Projects, Funding, Eligibility and Application Guide",
-   "link": "https://opportunitiesforyouth.org/2026/10/27/university-of-exeter-epsrc-fully-funded-engineering-phd-studentships-2027-in-the-uk-research-projects-funding-eligibility-and-application-guide/",
-   "date": "2026-10-27",
-   "source": "Opportunities for Youth",
-   "official": false,
-   "ids": [],
-   "summary": "The University of Exeter is inviting applications for its Engineering and Physical Sciences Research Council (EPSRC) Doctoral Landscape Award (DLA) PhD Studentships for September 2027 entry. These co…",
-   "seen": "2026-10-27"
-  },
-  {
-   "title": "CODESRIA Research Grants on University Ecosystems 2027: Funding of $5,000–$15,000 for African Researchers",
-   "link": "https://opportunitiesforyouth.org/2026/10/27/codesria-research-grants-on-university-ecosystems-2027-funding-of-5000-15000-for-african-researchers/",
-   "date": "2026-10-27",
-   "source": "Opportunities for Youth",
-   "official": false,
-   "ids": [],
-   "summary": "The Council for the Development of Social Science Research in Africa (CODESRIA) has announced a call for proposals for its Research Grants on University Ecosystems programme, focusing on higher educa…",
-   "seen": "2026-10-27"
-  },
-  {
-   "title": "Gates Cambridge Scholarship 2027–2028: Fully Funded Postgraduate Scholarships at the University of Cambridge, UK",
-   "link": "https://opportunitiesforyouth.org/2026/10/27/the-gates-cambridge-scholarship-your-path-to-excellence-fully-funded/",
-   "date": "2026-10-27",
-   "source": "Opportunities for Youth",
-   "official": false,
-   "ids": [
-    "gates"
-   ],
-   "summary": "The Gates Cambridge Scholarship is one of the world’s leading postgraduate scholarship programmes, offering outstanding international students the opportunity to pursue eligible postgraduate degrees …",
-   "seen": "2026-10-27"
-  },
-  {
-   "title": "Fully Funded UN Journalism Fellowship 2027 in Qatar: Travel Support for 10 Journalists to Cover the Doha Programme of Action Review",
-   "link": "https://opportunitiesforyouth.org/2026/10/27/fully-funded-un-journalism-fellowship-2027-in-qatar-travel-support-for-10-journalists-to-cover-the-doha-programme-of-action-review/",
-   "date": "2026-10-27",
-   "source": "Opportunities for Youth",
-   "official": false,
-   "ids": [],
-   "summary": "The United Nations is inviting applications for the 2027 DPoA MTR Journalism Fellowship, a fully funded opportunity for journalists from eligible Least Developed Countries (LDCs) to travel to Doha, Q…",
-   "seen": "2026-10-27"
-  },
-  {
-   "title": "The Sciences Po Mastercard Foundation Scholars Program 2027 for Graduate Study in France (Fully Funded to France)",
-   "link": "https://www.opportunitiesforafricans.com/the-sciences-po-mastercard-foundation-scholars-program-2027-for-graduate-study-in-france/",
-   "date": "2026-10-27",
-   "source": "Opportunities for Africans",
-   "official": false,
-   "ids": [
-    "mastercard"
-   ],
-   "summary": "Application Deadline: 14 December 2026 Applications are now open for the Sciences Po Mastercard Foundation Scholars Program. The Mastercard Foundation Scholars Program at Sciences Po is designed for …",
-   "seen": "2026-10-28"
-  },
-  {
-   "title": "IDRC John G. Bene Fellowship 2026 (up to $30,000 CAD)",
-   "link": "https://opportunitydesk.org/2026/10/27/idrc-john-g-bene-fellowship-2026/",
-   "date": "2026-10-27",
-   "source": "Opportunity Desk",
-   "official": false,
-   "ids": [],
-   "summary": "Deadline: November 30, 2026 Applications are open for the IDRC John G. Bene Fellowship 2026. The Bene fellowship, a bequest from the estate of John G. Bene, is offered to Canadians and permanent resi…",
-   "seen": "2026-10-28"
-  },
-  {
-   "title": "100x Impact Accelerator 2027/2028 (£150,000 in catalytic funding)",
-   "link": "https://opportunitydesk.org/2026/10/27/100x-impact-accelerator-2027-2028/",
-   "date": "2026-10-27",
-   "source": "Opportunity Desk",
-   "official": false,
-   "ids": [],
-   "summary": "Deadline: November 2, 2026 Applications are open for the 100x Impact Accelerator 2027/2028. They are looking for future social unicorns—organisations capable of improving the lives of hundreds of mil…",
-   "seen": "2026-10-28"
   }
  ]
 }
