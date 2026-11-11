@@ -1,0 +1,19 @@
+{
+  "name": "Shagbaor Hycent Amool",
+  "short_name": "S. H. Amool",
+  "description": "PhD student in Environmental Engineering at UNBC. Research, publications and free tools for learning and research.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#EEEDE4",
+  "theme_color": "#EEEDE4",
+  "icons": [
+    { "src": "/images/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable" },
+    { "src": "/images/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ],
+  "shortcuts": [
+    { "name": "Free tools", "url": "/resources/" },
+    { "name": "Publications", "url": "/publications/" },
+    { "name": "Book a meeting", "url": "/book/" }
+  ]
+}
