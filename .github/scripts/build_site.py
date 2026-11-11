@@ -172,6 +172,7 @@ def build_feed(c):
         if p.get("category") == "Journal Articles":
             items.append((None, "Published: " + plain(p.get("title")), p.get("url") or SITE + "/publications/"))
     out = ['<?xml version="1.0" encoding="UTF-8"?>',
+           '<?xml-stylesheet type="text/xsl" href="/feed.xsl"?>',
            '<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">', "<channel>",
            "<title>%s</title>" % html.escape(c.get("hero", {}).get("name") or "Shagbaor Hycent Amool"),
            "<link>%s/</link>" % SITE,
