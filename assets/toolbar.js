@@ -25,9 +25,18 @@ var TOOLS = [
   { url: "/literature-landscape/", name: "Nigeria Literature Landscape", note: "Writers, music, film, comedy, journalism and creators" },
   { url: "/diaspora-atlas/",     name: "Nigeria Diaspora Atlas", note: "Nigerians abroad, missions and consular help" },
   { url: "/history-atlas/",      name: "Nigeria History Atlas", note: "Timeline, state creation, leaders, elections and LGAs" },
+  { url: "/1stpaper/",           name: "1stPaper", note: "Publish your first research paper" },
   { url: "/lara/",               name: "LARA · Legal Access to Research for Africa", note: "Find a legal copy of a journal article" }
 ];
 var HOME = "/#resources";
+
+/* Wide screens: scale the whole page up evenly so it fills large monitors the way it fills a laptop.
+   Pages built around a Leaflet map already fill the screen, and CSS zoom upsets map clicks, so they are left as they are. */
+if (!window.L && !document.querySelector(".leaflet-container")) {
+  var zs = document.createElement("style");
+  zs.textContent = "@media (min-width:2000px){html{zoom:1.15}}@media (min-width:2400px){html{zoom:1.3}}@media (min-width:3000px){html{zoom:1.6}}@media (min-width:3600px){html{zoom:1.9}}";
+  document.head.appendChild(zs);
+}
 var HOME_LABEL = "Shagbaor Hycent Amool";
 
 var CSS =
