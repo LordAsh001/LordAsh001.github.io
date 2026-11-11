@@ -810,7 +810,7 @@ collections:
           required: false
           hint: 'Formatting: `**bold**`, `*italic*`, `[link text](https://…)`. Leave a blank line between paragraphs.'
       - name: resources
-        label: Open resources (tool cards with audience filter)
+        label: Open resources (tool cards with group, audience and search filters)
         summary: '{{heading}}'
         fields:
         - *id002
@@ -844,6 +844,11 @@ collections:
             widget: string
             default: Interactive tool · free
             required: false
+          - name: group
+            label: Group (filter button on the Resources page)
+            widget: string
+            required: false
+            hint: 'Tools with the same group are listed together, e.g. Engineering & sustainability; Study, research & publishing; Nigeria atlases & data'
           - name: url
             label: Link
             widget: string
