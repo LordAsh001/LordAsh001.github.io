@@ -71,7 +71,7 @@ p{margin:0}
 .wrap{max-width:1200px;margin-inline:auto;padding-inline:var(--gutter)}
 /* Wide screens: use more of the width, then scale everything up evenly so text and images stay in proportion */
 @media (min-width:1440px){.wrap{max-width:min(1480px,92vw)}}
-@media (min-width:1700px){main .ex-grid{grid-template-columns:repeat(4,minmax(0,1fr))}}
+@media (min-width:1700px){main .ex-grid{grid-template-columns:repeat(5,minmax(0,1fr))}}
 @media (min-width:1800px){main .res{grid-template-columns:repeat(3,minmax(0,1fr))}}
 @media (min-width:2000px){html{zoom:1.15}}
 @media (min-width:2400px){html{zoom:1.3}}
@@ -489,6 +489,25 @@ footer{align-items:center}
 @media (max-width:980px){.ex-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (max-width:560px){.ex-grid{grid-template-columns:minmax(0,1fr)}.pager a{max-width:100%}.pager a.next{margin-left:0;text-align:left}}
 @media print{[data-view][hidden]{display:block!important}.pager,.explore,.res-tools,.res-count{display:none!important}}
+/* Balance on wider screens */
+.ex-grid>.ex-card:last-child{grid-column:auto/-1}
+.proj .sdgs{margin-top:0}
+@media (min-width:981px){
+  .hero>.fig{position:sticky;top:calc(84px + env(safe-area-inset-top,0px));align-self:start}
+  .teach>div:first-child{position:sticky;top:calc(84px + env(safe-area-inset-top,0px));align-self:start}
+}
+@media (min-width:1280px){
+  main .sec>div:has(>.shots.beside-text){display:grid;grid-template-columns:minmax(0,64ch) minmax(0,1fr);column-gap:clamp(32px,4vw,64px);grid-auto-flow:row dense;align-items:start}
+  main .sec>div:has(>.shots.beside-text)>*{grid-column:1/-1}
+  main .sec>div:has(>.shots.beside-text)>.prose{grid-column:1}
+  main .sec>div:has(>.shots.beside-text)>.shots.beside-text{grid-column:2;margin-top:22px;max-width:none;position:sticky;top:calc(84px + env(safe-area-inset-top,0px))}
+  main .sec>div:has(>.shots.beside-text)>.shots.beside-text.one .shots-grid{grid-template-columns:minmax(0,1fr)}
+}
+@media (min-width:1440px){
+  .lede{max-width:38ch}
+  .kit-body{grid-template-columns:minmax(0,72ch) minmax(160px,220px)}
+  .kit-side img{width:100%;height:auto;aspect-ratio:1}
+}
 @media print{
   .theme-btn,.lang,.filters,.pub-actions,.kit-tabs,.video-wrap,.hero-actions{display:none!important}
   .res-card[hidden]{display:flex!important}
