@@ -1,7 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://shagbaor.com/</loc><lastmod>2026-11-10</lastmod></url>
-  <url><loc>https://shagbaor.com/lara/</loc><lastmod>2026-10-31</lastmod></url>
+  <url><loc>https://shagbaor.com/research/</loc><lastmod>2026-11-10</lastmod></url>
+  <url><loc>https://shagbaor.com/publications/</loc><lastmod>2026-11-10</lastmod></url>
+  <url><loc>https://shagbaor.com/resources/</loc><lastmod>2026-11-10</lastmod></url>
+  <url><loc>https://shagbaor.com/work/</loc><lastmod>2026-11-10</lastmod></url>
+  <url><loc>https://shagbaor.com/teaching/</loc><lastmod>2026-11-10</lastmod></url>
+  <url><loc>https://shagbaor.com/kind-words/</loc><lastmod>2026-11-10</lastmod></url>
+  <url><loc>https://shagbaor.com/path/</loc><lastmod>2026-11-10</lastmod></url>
+  <url><loc>https://shagbaor.com/recognition/</loc><lastmod>2026-11-10</lastmod></url>
+  <url><loc>https://shagbaor.com/writing/</loc><lastmod>2026-11-10</lastmod></url>
+  <url><loc>https://shagbaor.com/contact/</loc><lastmod>2026-11-10</lastmod></url>
+  <url><loc>https://shagbaor.com/lara/</loc><lastmod>2026-11-10</lastmod></url>
   <url><loc>https://shagbaor.com/tea-studio/</loc><lastmod>2026-10-31</lastmod></url>
   <url><loc>https://shagbaor.com/eia-studio/</loc><lastmod>2026-10-09</lastmod></url>
   <url><loc>https://shagbaor.com/symbiosis/</loc><lastmod>2026-10-31</lastmod></url>
@@ -19,8 +29,8 @@
   <url><loc>https://shagbaor.com/literature-landscape/</loc><lastmod>2026-11-10</lastmod></url>
   <url><loc>https://shagbaor.com/diaspora-atlas/</loc><lastmod>2026-11-09</lastmod></url>
   <url><loc>https://shagbaor.com/history-atlas/</loc><lastmod>2026-11-10</lastmod></url>
-  <url><loc>https://shagbaor.com/book/</loc><lastmod>2026-11-03</lastmod></url>
-  <url><loc>https://shagbaor.com/terms.html</loc><lastmod>2026-11-09</lastmod></url>
-  <url><loc>https://shagbaor.com/privacy.html</loc><lastmod>2026-11-09</lastmod></url>
+  <url><loc>https://shagbaor.com/book/</loc><lastmod>2026-11-10</lastmod></url>
+  <url><loc>https://shagbaor.com/terms.html</loc><lastmod>2026-11-10</lastmod></url>
+  <url><loc>https://shagbaor.com/privacy.html</loc><lastmod>2026-11-10</lastmod></url>
   <url><loc>https://shagbaor.com/lara/privacy.html</loc><lastmod>2026-10-31</lastmod></url>
 </urlset>
