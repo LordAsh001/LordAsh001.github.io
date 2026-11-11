@@ -22,8 +22,6 @@
     "email": "amool@unbc.ca",
     "cv": "/documents/Shagbaor_Amool_CV_Academic.pdf",
     "cv_updated": "October 2026",
-    "booking": "/book/",
-    "booking_label": "Book a meeting",
     "video": "",
     "video_label": "Watch a 1-minute welcome",
     "abstract": "I study how the microbes that clean industrial wastewater can also make something valuable. My PhD looks at recovering **curdlan**, a useful biopolymer, from **aerobic granular sludge**. Before this I designed farm machinery in Nigeria, lectured in engineering, earned an MSc with Distinction in Edinburgh, and started programmes that have reached thousands of students.\n\n*Away from the lab:* I watch a lot of films mostly action, epic, and science fiction; read non-fiction and history, and like organising events that bring people together. I trained with a theatre troupe in Nigeria once; I still can't sing, and photography is next on my list. On a hard week the rule is simple: show up every day and do your best.",
@@ -86,7 +84,9 @@
     "figure": {
       "show": true,
       "caption": "**Fig. 1** Loose flocs cluster into dense granules. Stop the aeration and watch the granules settle first, the property that makes aerobic granular sludge so compact. Move your cursor through the tank to stir it."
-    }
+    },
+    "booking": "/book/",
+    "booking_label": "Book a meeting"
   },
   "glance": {
     "show": true,
@@ -330,20 +330,6 @@
       "lede": "Papers and tools I have published, each with a plain-language summary of what it says.",
       "items": [
         {
-          "text": "doi:10.2139/ssrn.6717086",
-          "link_label": "Read on SSRN",
-          "hidden": false,
-          "label": "Preprint · SSRN · 2026",
-          "title": "Integration of advanced electrocatalytic wastewater treatment with carbon utilisation",
-          "url": "https://doi.org/10.2139/ssrn.6717086",
-          "authors": "**Amool, S. H.**, Tan, J. Z. Y., & Andresen, J.",
-          "plain": "Cleaning industrial wastewater and dealing with carbon are usually treated as two separate problems. This preprint explores how electrocatalytic treatment, which uses electricity and a catalyst to break down pollutants, could be combined with carbon utilisation in one integrated system.",
-          "takeaway": "cleaner water and capturing value from carbon can be designed together.",
-          "cite": "Amool, S. H., Tan, J. Z. Y., & Andresen, J. (2026). Integration of advanced electrocatalytic wastewater treatment with carbon utilisation [Preprint]. SSRN. https://doi.org/10.2139/ssrn.6717086",
-          "extra_url": "",
-          "extra_label": ""
-        },
-        {
           "text": "doi:10.5281/zenodo.22957644",
           "link_label": "View on Zenodo",
           "hidden": false,
@@ -358,20 +344,6 @@
           "extra_label": "Open the tool"
         },
         {
-          "text": "doi:10.2139/ssrn.7488653",
-          "link_label": "Read on SSRN",
-          "hidden": false,
-          "label": "Preprint · SSRN · 2026",
-          "title": "A fractional-order reduced model for predicting long-term thermal recovery from depleted hydrocarbon reservoirs",
-          "url": "https://doi.org/10.2139/ssrn.7488653",
-          "authors": "Mzough, O. M., Nyityo, A. I., Ijir, A., Lumun, T. C., Achimba, O., Terwase, A. I., Guusu, M. J., Barakur, C. A., Shiaondo, T. L., **Amool, S. H.**, Ikyo, B., John, I. A., & Abi, D. I.",
-          "plain": "Oil and gas reservoirs that have stopped producing still hold heat underground. This preprint builds a simplified mathematical model of how that heat behaves over the long run, which is the kind of modelling needed before anyone can judge whether an old field is worth using for geothermal energy.",
-          "takeaway": "my part in this one: the literature review, and reviewing the manuscript.",
-          "cite": "Mzough, O. M., Nyityo, A. I., Ijir, A., Lumun, T. C., Achimba, O., Terwase, A. I., Guusu, M. J., Barakur, C. A., Shiaondo, T. L., Amool, S. H., Ikyo, B., John, I. A., & Abi, D. I. (2026). A fractional-order reduced model for predicting long-term thermal recovery from depleted hydrocarbon reservoirs [Preprint]. SSRN. https://doi.org/10.2139/ssrn.7488653",
-          "extra_url": "",
-          "extra_label": ""
-        },
-        {
           "text": "Nigerian Institution of Agricultural Engineers",
           "link_label": "View on ResearchGate",
           "hidden": false,
@@ -382,20 +354,6 @@
           "plain": "A review of the renewable energy technologies being taken up in Nigeria under climate-smart approaches, and where they fit in farming and rural life.",
           "takeaway": "",
           "cite": "Amool, S. H. (2023). Trending climate smart renewable energy technologies in Nigeria: Research report [Conference paper]. Nigerian Institution of Agricultural Engineers.",
-          "extra_url": "",
-          "extra_label": ""
-        },
-        {
-          "text": "doi:10.61841/rmh2fm43",
-          "link_label": "Read the article",
-          "hidden": false,
-          "label": "Journal article · 2025",
-          "title": "Energy Consumption Patterns and Conservation Opportunities in Nigerian Universities: Case Study of an Energy Audit of Benue State University, Makurdi",
-          "url": "https://doi.org/10.61841/rmh2fm43",
-          "authors": "Lumun, T. C., Ikyo, B., **Amool, S. H.**, Shiaondo, T. L., Barakur, C. A., Guusu, M. J., Nyityo, A. I., Achimba, O., Ijir, A., Terwase, A. I., & Oranderen, M. M.",
-          "plain": "An energy audit of a Nigerian university campus: where the electricity actually goes, and where it could be used more carefully. An audit like this is the groundwork a campus needs before it can set an energy or carbon target it can meet.",
-          "takeaway": "my part in this one: the literature review, and reviewing the manuscript.",
-          "cite": "Lumun, T. C., Ikyo, B., Amool, S. H., Shiaondo, T. L., Barakur, C. A., Guusu, M. J., Nyityo, A. I., Achimba, O., Ijir, A., Terwase, A. I., & Oranderen, M. M. (2025). Energy Consumption Patterns and Conservation Opportunities in Nigerian Universities: Case Study of an Energy Audit of Benue State University, Makurdi. Journal of Advance Research in Food, Agriculture and Environmental Science, 11(1), 43–67. https://doi.org/10.61841/rmh2fm43",
           "extra_url": "",
           "extra_label": ""
         },
@@ -608,7 +566,8 @@
               "label": "goals, one table"
             }
           ],
-          "classroom": "open a lesson by asking students to find where their discipline fits."
+          "classroom": "open a lesson by asking students to find where their discipline fits.",
+          "doi": ""
         },
         {
           "name": "Laureate Lab",
@@ -1012,7 +971,8 @@
               "label": "countries with a figure"
             }
           ],
-          "classroom": "give each group a host country, compare its Nigerian population, students and remittances, and explain what draws Nigerians there and what support they can find."
+          "classroom": "give each group a host country, compare its Nigerian population, students and remittances, and explain what draws Nigerians there and what support they can find.",
+          "doi": ""
         },
         {
           "name": "Nigeria History Atlas",
@@ -1305,49 +1265,67 @@
       "lede": "What people say after working with me, in their own words.",
       "items": [
         {
-          "quote": "You thought me various subjects during my time at Heriot watt for my MSc. Most importantly was academic writing, this literally changed how I approach academic question and dissect them before attempting to answer them and write on them which made things a lot easier in my academic journey. Community integration and volunteering was another angle we worked on and this was quite impactful in my social interaction journey with Edinburgh.",
           "name": "Theresa . E",
-          "role": "Student, Heriot watt university Edinburgh"
+          "role": "Student, Heriot watt university Edinburgh",
+          "hidden": false,
+          "quote": "You thought me various subjects during my time at Heriot watt for my MSc. Most importantly was academic writing, this literally changed how I approach academic question and dissect them before attempting to answer them and write on them which made things a lot easier in my academic journey. Community integration and volunteering was another angle we worked on and this was quite impactful in my social interaction journey with Edinburgh.",
+          "photo": ""
         },
         {
-          "quote": "I first connected with Ash through a scholar platform for PTDF scholars shortly after I arrived in Edinburgh. Since then, he has been incredibly supportive of my academic and career development, particularly through the workshops and webinars he organises, which have helped me better position myself for job and career opportunities. His guidance and the opportunities he shares have made a meaningful difference in my transition into studying and building my career in the UK.",
           "name": "Miriam Ejimi Uhili",
-          "role": "MSc student, Heriot-Watt university. Edinburgh"
+          "role": "MSc student, Heriot-Watt university. Edinburgh",
+          "hidden": false,
+          "quote": "I first connected with Ash through a scholar platform for PTDF scholars shortly after I arrived in Edinburgh. Since then, he has been incredibly supportive of my academic and career development, particularly through the workshops and webinars he organises, which have helped me better position myself for job and career opportunities. His guidance and the opportunities he shares have made a meaningful difference in my transition into studying and building my career in the UK.",
+          "photo": ""
         },
         {
-          "quote": "I have had the privilege of knowing and learning from him, both as a colleague in the Faculty of Engineering and as a fellow member of the same faith. He has been a steady source of guidance throughout my scholarship journey, particularly in navigating various scholarship and application processes, and has shared valuable knowledge through several webinars. What I admire most is his generosity with what he knows and his readiness to make himself available to support and empower others. He is genuinely committed to giving back to society and helping others grow.",
           "name": "Bala I. M.",
-          "role": "PhD Candidate Univesity of KwaZulu-Natal Durba, South Africa"
+          "role": "PhD Candidate Univesity of KwaZulu-Natal Durba, South Africa",
+          "hidden": false,
+          "quote": "I have had the privilege of knowing and learning from him, both as a colleague in the Faculty of Engineering and as a fellow member of the same faith. He has been a steady source of guidance throughout my scholarship journey, particularly in navigating various scholarship and application processes, and has shared valuable knowledge through several webinars. What I admire most is his generosity with what he knows and his readiness to make himself available to support and empower others. He is genuinely committed to giving back to society and helping others grow.",
+          "photo": ""
         },
         {
-          "quote": "Having completed same masters program before me, Ash provided invaluable guidance that transformed my understanding of complex coursework and directly boosted my academic performance. Beyond always being available to talk through tough assignments, having a fellow Nigerian to lean on made transitioning into a new university environment feel like home.",
           "name": "Onyedikachi Precious Onugha",
-          "role": "MSc student, Heriot-Watt University, Edinburgh."
+          "role": "MSc student, Heriot-Watt University, Edinburgh.",
+          "hidden": false,
+          "quote": "Having completed same masters program before me, Ash provided invaluable guidance that transformed my understanding of complex coursework and directly boosted my academic performance. Beyond always being available to talk through tough assignments, having a fellow Nigerian to lean on made transitioning into a new university environment feel like home.",
+          "photo": ""
         },
         {
-          "quote": "Mr. Ash hosted a stellar webinar on Academic Integrity at Heriot-Watt University that significantly improved my understanding of the UK education system when I had just arrived. He was always available to help with any issue I had at any point in time.",
           "name": "Amarachi Grace Uzoh",
-          "role": "MSc Student, Heriot-Watt University"
+          "role": "MSc Student, Heriot-Watt University",
+          "hidden": false,
+          "quote": "Mr. Ash hosted a stellar webinar on Academic Integrity at Heriot-Watt University that significantly improved my understanding of the UK education system when I had just arrived. He was always available to help with any issue I had at any point in time.",
+          "photo": ""
         },
         {
-          "quote": "Working alongside you in BIA has been a great experience. Your approach is very proactive and your consistency made a real difference. You take initiative, gets thing's organised without prompting.",
           "name": "Osato",
-          "role": "Edinburgh"
+          "role": "Edinburgh",
+          "hidden": false,
+          "quote": "Working alongside you in BIA has been a great experience. Your approach is very proactive and your consistency made a real difference. You take initiative, gets thing's organised without prompting.",
+          "photo": ""
         },
         {
-          "quote": "We worked on using EndNote effectively, particularly for managing references while working on academic projects. Learning how to use it properly has completely changed the way I handle my references. It has made my referencing process much easier and has really improved the way I work on my projects.",
           "name": "Ubi Omini",
-          "role": "MSc student, Heriot Watt University"
+          "role": "MSc student, Heriot Watt University",
+          "hidden": false,
+          "quote": "We worked on using EndNote effectively, particularly for managing references while working on academic projects. Learning how to use it properly has completely changed the way I handle my references. It has made my referencing process much easier and has really improved the way I work on my projects.",
+          "photo": ""
         },
         {
-          "quote": "I attended multiple highly informative webinars and seminars relevant to my degree that were hosted by Hycenth. I also had the opportunity of being coached by him on all my courses and this aided me to make As in all of them. Hycenth is a great teacher, selfless and very happy and willing to help others.",
           "name": "Mary Frank-Okoro",
-          "role": "MSc student, Heriot Watt"
+          "role": "MSc student, Heriot Watt",
+          "hidden": false,
+          "quote": "I attended multiple highly informative webinars and seminars relevant to my degree that were hosted by Hycenth. I also had the opportunity of being coached by him on all my courses and this aided me to make As in all of them. Hycenth is a great teacher, selfless and very happy and willing to help others.",
+          "photo": ""
         },
         {
-          "quote": "I crossed close paths with Ash in the first few weeks as a student in Heriot Watt. I stumbled into a startup factory challenge and we went ahead to win the regional prize and first runner up in the Nationals. Ash’s stellar presentation style, audience management and attention to detail was a huge impact to our success.",
           "name": "Troy",
-          "role": "MSc Student / Startup Partner"
+          "role": "MSc Student / Startup Partner",
+          "hidden": false,
+          "quote": "I crossed close paths with Ash in the first few weeks as a student in Heriot Watt. I stumbled into a startup factory challenge and we went ahead to win the regional prize and first runner up in the Nationals. Ash’s stellar presentation style, audience management and attention to detail was a huge impact to our success.",
+          "photo": ""
         }
       ]
     },
