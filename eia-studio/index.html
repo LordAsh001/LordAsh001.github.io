@@ -23,8 +23,8 @@
 /* Layout: a field assessor's workbook — step rail across the top, the Leopold-style interaction matrix as the centrepiece, a lesson/assistant column on the right. Sibling of Lifecycle Studio and Techno-Economic Studio: same type system, pine and ochre. */
 :root{
   --bg:#EEF1EE; --panel:#FFFFFF; --panel-2:#F4F6F3; --ink:#18231E; --ink-2:#56645C; --line:#D2DAD4; --grid:#E6ECE7;
-  --accent:#24594A; --accent-ink:#FFFFFF; --accent-soft:#DCEAE3; --ochre:#9A6A14; --ochre-soft:#F6EEDC;
-  --good:#2F7D4F; --warn:#9A6412; --crit:#B23B3B; --warn-soft:#FBF1DF; --good-soft:#E3F1E8; --crit-soft:#F8E5E5;
+  --accent:#24594A; --accent-ink:#FFFFFF; --accent-soft:#DCEAE3; --ochre:#8A5F12; --ochre-soft:#F6EEDC;
+  --good:#2B744A; --warn:#8F5D10; --crit:#B23B3B; --warn-soft:#FBF1DF; --good-soft:#E3F1E8; --crit-soft:#F8E5E5;
   --s0:#EEF0EE; --s1:#F4E9B8; --s2:#F2C27A; --s3:#E0805A; --s4:#B8383A; --s0i:#56645C; --s1i:#4F4410; --s2i:#4A300A; --s3i:#3D1508; --s4i:#FFFFFF;
   --b1:#D6EBF0; --b2:#A9D3DF; --b3:#5FA9BE; --b4:#2A7690; --b1i:#153540; --b4i:#FFFFFF;
   --c1:#24594A; --c2:#9A6A14; --c3:#3F7F8C; --c4:#8A4B7E; --c5:#B23B3B; --c6:#7A6555; --c7:#5B6B8C; --c8:#6F8F3A;
@@ -2524,7 +2524,7 @@ function worldMap(docs){
   const pins=shown.map(t=>{ const [x,y]=neProj(t.lon,t.lat); const on=UI.pin===t.id, dim=UI.cReg&&t.region!==UI.cReg;
     return `<g class="pin${on?" on":""}${dim?" dim":""}" data-act="pin" data-id="${t.id}" tabindex="0" role="button" aria-label="${esc(t.n)}, ${esc(t.country||t.region)}"><circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${on?7:5}"></circle><title>${esc(t.n)} — ${esc(t.country||t.region)}</title></g>`; }).join("");
   const P=UI.pin&&TPL.find(t=>t.id===UI.pin);
-  return `<div class="wmap"><svg viewBox="0 0 960 500" role="img" aria-label="World map of documented case studies"><path class="sph" d="${WORLD.sph}"></path><path class="land" d="${WORLD.d}"></path>${pins}</svg></div>
+  return `<div class="wmap"><svg viewBox="0 0 960 500" role="group" aria-label="World map of documented case studies"><path class="sph" d="${WORLD.sph}"></path><path class="land" d="${WORLD.d}"></path>${pins}</svg></div>
     <p class="small muted" style="margin:0">${shown.length} cases mapped at approximate project locations. Select a dot to see the case${UI.cReg?"; dots outside "+esc(UI.cReg)+" are dimmed":""}.</p>
     ${P?`<div class="banner info row" style="justify-content:space-between"><span><b>${esc(P.n)}</b> · ${esc(P.country||P.region)} · ${esc(P.cat)}</span><span class="row"><button class="btn sm" data-act="previewCase" data-id="${P.id}">Preview</button><button class="btn sm pri" data-act="tpl" data-id="${P.id}">Start study</button></span></div>`:""}`;
 }
