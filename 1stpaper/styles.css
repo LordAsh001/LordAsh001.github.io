@@ -31,7 +31,8 @@ h3 { font-size: 1.08rem; }
 .card > h2:first-child, section > h2:first-child { margin-top: 0; }
 a { color: var(--accent); }
 p { margin: 0 0 .8em; }
-.wrap { max-width: 1120px; margin: 0 auto; padding: 0 16px; }
+.wrap { max-width: 1200px; margin: 0 auto; padding: 0 16px; }
+@media (min-width: 1440px) { .wrap { max-width: min(1480px, 92vw); } }
 .muted { color: var(--muted); } .small { font-size: .875rem; } .nowrap { white-space: nowrap; }
 .lead { font-size: 1.08rem; color: var(--muted); max-width: 68ch; }
 .pre { white-space: pre-wrap; }
