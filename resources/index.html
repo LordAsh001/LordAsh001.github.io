@@ -431,6 +431,18 @@ footer{align-items:center}
 .quote figcaption{margin:0;display:flex;align-items:center;gap:12px;font-size:14px}
 .quote figcaption img{width:44px;height:44px;border-radius:50%;object-fit:cover;object-position:50% 15%}
 .quote figcaption b{display:block;color:var(--ink);font-weight:600}
+/* email updates sign-up */
+.nl{margin-top:20px;background:var(--card);border:1px solid var(--rule);border-radius:4px;padding:18px 20px;max-width:64ch}
+.nl h3{margin:0;font-size:17px}
+.nl p{margin:6px 0 0;color:var(--muted);font-size:15px;line-height:1.5}
+.nl-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.nl-row input[type=email]{flex:1 1 220px;min-width:0;font:16px var(--sans);padding:9px 12px;border:1px solid var(--muted);border-radius:6px;background:var(--paper);color:var(--ink)}
+.nl-row input[type=email]:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.nl-row .btn{padding:9px 18px;font-size:14px;min-height:40px}
+.nl-hp{position:absolute!important;left:-9999px;width:1px;height:1px;overflow:hidden}
+.nl-msg{margin-top:10px!important;font-size:15px}
+.nl-msg.ok{color:var(--accent)}.nl-msg.err{color:var(--ochre-ink)}
+.glance .nl{margin-top:16px;padding:14px 16px}
 /* speaker / press kit */
 .kit{margin-top:48px;border-top:1px solid var(--rule);padding-top:28px}
 .kit>h3{font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:400}
@@ -1114,7 +1126,7 @@ window.initSim=function(){
         var d=new Date(n.iso||''), fresh=!isNaN(d) && (now-d)<1000*60*60*24*21;
         var txt=n.url?'<a '+linkAttrs(n.url)+'>'+inline(n.text)+'</a>':inline(n.text);
         return '<li><time'+(n.iso?' datetime="'+esc(n.iso)+'"':'')+'>'+esc(n.date)+'</time><span>'+txt+(fresh?'<span class="new">New</span>':'')+'</span></li>';
-      }).join('')+'</ul></div>';
+      }).join('')+'</ul>'+nlForm('home')+'</div>';
       if(mets.length) h+='<div><h2>'+esc(g.metrics_title||'By the numbers')+'</h2><div class="metrics" role="list">'+mets.map(function(m){
         return '<div class="stat" role="listitem"><b>'+esc(m.value)+'</b><span>'+inline(m.label)+'</span></div>';
       }).join('')+'</div></div>';
@@ -1149,6 +1161,16 @@ window.initSim=function(){
       h+='<section class="sec" id="'+esc(s._id)+'" aria-labelledby="h-'+esc(s._id)+'" data-view="'+esc(s._id)+'" hidden>'+head(s,s._num)+R[s.type](s)+pager(s._id)+'</section>';
     });
 
+    function nlForm(k){
+      return '<form class="nl" id="'+(k==='contact'?'updates':'updates-'+k)+'" method="post" action="https://24cac62d.sibforms.com/serve/MUIFAL-ezc4I7xTImCkouIvfT_OH6Zff0GYHzQoY9oBPnoiKBPrUodYqSdy9jTjBB_QAFvnKbLlSun-WNbl6Ie71K--pfOXLFx2fgVVcd_fVfPIdUhpd9vPMzq0Y7SLRDZ_fleolCCidcK73k5eTNYgSqrUb2_zMdTRlLN92J1bSgRQ0GvWrSDyG99cKMOBT9tcWrOzoCaA7atPr8Q==" novalidate>'+
+        '<h3>Get email updates</h3><p>An occasional email when I release a new free tool, publish a paper or give a talk. No spam; unsubscribe in one click.</p>'+
+        '<div class="nl-row"><label class="sr-only" for="nl-'+k+'">Your email address</label><input type="email" id="nl-'+k+'" name="EMAIL" autocomplete="email" placeholder="you@example.com" required>'+
+        '<button class="btn" type="submit">Subscribe</button></div>'+
+        '<div class="nl-hp" aria-hidden="true"><input type="text" name="email_address_check" value="" tabindex="-1" autocomplete="off"></div>'+
+        '<input type="hidden" name="locale" value="en"><input type="hidden" name="html_type" value="simple">'+
+        '<p class="nl-msg" role="status" aria-live="polite"></p>'+
+        '<p style="font-size:13px">You will get an email asking you to confirm. Sign-ups are handled by Brevo; see the <a href="/privacy.html#newsletter">privacy notice</a>.</p></form>';
+    }
     // contact
     if(contact.show!==false){
       h+='<section class="contact" id="contact" aria-labelledby="h-contact" data-view="contact" hidden>'+(contact.eyebrow?'<span class="mono" style="text-transform:uppercase">'+esc(contact.eyebrow)+'</span>':'')+
@@ -1166,7 +1188,7 @@ window.initSim=function(){
             if(m) li+='<button class="copy-btn" type="button" data-copy="'+esc(m[1])+'">Copy</button>';
             return '<li>'+li+'</li>';
           }).join('')+'</ul>':'')+'</div>';
-        }).join('')+'</div>'+((cvBtn||bookBtn)?'<p class="cv-row">'+bookBtn+cvBtn+'</p>':'');
+        }).join('')+'</div>'+((cvBtn||bookBtn)?'<p class="cv-row">'+bookBtn+cvBtn+'</p>':'')+nlForm('contact');
       var kit=contact.kit||{}, bios=arr(kit.bios).filter(function(b){return b&&b.text;});
       if(kit.show!==false && bios.length){
         h+='<div class="kit" id="kit"><h3>'+esc(kit.title||'Speaker & press kit')+'</h3>'+(kit.intro?'<p>'+inline(kit.intro)+'</p>':'')+
@@ -1180,7 +1202,7 @@ window.initSim=function(){
       h+=pager('contact')+'</section>';
     }
     var footIcons=socialLinks(contact);
-    h+='<footer class="mono"><span>'+esc(site.footer)+'</span>'+(footIcons.length?'<span class="socials socials-xs" aria-label="Profiles">'+footIcons.map(socBtn).join('')+'</span>':'')+(site.last_revised?'<span>Last revised '+esc(site.last_revised)+' · <a href="/feed.xml" type="application/rss+xml">Follow updates (RSS)</a></span>':'')+'</footer>';
+    h+='<footer class="mono"><span>'+esc(site.footer)+'</span>'+(footIcons.length?'<span class="socials socials-xs" aria-label="Profiles">'+footIcons.map(socBtn).join('')+'</span>':'')+(site.last_revised?'<span>Last revised '+esc(site.last_revised)+' · <a href="/contact/#updates">Email updates</a> · <a href="/feed.xml" type="application/rss+xml">RSS</a></span>':'')+'</footer>';
     document.getElementById('top').innerHTML=h;
 
     wire(paths, reader);
@@ -1349,7 +1371,28 @@ window.initSim=function(){
     });
   }
 
+  function wireNewsletter(){
+    document.querySelectorAll('form.nl').forEach(function(f){
+      if(f.__nl) return; f.__nl=1;
+      f.addEventListener('submit',function(e){
+        e.preventDefault();
+        var inp=f.querySelector('input[type=email]'), msg=f.querySelector('.nl-msg'), btn=f.querySelector('button[type=submit]');
+        var v=(inp.value||'').trim();
+        msg.className='nl-msg';
+        if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v)){ msg.className='nl-msg err'; msg.textContent='Please enter a valid email address.'; inp.setAttribute('aria-invalid','true'); inp.focus(); return; }
+        inp.removeAttribute('aria-invalid'); inp.value=v;
+        btn.disabled=true; msg.textContent='Sending…';
+        fetch(f.action,{method:'POST',mode:'no-cors',body:new FormData(f)}).then(function(){
+          msg.className='nl-msg ok'; msg.textContent='Almost done: check your inbox and click the link to confirm your subscription.';
+          inp.value=''; try{ if(window.goatcounter&&goatcounter.count) goatcounter.count({path:'newsletter/signup',title:'Newsletter sign-up',event:true}); }catch(_){}
+        }).catch(function(){
+          msg.className='nl-msg err'; msg.textContent='That did not go through. Please try again, or email amool@unbc.ca.';
+        }).then(function(){ btn.disabled=false; });
+      });
+    });
+  }
   function wire(paths, reader){
+    wireNewsletter();
     var note=document.getElementById('reader-note');
     var chips=document.querySelectorAll('.reader .chip');
     var navLinks=document.querySelectorAll('.nav a, .ex-card');
