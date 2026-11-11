@@ -37,7 +37,7 @@
     ],
     "reader": {
       "show": true,
-      "intro": "Choose who you are and I'll point you to the sections that matter most. Or just scroll: it reads like a short paper.",
+      "intro": "Choose who you are and I'll point you to the sections that matter most. Or pick any section under Explore below.",
       "paths": [
         {
           "label": "Researcher",
@@ -67,7 +67,7 @@
             "teaching",
             "writing"
           ],
-          "note": "Start with the free tools in [Open resources](#resources): filter them by \"Student\". Then Via Scholaris in [Work](#work) and [Teaching](#teaching). The full webinar library is [on YouTube](https://www.youtube.com/@viascholaris)."
+          "note": "Start with the free tools in [Open resources](#resources): choose \"For students\". Then Via Scholaris in [Work](#work) and [Teaching](#teaching). The full webinar library is [on YouTube](https://www.youtube.com/@viascholaris)."
         },
         {
           "label": "Institution",
@@ -438,6 +438,7 @@
           "hidden": false,
           "url": "/lara/",
           "kind": "Interactive tool · free",
+          "group": "Study, research & publishing",
           "audience": [
             "Students",
             "Researchers",
@@ -465,6 +466,7 @@
           "hidden": false,
           "url": "/tea-studio/",
           "kind": "Interactive tool · free",
+          "group": "Engineering & sustainability",
           "audience": [
             "Students",
             "Researchers",
@@ -500,6 +502,7 @@
           "hidden": false,
           "url": "/eia-studio/",
           "kind": "Interactive tool · free",
+          "group": "Engineering & sustainability",
           "audience": [
             "Students",
             "Educators",
@@ -534,6 +537,7 @@
           "hidden": false,
           "url": "/symbiosis/",
           "kind": "Interactive tool · free",
+          "group": "Engineering & sustainability",
           "audience": [
             "Students",
             "Educators",
@@ -555,6 +559,7 @@
           "hidden": false,
           "url": "/sustainatable.html",
           "kind": "Interactive tool · free",
+          "group": "Engineering & sustainability",
           "audience": [
             "Students",
             "Educators"
@@ -580,6 +585,7 @@
           "hidden": false,
           "url": "/laureate/",
           "kind": "Interactive tool · free",
+          "group": "Study, research & publishing",
           "audience": [
             "Students"
           ],
@@ -612,6 +618,7 @@
           "hidden": false,
           "url": "/citadel.html",
           "kind": "Interactive tool · free",
+          "group": "Study, research & publishing",
           "audience": [
             "Students",
             "Educators"
@@ -637,6 +644,7 @@
           "hidden": false,
           "url": "/1stpaper/",
           "kind": "Interactive tool · free",
+          "group": "Study, research & publishing",
           "audience": [
             "Students",
             "Researchers"
@@ -666,6 +674,7 @@
           "hidden": false,
           "url": "/forest-atlas/",
           "kind": "Interactive map · free",
+          "group": "Nigeria atlases & data",
           "audience": [
             "Researchers",
             "Practitioners",
@@ -701,6 +710,7 @@
           "hidden": false,
           "url": "/water-atlas/",
           "kind": "Interactive map · free",
+          "group": "Nigeria atlases & data",
           "audience": [
             "Researchers",
             "Practitioners",
@@ -736,6 +746,7 @@
           "hidden": false,
           "url": "/market-atlas/",
           "kind": "Interactive map · free",
+          "group": "Nigeria atlases & data",
           "audience": [
             "Researchers",
             "Practitioners",
@@ -771,6 +782,7 @@
           "hidden": false,
           "url": "/energy-atlas/",
           "kind": "Interactive map · free",
+          "group": "Nigeria atlases & data",
           "audience": [
             "Researchers",
             "Practitioners",
@@ -806,6 +818,7 @@
           "hidden": false,
           "url": "/health-atlas/",
           "kind": "Interactive map · free",
+          "group": "Nigeria atlases & data",
           "audience": [
             "Researchers",
             "Practitioners",
@@ -841,6 +854,7 @@
           "hidden": false,
           "url": "/peoples-atlas/",
           "kind": "Interactive map · free",
+          "group": "Nigeria atlases & data",
           "audience": [
             "Researchers",
             "Practitioners",
@@ -878,6 +892,7 @@
           "hidden": false,
           "url": "/waste-atlas/",
           "kind": "Interactive map · free",
+          "group": "Nigeria atlases & data",
           "audience": [
             "Researchers",
             "Practitioners",
@@ -915,6 +930,7 @@
           "hidden": false,
           "url": "/literature-landscape/",
           "kind": "Interactive database · free",
+          "group": "Nigeria atlases & data",
           "audience": [
             "Researchers",
             "Practitioners",
@@ -950,6 +966,7 @@
           "hidden": false,
           "url": "/diaspora-atlas/",
           "kind": "Interactive map · free",
+          "group": "Nigeria atlases & data",
           "audience": [
             "Researchers",
             "Practitioners",
@@ -985,6 +1002,7 @@
           "hidden": false,
           "url": "/history-atlas/",
           "kind": "Interactive map · free",
+          "group": "Nigeria atlases & data",
           "audience": [
             "Researchers",
             "Practitioners",
