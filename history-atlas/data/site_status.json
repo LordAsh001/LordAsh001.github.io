@@ -1,0 +1,746 @@
+{
+ "https://plateaustate.gov.ng/government/lgas/langtang-south": {
+  "state": "Plateau",
+  "ok": false,
+  "error": "GET failed: https://plateaustate.gov.ng/government/lgas/langtang-south: HTTP Error 404: Not Found",
+  "checked": "2026-11-11"
+ },
+ "https://nasarawastate.gov.ng/": {
+  "state": "Nasarawa",
+  "ok": true,
+  "pages": 34,
+  "checked": "2026-11-11"
+ },
+ "https://kogistate.gov.ng/structure": {
+  "state": "Kogi",
+  "ok": true,
+  "pages": 40,
+  "checked": "2026-11-11"
+ },
+ "https://adamawastate.gov.ng/history/": {
+  "state": "Adamawa",
+  "ok": true,
+  "pages": 2,
+  "checked": "2026-11-11"
+ },
+ "https://home.bauchistate.gov.ng/history/": {
+  "state": "Bauchi",
+  "ok": false,
+  "error": "GET failed: https://home.bauchistate.gov.ng/about-us/: HTTP Error 429: Too Many Requests",
+  "checked": "2026-11-11"
+ },
+ "https://bornostate.gov.ng/about": {
+  "state": "Borno",
+  "ok": true,
+  "pages": 3,
+  "checked": "2026-11-11"
+ },
+ "https://bornostate.gov.ng/wb/local-govt-administration": {
+  "state": "Borno",
+  "ok": true,
+  "pages": 3,
+  "checked": "2026-11-11"
+ },
+ "https://gombestate.gov.ng/discover-gombe/": {
+  "state": "Gombe",
+  "ok": false,
+  "error": "GET failed: https://gombestate.gov.ng/discover-gombe/: HTTP Error 404: Not Found",
+  "checked": "2026-11-11"
+ },
+ "https://www.gombestate.gov.ng/histo": {
+  "state": "Gombe",
+  "ok": false,
+  "error": "GET failed: https://www.gombestate.gov.ng/histo: HTTP Error 404: Not Found",
+  "checked": "2026-11-11"
+ },
+ "https://www.kebbistate.gov.ng/about-kebbi-state": {
+  "state": "Kebbi",
+  "ok": true,
+  "pages": 10,
+  "checked": "2026-11-11"
+ },
+ "https://kdsg.gov.ng/home-new/": {
+  "state": "Kaduna",
+  "ok": false,
+  "error": "GET failed: https://kdsg.gov.ng/home-new/: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: un",
+  "checked": "2026-11-11"
+ },
+ "https://sokotostate.gov.ng/the-government/local-governments/binji-local-government/": {
+  "state": "Sokoto",
+  "ok": false,
+  "error": "GET failed: https://sokotostate.gov.ng/?page_id=693: HTTP Error 404: Not Found",
+  "checked": "2026-11-11"
+ },
+ "https://sokotostate.gov.ng/the-government/local-governments/gada-local-government/": {
+  "state": "Sokoto",
+  "ok": false,
+  "error": "GET failed: https://sokotostate.gov.ng/?page_id=693: HTTP Error 404: Not Found",
+  "checked": "2026-11-11"
+ },
+ "https://sokotostate.gov.ng/the-government/local-governments/sokoto-north-local-government/": {
+  "state": "Sokoto",
+  "ok": false,
+  "error": "GET failed: https://sokotostate.gov.ng/?page_id=693: HTTP Error 404: Not Found",
+  "checked": "2026-11-11"
+ },
+ "https://ayamelum.an.gov.ng/about-ayamelum": {
+  "state": "Anambra",
+  "ok": false,
+  "error": "GET failed: https://ayamelum.an.gov.ng/about-ayamelum: <urlopen error timed out>",
+  "checked": "2026-11-11"
+ },
+ "https://ogbaru.an.gov.ng/about-us": {
+  "state": "Anambra",
+  "ok": false,
+  "error": "GET failed: https://ogbaru.an.gov.ng/about-us: HTTP Error 404: Not Found",
+  "checked": "2026-11-11"
+ },
+ "https://njikoka.an.gov.ng/about-us": {
+  "state": "Anambra",
+  "ok": false,
+  "error": "GET failed: https://njikoka.an.gov.ng/about-us: <urlopen error timed out>",
+  "checked": "2026-11-11"
+ },
+ "https://dunukofia.an.gov.ng": {
+  "state": "Anambra",
+  "ok": false,
+  "error": "GET failed: https://dunukofia.an.gov.ng: <urlopen error timed out>",
+  "checked": "2026-11-11"
+ },
+ "https://enugustate.gov.ng/about-us-parent/about-us/": {
+  "state": "Enugu",
+  "ok": false,
+  "error": "GET failed: https://enugustate.gov.ng/about-us-parent/about-us/: HTTP Error 404: Not Found",
+  "checked": "2026-11-11"
+ },
+ "https://www.ebonyistate.gov.ng/town.html": {
+  "state": "Ebonyi",
+  "ok": false,
+  "error": "GET failed: https://www.ebonyistate.gov.ng/town.html: HTTP Error 404: Not Found",
+  "checked": "2026-11-11"
+ },
+ "https://news.crossriverstate.gov.ng/": {
+  "state": "Cross River",
+  "ok": true,
+  "pages": 5,
+  "checked": "2026-11-11"
+ },
+ "https://www.ekitistate.gov.ng/about-ekiti/local-government": {
+  "state": "Ekiti",
+  "ok": false,
+  "error": "GET failed: https://www.ekitistate.gov.ng/about-ekiti/instrumentacionesbh/: HTTP Error 404: Not Found",
+  "checked": "2026-11-11"
+ },
+ "https://www.ekitistate.gov.ng/about-ekiti/local-government/efon/": {
+  "state": "Ekiti",
+  "ok": false,
+  "error": "GET failed: https://www.ekitistate.gov.ng/about-ekiti/local-government/efon/instrumentacionesbh/: HTTP Error 404: Not Fo",
+  "checked": "2026-11-11"
+ },
+ "https://www.ekitistate.gov.ng/about-ekiti/local-government/ekiti-east": {
+  "state": "Ekiti",
+  "ok": false,
+  "error": "GET failed: https://www.ekitistate.gov.ng/about-ekiti/local-government/instrumentacionesbh/: HTTP Error 404: Not Found",
+  "checked": "2026-11-11"
+ },
+ "https://www.ekitistate.gov.ng/about-ekiti/local-government/ijero": {
+  "state": "Ekiti",
+  "ok": false,
+  "error": "GET failed: https://www.ekitistate.gov.ng/about-ekiti/local-government/instrumentacionesbh/: HTTP Error 404: Not Found",
+  "checked": "2026-11-11"
+ },
+ "https://www.ekitistate.gov.ng/about-ekiti/local-government/oye": {
+  "state": "Ekiti",
+  "ok": false,
+  "error": "GET failed: https://www.ekitistate.gov.ng/about-ekiti/local-government/instrumentacionesbh/: HTTP Error 404: Not Found",
+  "checked": "2026-11-11"
+ },
+ "https://www.ekitistate.gov.ng/about-ekiti/local-government/ilejemeje/": {
+  "state": "Ekiti",
+  "ok": false,
+  "error": "GET failed: https://www.ekitistate.gov.ng/about-ekiti/local-government/ilejemeje/instrumentacionesbh/: HTTP Error 404: N",
+  "checked": "2026-11-11"
+ },
+ "https://www.ekitistate.gov.ng/about-ekiti/local-government/ikole/": {
+  "state": "Ekiti",
+  "ok": false,
+  "error": "GET failed: https://www.ekitistate.gov.ng/about-ekiti/local-government/ikole/instrumentacionesbh/: HTTP Error 404: Not F",
+  "checked": "2026-11-11"
+ },
+ "https://www.ekitistate.gov.ng/about-ekiti/local-government/moba/": {
+  "state": "Ekiti",
+  "ok": false,
+  "error": "GET failed: https://www.ekitistate.gov.ng/about-ekiti/local-government/moba/instrumentacionesbh/: HTTP Error 404: Not Fo",
+  "checked": "2026-11-11"
+ },
+ "https://www.ekitistate.gov.ng/about-ekiti/local-government/ikere/": {
+  "state": "Ekiti",
+  "ok": false,
+  "error": "GET failed: https://www.ekitistate.gov.ng/about-ekiti/local-government/ikere/instrumentacionesbh/: HTTP Error 404: Not F",
+  "checked": "2026-11-11"
+ },
+ "https://www.ekitistate.gov.ng/about-ekiti/local-government/emure/": {
+  "state": "Ekiti",
+  "ok": false,
+  "error": "GET failed: https://www.ekitistate.gov.ng/about-ekiti/local-government/emure/instrumentacionesbh/: HTTP Error 404: Not F",
+  "checked": "2026-11-11"
+ },
+ "https://www.ekitistate.gov.ng/about-ekiti/local-government/ido-osi/": {
+  "state": "Ekiti",
+  "ok": false,
+  "error": "GET failed: https://www.ekitistate.gov.ng/about-ekiti/local-government/ido-osi/instrumentacionesbh/: HTTP Error 404: Not",
+  "checked": "2026-11-11"
+ },
+ "https://www.ekitistate.gov.ng/about-ekiti/local-government/ekiti-west/": {
+  "state": "Ekiti",
+  "ok": false,
+  "error": "GET failed: https://www.ekitistate.gov.ng/about-ekiti/local-government/ekiti-west/instrumentacionesbh/: HTTP Error 404: ",
+  "checked": "2026-11-11"
+ },
+ "https://www.ekitistate.gov.ng/about-ekiti/local-government/irepodun-ifelodun/": {
+  "state": "Ekiti",
+  "ok": false,
+  "error": "GET failed: https://www.ekitistate.gov.ng/about-ekiti/local-government/irepodun-ifelodun/instrumentacionesbh/: HTTP Erro",
+  "checked": "2026-11-11"
+ },
+ "https://lagelu.oyostate.gov.ng/": {
+  "state": "Oyo",
+  "ok": false,
+  "error": "GET failed: https://lagelu.oyostate.gov.ng/: HTTP Error 403: Forbidden",
+  "checked": "2026-11-11"
+ },
+ "https://oyowest.oyostate.gov.ng/": {
+  "state": "Oyo",
+  "ok": false,
+  "error": "GET failed: https://oyowest.oyostate.gov.ng/: HTTP Error 403: Forbidden",
+  "checked": "2026-11-11"
+ },
+ "https://ogooluwa.oyostate.gov.ng/": {
+  "state": "Oyo",
+  "ok": false,
+  "error": "GET failed: https://ogooluwa.oyostate.gov.ng/: HTTP Error 403: Forbidden",
+  "checked": "2026-11-11"
+ },
+ "https://abiastate.gov.ng/": {
+  "state": "Abia",
+  "ok": false,
+  "error": "GET failed: https://abiastate.gov.ng/: HTTP Error 403: Forbidden",
+  "checked": "2026-11-11"
+ },
+ "https://adamawastate.gov.ng/": {
+  "state": "Adamawa",
+  "ok": true,
+  "pages": 4,
+  "checked": "2026-11-11"
+ },
+ "https://akwaibomstate.gov.ng/": {
+  "state": "Akwa Ibom",
+  "ok": false,
+  "error": "GET failed: https://akwaibomstate.gov.ng/executive-council/head-of-service/: HTTP Error 404: Not Found",
+  "checked": "2026-11-11"
+ },
+ "https://anambrastate.gov.ng/": {
+  "state": "Anambra",
+  "ok": true,
+  "pages": 40,
+  "checked": "2026-11-11"
+ },
+ "https://bauchistate.gov.ng/": {
+  "state": "Bauchi",
+  "ok": true,
+  "pages": 1,
+  "checked": "2026-11-11"
+ },
+ "https://bayelsastate.gov.ng/": {
+  "state": "Bayelsa",
+  "ok": true,
+  "pages": 1,
+  "checked": "2026-11-11"
+ },
+ "https://benuestate.gov.ng/": {
+  "state": "Benue",
+  "ok": true,
+  "pages": 8,
+  "checked": "2026-11-11"
+ },
+ "https://bornostate.gov.ng/": {
+  "state": "Borno",
+  "ok": false,
+  "error": "GET failed: https://bornostate.gov.ng/about.html: HTTP Error 404: Not Found",
+  "checked": "2026-11-11"
+ },
+ "https://crossriverstate.gov.ng/": {
+  "state": "Cross River",
+  "ok": true,
+  "pages": 1,
+  "checked": "2026-11-11"
+ },
+ "https://deltastate.gov.ng/": {
+  "state": "Delta",
+  "ok": true,
+  "pages": 32,
+  "checked": "2026-11-11"
+ },
+ "https://ebonyistate.gov.ng/": {
+  "state": "Ebonyi",
+  "ok": false,
+  "error": "GET failed: https://ebonyistate.gov.ng/ministries/information-communication-and-technology: HTTP Error 404: Not Found",
+  "checked": "2026-11-11"
+ },
+ "https://edostate.gov.ng/": {
+  "state": "Edo",
+  "ok": true,
+  "pages": 2,
+  "checked": "2026-11-11"
+ },
+ "https://ekitistate.gov.ng/": {
+  "state": "Ekiti",
+  "ok": false,
+  "error": "GET failed: https://www.ekitistate.gov.ng/about-ekiti/instrumentacionesbh/: HTTP Error 404: Not Found",
+  "checked": "2026-11-11"
+ },
+ "https://enugustate.gov.ng/": {
+  "state": "Enugu",
+  "ok": true,
+  "pages": 3,
+  "checked": "2026-11-11"
+ },
+ "https://fcta.gov.ng/": {
+  "state": "Federal Capital Territory",
+  "ok": true,
+  "pages": 13,
+  "checked": "2026-11-11"
+ },
+ "https://gombestate.gov.ng/": {
+  "state": "Gombe",
+  "ok": true,
+  "pages": 9,
+  "checked": "2026-11-11"
+ },
+ "https://imostate.gov.ng/": {
+  "state": "Imo",
+  "ok": true,
+  "pages": 7,
+  "checked": "2026-11-11"
+ },
+ "https://jigawastate.gov.ng/": {
+  "state": "Jigawa",
+  "ok": false,
+  "error": "GET failed: https://jigawastate.gov.ng/history.html: HTTP Error 404: Not Found",
+  "checked": "2026-11-11"
+ },
+ "https://kadunastate.gov.ng/": {
+  "state": "Kaduna",
+  "ok": false,
+  "error": "GET failed: https://kadunastate.gov.ng/: <urlopen error [Errno -3] Temporary failure in name resolution>",
+  "checked": "2026-11-11"
+ },
+ "https://kanostate.gov.ng/": {
+  "state": "Kano",
+  "ok": true,
+  "pages": 8,
+  "checked": "2026-11-11"
+ },
+ "https://katsinastate.gov.ng/": {
+  "state": "Katsina",
+  "ok": false,
+  "error": "GET failed: https://katsinastate.gov.ng/?page_id=15572: HTTP Error 404: Not Found",
+  "checked": "2026-11-11"
+ },
+ "https://kebbistate.gov.ng/": {
+  "state": "Kebbi",
+  "ok": true,
+  "pages": 26,
+  "checked": "2026-11-11"
+ },
+ "https://kogistate.gov.ng/": {
+  "state": "Kogi",
+  "ok": true,
+  "pages": 40,
+  "checked": "2026-11-11"
+ },
+ "https://kwarastate.gov.ng/": {
+  "state": "Kwara",
+  "ok": false,
+  "error": "GET failed: https://kwarastate.gov.ng/: HTTP Error 307: Temporary Redirect",
+  "checked": "2026-11-11"
+ },
+ "https://lagosstate.gov.ng/": {
+  "state": "Lagos",
+  "ok": true,
+  "pages": 1,
+  "checked": "2026-11-11"
+ },
+ "https://nigerstate.gov.ng/": {
+  "state": "Niger",
+  "ok": true,
+  "pages": 3,
+  "checked": "2026-11-11"
+ },
+ "https://ogunstate.gov.ng/": {
+  "state": "Ogun",
+  "ok": true,
+  "pages": 1,
+  "checked": "2026-11-11"
+ },
+ "https://ondostate.gov.ng/": {
+  "state": "Ondo",
+  "ok": true,
+  "pages": 2,
+  "checked": "2026-11-11"
+ },
+ "https://osunstate.gov.ng/": {
+  "state": "Osun",
+  "ok": true,
+  "pages": 40,
+  "checked": "2026-11-11"
+ },
+ "https://oyostate.gov.ng/": {
+  "state": "Oyo",
+  "ok": true,
+  "pages": 3,
+  "checked": "2026-11-11"
+ },
+ "https://plateaustate.gov.ng/": {
+  "state": "Plateau",
+  "ok": true,
+  "pages": 1,
+  "checked": "2026-11-11"
+ },
+ "https://riversstate.gov.ng/": {
+  "state": "Rivers",
+  "ok": true,
+  "pages": 11,
+  "checked": "2026-11-11"
+ },
+ "https://sokotostate.gov.ng/": {
+  "state": "Sokoto",
+  "ok": false,
+  "error": "GET failed: https://sokotostate.gov.ng/?page_id=693: HTTP Error 404: Not Found",
+  "checked": "2026-11-11"
+ },
+ "https://tarabastate.gov.ng/": {
+  "state": "Taraba",
+  "ok": true,
+  "pages": 1,
+  "checked": "2026-11-11"
+ },
+ "https://yobestate.gov.ng/": {
+  "state": "Yobe",
+  "ok": false,
+  "error": "GET failed: https://yobestate.gov.ng/about-3/{{calculator.emiAttr.href}}: HTTP Error 404: Not Found",
+  "checked": "2026-11-11"
+ },
+ "https://zamfarastate.gov.ng/": {
+  "state": "Zamfara",
+  "ok": true,
+  "pages": 1,
+  "checked": "2026-11-11"
+ },
+ "https://afijio.oyostate.gov.ng/": {
+  "state": "Oyo",
+  "ok": false,
+  "error": "GET failed: https://afijio.oyostate.gov.ng/: HTTP Error 403: Forbidden",
+  "checked": "2026-11-11"
+ },
+ "https://akinyele.oyostate.gov.ng/": {
+  "state": "Oyo",
+  "ok": false,
+  "error": "GET failed: https://akinyele.oyostate.gov.ng/: HTTP Error 403: Forbidden",
+  "checked": "2026-11-11"
+ },
+ "https://atiba.oyostate.gov.ng/": {
+  "state": "Oyo",
+  "ok": false,
+  "error": "GET failed: https://atiba.oyostate.gov.ng/: HTTP Error 403: Forbidden",
+  "checked": "2026-11-11"
+ },
+ "https://atisbo.oyostate.gov.ng/": {
+  "state": "Oyo",
+  "ok": false,
+  "error": "GET failed: https://atisbo.oyostate.gov.ng/: HTTP Error 403: Forbidden",
+  "checked": "2026-11-11"
+ },
+ "https://egbeda.oyostate.gov.ng/": {
+  "state": "Oyo",
+  "ok": false,
+  "error": "GET failed: https://egbeda.oyostate.gov.ng/: HTTP Error 403: Forbidden",
+  "checked": "2026-11-11"
+ },
+ "https://ibadannorth.oyostate.gov.ng/": {
+  "state": "Oyo",
+  "ok": false,
+  "error": "GET failed: https://ibadannorth.oyostate.gov.ng/: HTTP Error 403: Forbidden",
+  "checked": "2026-11-11"
+ },
+ "https://ibadannortheast.oyostate.gov.ng/": {
+  "state": "Oyo",
+  "ok": false,
+  "error": "GET failed: https://ibadannortheast.oyostate.gov.ng/: <urlopen error [Errno -2] Name or service not known>",
+  "checked": "2026-11-11"
+ },
+ "https://ibadannorthwest.oyostate.gov.ng/": {
+  "state": "Oyo",
+  "ok": false,
+  "error": "GET failed: https://ibadannorthwest.oyostate.gov.ng/: HTTP Error 403: Forbidden",
+  "checked": "2026-11-11"
+ },
+ "https://ibadansoutheast.oyostate.gov.ng/": {
+  "state": "Oyo",
+  "ok": false,
+  "error": "GET failed: https://ibadansoutheast.oyostate.gov.ng/: HTTP Error 403: Forbidden",
+  "checked": "2026-11-11"
+ },
+ "https://ibadansouthwest.oyostate.gov.ng/": {
+  "state": "Oyo",
+  "ok": false,
+  "error": "GET failed: https://ibadansouthwest.oyostate.gov.ng/: HTTP Error 403: Forbidden",
+  "checked": "2026-11-11"
+ },
+ "https://ibarapacentral.oyostate.gov.ng/": {
+  "state": "Oyo",
+  "ok": false,
+  "error": "GET failed: https://ibarapacentral.oyostate.gov.ng/: HTTP Error 403: Forbidden",
+  "checked": "2026-11-11"
+ },
+ "https://ibarapaeast.oyostate.gov.ng/": {
+  "state": "Oyo",
+  "ok": false,
+  "error": "GET failed: https://ibarapaeast.oyostate.gov.ng/: HTTP Error 403: Forbidden",
+  "checked": "2026-11-11"
+ },
+ "https://ibarapanorth.oyostate.gov.ng/": {
+  "state": "Oyo",
+  "ok": false,
+  "error": "GET failed: https://ibarapanorth.oyostate.gov.ng/: HTTP Error 403: Forbidden",
+  "checked": "2026-11-11"
+ },
+ "https://ido.oyostate.gov.ng/": {
+  "state": "Oyo",
+  "ok": false,
+  "error": "GET failed: https://ido.oyostate.gov.ng/: HTTP Error 403: Forbidden",
+  "checked": "2026-11-11"
+ },
+ "https://irepo.oyostate.gov.ng/": {
+  "state": "Oyo",
+  "ok": false,
+  "error": "GET failed: https://irepo.oyostate.gov.ng/: HTTP Error 403: Forbidden",
+  "checked": "2026-11-11"
+ },
+ "https://iseyin.oyostate.gov.ng/": {
+  "state": "Oyo",
+  "ok": false,
+  "error": "GET failed: https://iseyin.oyostate.gov.ng/: HTTP Error 403: Forbidden",
+  "checked": "2026-11-11"
+ },
+ "https://itesiwaju.oyostate.gov.ng/": {
+  "state": "Oyo",
+  "ok": false,
+  "error": "GET failed: https://itesiwaju.oyostate.gov.ng/: HTTP Error 403: Forbidden",
+  "checked": "2026-11-11"
+ },
+ "https://iwajowa.oyostate.gov.ng/": {
+  "state": "Oyo",
+  "ok": false,
+  "error": "GET failed: https://iwajowa.oyostate.gov.ng/: HTTP Error 403: Forbidden",
+  "checked": "2026-11-11"
+ },
+ "https://kajola.oyostate.gov.ng/": {
+  "state": "Oyo",
+  "ok": false,
+  "error": "GET failed: https://kajola.oyostate.gov.ng/: HTTP Error 403: Forbidden",
+  "checked": "2026-11-11"
+ },
+ "https://ogbomoshonorth.oyostate.gov.ng/": {
+  "state": "Oyo",
+  "ok": false,
+  "error": "GET failed: https://ogbomoshonorth.oyostate.gov.ng/: <urlopen error [Errno -2] Name or service not known>",
+  "checked": "2026-11-11"
+ },
+ "https://ogbomoshosouth.oyostate.gov.ng/": {
+  "state": "Oyo",
+  "ok": false,
+  "error": "GET failed: https://ogbomoshosouth.oyostate.gov.ng/: HTTP Error 403: Forbidden",
+  "checked": "2026-11-11"
+ },
+ "https://olorunsogo.oyostate.gov.ng/": {
+  "state": "Oyo",
+  "ok": false,
+  "error": "GET failed: https://olorunsogo.oyostate.gov.ng/: HTTP Error 403: Forbidden",
+  "checked": "2026-11-11"
+ },
+ "https://oluyole.oyostate.gov.ng/": {
+  "state": "Oyo",
+  "ok": false,
+  "error": "GET failed: https://oluyole.oyostate.gov.ng/: HTTP Error 403: Forbidden",
+  "checked": "2026-11-11"
+ },
+ "https://onaara.oyostate.gov.ng/": {
+  "state": "Oyo",
+  "ok": false,
+  "error": "GET failed: https://onaara.oyostate.gov.ng/: HTTP Error 403: Forbidden",
+  "checked": "2026-11-11"
+ },
+ "https://orelope.oyostate.gov.ng/": {
+  "state": "Oyo",
+  "ok": false,
+  "error": "GET failed: https://orelope.oyostate.gov.ng/: HTTP Error 403: Forbidden",
+  "checked": "2026-11-11"
+ },
+ "https://oriire.oyostate.gov.ng/": {
+  "state": "Oyo",
+  "ok": false,
+  "error": "GET failed: https://oriire.oyostate.gov.ng/: HTTP Error 403: Forbidden",
+  "checked": "2026-11-11"
+ },
+ "https://oyoeast.oyostate.gov.ng/": {
+  "state": "Oyo",
+  "ok": false,
+  "error": "GET failed: https://oyoeast.oyostate.gov.ng/: HTTP Error 403: Forbidden",
+  "checked": "2026-11-11"
+ },
+ "https://sakieast.oyostate.gov.ng/": {
+  "state": "Oyo",
+  "ok": false,
+  "error": "GET failed: https://sakieast.oyostate.gov.ng/: HTTP Error 403: Forbidden",
+  "checked": "2026-11-11"
+ },
+ "https://sakiwest.oyostate.gov.ng/": {
+  "state": "Oyo",
+  "ok": false,
+  "error": "GET failed: https://sakiwest.oyostate.gov.ng/about-lgalcda/{{{ data.url }}}: URL can't contain control characters. '/abo",
+  "checked": "2026-11-11"
+ },
+ "https://surulere.oyostate.gov.ng/": {
+  "state": "Oyo",
+  "ok": false,
+  "error": "GET failed: https://surulere.oyostate.gov.ng/: HTTP Error 403: Forbidden",
+  "checked": "2026-11-11"
+ },
+ "https://aguata.an.gov.ng/": {
+  "state": "Anambra",
+  "ok": false,
+  "error": "GET failed: https://aguata.an.gov.ng/: <urlopen error timed out>",
+  "checked": "2026-11-11"
+ },
+ "https://anambraeast.an.gov.ng/": {
+  "state": "Anambra",
+  "ok": false,
+  "error": "GET failed: https://anambraeast.an.gov.ng/: <urlopen error timed out>",
+  "checked": "2026-11-11"
+ },
+ "https://anambrawest.an.gov.ng/": {
+  "state": "Anambra",
+  "ok": false,
+  "error": "GET failed: https://anambrawest.an.gov.ng/: <urlopen error timed out>",
+  "checked": "2026-11-11"
+ },
+ "https://anaocha.an.gov.ng/": {
+  "state": "Anambra",
+  "ok": false,
+  "error": "GET failed: https://anaocha.an.gov.ng/: <urlopen error timed out>",
+  "checked": "2026-11-11"
+ },
+ "https://awkanorth.an.gov.ng/": {
+  "state": "Anambra",
+  "ok": false,
+  "error": "GET failed: https://awkanorth.an.gov.ng/: <urlopen error timed out>",
+  "checked": "2026-11-11"
+ },
+ "https://awkasouth.an.gov.ng/": {
+  "state": "Anambra",
+  "ok": false,
+  "error": "GET failed: https://awkasouth.an.gov.ng/: <urlopen error timed out>",
+  "checked": "2026-11-11"
+ },
+ "https://ayamelum.an.gov.ng/": {
+  "state": "Anambra",
+  "ok": false,
+  "error": "GET failed: https://ayamelum.an.gov.ng/: <urlopen error timed out>",
+  "checked": "2026-11-11"
+ },
+ "https://dunukofia.an.gov.ng/": {
+  "state": "Anambra",
+  "ok": false,
+  "error": "GET failed: https://dunukofia.an.gov.ng/: <urlopen error timed out>",
+  "checked": "2026-11-11"
+ },
+ "https://ekwusigo.an.gov.ng/": {
+  "state": "Anambra",
+  "ok": false,
+  "error": "GET failed: https://ekwusigo.an.gov.ng/: <urlopen error timed out>",
+  "checked": "2026-11-11"
+ },
+ "https://idemilinorth.an.gov.ng/": {
+  "state": "Anambra",
+  "ok": false,
+  "error": "GET failed: https://idemilinorth.an.gov.ng/: <urlopen error [Errno -5] No address associated with hostname>",
+  "checked": "2026-11-11"
+ },
+ "https://idemilisouth.an.gov.ng/": {
+  "state": "Anambra",
+  "ok": false,
+  "error": "GET failed: https://idemilisouth.an.gov.ng/: <urlopen error timed out>",
+  "checked": "2026-11-11"
+ },
+ "https://ihiala.an.gov.ng/": {
+  "state": "Anambra",
+  "ok": false,
+  "error": "GET failed: https://ihiala.an.gov.ng/: <urlopen error timed out>",
+  "checked": "2026-11-11"
+ },
+ "https://njikoka.an.gov.ng/": {
+  "state": "Anambra",
+  "ok": false,
+  "error": "GET failed: https://njikoka.an.gov.ng/: <urlopen error timed out>",
+  "checked": "2026-11-11"
+ },
+ "https://nnewinorth.an.gov.ng/": {
+  "state": "Anambra",
+  "ok": false,
+  "error": "GET failed: https://nnewinorth.an.gov.ng/: <urlopen error timed out>",
+  "checked": "2026-11-11"
+ },
+ "https://nnewisouth.an.gov.ng/": {
+  "state": "Anambra",
+  "ok": false,
+  "error": "GET failed: https://nnewisouth.an.gov.ng/: <urlopen error timed out>",
+  "checked": "2026-11-11"
+ },
+ "https://ogbaru.an.gov.ng/": {
+  "state": "Anambra",
+  "ok": true,
+  "pages": 1,
+  "checked": "2026-11-11"
+ },
+ "https://onitshanorth.an.gov.ng/": {
+  "state": "Anambra",
+  "ok": false,
+  "error": "GET failed: https://onitshanorth.an.gov.ng/: <urlopen error timed out>",
+  "checked": "2026-11-11"
+ },
+ "https://onitshasouth.an.gov.ng/": {
+  "state": "Anambra",
+  "ok": false,
+  "error": "GET failed: https://onitshasouth.an.gov.ng/: <urlopen error timed out>",
+  "checked": "2026-11-11"
+ },
+ "https://orumbanorth.an.gov.ng/": {
+  "state": "Anambra",
+  "ok": false,
+  "error": "GET failed: https://orumbanorth.an.gov.ng/: <urlopen error timed out>",
+  "checked": "2026-11-11"
+ },
+ "https://orumbasouth.an.gov.ng/": {
+  "state": "Anambra",
+  "ok": false,
+  "error": "GET failed: https://orumbasouth.an.gov.ng/: <urlopen error timed out>",
+  "checked": "2026-11-11"
+ },
+ "https://oyi.an.gov.ng/": {
+  "state": "Anambra",
+  "ok": false,
+  "error": "GET failed: https://oyi.an.gov.ng/: <urlopen error timed out>",
+  "checked": "2026-11-11"
+ }
+}

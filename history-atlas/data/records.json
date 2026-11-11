@@ -400,7 +400,12 @@
    "source_type": "official",
    "status": "documented",
    "quote": null,
-   "conflicts": [],
+   "conflicts": [
+    {
+     "created": "1955",
+     "source": "https://www.ekitistate.gov.ng/about-ekiti/local-government/efon/"
+    }
+   ],
    "sources_agree": 1
   },
   "Ekiti|Ekiti West": {
@@ -1861,7 +1866,12 @@
    "source_type": "official",
    "status": "documented",
    "quote": "carved out of the defunct Ekiti Central Local Government",
-   "conflicts": [],
+   "conflicts": [
+    {
+     "created": "1996-10-01",
+     "source": "https://ekitistate.gov.ng/https://deidarealtypr.com/about/"
+    }
+   ],
    "sources_agree": 1
   },
   "Ekiti|Aiyekire (Gbonyin)": {
@@ -2284,6 +2294,20 @@
    "quote": "out of the Old Oluyole Local Government",
    "conflicts": [],
    "sources_agree": 1
+  },
+  "Bauchi|Bauchi": {
+   "created": "1976",
+   "parent": null,
+   "parent_source": null,
+   "parent_status": null,
+   "note": "Added by the update bot: two independent sources agree. Also: bauchistate.gov.ng",
+   "source": "https://home.bauchistate.gov.ng/",
+   "source_type": "official",
+   "status": "documented",
+   "quote": "Bauchi State was created in 1976 from the North Eastern State of Nigeria.",
+   "conflicts": [],
+   "sources_agree": 2,
+   "bot": "2026-11-11"
   }
  },
  "chairs": {
@@ -8813,5 +8837,6 @@
     "status": "unconfirmed"
    }
   ]
- }
+ },
+ "updated": "2026-11-11"
 }
