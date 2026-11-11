@@ -28,7 +28,7 @@ var TOOLS = [
   { url: "/1stpaper/",           name: "1stPaper", note: "Publish your first research paper" },
   { url: "/lara/",               name: "LARA · Legal Access to Research for Africa", note: "Find a legal copy of a journal article" }
 ];
-var HOME = "/#resources";
+var HOME = "/resources/";
 
 /* Wide screens: scale the whole page up evenly so it fills large monitors the way it fills a laptop.
    Pages built around a Leaflet map already fill the screen, and CSS zoom upsets map clicks, so they are left as they are. */

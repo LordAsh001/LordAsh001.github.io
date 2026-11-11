@@ -35,7 +35,7 @@ var css = ".lg-bar{position:fixed;left:50%;bottom:12px;transform:translateX(-50%
   "background:#1d2524;color:#eef3f1;border-radius:12px;padding:12px 14px;box-shadow:0 12px 32px rgba(0,0,0,.28);font:13.5px/1.45 system-ui,-apple-system,'Segoe UI',sans-serif}" +
   ".lg-bar p{margin:0;flex:1;color:inherit}.lg-bar a{color:#9fe3c9}" +
   ".lg-bar button{flex:none;font:600 13px/1 system-ui,sans-serif;background:#9fe3c9;color:#10201b;border:0;border-radius:8px;padding:9px 14px;cursor:pointer}" +
-  ".lg-foot{display:block;width:100%;margin:8px 0 0;font-size:12.5px;line-height:1.45;opacity:.85}.lg-foot a{color:inherit}" +
+  ".lg-foot{display:block;width:100%;margin:8px 0 0;font-size:12.5px;line-height:1.45}.lg-foot a{color:inherit}" +
   ".lg-credit{margin:6px 0 0;font-size:12px;line-height:1.4;opacity:.8}.lg-credit a{color:inherit}";
 
 function store(k, v) { try { if (v === undefined) return localStorage.getItem(k); localStorage.setItem(k, v); } catch (e) { return null; } }
