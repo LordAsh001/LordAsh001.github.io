@@ -744,6 +744,11 @@ collections:
             label: Small label (e.g. Medium · 2026)
             widget: string
             required: false
+          - name: category
+            label: Category (publications filter, e.g. Journal Articles, Conferences, Software)
+            widget: string
+            required: false
+            hint: Items with the same category are listed together under a filter button. Leave empty for items that should always show.
           - name: title
             label: Title
             widget: string
