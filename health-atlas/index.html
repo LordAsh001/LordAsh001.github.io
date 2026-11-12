@@ -249,6 +249,7 @@ abbr.gl{text-decoration:underline dotted;text-underline-offset:3px;cursor:help;t
         <option value="ref">Public hospitals for every 100,000 people</option>
         <option value="fac">All facilities for every 100,000 people</option>
         <option value="tert">People living 40 km+ from a teaching or federal hospital</option>
+        <option value="nemsas">Emergency scheme status vs distance to care</option>
       </select>
       <div class="legend" id="legend"></div>
 
@@ -277,7 +278,7 @@ abbr.gl{text-decoration:underline dotted;text-underline-offset:3px;cursor:help;t
   <div class="grid know">
     <div class="card know-card">
       <div class="people" id="pictogram" aria-hidden="true"></div>
-      <h3 id="k1h">1 in 8 Nigerians live far from a public hospital</h3>
+      <h3 id="k1h">1 in 7 Nigerians live far from a public hospital</h3>
       <p id="k1p"></p>
       <button class="linkbtn" data-goto="map" data-preset="gaps">Show me where →</button>
     </div>
@@ -288,7 +289,7 @@ abbr.gl{text-decoration:underline dotted;text-underline-offset:3px;cursor:help;t
       <button class="linkbtn" data-goto="ambulance">Why this matters →</button>
     </div>
     <div class="card know-card">
-      <div class="bigfig" id="k3fig">1,298</div>
+      <div class="bigfig" id="k3fig">2,121</div>
       <h3>Ambulance stations could reach 95% of people</h3>
       <p id="k3p"></p>
       <button class="linkbtn" data-goto="map" data-preset="stations">See the stations →</button>
@@ -375,6 +376,15 @@ abbr.gl{text-decoration:underline dotted;text-underline-offset:3px;cursor:help;t
       <div class="tablewrap" style="max-height:420px"><table class="tbl" id="ambTable"></table></div></div>
   </div>
 
+  <div class="card" id="cmpCard" hidden style="margin-top:14px"><h3 class="ch">How sure are these numbers?</h3><p class="note" style="margin:0 0 8px">The results use WorldPop's 1 km population grid. The same population counted one point per ward (the first version of this atlas) gives the figures on the right. Distances barely change; the number of stations needed rises at the 1 km detail because scattered rural homes need more stations to reach.</p><div class="tablewrap"><table class="tbl" id="cmpTable"></table></div></div>
+
+  <h2>Funded on paper, out of reach in practice</h2>
+  <div class="prose"><p>By August 2026 every state except Imo had joined the national emergency scheme (NEMSAS), and the law sets aside money for emergency treatment. On paper, almost every state is covered. But a state can be enrolled, and even paid, while many of its people still live far from a hospital that can treat them. The table puts the two side by side.</p>
+  <p class="note">NEMSAS has not published which states run a working service. The status below is compiled from dated public reports; a state marked "no public report" may still have a service. As of <span id="nemAsOf"></span>.</p></div>
+  <div class="toolbar"><button class="btn" id="showNem">Show this on the map</button></div>
+  <div class="tablewrap" style="max-height:520px"><table class="tbl" id="gapTable"></table></div>
+  <p class="note" id="gapNote"></p>
+
   <h2>What works elsewhere</h2>
   <div class="tablewrap"><table class="tbl bench" id="benchTable"></table></div>
 
@@ -405,9 +415,11 @@ abbr.gl{text-decoration:underline dotted;text-underline-offset:3px;cursor:help;t
   <ol>
     <li><b>Facilities.</b> All 70,235 records of GRID3 NGA Health Facilities v4.0 (CIESIN, Columbia University; integrates NHFR 2024/2026, NPHCDA and GRID3 v2 inputs). The records were taken from the copy republished by Kemabonta (2026), using only its GRID3 rows, and checked against the live GRID3 service by state and level of care on 7 November 2026 (counts match exactly). 58,367 records have coordinates inside Nigeria and are mapped.</li>
     <li><b>Referral hospital.</b> A hospital-type facility recorded as secondary or tertiary, or typed General, Specialist, Cottage, Federal Medical Centre or Teaching/Tertiary hospital, and not recorded as closed or non-functional. Clinics, health centres, maternity homes and laboratories are left out even where the register gives them a higher level. <b>Public referral hospital</b>: the same, owned by federal, state or local government or the military. <b>Tertiary</b>: tertiary level, Federal Medical Centre or teaching hospital.</li>
-    <li><b>Population.</b> WorldPop 2025 population summed to 9,307 GRID3 operational wards (as published by Kemabonta, 2026). Each ward's population is placed at the median position of its mapped facilities, or at its LGA's median where the ward has none (273 wards). Wards average about 100 km², so this puts people near the main settlement of each ward.</li>
-    <li><b>Distance.</b> Great-circle distance from each ward point to the nearest facility of each class. Bands are reported in straight-line kilometres. For time, roads are taken as 1.4× the straight line and ambulances average 40 km/h (2.1 minutes per straight-line km).</li>
-    <li><b>Stations.</b> Candidate sites are the 41,402 mapped public facilities not recorded as closed or non-functional. A greedy maximal-covering algorithm adds the site that reaches the most unreached people within the radius, until 95% of the population is reached. Three radii are run: 5, 10 and 15 km.</li>
+    <li><b>Population.</b> WorldPop Global2 R2025A v1, constrained, 1 km, 2025 (file nga_pop_2025_CN_1km_R2025A_UA_v1.tif; DOI 10.5258/SOTON/WP00840). WorldPop aligns its national totals to the UN World Population Prospects 2024 estimate for 1 January, giving 235,087,814 people. Each of the 846,108 populated 1 km cells is assigned to a state by its boundary. The ward population table from Kemabonta (2026) sums to the same total, so it comes from this raster; it is kept for the ward layer, the 'Find care' search and the comparison below.</li>
+    <li><b>Distance.</b> Great-circle distance from the centre of each 1 km population cell to the nearest mapped facility of each class. Bands are reported in straight-line kilometres. For time, roads are taken as 1.4× the straight line and ambulances average 40 km/h (2.1 minutes per straight-line km).</li>
+    <li><b>Stations.</b> Candidate sites are the 41,402 mapped public facilities not recorded as closed or non-functional. A greedy maximal-covering algorithm adds the site that reaches the most unreached people within the radius, until 95% of the population is reached. For speed, the 1 km cells are grouped into about 2.75 km cells (population-weighted centres). Three radii are run: 5, 10 and 15 km.</li>
+    <li><b>Comparison.</b> The first version placed each ward's population at one point. Both versions are shown under "How sure are these numbers?" in the Ambulance plan.</li>
+    <li><b>Emergency scheme status.</b> Compiled from dated public reports (sources in the Ambulance plan), because NEMSAS has not published a state-by-state list.</li>
     <li><b>Fleet.</b> 1 ambulance per 100,000 people is the benchmark used for India's public emergency service; 1 per 50,000 is cited by Kenya's policy institute as WHO guidance. Neither is a formal WHO standard, so both are shown as a range.</li>
   </ol>
   <h2>Limitations</h2>
@@ -415,7 +427,7 @@ abbr.gl{text-decoration:underline dotted;text-underline-offset:3px;cursor:help;t
     <li>11,706 GRID3 records (16.7%) have no coordinates, and 14,205 have no level of care. Gaps are larger in some northern states, so hospital counts there are likely too low and distances too high.</li>
     <li>"Functional" status is unknown or not recorded for 49% of records; a mapped hospital may not offer 24-hour emergency care.</li>
     <li>Straight-line distance understates travel in areas with few roads, rivers without bridges, or insecurity.</li>
-    <li>Placing ward population at facility positions makes distances look shorter than they are for scattered rural settlements.</li>
+    <li>The 1 km grid counts people where WorldPop estimates they live; in a country without a census since 2006, these are model estimates.</li>
     <li>GRID3 flags some records as possible duplicates (for example, Federal Medical Centre Asaba appears twice); they are kept as published.</li>
     <li>The GRID3 ambulance layer (34 points in 8 states) is too incomplete to show existing ambulances.</li>
   </ul>
@@ -425,7 +437,7 @@ abbr.gl{text-decoration:underline dotted;text-underline-offset:3px;cursor:help;t
   </div>
 </section>
 </main>
-<footer>© 2026 Shagbaor Hycent Amool · Facility data © GRID3 / CIESIN, Columbia University (CC BY 4.0), via Kemabonta (2026) · Population: WorldPop, via Kemabonta (2026) · For research, education and planning discussion — not a directory for emergencies. In an emergency call 112.</footer>
+<footer>© 2026 Shagbaor Hycent Amool · Facility data © GRID3 / CIESIN, Columbia University (CC BY 4.0), via Kemabonta (2026) · Population: WorldPop R2025A (1 km) · For research, education and planning discussion — not a directory for emergencies. In an emergency call 112.</footer>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
 <script>
@@ -498,7 +510,7 @@ const PointTiles=L.GridLayer.extend({
   }
 });
 
-let FAC=null, A=null, WARDS=null, GEO=null, stateLayer=null;
+let FAC=null, A=null, WARDS=null, GEO=null, stateLayer=null, NEM=null;
 const LV={Primary:'--c-pri',Secondary:'--c-sec',Tertiary:'--c-ter',Unknown:'--c-unk'};
 const LVL_PLAIN={Primary:'primary care (clinic or health centre)',Secondary:'secondary care (general hospital)',Tertiary:'tertiary care (teaching or specialist hospital)',Unknown:'level of care not recorded'};
 const lvlOn={Primary:true,Secondary:true,Tertiary:true,Unknown:true};
@@ -541,14 +553,18 @@ const SCALES={
   fac:{get:s=>s.per100k_fac,breaks:[20,30,40,50],fmt:v=>v.toFixed(0),label:['under 20','20–30','30–40','40–50','50 or more'],rev:true}
 };
 function classOf(v,sc){let i=0; while(i<sc.breaks.length&&v>=sc.breaks[i]) i++; return sc.rev?4-i:i;}
+const NCOL={active:'--c-st',paper:'--c-sec',none:'--c-unk'};
+function nemsasOf(st){if(!NEM) return null; return NEM.states[st]||NEM.default;}
 function stateStyle(f){
   const m=choro.value, s=A&&A.byState[f.properties.st]; const dark=isDark();
-  if(m==='none'||!s) return {color:dark?'#8a8380':'#7a726e',weight:1,fill:true,fillOpacity:0,fillColor:'#000'};
+  if(m==='nemsas'&&s&&NEM){const n=nemsasOf(f.properties.st), far=s.share_over20_pubref>=.3; return {color:far?css('--d5'):(dark?'#8a8380':'#7a726e'),weight:far?3.5:1,fillColor:css(NCOL[n.status]),fillOpacity:dark?.45:.5};}
+  if(m==='none'||!s||!SCALES[m]) return {color:dark?'#8a8380':'#7a726e',weight:1,fill:true,fillOpacity:0,fillColor:'#000'};
   const sc=SCALES[m]; return {color:dark?'#8a8380':'#7a726e',weight:1,fillColor:css(DCOL[classOf(sc.get(s),sc)]),fillOpacity:dark?.5:.55};
 }
 function legend(){
   const el=document.getElementById('legend'); const m=choro.value; let h='';
-  if(m!=='none'){const sc=SCALES[m]; h+=sc.label.map((l,i)=>`<div class="row"><span class="box" style="background:var(${DCOL[sc.rev?4-i:i]})"></span>${l}</div>`).join(''); if(sc.rev) h+='<div class="note">Red = fewer per person.</div>';}
+  if(m==='nemsas'&&NEM){h+=Object.entries(NEM.categories).map(([k,l])=>`<div class="row"><span class="box" style="background:var(${NCOL[k]})"></span>${esc(l)}</div>`).join('')+'<div class="row"><span class="box" style="background:transparent;border:3px solid var(--d5)"></span>30%+ of people live 20 km+ from a public hospital</div><div class="note">Scheme status compiled from public reports; see Ambulance plan.</div>';}
+  else if(m!=='none'){const sc=SCALES[m]; h+=sc.label.map((l,i)=>`<div class="row"><span class="box" style="background:var(${DCOL[sc.rev?4-i:i]})"></span>${l}</div>`).join(''); if(sc.rev) h+='<div class="note">Red = fewer per person.</div>';}
   if(document.getElementById('lyrWards').checked){h+='<div style="margin-top:6px"><b style="font-size:12px">Community distance to public referral hospital</b></div>'+A.band_labels.map((l,i)=>`<div class="row"><span class="sw" style="background:var(${DCOL[i]})"></span>${l}</div>`).join('');}
   el.innerHTML=h;
 }
@@ -624,7 +640,8 @@ function showState(name,zoom){
     <dt>Mean distance</dt><dd>${s.mean_km_pubref} km to a public referral hospital</dd>
     <dt>20 km or more</dt><dd>${pct(s.share_over20_pubref,1)} of people</dd>
     <dt>Stations for 95% reach</dt><dd>${s.stations['5']} (5 km) · ${s.stations['10']} (10 km) · ${s.stations['15']} (15 km)</dd>
-    <dt>Ambulances</dt><dd>${fmt(s.ambulances_norm100k)}–${fmt(s.ambulances_norm50k)}</dd></dl>
+    <dt>Ambulances</dt><dd>${fmt(s.ambulances_norm100k)}–${fmt(s.ambulances_norm50k)}</dd>
+    ${NEM?`<dt>Emergency scheme</dt><dd>${esc(NEM.categories[nemsasOf(name).status])}${nemsasOf(name).evidence.map(e=>`<br><a href="${NEM.sources[e[1]].url}" target="_blank" rel="noopener" class="note">${esc(e[0])}</a>`).join('')}</dd>`:''}</dl>
     <div style="margin-top:8px;border-radius:6px;overflow:hidden;display:flex;line-height:0">${bar}</div>
     <div class="note" style="margin-top:4px">People by distance to a public referral hospital (green = under 5 km, red = over 40 km).</div>`;
   if(window.innerWidth<=860) card.scrollIntoView({behavior:'smooth',block:'nearest'});
@@ -771,7 +788,8 @@ const DL=[
  ['Analysis (JSON)','National and state figures: distance bands, hospitals per 100,000, stations and ambulances for each scenario.','data/analysis.json'],
  ['Proposed stations, 10 km reach (CSV)','Station sites in order of benefit, with host facility and people reached.','data/proposed_stations_10km.csv'],
  ['Proposed stations, 5 km and 15 km (CSV)','The same for the other two scenarios.','data/proposed_stations_5km.csv','data/proposed_stations_15km.csv'],
- ['Ward population and distance (JSON)','9,306 wards: 2025 population and distance to the nearest public referral and tertiary hospital. CC BY-SA 4.0.','data/wards.json']
+ ['Emergency scheme status by state (JSON)','Status of each state in the national emergency scheme, with the public reports it rests on.','data/nemsas_states.json'],
+ ['Ward population and distance (JSON)','9,306 wards: 2025 population and distance to the nearest public referral and tertiary hospital (ward-point method, kept for comparison). CC BY-SA 4.0.','data/wards.json']
 ];
 function renderDL(){
   document.getElementById('dlList').innerHTML=DL.map(d=>`<div class="card dl"><div><b>${esc(d[0])}</b><br><span class="note">${esc(d[1])}</span></div><div style="flex:0 0 auto;display:flex;gap:8px">${d.slice(2).map(u=>`<a class="btn primary" href="${u}" download>${u.split('.').pop().toUpperCase()}${d.length>3?' · '+u.match(/(\d+)km/)[1]+' km':''}</a>`).join('')}</div></div>`).join('');
@@ -787,6 +805,9 @@ const SRC=[
  ['Nairametrics (13 June 2025). LASAMBUS responds to over 44,000 emergencies.','https://nairametrics.com/2025/06/13/lagos-state-ambulance-service-responds-to-over-44000-emergencies-hits-97-5-response-rate-in-4-years/'],
  ['Factly. What is the state of emergency ambulance services in India (1 per 100,000 benchmark).','https://factly.in/what-is-the-state-of-emergency-ambulance-services-in-india'],
  ['KIPPRA (7 May 2024). Strengthening emergency medical care in Kenya (1 per 50,000 cited as WHO guidance).','https://kippra.or.ke/strengthening-emergency-medical-care-in-kenya/'],
+ ['Bondarenko, M. et al. (2025). Constrained estimates of 2015–2030 total population per grid square, R2025A v1. WorldPop, University of Southampton. doi:10.5258/SOTON/WP00840','https://doi.org/10.5258/SOTON/WP00840'],
+ ['WorldPop Global2 release statement R2025A v1 (national totals aligned to UN WPP 2024, 1 January).','https://data.worldpop.org/repo/prj/Global_2015_2030/R2025A/doc/Global2_Release_Statement_R2025A_v1.pdf'],
+ ['Emergency scheme status by state: compiled from TMS News (Aug 2026), Voice of Nigeria (Oct 2025), ThisDay (Oct 2025), Nairametrics (Jun 2025), The Whistler (Jul 2026) and Premium Times (Mar 2026); full list in data/nemsas_states.json.','data/nemsas_states.json'],
  ['Benchmark systems: see links in the Ambulance system table.','#ambulance']
 ];
 function renderAbout(){document.getElementById('srcList').innerHTML=SRC.map(s=>`<li><a href="${s[1]}" ${s[1].startsWith('http')?'target="_blank" rel="noopener"':''}>${esc(s[0])}</a></li>`).join(''); document.getElementById('builtDate').textContent=new Date(A.built+'T12:00:00Z').toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'});}
@@ -906,6 +927,7 @@ const FAQ=[
  ['Why are some places empty on the map?','About 1 in 6 facilities in the register has no recorded location, so it cannot be drawn. Some states, especially in the north, have more gaps. A place that looks empty may have facilities that have not been mapped yet.'],
  ['What counts as a hospital that takes emergencies?','A general, specialist, cottage, teaching or federal hospital, or another hospital the register lists at secondary or tertiary level, that is not recorded as closed. Clinics, health centres and maternity homes are not counted, even where the register gives them a higher level.'],
  ['How are travel times worked out?','From the straight-line distance, assuming roads are 1.4 times longer and an average speed of 40 km/h. Bad roads, rivers, rain and insecurity can make real trips much longer.'],
+ ['Is my state covered by the national emergency scheme?','On paper, almost certainly: by August 2026 every state except Imo had joined NEMSAS. Whether a working service reaches you is another matter. The Ambulance plan lists the public reports for each state next to how far its people live from a public hospital.'],
  ['Does Nigeria already have ambulances?','Yes, in parts. Lagos runs a working state service, and the federal NEMSAS programme reports emergency structures in most states. But only a small share of patients reach hospital by public ambulance. See the Ambulance plan.'],
  ['I found a mistake or a missing facility. What can I do?','Use the contact details on the main website. Corrections can also be sent to GRID3 so the national register improves for everyone.']];
 function renderFAQ(){document.getElementById('faq').innerHTML=FAQ.map(q=>`<details><summary>${esc(q[0])}</summary><p>${esc(q[1])}</p></details>`).join('');}
@@ -920,11 +942,38 @@ function renderKnow(){
   document.getElementById('k3p').textContent=`Placed at existing public health facilities, ${fmt(S.n)} stations would put 95 in every 100 Nigerians within about 20 minutes of an ambulance. The first ${fmt(S.steps['50'])} would already reach half the country.`;
 }
 
+
+// ---------- Emergency scheme vs distance ----------
+function renderGap(){
+  if(!NEM||!A) return;
+  document.getElementById('nemAsOf').textContent=new Date(NEM.as_of+'T12:00:00Z').toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'});
+  const rows=[...A.states].sort((a,b)=>b.share_over20_pubref-a.share_over20_pubref);
+  const tag={active:'var(--c-st)',paper:'var(--c-sec)',none:'var(--c-unk)'};
+  let flagged=0;
+  document.getElementById('gapTable').innerHTML='<thead><tr><th>State</th><th>Emergency scheme (public reports)</th><th class="num">People 20 km+ from a public hospital</th><th class="num">Share</th><th class="num">Stations needed (10 km)</th></tr></thead><tbody>'+
+    rows.map(r=>{const n=nemsasOf(r.state), far=r.share_over20_pubref, gap=n.status!=='none'&&far>=.3; if(gap) flagged++;
+      return `<tr class="clickable" data-state="${esc(r.state)}"><td>${gap?'<b>':''}${esc(r.state)}${gap?'</b>':''}</td><td style="white-space:normal;min-width:240px"><span class="pill" style="background:${tag[n.status]};color:#fff">${esc(NEM.categories[n.status])}</span>${n.evidence.map(e=>`<br><a class="note" href="${NEM.sources[e[1]].url}" target="_blank" rel="noopener">${esc(e[0])}</a>`).join('')}</td><td class="num">${fmt(far*r.pop2025)}</td><td class="num">${gap?'<b>':''}${pct(far)}${gap?'</b>':''}</td><td class="num">${fmt(r.stations['10'])}</td></tr>`;}).join('')+'</tbody>';
+  document.getElementById('gapNote').textContent=`In ${flagged} states that are enrolled in the scheme, 30% or more of people live 20 km or more (straight line) from a public hospital that can treat an emergency. Funding and enrolment alone would show these states as covered.`;
+  document.querySelectorAll('#gapTable tr.clickable').forEach(tr=>tr.onclick=()=>{choro.value='nemsas'; if(stateLayer) stateLayer.setStyle(stateStyle); legend(); showState(tr.dataset.state,true);});
+}
+document.getElementById('showNem').onclick=()=>{openTab('map',true); choro.value='nemsas'; if(stateLayer) stateLayer.setStyle(stateStyle); legend();};
+function renderCmp(){
+  const C=A.comparison; if(!C) return; const n=A.national, card=document.getElementById('cmpCard'); card.hidden=false;
+  const far=b=>(b[3]+b[4])/n.pop2025;
+  const rows=[['People 20 km+ from a public hospital',pct(far(n.bands_pubref),1),pct(far(C.bands_pubref),1)],
+    ['Average distance to a public hospital',n.mean_km_pubref+' km',C.mean_km_pubref+' km'],
+    ['People 40 km+ from a tertiary hospital',pct(n.bands_tert[4]/n.pop2025,1),pct(C.bands_tert[4]/n.pop2025,1)]];
+  ['5','10','15'].forEach(k=>rows.push([`Stations for 95% within ${k} km`,fmt(A.scenarios[k].n),fmt(C.scenarios[k].n)]));
+  ['5','10','15'].forEach(k=>rows.push([`Stations for 90% within ${k} km`,fmt(A.scenarios[k].steps['90']),fmt(C.scenarios[k].steps['90'])]));
+  document.getElementById('cmpTable').innerHTML='<thead><tr><th>Measure</th><th class="num">1 km grid (used)</th><th class="num">One point per ward</th></tr></thead><tbody>'+rows.map(r=>`<tr><td>${r[0]}</td><td class="num"><b>${r[1]}</b></td><td class="num">${r[2]}</td></tr>`).join('')+'</tbody>';
+}
+
 // ---------- Load ----------
 function loadJSON(u){return fetch(u).then(r=>{if(!r.ok) throw new Error(u+' '+r.status); return r.json();});}
 loadJSON('data/analysis.json').then(a=>{
   A=a; A.byState={}; a.states.forEach(s=>A.byState[s.state]=s);
-  renderOverview(); renderStates(); renderBench(); renderDL(); renderAbout(); renderKnow(); renderGlossary(); renderFAQ();
+  renderOverview(); renderStates(); renderBench(); renderDL(); renderAbout(); renderKnow(); renderGlossary(); renderFAQ(); renderCmp();
+  loadJSON('data/nemsas_states.json').then(j=>{NEM=j; renderGap(); if(stateLayer) stateLayer.setStyle(stateStyle); legend();}).catch(()=>{});
   document.getElementById('designSteps').innerHTML=DESIGN.map(d=>`<li><b>${esc(d[0])}</b>${esc(d[1])}</li>`).join('');
   seg(document.getElementById('segMap')); seg(document.getElementById('segAmb')); setScen('10');
   legend(); document.querySelectorAll('.lead,.prose,.know-card p,.callout,#view-states .note,.side .note,#view-data .note').forEach(glossify);
