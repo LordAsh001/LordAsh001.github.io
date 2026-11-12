@@ -1,0 +1,62 @@
+# Rebuilds the Nigeria Health Atlas data (health-atlas/data/) from its sources:
+#   - GRID3 NGA Health Facilities v4.0, via the Kemabonta (2026) republished copy (GRID3 rows only)
+#   - WorldPop Global2 R2025A v1 constrained 1 km population, 2025 (DOI 10.5258/SOTON/WP00840)
+#   - state boundaries from energy-atlas/data/nigeria-states.geojson
+# Runs when the build script or this file changes, and on demand from the Actions tab ("Run workflow").
+name: Build Nigeria Health Atlas data
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - scripts/health_atlas/build.py
+      - .github/workflows/health-atlas.yml
+
+permissions:
+  contents: write
+
+concurrency:
+  group: health-atlas-build
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install packages
+        run: pip install numpy pandas scikit-learn tifffile imagecodecs shapely
+
+      - name: Download sources
+        run: |
+          mkdir -p /tmp/src
+          K=https://raw.githubusercontent.com/Kemabonta/nigeria-health-facilities-ward-ear/main/data
+          curl -fsSL "$K/nigeria_health_facilities_combined_v1.0.csv" -o /tmp/src/facilities.csv
+          curl -fsSL "$K/ward_ear_2025_with_facility_counts.csv" -o /tmp/src/wards.csv
+          curl -fsSL "https://data.worldpop.org/GIS/Population/Global_2015_2030/R2025A/2025/NGA/v1/1km_ua/constrained/nga_pop_2025_CN_1km_R2025A_UA_v1.tif" -o /tmp/src/pop.tif
+          ls -la /tmp/src
+
+      - name: Build
+        run: |
+          python scripts/health_atlas/build.py /tmp/src/facilities.csv /tmp/src/wards.csv health-atlas/data \
+            /tmp/src/pop.tif energy-atlas/data/nigeria-states.geojson
+
+      - name: Commit if anything changed
+        run: |
+          if [ -z "$(git status --porcelain health-atlas/data)" ]; then
+            echo "Nothing to commit."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add health-atlas/data
+          git commit -m "Rebuild Nigeria Health Atlas data (1 km WorldPop grid)"
+          git pull --rebase
+          git push
