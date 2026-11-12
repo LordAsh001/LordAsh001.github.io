@@ -1,716 +1,978 @@
 lat,lon,pop_added,host_facility,state,lga,host_is_referral
-6.5945,3.2826,10571988,Rauf Aregbesola Primary Health Centre,Lagos,Alimosho,0
-11.987,8.4972,5370255,Kwamitin Makota Health Post,Kano,Gwale,0
-4.8543,7.0319,5366859,Rumuodara Health Post,Rivers,Obio/Akpor,0
-7.3965,3.9189,5023761,Aged And Widow Primary Health Centre,Oyo,Ibadan North,0
-9.0456,7.5233,3331084,Asokoro District Hospital,Federal Capital Territory,Municipal Area Council,1
-6.0644,6.9336,3160232,Awuda Primary Health Center,Anambra,Idemili South,0
-10.5247,7.4105,2991468,Unguwan Sunusi Primary Primary Health Centre,Kaduna,Kaduna South,0
-11.8214,13.193,2859177,Farm Center Idp Camp,Borno,Jere,0
-4.9626,7.864,2168535,Ikot Oku Nsit Health Post,Akwa Ibom,Nsit Ibom,0
-6.4809,3.0488,2071965,Rose Hospital,Lagos,Badagry,0
-6.6665,3.4915,1985559,Iyann Ayo Convalescent Home,Lagos,Ikorodu,0
-7.6145,5.2117,1952327,Immaculate Clinic,Ekiti,Ado-Ekiti,0
-5.5423,7.0926,1913165,Amatta Health Centre,Imo,Ikeduru,0
-13.0145,5.2234,1886131,Guiwa Primary Health Centre,Sokoto,Wamakko,0
-5.5709,5.8179,1824231,Ebrumeprimary Health Centre,Delta,Uvwie,0
-5.8206,6.943,1814130,Akwaorji Health Post,Imo,Orsu,0
-4.9226,6.3423,1788877,Nigeria Air Force Medical Center,Bayelsa,Yenegoa,1
-6.7774,3.1433,1702734,Coker Health Clinic,Ogun,Ifo,0
-8.5017,4.5441,1679604,Mogaji Are Primary Health Centre,Kwara,Ilorin East,0
-5.5205,7.3865,1648743,Umuifem Health Center,Imo,Obowo,0
-7.7865,4.547,1611231,Police Hospital,Osun,Osogbo,0
-7.23,5.1716,1585383,Gaga Basic Health Centre,Ondo,Akure South,0
-6.3369,5.5948,1568936,Osaide Maternity,Edo,Oredo,0
-9.1117,7.2313,1530336,Dakwa Health Post,Niger,Tafa,0
-6.4455,3.3126,1512719,St Joseph Catholic Mission Hospital,Lagos,Amuwo Odofin,0
-6.4203,7.4857,1442290,Police Detective College Comprehensive Health Centre,Enugu,Enugu South,0
-5.1679,7.3591,1382065,Okpu Umuobo Primary Health Centre,Abia,Osisioma Ngwa,0
-6.9241,7.4735,1364924,Umachi Health Center,Enugu,Igbo-Eze-South,0
-4.9681,8.363,1352407,Atimbo Primary Health Centre,Cross River,Calabar South,0
-6.2124,6.8387,1246078,Ifite Nkwele Health Post,Anambra,Oyi,0
-5.9883,7.1555,1219130,Agbudu Primary Health Centre,Anambra,Aguata,0
-11.1362,7.6696,1202930,Jamaa Primary Health Centre,Kaduna,Sabon Gari,0
-5.1627,7.6891,1089636,Ikot Inyang Health Post,Akwa Ibom,Ikot Ekpene,0
-13.002,7.6667,1021368,Makera Health Post,Katsina,Katsina,0
-12.2181,6.6754,993087,Runji Health Center,Zamfara,Gusau,0
-6.8682,3.9416,983970,Oke Eri Health Post,Ogun,Ijebu North East,0
-9.9248,8.9129,973343,Dokan Kasuwa Primary Health Center,Plateau,Jos North,0
-7.5344,4.4562,973326,Moro Primary Health Centre,Osun,Ife North,0
-7.5211,6.2523,972768,Ado Ogu Primary Health Center,Kogi,Okene,0
-9.3004,12.4817,913454,Vunuklang Jauro Isa Primary Health Center,Adamawa,Girei,0
-4.6997,7.9398,891654,Ikot Ekpene Udo Cottage Hospital,Akwa Ibom,Eket,1
-4.7418,7.2819,874530,Gbene-Ue Health Post,Rivers,Tai,0
-10.3433,11.2685,842398,Garin Abas Health Clinic,Gombe,Yamaltu/Deba,0
-6.3874,8.035,834270,Umuegara Health Center,Ebonyi,Ohaukwu,0
-5.5096,6.1175,828384,Emevor Primary Health Centre,Delta,Isoko North,0
-5.6712,7.1837,821577,Umuaro Primary Health Centre,Imo,Isiala Mbano,0
-13.0531,8.2248,809814,Dan Yawa Health Centre,Katsina,Mai'adua,0
-7.7522,3.9764,798791,Abujakan Health Center,Oyo,Afijio,0
-6.4722,3.6324,796720,Sangotedo Primary Health Centre,Lagos,Eti Osa,0
-7.6913,4.8058,793172,Ijebujesa General Hospital,Osun,Oriade,1
-9.6047,6.5135,788626,Knibuyi Primary Health Center,Niger,Chanchaga,0
-6.2418,7.0579,779375,Awka South Local Government Area Primary Health Care Center,Anambra,Awka South,0
-7.1805,4.8717,777004,Confidence Basic Health Centre,Ondo,Ile Oluji/Okeigbo,0
-6.72,6.2319,776135,Usugbenu,Edo,Esan Central,0
-7.6398,8.5893,741595,Adorough Primary Health Centre,Benue,Makurdi,0
-7.1463,3.3745,728048,Divine Mercy Hospital,Ogun,Abeokuta South,0
-12.3436,8.4773,726257,Walawa Health Post,Kano,Makoda,0
-5.2523,6.6545,716293,Obite Primary Health Centre,Rivers,Ogba/Egbema/Ndoni,0
-5.8632,5.7153,699689,Amukpe Primary Health Centre,Delta,Sapele,0
-8.1342,4.2402,699253,Ibukun Olu Dental Clinic,Oyo,Ogbomosho North,0
-12.1105,8.2774,666900,Jalli Health Center,Kano,Tofa,0
-11.776,8.911,663107,Malamawa Health Post,Kano,Gaya,0
-7.7157,6.7637,657372,Shitte Primary Health Care Clinic,Kogi,Bassa,0
-8.0353,4.6915,647050,Ijabe Primary Health Centre,Osun,Odo Otin,0
-7.8675,5.1609,643150,Ilogbo National Primary Health Center,Ekiti,Ido-Osi,0
-12.359,9.9885,640844,Auyakayi Primary Health Centre,Jigawa,Auyo,0
-11.7336,8.3089,627530,Rikadawa Health Post,Kano,Madobi,0
-12.4572,4.212,622875,Awashaka Dispensary,Kebbi,Birnin Kebbi,0
-7.3446,9.013,617659,Tbt Hospital Gboko,Benue,Gboko,0
-6.5511,2.8311,606134,Odan Ijaiye Primary Health Centre,Ogun,Ipokia,0
-7.1025,6.3715,576107,Irekpai Primary Health Center,Edo,Etsako West,0
-6.4638,4.8674,575670,Fak Hospital,Ondo,Irele,0
-9.9273,11.2606,575278,Ture Mai Health Clinic,Gombe,Kaltungo,0
-11.5357,7.2199,574274,Ungwarbiri Health Clinic,Katsina,Funtua,0
-8.9216,7.1183,573199,Chukuku Primary Health Centre,Federal Capital Territory,Kuje,0
-11.724,10.9945,570158,Dazigau Primary Health Centre,Yobe,Nangere,0
-6.8512,3.6494,560335,Epe Health Centre,Ogun,Shagamu,0
-11.6137,8.6227,557935,Kwanar Juma Health Clinic,Kano,Rano,0
-12.1144,8.7798,552970,Guruma Health Post,Kano,Gabasawa,0
-8.9275,7.7613,547406,Uke Damakasha Clinic,Nasarawa,Karu,0
-10.3553,9.8301,535162,School Of Armour Clinic,Bauchi,Bauchi,0
-11.8826,8.0553,532405,Madadi Basic Health Clinic,Kano,Gwarzo,0
-6.0438,7.4786,531888,Ugwuleshi Health Centre,Enugu,Awgu,0
-6.653,8.8844,530252,Agim Health Post,Cross River,Bekwarra,0
-12.6828,8.4046,528529,Bandutse Health Post,Jigawa,Kazaure,0
-8.4937,8.5385,519928,Galle Primary Health Care Center,Nasarawa,Lafia,0
-11.6908,9.327,515981,Takur Site Health Post,Jigawa,Dutse,0
-6.1177,8.0713,511228,Ameka Healthcare Center,Ebonyi,Ezza South,0
-4.9575,7.5991,507325,Ikot Edet Health Post,Akwa Ibom,Etim Ekpo,0
-7.5247,4.1512,490709,Ejemu Health Center,Osun,Ayedire,0
-6.6005,8.1068,489633,Ndiogodo Health Post,Ebonyi,Ebonyi,0
-6.6907,9.1391,485433,Vandeikya Primary Health Care,Benue,Vandeikya,0
-7.5358,5.7535,484588,Iyame Primary Health Centre,Ondo,Akoko North East,0
-11.8398,8.6017,482947,Dawakin Kudu General Hospital,Kano,Dawakin Kudu,1
-6.2076,6.2211,477310,Owa-Alero Primary Health Centre,Delta,Ika North East,0
-5.0561,6.7308,477281,Elele Alimini Health Post,Rivers,Emuoha,0
-8.9079,11.3925,472783,Taraba State Specialist Hospital,Taraba,Jalingo,1
-11.5239,9.0659,465156,Kafinsidda Health Post,Kano,Takai,0
-4.8527,8.1217,462290,Nsating Health Post,Akwa Ibom,Okobo,0
-12.9212,8.4901,461495,Model Primary Health Center Makiya Primary Health Centre,Katsina,Zango,0
-5.6661,7.789,460245,Ndi Aku Primary Health Centre,Abia,Ohafia,0
-6.6759,7.4365,458308,Agu Umunko Health Post,Enugu,Igbo-Etiti,0
-12.76,7.7842,452455,Allareni Health Centre,Katsina,Rimi,0
-11.3722,10.5678,447294,Gugulin Health Post,Bauchi,Misau,0
-12.4638,6.5887,442835,Maguru Health Clinic,Zamfara,Kaura Namoda,0
-6.7992,2.9649,439768,Alhaja Bintu Amope Akinlade Maternity Center,Ogun,Yewa South,0
-5.3892,7.2583,436679,Divine Love Hospital And Maternity Umuabazu Amuzu,Imo,Aboh-Mbaise,0
-9.3142,7.3059,433646,Dogon Kurmi Primary Health Centre,Niger,Tafa,0
-6.2625,6.5593,418639,Edo-Ogwashi Primary Health Centre,Delta,Aniocha South,0
-7.7964,5.4284,418323,Oye General Hospital,Ekiti,Ikole,1
-6.4198,8.2684,416795,Izicha Health Centre,Ebonyi,Izzi,0
-9.9138,11.9749,413267,Gombawa Primary Health Center,Adamawa,Guyuk,0
-5.8918,8.0646,410434,Anong Bah. Health Centre,Cross River,Abi,0
-11.1789,8.3082,409646,Gimbawa Health Clinic,Kaduna,Ikara,0
-12.2189,8.0221,407546,Kokai Health Post,Kano,Tsanyawa,0
-11.331,7.8478,407403,Dan Ayamaka Health Clinic,Kaduna,Makarfi,0
-12.7354,8.6743,405036,Galadimawa Health Centre,Katsina,Baure,0
-9.6575,8.3161,401683,Madakiya Primary Health Centre,Kaduna,Zangon Kataf,0
-9.4779,9.1936,396183,Gwet Primary Health Center,Plateau,Mangu,0
-11.3244,9.5233,394059,Surko Primary Health Clinic,Jigawa,Birnin Kudu,0
-5.3739,7.594,390424,Awomukwu Primary Health Centre,Abia,Ikwuano,0
-11.77,12.079,388551,Damakasu Primary Health Centre,Yobe,Damaturu,0
-13.2701,5.3221,388026,Yar Gada Primary Health Center,Sokoto,Gwadabawa,0
-7.1981,5.5685,386000,Owo General Hospital,Ondo,Owo,1
-7.1024,6.7584,384825,Ugbetulu Primary Health Centre,Kogi,Idah,0
-6.1269,7.8306,382202,Amakporo Health Centre,Ebonyi,Onicha,0
-12.7206,9.4586,382144,Daguma Primary Health Centre,Jigawa,Maigatari,0
-10.1973,13.3102,381716,Gude Health Post,Adamawa,Mubi South,0
-8.6282,3.4461,380617,244 Batallion Medical Reception Station,Oyo,Saki West,0
-11.5756,10.2019,377673,Yarimari Health Post,Bauchi,Giade,0
-7.4992,9.5312,376877,Une Primary Health Centre,Benue,Katsina-Ala,0
-5.8281,7.4152,376790,Mbaugwu Primary Health Centre,Abia,Isuikwuato,0
-10.8662,11.494,372425,Bulagaidam Primary Health Care,Gombe,Funakaye,0
-7.0077,9.0254,371961,Ihugh Primary Health Centre,Benue,Ushongo,0
-7.5529,5.4742,370625,Anifowose Basic Health Center,Ekiti,Gbonyin,0
-12.5616,7.4888,368945,T / Barau Health Facility,Katsina,Kurfi,0
-12.2811,4.3988,368740,Unguwar Amadu Health Post,Kebbi,Aleiro,0
-5.7252,6.1348,368672,Aragba Orogun Primary Health Centre,Delta,Ughelli North,0
-11.58,8.1451,367571,Kyarana Health Post,Kano,Kiru,0
-9.6511,8.8924,364926,Pwomol Primary Health Centre,Plateau,Barkin Ladi,0
-5.3732,5.8564,363311,Obi Ayagha Health Post,Delta,Ughelli South,0
-9.0045,6.0797,361934,Nassarafu Primary Health Centre,Niger,Lavun,0
-12.1928,7.7761,359791,Keku Health Clinic,Katsina,Musawa,0
-6.9133,9.2688,358335,Agbakyan Primary Health Center,Benue,Kwande,0
-12.7199,8.1268,358201,Todai Health Clinic,Katsina,Ingawa,0
-12.6074,6.107,354427,Matusgi Primary Health Centre,Zamfara,Talata Mafara,0
-4.6464,7.5021,353411,Bane Primary Health Centre,Rivers,Khana,0
-6.2397,7.2816,348085,Enugu State School Of Health Technology,Enugu,Oji-River,0
-7.452,7.6463,342231,Enokpoli Primary Health Centre,Kogi,Ankpa,0
-12.7505,5.1341,341969,Mabera Health Post,Sokoto,Shagari,0
-5.1151,7.9487,341933,Uyo Itam Health Centre,Akwa Ibom,Itu,0
-7.9028,3.5046,340175,Odo Ogun Health Post,Oyo,Iseyin,0
-11.3503,5.2599,339455,Gogadi Health Clinic,Kebbi,Zuru,0
-4.9669,7.2736,338185,Obiga Health Post,Abia,Ukwa West,0
-7.4728,3.7641,337045,Ido Primary Health Centre,Oyo,Oyo,0
-11.847,7.5013,335439,Badawa Primary Health Care,Katsina,Kankara,0
-7.3236,4.207,331020,Aduke Memorial Nursing Home,Osun,Isokan,0
-11.2671,7.133,329079,Maibakko Health Clinic,Katsina,Sabuwa,0
-7.4118,7.1628,325797,Ajonuchegbo Primary Health Centre,Kogi,Dekina,0
-5.3756,7.8596,323785,Okpoto Health Post,Akwa Ibom,Ini,0
-12.3876,4.6783,321831,Shipirin,Sokoto,Sokoto,0
-7.9391,6.0453,319113,Agirigbo Primary Health Centre,Kogi,Ijumu,0
-4.7335,7.7499,318877,Mkpat Enin Primary Health Center,Akwa Ibom,Mkpat Enin,0
-5.5283,6.9667,316492,Ndegwu Primary Health Centre,Imo,Owerri West,0
-11.6853,7.7895,312810,Unguwar Dawa Health Centre,Katsina,Kafur,0
-11.3961,10.0706,311669,Zainabari Primary Health Centre,Bauchi,Shira,0
-11.3736,8.8438,311171,Gani Primary Health Center,Kano,Sumaila,0
-11.5182,8.3711,310698,Rantan Health Post,Kano,Bebeji,0
-12.7659,10.3824,310331,Zugo Basic Health Center,Jigawa,Guri,0
-7.6226,9.9047,308792,Abako Primary Health Center,Taraba,Donga,0
-11.2233,9.7667,308365,Bura Primary Health Centre,Bauchi,Warji,0
-12.7457,7.3397,307525,Maikare Dispensary,Katsina,Batsari,0
-12.0678,6.9502,306593,Unguwar Dan Umma Dispensary,Zamfara,Tsafe,0
-6.7326,4.9917,305885,Mile 9 Basic Health Centre,Ondo,Odigbo,0
-7.1226,9.3894,301826,Abah Primary Health Centre,Benue,Katsina-Ala,0
-10.8426,7.5257,300029,Wusono Primary Health Centre,Kaduna,Igabi,0
-12.0671,9.0968,299970,Karwai Primary Health Centre,Jigawa,Ringim,0
-7.8433,5.7392,299398,Alu Basic Health Centre,Kogi,Yagba East,0
-5.1551,6.1949,296775,Sagbama Primary Health Centre,Bayelsa,Bayelsa,0
-5.0514,6.9597,295553,Ipo Primary Health Centre ( Model Primary Health Center ),Rivers,Ikwerre,0
-10.5348,8.6171,294196,Kakun Kurama Health Centre,Kaduna,Lere,0
-8.2196,5.6335,293945,Omi Family Support Programme Clinic,Kogi,Yagba West,0
-6.6751,3.9817,289248,Ifeoluwa Clinic And Maternity Ota,Lagos,Epe,0
-10.0142,11.5618,286244,Balamsane Health Post,Gombe,Balanga,0
-7.8658,4.2918,284103,Araromi Iwata Health Post,Osun,Ejigbo,0
-12.6919,4.5049,283099,Jada Primary Health Centre,Kebbi,Argungu,0
-12.9422,7.9709,282555,Toranke Health Clinic,Katsina,Katsina,0
-11.993,7.8244,282258,Tunkuda Health Centre,Katsina,Malumfashi,0
-6.1715,8.3069,279679,Echara Health Care,Ebonyi,Ikwo,0
-8.0368,5.0375,278939,Ora ( Mdgs ) Facility,Osun,Ifedayo,0
-9.7056,11.0627,276891,Tudu Primary Health Centre,Gombe,Billiri,0
-11.7141,9.9276,274286,Arawa Health Post,Bauchi,Jama'are,0
-7.2998,8.6496,274122,Ikumbu Family Support Clinic,Benue,Konshisha,0
-9.2175,8.9663,272745,Ngyong Primary Health Centre,Plateau,Bokkos,0
-10.3972,7.7137,271278,Doka Health Clinic ( Kajuru ),Kaduna,Kajuru,0
-8.0252,6.792,269514,Edegaki Primary Health Centre,Kogi,Kogi,0
-12.378,8.2103,268624,Rigana Health Post,Kano,Kunchi,0
-12.2355,9.7871,268135,Muduga Primary Health Centre,Jigawa,Miga,0
-10.9952,8.0153,266206,Yelwa Makaranta Health Clinic,Kaduna,Kaduna,0
-9.4385,9.4908,265602,Dung Wuseli Primary Health Centre,Plateau,Pankshin,0
-6.7419,7.6982,264534,Umuaram Health Centre,Enugu,Isi-Uzo,0
-6.6086,5.3292,264340,Okokpon Primary Health Centre,Edo,Ovia South-West,0
-10.5322,12.2137,264197,Ngwa Primary Health Centre,Borno,Hawul,0
-11.1335,13.7912,263773,Ngoshe Primary Health Centre,Borno,Gwoza,0
-13.6894,5.4163,263388,Gidan Makera Dispensary,Sokoto,Illela,0
-11.4547,7.6446,263111,Rataya Primary Health Center,Katsina,Kafur,0
-12.4852,7.9627,259899,Yanzaru Health Clinic,Katsina,Kusada,0
-10.6849,13.4027,259077,Drigimi Primary Health Centre,Adamawa,Michika,0
-12.3207,7.3759,258426,Kuraicin Fulani Health Clinic,Katsina,Dutsin Ma,0
-11.8981,8.3428,256938,Tamawa Health Post,Kano,Rimin Gado,0
-6.7954,8.4007,256113,Ochekpo-Igwe Primary Health Care Clinic,Benue,Oju,0
-7.1941,7.5955,255973,Offa Primary Health Center,Kogi,Olamaboro,0
-10.1251,12.3411,255646,Dingai Primary Health Centre,Adamawa,Gombi,0
-12.0829,4.0115,254938,Bunza Maternal And Child Health,Kebbi,Bunza,0
-11.4324,5.521,252308,Kurku Centre Primary Health Care,Kebbi,Wasagu/Danko,0
-7.5588,8.8868,252080,Wutsa Family Support Program Clinic,Benue,Tarka,0
-7.5,4.9696,251867,Omiogun Health Center,Ekiti,Ekiti South-West,0
-12.1184,5.01,251220,Gayyari Primary Health Center,Zamfara,Gummi,0
-5.593,6.7456,250111,Opuoma Primary Health Centre,Imo,Ohaji/Egbema,0
-12.3579,8.7492,248948,Kore Primary Health Center,Kano,Dambatta,0
-12.5055,7.6876,247183,Sabaru Health Clinic,Katsina,Charanchi,0
-8.4361,12.0607,244852,Sangasmi Primary Health Center,Adamawa,Ganye,0
-12.5829,12.6831,244067,Ngetra Primary Health Centre,Borno,Gubio,0
-5.2071,7.0927,243461,Obite Primary Health Centre,Rivers,Etche,0
-10.3992,5.4493,243303,Kontagora General Hospital,Niger,Kontagora,1
-8.8227,7.987,242544,Bokoko Health Post,Nasarawa,Nasarawa,0
-11.6762,10.6982,241828,Dambam General Hospital,Bauchi,Damban,1
-9.1933,9.8741,241781,Pil Primary Health Center,Plateau,Langtang North,0
-9.6858,9.441,241651,Martin Daji Primary Health Centre,Bauchi,Tafawa-Balewa,0
-9.6923,8.6421,238775,Bum Primary Health Centre,Plateau,Riyom,0
-6.2167,7.6544,238679,Nara Health Centre,Enugu,Nkanu East,0
-11.7556,7.055,238631,Unguwar Bakwai Health Clinic,Katsina,Faskari,0
-8.9559,8.3344,238371,Nghangum Health Post,Nasarawa,Akwanga,0
-5.682,7.6458,237614,Amaiyi Igbere Primary Health Centre,Abia,Bende,0
-7.2015,8.1511,237389,Oturkpo General Hospital,Benue,Oturkpo,1
-13.1063,6.432,237015,Katuru Primary Health Centre,Zamfara,Shinkafi,0
-10.9749,9.6321,235959,Kwalangwadi Primary Health Centre,Bauchi,Ningi,0
-4.4353,7.2513,234287,Demaabbey Primary Health Centre,Rivers,Bonny,0
-12.8717,10.9325,233735,Tabawa Primary Health Centre,Yobe,Karasuwa,0
-6.9266,8.9005,233240,Nkst Ikaave Primary Health Centre,Benue,Konshisha,0
-12.1682,8.5024,230705,Zabainawar Inusa Health Clinic,Kano,Minjibir,0
-8.1578,5.81,230299,Asala Itakete Primary Health Centre,Kogi,Yagba East,0
-7.2862,6.097,229724,Divine Victory Med Center,Edo,Akoko-Edo,0
-7.4876,9.2431,228308,Agwabi Primary Health Centre,Benue,Buruku,0
-12.3477,6.3395,226542,Lugga Dispensary,Zamfara,Zamfara,0
-5.6568,6.3233,226203,Emu-Obodeti Primary Health Centre,Delta,Ndokwa West,0
-6.5231,8.6975,224687,Atanyrr Health Post,Cross River,Ogoja,0
-12.0891,10.1099,223545,Bulangu Health Post,Jigawa,Kafin Hausa,0
-6.0062,8.612,222768,Ekpokpa Primary Health Centre,Cross River,Ikom,0
-7.4855,3.3582,222348,Akeroro Health Centre,Oyo,Ibarapa Central,0
-9.6958,11.9159,221761,Theble Health Post,Adamawa,Guyuk,0
-12.0226,9.5426,221168,Kulluru Health Post,Jigawa,Jahun,0
-10.3471,10.3577,220521,Badara Health Clinic,Bauchi,Kirfi,0
-12.5677,9.8007,219714,Dodori M / Abdu Health Post,Jigawa,Kaugama,0
-11.367,4.477,219332,Rafin Alhaji Primary Health Centre,Kebbi,Koko/Besse,0
-12.0314,7.51,214519,Sabuwar Unguwa Health Clinic,Katsina,Kankara,0
-6.8083,6.007,214244,Akpe Ikao Primary Health Center,Edo,Owan West,0
-11.338,7.3846,213990,Gangara Primary Health Centre,Kaduna,Giwa,0
-11.1151,10.4391,213555,Gabarin Primary Health Centre,Bauchi,Darazo,0
-13.187,7.8883,212789,Baawa Health Centre,Katsina,Kaita,0
-8.9377,11.6749,211575,Lakwanti Primary Health Centre,Taraba,Zing,0
-9.9987,9.5163,210878,Dass Town Health Clinic,Bauchi,Dass,0
-6.5504,6.3426,208873,Ewatto 2,Edo,Esan South-East,0
-13.0944,12.5051,207724,Damaoak General Hospital,Borno,Mobbar,1
-7.7594,9.4994,207677,Afia Nkst Health Center,Benue,Ukum,0
-11.4581,9.3479,207302,Dokoki Health Post,Jigawa,Birnin Kudu,0
-12.6664,6.8328,205397,Madobiya Dispensary,Zamfara,Zurmi,0
-13.0206,7.2805,204668,Matso Matso Dispensary,Katsina,Jibia,0
-6.4106,7.8793,204232,Ohage Health Post,Ebonyi,Ishielu,0
-9.9276,4.5266,203424,Kairuwa Health Post,Niger,Borgu,0
-12.5538,4.9421,203128,Kesoje Health Clinic,Sokoto,Shagari,0
-9.1972,9.2866,202364,Sihin Primary Health Centre,Plateau,Pankshin,0
-9.8557,6.72,200809,Erena Maternity And Child Health,Niger,Shiroro,0
-11.0646,5.1984,199754,Dugge Health Post,Niger,Rijau,0
-10.1813,8.7132,199486,Kawam Primary Health Centre,Plateau,Bassa,0
-9.4543,12.0274,199180,Gunda Primary Health Center,Adamawa,Numan,0
-7.9129,9.8454,198302,Sohwa Primary Health Centre,Taraba,Wukari,0
-10.6917,8.1385,198290,Kampaninmaude Zabi Primary Health Centre,Kaduna,Kubau,0
-5.0451,6.5097,197279,Ogbede Health Centre,Rivers,Ahoada West,0
-11.2613,6.3652,196982,Babbar Doka Dispensary,Zamfara,Maru,0
-8.1325,3.3874,196565,Idi Ayin Primary Health Centre,Oyo,Kajola,0
-5.1046,5.8743,195506,Tuomo Primary Health Centre,Delta,Burutu,0
-5.9875,6.7406,194940,Akili-Ozizor Primary Health Centre,Anambra,Ogbaru,0
-12.7716,9.0031,194567,Babura Tsallake Primary Health Centre,Jigawa,Jigawa,0
-12.2696,9.3922,192526,Kwalam Model Primary Health Center Primary Health Centre,Jigawa,Taura,0
-11.4496,8.08,191907,P J C Kuya  Primary Health Center,Kaduna,Ikara,0
-6.4306,7.1849,191853,Olo Health Centre,Enugu,Ezeagu,0
-13.2346,4.944,191435,Twaidi Dikko Health Clinic,Sokoto,Binji,0
-7.2808,6.3988,191425,Ogiriga Primary Health Center,Edo,Etsako East,0
-9.4491,8.6797,190259,Nichi Primary Health Center,Plateau,Riyom,0
-9.903,11.0098,190234,Kashere Health Clinic,Gombe,Akko,0
-4.7885,6.7076,189430,Ogonokom Health Post,Rivers,Abua/Odual,0
-12.4679,10.1954,188430,Fandum Primary Health Centre,Jigawa,Kiri Kasamma,0
-11.3555,10.2741,188164,Chinkani Primary Health Centre,Bauchi,Giade,0
-11.5322,9.7043,187118,Falgeri Primary Health Centre,Jigawa,Buji,0
-9.429,8.1263,185314,Wazo Health Clinic,Kaduna,Jema'a,0
-10.0499,12.6693,184899,M Boki Health Clinic,Adamawa,Gombi,0
-13.6899,5.7237,184309,Kaffe Health Clinic,Sokoto,Gada,0
-12.8438,8.2544,183780,Kacika Health Clinic,Katsina,Sandamu,0
-8.9419,9.5466,183769,Longkat Primary Health Centre,Plateau,Shendam,0
-12.7669,6.5508,182710,Dumfawa Primary Health Centre,Zamfara,Zurmi,0
-8.6125,7.69,182542,Sagbagyi Primary Health Centre,Nasarawa,Nasarawa,0
-7.9083,4.8181,182194,Igbajo Primary Health Centre,Osun,Boluwaduro,0
-12.9267,5.3342,182003,Tsafanade Health Clinic,Sokoto,Dange-Shuni,0
-6.395,2.8383,179972,Sakpo Primary Health Centre,Lagos,Badagry,0
-11.0828,8.9316,179809,Kurmi Maternity,Bauchi,Ningi,0
-6.5801,4.6224,178457,Erekiti Basic Health Center,Ondo,Okitipupa,0
-8.2808,4.7957,178455,Mosunmola H C Omupo Primary Health Centre,Kwara,Ifelodun,0
-11.6442,8.802,178154,Ahip Family Health Center,Kano,Kano,0
-11.7622,11.2585,177232,G / Zanwa Primary Health Centre,Yobe,Potiskum,0
-12.9645,11.9496,176960,Abbari Primary Health Centre,Yobe,Geidam,0
-8.6213,9.7303,175559,Mahanga Primary Health Centre,Plateau,Langtang South,0
-12.3639,8.9785,174536,Gangara Health Post,Jigawa,Garki,0
-8.7406,3.7216,174462,Imodi Primary Health Care Center,Oyo,Orelope,0
-11.3934,8.5388,173295,Kazaurawa Health Post,Kano,Rano,0
-7.6919,6.9797,173134,Iko Ojo Dispensary Clinic,Kogi,Bassa,0
-10.1299,9.0265,169139,Kadage Dispensary,Bauchi,Toro,0
-9.4089,6.7062,169115,Kampani Dorowa Primary Health Centre,Niger,Paikoro,0
-10.9518,8.4477,167856,Bugau Health Centre,Kaduna,Kubau,0
-12.4366,14.1833,167836,Shehuri Dispensary,Borno,Ngala,0
-6.7307,11.3695,167640,Millennium Development Goals 08,Taraba,Sardauna,0
-12.6091,13.5095,167425,Buwa Health Post,Borno,Borno,0
-9.8784,8.0476,167292,Kurmin Mazuga Primary Health Centre,Kaduna,Kachia,0
-11.601,7.4174,166037,Karofin Doka Health Clinic,Katsina,Bakori,0
-12.3952,9.5825,166014,Gagarawa Tasha Primary Health Centre,Jigawa,Gagarawa,0
-7.4669,4.6781,165860,Ifewara Primary Health Centre,Osun,Atakunmosa West,0
-10.8607,4.7179,165363,Kasabu Primary Health Centre,Niger,Agwara,0
-6.8352,7.2503,164365,Ajona Ogbo Health Post,Enugu,Uzo-Uwani,0
-11.9482,9.8053,164002,Kwanda Primary Health Centre,Jigawa,Kiyawa,0
-9.7448,12.7136,163591,Wuro Daudu Maternal And Child Health,Adamawa,Song,0
-9.6434,4.0028,161769,Venra Health Post,Kwara,Kaiama,0
-12.0493,6.6386,161421,Wanke Primary Health Centre,Zamfara,Gusau,0
-11.7803,9.5068,161321,Jigawar Kurma Health Post,Jigawa,Kiyawa,0
-7.195,10.0457,160468,Lissam Primary Health Center,Taraba,Ussa,0
-11.4653,13.7567,159658,Soye Primary Health Centre,Borno,Bama,0
-4.9103,6.2009,159657,Ikibiri Cottage Hospital,Bayelsa,Yenegoa,1
-5.754,7.1152,159081,Umuaghobe Maternity Primary Health Center,Imo,Nkwerre,0
-11.6094,6.1662,159000,Danmaaji Dispensary,Zamfara,Maru,0
-11.9361,9.2302,158691,Wangara Health Post,Jigawa,Dutse,0
-11.603,5.1779,158280,Danko Primary Health Centre,Kebbi,Wasagu/Danko,0
-13.6072,6.2268,157104,Jijjira Health Post,Sokoto,Sabon Birni,0
-9.7368,11.6329,156229,Lakun Health Post,Gombe,Balanga,0
-5.6992,5.9465,156183,Okurekpo 2 Primary Health Centre,Delta,Ethiope East,0
-9.3123,6.9314,156089,Kutili Primary Health Centre,Niger,Gurara,0
-9.7698,12.2368,155947,Waltandi Health Centre,Adamawa,Song,0
-12.0679,10.8234,155654,Gauya Primary Health Centre,Yobe,Jakusko,0
-9.6942,9.1022,155226,Patiko Primary Health Centre,Plateau,Mangu,0
-10.1315,5.9333,154600,Lifari Primary Health Center,Niger,Mashegu,0
-7.3659,5.9556,154480,Ipesi Basic Health Centre,Ondo,Akoko South East,0
-8.6905,9.3818,153872,Turniang Primary Health Center,Plateau,Shendam,0
-9.6047,7.5135,153811,Health Post Modern Mkt,Kaduna,Kachia,0
-12.4854,13.2081,153765,Gajimer General Hospital,Borno,Nganzai,1
-12.7571,5.8576,153677,Dambo Primary Health Centre,Zamfara,Bakura,0
-11.9929,8.8115,153673,Tumbau Health Post,Kano,Gezawa,0
-4.6304,6.337,153330,Akipelai Cottage Hospital,Bayelsa,Ogbia,1
-10.8935,13.6195,152258,Community Base Bamaco Initiative,Adamawa,Adamawa,0
-12.553,8.3611,152239,Mamudawa Health Post,Jigawa,Roni,0
-11.1601,12.7544,151309,Damboa Town Primary Health Centre,Borno,Borno,0
-10.8517,10.3052,150969,Manga Health Post,Bauchi,Ganjuwa,0
-7.0309,5.9233,150868,Ukhuse Osi Primary Health Center,Edo,Owan West,0
-11.119,10.0219,150569,Kuyungo Health Post Primary Health Centre,Jigawa,Gwaram,0
-12.0946,5.8155,150362,Girkau Kongo Dispensary,Zamfara,Anka,0
-8.921,6.3763,149082,Ekogi Primary Health Center,Niger,Agaie,0
-11.8982,10.2469,148404,Nomari Health Clinic,Bauchi,Itas/Gadau,0
-10.4631,13.3385,147380,Manzil Health Clinic,Adamawa,Mubi North,0
-12.2335,10.3555,147341,Adabda Health Post,Bauchi,Gamawa,0
-11.3411,9.1288,147173,Birnin Bako Health Post,Kano,Takai,0
-13.3319,5.4484,146516,Duhuwa Dispensary,Sokoto,Wurno,0
-12.2919,6.1094,146254,Tashar Lawali Dispensary,Zamfara,Talata Mafara,0
-10.7787,12.8748,145985,Mbalala Primary Health Centre,Borno,Chibok,0
-9.0915,3.8382,145773,Kisi General Hospital,Oyo,Irepo,1
-11.8593,10.5309,145233,Gayawa Health Post,Bauchi,Gamawa,0
-10.1949,6.2115,144870,Karaya Health Post,Niger,Rafi,0
-10.1413,11.9214,144692,Burasika Primary Health Centre,Borno,Shani,0
-7.2438,9.5268,143964,General Hospital Katsina Ala,Benue,Katsina-Ala,1
-11.5232,4.2541,143852,Sharabi Health Post,Kebbi,Bagudo,0
-7.3998,6.7867,143355,Ajegu Primary Health Centre,Kogi,Ofu,0
-10.6758,11.4151,141076,Ngarai Health Post,Gombe,Funakaye,0
-8.7615,8.6416,140975,Arigbadu Primary Health Care,Nasarawa,Lafia,0
-7.0387,7.8063,140247,Ugwu General Hospital,Benue,Okpokwu,1
-6.5094,5.708,140026,Iguosula Primary Health Center,Edo,Uhunmwonde,0
-4.7019,8.1835,139889,Oduonim Health Post,Akwa Ibom,Urue Offong/Oruko,0
-5.9067,7.6797,139460,Umulu Health Center,Ebonyi,Ivo,0
-8.6501,12.2331,137621,Sabon Gari Health Center,Adamawa,Jada,0
-6.8191,6.6288,137567,Adane Primary Health Center,Kogi,Ibaji,0
-11.1401,4.5712,137460,Tsamiyan Tudu Health Post,Kebbi,Shanga,0
-11.2774,5.858,136322,Kibiya Dispensary,Kebbi,Wasagu/Danko,0
-5.3907,6.2663,135757,Aviara General Hospital,Delta,Isoko South,1
-7.337,5.3694,135718,Odofin Basic Health Center,Ekiti,Ise/Orun,0
-10.784,7.7755,134076,Igabi Primary Health Centre,Kaduna,Kaduna,0
-12.0055,4.377,133818,Sarandosa Primary Health Centre,Kebbi,Maiyama,0
-10.3408,11.5805,133809,Maina Baba Health Post,Borno,Bayo,0
-6.7806,9.4464,132672,Usambe Primary Health Center,Benue,Kwande,0
-5.9653,6.2432,131820,Obi-Obeti Primary Health Centre,Delta,Ukwuani,0
-10.7252,10.7837,131090,Zangala Health Post,Gombe,Dukku,0
-6.173,4.9065,129568,Ogidigba Basic Health Center,Ondo,Ese Odo,0
-12.6345,9.2302,128311,Hammado Health Post,Jigawa,Sule Tankarkar,0
-6.7789,2.7947,128274,Ifonyintedo Health Centre,Ogun,Ipokia,0
-11.1851,8.4701,127768,Yar Fulani Health Post,Kano,Tudun Wada,0
-10.5697,6.4589,127681,Gidigori Primary Health Center,Niger,Rafi,0
-5.924,8.2528,127106,Ovukwa Health Centre,Cross River,Obubra,0
-12.1042,5.349,126820,Tungar Wakaso Dispensary,Zamfara,Gummi,0
-7.2409,9.2011,126539,Tyowanye Primary Health Centre,Benue,Buruku,0
-10.5021,11.7209,126216,Jugal Primary Health Centre,Borno,Kwaya Kusar,0
-7.7649,9.1369,126095,Mbakighir Primary Health Centre,Benue,Logo,0
-11.9638,7.1496,125238,Dauki Primary Health Centre,Zamfara,Tsafe,0
-10.2904,9.5634,124898,Rishi Primary Health Care,Bauchi,Toro,0
-10.3428,5.0293,124725,Raba Dispensary,Niger,Magama,0
-6.2481,4.6423,124642,Ebute Ipare Basic Health Center,Ondo,Ilaje,0
-11.4975,3.6182,123831,Bani Health Post,Kebbi,Bagudo,0
-9.9467,8.6043,123377,Fadan Chawai Health Centre,Kaduna,Kauru,0
-13.4619,5.2205,122528,Sakamaru Health Post,Sokoto,Gwadabawa,0
-11.0242,11.3442,121944,Kadubu Primary Health Centre,Gombe,Nafada,0
-11.6756,6.7242,121404,Yar Zaiga Dispensary,Zamfara,Tsafe,0
-11.3215,5.0027,120822,Magoro Health Center,Kebbi,Zuru,0
-13.4422,5.6757,120426,Goronyo General Hospital,Sokoto,Sokoto,1
-12.3142,10.6905,120246,Gololo Primary Health Centre,Bauchi,Gamawa,0
-11.1329,5.486,119780,Maganda Primary Health Centre,Kebbi,Sakaba,0
-10.7081,8.6827,119722,Kwando Health Post,Kano,Doguwa,0
-5.2826,8.2927,119708,Calaro Oil Palm Estate Clinic,Cross River,Akamkpa,0
-8.5054,8.2908,119626,Damba Health Post,Nasarawa,Lafia,0
-13.0393,4.7871,119443,Danjawa Health Clinic,Sokoto,Silame,0
-5.3258,6.8219,118548,Obitti Primary Health Centre,Imo,Ohaji/Egbema,0
-8.4671,6.9714,118274,Kekeshi Primary Health Centre,Federal Capital Territory,Abaji,0
-10.1303,10.6276,117900,Katarko Health Clinic,Bauchi,Alkaleri,0
-11.187,4.1247,117799,Kaoje General Hospital,Kebbi,Bagudo,1
-9.6451,13.1031,117340,Konkol Maternal And Child Health,Adamawa,Maiha,0
-7.6911,4.9315,117246,Efon Local Government Staff Clinic,Ekiti,Efon,0
-12.1206,10.4545,117065,Supa Primary Health Centre,Bauchi,Gamawa,0
-7.1068,3.7126,117010,Ajebo Health Post,Ogun,Obafemi Owode,0
-6.4498,9.0489,116961,Okiro Health Post,Cross River,Obudu,0
-9.702,6.877,116593,Kuchiwi Primary Gini Health Centre,Niger,Munya,0
-13.4014,6.3714,116386,Gatawa Primary Health Centre,Sokoto,Sabon Birni,0
-10.7957,5.3684,115783,Gulbin Boka Rural Clinic,Niger,Mariga,0
-8.8801,9.1846,115588,Pangship Dispensary,Plateau,Qua'an Pan,0
-7.0674,8.7838,114789,Local Government Health Clinic Mbatsen,Benue,Konshisha,0
-9.4691,8.9453,114666,Rahol Mazat Primary Health Center,Plateau,Barkin Ladi,0
-7.4043,7.8777,114584,Igblagidi Primary Health Clinic,Benue,Oturkpo,0
-11.2467,11.3324,113897,Anguwa Health Post,Yobe,Fika,0
-9.1414,8.4469,113575,Anzere Health Centre,Kaduna,Sanga,0
-10.377,8.8347,113210,Zirya Health Post,Bauchi,Toro,0
-12.3135,6.8548,112591,Maikuru Primary Health Centre,Zamfara,Birnin Magaji/Kiyaw,0
-6.7963,8.1609,112286,Community Based Rehabilitation Health Clinic,Benue,Oju,0
-10.0395,13.1579,112267,Jalingo Buhu Health Post,Adamawa,Maiha,0
-6.4554,6.9263,112070,Anaku Federal Health Centre,Anambra,Ayamelum,0
-9.5768,8.0237,112034,Kumin Musa Primary Health Centre,Kaduna,Kachia,0
-13.0714,7.6166,111512,Dutsin Safe ( Mdgs ) Facility,Katsina,Kaita,0
-9.4746,7.813,111511,Kabara Health Post,Kaduna,Kagarko,0
-13.2082,8.1838,111405,Dagara Health Centre,Katsina,Mai'adua,0
-10.2267,8.4655,111374,Bundun Kahugu Health Centre,Kaduna,Lere,0
-12.8096,11.2935,111329,Girim Health Post,Yobe,Bursari,0
-7.1732,4.625,111324,Ose Arowolo Primary Health Centre,Osun,Ife South,0
-6.3341,8.5654,110889,Akorofono Health Post,Cross River,Ikom,0
-9.1006,6.6346,110557,Gabi Primary Health Centre,Niger,Lapai,0
-7.2869,8.3623,110452,Howe Primary Health Centre,Benue,Gwer East,0
-7.4567,2.8327,110384,Imeko General Hospital,Ogun,Imeko Afon,1
-12.1559,12.8076,110147,Kareram Health Center,Borno,Magumeri,0
-10.8644,5.7313,110119,Karbau Primary Health Centre,Niger,Mariga,0
-12.3054,7.5919,110018,Bauraji Health Centre,Katsina,Matazu,0
-11.5681,10.4897,109549,Gangai Maternity,Bauchi,Katagum,0
-10.924,10.663,109203,S / Garin Yautare Primary Health Centre,Bauchi,Darazo,0
-11.0414,7.1327,109145,Funtua Badadi Health Post,Kaduna,Birnin Gwari,0
-7.7451,7.5053,108966,Olechu Primary Health Centre,Kogi,Omala,0
-8.9861,9.7979,108957,Jimakwi Primary Health Centre,Plateau,Mikang,0
-9.0968,12.0473,108778,Yolde Gubudo Dispensary,Adamawa,Mayo-Belwa,0
-11.2501,7.9061,107913,Nasarawan Doya Primary Health Centre,Kaduna,Makarfi,0
-6.5841,7.6715,106634,Mountain Zion Hospital,Enugu,Nkanu East,0
-11.7389,3.7262,106629,Kwakwaba Primary Health Centre,Kebbi,Dandi,0
-7.6547,3.8891,105927,Oretu Health Post,Oyo,Akinyele,0
-9.2069,4.8747,105902,Tungar Ruwa Primary Health Center,Niger,Mokwa,0
-11.9463,11.0167,105853,Biriri Dispensary,Yobe,Nangere,0
-12.8177,7.5618,105784,Allale Health Centre,Katsina,Batagarawa,0
-9.7339,11.4399,105775,Laden Primary Health Centre,Gombe,Kaltungo,0
-5.8498,7.9704,105395,Ebom Primary Health Centre,Cross River,Abi,0
-10.6306,10.1942,105394,Kakkuma Primary Health Centre,Bauchi,Ganjuwa,0
-9.4504,10.0563,105190,Karamin Dengi Primary Health Centre,Plateau,Kanam,0
-8.723,12.5508,104191,Choncha Health Clinic,Adamawa,Jada,0
-11.8495,4.1695,104139,Kawara Health Post,Kebbi,Kebbi,0
-8.7065,4.1834,103812,Leep Dogo Primary Health Center,Oyo,Olorunsogo,0
-11.3114,10.9286,103712,Wuro Dole Health Post,Bauchi,Darazo,0
-4.8495,8.4741,102850,Ikot Inyang Health Post,Cross River,Bakassi,0
-10.8731,9.3291,102797,Rafin Chiyawa Health Clinic,Bauchi,Ningi,0
-12.2522,11.1847,102656,Dufuna Primary Health Centre,Yobe,Fune,0
-6.3644,6.4523,102607,Idumuje Unor Comprehensive Health Centre,Delta,Aniocha North,0
-9.4657,7.115,102386,Seji Primary Health Centre,Niger,Gurara,0
-8.5813,10.8552,101388,Ulaner Clinic,Taraba,Gassol,0
-9.8886,9.9059,101271,Chapkwai Primary Health Clinic,Bauchi,Alkaleri,0
-10.2494,13.0142,101140,Kala'A Primary Health Centre,Adamawa,Hong,0
-7.0324,8.3574,100534,Imadi Primary Health Care,Benue,Obi,0
-8.2599,4.4727,99961,Igboroko Health Facility,Kwara,Asa,0
-10.1824,11.3575,99814,Gulbun Dispensary,Gombe,Yamaltu/Deba,0
-9.6864,6.1962,99788,Katuna Health Post,Niger,Wushishi,0
-7.147,2.9537,99699,Sunwa Health Center,Ogun,Yewa North,0
-10.1886,4.7235,99259,Tungan Bako Dispensary,Niger,Magama,0
-10.5741,5.1311,98995,Maragwasa Primary Health Centre,Niger,Magama,0
-12.1568,11.7718,98393,Mafa Primary Health Centre,Yobe,Tarmuwa,0
-6.3083,7.4185,98097,Owo Health Center,Enugu,Udi,0
-8.5492,8.7434,98093,Ercc Dispensary,Nasarawa,Lafia,0
-6.2217,6.0018,98077,Iguododo Primary Health Centre,Edo,Orhionmwon,0
-9.0626,8.6462,97825,Arum Lossi Primary Health Center,Nasarawa,Wamba,0
-13.1153,5.4081,97817,Awakuke Primary Health Centre,Sokoto,Rabah,0
-9.2809,10.9119,97560,Gwalack Dispensary,Taraba,Karim Lamido,0
-10.0633,9.2091,97228,Yakanasi Dispensary,Bauchi,Toro,0
-12.3561,4.0271,97137,Diggi Primary Health Centre,Kebbi,Kalgo,0
-9.4609,8.4218,96992,Atuku Health Center,Kaduna,Jema'a,0
-9.5505,3.2274,96856,Kosubosu Primary Health Clinic,Kwara,Baruten,0
-7.9403,7.1988,96684,Kekure Primary Health Centre,Kogi,Bassa,0
-7.7328,10.1056,96672,Igo Health Center,Taraba,Donga,0
-11.6612,3.9948,96540,Masama Health Post,Kebbi,Suru,0
-6.9653,5.7437,95330,Oro Ohin Health Post,Ondo,Ose,0
-12.0214,5.6322,95223,Jarkuka Dispensary,Zamfara,Bukkuyum,0
-6.9874,3.1129,95040,Babalanwo Health Clinic,Ogun,Ewekoro,0
-6.6345,3.7735,95016,Orugbo Health Post,Lagos,Epe,0
-12.0516,8.0761,94855,Godarawa Health Post,Kano,Shanono,0
-7.8965,8.5955,93759,Usambe Health Clinic,Benue,Guma,0
-7.1425,7.3117,93750,Emenega-Ukpale Primary Health Centre,Kogi,Olamaboro,0
-12.1123,13.9885,93690,Gajibo Primary Health Centre,Borno,Dikwa,0
-8.6875,4.7242,93384,Ayetoro Health Post,Kwara,Ilorin East,0
-10.1411,10.1833,93035,Guma Primary Health Centre,Bauchi,Alkaleri,0
-10.989,11.7458,92836,Gargari Health Post,Yobe,Gulani,0
-9.803,5.3932,92188,Mulo Primary Health Centre,Niger,Mashegu,0
-8.9105,4.902,92090,Mawokpa Dispensary,Kwara,Edu,0
-10.9045,9.8416,92022,Sabuwar Kariya Dispensary,Bauchi,Ganjuwa,0
-9.3075,9.6161,91804,Lumpye Primary Health Center,Plateau,Kanke,0
-6.4489,3.6122,91558,Okunmopo Primary Health Centre,Lagos,Eti Osa,0
-7.7279,4.197,91359,Aloro Primary Health Center,Osun,Ola Oluwa,0
-8.3516,9.0047,91253,Fujing Primary Health Clinic,Nasarawa,Obi,0
-11.4539,9.848,91065,Isawa Health Post,Jigawa,Gwaram,0
-6.6495,4.4526,90752,Ago Alaye Primary Health Centre,Ondo,Odigbo,0
-11.8303,12.632,90696,Mainok Primary Health Centre,Borno,Kaga,0
-9.211,7.8652,90659,Kuda Primary Health Centre,Nasarawa,Karu,0
-4.9768,5.7406,90437,Ayama Cottage Hospital,Bayelsa,Ekeremor,1
-12.5688,5.5235,90189,Garbe Kanni Dispensary,Sokoto,Tureta,0
-7.6214,3.1314,89983,Abule Bello Health Center,Oyo,Ibarapa North,0
-11.612,11.2437,89791,Damazai Primary Health Centre,Yobe,Fika,0
-10.4878,7.821,88763,Gefe Health Centre,Kaduna,Kajuru,0
-12.504,8.7857,88691,Tahar D / Kyambo Primary Health C Primary Health Centre,Jigawa,Babura,0
-10.7825,4.9763,88459,Laka Health Post,Kebbi,Ngaski,0
-7.8196,11.0671,88250,Kabarin Bature Health Post,Taraba,Gashaka,0
-10.5376,5.9707,87568,Igwanma Primary Health Centre,Niger,Mariga,0
-11.8422,9.9289,87116,Gijina Health Post,Bauchi,Itas/Gadau,0
-7.667,7.404,86676,Agbada Primary Health Care,Kogi,Dekina,0
-9.7575,8.3837,86565,Samaru Ecwa Clinic,Kaduna,Zangon Kataf,0
-8.0512,4.4892,86130,Oy Iregba Primary Health Centre,Oyo,Surulere,0
-12.148,4.6733,86126,Umbutu Health Clinic,Sokoto,Kebbe,0
-8.2463,6.744,85943,Girinya Primary Health Centre,Kogi,Kogi,0
-8.9194,3.2162,85350,Local Government Clinic Ayo,Kwara,Baruten,0
-12.7119,10.1286,85270,Tsinkaina Health Post,Jigawa,Birniwa,0
-6.4138,6.7,84893,Umuoba Abegbu Primary Health Center,Anambra,Anambra West,0
-9.9897,7.8756,84752,Gadanaji Health Centre,Kaduna,Kachia,0
-9.7887,9.6013,84538,Gital Primary Health Centre,Bauchi,Tafawa-Balewa,0
-10.653,6.2272,84536,Unguwar Zakara Health Clinic,Kaduna,Birnin Gwari,0
-11.3414,14.0922,84467,Kote Primary Health Centre,Borno,Bama,0
-10.3822,10.8862,84392,Jamji Health Clinic,Gombe,Kwami,0
-12.4859,10.5404,84311,Gaduwa Primary Health Care Primary Health Centre,Jigawa,Guri,0
-8.7948,5.8677,84215,Fokpo Health Center,Niger,Lavun,0
-6.7397,8.6193,83995,Iyeche Health Post,Cross River,Yala,0
-13.081,10.5493,83936,Bonegoral Health Post,Yobe,Yusufari,0
-7.7529,6.0075,83441,Ilare Primary Health Centre,Kogi,Ijumu,0
-8.7688,7.2576,83200,Kahodahanu Primary Health Centre,Federal Capital Territory,Kuje,0
-12.833,11.6871,82930,Balle Maternity And Child Health Center,Yobe,Geidam,0
-8.0329,5.3255,82840,Ora-Aiyetoro Basic Health Clinic,Kwara,Ekiti,0
-12.7803,12.4052,82830,Fuchimeram Health Clinic,Yobe,Geidam,0
-5.9712,7.2395,82766,Ihie Health Post,Anambra,Orumba South,0
-9.9154,7.0436,82336,Unguwan Tunga Health Post,Niger,Munya,0
-6.9979,4.844,82250,Igbado Basic Health Centre,Ondo,Ondo West,0
-11.7949,8.0015,82196,Yola Primary Health Center,Kano,Karaye,0
-6.935,11.0608,82162,Kimbiyemin Primary Health Center,Taraba,Sardauna,0
-12.9908,5.6556,81986,Dudu Barade Dispensary,Sokoto,Rabah,0
-7.5797,8.0701,81852,Akaa Clinic,Benue,Oturkpo,0
-9.6566,10.7455,81677,Digare Primary Health Centre,Bauchi,Alkaleri,0
-10.092,6.7346,81651,Erena Comprehensive Health Centre,Niger,Shiroro,0
-10.8905,4.2096,81363,Lafiya Model Clinic,Niger,Borgu,0
-10.3981,12.0155,81196,Mai Anguwa Ali Dispensary,Borno,Kwaya Kusar,0
-9.2907,5.0615,80752,Makwa General Hospital,Niger,Mokwa,1
-4.8752,7.498,80312,Ikpe Annang Primary Health Centre ( Model ),Akwa Ibom,Etim Ekpo,0
-4.5431,7.746,79865,Okoroette Primary Health Centre,Akwa Ibom,Eastern Obolo,0
-7.2295,10.6168,79485,First Referral Hospital,Taraba,Kurmi,1
-9.1918,7.6279,79220,Kabusu Primary Health Centre,Nasarawa,Karu,0
-11.5552,4.8811,79085,Sabon Gari Phcm Primary Health Centre,Kebbi,Fakai,0
-12.6906,7.2463,78951,Babban Duhu A Health Center,Katsina,Safana,0
-11.7024,6.4613,78624,Kango Marafa Primary Health Center,Zamfara,Bungudu,0
-9.3449,12.7798,78545,Kpanae Primary Health Care Center,Adamawa,Fufore,0
-8.6449,11.9205,78508,Gagjubi Health Post,Adamawa,Ganye,0
-6.4396,3.934,78316,Ibeju Lekki General Hospital,Lagos,Ibeju Lekki,1
-8.2284,9.6982,78205,Dooshima-2 Primary Health Centre,Taraba,Ibi,0
-8.7105,6.9658,78178,Gumbo Primary Health Centre,Federal Capital Territory,Kwali,0
-13.1154,11.6024,77843,Dilala Health Post,Yobe,Yunusari,0
-11.7487,11.5901,77608,Murba Tsamiya Health Post,Yobe,Fune,0
-12.5781,3.8786,77431,Dalijan Dispensary,Kebbi,Arewa Dandi,0
-5.5859,8.1179,76989,Umai Health Post,Cross River,Biase,0
-11.508,10.8203,76950,Badakoshi Health Post,Bauchi,Damban,0
-8.4175,7.8739,76408,Eyenu Health Post,Nasarawa,Nasarawa,0
-12.7004,4.8532,76248,Sanyinna Primary Health Centre,Sokoto,Tambuwal,0
-7.6148,11.428,76237,Nyabar Primary Health Centre,Taraba,Gashaka,0
-8.8311,5.5186,76207,Women In Health Lalagi Primary Health Centre,Kwara,Pategi,0
-8.4989,7.3673,76156,Sabo Buga Primary Health Centre,Federal Capital Territory,Kuje,0
-13.0596,11.1697,76131,Yusufari Primary Health Centre,Yobe,Yobe,0
-11.5364,5.3628,76002,Tadurga Primary Health Centre,Kebbi,Zuru,0
-12.8966,6.7927,76000,Mayasa Model Primary Health Center,Zamfara,Zurmi,0
-11.7165,4.4041,75950,Bauna Health Post,Sokoto,Kebbe,0
-7.3723,6.9094,75662,Iga Ojo Primary Health Centre,Kogi,Ofu,0
-8.3314,3.2345,75419,Rogal Fulani Primary Health Centre,Oyo,Itesiwaju,0
-11.6677,9.128,75389,Umar Faragai Health Center,Kano,Albasu,0
-13.095,13.8212,74940,Baga Primary Health Centre,Borno,Kukawa,0
-9.2014,11.6404,74761,Misheli Primary Health Centre,Taraba,Lau,0
-5.9399,4.9449,74673,Odonla Basic Health Centre,Ondo,Ilaje,0
-9.2139,6.2662,74439,Ebba Health Clinic,Niger,Katcha,0
-12.9252,10.133,74424,Burseli Health Post,Jigawa,Birniwa,0
-9.1815,5.8823,74360,Gbadafu Primary Health Centre,Niger,Gbako,0
-10.9237,7.6478,74280,Lamba Health Post,Kaduna,Igabi,0
-11.1755,7.606,74205,Ahmadu Bello University Teaching Hospital,Kaduna,Giwa,1
-8.2441,4.1661,74154,Ikoyi Ile General Hospital,Oyo,Ori Ire,1
-10.6266,4.5161,73885,Kokoli Primary Health Centre,Niger,Agwara,0
-7.8973,7.7827,73854,Ogwule Kaduna Primary Health Centre,Benue,Agatu,0
-12.3769,9.3015,72419,Buduru Primary Health Centre,Jigawa,Garki,0
-8.6148,9.074,72072,Duwe Primary Health Centre,Plateau,Qua'an Pan,0
-10.2536,7.2283,71679,Gwagwada Primary Health Centre,Kaduna,Chikun,0
-9.3951,12.1611,71346,Gani Gaku Health Clinic,Adamawa,Adamawa,0
-7.4283,10.3606,71228,Gbawana Primary Health Centre,Taraba,Donga,0
-9.0053,12.3385,71197,Nyibango Health Post,Adamawa,Fufore,0
-12.6816,11.7922,70193,Mastaphari Health Post,Yobe,Bursari,0
-7.9432,2.9812,69819,Ilaji-Ile Primary Health Centre,Oyo,Iwajowa,0
-12.7988,4.6062,69540,Tiggi Primary Health Centre,Kebbi,Augie,0
-10.4303,12.5463,69519,Kwgulathu Family Support Programme Clinic,Borno,Hawul,0
-8.7102,11.1769,69497,Garin Ayuba Primary Health Centre,Taraba,Ardo-Kola,0
-6.5177,9.3952,69197,Bagga II Health Post,Cross River,Obanliku,0
-8.1324,10.9853,69146,Pangri Primary Health Centre,Taraba,Bali,0
-9.4369,11.5301,68844,Dallum Dispensary,Adamawa,Lamurde,0
-11.3874,7.0952,68688,Ungwan Nakaba Health Clinic,Katsina,Sabuwa,0
-10.5434,9.1322,68641,Fatara Dispensary,Bauchi,Toro,0
-6.5403,8.5079,68580,Ochumode Health Post,Cross River,Yala,0
-10.0677,11.0588,68516,Sambo Daji Primary Health Centre,Gombe,Akko,0
-13.5137,5.9929,68457,Tsamaye Health Post,Sokoto,Sabon Birni,0
-8.1043,10.0663,68416,Revival Clinic Gidan Dorowa,Taraba,Wukari,0
-8.1519,12.0539,68329,Nawai Health Post,Adamawa,Toungo,0
-10.8683,9.0264,68317,Kumba Health Post,Bauchi,Ningi,0
-7.6527,3.5356,68088,Alapa Primary Health Centre,Oyo,Ibarapa East,0
-11.4413,11.5169,67966,Manawachi Primary Health Centre,Yobe,Fika,0
-11.7585,5.3467,67155,Gada Zaima Primary Health Centre,Zamfara,Bukkuyum,0
-8.3047,5.1047,67139,Owa-Onire Health Post,Kwara,Ifelodun,0
-10.1046,5.2453,66632,Adogon Mallam Alheri Clinic,Niger,Mashegu,0
-12.5339,4.385,66409,Limanci Primary Health Center,Kebbi,Birnin Kebbi,0
-11.4157,12.0547,66367,Wulle Health Post,Yobe,Yobe,0
-11.8767,11.4611,66294,Mashio Dispensary,Yobe,Fune,0
-4.5628,7.4606,66259,Inyong-Orong Health Centre,Rivers,Andoni,0
-11.6451,13.4249,66254,28 Housing Estate Clinic,Borno,Borno,0
-10.5807,7.2047,66094,Dande Health Centre,Kaduna,Chikun,0
-7.958,3.2571,65812,General Hospital Iganna,Oyo,Iwajowa,1
-5.8199,6.5288,65649,Unuaboh Primary Health Centre,Delta,Ndokwa East,0
-5.1815,7.4379,65539,Osaa Ukwu Health Center,Abia,Obi Nwga,0
-8.0893,9.2666,65514,Kafin Moyi Primary Health Centre,Nasarawa,Awe,0
-11.1098,6.0538,65489,Alheri Clinic Sangeku,Zamfara,Maru,0
-4.7527,6.012,65436,Cottage Hospital Korokorosei,Bayelsa,Southern Ijaw,1
-8.6969,4.4758,65182,Olowode Health Post,Kwara,Moro,0
-7.0426,6.1688,65007,Ebese Primary Health Center Ivbiaro,Edo,Owan East,0
-8.3592,10.3891,64869,Kolai Health Center,Taraba,Gassol,0
-9.1695,5.6462,64824,Fazhi Health Clinic,Niger,Edati,0
-12.6611,13.2777,64648,Guzamala Lawanti Health Clinic,Borno,Guzamala,0
-8.7845,8.049,64582,Pambarau Primary Health Centre,Nasarawa,Nasarawa,0
-5.9059,8.8065,64459,Adc Health Post,Cross River,Etung,0
-13.7625,5.5946,64297,Kyadawa Dispensary,Sokoto,Gada,0
-12.9419,13.1796,64202,Gudumbali General Hospital,Borno,Guzamala,1
-12.6067,13.7483,64186,Difinowa Dispensary,Borno,Monguno,0
-6.9468,8.0543,64005,Udebojenyo Primary Health Center,Benue,Ado,0
-5.351,6.5158,63771,Elemebiri Primary Health Care Center,Bayelsa,Sagbama,0
-8.8228,6.2745,63644,Magayaki Primary Health Centre,Niger,Katcha,0
-8.2354,8.772,63442,Chahul Health Post,Nasarawa,Keana,0
-12.7085,6.1591,63420,Gidan Zana Dispensary,Zamfara,Maradun,0
-12.6176,11.0219,63343,Ngeljebe Primary Health Centre,Yobe,Bade,0
-7.607,9.6407,63290,Ansambe Community Health Center,Benue,Ukum,0
-6.727,6.9488,63254,Igga Asaba Health Centre,Enugu,Uzo-Uwani,0
-12.8279,9.6817,63186,Karmashe Primary Health Centre,Yobe,Machina,0
-12.5147,11.4843,62870,Dapchi Health Center,Yobe,Bursari,0
-12.4674,12.6165,62637,Ardimini Baram Kuru Dispensary,Borno,Gubio,0
-4.9799,6.7493,62600,Mgbuoliua Ndele Primary Health Care Center,Rivers,Emuoha,0
-8.6909,6.6848,62512,Gulum Primary Health Center,Niger,Lapai,0
-10.6361,11.9303,62082,Charngi Health Post,Borno,Biu,0
-7.1315,4.0303,61419,Kajola Primary Health Centre,Oyo,Ona Ara,0
-7.6925,8.8594,61329,Akpa Primary Health Centre,Benue,Tarka,0
-7.7035,9.2652,60905,Nkst Ugo Primary Health Centre,Benue,Logo,0
-9.0717,11.4387,60883,Jambutu Health Post,Taraba,Lau,0
-11.6941,8.5446,60864,Bunkure Primary Health Centre,Kano,Kano,0
-9.1845,12.6369,60787,Belichiuti Primary Health Centre,Adamawa,Fufore,0
-10.6415,10.4906,60464,Gula Health Post,Bauchi,Kirfi,0
-12.9749,12.2323,60273,Degeltura Dispensary,Yobe,Yunusari,0
-12.1462,9.5876,60178,Garado Primary Health Centre,Jigawa,Jahun,0
-8.5592,4.899,59985,Eru-Oba / Pepele Health Post,Kwara,Ilorin East,0
-12.2004,7.2496,59962,Gobirawa Primary Health Centre,Katsina,Dan Musa,0
-6.5311,4.2371,59958,Oni Health Centre,Ogun,Ogun Waterside,0
-9.1395,3.2607,59696,Bankubu Clinic,Kwara,Baruten,0
-9.2833,11.1207,59549,Sarkin Kudu Dispensary,Taraba,Karim Lamido,0
-9.6531,10.1732,59202,Garga Kufai Primary Health Centre,Plateau,Kanam,0
-9.7539,6.3143,59012,Gungu Primary Health Center,Niger,Shiroro,0
-9.6657,11.2875,58866,Layasakalak Health Clinic,Gombe,Shomgom,0
-7.8878,5.5768,58817,Ipao Primary Health Centre,Ekiti,Ikole,0
-7.9778,4.1197,58672,Idi Ori Primary Health Center,Oyo,Ogo Oluwa,0
-8.5574,11.1653,58581,Bajika Health Center,Taraba,Bali,0
-12.0,6.0,58579,Rubwan Bado Dispensary,Zamfara,Anka,0
-9.4547,3.8267,58542,Gwaria Health Center,Kwara,Kaiama,0
-11.7815,7.6119,58519,Layin Master Health Clinic,Katsina,Malumfashi,0
-7.5743,7.8081,58474,Medical Health Post,Benue,Apa,0
-12.3362,5.7525,58194,Kwarare Health Clinic,Sokoto,Tureta,0
-13.6231,13.2716,57965,Abadam General Hospital,Borno,Abadam,1
-11.4142,8.1297,57786,Tashan Ango Health Centre,Kaduna,Ikara,0
-9.0034,4.192,57703,Bani Basic Health Care Centre,Kwara,Kaiama,0
-5.4218,7.5591,57682,Ikwuano General Hospital,Abia,Ikwuano,1
-9.5539,9.686,57596,Lafiyan Sara Health Clinic,Bauchi,Bogoro,0
-6.4515,6.1462,57346,Amahor Waterside Primary Health Centre,Edo,Iguegben,0
-5.3587,5.4337,56886,Focados Government Hospital,Delta,Burutu,0
-7.1129,5.2752,56722,Araromi Aje Basic Health Centre,Ondo,Akure South,0
-9.4621,5.4379,56490,Charati Primary Health Centre,Niger,Lavun,0
-12.8927,4.3168,56476,Kwakwaren Dispensary,Kebbi,Arewa Dandi,0
-6.8617,6.4666,56368,Ebun Primary Health Center Uzea,Edo,Esan North-East,0
-10.9129,8.1146,56350,Ung Madaki Primary Health Centre,Kaduna,Soba,0
+6.5945,3.2826,9897712,Rauf Aregbesola Primary Health Centre,Lagos,Alimosho,0
+4.8558,7.0293,5327645,Rumuodara Community Primary Health Centre,Rivers,Obio/Akpor,0
+11.9916,8.5093,5285622,Gidauniyar Alheri Health Clinic,Kano,Gwale,0
+7.4052,3.8939,4994801,Mokola Health Clinic,Oyo,Ibadan North,0
+6.0854,6.9345,3093618,Chiemenam Maternity Home,Anambra,Idemili South,0
+10.5099,7.4444,2895084,Cottage Comprehensive Health Center,Kaduna,Kaduna North,1
+9.0315,7.48,2873945,Intergrated Health Care,Federal Capital Territory,Municipal Area Council,0
+11.8314,13.1511,2793904,Epid Unit Health Clinic,Borno,Maiduguri,0
+6.7201,3.2074,2324119,Ewupe Health Centre,Ogun,Ado Odo/Ota,0
+5.0044,7.8902,2170084,Obio Etoi Community Health Centre,Akwa Ibom,Uyo,0
+6.495,3.0941,2061577,Morogbo Primary Health Centre,Lagos,Badagry,0
+7.6178,5.2207,1900599,Planned Parenthood Federation Of  Nigeria,Ekiti,Ado-Ekiti,0
+5.5689,7.0802,1861733,Akabo Health Centre,Imo,Ikeduru,0
+6.5632,3.5026,1819006,Lajo Health Post,Lagos,Ikorodu,0
+5.8346,7.0169,1810170,Acharaba Ogberuru Health Center,Imo,Orlu,0
+5.5402,5.8017,1800711,Opete Primary Health Centre,Delta,Udu,0
+13.0082,5.2139,1796138,Farfaru Health Clinic,Sokoto,Wamakko,0
+4.943,6.3238,1776239,Yenizue Gene Primary Health Care Center,Bayelsa,Yenegoa,0
+8.4865,4.5488,1699029,Badari Primary Health Centre,Kwara,Ilorin West,0
+7.7886,4.5224,1594809,Olorunsogo Primary Health Centre,Osun,Egbedore,0
+5.5228,7.381,1590511,Umuifem Primary Health Centre,Imo,Obowo,0
+6.3358,5.6307,1578972,Urban Primary Health Center,Edo,Oredo,0
+7.23,5.1716,1569366,Gaga Basic Health Centre,Ondo,Akure South,0
+6.4124,7.4872,1429209,Ikirike Primary Health Centre,Enugu,Enugu South,0
+9.1149,7.2593,1413886,Old Deidei Primary Health Centre,Federal Capital Territory,Bwari,0
+5.1863,7.3879,1357721,Mgboko Amairi Primary Health Centre,Abia,Obi Nwga,0
+5.0151,8.4013,1306944,Idundu Primary Health Centre,Cross River,Akpabuyo,0
+6.9385,7.4486,1299733,Olido Health Centre,Enugu,Igbo-Eze-North,0
+11.1362,7.6696,1191459,Jamaa Primary Health Centre,Kaduna,Sabon Gari,0
+6.2119,6.711,1145889,Asaba Federal Medical Center,Delta,Oshimili South,1
+6.4423,3.3684,1111863,Apapa General Hospital,Lagos,Apapa,1
+5.1622,7.6893,1064533,Ikot Inyang Health Post,Akwa Ibom,Ikot Ekpene,0
+12.9749,7.7027,1020846,Daniyau Health Centre,Katsina,Batagarawa,0
+6.1106,7.0865,1017738,Ugwuawgbu Primary Health Centre,Anambra,Orumba North,0
+7.5278,4.4703,983478,Algon Primary Health Centre,Osun,Ife North,0
+6.8682,3.9416,975540,Oke Eri Health Post,Ogun,Ijebu North East,0
+12.2359,6.6838,973429,Rawayya Primary Health Centre,Zamfara,Bungudu,0
+9.8606,8.8361,970008,Rantya Primary Health Centre,Plateau,Jos South,0
+4.6876,7.9129,884989,Ikot Abasi Okon Comprehensive Health Centre,Akwa Ibom,Eket,0
+9.2848,12.4485,872095,Major Aminu Health Centre,Adamawa,Yola North,0
+7.5333,6.2533,833582,Esomi Primary Health Care,Kogi,Okene,0
+6.3827,8.0644,830984,Edeja Health Center,Ebonyi,Ebonyi,0
+6.7103,6.2365,822479,Usugbenu District Hospital,Edo,Esan Central,1
+6.7615,3.5364,796129,Likosi Health Centre,Ogun,Shagamu,0
+7.6913,4.8058,787828,Ijebujesa General Hospital,Osun,Oriade,1
+7.7844,3.9396,781664,Akinmorin Europian Economic Clinic,Oyo,Afijio,0
+10.2668,11.2123,779583,Bogo Waziri Health Clinic,Gombe,Akko,0
+4.7418,7.2819,771289,Gbene-Ue Health Post,Rivers,Tai,0
+9.5854,6.5118,759549,Albishir Primary Health Centre,Niger,Chanchaga,0
+5.5096,6.1175,758361,Emevor Primary Health Centre,Delta,Isoko North,0
+7.1574,4.8179,754770,Lomileju Basic Health Center,Ondo,Ile Oluji/Okeigbo,0
+13.0522,8.2715,754077,Tadi Health Centre,Katsina,Mai'adua,0
+6.5286,2.8667,739288,Obanigbe Health Center,Ogun,Ipokia,0
+5.8346,6.8445,731503,Okohia Ihiala Primary Health Post,Anambra,Ihiala,0
+7.8219,6.6965,729455,Dss Clinic,Kogi,Lokoja,0
+7.6848,8.5843,724556,Tse Poor Primary Health Centre,Benue,Makurdi,0
+7.141,3.3752,721741,Cheers Medical Center,Ogun,Abeokuta South,0
+8.9138,7.6921,708124,Tudun Wada Health Clinic,Nasarawa,Karu,0
+5.2111,6.6413,708123,Akabuka Community Health Center,Rivers,Ogba/Egbema/Ndoni,0
+5.8632,5.7153,704419,Amukpe Primary Health Centre,Delta,Sapele,0
+8.1308,4.2406,688366,Ita Aje Health Centre,Oyo,Ogbomosho North,0
+7.8675,5.1609,667165,Ilogbo National Primary Health Center,Ekiti,Ido-Osi,0
+12.5454,8.4797,664885,Kurna Health Post,Kano,Makoda,0
+12.3385,9.9927,660435,Agura Health Post,Jigawa,Kafin Hausa,0
+8.0208,4.6774,654475,Ojuolape Medical Center,Osun,Odo Otin,0
+8.8983,7.1789,644814,Chibiri Primary Health Centre,Federal Capital Territory,Kuje,0
+5.7476,7.2463,640626,Okohia Umuduru Primary Health Care,Imo,Onuimo,0
+11.8379,8.7256,627627,Gano Primary Health Center,Kano,Dawakin Kudu,0
+11.7437,8.3279,624370,Dawakin Sulu Health Post,Kano,Madobi,0
+12.4256,4.2445,615264,Harasawa Health Post,Kebbi,Birnin Kebbi,0
+12.108,8.2142,599652,Gadau Health Center,Kano,Bagwai,0
+9.911,11.2626,575399,Wili Health Clinic,Gombe,Kaltungo,0
+7.3334,9.0369,567752,Mbakoom Primary Health Centre,Benue,Gboko,0
+6.025,7.3349,567434,Agboechara Health Center,Abia,Umu-Nneochi,0
+7.1582,6.3275,564157,Uluoke Primary Health Centre,Edo,Etsako West,0
+11.8826,8.0553,563311,Madadi Basic Health Clinic,Kano,Gwarzo,0
+6.7742,2.9996,560363,Eredo Health Clinic,Ogun,Yewa South,0
+11.724,10.9945,551009,Dazigau Primary Health Centre,Yobe,Nangere,0
+6.4675,4.8506,549892,Araromi  Health Post,Ondo,Irele,0
+5.3861,7.2563,547065,Orient Hospital Uvuru 1,Imo,Aboh-Mbaise,0
+12.2627,8.4189,545616,Saye Health Post,Kano,Bichi,0
+11.6137,8.6227,544836,Kwanar Juma Health Clinic,Kano,Rano,0
+12.0881,8.752,534524,Gezawa General Hospital,Kano,Gezawa,1
+7.409,4.1041,526762,Idogun Primary Health Center,Oyo,Egbeda,0
+4.9281,7.6366,519271,Ikot Okusung Health Centre,Akwa Ibom,Ukanafun,0
+6.6449,8.8838,514212,Unwapu Health Post,Cross River,Bekwarra,0
+11.5357,7.2199,513468,Ungwarbiri Health Clinic,Katsina,Funtua,0
+11.646,9.2547,488999,Dantauya Health Post,Jigawa,Dutse,0
+11.7364,8.9571,487342,Kera Health Post,Kano,Gaya,0
+8.5208,8.5301,486891,Kyakale Primary Health Center,Nasarawa,Lafia,0
+6.7082,7.3354,482389,Ohemuje Health Centre,Enugu,Igbo-Etiti,0
+6.2738,6.2629,476393,Emuhu Primary Health Centre,Delta,Ika South,0
+10.3228,9.8167,474594,33 Artillery Brigade Medical Center,Bauchi,Bauchi,1
+7.5296,5.7832,474361,Ugbe Basic Health Center Akoko,Ondo,Akoko North East,0
+6.6805,9.1427,469429,Tsar Model Primary Health Center,Cross River,Obudu,0
+5.6951,7.7369,468622,Umueso Health Post,Abia,Ohafia,0
+4.8306,8.1103,465035,Odobo Health Centre,Akwa Ibom,Okobo,0
+5.9304,8.0209,463421,Emin Ekpon Health Post,Cross River,Abi,0
+8.9618,11.3778,460777,Umcn Hospital,Taraba,Jalingo,0
+4.9845,6.8205,459452,Ibaa Modern Primary Health Center,Rivers,Emuoha,0
+9.2512,7.2984,450283,Katamadaki Dispensary,Niger,Tafa,0
+7.7279,4.197,448069,Aloro Primary Health Center,Osun,Ola Oluwa,0
+6.6001,8.1653,444098,Okpanku Health Post,Ebonyi,Izzi,0
+6.9095,3.661,431942,Imobido Health Centre,Ogun,Ikenne,0
+6.0341,7.5773,431736,Council Primary Health Centre,Enugu,Aninri,0
+5.3797,7.5364,416824,Ahabaukwu Health Centre,Abia,Ikwuano,0
+6.1295,7.9081,416199,Amankalu Health Center Ugwu,Ebonyi,Ezza South,0
+5.3886,6.9959,411084,Futo Medical Center,Imo,Owerri West,0
+7.7964,5.4284,408152,Oye General Hospital,Ekiti,Ikole,1
+12.9321,8.5085,401170,Unguwar Gaje Health Centre,Katsina,Zango,0
+12.513,6.6076,396672,Rahazawa Dispensary,Zamfara,Kaura Namoda,0
+12.6952,9.4232,389387,Garin Baki Health Post,Jigawa,Gumel,0
+9.8819,12.0247,385744,Npi Cold Chain Office,Adamawa,Adamawa,0
+11.7203,11.9541,382446,Mutai Dispensary,Yobe,Damaturu,0
+11.3722,10.5678,382412,Gugulin Health Post,Bauchi,Misau,0
+11.5574,10.2122,381890,Isawa Primary Health Centre,Bauchi,Giade,0
+12.7583,8.2094,379041,Korayal Primary Health Centre,Jigawa,Gwiwa,0
+12.7509,7.8226,378509,Shibdawa Maternal And Primary Health Centre,Katsina,Bindawa,0
+13.2604,5.3243,378156,Gidan Kaya Dispensary,Sokoto,Gwadabawa,0
+7.1497,6.764,375724,Obakolo Primary Health Centre,Kogi,Igalamela-Odolu,0
+7.2387,5.5148,375575,St Mary Hospital Emure Ile,Ondo,Owo,0
+11.4073,7.7572,373678,Ruwan Bago Health Post,Kano,Rogo,0
+5.7048,6.003,373254,Samagidi Primary Health Centre,Delta,Ethiope East,0
+6.3196,7.2574,373238,Omughu Health Center,Enugu,Ezeagu,0
+11.58,8.1451,372663,Kyarana Health Post,Kano,Kiru,0
+4.9314,7.2863,367910,Umuokwor Health Post,Abia,Ukwa West,0
+6.2967,6.9451,366414,Abube Agu Primary Health Center,Anambra,Anambra East,0
+9.6575,8.3161,365472,Madakiya Primary Health Centre,Kaduna,Zangon Kataf,0
+7.5529,5.4742,360254,Anifowose Basic Health Center,Ekiti,Gbonyin,0
+12.2625,8.0417,359729,Yammamman Health Post,Kano,Tsanyawa,0
+12.5165,7.4562,359181,Danzangi Health Centre,Katsina,Dutsin Ma,0
+8.6283,3.4459,358977,Medical Regimental Station,Oyo,Saki West,0
+6.1604,8.1581,356762,Ukwuinyima   Health  Post ( Nwakpu ),Ebonyi,Ikwo,0
+9.0091,5.9886,350012,Emitsu- Ndadan Primary Health Post,Niger,Lavun,0
+6.3553,8.3163,348990,Ndubia Primary Health Care Clinic,Ebonyi,Izzi,0
+4.6186,7.4786,348241,Kwawa Primary Health Centre,Rivers,Khana,0
+10.8288,11.3939,348235,Dukku Town Maternity Centre,Gombe,Funakaye,0
+10.1915,13.3335,346858,Kuvushere Health Clinic,Adamawa,Mubi South,0
+12.2111,4.3612,346857,Gare Primary Health Center,Kebbi,Jega,0
+5.3756,7.8596,345557,Okpoto Health Post,Akwa Ibom,Ini,0
+11.4217,5.3557,342978,Bedi Primary Health Centre,Kebbi,Zuru,0
+11.4767,9.0129,339525,Bingi Health Post,Kano,Sumaila,0
+9.4592,9.2151,338785,Ajing Primary Health Centre,Plateau,Mangu,0
+6.9672,9.1428,338187,Gbem Primary Health Care,Benue,Ushongo,0
+12.1654,7.734,334930,Malikaji Health Center,Katsina,Musawa,0
+12.7575,5.1026,334378,Sire Primary Health Centre,Sokoto,Shagari,0
+12.6208,6.0685,331166,Ware Damtse Dispensary,Zamfara,Talata Mafara,0
+7.4078,7.7086,329989,Ojokwu Ojeje Primary Health Centre,Kogi,Ankpa,0
+8.0347,3.4753,323882,Olugbade Primary Health Centre,Oyo,Iseyin,0
+5.8884,7.1638,322565,Trinity Hospital,Imo,Ideato North,0
+9.6258,8.8355,321417,Baten Primary Health Centre,Plateau,Riyom,0
+6.479,3.7047,318037,Awoyaya 1 Primary Health Centre,Lagos,Ibeju Lekki,0
+5.4566,6.6985,315653,Ebocha Model Primary Health Center,Rivers,Ogba/Egbema/Ndoni,0
+11.871,7.5266,315059,Dankalgo Health Clinic,Katsina,Kankara,0
+5.7436,7.5123,314548,Echiele Health Centre,Abia,Isuikwuato,0
+12.7473,8.7073,314232,Mazare Health Centre,Katsina,Baure,0
+11.4395,9.5627,302756,Shungurin Primary Health Centre,Jigawa,Birnin Kudu,0
+5.3768,5.893,298326,Kiagbodo Primary Health Centre,Delta,Burutu,0
+8.8443,7.9157,298164,Hamdalla Clinic,Nasarawa,Kokona,0
+7.8974,6.0458,296543,Okoro Primary Health Centre,Kogi,Ijumu,0
+5.1096,7.102,296017,Umuedemba Health Center,Rivers,Etche,0
+12.3326,8.6655,293504,Katsarduwa Health Post,Kano,Dambatta,0
+6.4916,7.8919,293382,Umuogudu Oshia Effiaukwu Primary Health Care,Ebonyi,Ohaukwu,0
+7.4962,9.5117,290352,Mbajiir Primary Health Centre,Benue,Katsina-Ala,0
+7.8433,5.7392,288970,Alu Basic Health Centre,Kogi,Yagba East,0
+6.3009,6.5181,287468,Ubulu-Okiti Primary Health Centre,Delta,Aniocha South,0
+6.8341,7.6762,287137,Ugwuadaka Health Post,Enugu,Udenu,0
+12.0331,6.8571,286878,Langalanga Dispensary,Zamfara,Tsafe,0
+11.1267,9.6348,285409,Wando Dispensary 5,Bauchi,Ningi,0
+11.2671,7.133,284281,Maibakko Health Clinic,Katsina,Sabuwa,0
+11.2798,8.2661,283932,Jeli Primary Health Center,Kano,Tudun Wada,0
+6.6783,3.9849,281899,Mojoda Primary Health Centre,Lagos,Epe,0
+12.909,8.0371,281685,Nasarawa Health Clinic,Katsina,Mani,0
+11.671,7.8166,281050,Sabon Layin Suran Health Centre,Katsina,Kafur,0
+7.4118,7.1628,280213,Ajonuchegbo Primary Health Centre,Kogi,Dekina,0
+6.9188,8.8642,279039,Mbaikpande Comprehensive Health Centre,Benue,Konshisha,0
+11.9215,8.3019,278565,Magari Ingila Health Post,Kano,Rimin Gado,0
+11.3643,10.1003,278358,Tsafi Maternal And Child Health,Bauchi,Shira,0
+5.0645,6.5391,276459,Okogbe Primary Health Center,Rivers,Ahoada West,0
+8.0368,5.0375,276050,Ora ( Mdgs ) Facility,Osun,Ifedayo,0
+12.565,7.9654,269566,Jofalawa Health Centre,Katsina,Kusada,0
+5.6279,6.8642,266873,Ndiulukwu Health Centre,Imo,Oguta,0
+12.6621,4.4758,266439,Tungar Maidawa Primary Health Centre,Kebbi,Argungu,0
+8.2502,5.5862,265675,Oke Eri Basic Health Facility Center,Kogi,Yagba West,0
+12.0076,9.0061,264235,Kawari Health Post,Kano,Ajingi,0
+11.3627,8.0131,263490,Rumi Health Centre,Kaduna,Ikara,0
+4.7379,7.6995,262089,Etuk Nung Ukim Primary Health Clinic,Akwa Ibom,Oruk Anam,0
+6.7373,2.7887,262032,Alaari Health Centre,Ogun,Ipokia,0
+7.2184,9.2383,261760,Afana Health Clinic,Benue,Buruku,0
+6.7474,4.917,261229,Costain Basic Health Centre,Ondo,Odigbo,0
+5.147,6.1855,257576,Tungbabiri Primary Health Centre,Bayelsa,Sagbama,0
+5.6568,6.3233,256922,Emu-Obodeti Primary Health Centre,Delta,Ndokwa West,0
+11.4078,8.7718,256313,Fala Health Post,Kano,Tudun Wada,0
+12.7344,7.2835,255677,Baran Kada H. Clinic,Katsina,Batsari,0
+12.3876,4.6783,253648,Shipirin,Sokoto,Sokoto,0
+7.5047,5.0071,249308,Okemi Comprehensive Health Center,Ekiti,Ekiti South-West,0
+11.7079,9.8483,247515,Talba Model Primary Health Centre,Bauchi,Jama'are,0
+10.5022,12.2024,247117,Sakwa Primary Health Centre,Borno,Hawul,0
+10.4349,8.6564,245935,Maigamo Health Centre,Kaduna,Lere,0
+12.7955,10.4349,245884,Adiyani Basic Health Center,Jigawa,Guri,0
+10.7994,7.5825,244885,Kargo Health Centre,Kaduna,Igabi,0
+7.7613,9.7614,244218,Chonku Primary Health Center,Taraba,Wukari,0
+9.6887,9.4979,243885,Yabra Primary Health Centre,Bauchi,Bogoro,0
+9.396,9.4694,241753,Ballang Shippang Primary Health Centre,Plateau,Pankshin,0
+13.6894,5.4163,239866,Gidan Makera Dispensary,Sokoto,Illela,0
+8.1529,5.8052,239690,Itakete Euprime Primary Health Centre,Kogi,Yagba East,0
+11.7845,9.4566,239671,Andaza Primary Health Centre,Jigawa,Kiyawa,0
+11.3157,7.4501,239388,Tsohuwar Primary Health Centre,Kaduna,Kaduna,0
+11.1335,13.7912,238553,Ngoshe Primary Health Centre,Borno,Gwoza,0
+7.9616,4.3475,238488,Oy Oko Model Primary Health Centre,Oyo,Surulere,0
+9.9415,11.5574,237719,Kafin Gara Dispensary,Gombe,Kaltungo,0
+7.5588,8.8868,235783,Wutsa Family Support Program Clinic,Benue,Tarka,0
+5.8739,6.1863,233567,Owa-Abbi Primary Health Centre,Delta,Ukwuani,0
+11.4758,8.3869,233520,Tiga Government Technical College Staff Clinic,Kano,Bebeji,0
+4.4703,7.2375,233309,Halliday Health Center,Rivers,Bonny,0
+12.8717,10.9325,231232,Tabawa Primary Health Centre,Yobe,Karasuwa,0
+9.1933,9.8741,230984,Pil Primary Health Center,Plateau,Langtang North,0
+8.1234,4.8191,230479,Gabu Clinic And Maternity,Kwara,Irepodun,0
+11.9328,7.8198,230381,Gangara Health Centre,Katsina,Malumfashi,0
+9.3746,8.9154,229551,Wih Dan-Bukur Primary Health Centre,Plateau,Bokkos,0
+12.1332,9.6814,228003,Lautai Primary Health Centre,Jigawa,Jahun,0
+7.2237,8.1617,227166,Upu Primary Health Centre,Benue,Oturkpo,0
+10.393,5.427,226038,Usubu Primary Health Centre,Niger,Kontagora,0
+7.3808,6.1087,225641,Ogugu Primary Health Centre,Edo,Akoko-Edo,0
+13.1022,6.4725,225105,Ajiyawa Community (Structure With Poor Sanitary Condition)Dispensary,Zamfara,Shinkafi,0
+11.77,8.4902,224562,Kadirawa Health Post,Kano,Kura,0
+7.1123,7.5715,222162,Adupi Primary Health Centre,Kogi,Olamaboro,0
+12.1215,9.2898,221992,Daurawa Health Post,Jigawa,Ringim,0
+6.003,8.7423,221568,Adijinkpor Primary Health Centre,Cross River,Ikom,0
+9.6867,11.8997,221321,Kerau Primary Health Centre,Adamawa,Guyuk,0
+11.9535,10.0057,220853,Babagudu Health Clinic,Bauchi,Itas/Gadau,0
+10.7087,13.3857,217967,Wuro Ngayandi Primary Health Centre,Adamawa,Madagali,0
+12.7537,7.5867,217266,Karare Health Center,Katsina,Rimi,0
+12.0162,4.0912,217252,Daniya ( Suru  ) Health Post,Kebbi,Suru,0
+12.2914,6.4355,216158,Gada Health Center,Zamfara,Zamfara,0
+7.5393,6.7181,214969,Kpobi Primary Health Care,Kogi,Bassa,0
+5.1458,7.9543,214953,Ikot Andem Health Centre,Akwa Ibom,Itu,0
+12.9949,7.2791,214580,Gangara Health Clinic,Katsina,Batsari,0
+8.9324,8.486,214534,Buku Health Clinic,Nasarawa,Akwanga,0
+11.6286,10.7693,214030,Muzuwa Primary Health Centre,Bauchi,Damban,0
+13.1669,8.0867,213699,Agala Health Clinic,Katsina,Mashi,0
+8.4876,12.0332,212802,Saman Primary Health Centre,Adamawa,Jada,0
+11.5612,7.556,210158,Yaribori Health Clinic,Katsina,Bakori,0
+12.7104,8.9204,209985,Unguwar Fari Health Centre,Katsina,Baure,0
+12.8923,5.3434,208324,Tsakar Gida Health Clinic,Sokoto,Dange-Shuni,0
+11.3261,9.8235,208236,Nasarawa Health Post,Jigawa,Gwaram,0
+12.1184,5.01,208061,Gayyari Primary Health Center,Zamfara,Gummi,0
+12.5055,7.6876,206802,Sabaru Health Clinic,Katsina,Charanchi,0
+10.0687,9.0084,206749,Tudun Wada Dispensary,Bauchi,Toro,0
+6.3152,7.6915,206637,Okeani Amagunze Health Centre,Enugu,Nkanu East,0
+11.1151,10.4391,205500,Gabarin Primary Health Centre,Bauchi,Darazo,0
+7.4855,3.3582,205330,Akeroro Health Centre,Oyo,Ibarapa Central,0
+11.1851,8.4701,204690,Yar Fulani Health Post,Kano,Tudun Wada,0
+12.8088,8.3942,201944,Yola Primary Health Centre,Jigawa,Gwiwa,0
+12.5677,9.8007,201038,Dodori M / Abdu Health Post,Jigawa,Kaugama,0
+6.4959,8.6212,200535,Irede-Ibil Health Post,Cross River,Ogoja,0
+7.2928,8.5798,199492,Nkst Uavande Health Centre,Benue,Konshisha,0
+9.695,8.5698,198394,Ung Gata Health Clinic,Kaduna,Kaura,0
+11.367,4.477,195070,Rafin Alhaji Primary Health Centre,Kebbi,Koko/Besse,0
+8.9006,11.6815,193446,Nyeli Primary Health Centre,Taraba,Zing,0
+10.0931,12.3358,193343,Fotta Primary Health Centre,Adamawa,Gombi,0
+10.3232,10.3406,192611,Kafin-Maigari Primary Health Centre,Bauchi,Kirfi,0
+11.8077,7.0454,192571,Wazanmai Primary Health Centre,Zamfara,Tsafe,0
+13.1909,7.7687,191867,Nanjogel Health Centre,Katsina,Kaita,0
+12.4861,8.2383,191614,Karofawa Health Post,Kano,Kunchi,0
+12.314,7.336,191489,Gurzar Kuka Health Centre,Katsina,Dan Musa,0
+9.9668,9.4392,189634,Baraza Primary Health Centre,Bauchi,Dass,0
+10.1776,12.8253,189594,Buza Health Centre,Adamawa,Hong,0
+11.0509,8.0085,187320,Unguwan Fulani Health Clinic,Kaduna,Soba,0
+12.411,9.5294,186406,Gagarawa Gari Primary Health Centre,Jigawa,Gagarawa,0
+7.4345,9.2589,185179,Ortese Mbashian Primary Health Clinic,Benue,Buruku,0
+9.8145,10.9991,184087,Falseje Health Clinic,Gombe,Billiri,0
+6.9489,5.9919,183448,Okpkhumi Primary Health Centre,Edo,Owan East,0
+5.1046,5.8743,183016,Tuomo Primary Health Centre,Delta,Burutu,0
+12.5793,4.8877,182403,Sanyinnawal Health Clinic,Sokoto,Shagari,0
+6.786,8.3798,181586,Arigede Primary Health Centre,Benue,Oju,0
+9.4461,12.1158,181086,Farai Health Post,Adamawa,Adamawa,0
+8.7354,9.72,179729,Sabongida Primary Health Centre,Plateau,Langtang South,0
+12.1033,7.4857,179538,Tashar Kadanya Health Clinic,Katsina,Dan Musa,0
+13.6775,5.6875,178528,Alibawa Dispensary,Sokoto,Gada,0
+13.2346,4.944,178354,Twaidi Dikko Health Clinic,Sokoto,Binji,0
+6.5803,6.3012,178249,Udoneria Primary Health Centre,Edo,Iguegben,0
+9.5408,8.0559,177725,Chori Galadima Health Clinic,Kaduna,Jaba,0
+11.3597,9.2508,177479,Yarma Health Post,Jigawa,Birnin Kudu,0
+7.1186,8.9692,176410,Nienga Primary Health Centre,Benue,Ushongo,0
+7.5956,3.9623,175691,Iwokoyo Fasola Fasola Iwokoto Health Center,Oyo,Akinyele,0
+12.6717,6.8153,173838,Birnin Tsaba Dispensary,Zamfara,Zurmi,0
+10.7081,8.6827,172840,Kwando Health Post,Kano,Doguwa,0
+12.2365,8.9497,172634,Karshi Primary Health Centre,Jigawa,Ringim,0
+9.7885,6.7727,172599,Egwa Basic Health Center,Niger,Shiroro,0
+10.3972,7.7137,172543,Doka Health Clinic ( Kajuru ),Kaduna,Kajuru,0
+4.8015,6.6877,172002,Agada 1 Modern Health Center,Rivers,Abua/Odual,0
+6.1973,7.4427,171060,Cottage Hospital Amoli / Agon Primary Health Centre,Enugu,Awgu,0
+6.8761,9.3626,170609,Amahundu Primary Health Centre,Benue,Kwande,0
+10.7819,8.2184,170485,Dankande Health Clinic,Kaduna,Kubau,0
+6.718,5.2614,170194,Inner Ugbogui Primary Health Centre,Edo,Ovia South-West,0
+5.9586,8.2879,168310,Poly Clinic Oaft,Cross River,Obubra,0
+11.3798,10.343,167689,Kafin Sule Primary Health Centre,Bauchi,Misau,0
+11.4653,13.7567,166862,Soye Primary Health Centre,Borno,Bama,0
+12.5171,8.8299,164908,Dorawa Primary Health Centre,Jigawa,Babura,0
+9.6671,9.1311,164306,Dorong Primary Health Centre,Plateau,Mangu,0
+12.4997,10.207,163793,Malunta Health Post,Jigawa,Kiri Kasamma,0
+4.7217,6.2613,163335,Ologoghe Primary Health Centre,Bayelsa,Ogbia,0
+7.3126,3.8103,161543,Oleyo Health Center,Oyo,Oluyole,0
+8.6287,7.7848,161276,Shamage Primary Health Centre,Nasarawa,Nasarawa,0
+7.7978,4.9587,161182,Ekiti West Local Government Basic Health Center,Ekiti,Ekiti West,0
+9.8575,4.522,160362,Koro Health Centre,Niger,Borgu,0
+6.5801,4.6224,159877,Erekiti Basic Health Center,Ondo,Okitipupa,0
+12.2482,10.2411,159210,Maikore Health Post,Bauchi,Zaki,0
+7.7594,9.4994,158818,Afia Nkst Health Center,Benue,Ukum,0
+5.9164,7.7972,158424,Amato-Ogiri ( Mdgs ) Facility,Ebonyi,Afikpo South,0
+7.2438,9.5268,158312,General Hospital Katsina Ala,Benue,Katsina-Ala,1
+10.8373,13.6447,158287,Vemgo Primary Health Center,Adamawa,Madagali,0
+12.7669,6.5508,156878,Dumfawa Primary Health Centre,Zamfara,Zurmi,0
+7.5831,9.9044,156415,Bariki Lisa Health Center,Taraba,Takum,0
+11.6426,8.8437,154996,Gurjiya Primary Health Centre,Kano,Garko,0
+11.845,9.203,154540,Dundubus Primary Health Centre,Jigawa,Dutse,0
+13.4732,5.3416,153086,Killiya Health Clinic,Sokoto,Gwadabawa,0
+12.3584,14.17,152107,International Secondary School Unicef Clinic,Borno,Borno,0
+8.9867,9.5009,152005,Shalama Dispensary Shamang,Plateau,Mikang,0
+9.1162,3.9107,150773,Welewele Primary Health Centre,Oyo,Irepo,0
+9.1972,9.2866,150198,Sihin Primary Health Centre,Plateau,Pankshin,0
+4.8829,7.8927,149925,Afaha Abia Health Centre,Akwa Ibom,Nsit Ibom,0
+8.9382,6.2633,149799,Ndagi Nmajaidu Primary Health Care,Niger,Katcha,0
+10.7545,4.7807,149757,Mararraba Birnin Yauri Health Post,Kebbi,Ngaski,0
+11.2751,8.9014,149649,Beta Health Post,Kano,Sumaila,0
+7.2694,9.996,148879,Dutse Primary Health Centre,Taraba,Takum,0
+4.8748,6.0416,148308,Ossiama Primary Health Centre,Bayelsa,Sagbama,0
+7.6765,6.9741,147700,Agbajo Primary Health Center,Kogi,Bassa,0
+12.6884,13.5117,146950,Lingir Health Clinic,Borno,Guzamala,0
+4.7019,8.1835,146701,Oduonim Health Post,Akwa Ibom,Urue Offong/Oruko,0
+6.9719,3.1584,145168,Elere Primary Health Centre,Ogun,Ewekoro,0
+8.7395,3.722,144810,Opoo Primary Health Centre,Oyo,Orelope,0
+8.9268,7.3944,144347,Ketti Primary Health Centre,Federal Capital Territory,Municipal Area Council,0
+11.7612,7.3565,143999,Zagin Muqaddas Health Post,Katsina,Bakori,0
+10.016,11.0777,143876,Sabon Garin Tijjani Health Post,Gombe,Akko,0
+6.5913,7.6772,143321,Idume Health Post,Enugu,Nkanu East,0
+12.1148,7.9659,142849,Alajawa Health Post,Kano,Shanono,0
+11.875,9.6682,142432,Balago Primary Health Centre,Jigawa,Kiyawa,0
+6.7819,3.4132,141910,Orimerunmu Health Clinic,Ogun,Obafemi Owode,0
+11.2088,5.2779,139155,Anyo Primary Health Centre,Niger,Rijau,0
+12.1285,10.5378,138401,Gayau Health Post,Bauchi,Gamawa,0
+8.7127,9.2957,137734,Kwande Primary Health Centre,Plateau,Qua'an Pan,0
+12.3107,6.1326,137559,Dankalgo Dispensary,Zamfara,Talata Mafara,0
+5.2585,8.2699,136995,Calaro Estate Health Post,Cross River,Akamkpa,0
+11.8982,10.2469,136806,Nomari Health Clinic,Bauchi,Itas/Gadau,0
+10.4631,13.3385,136662,Manzil Health Clinic,Adamawa,Mubi North,0
+11.7622,11.2585,136465,G / Zanwa Primary Health Centre,Yobe,Potiskum,0
+11.0186,8.2732,136161,Kuraye Health Centre,Kaduna,Kubau,0
+9.1619,8.9437,135317,Mangar Primary Health Centre,Plateau,Bokkos,0
+12.1354,8.4908,134313,Dambazau (Dawakin Tofa) Health Post,Kano,Dawakin Tofa,0
+6.6737,3.7386,134168,Otta Ikosi Primary Health Centre,Lagos,Epe,0
+9.7073,12.1755,133794,Kate Primary Health Centre,Adamawa,Shelleng,0
+13.0857,5.4755,133615,Gidan Danayya Health Post,Sokoto,Rabah,0
+10.1079,12.0307,133165,Kubo Comprehensive Health Centre,Borno,Shani,0
+11.1195,12.7351,132444,Nzuda Primary Health Centre,Borno,Damboa,0
+10.7787,12.8748,131944,Mbalala Primary Health Centre,Borno,Chibok,0
+6.7754,8.0847,131614,Ijigban Primary Health Centre,Benue,Ado,0
+13.6073,6.2005,131280,Lanjego Health Post,Sokoto,Sabon Birni,0
+9.7368,11.6329,130972,Lakun Health Post,Gombe,Balanga,0
+9.7422,12.6123,130807,Didango Health Post,Adamawa,Song,0
+9.4491,8.6797,130343,Nichi Primary Health Center,Plateau,Riyom,0
+12.8911,11.9215,128930,Alajiri Dispensary,Yobe,Geidam,0
+10.9082,10.6895,128026,Kabade Health Clinic,Gombe,Dukku,0
+6.2087,4.6757,127809,Motoro Basic Health Center,Ondo,Ilaje,0
+10.9266,7.7665,127515,Baushe Dispensary,Kaduna,Igabi,0
+5.3907,6.2663,127265,Aviara General Hospital,Delta,Isoko South,1
+12.1657,9.8938,127212,Kargumaka Health Post,Jigawa,Jigawa,0
+7.0858,6.5137,127075,Iviavia Fugar Primary Health Center,Edo,Etsako Central,0
+8.9122,6.9545,126946,Pai Primary Health Centre,Federal Capital Territory,Kwali,0
+5.5888,7.7289,126674,Achara Ihechiowa Health Center,Abia,Arochukwu,0
+11.5879,4.0491,126621,Gimba Sani Health Post,Kebbi,Suru,0
+5.0149,7.5167,125509,Efen Ikot Udonya Health Post,Akwa Ibom,Ika,0
+13.4314,5.6088,125474,Boyekai Health Post,Sokoto,Goronyo,0
+10.2267,8.4655,125446,Bundun Kahugu Health Centre,Kaduna,Lere,0
+10.3313,11.4513,125161,Jamaare Health Center,Gombe,Yamaltu/Deba,0
+6.484,7.056,124572,Uzouwani Health Post,Enugu,Uzo-Uwani,0
+6.8611,6.7019,124439,Aneche Health Post,Kogi,Ibaji,0
+8.6333,12.3282,123502,Mayo-Hako Primary Health Centre,Adamawa,Jada,0
+10.6581,6.4485,122362,Awaro Health Clinic,Kaduna,Birnin Gwari,0
+12.0946,5.8155,122289,Girkau Kongo Dispensary,Zamfara,Anka,0
+11.5079,5.1071,122245,Wanda Dogo Primary Health Care,Kebbi,Fakai,0
+8.4671,6.9714,122104,Kekeshi Primary Health Centre,Federal Capital Territory,Abaji,0
+5.2113,6.9137,121619,Apani Primary Health Centre,Rivers,Ikwerre,0
+7.0885,7.832,121525,Ollo Primary Health Centre,Benue,Okpokwu,0
+11.3113,5.8094,121421,Maiinwa Health Post,Kebbi,Wasagu/Danko,0
+8.1621,6.7838,120646,Akpogu Primary Health Centre,Kogi,Kogi,0
+11.0431,11.4579,119867,Garin Chindo Health Post,Yobe,Fika,0
+6.5566,8.4123,119736,Itigidi Health Centre,Cross River,Yala,0
+9.9467,8.6043,119514,Fadan Chawai Health Centre,Kaduna,Kauru,0
+7.3758,8.7842,119350,Mbaandar Primary Health Centre,Benue,Gboko,0
+6.473,8.8618,119080,Etumane Health Post,Cross River,Boki,0
+11.5681,10.4897,118827,Gangai Maternity,Bauchi,Katagum,0
+12.9358,7.4869,118376,Shikar Gabi Health Centre,Katsina,Batagarawa,0
+10.5021,11.7209,118274,Jugal Primary Health Centre,Borno,Kwaya Kusar,0
+9.3123,6.9314,118262,Kutili Primary Health Centre,Niger,Gurara,0
+11.752,8.0546,117453,Unguwar Mani Health Post,Kano,Karaye,0
+7.0459,8.4495,116650,Mbatser Mbagusa Community Health Center,Benue,Oju,0
+9.6776,11.1707,116269,Latatar Health Clinic,Gombe,Shomgom,0
+6.6591,11.2404,115886,Never Tunga Primary Health Care,Taraba,Sardauna,0
+6.85,6.1304,115355,Primary Health Centre Era,Edo,Owan East,0
+7.2553,5.9391,115165,Ijaja Primary Health Clinic,Edo,Akoko-Edo,0
+11.5637,9.9794,115074,Beli Primary Health Centre,Bauchi,Shira,0
+7.4905,9.7054,115015,Hwembe Primary Health Centre,Benue,Ukum,0
+9.799,8.0595,114843,Kanzir Health Clinic,Kaduna,Zangon Kataf,0
+10.8517,10.3052,114793,Manga Health Post,Bauchi,Ganjuwa,0
+10.1949,6.2115,114537,Karaya Health Post,Niger,Rafi,0
+7.3643,5.2399,114194,Moyinoluwa Hospital,Ondo,Akure North,0
+11.6672,5.3735,113849,Kuntomo Primary Health Centre,Kebbi,Wasagu/Danko,0
+5.7437,7.9561,113513,Ibini Health Centre,Cross River,Biase,0
+12.0406,9.5179,113393,Gabari Health Post,Jigawa,Jahun,0
+12.5829,12.6831,113255,Ngetra Primary Health Centre,Borno,Gubio,0
+6.5015,5.2593,112642,Ugbokua Primary Health Center,Edo,Ovia South-West,0
+11.9397,10.8415,112410,Dadiso Health Post,Yobe,Nangere,0
+8.7615,8.6416,112181,Arigbadu Primary Health Care,Nasarawa,Lafia,0
+10.0141,13.2133,112057,Primary Primary Health Clinic,Adamawa,Maiha,0
+10.7095,7.8811,111586,Gamagira Primary Health Center,Kaduna,Soba,0
+12.3571,7.874,111202,Magama. Health Centre,Katsina,Kusada,0
+9.3674,6.6477,110811,Yidna Mijin Yawa Primary Health Centre,Niger,Paikoro,0
+7.9324,3.6613,110116,Idi Iya Primary Health Clinic,Oyo,Iseyin,0
+11.3137,5.5651,110039,Koro Dispensary,Kebbi,Wasagu/Danko,0
+11.2161,11.2699,109903,Garin Wayo Primary Health Centre,Yobe,Fika,0
+7.2888,7.386,109378,Ubalu Primary Health Centre,Kogi,Olamaboro,0
+9.1503,8.4083,109077,Anguwan Jatau Primary Health Center,Kaduna,Sanga,0
+7.6256,7.558,109061,Agbeneba Primary Health Centre,Kogi,Ankpa,0
+11.8593,10.5309,108485,Gayawa Health Post,Bauchi,Gamawa,0
+7.4669,4.6781,107686,Ifewara Primary Health Centre,Osun,Atakunmosa West,0
+10.0384,11.7755,107529,Kolaku Health Clinic,Gombe,Balanga,0
+11.2129,9.41,107422,Balma Health Post,Bauchi,Ningi,0
+10.1917,8.7697,107302,Amo Katako Primary Health Centre,Plateau,Bassa,0
+9.5737,7.4354,107228,Jere Primary Health Centre,Kaduna,Kagarko,0
+12.1925,4.6288,107088,Kaya Dispensary,Sokoto,Tambuwal,0
+10.8889,9.5836,106811,Kujera Maternity Primary Health Centre,Bauchi,Ningi,0
+12.4419,9.091,106757,Jangari Health Post,Jigawa,Garki,0
+4.9037,8.5264,106607,Ifiang Ayong Primary Health Care Centre,Cross River,Akpabuyo,0
+12.6807,10.1676,105717,Maiso Health Post,Jigawa,Malam Madori,0
+12.0343,6.5608,105500,Kogon Sabuwal Dispensary,Zamfara,Bungudu,0
+6.9235,7.2217,105403,Anuka Community Health Post,Enugu,Nsukka,0
+8.5054,8.2908,104501,Damba Health Post,Nasarawa,Lafia,0
+11.6433,6.5593,104324,Kunkelai Dispensary,Zamfara,Gusau,0
+9.6043,3.9392,104194,Maternal And Child Welfare Kaiama Clinic,Kwara,Kaiama,0
+8.3579,4.3762,103651,Isara Dispensary,Kwara,Asa,0
+11.4135,4.2375,103587,Bagudo General Hospital,Kebbi,Bagudo,1
+7.0507,6.1739,103559,Ubuneken Irbiaro Primary Health Center,Edo,Owan East,0
+8.9688,9.7404,103422,Pangkai Primary Health Centre,Plateau,Mikang,0
+9.67,10.7684,102682,Baladde Health Post,Bauchi,Alkaleri,0
+13.0257,4.7813,102668,Karangiya Health Post,Sokoto,Silame,0
+7.0685,8.6741,102572,Tse-Agberagba Comprehensive Health Centre,Benue,Konshisha,0
+11.1819,4.6425,102153,Saminaka Primary Health Centre,Kebbi,Kebbi,0
+9.0469,4.8066,102111,Alafia Kwara Iyana Bacita Primary Health Centre,Kwara,Moro,0
+9.1006,6.6346,102034,Gabi Primary Health Centre,Niger,Lapai,0
+11.9965,7.2247,101958,Danmarke Z Primary Health Care Center,Katsina,Kankara,0
+13.0944,12.5051,101606,Damaoak General Hospital,Borno,Mobbar,1
+11.3677,8.5913,101431,Bul Health Post,Kano,Rano,0
+10.5742,8.1449,101340,Kauru Primary Health Centre,Kaduna,Kauru,0
+10.1861,4.7372,101278,Auna General Hospital,Niger,Magama,1
+12.2425,4.0303,101166,Etane Primary Health Centre,Kebbi,Kalgo,0
+6.4673,2.7519,101148,Whekan Health Clinic,Ogun,Ipokia,0
+13.095,13.8212,100940,Baga Primary Health Centre,Borno,Kukawa,0
+11.1345,9.9884,100827,Larkan Health Post,Jigawa,Gwaram,0
+9.5885,6.9774,100593,Dnasu Primary Health Care,Niger,Munya,0
+12.6243,5.4926,100420,Rafin Bude Health Clinic,Sokoto,Sokoto,0
+6.2036,6.0871,100148,Okukor Primary Health Center,Edo,Orhionmwon,0
+10.5659,11.4576,99697,Tinda Health Post,Gombe,Kwami,0
+12.0095,4.3308,99458,Dogondaji Primary Health Centre,Kebbi,Maiyama,0
+7.3288,6.884,98900,Ijogbo Primary Health Centre,Kogi,Ofu,0
+12.1042,5.349,98490,Tungar Wakaso Dispensary,Zamfara,Gummi,0
+11.1885,7.8484,98304,Magadda Health Centre,Kaduna,Soba,0
+13.5284,5.8637,98011,Falaliya Health Post,Sokoto,Goronyo,0
+5.988,4.9013,97724,Arenewo Primary Health Centre,Ondo,Ilaje,0
+9.3985,8.3099,97252,Zankan Health Clinic,Kaduna,Jema'a,0
+11.7749,3.6854,95949,Tungar Sule Health Centre,Kebbi,Dandi,0
+12.1522,13.9088,95914,Kaje Health Clinic,Borno,Marte,0
+12.7673,5.8099,95680,Danmanau Dispensary,Zamfara,Bakura,0
+6.8249,5.7084,95621,Arimogija Primary Health Centre,Ondo,Ose,0
+6.5117,9.1469,95484,Idilagba Health Post,Cross River,Obanliku,0
+7.7515,9.2528,95091,Agule Primary Health Centre,Benue,Logo,0
+6.1417,8.3873,94588,Ogurude Primary Health Center,Cross River,Obubra,0
+6.5408,6.6769,94443,Allah Onogwa Primary Health Center,Anambra,Anambra West,0
+7.4567,2.8327,93889,Imeko General Hospital,Ogun,Imeko Afon,1
+11.1969,9.1408,93819,Shakalame Health Post,Bauchi,Ningi,0
+11.0979,7.2677,93656,Sada Health Post,Kaduna,Giwa,0
+9.37,5.0169,93425,Ndayako Primary Health Centre,Niger,Mokwa,0
+8.7065,4.1834,93349,Leep Dogo Primary Health Center,Oyo,Olorunsogo,0
+12.3337,7.6244,93252,Saura Health Centre,Katsina,Matazu,0
+12.5538,13.1396,92914,Sabusawa Health Post,Borno,Nganzai,0
+10.1303,10.6276,92223,Katarko Health Clinic,Bauchi,Alkaleri,0
+12.1162,10.171,91819,Yalwa Health Post,Bauchi,Zaki,0
+7.4237,7.9565,91656,Obena Primary Health Center,Benue,Oturkpo,0
+11.3414,14.0922,90750,Kote Primary Health Centre,Borno,Bama,0
+12.3102,6.8833,90384,Murai Dispensary,Zamfara,Birnin Magaji/Kiyaw,0
+9.3701,9.9782,90378,Dengi General Hospital,Plateau,Kanam,1
+9.6864,6.1962,90300,Katuna Health Post,Niger,Wushishi,0
+13.4014,6.3714,89945,Gatawa Primary Health Centre,Sokoto,Sabon Birni,0
+12.2972,10.7495,89732,Garin Jauro Sale Health Post,Bauchi,Gamawa,0
+6.8021,9.1072,89663,Mbagbatse Comprehensive Health Centre,Benue,Vandeikya,0
+10.9651,5.1511,89646,Ummah Primary Health Centre,Niger,Rijau,0
+12.4464,10.4476,89248,Takazza Primary Health Centre,Jigawa,Guri,0
+9.8805,8.3783,89243,Takanai Health Clinic,Kaduna,Zangon Kataf,0
+10.8908,11.6566,88945,Gagure Health Post,Yobe,Gulani,0
+11.5803,9.7091,88885,Gambasha Health Post,Jigawa,Buji,0
+11.5298,7.0821,88669,Maiganguma Health Clinic,Katsina,Sabuwa,0
+8.9356,8.2329,88274,Angwan Habu Primary Health Centre,Nasarawa,Akwanga,0
+6.2614,5.0031,88188,Model P H C Primary Health Centre,Ondo,Ese Odo,0
+6.5821,9.3948,88033,New-Ikwette Health Post,Cross River,Obanliku,0
+5.9508,6.729,88010,Ochuche Primary Health Center,Anambra,Ogbaru,0
+7.509,3.7214,87836,Koguo Health Post,Oyo,Ido,0
+9.4852,7.7688,87730,Kafarma Health Clinic,Kaduna,Kagarko,0
+12.5035,3.932,86885,Kohobi Health Post,Kebbi,Arewa Dandi,0
+7.0761,5.0243,86132,Ayefemi Health Center,Ondo,Idanre,0
+10.6189,7.26,85926,Forest Health Centre,Kaduna,Chikun,0
+7.147,2.9537,85360,Sunwa Health Center,Ogun,Yewa North,0
+10.0054,6.7064,85079,Kasimi Primary Health Center,Niger,Shiroro,0
+9.0361,11.9277,85014,Wuro Yolede Health Clinic,Adamawa,Mayo-Belwa,0
+9.2173,12.2078,84929,Jambutu Health Clinic,Adamawa,Mayo-Belwa,0
+8.7521,12.0911,84451,Gangnai Health Post,Adamawa,Jada,0
+8.0329,5.3255,84243,Ora-Aiyetoro Basic Health Clinic,Kwara,Ekiti,0
+11.3794,6.449,83507,Maigoge Dispensary,Zamfara,Maru,0
+7.6635,10.1537,83453,Denden Primary Health Centre,Taraba,Donga,0
+10.8293,8.493,83449,Banki Health Centre,Kaduna,Kubau,0
+11.3399,10.8239,83424,Sabon Garin Lanzai Health Post,Bauchi,Darazo,0
+5.8554,7.4521,82979,Amaya Ndundu Health Center,Abia,Isuikwuato,0
+11.5233,9.4285,82871,Dumus Health Post,Jigawa,Birnin Kudu,0
+11.957,11.0824,82585,Taiyu Health Post,Yobe,Fune,0
+11.0354,8.8938,82489,Magami Health Post,Bauchi,Ningi,0
+5.6255,6.5856,82332,Abalagada Primary Health Centre,Delta,Ndokwa East,0
+8.7097,7.5408,81885,Kowayayarda Primary Health Centre,Nasarawa,Nasarawa,0
+7.2482,4.5314,81868,Ara Joshua Primary Health Centre,Osun,Ife South,0
+10.2763,7.3576,81690,Dutse Primary Health Centre,Kaduna,Chikun,0
+12.8642,4.5818,81454,Bagaye Primary Health Centre,Kebbi,Augie,0
+10.3038,11.8908,81259,Kwahara Health Post,Borno,Shani,0
+10.9412,9.8259,80856,Gala Maternity,Bauchi,Ganjuwa,0
+12.2696,9.3922,80818,Kwalam Model Primary Health Center Primary Health Centre,Jigawa,Taura,0
+10.5614,10.4174,80142,Shongo Health Clinic,Bauchi,Kirfi,0
+12.7803,12.4052,80066,Fuchimeram Health Clinic,Yobe,Geidam,0
+10.1624,5.9183,79983,Talauye Primary Health Centre,Niger,Mariga,0
+6.2467,8.6543,79919,Nkim Health Post,Cross River,Ikom,0
+11.6094,6.1662,79911,Danmaaji Dispensary,Zamfara,Maru,0
+12.9933,7.8907,79811,Sheme Health Clinic,Katsina,Mani,0
+5.648,7.1884,79711,Ugirinna Health Center,Imo,Isiala Mbano,0
+8.2053,3.413,79688,Otu Tuberculosis Leprosy Clinic,Oyo,Itesiwaju,0
+12.1156,12.8327,79655,Titiwa Health Post,Borno,Borno,0
+9.8389,9.7469,79524,Mball Maternal And Child Health,Bauchi,Tafawa-Balewa,0
+7.5823,3.1197,79423,Kajola Primary Health Centre,Oyo,Ibarapa North,0
+10.3711,10.7256,78622,Bara Primary Health Centre,Bauchi,Kirfi,0
+4.7363,7.0847,78351,Ogoloma Primary Health Centre,Rivers,Okrika,0
+11.8085,6.7913,78094,Maitoshi Dispensary,Zamfara,Tsafe,0
+9.1621,12.6333,77977,Gawi Primary Health Care,Adamawa,Fufore,0
+12.6528,9.6306,77684,Katika Health Post,Jigawa,Maigatari,0
+7.9181,10.9903,77574,Sabondale Primary Health Centre,Taraba,Bali,0
+9.7179,11.4091,77555,Lakweme Health Clinic,Gombe,Kaltungo,0
+8.6031,9.1119,77440,Tuagatdongsuaas Primary Health Center,Plateau,Qua'an Pan,0
+7.7155,3.4749,77392,Bishop Ajayi Crowther Memorial Centre Maternity Centre,Oyo,Iseyin,0
+12.416,4.4328,77345,Lagga Health Post,Kebbi,Birnin Kebbi,0
+8.7043,10.8684,77152,Koppi Health Post,Taraba,Gassol,0
+11.5805,9.1557,77128,Kogo Health Post,Kano,Takai,0
+10.7959,5.3687,77117,G / Boka Primary Health Centre,Niger,Mariga,0
+10.3942,4.9308,76604,Gwagwade Dispensary,Kebbi,Kebbi,0
+10.6868,9.7562,76277,K / Madaki Primary Health Centre,Bauchi,Ganjuwa,0
+8.3733,4.8003,76170,Maloko Basic Health Centre,Kwara,Ifelodun,0
+8.9582,9.2502,75917,Tuagatdong Suaas Primary Health Center,Plateau,Qua'an Pan,0
+9.7242,9.2762,75877,Murno Health Clinic,Bauchi,Tafawa-Balewa,0
+7.7835,8.8243,75595,Gberkon Primary Health Centre,Benue,Guma,0
+10.1879,9.3315,75261,Tashan Mai Turare Health Post,Bauchi,Toro,0
+5.2785,7.608,75091,Salthon Med Center Ikot Ukana,Akwa Ibom,Obot Akara,0
+9.7987,8.9745,75040,Rassat Primary Health Centre,Plateau,Barkin Ladi,0
+7.9046,7.1579,74621,Esule Health Post,Kogi,Bassa,0
+12.5621,8.5923,74610,Chasko Dispensary,Kano,Dambatta,0
+9.3546,9.6954,74583,Amper Model Primary Health Center Primary Health Centre,Plateau,Kanke,0
+11.1205,7.0004,74315,Unguwan Gajere Primary Health Center,Kaduna,Birnin Gwari,0
+7.9646,7.5439,74266,Idrisu Primary Health Centre,Kogi,Omala,0
+10.411,10.993,74180,Under Five Clinic Darazo,Gombe,Kwami,0
+5.9979,6.3853,73968,Etua Primary Health Centre,Delta,Ndokwa West,0
+10.0707,11.3974,73807,Zainabari Dispensary,Gombe,Akko,0
+9.9173,7.0917,73646,Sabon Kabula Primary Health Center,Niger,Munya,0
+10.6335,7.6087,73222,Burkonu Health Center,Kaduna,Igabi,0
+8.5492,8.7434,72724,Ercc Dispensary,Nasarawa,Lafia,0
+7.9837,8.5631,72484,Hirnyam Primary Health Centre,Benue,Guma,0
+12.9475,5.711,72418,Tsamiya Health Clinic,Sokoto,Rabah,0
+11.78,12.391,72085,Makintakururi Health Clinic,Borno,Kaga,0
+7.5791,9.0857,71906,Awambe Health Centre,Benue,Buruku,0
+8.2271,9.0891,71442,Asoloko Memorial Clinic,Nasarawa,Awe,0
+7.6463,6.022,71331,Arima Health Post,Kogi,Ijumu,0
+11.5218,7.9973,71047,Baraji Health Post,Kano,Rogo,0
+6.7242,6.9824,71013,Asaba Health Centre,Enugu,Uzo-Uwani,0
+8.7577,12.5672,70859,Nassarawo Koma Primary Health Center,Adamawa,Jada,0
+7.623,6.4537,70445,Attami Primary Health Clinic,Kogi,Ajaokuta,0
+11.6705,11.5352,70403,Fune Health Post,Yobe,Fune,0
+9.2101,8.6883,70305,Karfa Primary Health Center,Plateau,Bokkos,0
+12.6492,6.286,70137,Magami Dispensary,Zamfara,Maradun,0
+11.021,5.4148,70017,Takalafia Dispensary,Kebbi,Sakaba,0
+12.9419,13.1796,69962,Gudumbali General Hospital,Borno,Guzamala,1
+4.6326,7.9242,69837,Mendith Dental Surgery,Akwa Ibom,Eket,0
+6.4396,3.934,69809,Ibeju Lekki General Hospital,Lagos,Ibeju Lekki,1
+7.6153,8.1215,69752,Tse Agbe Health Clinic Mba Na Ke,Benue,Gwer West,0
+10.0848,10.2173,69583,Kyabi Health Clinic,Bauchi,Alkaleri,0
+12.4018,9.7317,69503,Dabuwaran Primary Health Centre,Jigawa,Kaugama,0
+8.6875,4.7242,69353,Ayetoro Health Post,Kwara,Ilorin East,0
+11.4444,7.3259,69079,Yartabki Dispensary,Katsina,Funtua,0
+12.8995,12.8158,68978,Gazabure Dispensary,Borno,Gubio,0
+10.3981,6.3891,68952,Pandogari Primary Health Centre,Niger,Rafi,0
+11.6569,4.514,68769,Fakku Health Clinic,Sokoto,Kebbe,0
+7.96,4.0695,68702,Owode Elete Health Care,Oyo,Oyo East,0
+11.7617,10.076,68416,Lafiya Health Clinic,Bauchi,Katagum,0
+8.2176,12.0949,68268,Gangzamanu Primary Health Centrecenter Primary Health Centre,Adamawa,Toungo,0
+9.6451,13.1031,68262,Konkol Maternal And Child Health,Adamawa,Maiha,0
+12.697,8.0934,68242,Tsamcini Primary Health Centre,Katsina,Ingawa,0
+5.0607,8.1575,68209,Ikoneto Health Centre,Cross River,Odukpani,0
+12.3077,5.7656,68174,Dakko Health Clinic,Zamfara,Bakura,0
+11.3091,4.9908,68160,Shantali Primary Health Centre,Niger,Rijau,0
+11.6948,13.3453,67985,Malari Centre Primary Health Care,Borno,Konduga,0
+10.5926,10.1355,67934,Dagele Health Post,Bauchi,Ganjuwa,0
+10.2046,9.5828,67632,Matto Dispensary,Bauchi,Toro,0
+11.771,4.1801,67546,Giro Primary Health Centre,Kebbi,Suru,0
+12.373,8.2819,67431,Kuku Health Post,Kano,Kunchi,0
+5.6845,5.7638,67346,Adeje Primary Health Centre,Delta,Okpe,0
+9.2715,9.1223,67025,Bidol Primary Health Centre,Plateau,Mangu,0
+8.2599,8.778,66945,Oweprimary Health Clinic,Nasarawa,Keana,0
+9.1076,5.6618,66922,Guzzan Health Center,Niger,Edati,0
+7.9198,6.4343,66887,Obajana Primary Health Centre,Kogi,Lokoja,0
+6.1751,7.7981,66793,St Charless Clinic Achiuzam,Ebonyi,Onicha,0
+4.6269,6.4581,66783,Idema Health Center,Bayelsa,Ogbia,0
+6.7287,8.6274,66703,Tamaju Health Center,Cross River,Yala,0
+9.3657,11.0816,66618,Mutun Daya Dispensary,Taraba,Karim Lamido,0
+8.4863,9.6398,66591,Lawur Primary Health Centre,Plateau,Shendam,0
+9.5113,12.7021,66439,Kadarbu Primary Health Clinic,Adamawa,Fufore,0
+11.0814,10.8596,66411,Dukkuyel Health Post,Gombe,Dukku,0
+10.9415,10.0942,66303,Gyaduwa Health Post,Bauchi,Ganjuwa,0
+6.1808,5.6338,65775,Uhie Primary Health Centre,Edo,Ikpoba-Okha,0
+5.1903,7.2107,65763,Egbeke Health Center,Rivers,Etche,0
+9.1678,6.2021,65585,Edikuso Primary Health Centre,Niger,Katcha,0
+4.9768,5.7406,65291,Ayama Cottage Hospital,Bayelsa,Ekeremor,1
+13.2803,5.2021,65219,Makera Health Post,Sokoto,Kware,0
+12.9172,6.7118,65193,Makosa Clinic,Zamfara,Zurmi,0
+9.1384,11.5654,65147,Kodong Primary Health Centre,Taraba,Lau,0
+8.8211,4.9708,64820,Share Primary Health Centre,Kwara,Ifelodun,0
+9.2677,8.1644,64611,Ungwa Yuli Health Clinic,Kaduna,Jema'a,0
+7.2256,10.6198,64435,Adobe Health Post,Taraba,Kurmi,0
+12.5795,9.262,64400,Malam Bako Health Post,Jigawa,Sule Tankarkar,0
+12.5658,9.9565,64326,Mai Rakumi Primary Health Centre,Jigawa,Malam Madori,0
+9.196,7.7661,64321,Akoma Primary Health Care,Nasarawa,Karu,0
+7.6238,7.2086,64228,Ogodanya Primary Health Centre,Kogi,Dekina,0
+7.3681,5.8217,63872,Afo Basic Health Center,Ondo,Ose,0
+10.2833,9.0882,63574,Shaw Dispensary,Bauchi,Toro,0
+7.37,4.3383,63484,Itamerin Health Center,Osun,Irewole,0
+7.9299,7.8291,63374,Usha Primary Health Centre,Benue,Agatu,0
+6.7349,6.4557,63074,Eguare Primary Health Center 1,Edo,Esan South-East,0
+6.5094,5.708,63006,Iguosula Primary Health Center,Edo,Uhunmwonde,0
+8.6453,9.9545,62981,Faya Primary Health Center,Plateau,Wase,0
+12.8163,11.6337,62729,Dalari Primary Health Centre,Yobe,Bursari,0
+10.5741,5.1311,62602,Maragwasa Primary Health Centre,Niger,Magama,0
+4.5028,7.6676,62530,Emereoko Health Centre,Akwa Ibom,Eastern Obolo,0
+8.837,5.4004,62337,Lafiagi College Of Education Tech.Sch.Clinic .,Kwara,Edu,0
+9.6832,5.3988,62236,Haske Mational Primary Health Center,Niger,Mashegu,0
+7.425,10.2554,61816,Tissa Primary Health Centre,Taraba,Donga,0
+10.2249,11.6202,61569,Waindu Health Clinic,Borno,Bayo,0
+6.8956,11.1315,61418,Masewa Primary Health Center,Taraba,Sardauna,0
+13.0464,10.4805,61334,Abatura Health Clinic,Yobe,Yusufari,0
+6.7251,4.5092,61280,Kajola Express Basic Health Centre,Ondo,Odigbo,0
+10.323,12.5966,61275,Girgithang Health Post,Adamawa,Gombi,0
+12.1694,10.9892,61220,Lafiya Primary Health Centre,Yobe,Jakusko,0
+11.214,4.2494,61191,Tungan Lawal Primary Health Centre,Kebbi,Bagudo,0
+12.3804,12.6788,61100,Ngamma Health Center,Borno,Magumeri,0
+11.0111,7.4922,61054,Wazata Primary Health Centre,Kaduna,Giwa,0
+12.9983,11.1652,60842,Sherhudi Health Post,Yobe,Yusufari,0
+6.4402,4.4086,60822,Makun Health Centre,Ogun,Ogun Waterside,0
+10.4662,11.9986,60687,Dayar Primary Health Centre,Borno,Kwaya Kusar,0
+11.5568,5.821,60631,Barebari Dispensary,Zamfara,Maru,0
+11.7869,7.6201,60553,Albarka Clinic Maternity Home,Katsina,Malumfashi,0
+9.8459,12.2877,60190,Shiure Health Clinic,Adamawa,Song,0
+9.4475,6.2813,60100,Nangawu Chinama Health Clinic,Niger,Bosso,0
+6.8254,9.4932,59993,Nyihemba Primary Health Centre,Benue,Kwande,0
+13.0552,10.0615,59987,Ghana Health Post,Yobe,Machina,0
+9.3096,11.9045,59983,Gajembo Health Centre,Adamawa,Demsa,0
+8.6666,6.9255,59910,Kwaita Hausawa Primary Health Centre,Federal Capital Territory,Kwali,0
+8.8269,5.8094,59779,Uku Health Care,Niger,Lavun,0
+7.3891,4.8879,59466,Olawole Primary Health Center,Osun,Oriade,0
+10.4038,13.0834,59463,Gashala Mamudu Dispensary,Adamawa,Hong,0
+8.8208,11.2217,59437,Jemi Primary Health Centre,Taraba,Ardo-Kola,0
+7.2379,9.7301,59424,Nagu Local Government Health Clinic,Benue,Katsina-Ala,0
+7.9796,3.2358,59154,Iganna Tuberculosis And Leprosy,Oyo,Iwajowa,0
+9.6443,9.919,59045,Dull Primary Health Centre,Bauchi,Tafawa-Balewa,0
+8.0079,5.6087,58822,Bisi Basic Clinic Nigeria Ltd Oke Otun Irele Ekiti,Ekiti,Ikole,0
+12.5787,4.206,58733,Alabani Health Post,Kebbi,Birnin Kebbi,0
+8.6806,6.3337,58506,Kinami Primary Health Centre,Kogi,Lokoja,0
+8.7181,9.4922,58453,Ang Dadi Primary Health Centre,Plateau,Shendam,0
+8.4395,7.3741,58375,Jawun Health Post,Nasarawa,Toto,0
+11.2089,6.0198,58024,Danlayi Dispensary,Kebbi,Wasagu/Danko,0
+11.5877,3.7116,57997,Giris Primary Health Centre,Kebbi,Bagudo,0
+9.4844,7.2305,57987,Kpachi Health Centre,Kaduna,Kagarko,0
+12.4777,13.8127,57982,Borsori Health Clinic,Borno,Marte,0
+7.447,11.3081,57889,Bodel Health Post,Taraba,Gashaka,0
+12.2457,5.1824,57751,Gidan Kane Dispensary,Zamfara,Gummi,0
+7.8644,4.7517,57739,Odoka Health Post,Osun,Obokun,0
+12.1143,11.7882,57545,Tashan Fulani Health Post,Yobe,Tarmuwa,0
+8.2563,8.5607,57496,Sarkin Noma Primary Health Center,Nasarawa,Obi,0
+7.0722,3.8435,57319,Erilamo Health Center,Ogun,Ijebu North,0
+8.2257,9.6975,57227,Dooshima Dispensary,Taraba,Ibi,0
+8.7397,11.8382,57210,Binyere Primary Health Centre,Adamawa,Mayo-Belwa,0
+10.7255,12.1453,57128,Miringa Maternal And Child Health,Borno,Biu,0
+7.1342,5.327,57066,Onipanu Basic Health Centre,Ondo,Akure South,0
+11.4829,4.7819,56936,Dan Indo Health Clinic,Kebbi,Fakai,0
+6.6307,3.0319,56903,Imole Providence Clinic And Maternity,Ogun,Ado Odo/Ota,0
+10.9151,9.1786,56723,Kongoro Health Post,Bauchi,Ningi,0
+11.0704,5.6873,56683,Mazarko Primary Health Centre,Kebbi,Kebbi,0
+6.669,8.0003,56587,Inikiri Health Center,Ebonyi,Ohaukwu,0
+11.9252,5.6594,56558,Duhuwa Dispensary,Zamfara,Bukkuyum,0
+9.5326,9.0326,56474,Rawuru Primary Health Centre,Plateau,Barkin Ladi,0
+11.9833,11.4373,56424,Jajere Primary Health Centre,Yobe,Fune,0
+6.9469,8.1371,56410,Inenyim Health Clinic,Benue,Ado,0
+12.6611,13.2777,56341,Guzamala Lawanti Health Clinic,Borno,Guzamala,0
+10.4843,8.9392,55856,Rishi Primary Health Centre,Bauchi,Toro,0
+5.5064,8.1086,55787,Ehom Village Health Centre,Cross River,Biase,0
+11.1953,10.2137,55603,Sabon Garin Rabadi Health Post,Jigawa,Gwaram,0
+7.0611,5.6826,55534,Osabiya Basic Health Centre,Ondo,Ose,0
+9.791,6.5575,55458,Shata Sata Health Post,Niger,Shiroro,0
+12.9749,12.2323,55411,Degeltura Dispensary,Yobe,Yunusari,0
+10.6346,4.4067,55392,Papiri Primary Health Centre,Niger,Agwara,0
+12.6176,11.0219,55340,Ngeljebe Primary Health Centre,Yobe,Bade,0
+8.1954,4.5613,55013,Foko Primary Health Centre,Kwara,Asa,0
+10.3644,5.8263,54972,Uraga Health Center,Niger,Mariga,0
+9.411,8.5321,54972,Dangona Dana Health Clinic,Kaduna,Sanga,0
+9.8927,10.0409,54938,Kumbala Health Clinic,Bauchi,Alkaleri,0
+13.6231,13.2716,54870,Abadam General Hospital,Borno,Abadam,1
+4.8143,7.4838,54852,Obete Model Primary Health Centre,Rivers,Oyigbo,0
+11.2611,12.0059,54821,Gujba General Hospital,Yobe,Gujba,1
+12.2186,9.1611,54702,Fachawa Health Post,Jigawa,Ringim,0
+12.4626,11.6158,54431,Kiska Health Post,Yobe,Tarmuwa,0
+10.635,8.4685,53566,Kudaru Health Clinic,Kaduna,Lere,0
+10.6067,6.1809,53471,Shirya Health Clinic,Kaduna,Birnin Gwari,0
+10.5386,4.7518,53277,Guguwa Sabuwa Health Post,Kebbi,Ngaski,0
+10.0042,12.6496,53254,Golontabal Primary Health Centre,Adamawa,Song,0
+6.0189,5.9404,53150,Obozogbe-Nugu Primary Health Centre,Edo,Orhionmwon,0
+12.0446,6.9983,53112,Marken Yamma Dispensary,Zamfara,Tsafe,0
+6.9655,2.8182,53081,Iyana Meta Health Center,Ogun,Yewa North,0
+13.0614,11.5957,52983,Manawaji Health Post,Yobe,Yunusari,0
+10.7629,5.7756,52943,Farar Doka Primary Health Centre,Niger,Mariga,0
+8.2384,5.0872,52915,Model Isanlu Primary Health Centre,Kwara,Isin,0
+7.7022,5.609,52894,Aba Kehinde Basic Health Center,Ekiti,Ekiti East,0
+8.8813,3.428,52849,Agbonle Primary Health Care Center,Oyo,Saki West,0
+9.7025,10.1907,52807,Mosco Clinic,Bauchi,Alkaleri,0
+8.4845,11.0365,52735,Garin Almajiri Healthpost,Taraba,Gassol,0
+12.8265,4.8948,52670,Kibiyare Primary Health Centre,Sokoto,Yabo,0
+6.636,7.4232,52560,Ubeagu Eworo Health Post,Enugu,Igbo-Etiti,0
+11.9795,9.2809,52402,Chaichai Health Post,Jigawa,Dutse,0
+12.3149,11.2288,52388,Gudugurka Primary Health Centre,Yobe,Fune,0
+7.6508,7.8298,52165,Ocihihi Primary Health Center,Benue,Apa,0
+10.541,11.2968,51599,Mainari Primary Health Care,Gombe,Funakaye,0
+10.9848,4.7966,51457,Wadata Health Post,Kebbi,Shanga,0
+12.5785,7.2704,51346,Danzaki Health Center,Katsina,Safana,0
+12.6142,5.2232,51159,Kambama Health Post,Sokoto,Shagari,0
+12.9229,13.5682,51116,Kukawa Maternal And Child Health,Borno,Borno,0
+12.5471,12.4251,50749,Bamma Dispensary,Yobe,Geidam,0
+8.4363,3.3376,50570,Heritage Of God Clinic And Maternity Home,Oyo,Atisbo,0
+8.6742,8.389,50482,Arikpa Sabon Gida Health Post,Nasarawa,Nasarawa Egon,0
+8.3422,10.4448,50406,Sabon-Gida Primary Health Centre,Taraba,Gassol,0
+12.8791,8.7765,50201,Maimazari Health Centre,Katsina,Baure,0
+7.3816,8.3726,50188,Kuegh Primary Health Centre,Benue,Gwer East,0
+6.9735,4.7468,50083,Owode Eleepo Primary Health Centre,Ondo,Ondo West,0
+11.5465,11.0353,49896,Garu Health Post,Yobe,Fika,0
+11.4453,11.4212,49745,Bulanyiwa Primary Health Centre,Yobe,Fune,0
+7.5263,8.6407,49604,Chihichan Primary Health Centre,Benue,Gwer East,0
+10.0436,7.9926,49551,Crossing Health Clinic,Kaduna,Kachia,0
+11.2082,8.1035,49289,Godiya Clinic And Maternity Center,Kaduna,Ikara,0
+10.3517,10.0656,48921,Beru Primary Health Centre,Bauchi,Bauchi,0
+13.2633,7.9004,48921,Majigiri Maternal And Child Health,Katsina,Mashi,0
+12.099,6.0426,48475,Bayan Doki Dispensary,Zamfara,Anka,0
+8.3602,9.2426,48333,Azara Jatau Memorial Clinic,Nasarawa,Awe,0
+6.785,11.4269,48279,Kimbiyemin Health Center,Taraba,Sardauna,0
+12.3366,4.8293,48267,Sabawa Health Post,Sokoto,Tambuwal,0
+5.4554,6.0311,48215,Otor-Ogor Primary Health Centre,Delta,Ughelli North,0
+9.2829,11.3948,47733,Nwaka Dispensary,Taraba,Lau,0
+12.8065,9.8707,47709,Karanga Primary Health Centre,Jigawa,Birniwa,0
+10.909,8.0285,47705,Sharifai Primary Health Center,Kaduna,Soba,0
+9.1309,6.8929,47697,Wumi Primary Health Center,Federal Capital Territory,Gwagwalada,0
+7.1226,9.3894,47678,Abah Primary Health Centre,Benue,Katsina-Ala,0
+13.0029,10.7242,47612,Kilbuwa Health Clinic,Yobe,Karasuwa,0
+5.2453,6.3786,47487,Agbere Primary Health Centre,Bayelsa,Sagbama,0
+6.2411,7.9187,47449,Nkomoro ( Mdgs ) Facility,Ebonyi,Ezza North,0
+11.9417,9.8717,47317,Danfusan Health Post,Jigawa,Kiyawa,0
+12.825,4.1629,47015,Matankari . Health Post,Kebbi,Arewa Dandi,0
+8.7076,4.4703,47010,Malete Maternal Child Health,Kwara,Moro,0
+5.3587,5.4337,46984,Focados Government Hospital,Delta,Burutu,0
+11.9248,12.6638,46807,Abasori Health Clinic,Borno,Konduga,0
+8.1267,10.1059,46748,Bantaje Basic Health Centre,Taraba,Wukari,0
+9.1961,7.5465,46357,Sumpe Health Post,Federal Capital Territory,Bwari,0
+12.1307,5.5552,46336,Sabuwar Tunga Dispensary,Zamfara,Bukkuyum,0
+12.138,13.073,46329,Karnowa Health Post,Borno,Magumeri,0
+13.0705,5.0491,46269,Dankyal Health Post,Sokoto,Wamakko,0
+12.9319,10.2091,46113,Goruba Health Post,Jigawa,Birniwa,0
+6.8474,4.2115,46062,Gbamugbamu Health Clinic,Ogun,Ijebu East,0
+12.8865,7.0671,46040,Dantudu Health Center,Katsina,Jibia,0
+5.6067,7.4652,46012,Ekeokwuru Health Centre,Abia,Umuahia North,0
+9.991,6.1204,45949,Ung. Doruwa Csdp Health Centre,Niger,Rafi,0
+10.0137,8.7625,45946,Abanazara Primary Health Centre,Plateau,Bassa,0
+7.1425,7.3117,45872,Emenega-Ukpale Primary Health Centre,Kogi,Olamaboro,0
+12.4555,6.7895,45816,Dutsin Wake Dispensary,Zamfara,Birnin Magaji/Kiyaw,0
+9.1395,3.2607,45687,Bankubu Clinic,Kwara,Baruten,0
+11.0474,8.4657,45616,Kanwa Health Centre,Kaduna,Kubau,0
+9.2756,5.9985,45530,Saganuwan Primary Health Centre,Niger,Gbako,0
+11.5494,5.5341,45477,Shengel Primary Health Centre,Kebbi,Wasagu/Danko,0
+8.235,4.1351,45425,Antete Primary Health Centre,Oyo,Ori Ire,0
+11.2642,11.7235,45316,Mutai Primary Health Centre,Yobe,Gujba,0
+12.4109,6.2056,45281,Kuka Mairahhu Dispensary,Zamfara,Talata Mafara,0
+12.5991,10.6304,44959,Kurkushe Health Post,Yobe,Jakusko,0
+9.1934,9.5917,44865,Kup Health Post,Plateau,Pankshin,0
+12.0583,6.3662,44707,Gabiya Dispensary,Zamfara,Maru,0
+11.0775,3.8672,44703,Maje Health Post,Kebbi,Bagudo,0
+7.2264,4.0258,44696,Gbedun Primary Health Centre,Oyo,Ona Ara,0
+8.4175,7.8739,44686,Eyenu Health Post,Nasarawa,Nasarawa,0
+10.6158,13.4969,44450,Garta Health Centre,Adamawa,Michika,0
+10.5696,5.4584,44438,Lioji Primary Health Centre,Niger,Mariga,0
+5.9414,8.5388,44386,Ekukunela Health Post,Cross River,Ikom,0
+11.3081,7.5774,44329,Madobi Health Clinic,Kaduna,Giwa,0
+10.7825,4.9763,44283,Laka Health Post,Kebbi,Ngaski,0
+12.0419,10.7414,44261,Duwaru Health Post,Bauchi,Gamawa,0
+9.5089,11.6446,44029,Waduku Primary Health Centre,Adamawa,Lamurde,0
+4.7243,6.8335,43514,Angulama Health Centre,Rivers,Asari-Toru,0
+11.3975,6.0447,43249,Unguwan Nabo Health Post,Kebbi,Wasagu/Danko,0
+13.0245,12.0069,43139,Ngamma Lawanti Dispensary,Yobe,Yunusari,0
+12.6551,8.422,43137,Galadanchi Model Primary Health Center Primary Health Centre,Jigawa,Kazaure,0
+10.0359,5.2955,43039,Ba'Are Primary Health Centre,Niger,Mashegu,0
+7.0275,3.5712,43030,Obaseriki Primary Health Centre,Ogun,Obafemi Owode,0
+13.8196,5.5374,42183,Kadadi Maidabo Health Post,Sokoto,Gada,0
+9.3713,5.3069,42070,Sheti Primary Health Centre,Niger,Mokwa,0
+10.3767,8.2153,42067,Fagen Rawa Health Centre,Kaduna,Kauru,0
+4.308,6.1903,41919,Egweama Primary Health Centre,Bayelsa,Brass,0
+7.333,3.0648,41871,Toluwani Maternity Home,Ogun,Abeokuta North,0
+11.7401,10.6912,41515,Ganjiwa Primary Health Centre,Bauchi,Damban,0
+9.3854,3.9339,41450,Fobera Health Center,Kwara,Kaiama,0
+6.2614,7.2069,41349,Aguabosi Health Clinic,Enugu,Oji-River,0
+11.5485,12.3043,41328,Gotala Primary Health Centre,Yobe,Gujba,0
+10.8862,4.3534,41276,Shafachi Road Health Post,Niger,Agwara,0
+6.5788,5.058,41122,Atoranse Basic Health Centre,Ondo,Irele,0
+9.5152,6.7578,40895,Leitapi Primary Health Clinic,Niger,Paikoro,0
+9.5887,11.0199,40681,Gurwa Maternity,Gombe,Shomgom,0
+7.9432,2.9812,40427,Ilaji-Ile Primary Health Centre,Oyo,Iwajowa,0
+6.0068,5.4745,40233,Ogbudugbudu Primary Health Centre,Delta,Warri North,0
+12.7687,11.2788,40095,Kolomari Health Post,Yobe,Bursari,0
+11.8726,5.4688,40055,Ruwan Kura Dispensary,Zamfara,Bukkuyum,0
+10.0601,9.7102,39893,Palla Health Post,Bauchi,Bauchi,0
+11.0042,5.9963,39890,Danko Health Post,Niger,Mariga,0
+10.9935,11.1753,39852,Wuro / Bundu Primary Health Care,Gombe,Nafada,0
+10.6103,6.83,39793,Kwala Kwangi Health Center,Niger,Shiroro,0
+7.2865,6.3277,39610,Awuyemi Primary Health Centre,Edo,Etsako East,0
+12.5892,11.7868,39487,Danani Health Center,Yobe,Bursari,0
+8.5475,4.9817,39271,Labaka-Oja Primary Health Centre,Kwara,Ifelodun,0
+13.6524,5.909,39226,Tsaro Dispensary,Sokoto,Gada,0
+9.1013,7.9445,38953,Zango Health Post,Nasarawa,Karu,0
+10.0119,6.461,38904,Rimi Maternity Home,Niger,Rafi,0
+11.612,11.2437,38863,Damazai Primary Health Centre,Yobe,Fika,0
+9.7093,3.3704,38846,Kuburufu Clinic,Kwara,Baruten,0
+8.8707,3.091,38818,Kubure Clinic,Kwara,Baruten,0
+10.3684,6.0842,38806,Uragi Primary Health Centre,Niger,Rafi,0
+6.5081,4.1803,38744,Ave Maria Clinic,Ogun,Ogun Waterside,0
+9.9764,7.415,38718,Kutemeshi Primary Health Care Center,Kaduna,Kachia,0
+7.7906,9.0052,38663,Azege Health Center,Benue,Guma,0
+4.6271,6.0339,38644,Ofonigbene Community Health Center,Bayelsa,Southern Ijaw,0
+10.4761,7.9049,38600,Health Clinic Idu,Kaduna,Kajuru,0
+5.6005,5.2149,38549,Mandagho Primary Health Centre,Delta,Warri South-West,0
+5.1388,6.0754,38446,Ebedebiri Cottage Hospital,Bayelsa,Sagbama,1
+8.5079,10.6834,38403,Baba Also Health Post,Taraba,Gassol,0
+10.4032,9.5187,38314,Guraka Dispensary,Bauchi,Toro,0
+11.9436,8.9367,38198,Marita Health Post,Kano,Ajingi,0
+12.7474,9.179,38109,Kuka Model Primary Health Centre,Jigawa,Sule Tankarkar,0
+6.6393,6.6928,38095,Itike Primary Health Center,Kogi,Ibaji,0
+10.4062,4.2897,38062,Swashi Model Primary Health Centre,Niger,Borgu,0
+11.7054,10.3619,38006,Walowa Dispensary,Bauchi,Katagum,0
+13.1575,7.5322,37685,Agangaro Health Clinic,Katsina,Jibia,0
+8.9433,9.971,37644,Bang Primary Health Centre,Plateau,Wase,0
+6.477,6.1738,37556,Ugun Primary Health Centre,Edo,Iguegben,0
+11.8461,6.4763,37518,Landai Dispensary,Zamfara,Bungudu,0
+10.5617,9.915,37391,Siyi Health Post,Bauchi,Ganjuwa,0
+4.9177,6.5772,37296,Emesu Health Post,Rivers,Abua/Odual,0
+5.7291,8.1726,37281,Agoi Ibami Primary Health Centre,Cross River,Yakurr,0
+10.6529,10.7998,37132,Balaje Health Clinic,Gombe,Dukku,0
+12.0643,10.3943,37004,Jajeri Primary Health Centre,Bauchi,Zaki,0
+10.8864,13.3802,37001,Bitiku Basic Health Center,Adamawa,Madagali,0
+10.1638,13.0669,37000,Dilchidama Health Post,Adamawa,Hong,0
+13.2902,5.5702,36951,Barazaki Health Post,Sokoto,Wurno,0
+11.8669,6.0022,36862,Tungar Daji Primary Health Centre,Zamfara,Anka,0
+7.3958,9.9434,36750,Dogon Gawa Health Center,Taraba,Takum,0
+9.4232,10.2009,36744,Kungurmi Primary Health Centre,Plateau,Wase,0
+12.2676,11.5122,36737,Fulatari Health Post,Yobe,Tarmuwa,0
+5.7923,6.4559,36631,Afor Umuachi Primary Health Centre,Delta,Ndokwa East,0
+9.9789,9.2401,36584,Kayarda Primary Health Clinic,Bauchi,Toro,0
+7.5384,7.4362,36565,Ofoanwa Primary Health Center,Kogi,Dekina,0
+7.2993,3.6127,36504,Olodo Health Clinic,Ogun,Odeda,0
+8.8562,9.0874,36427,Goeniang ( Labi ) Primary Health Centre,Plateau,Qua'an Pan,0
+8.2948,7.2013,36339,Zono Health Post,Nasarawa,Toto,0
+9.1932,12.8791,36228,Muninga Primary Health Centre,Adamawa,Fufore,0
+11.6645,4.8684,36043,Bulu Achuku Health Post,Kebbi,Fakai,0
+13.5078,4.9435,35979,Ruwa Wuri Primary Health Centre,Sokoto,Tangaza,0
+12.8637,6.4276,35847,Tudun Tsansami Health Post,Zamfara,Zurmi,0
+8.7545,8.089,35793,Songo Primary Health Centre,Nasarawa,Nasarawa,0
+9.3032,4.8009,35708,Egangi Primary Health Centre,Niger,Mokwa,0
+5.9446,8.8859,35696,Ejeip Health Post,Cross River,Etung,0
+11.2362,3.6198,35685,Taukin Simiti Dispensary,Kebbi,Bagudo,0
+13.0002,12.9908,35672,Garanda Health Clinic,Borno,Guzamala,0
+9.5539,9.686,35588,Lafiyan Sara Health Clinic,Bauchi,Bogoro,0
+7.167,10.1607,35413,Amboi Primary Health Centre,Taraba,Ussa,0
+12.6486,10.3787,35410,Dawa Primary Health Center,Jigawa,Guri,0
+9.707,7.6393,35173,Kintaro Health Clinic,Kaduna,Kachia,0
+8.5585,6.6304,35166,Evuti Primary Health Centre,Niger,Lapai,0
+9.1779,11.7247,35101,Bafudun Health Post,Adamawa,Mayo-Belwa,0
+12.5316,10.8485,35083,Gumulawa Health Post,Yobe,Jakusko,0
+7.8922,9.6886,35068,Ikyaior Primary Health Centre,Taraba,Wukari,0
+9.3908,7.9319,34968,Memdor Health Clinic,Kaduna,Kagarko,0
+8.2262,3.1967,34952,Komu Primary Health Centre,Oyo,Itesiwaju,0
+9.0045,12.1719,34947,Gijaro Health Clinic,Adamawa,Mayo-Belwa,0
+9.5677,12.4558,34698,Abba Murke Health Post,Adamawa,Girei,0
+10.2532,12.164,34608,Gwapopolok Primary Health Center,Adamawa,Shelleng,0
+7.4509,6.9619,34605,Opaluwa Primary Health Center,Kogi,Dekina,0
+11.7902,13.761,34584,Dagumba Clinic,Borno,Mafa,0
+9.1866,6.4351,34553,Kutiriko Primary Health Centre,Niger,Agaie,0
+9.0784,4.1256,34449,Emigi Community Health Post,Kwara,Kaiama,0
+11.9548,13.0019,34436,Chabbal Primary Health Centre,Borno,Konduga,0
+10.1841,7.7792,34430,Ungwan Pada Health Center,Kaduna,Kajuru,0
+11.0707,11.8057,34393,Bularafa Dispensary,Yobe,Gulani,0
+7.1854,4.251,34389,Oko Dowo Health Center,Osun,Isokan,0
+7.2677,7.7242,34387,Ogenago Primary Health Care,Kogi,Olamaboro,0
+7.6938,4.3282,34144,Osuntedo Health Post,Osun,Ejigbo,0
+9.4132,3.2887,34093,Kpallu Clinic,Kwara,Baruten,0
+10.4072,12.3706,34050,Pelambrin Primary Health Centre,Borno,Hawul,0
+9.7815,7.0167,33871,Chibani Basic Primary Health Clinic Lagbe,Niger,Munya,0
+13.5157,13.077,33845,Jabullam Health Clinic,Borno,Abadam,0
+10.7954,10.5427,33769,Tauya Primary Health Centre,Bauchi,Darazo,0
+6.4165,6.7886,33740,Umudeze Primary Health Centre,Anambra,Anambra West,0
+9.906,5.7149,33611,Tenangi Primary Health Centre,Niger,Niger,0
+6.3431,4.6175,33487,Agerige Primary Health Centre,Ondo,Ilaje,0
+13.2612,12.6165,33359,Duji Comprehensive Health Center,Borno,Mobbar,0
+10.0757,9.9561,33216,Gwaskwaram Primary Health Clinic,Bauchi,Bauchi,0
+8.1458,3.9068,33202,Otefon Health Clinic,Oyo,Atiba,0
+10.9369,9.4249,33060,Katsinawan Tabla Health Post,Bauchi,Ningi,0
+10.7915,6.6363,32928,Kafanin Doka Health Center,Kaduna,Birnin Gwari,0
+12.0079,7.6272,32921,Gidan Galadima Health Clinic,Katsina,Malumfashi,0
+9.6444,12.8621,32771,Ribabu Health Post,Adamawa,Fufore,0
+8.0896,9.2682,32638,El Shadai Clinic,Nasarawa,Awe,0
+11.4945,14.0181,32610,Bogomari Health Center,Borno,Bama,0
+10.7242,11.656,32534,Yelwa Health Post,Yobe,Yobe,0
+9.0173,8.7033,32428,Kanje Primary Health Centre,Nasarawa,Wamba,0
+11.8225,11.6837,32406,Korowanga Dispensary,Yobe,Fune,0
+10.2127,5.6379,32148,Dutsin Magaji Health Post,Niger,Niger,0
+12.3457,8.1103,32140,Danzabuwa Model Primary Health Centre,Kano,Bichi,0
+12.2389,12.2771,32128,Mafa Primary Health Center,Borno,Magumeri,0
+11.7448,7.1203,32111,Kamfani Health Centre,Katsina,Faskari,0
+9.4819,11.3229,32102,Pissop Health Post,Taraba,Karim Lamido,0
+7.8698,8.0584,31910,Akwu Primary Health Centre,Benue,Agatu,0
+10.8114,7.3078,31753,Sabon Gari Primary Health Center,Kaduna,Igabi,0
+9.0291,5.0884,31697,Gboro Primary Health Care,Kwara,Edu,0
+9.5948,4.8603,31633,Albarka Health Post,Niger,Mashegu,0
+10.7541,5.9619,31596,Mangoro Primary Health Centre,Niger,Mariga,0
+12.1969,14.5018,31493,Rann Idp Camp Clinic,Borno,Kala/Balge,0
+10.1497,8.516,31408,Jama'Ar Iya Health Clinic,Kaduna,Lere,0
+9.7191,5.9861,31264,Pakara Primary Health Centre,Niger,Wushishi,0
+7.8626,9.9433,31121,Ikyernum Primary Health Centre,Taraba,Wukari,0
+13.1213,10.8981,31083,Mallam Musari Health Post,Yobe,Karasuwa,0
+11.6069,6.2837,30878,Kango Dispensary,Zamfara,Maru,0
+9.7312,7.9129,30828,Yaji Health Centre,Kaduna,Kachia,0
+12.2614,10.5046,30766,Kaisawa Yamma Health Post,Bauchi,Gamawa,0
+6.4277,3.6195,30718,Okunmopo Primary Health Centre,Lagos,Eti Osa,0
+8.9864,3.6367,30586,Ologede Primary Health Centre,Oyo,Orelope,0
+12.4329,11.3567,30370,Bade Gana Health Post,Yobe,Bursari,0
+8.8491,6.5411,30329,Ndache Mamma Primary Health Center,Niger,Agaie,0
+8.6513,3.2219,30303,Idera Primary Health Centre,Oyo,Saki West,0
+12.5017,12.7853,30287,Old Gubio Clinic,Borno,Gubio,0
+8.1735,11.0033,30224,Letere Health Clinic,Taraba,Bali,0
+5.2602,5.7379,30065,Omasuomo Health Post,Delta,Ughelli South,0
+9.8176,8.1713,30049,Kamantan Primary Health Centre,Kaduna,Zangon Kataf,0
+11.2512,6.2422,29985,Fammaje Dispensary,Zamfara,Maru,0
+9.2461,10.6912,29770,Jeb-Jeb Health Post,Taraba,Karim Lamido,0
+6.6358,5.9831,29745,Aau Clinic,Edo,Uhunmwonde,0
+11.9862,14.0907,29535,Mal Maja Health Center,Borno,Dikwa,0
+12.4577,5.0385,29344,Jabo Kagara Dispensary,Sokoto,Tambuwal,0
+11.8746,12.1782,29344,Community Dispensary,Yobe,Damaturu,0
+12.0608,7.3336,29295,Kabuke Health Post,Katsina,Kankara,0
+10.7912,4.6035,29294,Gandiga Primary Health Centre,Niger,Agwara,0
