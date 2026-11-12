@@ -1,0 +1,180 @@
+{
+ "as_of": "2026-11-11",
+ "note": "Compiled from public reports. NEMSAS has not published an official state-by-state list. 'Onboarded' follows the Federal Ministry of Health's statement (Aug 2026) that every state except Imo had joined. 'Activity documented' means at least one dated public report of a launched state service or NEMSAS payments to the state; absence of a report does not mean no service exists.",
+ "categories": {
+  "active": "Onboarded, activity documented",
+  "paper": "Onboarded, no public report of a working service found",
+  "none": "Not onboarded (as of Aug 2026)"
+ },
+ "sources": {
+  "S1": {
+   "label": "TMS News (27 Aug 2026): FG launches NEMSAS in Benue; ministry says about 99% activation nationwide, Imo the only state not yet participating",
+   "url": "https://tmsnews.ng/fg-launches-nemsas-in-benue-as-state-rolls-out-semsas/"
+  },
+  "S2": {
+   "label": "Voice of Nigeria (27 Oct 2025): NEMSAS Q3 2025 payments to Yobe, Rivers, Ebonyi, Gombe, Ogun, Bayelsa, Osun, Bauchi and Anambra",
+   "url": "https://von.gov.ng/nemsas-expands-free-emergency-medical-services-to-30-states/"
+  },
+  "S3": {
+   "label": "Voice of Nigeria (7 Oct 2025): Gombe launches State Emergency Medical Services and Ambulance Scheme",
+   "url": "https://von.gov.ng/gombe-government-launches-emergency-medical-services-scheme/"
+  },
+  "S4": {
+   "label": "ThisDay (2 Oct 2025): Kaduna launches KADSEMSAS across all 23 LGAs",
+   "url": "https://www.thisdaylive.com/2025/10/02/sani-launches-emergency-medical-services-in-kaduna/"
+  },
+  "S5": {
+   "label": "Nairametrics (13 Jun 2025): LASAMBUS answered 44,152 of 45,277 calls, 2021-2025",
+   "url": "https://nairametrics.com/2025/06/13/lagos-state-ambulance-service-responds-to-over-44000-emergencies-hits-97-5-response-rate-in-4-years/"
+  },
+  "S6": {
+   "label": "The Whistler (9 Jul 2026): NEMSAS expanding from its FCT pilot to 34 states",
+   "url": "https://thewhistler.ng/fg-expands-emergency-healthcare-to-34-states/"
+  },
+  "S7": {
+   "label": "Premium Times (2 Mar 2026): NEMSAS says 33 states and the FCT have EMS systems and 21 are operational (states not named)",
+   "url": "https://www.premiumtimesng.com/health/health-news/860878-fg-strengthens-emergency-care-nationwide-seeks-improved-access.html"
+  }
+ },
+ "states": {
+  "Imo": {
+   "status": "none",
+   "evidence": [
+    [
+     "Not participating as of Aug 2026",
+     "S1"
+    ]
+   ]
+  },
+  "Lagos": {
+   "status": "active",
+   "evidence": [
+    [
+     "LASAMBUS state ambulance service",
+     "S5"
+    ]
+   ]
+  },
+  "Federal Capital Territory": {
+   "status": "active",
+   "evidence": [
+    [
+     "NEMSAS pilot started in the FCT",
+     "S6"
+    ]
+   ]
+  },
+  "Gombe": {
+   "status": "active",
+   "evidence": [
+    [
+     "State scheme (SEMSAS) launched Oct 2025",
+     "S3"
+    ],
+    [
+     "NEMSAS payment, Q3 2025",
+     "S2"
+    ]
+   ]
+  },
+  "Kaduna": {
+   "status": "active",
+   "evidence": [
+    [
+     "KADSEMSAS launched Oct 2025",
+     "S4"
+    ]
+   ]
+  },
+  "Benue": {
+   "status": "active",
+   "evidence": [
+    [
+     "Onboarded and state scheme rolled out Aug 2026",
+     "S1"
+    ]
+   ]
+  },
+  "Yobe": {
+   "status": "active",
+   "evidence": [
+    [
+     "NEMSAS payment, Q3 2025",
+     "S2"
+    ]
+   ]
+  },
+  "Rivers": {
+   "status": "active",
+   "evidence": [
+    [
+     "NEMSAS payment, Q3 2025",
+     "S2"
+    ]
+   ]
+  },
+  "Ebonyi": {
+   "status": "active",
+   "evidence": [
+    [
+     "NEMSAS payment, Q3 2025",
+     "S2"
+    ]
+   ]
+  },
+  "Ogun": {
+   "status": "active",
+   "evidence": [
+    [
+     "NEMSAS payment, Q3 2025",
+     "S2"
+    ]
+   ]
+  },
+  "Bayelsa": {
+   "status": "active",
+   "evidence": [
+    [
+     "NEMSAS payment, Q3 2025",
+     "S2"
+    ]
+   ]
+  },
+  "Osun": {
+   "status": "active",
+   "evidence": [
+    [
+     "NEMSAS payment, Q3 2025",
+     "S2"
+    ]
+   ]
+  },
+  "Bauchi": {
+   "status": "active",
+   "evidence": [
+    [
+     "NEMSAS payment, Q3 2025",
+     "S2"
+    ]
+   ]
+  },
+  "Anambra": {
+   "status": "active",
+   "evidence": [
+    [
+     "NEMSAS payment, Q3 2025",
+     "S2"
+    ]
+   ]
+  }
+ },
+ "default": {
+  "status": "paper",
+  "evidence": [
+   [
+    "Onboarded, per the Federal Ministry of Health (Aug 2026)",
+    "S1"
+   ]
+  ]
+ }
+}
