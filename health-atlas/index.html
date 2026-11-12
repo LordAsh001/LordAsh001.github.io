@@ -387,7 +387,7 @@ abbr.gl{text-decoration:underline dotted;text-underline-offset:3px;cursor:help;t
 <section class="view" id="view-data" role="tabpanel">
   <h2>Download the data</h2>
   <div class="grid" id="dlList"></div>
-  <p class="note prose" style="margin-top:14px">Facility records are GRID3's, unchanged except for the three referral flags added here. Credit GRID3 / CIESIN (CC BY 4.0) when you reuse them. The ward population file builds on GRID3 operational wards (CC BY-SA 4.0) and WorldPop, so it is shared under CC BY-SA 4.0.</p>
+  <p class="note prose" style="margin-top:14px">Facility records are GRID3's, taken from the copy republished by Kemabonta (2026) and unchanged except for the three referral flags added here. Credit GRID3 / CIESIN (CC BY 4.0) and Kemabonta (2026) when you reuse them. The ward population file builds on GRID3 operational wards (CC BY-SA 4.0) and WorldPop, so it is shared under CC BY-SA 4.0.</p>
 </section>
 
 <!-- ================= ABOUT ================= -->
@@ -403,7 +403,7 @@ abbr.gl{text-decoration:underline dotted;text-underline-offset:3px;cursor:help;t
   <ul id="srcList"></ul>
   <h2>Method</h2>
   <ol>
-    <li><b>Facilities.</b> All 70,235 records of GRID3 NGA Health Facilities v4.0 (CIESIN, Columbia University; integrates NHFR 2024/2026, NPHCDA and GRID3 v2 inputs). The copy used here was checked against the live GRID3 service by state and level of care on 7 November 2026. 58,367 records have coordinates inside Nigeria and are mapped.</li>
+    <li><b>Facilities.</b> All 70,235 records of GRID3 NGA Health Facilities v4.0 (CIESIN, Columbia University; integrates NHFR 2024/2026, NPHCDA and GRID3 v2 inputs). The records were taken from the copy republished by Kemabonta (2026), using only its GRID3 rows, and checked against the live GRID3 service by state and level of care on 7 November 2026 (counts match exactly). 58,367 records have coordinates inside Nigeria and are mapped.</li>
     <li><b>Referral hospital.</b> A hospital-type facility recorded as secondary or tertiary, or typed General, Specialist, Cottage, Federal Medical Centre or Teaching/Tertiary hospital, and not recorded as closed or non-functional. Clinics, health centres, maternity homes and laboratories are left out even where the register gives them a higher level. <b>Public referral hospital</b>: the same, owned by federal, state or local government or the military. <b>Tertiary</b>: tertiary level, Federal Medical Centre or teaching hospital.</li>
     <li><b>Population.</b> WorldPop 2025 population summed to 9,307 GRID3 operational wards (as published by Kemabonta, 2026). Each ward's population is placed at the median position of its mapped facilities, or at its LGA's median where the ward has none (273 wards). Wards average about 100 km², so this puts people near the main settlement of each ward.</li>
     <li><b>Distance.</b> Great-circle distance from each ward point to the nearest facility of each class. Bands are reported in straight-line kilometres. For time, roads are taken as 1.4× the straight line and ambulances average 40 km/h (2.1 minutes per straight-line km).</li>
@@ -425,7 +425,7 @@ abbr.gl{text-decoration:underline dotted;text-underline-offset:3px;cursor:help;t
   </div>
 </section>
 </main>
-<footer>© 2026 Shagbaor Hycent Amool · Facility data © GRID3 / CIESIN, Columbia University (CC BY 4.0) · Population: WorldPop · For research, education and planning discussion — not a directory for emergencies. In an emergency call 112.</footer>
+<footer>© 2026 Shagbaor Hycent Amool · Facility data © GRID3 / CIESIN, Columbia University (CC BY 4.0), via Kemabonta (2026) · Population: WorldPop, via Kemabonta (2026) · For research, education and planning discussion — not a directory for emergencies. In an emergency call 112.</footer>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
 <script>
@@ -778,7 +778,7 @@ function renderDL(){
 }
 const SRC=[
  ['GRID3 NGA – Health Facilities v4.0. CIESIN, Columbia University (2026). CC BY 4.0.','https://data.grid3.org/datasets/GRID3::grid3-nga-health-facilities-v4-0/about'],
- ['Kemabonta, T. (2026). Nigeria health facilities, combined layer with 2025 ward electricity access [Data set] — source of the ward population table (WorldPop 2025 on GRID3 operational wards v4.0).','https://github.com/Kemabonta/nigeria-health-facilities-ward-ear'],
+ ['Kemabonta, T. (2026). Nigeria health facilities, combined layer with 2025 ward electricity access [Data set]. GitHub. Source of the copy of the GRID3 v4.0 facility records used here (GRID3 rows only) and of the ward population table (WorldPop 2025 on GRID3 operational wards v4.0).','https://github.com/Kemabonta/nigeria-health-facilities-ward-ear'],
  ['State boundaries: geoBoundaries (CC BY 4.0), as used in the Nigeria Energy Atlas.','/energy-atlas/'],
  ['National Health Act 2014, section 11 (Basic Health Care Provision Fund).','https://lawglobalhub.com/section-11-nigerian-national-health-act-2014'],
  ['Premium Times (2 March 2026). FG strengthens emergency care nationwide.','https://www.premiumtimesng.com/health/health-news/860878-fg-strengthens-emergency-care-nationwide-seeks-improved-access.html'],
