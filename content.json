@@ -1075,7 +1075,7 @@
         },
         {
           "name": "Nigeria Health Atlas",
-          "text": "Map all 70,235 health facilities in Nigeria's GRID3 register by level, ownership and status, and see how far every ward lives from a public referral hospital and a tertiary hospital. An ambulance-planning section shows where stations would put 95% of Nigerians within reach, how many ambulances each state needs, and what India, Rwanda, Ghana, Ethiopia, Kenya, Lagos, the UK and France teach. The data downloads as CSV or JSON.",
+          "text": "Map all 70,235 health facilities in Nigeria's GRID3 register by level, ownership and status, and see how far people live from a public referral hospital and a tertiary hospital, measured on a 1 km population grid. An ambulance-planning section shows where stations would put 95% of Nigerians within reach, how many ambulances each state needs, and what India, Rwanda, Ghana, Ethiopia, Kenya, Lagos, the UK and France teach. The data downloads as CSV or JSON. A state-by-state view shows where enrolment in the national emergency scheme and real distance to care diverge.",
           "link_label": "Open tool",
           "sdgs": [
             3,
@@ -1098,11 +1098,11 @@
               "label": "health facilities"
             },
             {
-              "value": "9,306",
-              "label": "wards measured for hospital access"
+              "value": "846,108",
+              "label": "1 km population cells measured for hospital access"
             },
             {
-              "value": "1,298",
+              "value": "2,121",
               "label": "stations for 95% reach within 10 km"
             }
           ],
