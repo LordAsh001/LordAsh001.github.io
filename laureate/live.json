@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-11",
+ "updated": "2026-11-12",
  "sources": [
   {
    "source": "Opportunities for Africans",
@@ -8,23 +8,23 @@
   },
   {
    "source": "Opportunity Desk",
-   "ok": false,
-   "error": "The read operation timed out"
+   "ok": true,
+   "items": 7
   },
   {
    "source": "Opportunities Corners",
    "ok": true,
-   "items": 4
+   "items": 2
   },
   {
    "source": "Scholarship Region",
    "ok": true,
-   "items": 3
+   "items": 7
   },
   {
    "source": "Opportunities for Youth",
-   "ok": false,
-   "error": "HTTP Error 403: Forbidden"
+   "ok": true,
+   "items": 6
   },
   {
    "source": "Commonwealth Scholarship Commission",
@@ -57,6 +57,108 @@
  ],
  "items": [
   {
+   "title": "Gratitude Network Fellowship 2027",
+   "link": "https://opportunitydesk.org/2026/11/12/gratitude-network-fellowship-2027/",
+   "date": "2026-11-12",
+   "source": "Opportunity Desk",
+   "official": false,
+   "ids": [],
+   "summary": "Deadline: January 15, 2027 Applications are invited for the Gratitude Network Fellowship 2027. The Gratitude Network Fellowship is a highly selective, 13 month program designed to accelerate the grow…",
+   "seen": "2026-11-12"
+  },
+  {
+   "title": "AllPeopleBeHappy Volunteer Service Award Program 2027 (Funded)",
+   "link": "https://opportunitydesk.org/2026/11/12/allpeoplebehappy-volunteer-service-award-program-2027/",
+   "date": "2026-11-12",
+   "source": "Opportunity Desk",
+   "official": false,
+   "ids": [],
+   "summary": "Deadline: November 15, 2026 Applications are open for the AllPeopleBeHappy Volunteer Service Award Program 2027. AllPeopleBeHappy is proud to launch their second year Volunteer Service Award program,…",
+   "seen": "2026-11-12"
+  },
+  {
+   "title": "Thrive Capital Summer Fellowship 2027 ($100,000 salary)",
+   "link": "https://opportunitydesk.org/2026/11/12/thrive-capital-summer-fellowship-2027/",
+   "date": "2026-11-12",
+   "source": "Opportunity Desk",
+   "official": false,
+   "ids": [],
+   "summary": "Deadline: December 11, 2026 Applications are invited for the Thrive Capital Summer Fellowship 2027. The Fellowship is an opportunity for exceptional college students to pursue their own curiosities, …",
+   "seen": "2026-11-12"
+  },
+  {
+   "title": "Jodi Harris Scholarship 2027 for Emerging Marketing Leaders",
+   "link": "https://opportunitydesk.org/2026/11/12/jodi-harris-scholarship-2027/",
+   "date": "2026-11-12",
+   "source": "Opportunity Desk",
+   "official": false,
+   "ids": [],
+   "summary": "Deadline: December 4, 2027 Applications are open for the Jodi Harris Scholarship 2027. They are accepting 10 emerging marketing leaders back into the Scholarship this year alongside the team at AB In…",
+   "seen": "2026-11-12"
+  },
+  {
+   "title": "World Leaders Convention 2027 in Austria (Fully Funded)",
+   "link": "https://opportunitiescorners.com/world-leaders-convention-2027-in-austria/",
+   "date": "2026-11-12",
+   "source": "Opportunities Corners",
+   "official": false,
+   "ids": [],
+   "summary": "Are you a young leader, student, entrepreneur, professional, researcher, or changemaker looking for an international leadership opportunity in Europe? Applications are now open for the World Leaders …",
+   "seen": "2026-11-12"
+  },
+  {
+   "title": "Rockefeller University Summer Undergraduate Program 2027 | Fully Funded",
+   "link": "https://www.scholarshipregion.com/rockefeller-university-summer-undergraduate-program/",
+   "date": "2026-11-12",
+   "source": "Scholarship Region",
+   "official": false,
+   "ids": [],
+   "summary": "Rockefeller University in the USA is welcoming international and home students to apply for its 2027 Summer Undergraduate Research Fellowships. The Rockefeller University Summer Undergraduate Program…",
+   "seen": "2026-11-12"
+  },
+  {
+   "title": "2026 Kwara State Government Scholarship and Bursary Award | How To Apply",
+   "link": "https://www.scholarshipregion.com/kwara-state-government-scholarship/",
+   "date": "2026-11-12",
+   "source": "Scholarship Region",
+   "official": false,
+   "ids": [],
+   "summary": "The Kwara State Scholarship Board has opened applications for its 2025 and 2026 bursary awards. The Kwara State Government Scholarship is a ₦100,000 cash support while the bursary is a ₦30,000 fund t…",
+   "seen": "2026-11-12"
+  },
+  {
+   "title": "NNPC/TotalEnergies International Scholarship in France 2027 | Fully Funded",
+   "link": "https://www.scholarshipregion.com/nnpc-totalenergies-international-scholarship/",
+   "date": "2026-11-12",
+   "source": "Scholarship Region",
+   "official": false,
+   "ids": [
+    "total"
+   ],
+   "summary": "Total Energies is inviting applications from suitably qualified young Nigerians for its 2027/28 NNPC Limited/TotalEnergies International Scholarship Scheme. The TotalEnergies International Scholarshi…",
+   "seen": "2026-11-12"
+  },
+  {
+   "title": "EYWEP and African Union Opportunities 2026: Youth and Women Entrepreneurship, COYWA Programme, Scholarships, Fellowships and Career Resources in Africa",
+   "link": "https://opportunitiesforyouth.org/2026/11/12/career-opportunities-with-auda-nepad-jobs-and-young-professionals-programme-for-africans/",
+   "date": "2026-11-12",
+   "source": "Opportunities for Youth",
+   "official": false,
+   "ids": [],
+   "summary": "Young people and women across Africa can explore a range of development, entrepreneurship, education and career-related resources through the ECOWAS Youth and Women Entrepreneurship Programme (EYWEP)…",
+   "seen": "2026-11-12"
+  },
+  {
+   "title": "ICANN89 Fellowship 2027: Applications Open for the ICANN Policy Forum Fellowship in Vancouver, Canada",
+   "link": "https://opportunitiesforyouth.org/2026/11/12/icann89-fellowship-2027-applications-open-for-the-icann-policy-forum-fellowship-in-vancouver-canada/",
+   "date": "2026-11-12",
+   "source": "Opportunities for Youth",
+   "official": false,
+   "ids": [],
+   "summary": "The Internet Corporation for Assigned Names and Numbers (ICANN) has opened applications for the ICANN89 Policy Forum Fellowship Program 2027, offering an opportunity for previous ICANN Fellowship Pro…",
+   "seen": "2026-11-12"
+  },
+  {
    "title": "CERN OPENLAB Summer Program 2027 in Switzerland (Fully Funded)",
    "link": "https://opportunitiescorners.com/cern-openlab-summer-program-2027/",
    "date": "2026-11-11",
@@ -87,6 +189,142 @@
    "ids": [],
    "summary": "The University of Saskatchewan in Canada is inviting applications for a fully funded graduate opportunity for students from around the world. The University of Saskatchewan Graduate Scholarship is of…",
    "seen": "2026-11-11"
+  },
+  {
+   "title": "NNPC Ltd/ TotalEnergies International Masters Degree Scholarship 2027/2028 for Study in France (Fully Funded)",
+   "link": "https://www.opportunitiesforafricans.com/nnpc-ltd-totalenergies-international-masters-degree-scholarship-2027-2028/",
+   "date": "2026-11-11",
+   "source": "Opportunities for Africans",
+   "official": false,
+   "ids": [
+    "total"
+   ],
+   "summary": "Application Deadline: 31 January 2027 Applications are now open for the 2027/2028 NNPC Limited / TotalEnergies International Scholarship. NNPC Limited/TotalEnergies and its corporate partners sponsor…",
+   "seen": "2026-11-12"
+  },
+  {
+   "title": "NNPC Limited / TotalEnergies National Merit Scholarship Scheme (NMSS) 2026/2027 for young Nigerian students.",
+   "link": "https://www.opportunitiesforafricans.com/nnpc-limited-totalenergies-national-merit-scholarship-scheme-nmss-2026-2027-for-young-nigerian-students/",
+   "date": "2026-11-11",
+   "source": "Opportunities for Africans",
+   "official": false,
+   "ids": [
+    "total"
+   ],
+   "summary": "Application Deadline: 7 December 2026 Applications are now open for the 2026/2027 NNPC Limited / TotalEnergies National Merit Scholarship Scheme. NNPL Limited and TotalEnergies Upstream Nigeria Limit…",
+   "seen": "2026-11-12"
+  },
+  {
+   "title": "ANH Academy Science-Policy Fellowships 2027 (Round 3)",
+   "link": "https://opportunitydesk.org/2026/11/11/anh-academy-science-policy-fellowships-2027-round-3/",
+   "date": "2026-11-11",
+   "source": "Opportunity Desk",
+   "official": false,
+   "ids": [],
+   "summary": "Deadline: February 28, 2027 Applications are open for the ANH Academy Science-Policy Fellowships 2027. The Agriculture, Nutrition & Health (ANH) Academy is pleased to announce the third round of one-…",
+   "seen": "2026-11-12"
+  },
+  {
+   "title": "Harvard Kennedy School (HKS) American Service Fellowship 2027 (up to $100,000)",
+   "link": "https://opportunitydesk.org/2026/11/11/harvard-kennedy-school-american-service-fellowship-2027/",
+   "date": "2026-11-11",
+   "source": "Opportunity Desk",
+   "official": false,
+   "ids": [],
+   "summary": "Deadline: December 1, 2026 Applications are invited for the Harvard Kennedy School (HKS) American Service Fellowship 2027. The American Service Fellowship offers a full scholarship and a partial livi…",
+   "seen": "2026-11-12"
+  },
+  {
+   "title": "Africa Dyslexia Teacher Fellowship Program 2027",
+   "link": "https://opportunitydesk.org/2026/11/11/africa-dyslexia-teacher-fellowship-program-2027/",
+   "date": "2026-11-11",
+   "source": "Opportunity Desk",
+   "official": false,
+   "ids": [],
+   "summary": "Deadline: November 20, 2026 Africa Dyslexia Organisation (ADO), in partnership with REED Charitable Foundation, invites passionate and committed teachers across Africa to apply for the Africa Dyslexi…",
+   "seen": "2026-11-12"
+  },
+  {
+   "title": "Young Political Economy Forum Hong Kong 2026 (Fully Funded)",
+   "link": "https://opportunitiescorners.com/young-political-economy-forum-hong-kong-2026/",
+   "date": "2026-11-11",
+   "source": "Opportunities Corners",
+   "official": false,
+   "ids": [],
+   "summary": "The applications are now open for the Young Political Economy Forum Hong Kong 2026. The Young Political Economy Forum (YPEF) Hong Kong 2026 is an international forum bringing together young leaders, …",
+   "seen": "2026-11-12"
+  },
+  {
+   "title": "TotalEnergies National Merit Scholarship 2026/27 For Nigerians | How To Apply",
+   "link": "https://www.scholarshipregion.com/totalenergies-national-merit-scholarship/",
+   "date": "2026-11-11",
+   "source": "Scholarship Region",
+   "official": false,
+   "ids": [
+    "total"
+   ],
+   "summary": "Applications for the TotalEnergies National Merit Scholarship 2026/27 have been announced for interested and qualified candidates. The TotalEnergies National Scholarship is an annual financial grant …",
+   "seen": "2026-11-12"
+  },
+  {
+   "title": "2027 Government of Ireland UCC Futures Scholars Programme (GOI) | Fully Funded",
+   "link": "https://www.scholarshipregion.com/ucc-futures-scholars-programme-goi/",
+   "date": "2026-11-11",
+   "source": "Scholarship Region",
+   "official": false,
+   "ids": [],
+   "summary": "The University College Cork (UCC) in Ireland has announced applications for a fully funded UCC Futures Scholars Program. Funded by the Government of Ireland Empower Program, the UCC Futures Scholars …",
+   "seen": "2026-11-12"
+  },
+  {
+   "title": "Illinois State University Scholarship 2027 in USA | Fully Funded",
+   "link": "https://www.scholarshipregion.com/illinois-state-university-scholarship/",
+   "date": "2026-11-11",
+   "source": "Scholarship Region",
+   "official": false,
+   "ids": [],
+   "summary": "Applications for the Illinois State University Scholarship 2027 are now open. The Illinois State University Graduate Scholarships provide funding for successful candidates through fully funded gradua…",
+   "seen": "2026-11-12"
+  },
+  {
+   "title": "KNUST–GIZ AI for Professionals Programme 2026: Fully Funded Artificial Intelligence Training for 120 Young Ghanaian Graduates",
+   "link": "https://opportunitiesforyouth.org/2026/11/11/knust-giz-ai-for-professionals-programme-2026-fully-funded-artificial-intelligence-training-for-120-young-ghanaian-graduates/",
+   "date": "2026-11-11",
+   "source": "Opportunities for Youth",
+   "official": false,
+   "ids": [],
+   "summary": "Artificial intelligence (AI) is rapidly transforming the global workplace, changing how businesses operate, how professionals perform their duties, and how organisations make decisions. From content …",
+   "seen": "2026-11-12"
+  },
+  {
+   "title": "Thrive Capital Summer Fellowship 2027 in the USA – Paid Fellowship with $100,000 Annualized Salary and $40,000 Education Stipend",
+   "link": "https://opportunitiesforyouth.org/2026/11/11/thrive-capital-summer-fellowship-2026/",
+   "date": "2026-11-11",
+   "source": "Opportunities for Youth",
+   "official": false,
+   "ids": [],
+   "summary": "Thrive Capital has officially opened applications for its Summer 2027 Thrive Fellowship, an exciting opportunity for exceptional college students interested in technology, entrepreneurship, artificia…",
+   "seen": "2026-11-12"
+  },
+  {
+   "title": "Certificate Programme for Young Cooperative Leaders 2026: Fully Funded Four-Week Virtual Leadership Training for Young People Aged 18–35 in Asia and the Pacific",
+   "link": "https://opportunitiesforyouth.org/2026/11/11/certificate-programme-for-young-cooperative-leaders-2026-fully-funded-four-week-virtual-leadership-training-for-young-people-aged-18-35-in-asia-and-the-pacific/",
+   "date": "2026-11-11",
+   "source": "Opportunities for Youth",
+   "official": false,
+   "ids": [],
+   "summary": "Young people actively involved in cooperative movements across Asia and the Pacific have an opportunity to strengthen their leadership abilities through the Certificate Programme for Young Cooperativ…",
+   "seen": "2026-11-12"
+  },
+  {
+   "title": "IWMF Kim Wall Memorial Fund 2027: Apply for a $5,000 Journalism Grant Supporting Women and Nonbinary Journalists Worldwide",
+   "link": "https://opportunitiesforyouth.org/2026/11/11/iwmf-kim-wall-memorial-fund-2027-apply-for-a-5000-journalism-grant-supporting-women-and-nonbinary-journalists-worldwide/",
+   "date": "2026-11-11",
+   "source": "Opportunities for Youth",
+   "official": false,
+   "ids": [],
+   "summary": "Women and nonbinary journalists from around the world have an opportunity to receive financial support for independent reporting projects through the 2027 Kim Wall Memorial Fund, an initiative admini…",
+   "seen": "2026-11-12"
   },
   {
    "title": "European master in Advanced Solid Mechanics",
@@ -1463,250 +1701,6 @@
    "ids": [],
    "summary": "Trent University in Canada offers scholarships and awards to international students seeking to pursue bachelor’s degrees at the institution. The Trent University International Scholarships are awarde…",
    "seen": "2026-10-31"
-  },
-  {
-   "title": "SA-CERN Excellence Scholarships 2027 (SA-CERN Bursary) | Fully Funded",
-   "link": "https://www.scholarshipregion.com/sa-cern-excellence-scholarships/",
-   "date": "2026-10-30",
-   "source": "Scholarship Region",
-   "official": false,
-   "ids": [],
-   "summary": "Applications are now open for the 2027 SA-CERN Programme Excellence MSc/PhD Bursary Programme. The SA-CERN programme is a national programme funded by the Department of Science and Innovation and the…",
-   "seen": "2026-10-31"
-  },
-  {
-   "title": "2027/2028 Commonwealth Scholarship and Fellowship Plan (CSFP) nomination interview from 2nd to 5th November, 2026",
-   "link": "https://education.gov.ng/2027-2028-commonwealth-scholarship-and-fellowship-plan-csfp-nomination-interview-from-2nd-to-5th-november-2026/",
-   "date": "2026-10-29",
-   "source": "Federal Ministry of Education, Nigeria",
-   "official": true,
-   "ids": [
-    "csc-masters"
-   ],
-   "summary": "The Honorable Minister of Education, Dr. Maruf Olatunji Alausa, invites all candidates who had successfully completed the Commonwealth Scholarship and Fellowship Plan (CSFP) application form via the …",
-   "seen": "2026-10-29"
-  },
-  {
-   "title": "Mastercard Foundation Scholars Program at ALCHE 2027 (Fully-funded)",
-   "link": "https://opportunitydesk.org/2026/10/29/mastercard-foundation-scholars-program-at-alche-2027/",
-   "date": "2026-10-29",
-   "source": "Opportunity Desk",
-   "official": false,
-   "ids": [
-    "mastercard"
-   ],
-   "summary": "Deadline: Unspecified Applications for the Mastercard Foundation Scholars Program at ALCHE 2027 are now open. The African Leadership College of Higher Education (ALCHE), in partnership with the Maste…",
-   "seen": "2026-10-29"
-  },
-  {
-   "title": "Columbia HBCU Fellowship Program Fall 2027",
-   "link": "https://opportunitydesk.org/2026/10/29/columbia-hbcu-fellowship-program-fall-2027/",
-   "date": "2026-10-29",
-   "source": "Opportunity Desk",
-   "official": false,
-   "ids": [],
-   "summary": "Deadline: January 7, 2027 Applications are open for the Columbia HBCU Fellowship Program Fall 2027. Open to seniors and recent graduates of Historically Black Colleges & Universities (HBCUs) as defin…",
-   "seen": "2026-10-29"
-  },
-  {
-   "title": "Heinrich Böll Foundation Feminist Futures Fellowship 2027",
-   "link": "https://opportunitydesk.org/2026/10/29/heinrich-boll-foundation-feminist-futures-fellowship-2027/",
-   "date": "2026-10-29",
-   "source": "Opportunity Desk",
-   "official": false,
-   "ids": [],
-   "summary": "Deadline: November 2, 2026 Applications are open for the Heinrich Böll Foundation Feminist Futures Fellowship 2027. The Heinrich Böll Foundation’s (HBS), Washington DC Office is pleased to announce t…",
-   "seen": "2026-10-29"
-  },
-  {
-   "title": "Hans De Wit Fellowship 2027 (stipend available)",
-   "link": "https://opportunitydesk.org/2026/10/29/hans-de-wit-fellowship-2027/",
-   "date": "2026-10-29",
-   "source": "Opportunity Desk",
-   "official": false,
-   "ids": [],
-   "summary": "Deadline: November 15, 2026 Applications are open for the Hans De Wit Fellowship 2027. Partially funded with seed funding generously donated by World Education Services, the Hans de Wit Fellowship wa…",
-   "seen": "2026-10-29"
-  },
-  {
-   "title": "Swedish Institute SI Global Scholarship 2027 (Fully Funded)",
-   "link": "https://opportunitiescorners.com/swedish-institute-si-global-scholarship-2027/",
-   "date": "2026-10-29",
-   "source": "Opportunities Corners",
-   "official": false,
-   "ids": [
-    "si"
-   ],
-   "summary": "The Swedish Institute (SI) Global Scholarship 2027 is a fully funded opportunity for international students to pursue a Master’s Program in Sweden. Swedish universities are now accepting applications…",
-   "seen": "2026-10-29"
-  },
-  {
-   "title": "Mozilla Foundation Fellowships 2027-2028 (up to $125,000)",
-   "link": "https://opportunitydesk.org/2026/10/29/mozilla-foundation-fellowships-2027-2028/",
-   "date": "2026-10-29",
-   "source": "Opportunity Desk",
-   "official": false,
-   "ids": [],
-   "summary": "Deadline: December 17, 2026 Applications are open for the Mozilla Foundation Fellowships 2027-2028. Mozilla Foundation will award 10 Fellowships for the 2027–2028 period. They are looking for extraor…",
-   "seen": "2026-10-30"
-  },
-  {
-   "title": "Green Global Fellowship 2027 for Emerging Leaders",
-   "link": "https://opportunitydesk.org/2026/10/29/green-global-fellowship-2027/",
-   "date": "2026-10-29",
-   "source": "Opportunity Desk",
-   "official": false,
-   "ids": [],
-   "summary": "Deadline: January 7, 2027 Applications are invited for the Green Global Fellowship 2027. The Green Fellows Programme invites applications from emerging leaders committed to advancing sustainability t…",
-   "seen": "2026-10-30"
-  },
-  {
-   "title": "Clemson University Graduate Scholarships in United States 2027 | Fully Funded",
-   "link": "https://www.scholarshipregion.com/clemson-university-graduate-scholarship/",
-   "date": "2026-10-29",
-   "source": "Scholarship Region",
-   "official": false,
-   "ids": [],
-   "summary": "The Clemson University Graduate Scholarship offers a fully funded graduate opportunity for intending Masters students to study in the United States. The Clemson University Scholarships provides a ful…",
-   "seen": "2026-10-30"
-  },
-  {
-   "title": "University of Liverpool Graduate Teaching Fellowship in UK 2027 | Fully Funded",
-   "link": "https://www.scholarshipregion.com/university-of-liverpool-graduate-teaching-fellowship/",
-   "date": "2026-10-29",
-   "source": "Scholarship Region",
-   "official": false,
-   "ids": [],
-   "summary": "The University of Liverpool is calling on students from all around the world to apply for its 2027 four-year fully funded Graduate Teaching Fellowships for Economics PhD students. The fellowship incl…",
-   "seen": "2026-10-30"
-  },
-  {
-   "title": "7 Australian Universities Offering Scholarships to International Undergraduate Students (2027)",
-   "link": "https://www.scholarshipregion.com/australian-universities-offering-scholarships/",
-   "date": "2026-10-29",
-   "source": "Scholarship Region",
-   "official": false,
-   "ids": [],
-   "summary": "According to the official scholarship information published by Australian universities, international undergraduate students can access a range of funding options, including tuition-fee reductions, m…",
-   "seen": "2026-10-30"
-  },
-  {
-   "title": "University of Angers Eiffel Excellence Scholarship in France 2027 | Fully Funded",
-   "link": "https://www.scholarshipregion.com/angers-eiffel-excellence-scholarship/",
-   "date": "2026-10-29",
-   "source": "Scholarship Region",
-   "official": false,
-   "ids": [
-    "eiffel"
-   ],
-   "summary": "The University of Angers Eiffel Scholarship 2027 is open to international postgraduate applicants seeking to study in France. The scholarship is funded by the French Ministry of Foreign Affairs (Camp…",
-   "seen": "2026-10-30"
-  },
-  {
-   "title": "2027 EPFL Summer Research Program (School of Life Sciences) for International Students | Fully Funded",
-   "link": "https://www.scholarshipregion.com/epfl-summer-research-program/",
-   "date": "2026-10-29",
-   "source": "Scholarship Region",
-   "official": false,
-   "ids": [],
-   "summary": "The École polytechnique fédérale de Lausanne (EPFL) welcomes applications for its fully funded EPFL Summer Research Program for international students. The EPFL School of Life Sciences Summer Researc…",
-   "seen": "2026-10-30"
-  },
-  {
-   "title": "University of Birmingham Darwin Trust Studentship in UK 2027 | Fully Funded",
-   "link": "https://www.scholarshipregion.com/university-of-birmingham-darwin-trust-studentship/",
-   "date": "2026-10-29",
-   "source": "Scholarship Region",
-   "official": false,
-   "ids": [],
-   "summary": "The University of Birmingham is offering fully funded studentships for home and international students to pursue a PhD in Microbiology in the Biosciences Graduate Research School. The Darwin Trust of…",
-   "seen": "2026-10-30"
-  },
-  {
-   "title": "2027 Erasmus Mundus CLMCE Scholarship To Study in UK, France, Denmark (Fully Funded)",
-   "link": "https://www.scholarshipregion.com/erasmus-mundus-clmce-scholarship/",
-   "date": "2026-10-29",
-   "source": "Scholarship Region",
-   "official": false,
-   "ids": [
-    "erasmus"
-   ],
-   "summary": "The Erasmus Mundus CLMCE Scholarship is a 24-month full-time Erasmus Mundus Joint Master programme offered by universities in the UK, France, Denmark, the Netherlands, and Poland. The Erasmus Mundus …",
-   "seen": "2026-10-30"
-  },
-  {
-   "title": "2027 China University of Petroleum Scholarships For International Students | Fully Funded",
-   "link": "https://www.scholarshipregion.com/china-university-of-petroleum-scholarship/",
-   "date": "2026-10-29",
-   "source": "Scholarship Region",
-   "official": false,
-   "ids": [
-    "csc-china"
-   ],
-   "summary": "The China University of Petroleum (CUP) is calling for applications for the Chinese Government Scholarships 2027 in Beijing- one of the most beautiful cities in China. The China University of Petrole…",
-   "seen": "2026-10-30"
-  },
-  {
-   "title": "British Council Green & Digital Employability and Enterprise Programme 2027 (£150,000 grant)",
-   "link": "https://opportunitydesk.org/2026/10/28/british-council-green-digital-employability-and-enterprise-programme-2027/",
-   "date": "2026-10-28",
-   "source": "Opportunity Desk",
-   "official": false,
-   "ids": [],
-   "summary": "Deadline: November 17, 2026 Applications are open for the British Council Green & Digital Employability and Enterprise Programme 2027. GDEEp is the British Council’s pilot workforce development progr…",
-   "seen": "2026-10-28"
-  },
-  {
-   "title": "Science, Mathematics, and Research for Transformation (SMART) Scholarship-for-Service Program 2027/2028",
-   "link": "https://opportunitydesk.org/2026/10/28/smart-scholarship-for-service-program-2027-2028/",
-   "date": "2026-10-28",
-   "source": "Opportunity Desk",
-   "official": false,
-   "ids": [],
-   "summary": "Deadline: December 4, 2026 Applications are open for the Science, Mathematics, and Research for Transformation (SMART) Scholarship-for-Service Program 2027/2028. The Science, Mathematics, and Researc…",
-   "seen": "2026-10-28"
-  },
-  {
-   "title": "AHRC Doctoral Landscape Scholarship Awards at Birmingham City University 2027",
-   "link": "https://opportunitydesk.org/2026/10/28/ahrc-doctoral-landscape-awards-at-birmingham-city-university-2027/",
-   "date": "2026-10-28",
-   "source": "Opportunity Desk",
-   "official": false,
-   "ids": [],
-   "summary": "Deadline: November 16, 2026 Applications are open for the AHRC Doctoral Landscape Awards at Birmingham City University 2027. The AHRC Doctoral Landscape Award is a major new funding scheme from the A…",
-   "seen": "2026-10-28"
-  },
-  {
-   "title": "CDC Steven M. Teutsch Prevention Effectiveness (PE) Fellowship 2027 (Paid)",
-   "link": "https://opportunitydesk.org/2026/10/28/cdc-steven-m-teutsch-prevention-effectiveness-fellowship-2027/",
-   "date": "2026-10-28",
-   "source": "Opportunity Desk",
-   "official": false,
-   "ids": [],
-   "summary": "Deadline: January 8, 2027 Applications are open for the CDC Steven M. Teutsch Prevention Effectiveness (PE) Fellowship 2027. CDC’s Steven M. Teutsch Prevention Effectiveness (PE) Fellowship is a two-…",
-   "seen": "2026-10-28"
-  },
-  {
-   "title": "Impact AI Fellowship 2027 in Germany (Fully Funded)",
-   "link": "https://opportunitiescorners.com/impact-ai-fellowship-2027-in-germany/",
-   "date": "2026-10-28",
-   "source": "Opportunities Corners",
-   "official": false,
-   "ids": [],
-   "summary": "Applications are now open for the fully funded Impact AI Fellowship 2027 in Germany, offered by the Alexander von Humboldt Institute for Internet and Society (HIIG). This ten-week fellowship offers r…",
-   "seen": "2026-10-28"
-  },
-  {
-   "title": "NNPC/SNEPCo National University Scholarship Programme 2026 for Young Nigerian Students.",
-   "link": "https://www.opportunitiesforafricans.com/nnpc-snepco-national-university-scholarship-programme-2026/",
-   "date": "2026-10-28",
-   "source": "Opportunities for Africans",
-   "official": false,
-   "ids": [
-    "shell"
-   ],
-   "summary": "Application Deadline: NOVEMBER 30TH, 2026. Applications are now open for the 2026 NNPC/SNEPCo National University Scholarship Programme. The Shell Nigeria Exploration and Production Company Limited (…",
-   "seen": "2026-10-29"
   }
  ]
 }
