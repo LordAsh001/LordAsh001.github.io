@@ -197,10 +197,10 @@
    "source": "GloFAS, Copernicus Emergency Management Service",
    "licence": "Copernicus licence; free with attribution",
    "update": "Daily",
-   "rows": 1407,
+   "rows": 1448,
    "first": "2026-10-10",
-   "last": "2026-11-12",
-   "bytes": 199170,
+   "last": "2026-11-13",
+   "bytes": 204948,
    "fields": [
     {
      "name": "date",
@@ -588,5 +588,5 @@
   }
  ],
  "citation": "Amool, S. H. (2026). Nigeria Water Resources Atlas: data archive [Data set]. https://shagbaor.com/water-atlas/archive/",
- "generated": "2026-11-12T13:00Z"
+ "generated": "2026-11-13T02:02Z"
 }
