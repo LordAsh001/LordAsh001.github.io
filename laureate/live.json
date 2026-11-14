@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-13",
+ "updated": "2026-11-14",
  "sources": [
   {
    "source": "Opportunities for Africans",
@@ -9,7 +9,7 @@
   {
    "source": "Opportunity Desk",
    "ok": true,
-   "items": 7
+   "items": 5
   },
   {
    "source": "Opportunities Corners",
@@ -23,8 +23,8 @@
   },
   {
    "source": "Opportunities for Youth",
-   "ok": true,
-   "items": 7
+   "ok": false,
+   "error": "HTTP Error 403: Forbidden"
   },
   {
    "source": "Commonwealth Scholarship Commission",
@@ -57,6 +57,16 @@
  ],
  "items": [
   {
+   "title": "Summer Programs in Europe in 2027 (Fully Funded)",
+   "link": "https://opportunitiescorners.com/summer-programs-in-europe-in-2027/",
+   "date": "2026-11-14",
+   "source": "Opportunities Corners",
+   "official": false,
+   "ids": [],
+   "summary": "Europe is Calling. Your European Summer Adventure Starts Here! Exciting Summer Programs in Europe in 2027. Whether you’re an undergraduate student, a Master’s or PhD candidate, a young professional, …",
+   "seen": "2026-11-14"
+  },
+  {
    "title": "Erasmus Mundus Joint Master Degree in Advanced Microscopy with Artificial Intelligence",
    "link": "https://microscom.eu/",
    "date": "2026-11-13",
@@ -87,6 +97,28 @@
    "ids": [],
    "summary": "WAVES - Project overview https://erasmus-plus.ec.europa.eu/projects/search/details/101325634",
    "seen": "2026-11-13"
+  },
+  {
+   "title": "Quantum Technologies and Engineering Erasmus Mundus Master Plus",
+   "link": "https://www.quanteem.eu/",
+   "date": "2026-11-13",
+   "source": "Erasmus Mundus catalogue (EACEA)",
+   "official": true,
+   "ids": [
+    "erasmus"
+   ],
+   "summary": "QuanTEEM plus - Project overview https://erasmus-plus.ec.europa.eu/projects/search/details/101325739",
+   "seen": "2026-11-14"
+  },
+  {
+   "title": "EU-CONEXUS Joint Master Programme in Marine Biotechnology: Learning Community",
+   "link": "https://www.eu-conexus.eu/en/marine-biotechnology/",
+   "date": "2026-11-13",
+   "source": "Erasmus Mundus catalogue (EACEA)",
+   "official": true,
+   "ids": [],
+   "summary": "JMPMB Community - Project overview https://erasmus-plus.ec.europa.eu/projects/search/details/101325655",
+   "seen": "2026-11-14"
   },
   {
    "title": "University of Oxford Wolfson Scholarships in UK 2027 | Fully Funded",
@@ -159,6 +191,36 @@
    "ids": [],
    "summary": "Applications are now open for the 2027 Switzer Fellowship, an environmental leadership development programme offering selected graduate students an $18,000 cash award, leadership training, profession…",
    "seen": "2026-11-13"
+  },
+  {
+   "title": "UCD Iseult Honohan Doctoral Scholarship 2027 (Fully-funded)",
+   "link": "https://opportunitydesk.org/2026/11/13/ucd-iseult-honohan-doctoral-scholarship-2027/",
+   "date": "2026-11-13",
+   "source": "Opportunity Desk",
+   "official": false,
+   "ids": [],
+   "summary": "Deadline: January 15, 2027 Applications are open for the UCD Iseult Honohan Doctoral Scholarship 2027. The scholarship is named after Dr Iseult Honohan, one of the first female PhD graduates from the…",
+   "seen": "2026-11-14"
+  },
+  {
+   "title": "Bayer Foundation Scientific Fellowships 2027 (up to €10,000)",
+   "link": "https://opportunitydesk.org/2026/11/13/bayer-foundation-scientific-fellowships-2027/",
+   "date": "2026-11-13",
+   "source": "Opportunity Desk",
+   "official": false,
+   "ids": [],
+   "summary": "Deadline: January 18, 2027 Applications are open for the Bayer Foundation Scientific Fellowships 2027. The Bayer Foundation offers scientific fellowships for outstanding master, PhD, and medical stud…",
+   "seen": "2026-11-14"
+  },
+  {
+   "title": "BI Presidential Scholarships in Norway 2027 for International Students (Fully Funded)",
+   "link": "https://www.scholarshipregion.com/bi-presidential-scholarships/",
+   "date": "2026-11-13",
+   "source": "Scholarship Region",
+   "official": false,
+   "ids": [],
+   "summary": "The Norwegian Business School is offering fully funded BI Presidential Scholarships to students with remarkable academic records admitted to any MSc programme at campus Oslo or campus Bergen. This sc…",
+   "seen": "2026-11-14"
   },
   {
    "title": "European Master in Law, Data and Artificial Intelligence",
@@ -1641,68 +1703,6 @@
    ],
    "summary": "The American University in Cairo (AUC) is pleased to welcome applications for the 2027 Mastercard Foundation Scholars Program starting in Spring 2027. The AUC Mastercard Foundation Scholarship offers…",
    "seen": "2026-11-02"
-  },
-  {
-   "title": "Purdue University SURF Program in USA (Summer Undergraduate Research Fellowship) 2027 | Fully Funded",
-   "link": "https://www.scholarshipregion.com/purdue-university-surf-program/",
-   "date": "2026-11-02",
-   "source": "Scholarship Region",
-   "official": false,
-   "ids": [],
-   "summary": "The Purdue University SURF Program in the USA is a paid opportunity designed to encourage undergraduate students in their pursuit of advanced educational and career opportunities in research. The Pur…",
-   "seen": "2026-11-02"
-  },
-  {
-   "title": "CALTECH University Summer Research Program in USA 2027 | Fully Funded",
-   "link": "https://www.scholarshipregion.com/caltech-university-summer-research-program/",
-   "date": "2026-11-02",
-   "source": "Scholarship Region",
-   "official": false,
-   "ids": [],
-   "summary": "The California Institute of Technology (CALTECH) is offering fully funded Summer Undergraduate Research Program (SURF) for undergraduates worldwide. The CALTECH University Summer Research Program off…",
-   "seen": "2026-11-02"
-  },
-  {
-   "title": "2027/2029 Erasmus Mundus Master’s Scholarship in Journalism, Media and Globalisation (Fully Funded study in Europe)",
-   "link": "https://www.opportunitiesforafricans.com/2027-2029-erasmus-mundus-masters-scholarship-in-journalism/",
-   "date": "2026-11-02",
-   "source": "Opportunities for Africans",
-   "official": false,
-   "ids": [
-    "erasmus"
-   ],
-   "summary": "Application Deadline: 10 January 2027 at 13.00 Central European Time Applications are now open for the 2027/2029 Erasmus Mundus Master’s Scholarship in Journalism, Media and Globalisation. The Mundus…",
-   "seen": "2026-11-03"
-  },
-  {
-   "title": "The Government of Mauritius Africa Scholarships Scheme 2027 for study in Mauritius (Fully Funded)",
-   "link": "https://www.opportunitiesforafricans.com/the-government-of-mauritius-africa-scholarships-scheme-2027/",
-   "date": "2026-11-02",
-   "source": "Opportunities for Africans",
-   "official": false,
-   "ids": [],
-   "summary": "Application Deadline: 31 March 2027 Applications are now open for the 2027 Government of Mauritius Africa Scholarships Scheme. The Government of Mauritius invites applications from deserving students…",
-   "seen": "2026-11-03"
-  },
-  {
-   "title": "WAAW Foundation Scholarship 2026 for African Female Students ($500 award)",
-   "link": "https://www.opportunitiesforafricans.com/waaw-foundation-scholarship-2026-for-african-female-students/",
-   "date": "2026-11-02",
-   "source": "Opportunities for Africans",
-   "official": false,
-   "ids": [],
-   "summary": "Application Deadline: December 18, 2026 Applications are now open for the 2026 WAAW Foundation Scholarship. WAAW Foundation Scholarship enables female college students in Africa to pursue their studi…",
-   "seen": "2026-11-03"
-  },
-  {
-   "title": "WAAW Foundation Scholarship 2027 for Female College Students in Africa",
-   "link": "https://opportunitydesk.org/2026/11/02/waaw-foundation-scholarship-2027/",
-   "date": "2026-11-02",
-   "source": "Opportunity Desk",
-   "official": false,
-   "ids": [],
-   "summary": "Deadline: Unspecified Applications are open for the WAAW Foundation Scholarship 2027. WAAW Foundation Scholarship enables female college students in Africa to pursue their studies in a STEM-related c…",
-   "seen": "2026-11-03"
   }
  ]
 }
