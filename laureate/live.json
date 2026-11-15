@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-14",
+ "updated": "2026-11-15",
  "sources": [
   {
    "source": "Opportunities for Africans",
@@ -14,7 +14,7 @@
   {
    "source": "Opportunities Corners",
    "ok": true,
-   "items": 2
+   "items": 1
   },
   {
    "source": "Scholarship Region",
@@ -23,8 +23,8 @@
   },
   {
    "source": "Opportunities for Youth",
-   "ok": false,
-   "error": "HTTP Error 403: Forbidden"
+   "ok": true,
+   "items": 8
   },
   {
    "source": "Commonwealth Scholarship Commission",
@@ -57,6 +57,16 @@
  ],
  "items": [
   {
+   "title": "9 Scholarship Opportunities for Refugees in 2026–2027: Undergraduate, Master’s and PhD Funding in Africa, Europe, North America and Latin America",
+   "link": "https://opportunitiesforyouth.org/2026/11/15/9-scholarship-opportunities-for-refugees-in-2026-2027-undergraduate-masters-and-phd-funding-in-africa-europe-north-america-and-latin-america/",
+   "date": "2026-11-15",
+   "source": "Opportunities for Youth",
+   "official": false,
+   "ids": [],
+   "summary": "Refugee students seeking access to higher education have several scholarship opportunities to consider for the 2026–2027 academic period. A new list shared by the Local Engagement Refugee Research Ne…",
+   "seen": "2026-11-15"
+  },
+  {
    "title": "Summer Programs in Europe in 2027 (Fully Funded)",
    "link": "https://opportunitiescorners.com/summer-programs-in-europe-in-2027/",
    "date": "2026-11-14",
@@ -65,6 +75,66 @@
    "ids": [],
    "summary": "Europe is Calling. Your European Summer Adventure Starts Here! Exciting Summer Programs in Europe in 2027. Whether you’re an undergraduate student, a Master’s or PhD candidate, a young professional, …",
    "seen": "2026-11-14"
+  },
+  {
+   "title": "Ocean Futures Fellowship 2027: Building Ocean Career Pathways",
+   "link": "https://opportunitydesk.org/2026/11/14/ocean-futures-fellowship-2027-building-ocean-career-pathways/",
+   "date": "2026-11-14",
+   "source": "Opportunity Desk",
+   "official": false,
+   "ids": [],
+   "summary": "Deadline: November 17, 2026 Applications are open for the Ocean Futures Fellowship 2027. The Ocean Futures Fellowship empowers the next generation of ocean professionals, equipping them to address pr…",
+   "seen": "2026-11-15"
+  },
+  {
+   "title": "Food and Agriculture Organization of the United Nations (UN FAO) Award for Innovation 2027 ($10,000 prize)",
+   "link": "https://opportunitydesk.org/2026/11/14/un-fao-award-for-innovation-2027/",
+   "date": "2026-11-14",
+   "source": "Opportunity Desk",
+   "official": false,
+   "ids": [],
+   "summary": "Deadline: December 31, 2026 Applications are open for the UN FAO Award for Innovation 2027. At its Forty-second session, the Food and Agriculture Organization of the United Nations (FAO) Conference d…",
+   "seen": "2026-11-15"
+  },
+  {
+   "title": "Council of Europe Grants for Civil Society Organisations 2026 (up to €20,000)",
+   "link": "https://opportunitydesk.org/2026/11/14/council-of-europe-grants-for-civil-society-organisations-2026/",
+   "date": "2026-11-14",
+   "source": "Opportunity Desk",
+   "official": false,
+   "ids": [],
+   "summary": "Deadline: December 2, 2026 Applications are open for the Council of Europe Grants for Civil Society Organisations 2026. The Council of Europe’s democratic institutions and civil society division is g…",
+   "seen": "2026-11-15"
+  },
+  {
+   "title": "AFS Global STEM Academies 2027: Fully Funded International Study Abroad Scholarship for Students from 12 Countries",
+   "link": "https://opportunitiesforyouth.org/2026/11/14/afs-global-stem-academies-2027-fully-funded-international-study-abroad-scholarship-for-students-from-12-countries/",
+   "date": "2026-11-14",
+   "source": "Opportunities for Youth",
+   "official": false,
+   "ids": [],
+   "summary": "The AFS Global STEM Academies 2027 is an international, fully funded study abroad scholarship program offering young people an exceptional opportunity to develop their knowledge of Science, Technolog…",
+   "seen": "2026-11-15"
+  },
+  {
+   "title": "2027 Fully Funded Youth Delegate Programme: Apply for the Council of Europe Congress in Strasbourg",
+   "link": "https://opportunitiesforyouth.org/2026/11/14/2027-fully-funded-youth-delegate-programme-apply-for-the-council-of-europe-congress-in-strasbourg/",
+   "date": "2026-11-14",
+   "source": "Opportunities for Youth",
+   "official": false,
+   "ids": [],
+   "summary": "Key details Programme: 2027 Congress Youth Delegates Programme, part of the Rejuvenating Politics initiative Location: Strasbourg, France Who can apply: Young people aged 18–30 from Council of Europe…",
+   "seen": "2026-11-15"
+  },
+  {
+   "title": "How to Attend the One Young World Summit 2027 in Tokyo: Scholarships, Funding and Applications",
+   "link": "https://opportunitiesforyouth.org/2026/11/14/how-to-attend-one-young-world-summit-2026-scholarships-lead2030-challenges-and-fully-funded-opportunities/",
+   "date": "2026-11-14",
+   "source": "Opportunities for Youth",
+   "official": false,
+   "ids": [],
+   "summary": "In 2027, One Young World returns to Asia for the first time since Bangkok 2015, with Tokyo set to host the Summit at the Tokyo International Forum. Taking place in a city where centuries-old traditio…",
+   "seen": "2026-11-15"
   },
   {
    "title": "Erasmus Mundus Joint Master Degree in Advanced Microscopy with Artificial Intelligence",
@@ -221,6 +291,38 @@
    "ids": [],
    "summary": "The Norwegian Business School is offering fully funded BI Presidential Scholarships to students with remarkable academic records admitted to any MSc programme at campus Oslo or campus Bergen. This sc…",
    "seen": "2026-11-14"
+  },
+  {
+   "title": "Bayer Foundation Fellowships 2026: Apply for Up to €10,000 in International Research and Internship Funding",
+   "link": "https://opportunitiesforyouth.org/2026/11/13/bayer-foundation-fellowships-2026-apply-for-up-to-e10000-in-international-research-and-internship-funding/",
+   "date": "2026-11-13",
+   "source": "Opportunities for Youth",
+   "official": false,
+   "ids": [],
+   "summary": "Are you an outstanding master’s student, PhD candidate or medical student interested in pursuing an international research project, academic placement or internship? The Bayer Foundation Fellowships …",
+   "seen": "2026-11-15"
+  },
+  {
+   "title": "Fulbright UK Summer Institutes 2027: Fully Funded 2–4 Week UK Study Abroad Programme for US Undergraduate Students",
+   "link": "https://opportunitiesforyouth.org/2026/11/13/top-fully-funded-scholarships-database-to-study-worldwide/",
+   "date": "2026-11-13",
+   "source": "Opportunities for Youth",
+   "official": false,
+   "ids": [
+    "fulbright"
+   ],
+   "summary": "Are you a United States undergraduate student interested in exploring British history, culture, heritage, and higher education while gaining international academic experience? The Fulbright UK Summer…",
+   "seen": "2026-11-15"
+  },
+  {
+   "title": "Council of Europe Civil Society Grants 2027: Apply for Up to €20,000 to Strengthen Democracy and Civic Engagement Across Europe",
+   "link": "https://opportunitiesforyouth.org/2026/11/13/european-youth-foundation-eyf-grants-2026-funding-support-for-youth-organisations-across-europe/",
+   "date": "2026-11-13",
+   "source": "Opportunities for Youth",
+   "official": false,
+   "ids": [],
+   "summary": "The Council of Europe Civil Society Grants 2027 offer an important funding opportunity for eligible civil society organisations working to strengthen democracy, protect civic space, and promote meani…",
+   "seen": "2026-11-15"
   },
   {
    "title": "European Master in Law, Data and Artificial Intelligence",
@@ -1597,112 +1699,6 @@
    "ids": [],
    "summary": "Coe College Global Leadership Scholarship provides one full-tuition scholarship each year to a non-U.S. citizen attending high school outside of the U.S. This scholarship is in the amount of tuition …",
    "seen": "2026-11-03"
-  },
-  {
-   "title": "Mauritius Government Scholarships For Africans 2027 | Fully Funded",
-   "link": "https://www.scholarshipregion.com/mauritius-government-scholarship/",
-   "date": "2026-11-03",
-   "source": "Scholarship Region",
-   "official": false,
-   "ids": [],
-   "summary": "Mauritius Government Scholarship is awarding fully funded scholarships to deserving students who are resident citizens of member states of the African Union The Government of Mauritius Scholarship wi…",
-   "seen": "2026-11-03"
-  },
-  {
-   "title": "Erasmus Mundus Journalism Scholarship Programme 2027 in UK, Germany, Netherlands (Step-by-Step Guide)",
-   "link": "https://www.scholarshipregion.com/erasmus-mundus-journalism-scholarship/",
-   "date": "2026-11-03",
-   "source": "Scholarship Region",
-   "official": false,
-   "ids": [
-    "erasmus"
-   ],
-   "summary": "The Erasmus Mundus Journalism Scholarship is a master’s degree programme that offers you a truly unique and international educational experience. The Erasmus Mundus Masters in Journalism Scholarship …",
-   "seen": "2026-11-03"
-  },
-  {
-   "title": "Finnish Dinner Date 2027 in Finland (Fully Funded Trip)",
-   "link": "https://opportunitiescorners.com/finnish-dinner-date-2027/",
-   "date": "2026-11-03",
-   "source": "Opportunities Corners",
-   "official": false,
-   "ids": [],
-   "summary": "Would you like to visit Finland in 2027 for a unique cultural and culinary experience? Applications are now open for the Finnish Dinner Date 2027, an exciting international initiative launched by Vis…",
-   "seen": "2026-11-04"
-  },
-  {
-   "title": "2026/27 AgricTech Undergraduate Scholarship Programme for Nigerians | Fully Funded",
-   "link": "https://www.scholarshipregion.com/agrictech-undergraduate-scholarship/",
-   "date": "2026-11-03",
-   "source": "Scholarship Region",
-   "official": false,
-   "ids": [],
-   "summary": "AgricTech Empowerment Network has called on young Nigerian students to apply for its 2026/27 scholarship program. The AgricTech Undergraduate Scholarship offers full financial support for tuition and…",
-   "seen": "2026-11-04"
-  },
-  {
-   "title": "Kansas State University Scholarship 2027 in United States | Fully Funded",
-   "link": "https://www.scholarshipregion.com/kansas-state-university-scholarship/",
-   "date": "2026-11-03",
-   "source": "Scholarship Region",
-   "official": false,
-   "ids": [],
-   "summary": "The Kansas State University Scholarship is a funding opportunity for international students seeking postgraduate studies in the USA. The Kansas State University Scholarship 2027 will offer full schol…",
-   "seen": "2026-11-04"
-  },
-  {
-   "title": "Tokyo Global Partner Scholarship Program in Japan 2027 | Fully Funded",
-   "link": "https://www.scholarshipregion.com/tokyo-global-partner-scholarship-program/",
-   "date": "2026-11-03",
-   "source": "Scholarship Region",
-   "official": false,
-   "ids": [],
-   "summary": "Applications for the Tokyo Global Partner Scholarship Program in Japan 2027 have now opened. The Tokyo Metropolitan University Scholarship offers a fully funded opportunity that covers tuition and ad…",
-   "seen": "2026-11-04"
-  },
-  {
-   "title": "ETH Summer Fellowship 2027 in Switzerland (Fully Funded)",
-   "link": "https://opportunitiescorners.com/eth-summer-fellowship-2027-in-switzerland/",
-   "date": "2026-11-02",
-   "source": "Opportunities Corners",
-   "official": false,
-   "ids": [
-    "eth"
-   ],
-   "summary": "Applications are now open for the ETH Summer Fellowship 2027 at ETH Zurich. This is a fully funded, two-month research internship specifically designed for undergraduate and graduate students to gain…",
-   "seen": "2026-11-02"
-  },
-  {
-   "title": "Japan WINTER Culture Camp 2027 (Fully Funded)",
-   "link": "https://opportunitiescorners.com/japan-winter-culture-camp-2027/",
-   "date": "2026-11-02",
-   "source": "Opportunities Corners",
-   "official": false,
-   "ids": [],
-   "summary": "Are you ready to participate in a Japanese Winter Camp? Applications are now open for the AYFN Japan Winter Culture Camp 2027. This fully funded, week-long cultural exchange program in Osaka, Japan, …",
-   "seen": "2026-11-02"
-  },
-  {
-   "title": "2027 New York Times Fellowship Program | How To Apply",
-   "link": "https://www.scholarshipregion.com/new-york-times-fellowship-program/",
-   "date": "2026-11-02",
-   "source": "Scholarship Region",
-   "official": false,
-   "ids": [],
-   "summary": "The New York Times Fellowship Program is aimed at providing more in-depth training, valuable newsroom experience, and lasting connections within the industry. The New York Times Fellowship Program of…",
-   "seen": "2026-11-02"
-  },
-  {
-   "title": "The American University of Cairo (AUC) Mastercard Foundation Scholars Program 2027 | Fully Funded",
-   "link": "https://www.scholarshipregion.com/auc-mastercard-foundation-scholars-program/",
-   "date": "2026-11-02",
-   "source": "Scholarship Region",
-   "official": false,
-   "ids": [
-    "mastercard"
-   ],
-   "summary": "The American University in Cairo (AUC) is pleased to welcome applications for the 2027 Mastercard Foundation Scholars Program starting in Spring 2027. The AUC Mastercard Foundation Scholarship offers…",
-   "seen": "2026-11-02"
   }
  ]
 }
