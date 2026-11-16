@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-15",
+ "updated": "2026-11-16",
  "sources": [
   {
    "source": "Opportunities for Africans",
@@ -9,22 +9,22 @@
   {
    "source": "Opportunity Desk",
    "ok": true,
-   "items": 5
+   "items": 6
   },
   {
    "source": "Opportunities Corners",
    "ok": true,
-   "items": 1
+   "items": 4
   },
   {
    "source": "Scholarship Region",
    "ok": true,
-   "items": 6
+   "items": 7
   },
   {
    "source": "Opportunities for Youth",
-   "ok": true,
-   "items": 8
+   "ok": false,
+   "error": "HTTP Error 403: Forbidden"
   },
   {
    "source": "Commonwealth Scholarship Commission",
@@ -57,6 +57,70 @@
  ],
  "items": [
   {
+   "title": "Digispace Africa Research Fellowship 2027",
+   "link": "https://opportunitydesk.org/2026/11/16/digispace-africa-research-fellowship-2027/",
+   "date": "2026-11-16",
+   "source": "Opportunity Desk",
+   "official": false,
+   "ids": [],
+   "summary": "Deadline: December 7, 2026 Are you curious about how technology is shaping Africa’s future? Do you have ideas about digital rights, emerging technologies or the policies affecting our connected socie…",
+   "seen": "2026-11-16"
+  },
+  {
+   "title": "Leadership and Peace Summit Morocco 2027 (Fully Funded)",
+   "link": "https://opportunitiescorners.com/leadership-and-peace-summit-morocco/",
+   "date": "2026-11-16",
+   "source": "Opportunities Corners",
+   "official": false,
+   "ids": [],
+   "summary": "Applications are open for the Leadership & Peace Summit Morocco 2027, an international summit bringing together emerging leaders, young professionals, students, changemakers, and peace advocates from…",
+   "seen": "2026-11-16"
+  },
+  {
+   "title": "UNIQLO Global Management Program 2027 in Japan (Fully Funded)",
+   "link": "https://opportunitiescorners.com/uniqlo-global-management-program-2027/",
+   "date": "2026-11-16",
+   "source": "Opportunities Corners",
+   "official": false,
+   "ids": [],
+   "summary": "Applications are now open for the UNIQLO Global Management Program 2027 in Japan. It is a fully funded 6 Day intensive program in Japan and is open to students from all around the world. The Global M…",
+   "seen": "2026-11-16"
+  },
+  {
+   "title": "2027 DAAD AgEcon Scholarship in Germany For Developing Countries (Fully Funded)",
+   "link": "https://www.scholarshipregion.com/daad-agecon-scholarship/",
+   "date": "2026-11-16",
+   "source": "Scholarship Region",
+   "official": false,
+   "ids": [
+    "daad-epos"
+   ],
+   "summary": "The 2027 University of Hohenheim DAAD EPOS Scholarships are funded by the German Government to support international students from developing countries seeking to pursue master’s degrees in Agricultu…",
+   "seen": "2026-11-16"
+  },
+  {
+   "title": "Master Mind Ku Leven Scholarship in Belgium 2027 | Fully Funded",
+   "link": "https://www.scholarshipregion.com/master-mind-ku-leven-scholarship/",
+   "date": "2026-11-16",
+   "source": "Scholarship Region",
+   "official": false,
+   "ids": [],
+   "summary": "The Master Mind Ku Leven Scholarships are awarded to highly passionate international students with strong academic records to study in Belgium. The Master Mind Scholarship includes a €10,750 grant an…",
+   "seen": "2026-11-16"
+  },
+  {
+   "title": "Brunel University London Commonwealth Shared Scholarship 2027 | Fully Funded",
+   "link": "https://www.scholarshipregion.com/brunel-university-london-commonwealth-shared-scholarship/",
+   "date": "2026-11-16",
+   "source": "Scholarship Region",
+   "official": false,
+   "ids": [
+    "csc-masters"
+   ],
+   "summary": "Interested in studying in the UK for free? Apply for the 2027 Brunel University London Commonwealth Shared Scholarship. The Commonwealth Shared Scholarship at Brunel University London provides full t…",
+   "seen": "2026-11-16"
+  },
+  {
    "title": "9 Scholarship Opportunities for Refugees in 2026–2027: Undergraduate, Master’s and PhD Funding in Africa, Europe, North America and Latin America",
    "link": "https://opportunitiesforyouth.org/2026/11/15/9-scholarship-opportunities-for-refugees-in-2026-2027-undergraduate-masters-and-phd-funding-in-africa-europe-north-america-and-latin-america/",
    "date": "2026-11-15",
@@ -65,6 +129,16 @@
    "ids": [],
    "summary": "Refugee students seeking access to higher education have several scholarship opportunities to consider for the 2026–2027 academic period. A new list shared by the Local Engagement Refugee Research Ne…",
    "seen": "2026-11-15"
+  },
+  {
+   "title": "HZDR Summer Student Program 2027 in Germany (Fully Funded)",
+   "link": "https://opportunitiescorners.com/hzdr-summer-student-program-2027/",
+   "date": "2026-11-15",
+   "source": "Opportunities Corners",
+   "official": false,
+   "ids": [],
+   "summary": "Another Summer Program in Europe is now open for applications! Applications are now being accepted for the HZDR Summer Student Program 2027 in Germany, which welcomes international students from all …",
+   "seen": "2026-11-16"
   },
   {
    "title": "Summer Programs in Europe in 2027 (Fully Funded)",
@@ -1627,78 +1701,6 @@
    "ids": [],
    "summary": "The Global MINDS Scholarship is a master’s degree opportunity for international students to study in top universities across Europe. The programme is funded by several foundations and organizations o…",
    "seen": "2026-11-05"
-  },
-  {
-   "title": "University of Victoria Masters Scholarship in Canada 2027 | Fully Funded",
-   "link": "https://www.scholarshipregion.com/university-of-victoria-masters-scholarship/",
-   "date": "2026-11-04",
-   "source": "Scholarship Region",
-   "official": false,
-   "ids": [],
-   "summary": "The University of Victoria Masters Scholarship is an opportunity for prospective graduate students interested in remote sensing, Geographic Information Systems (GIS), forest ecology, wildfire science…",
-   "seen": "2026-11-05"
-  },
-  {
-   "title": "Harvard Pollman Fellowship in Real Estate and Urban Development 2027 (up to $55,000)",
-   "link": "https://opportunitydesk.org/2026/11/03/harvard-pollman-fellowship-in-real-estate-and-urban-development-2027/",
-   "date": "2026-11-03",
-   "source": "Opportunity Desk",
-   "official": false,
-   "ids": [],
-   "summary": "Deadline: February 18, 2027 Applications are open for the Harvard Pollman Fellowship in Real Estate and Urban Development 2027. Established in 2002 through the generous gift of Harold A. Pollman, the…",
-   "seen": "2026-11-03"
-  },
-  {
-   "title": "Mastercard Foundation EdTech Fellowship Uganda Cohort 2",
-   "link": "https://opportunitydesk.org/2026/11/03/mastercard-foundation-edtech-fellowship-uganda-cohort-2/",
-   "date": "2026-11-03",
-   "source": "Opportunity Desk",
-   "official": false,
-   "ids": [
-    "mastercard"
-   ],
-   "summary": "Deadline: November 26, 2026 Applications are open for the Mastercard Foundation EdTech Fellowship Uganda Cohort 2. The Mastercard Foundation EdTech Fellowship, Uganda, implemented by Hive Colab in pa…",
-   "seen": "2026-11-03"
-  },
-  {
-   "title": "Pan-African Re/Insurance Journalism Awards 2027",
-   "link": "https://opportunitydesk.org/2026/11/03/pan-african-re-insurance-journalism-awards-2027/",
-   "date": "2026-11-03",
-   "source": "Opportunity Desk",
-   "official": false,
-   "ids": [],
-   "summary": "Deadline: January 31, 2027 Applications are open for the Pan-African Re/Insurance Journalism Awards 2027. Sponsored by Continental Reinsurance, the pan-African (Re)Insurance Journalism Awards recogni…",
-   "seen": "2026-11-03"
-  },
-  {
-   "title": "Purdue University Summer Fellowship 2027 in USA (Fully Funded)",
-   "link": "https://opportunitiescorners.com/purdue-university-summer-fellowship-2027/",
-   "date": "2026-11-03",
-   "source": "Opportunities Corners",
-   "official": false,
-   "ids": [],
-   "summary": "Get ready for one of the best fully funded summer research programs! Applications are now open for the Purdue University Summer Undergraduate Research Fellowship (SURF) 2027. This fully funded summer…",
-   "seen": "2026-11-03"
-  },
-  {
-   "title": "Nanyang President Graduate Scholarship (NPGS) in Singapore 2027: Fully Funded",
-   "link": "https://www.scholarshipregion.com/nanyang-president-graduate-scholarship/",
-   "date": "2026-11-03",
-   "source": "Scholarship Region",
-   "official": false,
-   "ids": [],
-   "summary": "The Nanyang President Graduate Scholarship (NPGS) 2027 is a fully funded graduate opportunity for international students to study in Singapore. The Nanyang President Graduate Scholarship (NPGS) cover…",
-   "seen": "2026-11-03"
-  },
-  {
-   "title": "Coe College Global Leadership Scholarship in USA 2027 | Step-by-Step Process",
-   "link": "https://www.scholarshipregion.com/coe-college-global-leadership-scholarship/",
-   "date": "2026-11-03",
-   "source": "Scholarship Region",
-   "official": false,
-   "ids": [],
-   "summary": "Coe College Global Leadership Scholarship provides one full-tuition scholarship each year to a non-U.S. citizen attending high school outside of the U.S. This scholarship is in the amount of tuition …",
-   "seen": "2026-11-03"
   }
  ]
 }
