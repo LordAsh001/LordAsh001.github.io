@@ -80,19 +80,6 @@
    "found": "2026-11-11"
   },
   {
-   "id": "09d48abce4",
-   "type": "creation",
-   "state": "Bauchi",
-   "lga": "Bauchi",
-   "created": "2006",
-   "parent": null,
-   "quote": "tremendous transformation since it was created.",
-   "source": "https://home.bauchistate.gov.ng/history/",
-   "domain": "home.bauchistate.gov.ng",
-   "source_type": "official",
-   "found": "2026-11-11"
-  },
-  {
    "id": "96c4be8ada",
    "type": "creation",
    "state": "Kebbi",
@@ -114,19 +101,6 @@
    "parent": null,
    "quote": "the estimated population upon its creation on October 1st 1996 was put at 1,750,000",
    "source": "https://www.ekitistate.gov.ng/about-ekiti",
-   "domain": "ekitistate.gov.ng",
-   "source_type": "official",
-   "found": "2026-11-11"
-  },
-  {
-   "id": "3f599e9e34",
-   "type": "creation",
-   "state": "Ekiti",
-   "lga": "Ado-Ekiti",
-   "created": "1996-10-01",
-   "parent": null,
-   "quote": "the estimated population upon its creation on October 1st 1996 was put at 1,750,000",
-   "source": "https://www.ekitistate.gov.ng/https://deidarealtypr.com/about/",
    "domain": "ekitistate.gov.ng",
    "source_type": "official",
    "found": "2026-11-11"

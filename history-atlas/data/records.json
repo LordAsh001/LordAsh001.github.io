@@ -1870,6 +1870,10 @@
     {
      "created": "1996-10-01",
      "source": "https://ekitistate.gov.ng/https://deidarealtypr.com/about/"
+    },
+    {
+     "created": "1996-10-01",
+     "source": "https://www.ekitistate.gov.ng/https://deidarealtypr.com/about/"
     }
    ],
    "sources_agree": 1
@@ -2305,7 +2309,12 @@
    "source_type": "official",
    "status": "documented",
    "quote": "Bauchi State was created in 1976 from the North Eastern State of Nigeria.",
-   "conflicts": [],
+   "conflicts": [
+    {
+     "created": "2006",
+     "source": "https://home.bauchistate.gov.ng/history/"
+    }
+   ],
    "sources_agree": 2,
    "bot": "2026-11-11"
   }
