@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-16",
+ "updated": "2026-11-17",
  "sources": [
   {
    "source": "Opportunities for Africans",
@@ -9,17 +9,17 @@
   {
    "source": "Opportunity Desk",
    "ok": true,
-   "items": 6
+   "items": 4
   },
   {
    "source": "Opportunities Corners",
    "ok": true,
-   "items": 4
+   "items": 5
   },
   {
    "source": "Scholarship Region",
    "ok": true,
-   "items": 7
+   "items": 4
   },
   {
    "source": "Opportunities for Youth",
@@ -56,6 +56,62 @@
   }
  ],
  "items": [
+  {
+   "title": "EJN Story Grants to Report on Mining, Environment and Human Rights in Africa 2027 (up to $2,000)",
+   "link": "https://opportunitydesk.org/2026/11/17/ejn-story-grants-to-report-on-mining-environment-and-human-rights-in-africa-2027/",
+   "date": "2026-11-17",
+   "source": "Opportunity Desk",
+   "official": false,
+   "ids": [],
+   "summary": "Deadline: December 1, 2026 Applications are open for the EJN Story Grants to Report on Mining, Environment and Human Rights in Africa 2027. EJN is offering reporting grants to journalists in Ghana, D…",
+   "seen": "2026-11-17"
+  },
+  {
+   "title": "Erasmus Mundus EMLE Scholarship 2027/29 (Fully Funded)",
+   "link": "https://opportunitiescorners.com/erasmus-mundus-emle-scholarship-2027/",
+   "date": "2026-11-17",
+   "source": "Opportunities Corners",
+   "official": false,
+   "ids": [
+    "erasmus"
+   ],
+   "summary": "The Erasmus Mundus EMLE Scholarship 2027 is one of the most popular Master’s Degree Programs offered by the Erasmus Commission. EMLE Stands for the European Master in Law and Economics, a One-Year Ma…",
+   "seen": "2026-11-17"
+  },
+  {
+   "title": "UK Universities Offering Commonwealth Shared Scholarships for 2027 Entry (Fully Funded)",
+   "link": "https://www.scholarshipregion.com/uk-universities-offering-commonwealth-shared-scholarships/",
+   "date": "2026-11-17",
+   "source": "Scholarship Region",
+   "official": false,
+   "ids": [
+    "csc-masters"
+   ],
+   "summary": "The average annual tuition fee for an international postgraduate student in the UK is approximately £17,109, according to UCAS, although the actual cost varies depending on the university and program…",
+   "seen": "2026-11-17"
+  },
+  {
+   "title": "University of Birmingham Commonwealth Shared Scholarship in UK 2027 (Fully Funded)",
+   "link": "https://www.scholarshipregion.com/birmingham-commonwealth-shared-scholarship/",
+   "date": "2026-11-17",
+   "source": "Scholarship Region",
+   "official": false,
+   "ids": [
+    "csc-masters"
+   ],
+   "summary": "The University of Birmingham Commonwealth Shared Scholarship is one of the fully funded opportunities supported by the Commonwealth Scholarship Commission (CSC) in the UK. The Commonwealth Shared Sch…",
+   "seen": "2026-11-17"
+  },
+  {
+   "title": "International Court of Justice (ICJ) Judicial Fellowship Programme 2027 | How To Apply",
+   "link": "https://www.scholarshipregion.com/icj-judicial-fellowship-program/",
+   "date": "2026-11-17",
+   "source": "Scholarship Region",
+   "official": false,
+   "ids": [],
+   "summary": "The International Court of Justice (ICJ) has called for applications for its 2027/28 Judicial Fellowship Programme. The International Court of Justice (ICJ) Judicial Fellowship Programme provides a t…",
+   "seen": "2026-11-17"
+  },
   {
    "title": "Digispace Africa Research Fellowship 2027",
    "link": "https://opportunitydesk.org/2026/11/16/digispace-africa-research-fellowship-2027/",
@@ -119,6 +175,46 @@
    ],
    "summary": "Interested in studying in the UK for free? Apply for the 2027 Brunel University London Commonwealth Shared Scholarship. The Commonwealth Shared Scholarship at Brunel University London provides full t…",
    "seen": "2026-11-16"
+  },
+  {
+   "title": "International Court of Justice Judicial Fellowship Programme 2027-2028",
+   "link": "https://opportunitydesk.org/2026/11/16/icj-judicial-fellowship-2027-2028/",
+   "date": "2026-11-16",
+   "source": "Opportunity Desk",
+   "official": false,
+   "ids": [],
+   "summary": "Deadline: February 5, 2027 Applications are open for the International Court of Justice Judicial Fellowship Programme 2027-2028. The Judicial Fellowship Programme, formerly known as the University Tr…",
+   "seen": "2026-11-17"
+  },
+  {
+   "title": "Zoom AI Launchpad Startup Grants 2027",
+   "link": "https://opportunitydesk.org/2026/11/16/zoom-ai-launchpad-startup-grants-2027/",
+   "date": "2026-11-16",
+   "source": "Opportunity Desk",
+   "official": false,
+   "ids": [],
+   "summary": "Deadline: On Rolling Basis Applications are open for the Zoom AI Launchpad Startup Grants 2027. AI Launchpad is a grant program designed for startups building innovative products powered by artificia…",
+   "seen": "2026-11-17"
+  },
+  {
+   "title": "Food and Agriculture Organization of the United Nations (UN FAO) Award for Achievement 2027 (up to $10,000)",
+   "link": "https://opportunitydesk.org/2026/11/16/un-fao-award-for-achievement-2027/",
+   "date": "2026-11-16",
+   "source": "Opportunity Desk",
+   "official": false,
+   "ids": [],
+   "summary": "Deadline: December 31, 2026 Applications are open for the Food and Agriculture Organization of the United Nations (UN FAO) Award for Achievement 2027. The award recognises the outstanding performance…",
+   "seen": "2026-11-17"
+  },
+  {
+   "title": "ECOWAS WAHO Public Health Scholarships 2027 (Fully Funded)",
+   "link": "https://www.scholarshipregion.com/ecowas-waho-public-health-scholarship/",
+   "date": "2026-11-16",
+   "source": "Scholarship Region",
+   "official": false,
+   "ids": [],
+   "summary": "The West African Health Organisation (WAHO), in partnership with the Association Galien Africa (AGA), is inviting applications for the ECOWAS WAHO Public Health Scholarships 2026–2027. The programme …",
+   "seen": "2026-11-17"
   },
   {
    "title": "9 Scholarship Opportunities for Refugees in 2026–2027: Undergraduate, Master’s and PhD Funding in Africa, Europe, North America and Latin America",
@@ -1611,96 +1707,6 @@
    "ids": [],
    "summary": "Oklahoma State University is welcoming applications for a fully funded master’s assistantship opportunity in the United States of America (USA). The Oklahoma State University Masters Scholarship incl…",
    "seen": "2026-11-04"
-  },
-  {
-   "title": "Nankai University Undergraduate Scholarships in China 2027 | Fully Funded",
-   "link": "https://www.scholarshipregion.com/nankai-university-undergraduate-scholarship/",
-   "date": "2026-11-04",
-   "source": "Scholarship Region",
-   "official": false,
-   "ids": [],
-   "summary": "International students seeking fully funded opportunities abroad can explore the Nankai University Undergraduate Scholarships in China. The Nankai University Scholarship provides several scholarship …",
-   "seen": "2026-11-04"
-  },
-  {
-   "title": "Hasselt University ICP Connect Scholarship in Belgium for Developing Countries 2027 | Fully Funded",
-   "link": "https://www.scholarshipregion.com/icp-connect-scholarship-in-begium/",
-   "date": "2026-11-04",
-   "source": "Scholarship Region",
-   "official": false,
-   "ids": [],
-   "summary": "The Hasselt University in Belgium is offering fully funded International Course programme (ICP) Scholarships for students from developing countries. The fully funded ICP Connect Scholarships cover tu…",
-   "seen": "2026-11-04"
-  },
-  {
-   "title": "The Cannes Lions 2027 Scholarships for underrepresented talent in the creative industry (Fully Funded to Cannes Lions)",
-   "link": "https://www.opportunitiesforafricans.com/the-cannes-lions-2027-scholarships/",
-   "date": "2026-11-04",
-   "source": "Opportunities for Africans",
-   "official": false,
-   "ids": [],
-   "summary": "Application Deadline: 4 December 2026, 00:01 GMT Applications are now open for the 2027 Cannes Lions Scholarships. The LIONS Scholarship is designed to support the next generation of talent, placing……",
-   "seen": "2026-11-05"
-  },
-  {
-   "title": "The FirstRand Oxford Blavatnik School of Government Scholarship 2027/2028 for a Master of Public Policy at the University of Oxford (Fully Funded)",
-   "link": "https://www.opportunitiesforafricans.com/the-firstrand-oxford-blavatnik-school-of-government-scholarship-2027-2028-for-a-master-of-public-policy/",
-   "date": "2026-11-04",
-   "source": "Opportunities for Africans",
-   "official": false,
-   "ids": [],
-   "summary": "Application Deadline: February 25, 2027 Applications are now open for the 2027 FirstRand Oxford Blavatnik School of Government Scholarship. FirstRand Empowerment Foundation (FREF) has entered into a …",
-   "seen": "2026-11-05"
-  },
-  {
-   "title": "CEPS & Heinrich Böll Stiftung Climate Leadership Programme 2027 (Fully-funded)",
-   "link": "https://opportunitydesk.org/2026/11/04/ceps-heinrich-boll-stiftung-climate-leadership-programme-2027/",
-   "date": "2026-11-04",
-   "source": "Opportunity Desk",
-   "official": false,
-   "ids": [],
-   "summary": "Deadline: November 10, 2026 Applications are open for the CEPS & Heinrich Böll Stiftung Climate Leadership Programme 2027. The Climate Leadership Programme is a joint initiative of CEPS and Heinrich-…",
-   "seen": "2026-11-05"
-  },
-  {
-   "title": "EDSAFE AI Fellowship 2027",
-   "link": "https://opportunitydesk.org/2026/11/04/edsafe-ai-fellowship-2027/",
-   "date": "2026-11-04",
-   "source": "Opportunity Desk",
-   "official": false,
-   "ids": [],
-   "summary": "Deadline: November 30, 2026 Applications for the EDSAFE AI Fellowship 2027 are now open. The EDSAFE AI Fellowship is a leadership development program designed to connect and empower underrepresented …",
-   "seen": "2026-11-05"
-  },
-  {
-   "title": "New Generation Leaders Summit 2027 in Thailand (Fully Funded)",
-   "link": "https://opportunitiescorners.com/new-generation-leaders-summit-2027-in-thailand/",
-   "date": "2026-11-04",
-   "source": "Opportunities Corners",
-   "official": false,
-   "ids": [],
-   "summary": "The New Generation Leaders Summit 2027 is inviting young leaders, students, social entrepreneurs, activists, and young professionals from around the world to participate in an international leadershi…",
-   "seen": "2026-11-05"
-  },
-  {
-   "title": "Beijing Government Scholarships 2027 for International Students | Fully Funded",
-   "link": "https://www.scholarshipregion.com/beijing-government-scholarship/",
-   "date": "2026-11-04",
-   "source": "Scholarship Region",
-   "official": false,
-   "ids": [],
-   "summary": "Let us explore the Beijing Government Scholarships 2027 for international students looking to study in China. The Beijing Government Scholarship is for excellent international students who seeks to p…",
-   "seen": "2026-11-05"
-  },
-  {
-   "title": "Global MINDS Scholarship in Europe 2027 | Fully Funded",
-   "link": "https://www.scholarshipregion.com/erasmus-mundus-global-minds-scholarship/",
-   "date": "2026-11-04",
-   "source": "Scholarship Region",
-   "official": false,
-   "ids": [],
-   "summary": "The Global MINDS Scholarship is a master’s degree opportunity for international students to study in top universities across Europe. The programme is funded by several foundations and organizations o…",
-   "seen": "2026-11-05"
   }
  ]
 }
