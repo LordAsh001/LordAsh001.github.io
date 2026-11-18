@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-17",
+ "updated": "2026-11-18",
  "sources": [
   {
    "source": "Opportunities for Africans",
@@ -9,7 +9,7 @@
   {
    "source": "Opportunity Desk",
    "ok": true,
-   "items": 4
+   "items": 7
   },
   {
    "source": "Opportunities Corners",
@@ -19,7 +19,7 @@
   {
    "source": "Scholarship Region",
    "ok": true,
-   "items": 4
+   "items": 6
   },
   {
    "source": "Opportunities for Youth",
@@ -56,6 +56,66 @@
   }
  ],
  "items": [
+  {
+   "title": "Stanley Park Climate Finance Scholarships 2027",
+   "link": "https://opportunitydesk.org/2026/11/18/stanley-park-climate-finance-scholarships-2027/",
+   "date": "2026-11-18",
+   "source": "Opportunity Desk",
+   "official": false,
+   "ids": [],
+   "summary": "Deadline: March 1, 2027 Applications are open for the Stanley Park Climate Finance Scholarships 2027. Financial markets represent one of the most powerful ways to drive public and private action on c…",
+   "seen": "2026-11-18"
+  },
+  {
+   "title": "Journalism & Women Symposium (JAWS) Health Journalism Fellowship 2027 ($4,000 stipend)",
+   "link": "https://opportunitydesk.org/2026/11/18/jaws-health-journalism-fellowship-2027/",
+   "date": "2026-11-18",
+   "source": "Opportunity Desk",
+   "official": false,
+   "ids": [],
+   "summary": "Deadline: December 7, 2026 Applications are open for the Journalism & Women Symposium (JAWS) Health Journalism Fellowship 2027. The Journalism & Women Symposium (JAWS) is proud to offer a fellowship …",
+   "seen": "2026-11-18"
+  },
+  {
+   "title": "Healthy Futures Mastercard Scholarship 2027",
+   "link": "https://opportunitydesk.org/2026/11/18/healthy-futures-mastercard-scholarship-2027/",
+   "date": "2026-11-18",
+   "source": "Opportunity Desk",
+   "official": false,
+   "ids": [],
+   "summary": "Deadline: December 10, 2026 Applications are open for the Healthy Futures Mastercard Scholarship 2027. The Bertha Centre for Social Innovation and Entrepreneurship and the Faculty of Health Sciences …",
+   "seen": "2026-11-18"
+  },
+  {
+   "title": "2027 French-African Foundation Young Leaders Program | Fully Funded",
+   "link": "https://www.scholarshipregion.com/french-african-foundation-young-leaders-program/",
+   "date": "2026-11-18",
+   "source": "Scholarship Region",
+   "official": false,
+   "ids": [],
+   "summary": "Applications are now open for the 2027 French-African Foundation Young Leaders Program. The Young Leaders program, a flagship initiative of the French-African Foundation, offers an exceptional platfo…",
+   "seen": "2026-11-18"
+  },
+  {
+   "title": "MIT Knight Science Journalism Fellowship in USA (KSJ) 2027 | Fully Funded",
+   "link": "https://www.scholarshipregion.com/mit-knight-science-journalism-fellowship/",
+   "date": "2026-11-18",
+   "source": "Scholarship Region",
+   "official": false,
+   "ids": [],
+   "summary": "Massachusetts Institute of Technology (MIT) in the USA is inviting applications for the 2027 Knight Science Journalism Fellowship. The MIT Knight Science Journalism (KSJ) Fellowship is fully funded. …",
+   "seen": "2026-11-18"
+  },
+  {
+   "title": "Towson University Masters Scholarship in USA (Fully Funded)",
+   "link": "https://www.scholarshipregion.com/towson-university-masters-scholarship/",
+   "date": "2026-11-18",
+   "source": "Scholarship Region",
+   "official": false,
+   "ids": [],
+   "summary": "Towson University in the United States is welcoming applications for a fully funded master’s assistantship in applied fish physiology at the Department of Biological or Environmental Science. The Tow…",
+   "seen": "2026-11-18"
+  },
   {
    "title": "EJN Story Grants to Report on Mining, Environment and Human Rights in Africa 2027 (up to $2,000)",
    "link": "https://opportunitydesk.org/2026/11/17/ejn-story-grants-to-report-on-mining-environment-and-human-rights-in-africa-2027/",
@@ -111,6 +171,78 @@
    "ids": [],
    "summary": "The International Court of Justice (ICJ) has called for applications for its 2027/28 Judicial Fellowship Programme. The International Court of Justice (ICJ) Judicial Fellowship Programme provides a t…",
    "seen": "2026-11-17"
+  },
+  {
+   "title": "The Healthy Futures Mastercard Scholarship 2027 for African Changemakers.",
+   "link": "https://www.opportunitiesforafricans.com/the-healthy-futures-mastercard-scholarship-2027-for-african-changemakers/",
+   "date": "2026-11-17",
+   "source": "Opportunities for Africans",
+   "official": false,
+   "ids": [],
+   "summary": "Application Deadline: 10 December 2026. Applications are now open for the 2027 Healthy Futures Mastercard Scholarship. The Bertha Centre for Social Innovation and Entrepreneurship and the Faculty of …",
+   "seen": "2026-11-18"
+  },
+  {
+   "title": "iDAC Foundation Summer Fellowship 2027 ($6,000 stipend)",
+   "link": "https://opportunitydesk.org/2026/11/17/idac-foundation-summer-fellowship-2027/",
+   "date": "2026-11-17",
+   "source": "Opportunity Desk",
+   "official": false,
+   "ids": [],
+   "summary": "Deadline: November 23, 206 Applications for the iDAC Foundation Summer Fellowship 2027 are now open. The iDAC Foundation connects promising students with paid summer fellowship placements at pension …",
+   "seen": "2026-11-18"
+  },
+  {
+   "title": "DAAD Heilbronn AI Fellowship 2027 (Funded)",
+   "link": "https://opportunitydesk.org/2026/11/17/daad-heilbronn-ai-fellowship-2027/",
+   "date": "2026-11-17",
+   "source": "Opportunity Desk",
+   "official": false,
+   "ids": [
+    "daad-epos"
+   ],
+   "summary": "Deadline: Unspecified Applications are open for the DAAD Heilbronn AI Fellowship 2027. The Heilbronn AI Fellowship attracts outstanding international postdoctoral researchers to Heilbronn’s rapidly g…",
+   "seen": "2026-11-18"
+  },
+  {
+   "title": "CitizensNYC Neighborhood Business Grant 2027 (up to $5,000)",
+   "link": "https://opportunitydesk.org/2026/11/17/citizensnyc-neighborhood-business-grant-2027/",
+   "date": "2026-11-17",
+   "source": "Opportunity Desk",
+   "official": false,
+   "ids": [],
+   "summary": "Deadline: February 1, 2027 Are you a small business owner in NYC with a vision to uplift your community? Apply now for the CitizensNYC Neighborhood Business Grant 2027. The Neighborhood Business Gran…",
+   "seen": "2026-11-18"
+  },
+  {
+   "title": "CitizensNYC Community Leaders Grant 2027 (up to $5,000)",
+   "link": "https://opportunitydesk.org/2026/11/17/citizensnyc-community-leaders-grant-2027/",
+   "date": "2026-11-17",
+   "source": "Opportunity Desk",
+   "official": false,
+   "ids": [],
+   "summary": "Deadline: February 1, 2027 Applications are open for the CitizensNYC Community Leaders Grant 2027. Are you a New Yorker with a commitment to your community and a great idea? Apply to get funding for …",
+   "seen": "2026-11-18"
+  },
+  {
+   "title": "York University Presidential Scholarship in Canada 2027 | How To Apply",
+   "link": "https://www.scholarshipregion.com/york-university-presidential-scholarship/",
+   "date": "2026-11-17",
+   "source": "Scholarship Region",
+   "official": false,
+   "ids": [],
+   "summary": "The York University Presidential Scholarship is awarded to international undergraduate applicants seeking to study at the Canadian-based institution. The York University Presidential International Sc…",
+   "seen": "2026-11-18"
+  },
+  {
+   "title": "Top Masters Scholarships in Canada for African Students (2027)",
+   "link": "https://www.scholarshipregion.com/masters-scholarships-in-canada/",
+   "date": "2026-11-17",
+   "source": "Scholarship Region",
+   "official": false,
+   "ids": [],
+   "summary": "Canada is a popular destination for postgraduate studies, offering internationally recognised universities, quality research opportunities and master’s programmes across fields such as engineering, p…",
+   "seen": "2026-11-18"
   },
   {
    "title": "Digispace Africa Research Fellowship 2027",
@@ -1573,140 +1705,6 @@
    "ids": [],
    "summary": "1. WAAW Foundation Scholarship 2027 for Female College Students in AfricaThe WAAW Foundation Scholarship supports female university students of African origin who are studying STEM-related courses at…",
    "seen": "2026-11-06"
-  },
-  {
-   "title": "IX-WAI Early Career Development Grant 2027 (up to £1,000)",
-   "link": "https://opportunitydesk.org/2026/11/05/ix-wai-early-career-development-grant-2027/",
-   "date": "2026-11-05",
-   "source": "Opportunity Desk",
-   "official": false,
-   "ids": [],
-   "summary": "Deadline: January 4, 2027 Applications are open for the IX-WAI Early Career Development Grant 2027. The I-X Women in AI Network (IX-WAI) provides Early Career Development Grants of up to £1,000 to wo…",
-   "seen": "2026-11-06"
-  },
-  {
-   "title": "MCW Young Leaders Fellowship 2027 in USA (Fully Funded)",
-   "link": "https://opportunitiescorners.com/mcw-young-leaders-fellowship-2027/",
-   "date": "2026-11-05",
-   "source": "Opportunities Corners",
-   "official": false,
-   "ids": [],
-   "summary": "Applications are now open for the MCW Young Leaders Fellowship 2027, a 10-day fully funded exchange program in the United States for young people from around the world. The MCW Young Leaders Fellowsh…",
-   "seen": "2026-11-06"
-  },
-  {
-   "title": "Global Debate Championship 2026 in Malaysia (Fully Funded)",
-   "link": "https://opportunitiescorners.com/global-debate-championship-2026-in-malaysia/",
-   "date": "2026-11-05",
-   "source": "Opportunities Corners",
-   "official": false,
-   "ids": [],
-   "summary": "Applications are open for the Global Debate Championship 2026 – Harvard Merdeka Edition in Kuala Lumpur, Malaysia. Organized by European Voice Assembly under VOOICE ASSEMBLY USA, the five-day interna…",
-   "seen": "2026-11-06"
-  },
-  {
-   "title": "2027 TCCM Masters Scholarship in Spain, France, Netherlands, Italy | Fully Funded",
-   "link": "https://www.scholarshipregion.com/erasmus-tccm-masters-scholarship/",
-   "date": "2026-11-05",
-   "source": "Scholarship Region",
-   "official": false,
-   "ids": [
-    "erasmus"
-   ],
-   "summary": "TCCM Scholarship is an international Erasmus Mundus Master’s programme that trains the next generation of scientists in theoretical and computational chemistry to address complex challenges. The Eras…",
-   "seen": "2026-11-06"
-  },
-  {
-   "title": "2027 University of Georgia Masters Scholarship in USA | Fully Funded",
-   "link": "https://www.scholarshipregion.com/university-of-georgia-masters-scholarship/",
-   "date": "2026-11-05",
-   "source": "Scholarship Region",
-   "official": false,
-   "ids": [],
-   "summary": "Applications are currently invited from interested and qualified international students for the University of Georgia Masters Scholarship. Students offered the University of Georgia Scholarship will …",
-   "seen": "2026-11-06"
-  },
-  {
-   "title": "JAPAN-EUROPE MASTER ON ADVANCED ROBOTICS",
-   "link": "https://jemaro.ec-nantes.fr/",
-   "date": "2026-11-04",
-   "source": "Erasmus Mundus catalogue (EACEA)",
-   "official": true,
-   "ids": [],
-   "summary": "JEMARO - Project overview https://ec.europa.eu/programmes/erasmus-plus/projects/eplus-project-det…",
-   "seen": "2026-11-04"
-  },
-  {
-   "title": "Erasmus Mundus Joint Master's programme in Surface, Electro, Radiation, and Photo-chemistry",
-   "link": "https://master-serp.com/",
-   "date": "2026-11-04",
-   "source": "Erasmus Mundus catalogue (EACEA)",
-   "official": true,
-   "ids": [
-    "erasmus"
-   ],
-   "summary": "SERP - project overview https://erasmus-plus.ec.europa.eu/projects/search/details/101180445",
-   "seen": "2026-11-05"
-  },
-  {
-   "title": "Institute for Policy Integrity Economic Fellowship 2027",
-   "link": "https://opportunitydesk.org/2026/11/04/institute-for-policy-integrity-economic-fellowship-2027/",
-   "date": "2026-11-04",
-   "source": "Opportunity Desk",
-   "official": false,
-   "ids": [],
-   "summary": "Deadline: November 27, 2026 Applications are open for the Institute for Policy Integrity Economic Fellowship 2027. The Institute for Policy Integrity is seeking applicants for one or two full-time tw…",
-   "seen": "2026-11-04"
-  },
-  {
-   "title": "Institute for Policy Integrity Legal Fellowship 2027",
-   "link": "https://opportunitydesk.org/2026/11/04/institute-for-policy-integrity-legal-fellowship-2027/",
-   "date": "2026-11-04",
-   "source": "Opportunity Desk",
-   "official": false,
-   "ids": [],
-   "summary": "Deadline: On Rolling Basis Applications are open for the Institute for Policy Integrity Legal Fellowship 2027. The Institute for Policy Integrity (Policy Integrity) is seeking applicants for a two-ye…",
-   "seen": "2026-11-04"
-  },
-  {
-   "title": "Korean Winter Culture Camp 2027 (Fully Funded)",
-   "link": "https://opportunitiescorners.com/korean-winter-culture-camp-2027/",
-   "date": "2026-11-04",
-   "source": "Opportunities Corners",
-   "official": false,
-   "ids": [],
-   "summary": "A once-in-a-lifetime opportunity to experience Korean culture through the Korean Winter Culture Camp 2027! This is a fully funded cultural camp in Seoul, South Korea, organized by the ASEAN Youth Fri…",
-   "seen": "2026-11-04"
-  },
-  {
-   "title": "CEPS Climate Leadership Program 2027 in Belgium (Fully Funded)",
-   "link": "https://opportunitiescorners.com/ceps-climate-leadership-program-2027-in-belgium-fully-funded/",
-   "date": "2026-11-04",
-   "source": "Opportunities Corners",
-   "official": false,
-   "ids": [],
-   "summary": "Applications are now open for the CEPS Climate Leadership Program 2027, an international leadership opportunity for young people passionate about climate action, environmental policy, and sustainabil…",
-   "seen": "2026-11-04"
-  },
-  {
-   "title": "Masters and PhD Research Scholarship at Federal University Teaching Hospital, Lafia | Fully Funded",
-   "link": "https://www.scholarshipregion.com/fulafia-masters-and-phd-research-scholarship/",
-   "date": "2026-11-04",
-   "source": "Scholarship Region",
-   "official": false,
-   "ids": [],
-   "summary": "The Centre for Vaccine Research and Biotechnology, Federal University Teaching Hospital, Lafia, is inviting applications from qualified and motivated candidates for funded MSc and PhD research opport…",
-   "seen": "2026-11-04"
-  },
-  {
-   "title": "2027 Oklahoma State University Masters Scholarship in USA | How To Apply",
-   "link": "https://www.scholarshipregion.com/oklahoma-state-university-masters-scholarship/",
-   "date": "2026-11-04",
-   "source": "Scholarship Region",
-   "official": false,
-   "ids": [],
-   "summary": "Oklahoma State University is welcoming applications for a fully funded master’s assistantship opportunity in the United States of America (USA). The Oklahoma State University Masters Scholarship incl…",
-   "seen": "2026-11-04"
   }
  ]
 }
