@@ -94,6 +94,13 @@
     "max_news": 5,
     "news": [
       {
+        "date": "Nov 2026",
+        "iso": "2026-11-17",
+        "text": "Published an open-access review in *Resources*: can aerobic granular sludge treating brewery wastewater also make the biopolymer curdlan?",
+        "url": "https://doi.org/10.3390/resources15110153",
+        "hidden": false
+      },
+      {
         "date": "Oct 2026",
         "iso": "2026-10-11",
         "text": "Launched the [Nigeria Energy Atlas](/energy-atlas/), an open map and dataset of Nigeria's power plants, fuels and grid, with a record of national grid collapses and energy-security indicators.",
@@ -329,6 +336,21 @@
       "subtitle": "Publicly available work, each with a plain-language summary and a citation you can copy. Full record on ORCID and ResearchGate.",
       "lede": "Papers, conference contributions and software I have published, each with a plain-language summary or a citation you can copy.",
       "items": [
+        {
+          "text": "*Resources*, 15(11), 153",
+          "link_label": "Read the article",
+          "hidden": false,
+          "category": "Journal Articles",
+          "label": "Journal article · Peer-reviewed · Open access · 2026",
+          "title": "Transforming brewery wastewater treatment into a biopolymer biorefinery: Optimizing curdlan biosynthesis and sustainable recovery in aerobic granular sludge systems",
+          "url": "https://doi.org/10.3390/resources15110153",
+          "authors": "**Amool, S. H.**, Vesuwe, R. N., Thring, R. W., & Iorhemen, O. T.",
+          "plain": "Brewery wastewater is full of sugars and nutrients, which makes it a pollution problem but also a raw material. We reviewed the research to ask whether aerobic granular sludge, a compact way of treating wastewater, could also make curdlan, a gel-forming sugar polymer used in food and medicine that is now made in dedicated factories. Only three lab studies have measured curdlan in granular sludge, and none used brewery wastewater. They found up to 74 mg per gram of sludge when feeding was optimised. Compared with factory fermentation, the sludge route makes far less curdlan per litre and turns under 3% of the removed pollution into curdlan, and the chemicals used to extract it drive most of the cost. We set out how the process could be run and measured, and estimate the yields needed for recovery to pay.",
+          "takeaway": "making curdlan while treating brewery wastewater is possible in principle but not yet commercial; it now needs testing on real brewery wastewater and at pilot scale.",
+          "cite": "Amool, S. H., Vesuwe, R. N., Thring, R. W., & Iorhemen, O. T. (2026). Transforming brewery wastewater treatment into a biopolymer biorefinery: Optimizing curdlan biosynthesis and sustainable recovery in aerobic granular sludge systems. Resources, 15(11), 153. https://doi.org/10.3390/resources15110153",
+          "extra_url": "https://www.mdpi.com/2079-9276/15/11/153",
+          "extra_label": "MDPI"
+        },
         {
           "text": "*Environmental Management: Engineering and Technology*, 1(4), 100016",
           "link_label": "Read the article",
