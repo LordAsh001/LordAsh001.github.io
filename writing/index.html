@@ -123,6 +123,7 @@ p{margin:0}
 .fig-frame canvas{position:absolute;inset:0;width:100%;height:100%;display:block;touch-action:pan-y}
 .fig-hud{position:absolute;left:12px;right:12px;top:10px;display:flex;justify-content:space-between;gap:8px;color:var(--muted);pointer-events:none}
 .fig-ctrl{position:absolute;left:12px;bottom:12px;display:flex;gap:8px;flex-wrap:wrap}
+.fig-count{position:absolute;right:12px;bottom:18px;font-size:11px;color:var(--muted);pointer-events:none;text-align:right;max-width:45%}
 .btn{font:500 13px var(--sans);display:inline-flex;align-items:center;gap:8px;border-radius:999px;padding:7px 14px;border:1px solid var(--ink);background:var(--ink);color:var(--paper);cursor:pointer}
 .btn.ghost{background:color-mix(in srgb,var(--card) 80%,transparent);color:var(--ink);border-color:var(--rule)}
 .book-btn{text-decoration:none}
@@ -640,141 +641,232 @@ footer a[type]{color:inherit}
 <script type="application/json" id="content-fallback"></script>
 <script>
 window.initSim=function(){
-/* ---------- Fig. 1: granular sludge simulation ---------- */
+/* ---------- Fig. 1: one cycle of an aerobic granular sludge sequencing batch reactor (SBR) ----------
+   A typical laboratory AGS cycle (180 min, 50 % volume exchange):
+   1 anaerobic plug-flow feeding from the bottom through the settled bed (60 min)
+   2 aeration: mixing, oxidation of stored substrate, nitrification/denitrification, P uptake (112 min)
+   3 short settling (3 min): granules settle, slow flocs stay up
+   4 decant through the mid-height port (5 min): effluent and the unsettled flocs leave (selection pressure)
+   Concentrations are illustrative trends, not model output. */
   var cv = document.getElementById('sludge'), ctx = cv.getContext('2d');
   var frame = document.getElementById('fig1');
   var hudMode = document.getElementById('hud-mode'), hudCount = document.getElementById('hud-count');
   var btn = document.getElementById('aerate'), btnLbl = document.getElementById('aerate-lbl');
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var W=0,H=0,DPR=1, parts=[], bubbles=[], aerated=true, settleT=0, t=0, mouse={x:-999,y:-999,on:false};
-  var col={};
-  var MAXG=20, FLOCS=190;
+  var W=0,H=0,DPR=1, parts=[], bubbles=[], drops=[], t=0, col={}, washed=0, cycles=1;
+  var PH=[ // name, real minutes, seconds on screen
+    {k:'feed',  n:'Anaerobic feeding', min:60,  sec:10},
+    {k:'aer',   n:'Aeration',          min:112, sec:14},
+    {k:'settle',n:'Settling',          min:3,   sec:7},
+    {k:'decant',n:'Decant',            min:5,   sec:5}
+  ];
+  var CYCLE=PH.reduce(function(a,p){return a+p.min;},0);
+  var ph=0, pt=0; // phase index, progress 0..1 within phase
+  var MAXG=16;
+  // geometry (set in layout)
+  var X0,X1,YT,YB,YP,GX,GS=1,countEl=null; // column left/right, full water level, bottom, port level, gauges x
+  function layout(){
+    X0=14; X1=Math.round(W*0.6); YT=58; YB=H-62; YP=Math.round(YT+(YB-YT)*0.5); GX=Math.round(W*0.71);
+    GS=Math.max(0.55,Math.min(1,(YB-YT)/460));
+    if(countEl) countEl.style.display = H<420 ? 'none' : '';
+  }
   function readColors(){
     var cs=getComputedStyle(document.documentElement);
-    ['ink','muted','accent','ochre','ochre-2','card','rule'].forEach(function(k){col[k]=cs.getPropertyValue('--'+k).trim();});
+    ['ink','muted','accent','ochre','ochre-2','card','rule','paper'].forEach(function(k){col[k]=cs.getPropertyValue('--'+k).trim();});
   }
   function rnd(a,b){return a+Math.random()*(b-a);}
-  function floc(x,y){return {g:false,x:x,y:y,vx:rnd(-.3,.3),vy:rnd(-.3,.3),r:rnd(1,2.4),m:1,a:rnd(.25,.6),seed:Math.random()*99};}
-  function granule(x,y,m){return {g:true,x:x,y:y,vx:rnd(-.2,.2),vy:rnd(-.2,.2),m:m,r:gr(m),seed:Math.random()*99,rot:Math.random()*6.28};}
-  function gr(m){return Math.min(MAXG, 3.2+Math.sqrt(m)*1.55);}
+  function floc(x,y){return {g:false,x:x,y:y,vx:rnd(-.2,.2),vy:rnd(-.2,.2),r:rnd(1,2.2),m:1,a:rnd(.3,.65),seed:Math.random()*99};}
+  function gr(m){return Math.min(MAXG, 2.8+Math.sqrt(m)*1.3)*GS;}
+  function granule(x,y,m){return {g:true,x:x,y:y,vx:0,vy:0,m:m,r:gr(m),seed:Math.random()*99,rot:Math.random()*6.28};}
+  function level(){ // water surface (y): rises during feeding, falls during decant
+    if(PH[ph].k==='feed') return YP-(YP-YT)*pt;
+    if(PH[ph].k==='decant') return YT+(YP-YT)*Math.min(1,pt*1.15);
+    return YT;
+  }
   function seed(){
-    parts=[]; bubbles=[]; settleT=0;
-    var area=W*H, ng=Math.round(Math.max(8,Math.min(18,area/26000)));
-    for(var i=0;i<ng;i++) parts.push(granule(rnd(20,W-20),rnd(40,H-60),Math.round(rnd(10,90))));
-    var nf=Math.round(Math.max(90,Math.min(FLOCS,area/900)));
-    for(var j=0;j<nf;j++) parts.push(floc(rnd(0,W),rnd(0,H)));
+    parts=[]; bubbles=[]; drops=[]; washed=0; ph=0; pt=0; t=0; cycles=1;
+    var w=X1-X0, ng=Math.round(Math.max(10,Math.min(20,w*(YB-YT)/9000)));
+    for(var i=0;i<ng;i++){var g=granule(rnd(X0+12,X1-12),YB-rnd(4,26),Math.round(rnd(14,80))); parts.push(g);}
+    var nf=Math.round(Math.max(40,Math.min(110,w*(YB-YT)/1500)));
+    for(var j=0;j<nf;j++) parts.push(floc(rnd(X0+4,X1-4),rnd(YP+10,YB-30)));
+  }
+  // illustrative bulk concentrations, 0..1 (scaled to the influent)
+  function conc(){
+    var k=PH[ph].k, f=pt, C={};
+    if(k==='feed'){ C.cod=0.03+0.25*f; C.nh=0.026+0.47*f; C.no=0.2*Math.max(0,1-2.5*f); C.po=0.06+0.84*f; C.store=f; }
+    else if(k==='aer'){ C.cod=0.03+0.25*Math.exp(-12*f); C.nh=0.026+0.47*Math.exp(-5*f); C.no=0.2*(1-Math.exp(-5*f)); C.po=0.06+0.84*Math.exp(-7*f); C.store=Math.exp(-6*f); }
+    else { C.cod=0.03+0.25*Math.exp(-12); C.nh=0.026+0.47*Math.exp(-5); C.no=0.2*(1-Math.exp(-5)); C.po=0.06+0.84*Math.exp(-7); C.store=0; }
+    return C;
   }
   function resize(){
     var r=frame.getBoundingClientRect(); DPR=Math.min(2,window.devicePixelRatio||1);
     var nw=Math.round(r.width), nh=Math.round(r.height);
     if(nw===W && nh===H) return;
-    var first = W===0; W=nw; H=nh;
+    var first=W===0, ox0=X0, ox1=X1, oyt=YT, oyb=YB;
+    W=nw; H=nh; layout();
     cv.width=W*DPR; cv.height=H*DPR; ctx.setTransform(DPR,0,0,DPR,0,0);
-    if(first || !parts.length) seed(); else parts.forEach(function(p){p.x=Math.min(p.x,W);p.y=Math.min(p.y,H);});
+    if(first || !parts.length) seed();
+    else parts.forEach(function(p){p.x=X0+(p.x-ox0)/(ox1-ox0)*(X1-X0); p.y=YT+(p.y-oyt)/(oyb-oyt)*(YB-YT);});
     draw();
   }
-  function step(){
-    t+=0.016;
-    var floor=H-2, grav;
-    if(!aerated) settleT+=0.016;
-    var nFloc=0, nGran=0;
-    for(var i=0;i<parts.length;i++){
+  function step(dt){
+    t+=dt;
+    var P=PH[ph]; pt+=dt/P.sec;
+    if(pt>=1){ pt=0; ph=(ph+1)%PH.length; if(ph===0) cycles++; }
+    var k=PH[ph].k, L=level(), nF=0, nG=0;
+    for(var i=parts.length-1;i>=0;i--){
       var p=parts[i];
-      if(aerated){
-        p.vx+= (Math.random()-.5)*.12 + Math.sin(p.y*0.012+t*0.7)*0.018;
-        p.vy+= (Math.random()-.5)*.12 + Math.cos(p.x*0.01+t*0.5)*0.014 - (p.y>H*0.8?0.02:0);
-        if(mouse.on){
-          var dx=p.x-mouse.x, dy=p.y-mouse.y, d2=dx*dx+dy*dy;
-          if(d2<8100){var d=Math.sqrt(d2)||1, f=(90-d)/90*0.6; p.vx+=dx/d*f; p.vy+=dy/d*f-0.05;}
-        }
-        p.vx*=0.95; p.vy*=0.95;
-      } else {
-        grav = p.g ? 0.028+p.r*0.004 : 0.0016+p.r*0.0006;
-        p.vy+=grav; p.vx*=0.9; p.vy*=p.g?0.94:0.9;
-        p.vx+=(Math.random()-.5)*(p.g?0.01:0.05);
+      if(k==='aer'){ // full mixing by the air
+        // air-lift circulation: up through the middle, down along the walls, with turbulence
+        var mid=(X0+X1)/2, half=(X1-X0)/2, u=(p.x-mid)/half;
+        p.vx+=(Math.random()-.5)*.4 + (p.y<YT+50? (u>=0?1:-1)*0.12 : p.y>YB-50? -(u>=0?1:-1)*0.12 : 0);
+        p.vy+=(Math.random()-.5)*.4 + (Math.abs(u)<0.5 ? -0.035 : 0.035) + (p.g? 0.01 : 0);
+        p.vx*=0.94; p.vy*=0.94;
+      } else { // quiescent: settle by size and density, granules far faster than flocs
+        var g = p.g ? 0.03+p.r*0.004 : 0.0018+p.r*0.0005;
+        if(k==='feed') g -= p.g ? 0 : 0.0016; // gentle upflow lifts only the light flocs
+        p.vy+=g; p.vx*=0.9; p.vy*=p.g?0.96:0.9;
+        p.vx+=(Math.random()-.5)*(p.g?0.006:0.04);
       }
       p.x+=p.vx; p.y+=p.vy;
-      if(p.x<-10)p.x=W+10; else if(p.x>W+10)p.x=-10;
-      var top=34;
-      if(p.y<top+p.r){p.y=top+p.r;p.vy=Math.abs(p.vy)*0.5;}
-      var bed = floor - p.r - (p.g ? p.seed%6 : p.seed%4);
-      if(p.y>bed){p.y=bed; p.vy=aerated? -Math.abs(p.vy)-0.4 : 0;}
-      if(p.g){nGran++; p.rot+=p.vx*0.02;} else nFloc++;
+      if(p.x<X0+p.r+2){p.x=X0+p.r+2;p.vx=Math.abs(p.vx);} else if(p.x>X1-p.r-2){p.x=X1-p.r-2;p.vx=-Math.abs(p.vx);}
+      var bed=YB-p.r-(p.g?p.seed%5:p.seed%3);
+      if(p.y>bed){p.y=bed; p.vy= k==='aer' ? -Math.abs(p.vy)-0.5 : 0;}
+      if(k==='decant' && p.y<L+p.r+1){ // the falling level reaches it: it leaves through the port with the effluent
+        drops.push({x:X1+8,y:YP+2,vx:rnd(.6,1.2),vy:rnd(-.2,.2),r:p.r,g:p.g}); parts.splice(i,1); washed++; continue;
+      }
+      if(p.y<L+p.r){p.y=L+p.r; p.vy=Math.abs(p.vy)*0.4;}
+      if(p.g){nG++; p.rot+=p.vx*0.02;} else nF++;
     }
-    // accretion: flocs join nearby granules while aerated
-    if(aerated){
+    // granules do not overlap: push apart pairs that touch
+    for(var u1=0;u1<parts.length;u1++){ var A=parts[u1]; if(!A.g) continue;
+      for(var u2=u1+1;u2<parts.length;u2++){ var B=parts[u2]; if(!B.g) continue;
+        var ex=B.x-A.x, ey=B.y-A.y, md=(A.r+B.r)*0.92, e2=ex*ex+ey*ey;
+        if(e2<md*md && e2>0.01){ var ed=Math.sqrt(e2), push=(md-ed)/2, nx=ex/ed, ny=ey/ed;
+          A.x-=nx*push; B.x+=nx*push;
+          if(k==='aer'){ A.y-=ny*push; B.y+=ny*push; } else if(ny>0){ A.y-=ny*push*2; } else { B.y+=ny*push*2; }
+        }
+      }
+    }
+    if(k==='aer'){
+      // flocs attach to granules (growth); big granules break and seed new ones
       for(var a=0;a<parts.length;a++){
         var G=parts[a]; if(!G.g) continue;
         for(var b=parts.length-1;b>=0;b--){
           var F=parts[b]; if(F.g) continue;
-          var ddx=F.x-G.x, ddy=F.y-G.y, rr=G.r+6;
-          if(ddx*ddx+ddy*ddy<rr*rr && Math.random()<0.04){
-            G.m+=1; G.r=gr(G.m); parts.splice(b,1); nFloc--;
-            if(b<a) a--;
-          }
+          var dx=F.x-G.x, dy=F.y-G.y, rr=G.r+5;
+          if(dx*dx+dy*dy<rr*rr && Math.random()<0.004){ G.m+=1; G.r=gr(G.m); parts.splice(b,1); nF--; if(b<a) a--; }
         }
-        if(G.m>130 && nGran<26){ // mature granule sheds a daughter
-          G.m=Math.round(G.m*0.55); G.r=gr(G.m);
-          parts.push(granule(G.x+G.r,G.y,Math.round(G.m*0.6))); nGran++;
-        }
+        if(G.m>120 && nG<24){ G.m=Math.round(G.m*0.55); G.r=gr(G.m); parts.push(granule(G.x+G.r,G.y,Math.round(G.m*0.6))); nG++; }
       }
-      // flocs that stray too long slowly clump into new small granules
-      if(Math.random()<0.004 && nGran<22){parts.push(granule(rnd(20,W-20),rnd(60,H-60),3)); nGran++;}
-      // influent brings fresh flocs
-      var target=Math.round(Math.max(90,Math.min(FLOCS,W*H/900)));
-      while(nFloc<target && Math.random()<0.5){parts.push(floc(rnd(-8,0)+(Math.random()<.5?0:W),rnd(40,H-40))); nFloc++;}
-      // aeration bubbles
-      if(Math.random()<0.6) bubbles.push({x:rnd(0,W),y:H+4,r:rnd(1.5,4),v:rnd(.8,1.8),w:Math.random()*6});
-      if(mouse.on && Math.random()<0.5) bubbles.push({x:mouse.x+rnd(-12,12),y:mouse.y,r:rnd(1.5,3.5),v:rnd(1,2),w:Math.random()*6});
+      if(Math.random()<0.002 && nG<20){ parts.push(granule(rnd(X0+10,X1-10),rnd(YT+20,YB-20),3)); nG++; }
+      if(Math.random()<0.75) bubbles.push({x:rnd(X0+8,X1-8),y:YB-3,r:rnd(1.5,3.6),v:rnd(1,2),w:Math.random()*6});
     }
-    for(var k=bubbles.length-1;k>=0;k--){var bb=bubbles[k]; bb.y-=bb.v; bb.x+=Math.sin(bb.y*0.05+bb.w)*0.3; if(bb.y<30) bubbles.splice(k,1);}
-    hudCount.textContent='granules '+nGran+' · flocs '+nFloc;
-    hudMode.textContent = aerated ? 'Aerated · mixing' : 'Settling · t = '+(settleT*1.2).toFixed(1)+' min';
+    if(k==='feed'){
+      // influent enters at the bottom; it carries some suspended solids (new flocs)
+      if(Math.random()<0.07){ parts.push(floc(rnd(X0+20,X1-20),YB-8)); }
+      if(Math.random()<0.5) drops.push({feed:true,x:(X0+X1)/2+rnd(-3,3),y:H-6,vy:-rnd(.8,1.4)});
+    }
+    for(var q=bubbles.length-1;q>=0;q--){var bb=bubbles[q]; bb.y-=bb.v; bb.x+=Math.sin(bb.y*0.05+bb.w)*0.3; if(bb.y<L+2) bubbles.splice(q,1);}
+    if(k!=='aer' && bubbles.length) bubbles.length=Math.max(0,bubbles.length-6);
+    for(var d=drops.length-1;d>=0;d--){var D=drops[d];
+      if(D.feed){ D.y+=D.vy; if(D.y<YB-2) drops.splice(d,1); }
+      else { D.x+=D.vx*0.3; D.y+=D.vy+=0.08; if(D.y>YB||D.x>W) drops.splice(d,1); }
+    }
+    var real=0; for(var z=0;z<ph;z++) real+=PH[z].min; real+=PH[ph].min*pt;
+    hudMode.textContent=(ph+1)+' · '+PH[ph].n;
+    hudCount.textContent='t = '+Math.floor(real)+' / '+CYCLE+' min';
+    countEl.textContent='granules '+nG+' · flocs '+nF+' · washed out '+washed;
   }
-  function drawGranule(p){
+  function drawGranule(p,store){
     var g=ctx.createRadialGradient(p.x-p.r*.35,p.y-p.r*.35,p.r*.1,p.x,p.y,p.r);
     g.addColorStop(0,col['ochre-2']); g.addColorStop(1,col.ochre);
-    ctx.fillStyle=g;
-    ctx.beginPath();
-    var n=14;
-    for(var i=0;i<=n;i++){
-      var ang=p.rot+i/n*6.283, wob=1+Math.sin(ang*3+p.seed)*0.07+Math.sin(ang*5+p.seed*2)*0.04;
+    ctx.fillStyle=g; ctx.beginPath();
+    for(var i=0;i<=14;i++){
+      var ang=p.rot+i/14*6.283, wob=1+Math.sin(ang*3+p.seed)*0.07+Math.sin(ang*5+p.seed*2)*0.04;
       var x=p.x+Math.cos(ang)*p.r*wob, y=p.y+Math.sin(ang)*p.r*wob;
       i?ctx.lineTo(x,y):ctx.moveTo(x,y);
     }
     ctx.closePath(); ctx.fill();
-    if(p.r>6){
-      ctx.fillStyle=col.card; ctx.globalAlpha=.35;
-      for(var j=0;j<4;j++){var aa=p.seed*(j+1)+p.rot, rd=p.r*0.5*((j*37+p.seed)%10)/10;
-        ctx.beginPath(); ctx.arc(p.x+Math.cos(aa)*rd,p.y+Math.sin(aa)*rd,Math.max(.8,p.r*0.09),0,6.283); ctx.fill();}
-      ctx.globalAlpha=1;
+    if(store>0.03 && p.r>4){ // internally stored substrate (PHA/glycogen) built up while fed anaerobically
+      ctx.fillStyle=col.accent; ctx.globalAlpha=0.25+0.45*store;
+      ctx.beginPath(); ctx.arc(p.x,p.y,p.r*0.55*store,0,6.283); ctx.fill(); ctx.globalAlpha=1;
     }
+  }
+  function gauge(x,y,h,label,v,c){
+    ctx.fillStyle=col.rule; ctx.fillRect(x,y,10,h);
+    ctx.fillStyle=c; ctx.fillRect(x,y+h*(1-v),10,h*v);
+    ctx.save(); ctx.fillStyle=col.muted; ctx.font='10px "IBM Plex Mono", monospace'; ctx.textAlign='center';
+    ctx.fillText(label,x+5,y+h+13); ctx.restore();
   }
   function draw(){
     ctx.clearRect(0,0,W,H);
-    // tank waterline + scale
-    ctx.strokeStyle=col.rule; ctx.lineWidth=1;
-    ctx.beginPath(); ctx.moveTo(0,32.5); ctx.lineTo(W,32.5); ctx.stroke();
-    ctx.fillStyle=col.muted; ctx.font='10px "IBM Plex Mono", monospace';
-    for(var y=60;y<H-50;y+=Math.max(40,(H-100)/6)){ctx.fillRect(W-8,Math.round(y),6,1);}
-    // bubbles
-    ctx.strokeStyle=col.accent; ctx.globalAlpha=.55;
-    for(var k=0;k<bubbles.length;k++){var b=bubbles[k]; ctx.beginPath(); ctx.arc(b.x,b.y,b.r,0,6.283); ctx.stroke();}
+    var k=PH[ph].k, L=level(), C=conc();
+    // phase timeline (real time, proportional)
+    var tx=12, tw=W-24, ty=30, x=tx;
+    for(var i=0;i<PH.length;i++){
+      var w=tw*PH[i].min/CYCLE; w=Math.max(w,6);
+      ctx.fillStyle = i===ph ? col.accent : col.rule; ctx.globalAlpha = i===ph?1:0.9;
+      ctx.fillRect(x,ty,w-2,5); x+=w;
+    }
     ctx.globalAlpha=1;
-    // flocs
+    var real=0; for(var z=0;z<ph;z++) real+=PH[z].min; real+=PH[ph].min*pt;
+    var mx=tx+tw*(real/CYCLE); ctx.fillStyle=col.ink; ctx.fillRect(mx-1,ty-3,2,11);
+    // liquid: influent substrate shows as tint (plug flow in feeding, mixed afterwards)
+    ctx.fillStyle=col.accent;
+    if(k==='feed'){ var front=YB-(YP-L); ctx.globalAlpha=0.16; ctx.fillRect(X0,front,X1-X0,YB-front); }
+    ctx.globalAlpha=0.05+0.4*C.cod; ctx.fillRect(X0,L,X1-X0,YB-L); ctx.globalAlpha=1;
+    // column walls, port, inlet, diffuser
+    ctx.strokeStyle=col.muted; ctx.lineWidth=1.5;
+    ctx.beginPath(); ctx.moveTo(X0,YT-14); ctx.lineTo(X0,YB); ctx.lineTo(X1,YB); ctx.lineTo(X1,YT-14); ctx.stroke();
+    ctx.strokeStyle=col.rule; ctx.setLineDash([3,3]); ctx.beginPath(); ctx.moveTo(X0,YP); ctx.lineTo(X1,YP); ctx.stroke(); ctx.setLineDash([]);
+    ctx.strokeStyle=col.accent; ctx.lineWidth=1; ctx.beginPath(); ctx.moveTo(X0,L); ctx.lineTo(X1,L); ctx.stroke();
+    ctx.strokeStyle=col.muted; ctx.lineWidth=1.5;
+    ctx.beginPath(); ctx.moveTo(X1,YP-3); ctx.lineTo(X1+14,YP-3); ctx.moveTo(X1,YP+3); ctx.lineTo(X1+14,YP+3); ctx.stroke(); // effluent port
+    var cx=(X0+X1)/2; ctx.beginPath(); ctx.moveTo(cx-3,YB); ctx.lineTo(cx-3,H-2); ctx.moveTo(cx+3,YB); ctx.lineTo(cx+3,H-2); ctx.stroke(); // inlet
+    ctx.lineWidth=2; ctx.beginPath(); ctx.moveTo(X0+10,YB-2); ctx.lineTo(X1-10,YB-2); ctx.stroke(); ctx.lineWidth=1; // diffuser
+    ctx.fillStyle=col.muted; ctx.font='10px "IBM Plex Mono", monospace';
+    ctx.textAlign='left'; ctx.fillText('effluent',X1+18,YP+4); ctx.fillText('port',X1+18,YP+15);
+    ctx.fillText(k==='feed'?'influent ↑':'influent', cx+8, H-6);
+    ctx.fillText(k==='aer'?'air on':'air off', X0+4, YB+14);
+    // bubbles, feed and effluent streams
+    ctx.strokeStyle=col.accent; ctx.globalAlpha=.55;
+    for(var b=0;b<bubbles.length;b++){var bb=bubbles[b]; ctx.beginPath(); ctx.arc(bb.x,bb.y,bb.r,0,6.283); ctx.stroke();}
+    ctx.globalAlpha=1;
+    for(var d=0;d<drops.length;d++){var D=drops[d];
+      if(D.feed){ ctx.fillStyle=col.accent; ctx.globalAlpha=.6; ctx.fillRect(D.x-1,D.y,2,4); }
+      else { ctx.fillStyle=D.g?col.ochre:col.muted; ctx.globalAlpha=.7; ctx.beginPath(); ctx.arc(D.x,D.y,Math.max(1,D.r*0.8),0,6.283); ctx.fill(); }
+    }
+    if(k==='decant'){ ctx.fillStyle=col.accent; ctx.globalAlpha=.35; ctx.fillRect(X1+14,YP-2,3,YB-YP); }
+    ctx.globalAlpha=1;
+    // flocs, then granules
     ctx.fillStyle=col.muted;
-    for(var i=0;i<parts.length;i++){var p=parts[i]; if(p.g) continue;
+    for(var j=0;j<parts.length;j++){var p=parts[j]; if(p.g) continue;
       ctx.globalAlpha=p.a; ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,6.283); ctx.fill();
       ctx.beginPath(); ctx.arc(p.x+p.r*1.2,p.y-p.r*.6,p.r*.6,0,6.283); ctx.fill();}
     ctx.globalAlpha=1;
-    for(var j=0;j<parts.length;j++){ if(parts[j].g) drawGranule(parts[j]); }
+    for(var m=0;m<parts.length;m++){ if(parts[m].g) drawGranule(parts[m],C.store); }
+    // bulk liquid gauges
+    var gy=YT+18, gh=Math.max(30,YP-YT-48), sp=Math.max(16,(W-12-GX)/4);
+    ctx.fillStyle=col.muted; ctx.textAlign='left'; ctx.fillText('in the liquid',GX-2,gy-8);
+    gauge(GX,gy,gh,'COD',C.cod,col.accent);
+    gauge(GX+sp,gy,gh,'NH₄',C.nh,col.ochre);
+    gauge(GX+sp*2,gy,gh,'NO₃',C.no,col.muted);
+    gauge(GX+sp*3,gy,gh,'PO₄',C.po,col.ink);
+    ctx.textAlign='left';
   }
-  var running=false, visible=true, raf=0;
-  function loop(){ step(); draw(); if(running && visible) raf=requestAnimationFrame(loop); else raf=0; }
+  countEl=document.createElement('span'); countEl.className='mono fig-count';
+  frame.appendChild(countEl);
+  var running=false, visible=true, raf=0, last=0;
+  function loop(ts){
+    var dt=last?Math.min(0.05,(ts-last)/1000):0.016; last=ts;
+    step(dt); draw();
+    if(running && visible) raf=requestAnimationFrame(loop); else {raf=0; last=0;}
+  }
   function start(){ if(!raf && visible){ running=true; raf=requestAnimationFrame(loop);} }
-  readColors(); resize();
-  // settle a moment so the first frame already shows structure
-  for(var s=0;s<30;s++) step(); draw();
+  readColors(); resize(); countEl.style.display = H<420 ? 'none' : '';
+  if(reduce){ ph=1; pt=0.5; }
+  step(0.001); draw();
   if(!reduce) start();
   if('ResizeObserver' in window) new ResizeObserver(resize).observe(frame); else window.addEventListener('resize',resize);
   if('IntersectionObserver' in window){
@@ -784,19 +876,13 @@ window.initSim=function(){
   var recolor=function(){readColors(); draw();};
   if(mq.addEventListener) mq.addEventListener('change',recolor);
   new MutationObserver(recolor).observe(document.documentElement,{attributes:true,attributeFilter:['data-theme']});
-
+  function setBtn(){ btn.setAttribute('aria-pressed',String(running)); btnLbl.textContent = running ? 'Pause' : 'Play'; }
+  setBtn();
   btn.addEventListener('click',function(){
-    aerated=!aerated; settleT=0;
-    btn.setAttribute('aria-pressed',String(aerated));
-    btnLbl.textContent = aerated ? 'Stop aeration' : 'Start aeration';
-    running=true; start();
+    if(running){ running=false; } else { start(); }
+    setBtn();
   });
-  document.getElementById('reseed').addEventListener('click',function(){ seed(); aerated=true; btn.setAttribute('aria-pressed','true'); btnLbl.textContent='Stop aeration'; running=true; start(); draw(); });
-  function pos(e){var r=cv.getBoundingClientRect(); mouse.x=e.clientX-r.left; mouse.y=e.clientY-r.top; mouse.on=true;}
-  cv.addEventListener('pointermove',pos);
-  cv.addEventListener('pointerdown',function(e){pos(e); if(reduce){running=true; start(); setTimeout(function(){running=false;},4000);}});
-  cv.addEventListener('pointerleave',function(){mouse.on=false;});
-  if(reduce){ btn.addEventListener('click',function(){ setTimeout(function(){running=false;},6000); }); }
+  document.getElementById('reseed').addEventListener('click',function(){ seed(); draw(); if(!running){ start(); } setBtn(); });
 };
 </script>
 <script>
@@ -1111,9 +1197,9 @@ window.initSim=function(){
     }
     h+='</div>';
     if(fig.show!==false){
-      h+='<figure class="fig rise d2"><div class="fig-frame" id="fig1"><canvas id="sludge" role="img" aria-label="Animated simulation: small loose flocs drift through water and cluster into dense granules. Turning aeration off lets the granules settle quickly while the flocs linger."></canvas>'+
-        '<div class="fig-hud mono"><span id="hud-mode">Aerated</span><span id="hud-count">granules 0 · flocs 0</span></div>'+
-        '<div class="fig-ctrl"><button class="btn" type="button" id="aerate" aria-pressed="true"><span class="dot" aria-hidden="true"></span><span id="aerate-lbl">Stop aeration</span></button><button class="btn ghost" type="button" id="reseed">Reset</button></div></div>'+
+      h+='<figure class="fig rise d2"><div class="fig-frame" id="fig1"><canvas id="sludge" role="img" aria-label="Animated cycle of an aerobic granular sludge sequencing batch reactor: anaerobic feeding from the bottom through the settled granule bed, aeration that mixes the reactor while ammonium and phosphate fall, a short settling phase in which granules settle and flocs stay up, and decanting through a mid-height port that removes the treated water and the unsettled flocs."></canvas>'+
+        '<div class="fig-hud mono"><span id="hud-mode">1 · Anaerobic feeding</span><span id="hud-count">t = 0 / 180 min</span></div>'+
+        '<div class="fig-ctrl"><button class="btn" type="button" id="aerate" aria-pressed="true"><span class="dot" aria-hidden="true"></span><span id="aerate-lbl">Pause</span></button><button class="btn ghost" type="button" id="reseed">Reset</button></div></div>'+
         (fig.caption?'<figcaption>'+inline(fig.caption)+'</figcaption>':'')+'</figure>';
     }
     h+='</section>';
