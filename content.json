@@ -1843,12 +1843,17 @@
       "lede": "Articles for a general audience.",
       "items": [
         {
-          "text": "Why climate communication works best when it connects with the realities people live: three ways people come to understand climate change (living through it, learning about it, and relating it to a hardship of their own), and how stories, science and empathy can work together.",
           "link_label": "Read on The Conversation",
           "hidden": false,
           "label": "The Conversation · 2026",
           "title": "Climate communication that resonates must be based on empathy",
-          "url": "https://theconversation.com/climate-communication-that-resonates-must-be-based-on-empathy-294645"
+          "url": "https://theconversation.com/climate-communication-that-resonates-must-be-based-on-empathy-294645",
+          "authors": "**Amool, S. H.**",
+          "text": "*The Conversation*, 19 November 2026 · DOI: [10.64628/AAM.3q5mttxcd](https://doi.org/10.64628/AAM.3q5mttxcd)",
+          "summary": "Why climate communication works best when it connects with the realities people live: three ways people come to understand climate change (living through it, learning about it, and relating it to a hardship of their own), and how stories, science and empathy can work together.",
+          "extra_url": "https://doi.org/10.64628/AAM.3q5mttxcd",
+          "extra_label": "DOI",
+          "cite": "Amool, S. H. (2026, November 19). Climate communication that resonates must be based on empathy. The Conversation. https://doi.org/10.64628/AAM.3q5mttxcd"
         },
         {
           "text": "An argument for brain circulation rather than brain drain, and for better ways to measure the return on publicly funded study abroad.",
