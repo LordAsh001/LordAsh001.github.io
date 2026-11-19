@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-18",
+ "updated": "2026-11-19",
  "sources": [
   {
    "source": "Opportunities for Africans",
@@ -23,8 +23,8 @@
   },
   {
    "source": "Opportunities for Youth",
-   "ok": false,
-   "error": "HTTP Error 403: Forbidden"
+   "ok": true,
+   "items": 6
   },
   {
    "source": "Commonwealth Scholarship Commission",
@@ -56,6 +56,96 @@
   }
  ],
  "items": [
+  {
+   "title": "Malek Sghiri Scholarship 2027 to Study Arabic in Tunisia",
+   "link": "https://opportunitydesk.org/2026/11/19/malek-sghiri-scholarship-2027/",
+   "date": "2026-11-19",
+   "source": "Opportunity Desk",
+   "official": false,
+   "ids": [],
+   "summary": "Deadline: March 15, 2027 Applications are open for the Malek Sghiri Scholarship 2027 to Study Arabic in Tunisia. The scholarship supports students, professionals and career changers who want to study…",
+   "seen": "2026-11-19"
+  },
+  {
+   "title": "Morris B. Abram Fellowship 2027-2028",
+   "link": "https://opportunitydesk.org/2026/11/19/morris-b-abram-fellowship-2027-2028/",
+   "date": "2026-11-19",
+   "source": "Opportunity Desk",
+   "official": false,
+   "ids": [],
+   "summary": "Deadline: December 31, 2026 Applications are open for the Morris B. Abram Fellowship 2027-2028. The fellowship is designed to train recent college graduates. Previous UN Watch Fellows have gone on to…",
+   "seen": "2026-11-19"
+  },
+  {
+   "title": "John M. Belk Impact Fellowship 2027-2028 (Paid)",
+   "link": "https://opportunitydesk.org/2026/11/19/john-m-belk-impact-fellowship-2027-2028/",
+   "date": "2026-11-19",
+   "source": "Opportunity Desk",
+   "official": false,
+   "ids": [],
+   "summary": "Deadline: March 5, 2027 Applications are open for the John M. Belk Impact Fellowship 2027-2028. The John M. Belk Impact Fellowship is a 10-month (August-May), paid program that provides hands-on expe…",
+   "seen": "2026-11-19"
+  },
+  {
+   "title": "Australian National University RTP Scholarship 2027 | Fully Funded",
+   "link": "https://www.scholarshipregion.com/australian-national-university-rtp-scholarship/",
+   "date": "2026-11-19",
+   "source": "Scholarship Region",
+   "official": false,
+   "ids": [],
+   "summary": "The Australian National University RTP Scholarship provides funding to Universities to award scholarships to domestic and international students undertaking Higher Degree Research programs. The Austr…",
+   "seen": "2026-11-19"
+  },
+  {
+   "title": "SOAS University of London Felix Scholarships in UK | Fully Funded",
+   "link": "https://www.scholarshipregion.com/soas-university-of-london-felix-scholarship/",
+   "date": "2026-11-19",
+   "source": "Scholarship Region",
+   "official": false,
+   "ids": [],
+   "summary": "The Felix Scholarship Trust is offering fully funded postgraduate scholarships to students from developing countries to study at the SOAS University of London. The SOAS Felix Scholarships cover the f…",
+   "seen": "2026-11-19"
+  },
+  {
+   "title": "Imperial College London Ada Lovelace Scholarship in Computational and Data Science 2026 (Fully Funded)",
+   "link": "https://www.scholarshipregion.com/ada-lovelace-scholarship/",
+   "date": "2026-11-19",
+   "source": "Scholarship Region",
+   "official": false,
+   "ids": [],
+   "summary": "Imperial College London (ICL) in the UK has opened applications for the fully funded Ada Lovelace PhD Scholarship in Computational and Data Science (2026). The ICL Ada Lovelace PhD Scholarship provid…",
+   "seen": "2026-11-19"
+  },
+  {
+   "title": "Aspen CE Madeleine K. Albright Leadership Award 2026: Recognizing Young Emerging Leaders Driving Positive Social Change in Central Europe",
+   "link": "https://opportunitiesforyouth.org/2026/11/19/aspen-ce-madeleine-k-albright-leadership-award-2026-recognizing-young-emerging-leaders-driving-positive-social-change-in-central-europe/",
+   "date": "2026-11-19",
+   "source": "Opportunities for Youth",
+   "official": false,
+   "ids": [],
+   "summary": "The Aspen CE Madeleine K. Albright Leadership Award is an annual recognition presented by the Aspen Institute Central Europe (Aspen Institute CE) to young and emerging professionals who have demonstr…",
+   "seen": "2026-11-19"
+  },
+  {
+   "title": "Erase Indifference Challenge 2026: Apply for €90,000 in Awards for Innovative Projects Combating Discrimination, Hate and Social Indifference",
+   "link": "https://opportunitiesforyouth.org/2026/11/19/erase-indifference-challenge-2026-apply-for-e90000-in-awards-for-innovative-projects-combating-discrimination-hate-and-social-indifference/",
+   "date": "2026-11-19",
+   "source": "Opportunities for Youth",
+   "official": false,
+   "ids": [],
+   "summary": "The Erase Indifference Challenge 2026 is a global initiative recognising and rewarding innovative projects that are taking practical action to reduce indifference towards discrimination. The Challeng…",
+   "seen": "2026-11-19"
+  },
+  {
+   "title": "PBS Accelerator Fellowship 2027–2028: Paid One-Year Media Fellowship for Producers, Journalists, Editors and Creative Media Professionals",
+   "link": "https://opportunitiesforyouth.org/2026/11/19/pbs-accelerator-fellowship-2027-2028-paid-one-year-media-fellowship-for-producers-journalists-editors-and-creative-media-professionals/",
+   "date": "2026-11-19",
+   "source": "Opportunities for Youth",
+   "official": false,
+   "ids": [],
+   "summary": "The PBS Accelerator Fellowship 2027–2028 is an exciting professional development and paid employment opportunity for experienced media professionals seeking to advance their careers in the television…",
+   "seen": "2026-11-19"
+  },
   {
    "title": "Stanley Park Climate Finance Scholarships 2027",
    "link": "https://opportunitydesk.org/2026/11/18/stanley-park-climate-finance-scholarships-2027/",
@@ -115,6 +205,76 @@
    "ids": [],
    "summary": "Towson University in the United States is welcoming applications for a fully funded master’s assistantship in applied fish physiology at the Department of Biological or Environmental Science. The Tow…",
    "seen": "2026-11-18"
+  },
+  {
+   "title": "The Oxford Saïd Future Leaders Scholarships 2027 for young professionals.",
+   "link": "https://www.opportunitiesforafricans.com/the-oxford-said-future-leaders-scholarships-2027-for-young-professionals/",
+   "date": "2026-11-18",
+   "source": "Opportunities for Africans",
+   "official": false,
+   "ids": [],
+   "summary": "Application Deadline: Ongoing The Oxford Saïd Future Leaders Scholarships are prestigious awards to honour the achievements and support the ambitions of our brightest and best MBA students, who will …",
+   "seen": "2026-11-19"
+  },
+  {
+   "title": "NextGen Service Summer Policy Academy (SPA) 2027 (Fully-funded)",
+   "link": "https://opportunitydesk.org/2026/11/18/nextgen-service-summer-policy-academy-2027/",
+   "date": "2026-11-18",
+   "source": "Opportunity Desk",
+   "official": false,
+   "ids": [],
+   "summary": "Deadline: December 15, 2026 Applications are open for the NextGen Service Summer Policy Academy (SPA) 2027. The NextGen Service Summer Policy Academy (SPA) is a fully funded three-week professional d…",
+   "seen": "2026-11-19"
+  },
+  {
+   "title": "University of Wyoming Masters Scholarship in USA 2027 | Fully Funded",
+   "link": "https://www.scholarshipregion.com/university-of-wyoming-masters-scholarship/",
+   "date": "2026-11-18",
+   "source": "Scholarship Region",
+   "official": false,
+   "ids": [],
+   "summary": "The University of Wyoming in the United States is welcoming applications for a fully funded master’s scholarship program . The fully funded University of Wyoming Masters Scholarship offers a tuition …",
+   "seen": "2026-11-19"
+  },
+  {
+   "title": "2027 Zoom AI Launchpad Startup Grants ($150,000 Credits & Funding Worldwide)",
+   "link": "https://www.scholarshipregion.com/zoom-ai-launchpad-startup-grants/",
+   "date": "2026-11-18",
+   "source": "Scholarship Region",
+   "official": false,
+   "ids": [],
+   "summary": "Zoom is calling on startups worldwide to apply for its 2027 AI Launchpad Startup Grant. The Zoom AI Launchpad Startup Grant offers up to $150,000 in AI credits, technical support, fundraising, mentor…",
+   "seen": "2026-11-19"
+  },
+  {
+   "title": "JPMorganChase ReEntry Program 2027: Apply for a 15-Week Paid Fellowship to Relaunch Your Career After a Career Break",
+   "link": "https://opportunitiesforyouth.org/2026/11/18/jpmorgan-chase-reentry-program-2026-applications-now-open-for-returning-professionals/",
+   "date": "2026-11-18",
+   "source": "Opportunities for Youth",
+   "official": false,
+   "ids": [],
+   "summary": "Are you an experienced professional who has taken an extended career break and is now ready to return to full-time employment? The JPMorganChase ReEntry Program 2027 offers an opportunity to rebuild …",
+   "seen": "2026-11-19"
+  },
+  {
+   "title": "Columbia University Stanley Park Climate Finance Scholarships 2027: Fully Funded Tuition for Three Students in the MS in Climate Finance Programme",
+   "link": "https://opportunitiesforyouth.org/2026/11/18/columbia-university-ms-in-climate-finance-applications-now-open-for-a-fully-funded-masters-program/",
+   "date": "2026-11-18",
+   "source": "Opportunities for Youth",
+   "official": false,
+   "ids": [],
+   "summary": "Applications are open for the Stanley Park Climate Finance Scholarships at Columbia University for the Fall 2027 intake. Offered through the Columbia Climate School, these competitive scholarships wi…",
+   "seen": "2026-11-19"
+  },
+  {
+   "title": "Ocean Culture Storytelling Grants 2027: Apply for Up to £5,000 to Fund Film, Photography, Writing and Ocean Conservation Stories Worldwide",
+   "link": "https://opportunitiesforyouth.org/2026/11/18/ocean-culture-storytelling-grants-2027-apply-for-up-to-5000-to-fund-film-photography-writing-and-ocean-conservation-stories-worldwide/",
+   "date": "2026-11-18",
+   "source": "Opportunities for Youth",
+   "official": false,
+   "ids": [],
+   "summary": "Creative storytellers, filmmakers, photographers, writers, illustrators, audio producers and ocean conservation advocates have an exciting opportunity to secure funding through the Ocean Culture Stor…",
+   "seen": "2026-11-19"
   },
   {
    "title": "EJN Story Grants to Report on Mining, Environment and Human Rights in Africa 2027 (up to $2,000)",
@@ -1541,170 +1701,6 @@
    "ids": [],
    "summary": "The University of Edinburgh is offering fully funded studentship scholarships for international and domestic students to pursue doctoral degrees at the Edinburgh Law School. The Edinburgh Law School …",
    "seen": "2026-11-07"
-  },
-  {
-   "title": "2027 Chinese Government Scholarship Program | How to Apply",
-   "link": "https://www.scholarshipregion.com/chinese-government-scholarship/",
-   "date": "2026-11-06",
-   "source": "Scholarship Region",
-   "official": false,
-   "ids": [
-    "csc-china"
-   ],
-   "summary": "Kickstart your academic journey with the prestigious Chinese Government Scholarship (CSC). In this article, we will explain the full details of the Chinese Government Scholarship, its benefits and ho…",
-   "seen": "2026-11-07"
-  },
-  {
-   "title": "2027 Norwegian University of Science and Technology Scholarships | Fully Funded",
-   "link": "https://www.scholarshipregion.com/norwegian-university-of-science-and-technology-scholarship/",
-   "date": "2026-11-06",
-   "source": "Scholarship Region",
-   "official": false,
-   "ids": [],
-   "summary": "The Norwegian University of Science and Technology (NTNU) is welcoming applications for a fully funded opportunity to pursue graduate degree at the institution. The Norwegian University of Science an…",
-   "seen": "2026-11-07"
-  },
-  {
-   "title": "2027 InterMaths Erasmus Mundus Joint Master Program in Europe | Fully Funded",
-   "link": "https://www.scholarshipregion.com/intermaths-erasmus-mundus-master-program/",
-   "date": "2026-11-06",
-   "source": "Scholarship Region",
-   "official": false,
-   "ids": [
-    "erasmus"
-   ],
-   "summary": "InterMaths Erasmus Mundus Joint Master Program is a two-year full scholarship in Interdisciplinary Mathematics open to students from all countries. The Erasmus Mundus InterMaths Scholarship includes …",
-   "seen": "2026-11-07"
-  },
-  {
-   "title": "CRASSH Visiting Fellowships for Scholars from the Global South 2027 (Funded)",
-   "link": "https://opportunitydesk.org/2026/11/05/crassh-visiting-fellowships-for-scholars-from-the-global-south-2027/",
-   "date": "2026-11-05",
-   "source": "Opportunity Desk",
-   "official": false,
-   "ids": [],
-   "summary": "Deadline: January 22, 2027 Applications are open for the CRASSH Visiting Fellowships for Scholars from the Global South 2027. The Centre for Research in the Arts, Humanities and Social Sciences (CRAS…",
-   "seen": "2026-11-05"
-  },
-  {
-   "title": "Cannes Lions Scholarship 2027 (Fully-funded)",
-   "link": "https://opportunitydesk.org/2026/11/05/cannes-lions-scholarship-2027/",
-   "date": "2026-11-05",
-   "source": "Opportunity Desk",
-   "official": false,
-   "ids": [],
-   "summary": "Deadline: December 4, 2026 Applications are open for the Cannes Lions Scholarship 2027. For Cannes Lions 2027, they are offering 10 fully funded scholarships to underrepresented talent within the cre…",
-   "seen": "2026-11-05"
-  },
-  {
-   "title": "Young Security Conference 2026/2027 in Germany (Fully Funded)",
-   "link": "https://opportunitiescorners.com/oung-security-conference-in-germany/",
-   "date": "2026-11-05",
-   "source": "Opportunities Corners",
-   "official": false,
-   "ids": [],
-   "summary": "Applications are now open for the Young Security Conference 2026/2027 in Munich, Germany. This fully funded international fellowship is inviting outstanding early-career researchers, young profession…",
-   "seen": "2026-11-05"
-  },
-  {
-   "title": "Santa Fe Institute Summer Program 2027 in USA (Fully Funded)",
-   "link": "https://opportunitiescorners.com/santa-fe-institute-summer-program-2027/",
-   "date": "2026-11-05",
-   "source": "Opportunities Corners",
-   "official": false,
-   "ids": [],
-   "summary": "The applications are now open for the Santa Fe Institute UCR Program 2027. It is a Fully Funded 10-week residential program for participants to work on research projects under the guidance of Mentors…",
-   "seen": "2026-11-05"
-  },
-  {
-   "title": "2027 Government of Denmark Scholarship at University of Copenhagen | Step-by-Step Process",
-   "link": "https://www.scholarshipregion.com/government-of-denmark-scholarship-copenhagen/",
-   "date": "2026-11-05",
-   "source": "Scholarship Region",
-   "official": false,
-   "ids": [],
-   "summary": "The University of Copenhagen is offering the Government of Denmark Scholarship opportunities to International students to study in Denmark. The Danish Government Scholarships are granted either as fu…",
-   "seen": "2026-11-05"
-  },
-  {
-   "title": "2027 Warwick Business School Scholarship in UK | Fully Funded",
-   "link": "https://www.scholarshipregion.com/warwick-business-school-scholarship/",
-   "date": "2026-11-05",
-   "source": "Scholarship Region",
-   "official": false,
-   "ids": [],
-   "summary": "The Warwick Business School (WBS) is inviting applications from domestic and international candidates for its 2027 MRes/PhD Scholarships in Finance and Economics. The fully funded Warwick Business Sc…",
-   "seen": "2026-11-05"
-  },
-  {
-   "title": "Chief Of Army Staff Literary Competition For Nigerians (₦10m Prizes)",
-   "link": "https://www.scholarshipregion.com/chief-of-army-staff-literary-competition/",
-   "date": "2026-11-05",
-   "source": "Scholarship Region",
-   "official": false,
-   "ids": [],
-   "summary": "The Nigerian Army has announced the second edition of the Chief Of Army Staff Literary Competition 2027. The COAS Competition awards up to ₦10 million in prizes, and is open to students at all levels…",
-   "seen": "2026-11-05"
-  },
-  {
-   "title": "Shanghai Jiao Tong University Scholarship 2027 (SJTU) in China | Fully Funded",
-   "link": "https://www.scholarshipregion.com/shanghai-jiao-tong-university-scholarship/",
-   "date": "2026-11-05",
-   "source": "Scholarship Region",
-   "official": false,
-   "ids": [],
-   "summary": "The Shanghai Jiao Tong University Scholarship seeks to attract the brightest talents globally to pursue Master’s and PhD programs in China, promoting diversity and academic collaboration. The SJTU Sc…",
-   "seen": "2026-11-05"
-  },
-  {
-   "title": "Growing Your Business with Venture Funding: 5 Practical Steps for Entrepreneurs",
-   "link": "https://opportunitydesk.org/2026/11/05/growing-your-business-with-venture-funding-5-practical-steps-for-entrepreneurs/",
-   "date": "2026-11-05",
-   "source": "Opportunity Desk",
-   "official": false,
-   "ids": [],
-   "summary": "Starting a business is exciting, but growing it into a successful and sustainable enterprise often requires more than a great idea, determination, and hard work. Many entrepreneurs struggle to access…",
-   "seen": "2026-11-06"
-  },
-  {
-   "title": "How to Ace Your Scholarship Interview: 12 Tips to Help You Stand Out",
-   "link": "https://opportunitydesk.org/2026/11/05/how-to-ace-your-scholarship-interview-12-tips-to-help-you-stand-out/",
-   "date": "2026-11-05",
-   "source": "Opportunity Desk",
-   "official": false,
-   "ids": [],
-   "summary": "Getting shortlisted for a scholarship interview is an exciting achievement. It means that out of hundreds or even thousands of applicants, the selection committee has seen something promising in your…",
-   "seen": "2026-11-06"
-  },
-  {
-   "title": "University of Vienna Faculty of Law Fellowship Programme – Summer 2027",
-   "link": "https://opportunitydesk.org/2026/11/05/university-of-vienna-faculty-of-law-fellowship-programme-summer-2027/",
-   "date": "2026-11-05",
-   "source": "Opportunity Desk",
-   "official": false,
-   "ids": [],
-   "summary": "Deadline: November 30, 2026 Applications are open for the University of Vienna Faculty of Law Fellowship Programme – Summer 2027. The programme aims to promote international academic exchange and fos…",
-   "seen": "2026-11-06"
-  },
-  {
-   "title": "Young Security Conference (YSC) Fellowship 2026",
-   "link": "https://opportunitydesk.org/2026/11/05/young-security-conference-fellowship-2026/",
-   "date": "2026-11-05",
-   "source": "Opportunity Desk",
-   "official": false,
-   "ids": [],
-   "summary": "Deadline: November 11, 2026 Applications are open for the Young Security Conference (YSC) Fellowship 2026. The Young Security Conference (YSC) Fellowship offers an exceptional opportunity to particip…",
-   "seen": "2026-11-06"
-  },
-  {
-   "title": "15 Global Scholarship Opportunities Currently Open – November 5, 2026",
-   "link": "https://opportunitydesk.org/2026/11/05/15-global-scholarship-opportunities-currently-open-november-5-2026/",
-   "date": "2026-11-05",
-   "source": "Opportunity Desk",
-   "official": false,
-   "ids": [],
-   "summary": "1. WAAW Foundation Scholarship 2027 for Female College Students in AfricaThe WAAW Foundation Scholarship supports female university students of African origin who are studying STEM-related courses at…",
-   "seen": "2026-11-06"
   }
  ]
 }
