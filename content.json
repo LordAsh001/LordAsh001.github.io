@@ -95,6 +95,13 @@
     "news": [
       {
         "date": "Nov 2026",
+        "iso": "2026-11-19",
+        "text": "Wrote for The Conversation: climate communication that resonates must be based on empathy.",
+        "url": "https://theconversation.com/climate-communication-that-resonates-must-be-based-on-empathy-294645",
+        "hidden": false
+      },
+      {
+        "date": "Nov 2026",
         "iso": "2026-11-17",
         "text": "Published an open-access review in *Resources*: can aerobic granular sludge treating brewery wastewater also make the biopolymer curdlan?",
         "url": "https://doi.org/10.3390/resources15110153",
@@ -1832,13 +1839,21 @@
       "id": "writing",
       "show": true,
       "numbered": true,
-      "subtitle": "Essays on education, migration and building a life and career in a new country.",
-      "lede": "Essays for a general audience, mostly about study, migration and starting again in a new country.",
+      "subtitle": "Writing for a general audience on climate change and how we talk about it.",
+      "lede": "Articles for a general audience.",
       "items": [
+        {
+          "text": "Why climate communication works best when it connects with the realities people live: three ways people come to understand climate change (living through it, learning about it, and relating it to a hardship of their own), and how stories, science and empathy can work together.",
+          "link_label": "Read on The Conversation",
+          "hidden": false,
+          "label": "The Conversation · 2026",
+          "title": "Climate communication that resonates must be based on empathy",
+          "url": "https://theconversation.com/climate-communication-that-resonates-must-be-based-on-empathy-294645"
+        },
         {
           "text": "An argument for brain circulation rather than brain drain, and for better ways to measure the return on publicly funded study abroad.",
           "link_label": "Read",
-          "hidden": false,
+          "hidden": true,
           "label": "Medium · 2026",
           "title": "PTDF has given us the education. Should it also give us a fair chance to build the experience?",
           "url": "https://medium.com/@amoolhycent/ptdf-has-given-us-the-education-should-it-also-give-us-a-fair-chance-to-build-the-experience-50ce718a2af9",
