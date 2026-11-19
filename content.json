@@ -83,7 +83,7 @@
     },
     "figure": {
       "show": true,
-      "caption": "**Fig. 1** Loose flocs cluster into dense granules. Stop the aeration and watch the granules settle first, the property that makes aerobic granular sludge so compact. Move your cursor through the tank to stir it."
+      "caption": "**Fig. 1** One cycle of an aerobic granular sludge sequencing batch reactor, as run in the lab (180 min, half the volume exchanged). **1** Wastewater is fed slowly from the bottom through the settled granules with no air, and they store its organic matter. **2** Aeration mixes the reactor: the stored food is used, ammonium is converted, and phosphate is taken up. **3** A short settling lets the dense granules sink while light flocs stay up. **4** Treated water leaves through the mid-height port and takes those flocs with it, which is what keeps granules in the reactor. The gauges show illustrative trends in the liquid."
     },
     "booking": "/book/",
     "booking_label": "Book a meeting"
