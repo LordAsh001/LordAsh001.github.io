@@ -443,6 +443,7 @@ footer{align-items:center}
 .nl-msg{margin-top:10px!important;font-size:15px}
 .nl-msg.ok{color:var(--accent)}.nl-msg.err{color:var(--ochre-ink)}
 .glance .nl{margin-top:16px;padding:14px 16px}
+.pub-sum{margin:10px 0 0;font-size:16px;line-height:1.6;max-width:72ch}
 /* speaker / press kit */
 .kit{margin-top:48px;border-top:1px solid var(--rule);padding-top:28px}
 .kit>h3{font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:400}
@@ -1038,6 +1039,7 @@ window.initSim=function(){
           '<h3>'+(u?'<a '+u+'>'+inline(i.title)+'</a>':inline(i.title))+'</h3>'+
           (i.authors?'<p class="authors">'+inline(i.authors)+'</p>':'')+
           (i.text?'<p class="authors">'+inline(i.text)+'</p>':'')+
+          (i.summary?'<p class="pub-sum">'+inline(i.summary)+'</p>':'')+
           (i.plain?'<div class="plain md"><span class="mono">In plain language</span>'+md(i.plain)+'</div>':'')+
           (i.takeaway?'<p class="takeaway">Takeaway: '+inline(i.takeaway)+'</p>':'')+
           ((u||i.cite||i.extra_url)?'<div class="pub-actions">'+
