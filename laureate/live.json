@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-19",
+ "updated": "2026-11-20",
  "sources": [
   {
    "source": "Opportunities for Africans",
@@ -9,7 +9,7 @@
   {
    "source": "Opportunity Desk",
    "ok": true,
-   "items": 7
+   "items": 6
   },
   {
    "source": "Opportunities Corners",
@@ -19,12 +19,12 @@
   {
    "source": "Scholarship Region",
    "ok": true,
-   "items": 6
+   "items": 7
   },
   {
    "source": "Opportunities for Youth",
    "ok": true,
-   "items": 6
+   "items": 5
   },
   {
    "source": "Commonwealth Scholarship Commission",
@@ -56,6 +56,192 @@
   }
  ],
  "items": [
+  {
+   "title": "Nanomedicine for Drug Delivery",
+   "link": "http://master-nanomed.eu/",
+   "date": "2026-11-20",
+   "source": "Erasmus Mundus catalogue (EACEA)",
+   "official": true,
+   "ids": [],
+   "summary": "NANOMED - Project overview https://erasmus-plus.ec.europa.eu/projects/search/details/619764-EPP-1-…",
+   "seen": "2026-11-20"
+  },
+  {
+   "title": "Erasmus Mundus Master’s Degree in Women’s and Gender Studies",
+   "link": "https://gemmaerasmusmundus.eu/",
+   "date": "2026-11-20",
+   "source": "Erasmus Mundus catalogue (EACEA)",
+   "official": true,
+   "ids": [
+    "erasmus"
+   ],
+   "summary": "GEMMA - Project overview https://erasmus-plus.ec.europa.eu/projects/search/details/610564-EPP-1-…",
+   "seen": "2026-11-20"
+  },
+  {
+   "title": "Infectious Diseases and One Health",
+   "link": "http://infectious-diseases-one-health.eu/",
+   "date": "2026-11-20",
+   "source": "Erasmus Mundus catalogue (EACEA)",
+   "official": true,
+   "ids": [],
+   "summary": "IDOH+ - Project overview https://erasmus-plus.ec.europa.eu/projects/search/details/610556-EPP-1-…",
+   "seen": "2026-11-20"
+  },
+  {
+   "title": "JAPAN-EUROPE MASTER ON ADVANCED ROBOTICS",
+   "link": "https://jemaro.ec-nantes.fr/",
+   "date": "2026-11-20",
+   "source": "Erasmus Mundus catalogue (EACEA)",
+   "official": true,
+   "ids": [],
+   "summary": "JEMARO - Project overview https://erasmus-plus.ec.europa.eu/projects/search/details/612972-EPP-1-…",
+   "seen": "2026-11-20"
+  },
+  {
+   "title": "International Master of Science in Rural Development",
+   "link": "http://www.imrd.ugent.be/",
+   "date": "2026-11-20",
+   "source": "Erasmus Mundus catalogue (EACEA)",
+   "official": true,
+   "ids": [],
+   "summary": "IMRD - Project overview https://erasmus-plus.ec.europa.eu/projects/search/details/610590-EPP-1-…",
+   "seen": "2026-11-20"
+  },
+  {
+   "title": "European Master in Building Information Modelling",
+   "link": "https://bimaplus.org/",
+   "date": "2026-11-20",
+   "source": "Erasmus Mundus catalogue (EACEA)",
+   "official": true,
+   "ids": [],
+   "summary": "BIM A+ - project overview https://erasmus-plus.ec.europa.eu/projects/search/details/599172-EPP-1-…",
+   "seen": "2026-11-20"
+  },
+  {
+   "title": "Cultures Littéraires Européennes - CLE",
+   "link": "https://www.cle.unibo.it/",
+   "date": "2026-11-20",
+   "source": "Erasmus Mundus catalogue (EACEA)",
+   "official": true,
+   "ids": [],
+   "summary": "CLE - project overview https://erasmus-plus.ec.europa.eu/projects/search/details/599186-EPP-1-…",
+   "seen": "2026-11-20"
+  },
+  {
+   "title": "Erasmus Mundus Joint Master Degree in Tropical Biodiversity and Ecosystems",
+   "link": "https://www.tropimundo.eu/",
+   "date": "2026-11-20",
+   "source": "Erasmus Mundus catalogue (EACEA)",
+   "official": true,
+   "ids": [
+    "erasmus"
+   ],
+   "summary": "TROPIMUNDO -Project overview https://erasmus-plus.ec.europa.eu/projects/search/details/610581-EPP-1-…",
+   "seen": "2026-11-20"
+  },
+  {
+   "title": "Oxford Saïd Future Leaders Scholarships 2027",
+   "link": "https://opportunitydesk.org/2026/11/20/oxford-said-future-leaders-scholarships-2027/",
+   "date": "2026-11-20",
+   "source": "Opportunity Desk",
+   "official": false,
+   "ids": [],
+   "summary": "Deadline: On Rolling Basis Applications are open for the Oxford Saïd Future Leaders Scholarships 2027. The Oxford Saïd Future Leaders Scholarships are prestigious awards to honour the achievements an…",
+   "seen": "2026-11-20"
+  },
+  {
+   "title": "Mississippi State University Presidential Endowed Scholarship in USA 2027 | Fully Funded",
+   "link": "https://www.scholarshipregion.com/mississippi-presidential-endowed-scholarship/",
+   "date": "2026-11-20",
+   "source": "Scholarship Region",
+   "official": false,
+   "ids": [],
+   "summary": "",
+   "seen": "2026-11-20"
+  },
+  {
+   "title": "Healthy Futures Mastercard Scholarship at the University of Cape Town (UCT) For Africans 2027 | Fully Funded",
+   "link": "https://www.scholarshipregion.com/healthy-futures-mastercard-scholarship/",
+   "date": "2026-11-20",
+   "source": "Scholarship Region",
+   "official": false,
+   "ids": [],
+   "summary": "The Bertha Centre for Social Innovation and Entrepreneurship and the Faculty of Health Sciences at the University of Cape Town invite applications for the Healthy Futures Mastercard Scholarship 2027.…",
+   "seen": "2026-11-20"
+  },
+  {
+   "title": "EDISS Scholarships in Finland, Spain, Italy, Sweden 2027 (Fully Funded)",
+   "link": "https://www.scholarshipregion.com/ediss-scholarships/",
+   "date": "2026-11-20",
+   "source": "Scholarship Region",
+   "official": false,
+   "ids": [
+    "erasmus"
+   ],
+   "summary": "The Erasmus Mundus EDISS Scholarship consists of a monthly grant of 1400€ per month and a participation costs waiver for the entire duration of the EDISS programme. All students completing the EDISS …",
+   "seen": "2026-11-20"
+  },
+  {
+   "title": "Oxford Saïd Future Leaders Scholarships in UK | £40,000 Grant",
+   "link": "https://www.scholarshipregion.com/oxford-said-future-leaders-scholarship/",
+   "date": "2026-11-20",
+   "source": "Scholarship Region",
+   "official": false,
+   "ids": [],
+   "summary": "The Saïd Business School at the University of Oxford annually offers the Future Leaders Scholarship to prospective graduate students. The Oxford Saïd Future Leaders Scholarship offers a range of awar…",
+   "seen": "2026-11-20"
+  },
+  {
+   "title": "Up to 6 Fully Funded PhD Positions in Economics at the University of Gothenburg, Sweden – 2027",
+   "link": "https://opportunitiesforyouth.org/2026/11/20/up-to-6-fully-funded-phd-positions-in-economics-at-the-university-of-gothenburg-sweden-2027/",
+   "date": "2026-11-20",
+   "source": "Opportunities for Youth",
+   "official": false,
+   "ids": [],
+   "summary": "The University of Gothenburg in Sweden is inviting applications for up to six fully funded PhD positions in Economics for its September 2027 intake. These doctoral positions offer an excellent opport…",
+   "seen": "2026-11-20"
+  },
+  {
+   "title": "Rockefeller Foundation Big Bets Fellowship 2027 in the United States | Applications Open for Community Leaders and Social Impact Innovators",
+   "link": "https://opportunitiesforyouth.org/2026/11/20/rockefeller-foundation-big-bets-fellowship-2027-in-the-united-states-applications-open-for-community-leaders-and-social-impact-innovators/",
+   "date": "2026-11-20",
+   "source": "Opportunities for Youth",
+   "official": false,
+   "ids": [],
+   "summary": "The Rockefeller Foundation Big Bets Fellowship 2027 in the United States is now accepting applications from experienced leaders, entrepreneurs, community innovators, and professionals working to expa…",
+   "seen": "2026-11-20"
+  },
+  {
+   "title": "SHE WINS Rapid Response Fund (RRF): Small Grants for Women-Led Initiatives in 70+ Eligible Countries",
+   "link": "https://opportunitiesforyouth.org/2026/11/20/she-wins-rapid-response-fund-rrf-small-grants-for-women-led-initiatives-in-70-eligible-countries/",
+   "date": "2026-11-20",
+   "source": "Opportunities for Youth",
+   "official": false,
+   "ids": [],
+   "summary": "The SHE WINS Rapid Response Fund (RRF) is a grant opportunity designed to provide financial support to eligible applicants in selected countries. The fund offers an opportunity for individuals and or…",
+   "seen": "2026-11-20"
+  },
+  {
+   "title": "Erasmus+ UK 2026: Over £400 Million in Funding for International Study, Training, Youth and Sports Opportunities Across 30+ Countries",
+   "link": "https://opportunitiesforyouth.org/2026/11/20/erasmus-uk-2026-over-400-million-in-funding-for-international-study-training-youth-and-sports-opportunities-across-30-countries/",
+   "date": "2026-11-20",
+   "source": "Opportunities for Youth",
+   "official": false,
+   "ids": [],
+   "summary": "The Erasmus+ Programme is opening new opportunities for organisations and participants across the United Kingdom to gain international experience, develop professional skills, participate in educatio…",
+   "seen": "2026-11-20"
+  },
+  {
+   "title": "VBC Summer School 2027 in Vienna, Austria: Fully Funded 9-Week and 3-Month Research Programs for Bachelor’s and Master’s Students",
+   "link": "https://opportunitiesforyouth.org/2026/11/20/vbc-summer-school-2027-in-vienna-austria-fully-funded-9-week-and-3-month-research-programs-for-bachelors-and-masters-students/",
+   "date": "2026-11-20",
+   "source": "Opportunities for Youth",
+   "official": false,
+   "ids": [],
+   "summary": "The Vienna BioCenter (VBC) Summer School 2027 is now accepting applications from Bachelor’s and Master’s students interested in gaining hands-on research experience in a leading European life-science…",
+   "seen": "2026-11-20"
+  },
   {
    "title": "Malek Sghiri Scholarship 2027 to Study Arabic in Tunisia",
    "link": "https://opportunitydesk.org/2026/11/19/malek-sghiri-scholarship-2027/",
@@ -145,6 +331,76 @@
    "ids": [],
    "summary": "The PBS Accelerator Fellowship 2027–2028 is an exciting professional development and paid employment opportunity for experienced media professionals seeking to advance their careers in the television…",
    "seen": "2026-11-19"
+  },
+  {
+   "title": "The HIV Science Geneva 2027 Media Scholarship Programme to cover HIVR4P 2027 and IAS 2027 in Geneva, Switzerland (Fully Funded)",
+   "link": "https://www.opportunitiesforafricans.com/the-hiv-science-geneva-2027-media-scholarship-programme-to-cover-hivr4p-2027-and-ias-2027/",
+   "date": "2026-11-19",
+   "source": "Opportunities for Africans",
+   "official": false,
+   "ids": [],
+   "summary": "Application Deadline: 20 January 2027, 23:59 Central European Time (CET) Applications are now open for the 2027 HIV Science Geneva 2027 Media registration and scholarship. Media registration for HIV …",
+   "seen": "2026-11-20"
+  },
+  {
+   "title": "Funza Lushaka Bursary Programme 2027 for young South Africans",
+   "link": "https://www.opportunitiesforafricans.com/funza-lushaka-bursary-programme-2027-for-young-south-africans/",
+   "date": "2026-11-19",
+   "source": "Opportunities for Africans",
+   "official": false,
+   "ids": [],
+   "summary": "Application Deadline: 30 November 2026 Applications are now open for the 2027 Funza Lushaka Bursary Programme. The Funza Lushaka Bursary is more than just financial aid — it’s a powerful… The post Fu…",
+   "seen": "2026-11-20"
+  },
+  {
+   "title": "Rest & Resilience Fellowship 2027 (Fully-funded)",
+   "link": "https://opportunitydesk.org/2026/11/19/rest-resilience-fellowship-2027/",
+   "date": "2026-11-19",
+   "source": "Opportunity Desk",
+   "official": false,
+   "ids": [],
+   "summary": "Deadline: December 6, 2026 Applications are open for the Rest & Resilience Fellowship 2027. They invite two journalists from countries with restricted press and information freedoms to Berlin for a s…",
+   "seen": "2026-11-20"
+  },
+  {
+   "title": "Reporters Without Borders (RSF) Berlin Fellowship 2027 (Funded)",
+   "link": "https://opportunitydesk.org/2026/11/19/rsf-berlin-fellowship-2027/",
+   "date": "2026-11-19",
+   "source": "Opportunity Desk",
+   "official": false,
+   "ids": [],
+   "summary": "Deadline: December 15, 2026 Applications are invited for the Reporters Without Borders (RSF) Berlin Fellowship 2027. Reporters Without Borders (RSF) Germany will once again invite journalists from co…",
+   "seen": "2026-11-20"
+  },
+  {
+   "title": "Global Citizen Prize: 2027 Cisco Youth Leadership Award ($250,000 prize)",
+   "link": "https://opportunitydesk.org/2026/11/19/global-citizen-prize-2027-cisco-youth-leadership-award/",
+   "date": "2026-11-19",
+   "source": "Opportunity Desk",
+   "official": false,
+   "ids": [],
+   "summary": "Deadline: December 18, 2026 Applications are invited for the Global Citizen Prize: 2027 Cisco Youth Leadership Award. Established by Cisco and Global Citizen, the Global Citizen Prize: 2027 Cisco You…",
+   "seen": "2026-11-20"
+  },
+  {
+   "title": "20 Scholarships, Grants, Fellowships and Other Opportunities Currently Open – November 19, 2026",
+   "link": "https://opportunitydesk.org/2026/11/19/20-scholarships-grants-fellowships-and-other-opportunities-currently-open-november-19-2026/",
+   "date": "2026-11-19",
+   "source": "Opportunity Desk",
+   "official": false,
+   "ids": [],
+   "summary": "1. Morris B. Abram Fellowship 2027-2028The Morris B. Abram Fellowship is designed to train recent college graduates through hands-on work with UN Watch. The fellow works closely with the Executive Di…",
+   "seen": "2026-11-20"
+  },
+  {
+   "title": "Australian Catholic University (ACU) Graduate Research Scholarship Package 2027 | Fully Funded",
+   "link": "https://www.scholarshipregion.com/acu-graduate-research-scholarship-package/",
+   "date": "2026-11-19",
+   "source": "Scholarship Region",
+   "official": false,
+   "ids": [],
+   "summary": "Applications are now open for the 2027 Graduate Research Scholarship Package at the Australian Catholic University. The ACU Graduate Research Scholarship Package includes a fully funded opportuity fo…",
+   "seen": "2026-11-20"
   },
   {
    "title": "Stanley Park Climate Finance Scholarships 2027",
@@ -1451,256 +1707,6 @@
    "ids": [],
    "summary": "Application Deadline: November 17, 2026 Applications are now open for the 2027 African Development Bank Group Shanghai Ocean University Scholarship. The African Development Bank Group (AfDB) and the …",
    "seen": "2026-11-10"
-  },
-  {
-   "title": "ICANN Fellowship Program 2027 to Attend ICANN89 Policy Forum in Vancouver, Canada (Funded)",
-   "link": "https://opportunitydesk.org/2026/11/09/icann-fellowship-program-2027/",
-   "date": "2026-11-09",
-   "source": "Opportunity Desk",
-   "official": false,
-   "ids": [],
-   "summary": "Deadline: December 5, 2026 Applications are open for the ICANN Fellowship Program 2027. The goal of the ICANN Fellowship Program is to strengthen the representation of the multistakeholder model by f…",
-   "seen": "2026-11-10"
-  },
-  {
-   "title": "Morgridge Acceleration Program (MAP) Fellowship 2027 (Funded)",
-   "link": "https://opportunitydesk.org/2026/11/09/morgridge-acceleration-program-fellowship-2027/",
-   "date": "2026-11-09",
-   "source": "Opportunity Desk",
-   "official": false,
-   "ids": [],
-   "summary": "Deadline: November 23, 2026 Applications are open for the Morgridge Acceleration Program (MAP) Fellowship 2027. The Morgridge Acceleration Program (MAP) Fellowship is a six-month consulting and leade…",
-   "seen": "2026-11-10"
-  },
-  {
-   "title": "Voices of the Future Global Fellowship 2027 (Fully-funded trip to France)",
-   "link": "https://opportunitydesk.org/2026/11/09/effie-lions-foundation-voices-of-the-future-global-fellowship-2027/",
-   "date": "2026-11-09",
-   "source": "Opportunity Desk",
-   "official": false,
-   "ids": [],
-   "summary": "Voices of the Future is a fully funded, eight-month global fellowship that gives the next generation the real-world experience, skills, and relationships needed to launch a career in marketing.",
-   "seen": "2026-11-10"
-  },
-  {
-   "title": "RIKEN CBS Summer Program 2027 in Japan (Fully Funded)",
-   "link": "https://opportunitiescorners.com/riken-cbs-summer-program-2027/",
-   "date": "2026-11-09",
-   "source": "Opportunities Corners",
-   "official": false,
-   "ids": [],
-   "summary": "The applications are now open for the RIKEN CBS Summer Program 2027 in Japan. It is a fully funded internship at the RIKEN Center for Brain Science (RIKEN CBS). All selected interns will travel to To…",
-   "seen": "2026-11-10"
-  },
-  {
-   "title": "University College London UCL African Graduate Scholarship in UK 2027 | Fully Funded",
-   "link": "https://www.scholarshipregion.com/ucl-african-graduate-scholarship/",
-   "date": "2026-11-09",
-   "source": "Scholarship Region",
-   "official": false,
-   "ids": [],
-   "summary": "The University College London African Graduate Scholarship is a fully funded opportunity for Africans seeking to study in the United Kingdom (UK). The UCL African Graduate Scholarship offers a substa…",
-   "seen": "2026-11-10"
-  },
-  {
-   "title": "Airtel Africa Tech Fellowship for Undergraduates 2026/27 | Fully Funded",
-   "link": "https://www.scholarshipregion.com/airtel-africa-tech-fellowship/",
-   "date": "2026-11-09",
-   "source": "Scholarship Region",
-   "official": false,
-   "ids": [],
-   "summary": "Airtel Africa Foundation is offering full scholarships to undergraduate students enrolled in Nigerian universities in line with its mission is to empower Africans through financial education. The Air…",
-   "seen": "2026-11-10"
-  },
-  {
-   "title": "Stanford Summer Research Program 2027 in USA (Fully Funded)",
-   "link": "https://opportunitiescorners.com/stanford-summer-research-program-2027/",
-   "date": "2026-11-08",
-   "source": "Opportunities Corners",
-   "official": false,
-   "ids": [],
-   "summary": "Applications are now open for the Stanford Summer Research Program 2027 in the United States. The Stanford SURF is an eight-week, fully funded summer program designed for undergraduate students inter…",
-   "seen": "2026-11-08"
-  },
-  {
-   "title": "UNIL Summer Program 2027 in Switzerland (Fully Funded)",
-   "link": "https://opportunitiescorners.com/unil-summer-program-2027/",
-   "date": "2026-11-08",
-   "source": "Opportunities Corners",
-   "official": false,
-   "ids": [],
-   "summary": "Applications are open for the UNIL Summer Program 2027 at the University of Lausanne (UNIL), Switzerland. This is an eight-week international research opportunity for undergraduate students from arou…",
-   "seen": "2026-11-09"
-  },
-  {
-   "title": "Asia Foundation Development Fellows Program 2027 (Fully Funded)",
-   "link": "https://opportunitiescorners.com/asia-foundation-development-fellows-program-2027/",
-   "date": "2026-11-07",
-   "source": "Opportunities Corners",
-   "official": false,
-   "ids": [],
-   "summary": "Applications are now open for the Asia Foundation Development Fellows 2027, a prestigious, fully funded international leadership fellowship for young professionals from Asia and the Pacific. Organize…",
-   "seen": "2026-11-07"
-  },
-  {
-   "title": "MCW Global Young Leaders Fellowship 2027 (Funded)",
-   "link": "https://opportunitydesk.org/2026/11/07/mcw-global-young-leaders-fellowship-2027-funded/",
-   "date": "2026-11-07",
-   "source": "Opportunity Desk",
-   "official": false,
-   "ids": [],
-   "summary": "Deadline: December 3, 2026 Applications are open for the MCW Global Young Leaders Fellowship 2027. The Fellowship Program aims to mobilize young people with the skills and resources needed to create …",
-   "seen": "2026-11-08"
-  },
-  {
-   "title": "Center for Effective Global Action (CEGA) Visiting Fellowship 2027-2028",
-   "link": "https://opportunitydesk.org/2026/11/07/cega-visiting-fellowship-2027-2028/",
-   "date": "2026-11-07",
-   "source": "Opportunity Desk",
-   "official": false,
-   "ids": [],
-   "summary": "Deadline: January 17, 2027 Applications are open for the Center for Effective Global Action (CEGA) Visiting Fellowship 2027-2028. The Center for Effective Global Action (CEGA) invites African researc…",
-   "seen": "2026-11-08"
-  },
-  {
-   "title": "10 Grants and Funding Opportunities Currently Open – November 7, 2026",
-   "link": "https://opportunitydesk.org/2026/11/07/10-grants-and-funding-opportunities-currently-open-november-7-2026/",
-   "date": "2026-11-07",
-   "source": "Opportunity Desk",
-   "official": false,
-   "ids": [],
-   "summary": "1. IX-WAI Early Career Development Grant 2027 (up to £1,000)The I-X Women in AI Network Early Career Development Grant supports women and non-binary individuals at Imperial College London who are at …",
-   "seen": "2026-11-08"
-  },
-  {
-   "title": "How to Get a Scholarship with a Third-Class Degree: 7 Practical Steps to Improve Your Chances",
-   "link": "https://opportunitydesk.org/2026/11/07/how-to-get-a-scholarship-with-a-third-class-degree-7-practical-steps-to-improve-your-chances/",
-   "date": "2026-11-07",
-   "source": "Opportunity Desk",
-   "official": false,
-   "ids": [],
-   "summary": "Graduating with a third-class degree can feel discouraging, especially when you begin searching for scholarships and discover that many opportunities require a first-class or second-class upper degre…",
-   "seen": "2026-11-08"
-  },
-  {
-   "title": "Arewa Creative Writing and Advocacy Fellowship (ACWAF) 2026 – Cohort 1",
-   "link": "https://opportunitydesk.org/2026/11/07/arewa-creative-writing-and-advocacy-fellowship-2026-cohort-1/",
-   "date": "2026-11-07",
-   "source": "Opportunity Desk",
-   "official": false,
-   "ids": [],
-   "summary": "Deadline: November 30, 2026 Applications are open for the Arewa Creative Writing and Advocacy Fellowship (ACWAF) 2026. The Arewa Creative Writing and Advocacy Fellowship (ACWAF) is an initiative by t…",
-   "seen": "2026-11-08"
-  },
-  {
-   "title": "Chemical Nano-Engineering",
-   "link": "https://master-cne.eu/",
-   "date": "2026-11-06",
-   "source": "Erasmus Mundus catalogue (EACEA)",
-   "official": true,
-   "ids": [],
-   "summary": "CNE - Project overview https://erasmus-plus.ec.europa.eu/projects/search/details/101324404",
-   "seen": "2026-11-07"
-  },
-  {
-   "title": "Navigating AI Business Transformation in the EU",
-   "link": "https://www.haaga-helia.fi/en/master-k/joint-degree-programme-ai-business-transformation-master-business-administration",
-   "date": "2026-11-06",
-   "source": "Erasmus Mundus catalogue (EACEA)",
-   "official": true,
-   "ids": [],
-   "summary": "NavigAIte EU - Project overview https://erasmus-plus.ec.europa.eu/projects/search/details/101323042",
-   "seen": "2026-11-07"
-  },
-  {
-   "title": "sustainable ocean services and Marine EnviRonment",
-   "link": "https://merconsortium.eu/",
-   "date": "2026-11-06",
-   "source": "Erasmus Mundus catalogue (EACEA)",
-   "official": true,
-   "ids": [],
-   "summary": "sosMER - Project overview https://erasmus-plus.ec.europa.eu/projects/search/details/101314713",
-   "seen": "2026-11-07"
-  },
-  {
-   "title": "CFA Institute Access Scholarship Programme 2026/2027 for aspiring Finance Professionals",
-   "link": "https://www.opportunitiesforafricans.com/cfa-institute-access-scholarship-programme-2026-2027/",
-   "date": "2026-11-06",
-   "source": "Opportunities for Africans",
-   "official": false,
-   "ids": [],
-   "summary": "Application Deadline: 23 November 2026 Applications are now open for the 2027 CFA Institute Program Access Scholarships. The CFA Institute Access Scholarship Programme is designed to make the Charter…",
-   "seen": "2026-11-07"
-  },
-  {
-   "title": "Global Changemakers’ Media Impact Academy 2027 for Youth in the USA (A chance to win a $1,000 grant)",
-   "link": "https://opportunitydesk.org/2026/11/06/global-changemakers-media-impact-academy-2027-for-youth-in-the-usa/",
-   "date": "2026-11-06",
-   "source": "Opportunity Desk",
-   "official": false,
-   "ids": [],
-   "summary": "Deadline: December 18, 2026 Applications are open for the Media Impact Academy, a Nationwide initiative engaging 500 youth across the United States. Designed for young adults navigating early financi…",
-   "seen": "2026-11-07"
-  },
-  {
-   "title": "Spencer Fellowship for Education Reporting 2027 (Funded)",
-   "link": "https://opportunitydesk.org/2026/11/06/spencer-fellowship-for-education-reporting-2027/",
-   "date": "2026-11-06",
-   "source": "Opportunity Desk",
-   "official": false,
-   "ids": [],
-   "summary": "Deadline: February 4, 2027 Do you have a great idea for an education-related journalism project? Do you need the time and resources to complete it? Apply for the Spencer Fellowship for Education Repo…",
-   "seen": "2026-11-07"
-  },
-  {
-   "title": "International Blue Carbon Institute (IBCI) Fellowship Program 2027 ($60,000 grant)",
-   "link": "https://opportunitydesk.org/2026/11/06/ibci-fellowship-program-2027/",
-   "date": "2026-11-06",
-   "source": "Opportunity Desk",
-   "official": false,
-   "ids": [],
-   "summary": "Deadline: November 23, 2026 Applications for the International Blue Carbon Institute (IBCI) Fellowship Program 2027 are now open. The International Blue Carbon Institute (IBCI) Fellowship program adv…",
-   "seen": "2026-11-07"
-  },
-  {
-   "title": "Reagan-Fascell Democracy Fellows Program 2027-2028 (Fully-funded)",
-   "link": "https://opportunitydesk.org/2026/11/06/reagan-fascell-democracy-fellows-program-2027-2028/",
-   "date": "2026-11-06",
-   "source": "Opportunity Desk",
-   "official": false,
-   "ids": [],
-   "summary": "Deadline: January 5, 2027 Applications are open for the Reagan-Fascell Democracy Fellows Program 2027-2028. Named in honor of NED’s principal founders, former president Ronald Reagan and the late con…",
-   "seen": "2026-11-07"
-  },
-  {
-   "title": "Hurford Youth Fellowship 2027 in USA (Fully Funded)",
-   "link": "https://opportunitiescorners.com/hurford-youth-fellowship-2027/",
-   "date": "2026-11-06",
-   "source": "Opportunities Corners",
-   "official": false,
-   "ids": [],
-   "summary": "Applications are now open for the Hurford Youth Fellowship 2027 in the USA. This is a fully funded international fellowship for applicants from around the world. Organized by the National Endowment f…",
-   "seen": "2026-11-07"
-  },
-  {
-   "title": "2027 University College London Research Excellence Scholarship (UCL-RES) in UK | Fully Funded",
-   "link": "https://www.scholarshipregion.com/ucl-research-excellence-scholarship/",
-   "date": "2026-11-06",
-   "source": "Scholarship Region",
-   "official": false,
-   "ids": [],
-   "summary": "The University College London (UCL) is offering its 2027 fully funded Research Excellence Scholarships to outstanding scholars from all nationalities. The UCL Research Excellence Scholarship covers t…",
-   "seen": "2026-11-07"
-  },
-  {
-   "title": "Edinburgh Law School and Ewen Cameron Studentships in UK 2027 | Fully Funded",
-   "link": "https://www.scholarshipregion.com/edinburgh-law-school-and-ewen-cameron-studentships/",
-   "date": "2026-11-06",
-   "source": "Scholarship Region",
-   "official": false,
-   "ids": [],
-   "summary": "The University of Edinburgh is offering fully funded studentship scholarships for international and domestic students to pursue doctoral degrees at the Edinburgh Law School. The Edinburgh Law School …",
-   "seen": "2026-11-07"
   }
  ]
 }
