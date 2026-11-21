@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-20",
+ "updated": "2026-11-21",
  "sources": [
   {
    "source": "Opportunities for Africans",
@@ -19,12 +19,12 @@
   {
    "source": "Scholarship Region",
    "ok": true,
-   "items": 7
+   "items": 8
   },
   {
    "source": "Opportunities for Youth",
    "ok": true,
-   "items": 5
+   "items": 7
   },
   {
    "source": "Commonwealth Scholarship Commission",
@@ -56,6 +56,16 @@
   }
  ],
  "items": [
+  {
+   "title": "2026 JSPS–UNU Postdoctoral Fellowship in Japan: Fully Funded 24-Month Research Opportunity for International Scholars",
+   "link": "https://opportunitiesforyouth.org/2026/11/21/2026-jsps-unu-postdoctoral-fellowship-in-japan-fully-funded-24-month-research-opportunity-for-international-scholars/",
+   "date": "2026-11-21",
+   "source": "Opportunities for Youth",
+   "official": false,
+   "ids": [],
+   "summary": "The 2026 JSPS–UNU Postdoctoral Fellowship Programme offers an international research opportunity for outstanding early-career researchers seeking to advance their academic careers while contributing …",
+   "seen": "2026-11-21"
+  },
   {
    "title": "Nanomedicine for Drug Delivery",
    "link": "http://master-nanomed.eu/",
@@ -139,6 +149,16 @@
    ],
    "summary": "TROPIMUNDO -Project overview https://erasmus-plus.ec.europa.eu/projects/search/details/610581-EPP-1-…",
    "seen": "2026-11-20"
+  },
+  {
+   "title": "Mediterranean Forestry and Natural Resources Management",
+   "link": "https://www.medfor.eu/",
+   "date": "2026-11-20",
+   "source": "Erasmus Mundus catalogue (EACEA)",
+   "official": true,
+   "ids": [],
+   "summary": "MEDfOR - Project overview https://erasmus-plus.ec.europa.eu/projects/search/details/619801-EPP-1-…",
+   "seen": "2026-11-21"
   },
   {
    "title": "Oxford Saïd Future Leaders Scholarships 2027",
@@ -241,6 +261,90 @@
    "ids": [],
    "summary": "The Vienna BioCenter (VBC) Summer School 2027 is now accepting applications from Bachelor’s and Master’s students interested in gaining hands-on research experience in a leading European life-science…",
    "seen": "2026-11-20"
+  },
+  {
+   "title": "The University of Cambridge Mastercard Foundation Scholars Programme 2027/2028 for young Africans (Fully Funded)",
+   "link": "https://www.opportunitiesforafricans.com/the-university-of-cambridge-mastercard-foundation-scholars-programme-2027-2028/",
+   "date": "2026-11-20",
+   "source": "Opportunities for Africans",
+   "official": false,
+   "ids": [
+    "mastercard"
+   ],
+   "summary": "Application Deadline: Varies by Course Applications are now open for the 2027/2028 University of Cambridge Mastercard Foundation Scholars Programme. The Mastercard Foundation Scholars Program at the …",
+   "seen": "2026-11-21"
+  },
+  {
+   "title": "The PPS Foundation’s Bursary Programme 2027 for young South African students.",
+   "link": "https://www.opportunitiesforafricans.com/the-pps-foundations-bursary-programme-2027-for-young-south-african-students/",
+   "date": "2026-11-20",
+   "source": "Opportunities for Africans",
+   "official": false,
+   "ids": [],
+   "summary": "Application Deadline: 20 December 2026 Applications are now open for the 2027 PPS Foundation’s Bursary Programme. The PPS Foundation is proud to announce the opening of applications for the 2027… The…",
+   "seen": "2026-11-21"
+  },
+  {
+   "title": "NIVEA CONNECT Gen Z Research Grant Program 2026 (up to €30,000)",
+   "link": "https://opportunitydesk.org/2026/11/20/nivea-connect-gen-z-research-grant-program-2026/",
+   "date": "2026-11-20",
+   "source": "Opportunity Desk",
+   "official": false,
+   "ids": [],
+   "summary": "Deadline: December 11, 2026 Applications are open for the NIVEA CONNECT Gen Z Research Grant Program 2026. NIVEA CONNECT invites researchers worldwide to propose innovative, early-stage studies that …",
+   "seen": "2026-11-21"
+  },
+  {
+   "title": "Funza Lushaka Bursary Scheme 2027 for Students in South Africa",
+   "link": "https://opportunitydesk.org/2026/11/20/funza-lushaka-bursary-scheme-2027/",
+   "date": "2026-11-20",
+   "source": "Opportunity Desk",
+   "official": false,
+   "ids": [],
+   "summary": "Deadline: January 31, 2027 Applications are open for the Funza Lushaka Bursary Scheme 2027. Do you dream of making a real difference in classrooms across South Africa? The Funza Lushaka Bursary Progr…",
+   "seen": "2026-11-21"
+  },
+  {
+   "title": "6 Joint Master’s Programmes in Europe That Let You Study in Multiple Countries (2027)",
+   "link": "https://www.scholarshipregion.com/joint-masters-programmes-in-europe/",
+   "date": "2026-11-20",
+   "source": "Scholarship Region",
+   "official": false,
+   "ids": [
+    "erasmus"
+   ],
+   "summary": "The growing appeal of international joint master’s programmes is reflected in the reach of the European Union’s Erasmus Mundus initiative. Between 2004 and 2023, almost 50,000 students participated i…",
+   "seen": "2026-11-21"
+  },
+  {
+   "title": "2027 King Fahd University Scholarship in Saudi Arabia (KFUPM) | Fully Funded",
+   "link": "https://www.scholarshipregion.com/king-fahd-university-scholarship/",
+   "date": "2026-11-20",
+   "source": "Scholarship Region",
+   "official": false,
+   "ids": [],
+   "summary": "The King Fahd University of Petroleum & Minerals (KFUPM) is welcoming applications for fully funded Bachelor’s, Master’s, and PhD programs available at the university. The King Fahd University Schola…",
+   "seen": "2026-11-21"
+  },
+  {
+   "title": "Asia House Fellowship 2027/2028: Apply for a Fully Funded 12-Month Research Fellowship with a £24,000 Stipend",
+   "link": "https://opportunitiesforyouth.org/2026/11/20/asia-house-fellowship-2027-2028-apply-for-a-fully-funded-12-month-research-fellowship-with-a-24000-stipend/",
+   "date": "2026-11-20",
+   "source": "Opportunities for Youth",
+   "official": false,
+   "ids": [],
+   "summary": "Applications are now open for the Asia House Fellowship 2027/2028, an exciting opportunity for early-career professionals and researchers interested in international affairs, geopolitics, economics, …",
+   "seen": "2026-11-21"
+  },
+  {
+   "title": "Clements-Archer National Security Policy Postdoctoral Fellowship 2027–2029: Earn an $80,000 Stipend Through a Fully Funded Two-Year Policy Fellowship in Washington, D.C.",
+   "link": "https://opportunitiesforyouth.org/2026/11/20/clements-archer-national-security-policy-postdoctoral-fellowship-2027-2029-earn-an-80000-stipend-through-a-fully-funded-two-year-policy-fellowship-in-washington-d-c/",
+   "date": "2026-11-20",
+   "source": "Opportunities for Youth",
+   "official": false,
+   "ids": [],
+   "summary": "Recent doctoral graduates of The University of Texas at Austin who are interested in national security, public policy and federal government decision-making have an opportunity to apply for the Cleme…",
+   "seen": "2026-11-21"
   },
   {
    "title": "Malek Sghiri Scholarship 2027 to Study Arabic in Tunisia",
@@ -1603,110 +1707,6 @@
    "ids": [],
    "summary": "Europe is an attractive study destination because of its diverse higher education system, wide range of programmes and internationally recognised universities. According to the European Commission, t…",
    "seen": "2026-11-11"
-  },
-  {
-   "title": "Generation Regen Challenge to Attend the One Young World Summit 2027 (Fully-funded)",
-   "link": "https://opportunitydesk.org/2026/11/09/generation-regen-challenge-2027/",
-   "date": "2026-11-09",
-   "source": "Opportunity Desk",
-   "official": false,
-   "ids": [],
-   "summary": "Deadline: February 24, 2027 Applications are open for the Generation Regen Challenge 2027. Agriculture is a cornerstone of economic resilience in Canada, the U.S., contributing significantly to GDP, …",
-   "seen": "2026-11-09"
-  },
-  {
-   "title": "ICANN89 Policy Forum 2027 in Canada (Fully Funded)",
-   "link": "https://opportunitiescorners.com/icann89-policy-forum-2027-in-canada/",
-   "date": "2026-11-09",
-   "source": "Opportunities Corners",
-   "official": false,
-   "ids": [],
-   "summary": "Looking for a fully funded international fellowship to attend a global Internet governance conference in Canada? Applications are now open for the ICANN89 Policy Forum 2027 in Vancouver, Canada. The …",
-   "seen": "2026-11-09"
-  },
-  {
-   "title": "Stanford University Summer Internship (Summer Undergraduate Research Fellowship) 2027: Fully Funded",
-   "link": "https://www.scholarshipregion.com/stanford-university-summer-internship/",
-   "date": "2026-11-09",
-   "source": "Scholarship Region",
-   "official": false,
-   "ids": [],
-   "summary": "The Stanford University Summer Internship is a fully funded opportunity for undergraduate students to engage in practical activities to consolidate their theoretical knowledge. The Stanford Universit…",
-   "seen": "2026-11-09"
-  },
-  {
-   "title": "2027 Griffith Vice Chancellors International Scholarship in Australia | How to Apply",
-   "link": "https://www.scholarshipregion.com/griffith-vice-chancellors-international-scholarship/",
-   "date": "2026-11-09",
-   "source": "Scholarship Region",
-   "official": false,
-   "ids": [],
-   "summary": "Griffith Vice Chancellors International Scholarship rewards exceptional students applying for undergraduate and postgraduate coursework degree programs at Griffith University. The Griffith University…",
-   "seen": "2026-11-09"
-  },
-  {
-   "title": "2027 Erasmus Mundus Imaging Scholarship in Finland, Sweden, Italy | Fully Funded",
-   "link": "https://www.scholarshipregion.com/erasmus-mundus-imaging-scholarship/",
-   "date": "2026-11-09",
-   "source": "Scholarship Region",
-   "official": false,
-   "ids": [
-    "erasmus"
-   ],
-   "summary": "The Erasmus Mundus Imaging Scholarship is another fully funded Erasmus+ programme funded by the European Union for international students seeking Masters degrees. The Erasmus Mundus Scholarship will …",
-   "seen": "2026-11-09"
-  },
-  {
-   "title": "UNESCO IHE Delft Rotary Scholarship in the Netherlands 2027 (Fully Funded)",
-   "link": "https://www.scholarshipregion.com/unesco-ihe-delft-rotary-scholarship/",
-   "date": "2026-11-09",
-   "source": "Scholarship Region",
-   "official": false,
-   "ids": [
-    "delft"
-   ],
-   "summary": "The IHE Delft Rotary Scholarships are fully funded awards granted annually to graduate students at IHE Delft Institute for Water Education’s campus in the Netherlands. The 2027 UNESCO IHE Delft Rotar…",
-   "seen": "2026-11-09"
-  },
-  {
-   "title": "7 UK Immigration Rule Changes You Should Know Before 2027",
-   "link": "https://www.scholarshipregion.com/uk-immigration-rule-changes/",
-   "date": "2026-11-09",
-   "source": "Scholarship Region",
-   "official": false,
-   "ids": [],
-   "summary": "The United Kingdom remains one of the most preferred study destinations for international students. Studying in the UK as an international student is an opportunity to advance your education and impr…",
-   "seen": "2026-11-09"
-  },
-  {
-   "title": "University College London Mathematics Scholarship in UK 2027 | How To Apply",
-   "link": "https://www.scholarshipregion.com/university-college-london-mathematics-scholarship/",
-   "date": "2026-11-09",
-   "source": "Scholarship Region",
-   "official": false,
-   "ids": [],
-   "summary": "The University College London is offering scholarship awards to incoming Master’s students from all countries worldwide. The University College London Mathematics Scholarship offers a £16,750 grant t…",
-   "seen": "2026-11-09"
-  },
-  {
-   "title": "Global Talent Fund BIG Scholarships 2027 at the University of Edinburgh, UK (Fully Funded)",
-   "link": "https://www.scholarshipregion.com/global-talent-fund-big-scholarship/",
-   "date": "2026-11-09",
-   "source": "Scholarship Region",
-   "official": false,
-   "ids": [],
-   "summary": "The University of Edinburgh in UK is welcoming applicants from all over the world for the 2027 Global Talent Fund BIG Scholarships. The Global Talent Fund BIG Scholarships provide tuition costs, assi…",
-   "seen": "2026-11-09"
-  },
-  {
-   "title": "2027 African Development Bank Group Shanghai Ocean University Scholarship Bachelor, Master’s, and PhD Program (Funded study in Shanghai, China)",
-   "link": "https://www.opportunitiesforafricans.com/2027-african-development-bank-group-shanghai-ocean-university-scholarship-bachelor-masters-and-phd-program/",
-   "date": "2026-11-09",
-   "source": "Opportunities for Africans",
-   "official": false,
-   "ids": [],
-   "summary": "Application Deadline: November 17, 2026 Applications are now open for the 2027 African Development Bank Group Shanghai Ocean University Scholarship. The African Development Bank Group (AfDB) and the …",
-   "seen": "2026-11-10"
   }
  ]
 }
