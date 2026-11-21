@@ -2,8 +2,15 @@
  "source": "GDELT 2.0 DOC API (news index)",
  "query": "(\"national grid\" OR \"power grid\") (collapse OR collapsed OR disturbance OR blackout) (Nigeria OR TCN OR NISO OR NERC)",
  "note": "Automatically collected headlines; not verified.",
- "checked": "2026-10-20T17:29:19+00:00",
+ "checked": "2026-11-21T19:44:33+00:00",
  "items": [
+  {
+   "title": "Four transmission lines trip , NISO denies grid collapse",
+   "url": "https://punchng.com/four-transmission-lines-trip-niso-denies-grid-collapse/",
+   "domain": "punchng.com",
+   "seen": "2026-11-20T21:45:00+00:00",
+   "status": "unverified"
+  },
   {
    "title": "NISO refutes grid collapse claims , restores system",
    "url": "https://punchng.com/just-in-niso-refutes-grid-collapse-claims-says-partial-system-disturbance-restored/",
