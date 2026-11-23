@@ -3,14 +3,14 @@
   "ons-migration": {
    "blocked": false,
    "hashes": [],
-   "checked": "2026-11-16T15:42:10+00:00"
+   "checked": "2026-11-23T18:03:19+00:00"
   },
   "migration-observatory-uk": {
    "blocked": false,
    "hashes": [
     "d5d6455dcbbb8385"
    ],
-   "checked": "2026-11-16T15:42:11+00:00"
+   "checked": "2026-11-23T18:03:20+00:00"
   },
   "statcan-fogs": {
    "blocked": false,
@@ -30,14 +30,14 @@
     "47209baa606e7b5f",
     "e3e8d3e39cb8d558"
    ],
-   "checked": "2026-11-16T15:42:43+00:00"
+   "checked": "2026-11-23T18:03:57+00:00"
   },
   "abs-quickstats-nigeria": {
    "blocked": false,
    "hashes": [
     "c51dc5da22e37a5d"
    ],
-   "checked": "2026-11-16T15:42:44+00:00"
+   "checked": "2026-11-23T18:03:58+00:00"
   },
   "conapa": {
    "blocked": false,
@@ -65,7 +65,7 @@
     "27cf793d089e25f0",
     "bdd345153a3e3760"
    ],
-   "checked": "2026-11-16T15:42:47+00:00"
+   "checked": "2026-11-23T18:04:00+00:00"
   },
   "nigerians-in-qld": {
    "blocked": false,
@@ -83,7 +83,7 @@
     "b880a5de1417da8a",
     "c552cc490ec8cdad"
    ],
-   "checked": "2026-11-16T15:42:49+00:00"
+   "checked": "2026-11-23T18:04:01+00:00"
   },
   "mpi-nigeria": {
    "blocked": false,
@@ -128,12 +128,12 @@
     "2bd430eb7d5e1baa",
     "0723a277dd5ca45b"
    ],
-   "checked": "2026-11-16T15:42:50+00:00"
+   "checked": "2026-11-23T18:04:02+00:00"
   },
   "countryeconomy-uae": {
    "blocked": false,
    "hashes": [],
-   "checked": "2026-11-16T15:42:51+00:00"
+   "checked": "2026-11-23T18:04:21+00:00"
   },
   "statehouse-ambassadors": {
    "blocked": false,
@@ -157,7 +157,7 @@
     "3214f091521f138c",
     "1246830ed2d7ecc5"
    ],
-   "checked": "2026-11-16T15:43:06+00:00"
+   "checked": "2026-11-23T18:04:26+00:00"
   },
   "nidcom-news": {
    "blocked": false,
@@ -210,7 +210,7 @@
     "4dfdb93b9103448d",
     "d99bf6009b6f83a3"
    ],
-   "checked": "2026-11-16T15:43:07+00:00"
+   "checked": "2026-11-23T18:04:27+00:00"
   },
   "rpw-uk": {
    "blocked": false,
@@ -218,7 +218,7 @@
     "5adc7f2a45395afd",
     "48e1819c88e2056a"
    ],
-   "checked": "2026-11-16T15:43:11+00:00"
+   "checked": "2026-11-23T18:04:31+00:00"
   },
   "rpw-us": {
    "blocked": false,
@@ -226,7 +226,7 @@
     "5adc7f2a45395afd",
     "48e1819c88e2056a"
    ],
-   "checked": "2026-11-16T15:43:14+00:00"
+   "checked": "2026-11-23T18:04:32+00:00"
   },
   "rpw-canada": {
    "blocked": false,
@@ -234,7 +234,7 @@
     "5adc7f2a45395afd",
     "48e1819c88e2056a"
    ],
-   "checked": "2026-11-16T15:43:15+00:00"
+   "checked": "2026-11-23T18:04:32+00:00"
   },
   "rpw-germany": {
    "blocked": false,
@@ -242,7 +242,7 @@
     "5adc7f2a45395afd",
     "48e1819c88e2056a"
    ],
-   "checked": "2026-11-16T15:43:18+00:00"
+   "checked": "2026-11-23T18:04:33+00:00"
   },
   "rpw-italy": {
    "blocked": false,
@@ -250,7 +250,7 @@
     "5adc7f2a45395afd",
     "48e1819c88e2056a"
    ],
-   "checked": "2026-11-16T15:43:20+00:00"
+   "checked": "2026-11-23T18:04:34+00:00"
   },
   "rpw-spain": {
    "blocked": false,
@@ -258,7 +258,7 @@
     "5adc7f2a45395afd",
     "48e1819c88e2056a"
    ],
-   "checked": "2026-11-16T15:43:21+00:00"
+   "checked": "2026-11-23T18:04:36+00:00"
   },
   "rpw-netherlands": {
    "blocked": false,
@@ -266,7 +266,7 @@
     "5adc7f2a45395afd",
     "48e1819c88e2056a"
    ],
-   "checked": "2026-11-16T15:43:21+00:00"
+   "checked": "2026-11-23T18:04:36+00:00"
   },
   "rpw-ghana": {
    "blocked": false,
@@ -274,7 +274,7 @@
     "5adc7f2a45395afd",
     "48e1819c88e2056a"
    ],
-   "checked": "2026-11-16T15:43:22+00:00"
+   "checked": "2026-11-23T18:04:37+00:00"
   },
   "rpw-south-africa": {
    "blocked": false,
@@ -287,12 +287,12 @@
   "site-abs": {
    "blocked": false,
    "urls": [],
-   "checked": "2026-11-16T15:44:21+00:00"
+   "checked": "2026-11-23T18:05:34+00:00"
   },
   "site-migration-observatory": {
    "blocked": false,
    "urls": [],
-   "checked": "2026-11-16T15:44:42+00:00"
+   "checked": "2026-11-23T18:05:52+00:00"
   },
   "site-intelpoint": {
    "blocked": false,
@@ -1060,7 +1060,7 @@
     "https://intelpoint.co/report/the-nigerian-insurance-industry/",
     "https://intelpoint.co/report/the-nigerian-workplace-report-2024/"
    ],
-   "checked": "2026-11-16T15:44:49+00:00"
+   "checked": "2026-11-23T18:06:02+00:00"
   },
   "site-canadavisa": {
    "blocked": false,
@@ -1069,12 +1069,12 @@
   "site-marketreporters": {
    "blocked": false,
    "urls": [],
-   "checked": "2026-11-16T15:45:21+00:00"
+   "checked": "2026-11-23T18:06:34+00:00"
   },
   "site-canadavisaexpert": {
    "blocked": false,
    "error": "GET failed after 2 tries: https://canadavisaexpert.com/sitemap.xml: <urlopen error timed out>"
   }
  },
- "checked": "2026-11-16T15:48:51+00:00"
+ "checked": "2026-11-23T18:10:04+00:00"
 }
