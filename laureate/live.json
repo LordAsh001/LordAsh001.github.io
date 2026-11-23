@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-22",
+ "updated": "2026-11-23",
  "sources": [
   {
    "source": "Opportunities for Africans",
@@ -19,12 +19,12 @@
   {
    "source": "Scholarship Region",
    "ok": true,
-   "items": 8
+   "items": 5
   },
   {
    "source": "Opportunities for Youth",
    "ok": true,
-   "items": 7
+   "items": 5
   },
   {
    "source": "Commonwealth Scholarship Commission",
@@ -56,6 +56,98 @@
   }
  ],
  "items": [
+  {
+   "title": "Public Policy New Voices Fellowship Program 2026-2027",
+   "link": "https://opportunitydesk.org/2026/11/23/public-policy-new-voices-fellowship-program-2026-2027/",
+   "date": "2026-11-23",
+   "source": "Opportunity Desk",
+   "official": false,
+   "ids": [],
+   "summary": "Deadline: November 29, 2026 Applications are invited for the Public Policy New Voices Fellowship Program 2026-2027. The Public Policy New Voices (PPNV) Program is a collaboration among leading public…",
+   "seen": "2026-11-23"
+  },
+  {
+   "title": "Cambridge University Mastercard Research Fund for Africans | £80,000 Grant",
+   "link": "https://www.scholarshipregion.com/cambridge-university-mastercard-research-fund/",
+   "date": "2026-11-23",
+   "source": "Scholarship Region",
+   "official": false,
+   "ids": [],
+   "summary": "The Cambridge University Mastercard Research Fund aims to catalyze new and strengthen existing collaborations between researchers in Africa and Cambridge and support high-quality training activities.…",
+   "seen": "2026-11-23"
+  },
+  {
+   "title": "De_Light Foundation Undergraduate Scholarship For Nigerians 2026 | Fully Funded",
+   "link": "https://www.scholarshipregion.com/de-light-foundation-undergraduate-scholarship/",
+   "date": "2026-11-23",
+   "source": "Scholarship Region",
+   "official": false,
+   "ids": [],
+   "summary": "Applications for the 2026 De_Light Foundation Undergraduate Scholarships are now open. The De_Light Foundation Scholarship covers the full tuition fees of selected undergraduates and provides them wi…",
+   "seen": "2026-11-23"
+  },
+  {
+   "title": "Jim Ovia Foundation Scholarship for Nigerian Undergraduates 2026 | Fully Funded",
+   "link": "https://www.scholarshipregion.com/jim-ovia-foundation-scholarship/",
+   "date": "2026-11-23",
+   "source": "Scholarship Region",
+   "official": false,
+   "ids": [
+    "ovia"
+   ],
+   "summary": "Applications for the 2026 annual Jim Ovia Foundation Scholarship have begun for interested Nigerian undergraduates. Jim Ovia Scholarship is fully funded by Mr Jim Ovia, the CEO of Zenith Bank, coveri…",
+   "seen": "2026-11-23"
+  },
+  {
+   "title": "taz Panter Foundation Rest & Resilience Fellowship 2027 in Berlin: Applications Open for Journalists at Risk",
+   "link": "https://opportunitiesforyouth.org/2026/11/23/taz-panter-foundation-rest-resilience-fellowship-2027-in-berlin-applications-open-for-journalists-at-risk/",
+   "date": "2026-11-23",
+   "source": "Opportunities for Youth",
+   "official": false,
+   "ids": [],
+   "summary": "Journalists facing threats, persecution, censorship, and difficult working conditions because of their profession are invited to apply for the taz Panter Foundation Rest & Resilience Fellowship 2027 …",
+   "seen": "2026-11-23"
+  },
+  {
+   "title": "Tor Community Fellowship 2027: Applications Open for Human Rights Defenders, Journalists, Technologists, and Researchers",
+   "link": "https://opportunitiesforyouth.org/2026/11/23/tor-community-fellowship-2027-applications-open-for-human-rights-defenders-journalists-technologists-and-researchers/",
+   "date": "2026-11-23",
+   "source": "Opportunities for Youth",
+   "official": false,
+   "ids": [],
+   "summary": "The Tor Project has officially announced the launch of the Tor Community Fellowship, a new six-month learning and development opportunity designed to strengthen knowledge and practical skills in digi…",
+   "seen": "2026-11-23"
+  },
+  {
+   "title": "Sanofi Foundation Climate Action and Youth Resilience Grant 2026: Apply for €50,000–€100,000 Funding for Youth-Led Climate and Health Projects in Africa",
+   "link": "https://opportunitiesforyouth.org/2026/11/23/sanofi-foundation-climate-action-and-youth-resilience-grant-2026-apply-for-e50000-e100000-funding-for-youth-led-climate-and-health-projects-in-africa/",
+   "date": "2026-11-23",
+   "source": "Opportunities for Youth",
+   "official": false,
+   "ids": [],
+   "summary": "The Sanofi Foundation Climate Action and Youth Resilience Grant 2026 presents an important funding opportunity for eligible youth-led organisations, community-based organisations, and non-governmenta…",
+   "seen": "2026-11-23"
+  },
+  {
+   "title": "Skoll Scholarship 2027–2028 at the University of Oxford: MBA Scholarship for Social Entrepreneurs, Innovators and Global Changemakers",
+   "link": "https://opportunitiesforyouth.org/2026/11/23/the-skoll-scholarship-empowering-social-entrepreneurs-to-lead-change-at-oxford/",
+   "date": "2026-11-23",
+   "source": "Opportunities for Youth",
+   "official": false,
+   "ids": [],
+   "summary": "The Skoll Scholarship 2027–2028 at the University of Oxford offers an exciting funding opportunity for experienced social entrepreneurs and impact-driven professionals seeking to pursue a Master of B…",
+   "seen": "2026-11-23"
+  },
+  {
+   "title": "ACS Public Policy Fellowships 2027: Fully Funded Science Policy Fellowship Opportunities in the United States – Apply by January 5, 2027",
+   "link": "https://opportunitiesforyouth.org/2026/11/23/acs-public-policy-fellowships-2027-fully-funded-science-policy-fellowship-opportunities-in-the-united-states-apply-by-january-5-2027/",
+   "date": "2026-11-23",
+   "source": "Opportunities for Youth",
+   "official": false,
+   "ids": [],
+   "summary": "The American Chemical Society (ACS) is inviting applications for its 2027 Public Policy Fellowships and WISE Summer Internship Program, offering scientists, engineers, graduate degree holders, and un…",
+   "seen": "2026-11-23"
+  },
   {
    "title": "2026 JSPS–UNU Postdoctoral Fellowship in Japan: Fully Funded 24-Month Research Opportunity for International Scholars",
    "link": "https://opportunitiesforyouth.org/2026/11/21/2026-jsps-unu-postdoctoral-fellowship-in-japan-fully-funded-24-month-research-opportunity-for-international-scholars/",
@@ -1609,102 +1701,6 @@
    "ids": [],
    "summary": "RELIC - Project overview https://erasmus-plus.ec.europa.eu/projects/search/details/101325458",
    "seen": "2026-11-11"
-  },
-  {
-   "title": "Master of Science in Geospatial Technologies",
-   "link": "https://mastergeotech.info/",
-   "date": "2026-11-10",
-   "source": "Erasmus Mundus catalogue (EACEA)",
-   "official": true,
-   "ids": [],
-   "summary": "GeoTech - Project overview https://erasmus-plus.ec.europa.eu/projects/search/details/101325360",
-   "seen": "2026-11-11"
-  },
-  {
-   "title": "Applied Biodiversity Management and Resilient Ecosystem Transitions",
-   "link": "https://www.bioverte.us.edu.pl",
-   "date": "2026-11-10",
-   "source": "Erasmus Mundus catalogue (EACEA)",
-   "official": true,
-   "ids": [],
-   "summary": "BIOVERTE - Project overview https://erasmus-plus.ec.europa.eu/projects/search/details/101325306",
-   "seen": "2026-11-11"
-  },
-  {
-   "title": "Erasmus Mundus Joint Master in Economics of Globalisation and European Integration",
-   "link": "https://www.master-egei.eu/",
-   "date": "2026-11-10",
-   "source": "Erasmus Mundus catalogue (EACEA)",
-   "official": true,
-   "ids": [
-    "erasmus"
-   ],
-   "summary": "EGEI - Project overview",
-   "seen": "2026-11-11"
-  },
-  {
-   "title": "Master in Infectious Diseases and One Health-IDOHNext",
-   "link": "https://www.infectious-diseases-one-health.eu/",
-   "date": "2026-11-10",
-   "source": "Erasmus Mundus catalogue (EACEA)",
-   "official": true,
-   "ids": [],
-   "summary": "IDOH Next - Project overview https://erasmus-plus.ec.europa.eu/projects/search/details/101325204",
-   "seen": "2026-11-11"
-  },
-  {
-   "title": "Erasmus Mundus Joint Master in Food Innovation and Product Design",
-   "link": "https://www.fipdes.eu/",
-   "date": "2026-11-10",
-   "source": "Erasmus Mundus catalogue (EACEA)",
-   "official": true,
-   "ids": [
-    "erasmus"
-   ],
-   "summary": "FIPDes - Project overview https://erasmus-plus.ec.europa.eu/projects/search/details/101325186",
-   "seen": "2026-11-11"
-  },
-  {
-   "title": "CERN Summer Student Program 2027 in Switzerland (Fully Funded)",
-   "link": "https://opportunitiescorners.com/cern-summer-student-program-2027/",
-   "date": "2026-11-10",
-   "source": "Opportunities Corners",
-   "official": false,
-   "ids": [],
-   "summary": "Don’t miss the biggest summer program of the year! Applications are now open for the CERN Summer Student Program 2027 in Switzerland. Candidates of all nationalities are welcome to apply. The CERN Su…",
-   "seen": "2026-11-10"
-  },
-  {
-   "title": "Rockefeller University USA Summer Fellowship 2027 (Fully Funded)",
-   "link": "https://opportunitiescorners.com/rockefeller-university-usa-summer-fellowship-2027/",
-   "date": "2026-11-10",
-   "source": "Opportunities Corners",
-   "official": false,
-   "ids": [],
-   "summary": "Applications are now open for the Rockefeller University USA Summer Fellowship 2027. This Fully Funded Fellowship in New York accepts international students and U.S. Citizens. Summer Fellows will spe…",
-   "seen": "2026-11-10"
-  },
-  {
-   "title": "African Development Bank Shanghai Ocean University Scholarship 2027 (AfDB-SHOU) | Fully Funded",
-   "link": "https://www.scholarshipregion.com/african-development-bank-shanghai-ocean-university-scholarship/",
-   "date": "2026-11-10",
-   "source": "Scholarship Region",
-   "official": false,
-   "ids": [],
-   "summary": "The African Development Bank (AfDB) Group has announced its 2026 fully funded scholarships at the Shanghai Ocean University in China. The African Development Bank Shanghai Ocean University Scholarshi…",
-   "seen": "2026-11-10"
-  },
-  {
-   "title": "Commonwealth Shared Scholarship in UK 2027 (Fully Funded)",
-   "link": "https://www.scholarshipregion.com/commonwealth-shared-scholarship/",
-   "date": "2026-11-10",
-   "source": "Scholarship Region",
-   "official": false,
-   "ids": [
-    "csc-masters"
-   ],
-   "summary": "We recently provided you with a preparation checklist for the Commonwealth Shared Scholarship 2026. Alas! The application opens today. Commonwealth Shared Scholarships, jointly funded by the Commonwe…",
-   "seen": "2026-11-10"
   }
  ]
 }
