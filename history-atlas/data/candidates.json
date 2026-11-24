@@ -93,19 +93,6 @@
    "found": "2026-11-11"
   },
   {
-   "id": "fcab25447f",
-   "type": "creation",
-   "state": "Ekiti",
-   "lga": "Ado-Ekiti",
-   "created": "1996-10-01",
-   "parent": null,
-   "quote": "the estimated population upon its creation on October 1st 1996 was put at 1,750,000",
-   "source": "https://www.ekitistate.gov.ng/about-ekiti",
-   "domain": "ekitistate.gov.ng",
-   "source_type": "official",
-   "found": "2026-11-11"
-  },
-  {
    "id": "d4c6a62d8d",
    "type": "creation",
    "state": "Gombe",
