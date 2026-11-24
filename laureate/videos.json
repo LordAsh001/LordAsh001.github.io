@@ -1,18 +1,18 @@
 {
- "updated": "2026-11-18",
+ "updated": "2026-11-24",
  "items": {
   "chevening": [
-   {
-    "id": "gDk3t5G_5OM",
-    "t": "Chevening Scholarship 2026/27: NEW Rules You MUST Know Before Applying! ",
-    "by": "Gigi ",
-    "date": "2026-08-15"
-   },
    {
     "id": "RNYZZ6Fy8Dc",
     "t": "How to Win a Chevening Scholarship: Tips From a Chevening Scholar",
     "by": "UCL",
     "date": "2026-07-08"
+   },
+   {
+    "id": "gDk3t5G_5OM",
+    "t": "Chevening Scholarship 2026/27: NEW Rules You MUST Know Before Applying! ",
+    "by": "Gigi ",
+    "date": "2026-08-15"
    },
    {
     "id": "lWF3dyiJhqw",
@@ -41,10 +41,10 @@
     "date": "2026-09-24"
    },
    {
-    "id": "-tkpAF3VSqE",
-    "t": "Don't Apply for Commonwealth Scholarship 2027 Until You Watch This! COMMONWEALTH SCHOLARSHIP GUIDE",
-    "by": "ScholarshipTab",
-    "date": "2026-08-22"
+    "id": "gMnYjJt6Am4",
+    "t": "Commonwealth Master’s Scholarship 2026: FREE Study, Monthly Stipend, Application & Eligibility",
+    "by": "NBT Tech-Ed",
+    "date": "2026-09-08"
    },
    {
     "id": "F2VkLmoLZuw",
@@ -55,28 +55,28 @@
   ],
   "csc-phd": [
    {
-    "id": "6MCWHg2Yp_Q",
-    "t": "Commonwealth PhD Scholarship 2027 | Fully Funded | Closed 20 Oct 2026 | Guide",
-    "by": "Scholarship Junction",
-    "date": "2026-11-18"
-   },
-   {
     "id": "gX8fMXCsnpU",
     "t": "Don't apply for the Commonwealth Scholarship until you watch this!",
     "by": "Gift Ifunanya",
     "date": "2026-08-25"
    },
    {
+    "id": "6MCWHg2Yp_Q",
+    "t": "Commonwealth PhD Scholarship 2027 | Fully Funded | Closed 20 Oct 2026 | Guide",
+    "by": "Scholarship Junction",
+    "date": "2026-11-18"
+   },
+   {
+    "id": "sb9oTZ_LC20",
+    "t": "Planning to apply for a Commonwealth PhD Scholarship or Academic Fellowship",
+    "by": "Mein Muhammad Perwaiz ",
+    "date": "2026-09-01"
+   },
+   {
     "id": "0zEwYijAFaM",
     "t": "Commonwealth Scholarship 2027 — 100% Funded UK Masters & PhD Explained | Study Abroad",
     "by": "upGrad Study Abroad",
     "date": "2026-08-12"
-   },
-   {
-    "id": "DDGEn3Unu_s",
-    "t": "Commonwealth PhD Scholarships 2027–28 #CommonwealthPhDScholarship2027 #studyinuk #news #fyp #viral",
-    "by": "Opportunities Path",
-    "date": "2026-08-05"
    }
   ],
   "gates": [
@@ -93,16 +93,16 @@
     "date": "2026-09-01"
    },
    {
-    "id": "uAHCvQsXIoE",
-    "t": "Gates Scholarships 2027 Process at Cambridge University (Step by Step)",
-    "by": "Scholarships in 2027",
-    "date": "2026-08-26"
-   },
-   {
     "id": "8J1OcgilreE",
     "t": "Gates Cambridge Scholarship 2026-2027",
     "by": "DR SCHOLARS",
     "date": "2026-09-03"
+   },
+   {
+    "id": "r4CrFGu51E4",
+    "t": "Gates Cambridge Scholarship UK 2027 | Fully Funded Masters, MPhil & PhD at Cambridge UK | Apply Now",
+    "by": "Full Scholarships",
+    "date": "2026-09-16"
    }
   ],
   "knight": [
@@ -125,10 +125,10 @@
     "date": "2026-07-22"
    },
    {
-    "id": "gqiVP9qgWz0",
-    "t": "How to Apply for Stanford University Knight Hennessy Scholarship 2027 Fully Funded USA Scholarships",
-    "by": "Travel Destination ",
-    "date": "2026-08-14"
+    "id": "AZwfbxPxHdc",
+    "t": "Stanford Scholarship 2027 — Last Date to Apply (Knight-Hennessy Scholars)",
+    "by": "Career Compass",
+    "date": "2026-10-01"
    }
   ],
   "clarendon": [
@@ -203,10 +203,10 @@
     "date": "2026-08-16"
    },
    {
-    "id": "wCcmXGizhZM",
-    "t": "Rhodes Scholarship selection criteria | Academic excellence",
-    "by": "Rhodes Trust",
-    "date": "2026-08-17"
+    "id": "267ceLO__dQ",
+    "t": "Great new for West Africans, You can now quickly apply for Rhodes Scholarship before August 27th.",
+    "by": "pontly",
+    "date": "2026-07-22"
    }
   ],
   "schwarzman": [
@@ -223,10 +223,10 @@
     "date": "2026-09-09"
    },
    {
-    "id": "OhnNpyANWQs",
-    "t": "Schwarzman Scholarship 2026 Introduction Video",
-    "by": "David Zhang",
-    "date": "2026-09-09"
+    "id": "B2X8TvE8tHc",
+    "t": "Sharon Adesola David - Schwarzman Scholars Introduction Video",
+    "by": "Sharon Adesola",
+    "date": "2026-09-01"
    },
    {
     "id": "G59E9UkcRoI",
@@ -243,12 +243,6 @@
     "date": "2026-09-29"
    },
    {
-    "id": "DCcpW0r4LS8",
-    "t": "Erasmus Mundus Scholarship 2027 Explained in 5 Minutes | Complete Guide",
-    "by": "Usman Awan",
-    "date": "2026-11-18"
-   },
-   {
     "id": "s-MfGPNOkAs",
     "t": "Erasmus Mundus 2027 Prep | Application Guideline: Session I",
     "by": "Global Pivot Scholars",
@@ -259,6 +253,12 @@
     "t": "All About Erasmus Mundus Joint Masters Program 2026 | €1400/Month Fully Funded Scholarship",
     "by": "Yourpedia Education",
     "date": "2026-09-03"
+   },
+   {
+    "id": "4zMyLEhW_58",
+    "t": "Study In Europe: Erasmus Mundus EMABG Scholarship 2027",
+    "by": "ScholarshipTab",
+    "date": "2026-10-12"
    }
   ],
   "daad-epos": [
@@ -269,16 +269,16 @@
     "date": "2026-11-12"
    },
    {
-    "id": "O6Os62eKFJs",
-    "t": "DAAD EPOS Scholarship 2027/2028 | Fully Funded MSc & PhD in Germany for International students ",
-    "by": "Opportunity Nanny",
-    "date": "2026-07-25"
-   },
-   {
     "id": "hPCZpgpRUWU",
     "t": "Development-related postgraduate programs (EPOS) • DAAD 2026/2027",
     "by": "Scholarship Success Stories",
     "date": "2026-08-17"
+   },
+   {
+    "id": "O6Os62eKFJs",
+    "t": "DAAD EPOS Scholarship 2027/2028 | Fully Funded MSc & PhD in Germany for International students ",
+    "by": "Opportunity Nanny",
+    "date": "2026-07-25"
    },
    {
     "id": "3eB8k_UiLOk",
@@ -295,30 +295,30 @@
     "date": "2026-10-12"
    },
    {
-    "id": "rSkQg5UMEeQ",
-    "t": "Swedish Institute Scholarships for Global Professionals (SISGP) #Shorts",
-    "by": "ScholarshipsAds",
-    "date": "2026-10-03"
-   },
-   {
-    "id": "cZ8cDjgiBVA",
-    "t": "How to Win Swedish Institute (SI) Scholarship 2027 | A to Z Guidance | International Study Council",
-    "by": "International Study Council",
-    "date": "2026-09-19"
-   },
-   {
     "id": "qQ8lgjVJeL0",
     "t": "Swedish Institute Scholarship Explained | Eligibility, Benefits & SI Alumni Network",
     "by": "AbroadMates - advice for study abroad",
     "date": "2026-09-22"
+   },
+   {
+    "id": "XPA_fThtxdk",
+    "t": "Swedish Institute scholarship: Nigerians can apply (2027)",
+    "by": "Gbemisola Oladetoun",
+    "date": "2026-11-12"
+   },
+   {
+    "id": "uZdj4RBaY80",
+    "t": "Swedish Institute Scholarship 2027 | Full Funding in Sweden + Monthly Stipend",
+    "by": "Scholarship with Brendal",
+    "date": "2026-11-15"
    }
   ],
   "kth": [
    {
-    "id": "3yTlYjNVFSk",
-    "t": "Kuliah di Swedia bersama KTH Royal Institute of Technology | EHEF 2026 Pre-Event Info Session",
-    "by": "EU in Indonesia",
-    "date": "2026-10-22"
+    "id": "po9Ktk-s5rI",
+    "t": "KTH Scholarship 2027: The 4 Things KTH Judges You On",
+    "by": "Aptitude Consultants",
+    "date": "2026-11-10"
    },
    {
     "id": "3SWiOWLM8sI",
@@ -327,16 +327,16 @@
     "date": "2026-10-16"
    },
    {
+    "id": "nby3JZWDyWE",
+    "t": "Explore Master's Studies at KTH | Webinar",
+    "by": "KTH Royal Institute of Technology",
+    "date": "2026-10-21"
+   },
+   {
     "id": "KRTkhxzVTu4",
     "t": "KTH Scholarship 2027: 100% Tuition Free in Sweden",
     "by": "Aptitude Consultants",
     "date": "2026-10-31"
-   },
-   {
-    "id": "po9Ktk-s5rI",
-    "t": "KTH Scholarship 2027: The 4 Things KTH Judges You On",
-    "by": "Aptitude Consultants",
-    "date": "2026-11-10"
    }
   ],
   "delft": [
@@ -347,22 +347,22 @@
     "date": "2026-08-25"
    },
    {
-    "id": "L9YCrLDJi10",
-    "t": "Fully Funded Scholarship in the Netherlands 2027 | Study at TU Delft",
-    "by": "Gift Ifunanya",
-    "date": "2026-08-26"
-   },
-   {
     "id": "pbWAhMlhPCU",
     "t": "Justus & Louise van Effen Excellence സ്കോളർഷിപ്പുകൾ",
     "by": "Scholorship X by Joseph george ",
     "date": "2026-10-04"
    },
    {
-    "id": "JBXnjCCQFO0",
-    "t": "Dutch TU Delft Scholarships 2027 Process",
-    "by": "Scholarships in 2027",
-    "date": "2026-09-24"
+    "id": "MNnzOFEqZSA",
+    "t": "🎓🇳🇱 JUSTUS & LOUISE VAN EFFEN EXCELLENCE SCHOLARSHIP 2027 – NETHERLAND",
+    "by": "Visaslotpk",
+    "date": "2026-11-14"
+   },
+   {
+    "id": "L9YCrLDJi10",
+    "t": "Fully Funded Scholarship in the Netherlands 2027 | Study at TU Delft",
+    "by": "Gift Ifunanya",
+    "date": "2026-08-26"
    }
   ],
   "radboud": [
@@ -399,10 +399,10 @@
     "date": "2026-11-04"
    },
    {
-    "id": "8lfdNtu5j_Q",
-    "t": "ETH Zurich Admission Guide: Eligibility, Fees, Scholarships & Reality Check",
-    "by": "upGrad Study Abroad",
-    "date": "2026-10-15"
+    "id": "5qO4UEZwWm8",
+    "t": "ETH Zurich Scholarship 2027🇨🇭| Fully Funded Master’s in Switzerland | ESOP #study #scholarship #new ",
+    "by": "Sibgah Nadeem",
+    "date": "2026-11-16"
    },
    {
     "id": "iSEa9WE1-1Q",
@@ -411,10 +411,10 @@
     "date": "2026-10-26"
    },
    {
-    "id": "5qO4UEZwWm8",
-    "t": "ETH Zurich Scholarship 2027🇨🇭| Fully Funded Master’s in Switzerland | ESOP #study #scholarship #new ",
-    "by": "Sibgah Nadeem",
-    "date": "2026-11-16"
+    "id": "8lfdNtu5j_Q",
+    "t": "ETH Zurich Admission Guide: Eligibility, Fees, Scholarships & Reality Check",
+    "by": "upGrad Study Abroad",
+    "date": "2026-10-15"
    }
   ],
   "eiffel": [
@@ -431,16 +431,16 @@
     "date": "2026-11-09"
    },
    {
-    "id": "NHN4Rul-sGA",
-    "t": "How to go for the Eiffel Excellence Scholarship 🇫🇷 | Step-by-Step Process",
-    "by": "Future Scholar",
-    "date": "2026-10-17"
+    "id": "Bi1rD6OEvBk",
+    "t": "How to Apply for Eiffel Scholarship for Master & PhD | University of Toulouse | University of Angers",
+    "by": "Study with Travel (By Hafiz Mansoor)",
+    "date": "2026-11-12"
    },
    {
-    "id": "r5j-CKxsaaA",
-    "t": "Eiffel Excellence Scholarship 2027: €1,200/Month to Study in France — How to Win It",
-    "by": "Career Radar",
-    "date": "2026-10-20"
+    "id": "w9IhwwWqzq8",
+    "t": "Eiffel Excellence Scholarship 2027 Fully Funded Master's & PhD in France",
+    "by": "Mudassar Chaudhry",
+    "date": "2026-10-25"
    }
   ],
   "ubc-isp": [
@@ -451,16 +451,16 @@
     "date": "2026-10-16"
    },
    {
-    "id": "ADILKzXdYLU",
-    "t": "University of British Columbia Scholarship 2026/2027: UBC International Scholars Program in Canada",
-    "by": "AyshaFilms",
-    "date": "2026-06-30"
-   },
-   {
     "id": "gv8ZghCwAfg",
     "t": "UBC International Scholars Program right now.",
     "by": "Malik Sohail Sadiq ",
     "date": "2026-09-05"
+   },
+   {
+    "id": "ADILKzXdYLU",
+    "t": "University of British Columbia Scholarship 2026/2027: UBC International Scholars Program in Canada",
+    "by": "AyshaFilms",
+    "date": "2026-06-30"
    },
    {
     "id": "DgLav0-tIdA",
@@ -471,31 +471,37 @@
   ],
   "reach-oxford": [
    {
+    "id": "0ah1LzMdT80",
+    "t": "Study At Oxford For Free After 12th | Scholarship 2026",
+    "by": "Sarvgyan",
+    "date": "2026-08-31"
+   },
+   {
     "id": "QNrGGClaZes",
     "t": "🎓 REACH OXFORD SCHOLARSHIP 2027",
     "by": "Cloochey Foundation",
     "date": "2026-09-22"
    },
    {
-    "id": "FgTwPOZIqzY",
-    "t": "🎓 Oxford is GIVING AWAY Full Scholarships — Reach Oxford 2026 Is NOW OPEN for Africans!",
-    "by": "Nomi Globe",
-    "date": "2026-08-03"
-   },
-   {
-    "id": "vCJUZHWYfqM",
-    "t": "Reach Oxford Scholarship 2027 | Fully Funded Oxford UG | Deadline 26 Jan 2027 | Guide",
-    "by": "Scholarship Junction",
-    "date": "2026-11-15"
-   },
-   {
     "id": "eGwFPxIdq1U",
     "t": "Reach Oxford Scholarship | 2026 session | Oxford university ",
     "by": "Abraham ",
     "date": "2026-09-08"
+   },
+   {
+    "id": "IXh-_MHgkAs",
+    "t": "Oxford University Scholarship 2026 | No IELTS | Fully Funded | International Students #studyabroad",
+    "by": "Sibgah Nadeem",
+    "date": "2026-07-31"
    }
   ],
   "uopeople": [
+   {
+    "id": "lfwQn9at3t4",
+    "t": "UoPeople Scholarships: How to Study for Free (2026) | University of the People Guide",
+    "by": "Career Radar",
+    "date": "2026-10-12"
+   },
    {
     "id": "aRhPf9KkvEM",
     "t": "How to Get a Full Scholarship at UoPeople? | University of the People Financial Aid 2026",
@@ -503,25 +509,25 @@
     "date": "2026-09-13"
    },
    {
-    "id": "jgsGKT_aZy4",
-    "t": "Is University of the People Finally Legit in 2026?",
-    "by": "College Hacked",
-    "date": "2026-07-24"
+    "id": "ohJyEMkQeNE",
+    "t": "How I got a full scholarship and financial aid at University of the People",
+    "by": "قناة الحلول",
+    "date": "2026-08-22"
    },
    {
-    "id": "fKi7uEoFwuE",
-    "t": "WANT TO KNOW HOW I APPLIED FOR MY FREE SCHOLARSHIP?? #DreamTrackAI  #universityofthepeople #uopeople",
-    "by": "PEACE MODESTA UCHE",
-    "date": "2026-07-30"
-   },
-   {
-    "id": "VQVVG-recmc",
-    "t": "Study at an American University for FREE From Home! 🇺🇸🎓 | UoPeople",
-    "by": "UoPeople with Umar",
-    "date": "2026-09-12"
+    "id": "SBnTeShPS1A",
+    "t": "UoPeople Reaches 271,000+ Students! Now the Largest U.S. University",
+    "by": "University of the People",
+    "date": "2026-09-10"
    }
   ],
   "fulbright": [
+   {
+    "id": "NNxvvpIAqEQ",
+    "t": "Study in USA for FREE 🇺🇸 | Fulbright Scholarship Complete Guide",
+    "by": "Universities Page Pakistan ",
+    "date": "2026-08-31"
+   },
    {
     "id": "bSuOIf4_T-Q",
     "t": "Fulbright Scholarship 2027: How to Apply for USA Masters & PhD Funding",
@@ -533,12 +539,6 @@
     "t": "3 U.S. Government Study Abroad Scholarships You Should Know | Fulbright, Boren & Gilman",
     "by": "World Scholarships ",
     "date": "2026-10-26"
-   },
-   {
-    "id": "NNxvvpIAqEQ",
-    "t": "Study in USA for FREE 🇺🇸 | Fulbright Scholarship Complete Guide",
-    "by": "Universities Page Pakistan ",
-    "date": "2026-08-31"
    },
    {
     "id": "0UQTcUf9znE",
@@ -575,10 +575,10 @@
   ],
   "mext": [
    {
-    "id": "8GSuYNuitcY",
-    "t": "NO IELTS | NO APPLICATION FEES | Japan Government MEXT Scholarships 2027 Institute of Science Tokyo",
-    "by": "Full Scholarships",
-    "date": "2026-10-13"
+    "id": "JbRE2aIpAZw",
+    "t": "MEXT Scholarship in 2028: Study in Japan for FREE 🇯🇵 | FULL GUIDE",
+    "by": "Japan With Adi",
+    "date": "2026-11-16"
    },
    {
     "id": "0ForJ3ztL9c",
@@ -587,16 +587,16 @@
     "date": "2026-10-12"
    },
    {
-    "id": "5lWoo6aRY9A",
-    "t": "Are You Eligible for the MEXT Scholarship 2027? Don't Apply Without Knowing | Monbukagakusho Scho...",
-    "by": "AlgoBangla29",
-    "date": "2026-11-10"
-   },
-   {
     "id": "CpvHFYY6Whk",
     "t": "MEXT Scholarship 2028 🇯🇵  Complete Guide for Indian Students Fully Funded",
     "by": "Life of kittu kun",
     "date": "2026-10-16"
+   },
+   {
+    "id": "1qATUvDLg0g",
+    "t": "MEXT Scholarship Japan 2027  Complete Step-by-Step Guide (Bachelor, Master's & PhD)  | No IELTS",
+    "by": "Mudassar Chaudhry",
+    "date": "2026-07-14"
    }
   ],
   "csc-china": [
@@ -607,10 +607,10 @@
     "date": "2026-08-30"
    },
    {
-    "id": "iaa4xucmRFA",
-    "t": "CSC Scholarship 2027 | Fully Funded Scholarship in China | Bachelor, Master, PhD | Application Guide",
-    "by": "Ali in Czechia",
-    "date": "2026-09-24"
+    "id": "viqI7VWG0WM",
+    "t": "Understanding the Chinese Government Scholarship 2027/2028 |  Application Guide",
+    "by": "Dr Bash Explains",
+    "date": "2026-11-05"
    },
    {
     "id": "Sb3Fe2aGkjY",
@@ -659,12 +659,6 @@
     "date": "2026-11-05"
    },
    {
-    "id": "7zP91srnuvs",
-    "t": "🇹🇷 Türkiye Bursları (Turkey Scholarships) 2027/2028 | Complete Guide | Fully Funded Scholarship",
-    "by": "International Free scholarship",
-    "date": "2026-09-09"
-   },
-   {
     "id": "8MkTcZZ9cKo",
     "t": "🇹🇷 How I Got Selected for Türkiye Bursları (Part 2)",
     "by": "Mujtaba Farrukh",
@@ -675,20 +669,26 @@
     "t": "📢 Türkiye Scholarships (Türkiye Bursları) 2027",
     "by": "International Scholarship",
     "date": "2026-08-19"
+   },
+   {
+    "id": "7zP91srnuvs",
+    "t": "🇹🇷 Türkiye Bursları (Turkey Scholarships) 2027/2028 | Complete Guide | Fully Funded Scholarship",
+    "by": "International Free scholarship",
+    "date": "2026-09-09"
    }
   ],
   "hungaricum": [
-   {
-    "id": "tewAAudGiB0",
-    "t": "How I Got A Scholarship To Study In Hungary 🇭🇺| Stipendium Hungaricum ",
-    "by": "Berenice Olawale",
-    "date": "2026-10-06"
-   },
    {
     "id": "9rnf37KE3Js",
     "t": "Stipendium Hungaricum 2026 | How to Get the Scholarship + Complete Guide",
     "by": "Murtaza Ahmed",
     "date": "2026-09-06"
+   },
+   {
+    "id": "tewAAudGiB0",
+    "t": "How I Got A Scholarship To Study In Hungary 🇭🇺| Stipendium Hungaricum ",
+    "by": "Berenice Olawale",
+    "date": "2026-10-06"
    },
    {
     "id": "2KkUtpi3e_s",
@@ -697,10 +697,10 @@
     "date": "2026-11-17"
    },
    {
-    "id": "HYJ0_ZbSm78",
-    "t": "Stipendium Hungaricum Scholarship 2027 Full Guide | Fully Funded Bachelor's, Master's & PhD",
-    "by": "ScholarshipTab",
-    "date": "2026-11-17"
+    "id": "NxfEcaJFxjs",
+    "t": "ep.1 how I applied for the stipendium hungaricum scholarship as a filipino student 🇭🇺🇵🇭 study abroad",
+    "by": "it's micha",
+    "date": "2026-07-07"
    }
   ],
   "mastercard": [
@@ -717,25 +717,19 @@
     "date": "2026-10-29"
    },
    {
+    "id": "F3zy5ht6eN4",
+    "t": "How to apply for the Mastercard Foundation scholarship program 2027/Fully funded program ",
+    "by": "BecomingSelf ",
+    "date": "2026-09-25"
+   },
+   {
     "id": "bH8036pM0WM",
     "t": "Mastercard Foundation Scholars Program Edinburgh (2027): Full Guide",
     "by": "GN Inspire Podcast",
     "date": "2026-09-29"
-   },
-   {
-    "id": "oM6EVgFdrfA",
-    "t": "Info session | Mastercard Foundation Scholars Program Overview | June  2026",
-    "by": "Mastercard Foundation Scholars Program at UBC",
-    "date": "2026-06-29"
    }
   ],
   "mandela-rhodes": [
-   {
-    "id": "vDYwsr0ELT0",
-    "t": "Mandela Rhodes Scholarship 2027 for African Students (Fully Funded) | Fully Funded | Sou #Shorts",
-    "by": "ScholarshipsAds",
-    "date": "2026-11-13"
-   },
    {
     "id": "G2VfOEfSCfM",
     "t": "How to Win the Mandela Rhodes Scholarship: Full Guide| The Speak With Her Podcast",
@@ -743,19 +737,31 @@
     "date": "2026-10-07"
    },
    {
-    "id": "-Uy6HB5rRcg",
-    "t": "Diversity, Mandela Rhodes Scholar",
-    "by": "Rue Vlogs ",
-    "date": "2026-10-02"
+    "id": "vDYwsr0ELT0",
+    "t": "Mandela Rhodes Scholarship 2027 for African Students (Fully Funded) | Fully Funded | Sou #Shorts",
+    "by": "ScholarshipsAds",
+    "date": "2026-11-13"
    },
    {
-    "id": "WoIFML5tFTM",
-    "t": "Let's travel together with Qatar as a Mandela Rhodes Scholar",
+    "id": "_Xb6lYiJ4rU",
+    "t": "First retreat as a Mandela Rhodes scholar",
     "by": "Rue Vlogs ",
-    "date": "2026-11-16"
+    "date": "2026-09-18"
+   },
+   {
+    "id": "JZ_RhHrBNPI",
+    "t": "#DreamTrackAI LIFE AS A MANDELA RHODES SCHOLAR",
+    "by": "Rue Vlogs ",
+    "date": "2026-09-18"
    }
   ],
   "jjwbgsp": [
+   {
+    "id": "X9OBWI9LDV8",
+    "t": "Joint Japan World Bank Fully Funded Scholarships 2027 Process Explained",
+    "by": "Scholarships in 2027",
+    "date": "2026-11-23"
+   },
    {
     "id": "2tt7FTnFBN4",
     "t": "JOINT JAPAN WORLD BANK GRADUATE SCHOLARSHIPS",
@@ -773,15 +779,21 @@
     "t": "World Bank Graduate Scholarships",
     "by": "CHU EDUCATION - Study Abroad & Visa Guide",
     "date": "2026-08-28"
-   },
-   {
-    "id": "wdsIXeL-C8Y",
-    "t": "Japan, Fully Funded Master's Scholarship 2027 | JJ/WBGSP , All details",
-    "by": "Yourpedia Education",
-    "date": "2026-11-17"
    }
   ],
   "ptdf": [
+   {
+    "id": "pCzf3e25YAY",
+    "t": "PTDF LSS Scholarship Interview: What to Expect & How to WIN! | PTDF Scholarship Interview Tips",
+    "by": "Academy of Scholarships and Transitions",
+    "date": "2026-08-09"
+   },
+   {
+    "id": "0xeZf_8CjaQ",
+    "t": "PTDF SCHOLARSHIP 2027",
+    "by": "Veronica Ife-Olaitan",
+    "date": "2026-11-20"
+   },
    {
     "id": "AmJVgCwThFg",
     "t": "PTDF Strategic Courses | Win Your Scholarship in 60s",
@@ -793,18 +805,6 @@
     "t": "PTDF Undergraduate Scholarship 2027",
     "by": "Campus Hustle TV",
     "date": "2026-11-04"
-   },
-   {
-    "id": "pCzf3e25YAY",
-    "t": "PTDF LSS Scholarship Interview: What to Expect & How to WIN! | PTDF Scholarship Interview Tips",
-    "by": "Academy of Scholarships and Transitions",
-    "date": "2026-08-09"
-   },
-   {
-    "id": "5TnVOs2uXq8",
-    "t": "Understanding the PTDF Scholarship Application Process",
-    "by": "Clazenix",
-    "date": "2026-10-14"
    }
   ],
   "fsb-bea": [
@@ -824,6 +824,18 @@
    }
   ],
   "total": [
+   {
+    "id": "LoV7osMiTJk",
+    "t": "NNPC Scholarship: Get a Grant Until Graduation",
+    "by": "Rekoja",
+    "date": "2026-11-19"
+   },
+   {
+    "id": "n3qXhxjMtGc",
+    "t": "NNPC/TotalEnergies announces international scholarship for Nigerian graduates",
+    "by": "The BrightSide NG",
+    "date": "2026-11-13"
+   },
    {
     "id": "mZHPBWDhaDM",
     "t": "NNPC TotalEnergies Scholarship: Master's in France",
@@ -845,28 +857,28 @@
   "nbplc": [],
   "nddc": [
    {
+    "id": "1mfT7xj6p18",
+    "t": "NDDC Local Postgraduate Scholarship 2026",
+    "by": "Abasiofon Moses",
+    "date": "2026-11-15"
+   },
+   {
     "id": "I_GM7taoxzY",
     "t": "From Setback to Success: Diffa Gabriella Wins NDDC Foreign Scholarship",
     "by": "NDDC (Niger Delta Development Commission)",
     "date": "2026-07-01"
    },
    {
-    "id": "oUgN5Ct660A",
-    "t": "From Late Applicant to NDDC Scholarship Winner | Racheal Ramson’s Inspiring Story",
-    "by": "NDDC (Niger Delta Development Commission)",
-    "date": "2026-06-26"
-   },
-   {
-    "id": "ONenIjkuhYw",
-    "t": "Michael Nkwocha Scores 49/50 in NDDC Scholarship CBT, Emerges Top Performer",
-    "by": "NDDC (Niger Delta Development Commission)",
-    "date": "2026-06-23"
-   },
-   {
     "id": "dG26HKR0vxE",
     "t": "NDDC 2026/2027 LOCAL POST-GRADUATE SCHOLARSHIP",
     "by": "DR. UMOREN EDUCATION & SCHOLARSHIP HUB",
     "date": "2026-10-12"
+   },
+   {
+    "id": "ZDA0PPvgXn4",
+    "t": "Sen Asuquo Ekpenyong at the 2025 Batch of NDDC Foreign Scholarship Postgraduate Gtaduation Ceremony",
+    "by": "MyConstituent App",
+    "date": "2026-08-03"
    }
   ],
   "tetfund": [],
@@ -898,16 +910,16 @@
   ],
   "state": [
    {
+    "id": "6A871kURTLU",
+    "t": "SCHOLARSHIPS 2026-27|SSP SCHOLARSHIP 2026|HOW TO APPLY GOVERNMENT SCHOLARSHIP 2026| #KCET #KEA #NEET",
+    "by": "KCET With HM",
+    "date": "2026-09-12"
+   },
+   {
     "id": "0h5ywXUnwj4",
     "t": "Saudi Arabia Government Scholarships 2026–27 | Fully Funded | BSc, MSc & PhD Programs | No Fee",
     "by": "Usama’s Travel Diaries",
     "date": "2026-09-26"
-   },
-   {
-    "id": "_E8kh-URizM",
-    "t": "SCHOLARSHIPS 2026-27|SSP SCHOLARSHIP 2026|HOW TO APPLY GOVERNMENT SCHOLARSHIP 2026| #KCET #KEA #NEET",
-    "by": "KCET With HM",
-    "date": "2026-08-03"
    },
    {
     "id": "-uEqnK_214E",
