@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-24",
+ "updated": "2026-11-25",
  "sources": [
   {
    "source": "Opportunities for Africans",
@@ -9,7 +9,7 @@
   {
    "source": "Opportunity Desk",
    "ok": true,
-   "items": 5
+   "items": 6
   },
   {
    "source": "Opportunities Corners",
@@ -19,12 +19,12 @@
   {
    "source": "Scholarship Region",
    "ok": true,
-   "items": 8
+   "items": 5
   },
   {
    "source": "Opportunities for Youth",
    "ok": true,
-   "items": 5
+   "items": 6
   },
   {
    "source": "Commonwealth Scholarship Commission",
@@ -56,6 +56,128 @@
   }
  ],
  "items": [
+  {
+   "title": "Cora Weiss Fellowship for Young Women Peacebuilders 2027 (Funded)",
+   "link": "https://opportunitydesk.org/2026/11/25/cora-weiss-fellowship-for-young-women-peacebuilders-2027/",
+   "date": "2026-11-25",
+   "source": "Opportunity Desk",
+   "official": false,
+   "ids": [],
+   "summary": "Deadline: December 15, 2026 Applications are open for the Cora Weiss Fellowship for Young Women Peacebuilders 2027. The Global Network of Women Peacebuilders (GNWP) invites young women aged 23-30 who…",
+   "seen": "2026-11-25"
+  },
+  {
+   "title": "2027 KMUTNB Undergraduate Scholarships in Thailand | How To Apply",
+   "link": "https://www.scholarshipregion.com/kmutnb-undergraduate-scholarship/",
+   "date": "2026-11-25",
+   "source": "Scholarship Region",
+   "official": false,
+   "ids": [],
+   "summary": "The KMUTT Undergraduate Scholarship is offered to international students as an opportunity to study at King Mongkut’s University of Technology North Bangkok (KMUTNB) in Thailand. The King Mongkut Uni…",
+   "seen": "2026-11-25"
+  },
+  {
+   "title": "Northern Michigan University Scholarship in USA 2027 | Fully Funded",
+   "link": "https://www.scholarshipregion.com/northern-michigan-university-scholarship/",
+   "date": "2026-11-25",
+   "source": "Scholarship Region",
+   "official": false,
+   "ids": [],
+   "summary": "Northern Michigan University in the USA is offering fully funded Master’s assistantships to candidates from domestic and international backgrounds. The Northern Michigan University Master’s assistant…",
+   "seen": "2026-11-25"
+  },
+  {
+   "title": "University College Dublin (UCD) Iseult Honohan Doctoral Scholarship in Ireland 2027 | Fully Funded",
+   "link": "https://www.scholarshipregion.com/ucd-iseult-honohan-doctoral-scholarship/",
+   "date": "2026-11-25",
+   "source": "Scholarship Region",
+   "official": false,
+   "ids": [],
+   "summary": "The University College Dublin (UCD) is welcoming applications for a fully funded Iseult Honohan Doctoral Scholarship in Ireland. The UCD Iseult Honohan Doctoral Scholarship covers full fees (EU and N…",
+   "seen": "2026-11-25"
+  },
+  {
+   "title": "2027 RESCO Erasmus Mundus Scholarship in France, Spain, Portugal, Hungary | Fully Funded",
+   "link": "https://www.scholarshipregion.com/resco-erasmus-mundus-scholarship/",
+   "date": "2026-11-25",
+   "source": "Scholarship Region",
+   "official": false,
+   "ids": [
+    "erasmus"
+   ],
+   "summary": "RESCO is an Erasmus Mundus Joint Master’s Degree (EMJMD) designed to train highly skilled professionals in the fields of renewable energy systems and sustainable construction.The RESCO Erasmus Mundus…",
+   "seen": "2026-11-25"
+  },
+  {
+   "title": "School of Public Health Masters Scholarships at ICL, UK 2027 | Step-by-Step Process",
+   "link": "https://www.scholarshipregion.com/school-of-public-health-masters-scholarship/",
+   "date": "2026-11-25",
+   "source": "Scholarship Region",
+   "official": false,
+   "ids": [],
+   "summary": "The Imperial College London (ICL) offers full scholarships for home and international students to pursue programs at the School of Public Health (SPH). The ICL School of Public Health Masters Scholar…",
+   "seen": "2026-11-25"
+  },
+  {
+   "title": "Visiting Fellowship in Berlin, Germany 2027: Network Humanitarian Research (NHF) Recruiting Two Policy Research Fellows at CHA",
+   "link": "https://opportunitiesforyouth.org/2026/11/25/visiting-fellowship-in-berlin-germany-2027-network-humanitarian-research-nhf-recruiting-two-policy-research-fellows-at-cha/",
+   "date": "2026-11-25",
+   "source": "Opportunities for Youth",
+   "official": false,
+   "ids": [],
+   "summary": "Are you a pre-doctoral or post-doctoral researcher interested in humanitarian action, humanitarian policy, international research, and the relationship between research and real-world humanitarian pr…",
+   "seen": "2026-11-25"
+  },
+  {
+   "title": "Microsoft Datacenter Academy 2026: Free IT Training, Hands-On Datacenter Experience, Mentorship, Internships, Scholarships and Career Opportunities",
+   "link": "https://opportunitiesforyouth.org/2026/11/25/microsoft-datacenter-academy-2026-free-it-training-hands-on-datacenter-experience-mentorship-internships-scholarships-and-career-opportunities/",
+   "date": "2026-11-25",
+   "source": "Opportunities for Youth",
+   "official": false,
+   "ids": [],
+   "summary": "Are you looking to build a career in IT, cloud computing, datacenter operations, networking, hardware infrastructure, or digital technology but lack the practical experience or resources to get start…",
+   "seen": "2026-11-25"
+  },
+  {
+   "title": "KU Leuven PhD Call 2027–2028 in Economics: Fully Funded PhD Position in Belgium with a Monthly Stipend of at Least €2,750",
+   "link": "https://opportunitiesforyouth.org/2026/11/25/ku-leuven-phd-call-2027-2028-in-economics-fully-funded-phd-position-in-belgium-with-a-monthly-stipend-of-at-least-e2750/",
+   "date": "2026-11-25",
+   "source": "Opportunities for Youth",
+   "official": false,
+   "ids": [],
+   "summary": "Are you interested in pursuing a doctoral degree in Economics at one of Belgium’s leading research universities? KU Leuven, through its Department of Economics at the Faculty of Economics and Busines…",
+   "seen": "2026-11-25"
+  },
+  {
+   "title": "NipCA Fellowship Programs 2027 at University of Tsukuba, Japan | Fully Funded Master’s Scholarships for Central Asian and Eurasian Students",
+   "link": "https://opportunitiesforyouth.org/2026/11/25/nipca-fellowship-programs-2027-at-university-of-tsukuba-japan-fully-funded-masters-scholarships-for-central-asian-and-eurasian-students/",
+   "date": "2026-11-25",
+   "source": "Opportunities for Youth",
+   "official": false,
+   "ids": [],
+   "summary": "The Nippon Foundation Central Asia-Japan Human Resource Development Project (NipCA Project) at the University of Tsukuba, Japan, is inviting applications for its 2027 NipCA Fellowship Programs. These…",
+   "seen": "2026-11-25"
+  },
+  {
+   "title": "IGC Expression of Interest 2026: Submit Your Research Ideas for Upcoming International Growth Centre Funding Opportunities 2027",
+   "link": "https://opportunitiesforyouth.org/2026/11/25/igc-expression-of-interest-2026-submit-your-research-ideas-for-upcoming-international-growth-centre-funding-opportunities-2027/",
+   "date": "2026-11-25",
+   "source": "Opportunities for Youth",
+   "official": false,
+   "ids": [],
+   "summary": "The International Growth Centre (IGC) has announced a new Expression of Interest (EOI) opportunity for researchers interested in collaborating on high-quality research projects addressing economic de…",
+   "seen": "2026-11-25"
+  },
+  {
+   "title": "Africa–EU Space Partnership Business Innovation Programme 2027 (Cohort 2): €20,000 Funding, Expert Mentorship and Business Growth Opportunities for African Earth Observation Start…",
+   "link": "https://opportunitiesforyouth.org/2026/11/25/africa-eu-space-partnership-business-innovation-programme-2027-cohort-2-e20000-funding-expert-mentorship-and-business-growth-opportunities-for-african-earth-observation-startups-and-smes/",
+   "date": "2026-11-25",
+   "source": "Opportunities for Youth",
+   "official": false,
+   "ids": [],
+   "summary": "The Africa–EU Space Partnership Programme (AESPP) has announced the second cohort of its Business Innovation Programme (BIP), an exciting business development and innovation opportunity designed to s…",
+   "seen": "2026-11-25"
+  },
   {
    "title": "ANSO-CAS-TWAS/UNESCO PhD Scholarship 2026-2027 (Funded)",
    "link": "https://opportunitydesk.org/2026/11/24/anso-cas-twas-unesco-phd-scholarship-2026-2027/",
@@ -199,6 +321,46 @@
    "ids": [],
    "summary": "The a16z FDE Fellowship 2027 is an opportunity for experienced Forward Deployed Engineers (FDEs), Applied AI professionals, and leaders of AI deployment teams to connect with some of the most influen…",
    "seen": "2026-11-24"
+  },
+  {
+   "title": "The ANSO-CAS-TWAS/UNESCO PhD Scholarship 2027 for students/scholars from developing countries.",
+   "link": "https://www.opportunitiesforafricans.com/the-anso-cas-twas-unesco-phd-scholarship-2027/",
+   "date": "2026-11-24",
+   "source": "Opportunities for Africans",
+   "official": false,
+   "ids": [],
+   "summary": "Application Deadline: 28 February 2027 Applications are now open for the 2027 ANSO-CAS-TWAS/UNESCO PhD Scholarship. According to an agreement between the Alliance of International Science Organizatio…",
+   "seen": "2026-11-25"
+  },
+  {
+   "title": "Call for Applications: Better Futures Fellowship 2027",
+   "link": "https://opportunitydesk.org/2026/11/24/better-futures-fellowship-2027/",
+   "date": "2026-11-24",
+   "source": "Opportunity Desk",
+   "official": false,
+   "ids": [],
+   "summary": "Deadline: December 6, 2026 Applications are open for the Better Futures Fellowship 2027. The Better Futures Fellowship is a 9-week program for people deciding whether better-futures work should becom…",
+   "seen": "2026-11-25"
+  },
+  {
+   "title": "Earth Observation (EO) Excellence Award 2027 (up to €15,000)",
+   "link": "https://opportunitydesk.org/2026/11/24/earth-observation-excellence-award-2027/",
+   "date": "2026-11-24",
+   "source": "Opportunity Desk",
+   "official": false,
+   "ids": [],
+   "summary": "Deadline: January 22, 2027 Applications are open for the EO Excellence Award 2027. Are you an early-career individual using Earth Observation satellite data to advance science and applications? The E…",
+   "seen": "2026-11-25"
+  },
+  {
+   "title": "SparkUp Initiative Fellowship 2027",
+   "link": "https://opportunitydesk.org/2026/11/24/sparkup-initiative-fellowship-2027/",
+   "date": "2026-11-24",
+   "source": "Opportunity Desk",
+   "official": false,
+   "ids": [],
+   "summary": "Deadline: December 20, 2026 Applications are open for the SparkUp Initiative Fellowship 2027. The SparkUp Initiative is a transformative capacity-building program designed to strengthen women-led org…",
+   "seen": "2026-11-25"
   },
   {
    "title": "Public Policy New Voices Fellowship Program 2026-2027",
@@ -1535,172 +1697,6 @@
    "ids": [],
    "summary": "Deadline: December 11, 2026 Applications are invited for the Thrive Capital Summer Fellowship 2027. The Fellowship is an opportunity for exceptional college students to pursue their own curiosities, …",
    "seen": "2026-11-12"
-  },
-  {
-   "title": "Jodi Harris Scholarship 2027 for Emerging Marketing Leaders",
-   "link": "https://opportunitydesk.org/2026/11/12/jodi-harris-scholarship-2027/",
-   "date": "2026-11-12",
-   "source": "Opportunity Desk",
-   "official": false,
-   "ids": [],
-   "summary": "Deadline: December 4, 2027 Applications are open for the Jodi Harris Scholarship 2027. They are accepting 10 emerging marketing leaders back into the Scholarship this year alongside the team at AB In…",
-   "seen": "2026-11-12"
-  },
-  {
-   "title": "World Leaders Convention 2027 in Austria (Fully Funded)",
-   "link": "https://opportunitiescorners.com/world-leaders-convention-2027-in-austria/",
-   "date": "2026-11-12",
-   "source": "Opportunities Corners",
-   "official": false,
-   "ids": [],
-   "summary": "Are you a young leader, student, entrepreneur, professional, researcher, or changemaker looking for an international leadership opportunity in Europe? Applications are now open for the World Leaders …",
-   "seen": "2026-11-12"
-  },
-  {
-   "title": "Rockefeller University Summer Undergraduate Program 2027 | Fully Funded",
-   "link": "https://www.scholarshipregion.com/rockefeller-university-summer-undergraduate-program/",
-   "date": "2026-11-12",
-   "source": "Scholarship Region",
-   "official": false,
-   "ids": [],
-   "summary": "Rockefeller University in the USA is welcoming international and home students to apply for its 2027 Summer Undergraduate Research Fellowships. The Rockefeller University Summer Undergraduate Program…",
-   "seen": "2026-11-12"
-  },
-  {
-   "title": "2026 Kwara State Government Scholarship and Bursary Award | How To Apply",
-   "link": "https://www.scholarshipregion.com/kwara-state-government-scholarship/",
-   "date": "2026-11-12",
-   "source": "Scholarship Region",
-   "official": false,
-   "ids": [],
-   "summary": "The Kwara State Scholarship Board has opened applications for its 2025 and 2026 bursary awards. The Kwara State Government Scholarship is a ₦100,000 cash support while the bursary is a ₦30,000 fund t…",
-   "seen": "2026-11-12"
-  },
-  {
-   "title": "NNPC/TotalEnergies International Scholarship in France 2027 | Fully Funded",
-   "link": "https://www.scholarshipregion.com/nnpc-totalenergies-international-scholarship/",
-   "date": "2026-11-12",
-   "source": "Scholarship Region",
-   "official": false,
-   "ids": [
-    "total"
-   ],
-   "summary": "Total Energies is inviting applications from suitably qualified young Nigerians for its 2027/28 NNPC Limited/TotalEnergies International Scholarship Scheme. The TotalEnergies International Scholarshi…",
-   "seen": "2026-11-12"
-  },
-  {
-   "title": "EYWEP and African Union Opportunities 2026: Youth and Women Entrepreneurship, COYWA Programme, Scholarships, Fellowships and Career Resources in Africa",
-   "link": "https://opportunitiesforyouth.org/2026/11/12/career-opportunities-with-auda-nepad-jobs-and-young-professionals-programme-for-africans/",
-   "date": "2026-11-12",
-   "source": "Opportunities for Youth",
-   "official": false,
-   "ids": [],
-   "summary": "Young people and women across Africa can explore a range of development, entrepreneurship, education and career-related resources through the ECOWAS Youth and Women Entrepreneurship Programme (EYWEP)…",
-   "seen": "2026-11-12"
-  },
-  {
-   "title": "ICANN89 Fellowship 2027: Applications Open for the ICANN Policy Forum Fellowship in Vancouver, Canada",
-   "link": "https://opportunitiesforyouth.org/2026/11/12/icann89-fellowship-2027-applications-open-for-the-icann-policy-forum-fellowship-in-vancouver-canada/",
-   "date": "2026-11-12",
-   "source": "Opportunities for Youth",
-   "official": false,
-   "ids": [],
-   "summary": "The Internet Corporation for Assigned Names and Numbers (ICANN) has opened applications for the ICANN89 Policy Forum Fellowship Program 2027, offering an opportunity for previous ICANN Fellowship Pro…",
-   "seen": "2026-11-12"
-  },
-  {
-   "title": "Egypt-Japan University of Science and Technology (E-JUST) TICAD9 Postgraduate Scholarship Program 2027 for African graduates. (Fully Funded)",
-   "link": "https://www.opportunitiesforafricans.com/egypt-japan-university-of-science-and-technology-e-just-ticad9-postgraduate-scholarship-program-2027/",
-   "date": "2026-11-12",
-   "source": "Opportunities for Africans",
-   "official": false,
-   "ids": [],
-   "summary": "Application Deadline: January 10, 2027 Applications are now open for the Egypt-Japan University of Science and Technology (E-JUST) TICAD9 Postgraduate Scholarship Program. E-JUST offers “E-JUST TICAD…",
-   "seen": "2026-11-13"
-  },
-  {
-   "title": "UCLA Library Special Collections (LSC) Research Fellowships 2027 (Funded)",
-   "link": "https://opportunitydesk.org/2026/11/12/ucla-library-special-collections-research-fellowships-2027/",
-   "date": "2026-11-12",
-   "source": "Opportunity Desk",
-   "official": false,
-   "ids": [],
-   "summary": "Deadline: December 1, 2026 Applications are open for the UCLA Library Special Collections (LSC) Research Fellowships 2027. UCLA Library Special Collections (LSC) Research Fellowships provide one-time…",
-   "seen": "2026-11-13"
-  },
-  {
-   "title": "E-JUST TICAD9 African Scholarship for STI – Fall 2027",
-   "link": "https://opportunitydesk.org/2026/11/12/e-just-ticad9-african-scholarship-for-sti-fall-2027/",
-   "date": "2026-11-12",
-   "source": "Opportunity Desk",
-   "official": false,
-   "ids": [],
-   "summary": "Deadline: Unspecified Applications are open for the E-JUST TICAD9 African Scholarship for STI – Fall 2027. E-JUST offers “E-JUST TICAD9 African Scholarship for STI” – i.e. TICAD9 Scholarships to deve…",
-   "seen": "2026-11-13"
-  },
-  {
-   "title": "DSTI-NRF Policy Fellowship Programme 2027 (Funded)",
-   "link": "https://opportunitydesk.org/2026/11/12/dsti-nrf-policy-fellowship-programme-2027/",
-   "date": "2026-11-12",
-   "source": "Opportunity Desk",
-   "official": false,
-   "ids": [],
-   "summary": "Deadline: November 17, 2026 Applications are open for the DSTI-NRF Policy Fellowship Programme 2027. The National Research Foundation (NRF), in partnership with the Department of Science, Technology …",
-   "seen": "2026-11-13"
-  },
-  {
-   "title": "PTDF Annual Oil and Gas Research Grant Competition 2026 | How To Apply",
-   "link": "https://www.scholarshipregion.com/ptdf-annual-oil-and-gas-research-grant/",
-   "date": "2026-11-12",
-   "source": "Scholarship Region",
-   "official": false,
-   "ids": [
-    "ptdf"
-   ],
-   "summary": "The Petroleum Technology Development Fund (PTDF) has called for applications for its 2026 Annual Oil and Gas Research Grant Competition. The PTDF Annual Oil and Gas Research Grant Competition provide…",
-   "seen": "2026-11-13"
-  },
-  {
-   "title": "2027 E-JUST TICAD9 Scholarship For Africans | Fully Funded",
-   "link": "https://www.scholarshipregion.com/e-just-ticad9-scholarship/",
-   "date": "2026-11-12",
-   "source": "Scholarship Region",
-   "official": false,
-   "ids": [],
-   "summary": "Egypt-Japan University of Science and Technology is pleased to anounce the 2027 E-JUST TICAD9 Scholarship to develop high-quality human resources in the field of STI (Science, Technology and Innovati…",
-   "seen": "2026-11-13"
-  },
-  {
-   "title": "Erasmus Mundus EMerald Scholarship 2027 To Study in France, Germany, Belgium | Fully Funded",
-   "link": "https://www.scholarshipregion.com/erasmus-mundus-emerald-scholarship/",
-   "date": "2026-11-12",
-   "source": "Scholarship Region",
-   "official": false,
-   "ids": [
-    "erasmus"
-   ],
-   "summary": "The Erasmus Mundus EMerald Scholarship is an Erasmus Mundus and EIT-labelled Master’s program created to establish the right balance between knowledge of resources and process-engineering techniques.…",
-   "seen": "2026-11-13"
-  },
-  {
-   "title": "R. Howard Dobbs Foundation Winter 2027 Grantmaking Cycle: Applications Open for Nonprofit Organisations Supporting Health, Education and Enustainability in Georgia",
-   "link": "https://opportunitiesforyouth.org/2026/11/12/r-howard-dobbs-foundation-winter-2027-grantmaking-cycle-applications-open-for-nonprofit-organisations-supporting-health-education-and-enustainability-in-georgia/",
-   "date": "2026-11-12",
-   "source": "Opportunities for Youth",
-   "official": false,
-   "ids": [],
-   "summary": "The R. Howard Dobbs Foundation Winter 2027 Grantmaking Cycle is now accepting applications from mission-driven organisations working to strengthen families, communities, and the environment across th…",
-   "seen": "2026-11-13"
-  },
-  {
-   "title": "WIPO IP and Women Fellowship 2027 in Switzerland: Earn CHF 6,000 Monthly and Gain International Intellectual Property Experience in Geneva",
-   "link": "https://opportunitiesforyouth.org/2026/11/12/wipo-ip-and-women-fellowship-2027-in-switzerland-earn-chf-6000-monthly-and-gain-international-intellectual-property-experience-in-geneva/",
-   "date": "2026-11-12",
-   "source": "Opportunities for Youth",
-   "official": false,
-   "ids": [],
-   "summary": "The World Intellectual Property Organization (WIPO) IP and Women Fellowship 2027 is offering an exciting professional development opportunity for qualified candidates with a background in law and pro…",
-   "seen": "2026-11-13"
   }
  ]
 }
