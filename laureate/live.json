@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-25",
+ "updated": "2026-11-26",
  "sources": [
   {
    "source": "Opportunities for Africans",
@@ -9,7 +9,7 @@
   {
    "source": "Opportunity Desk",
    "ok": true,
-   "items": 6
+   "items": 3
   },
   {
    "source": "Opportunities Corners",
@@ -19,17 +19,17 @@
   {
    "source": "Scholarship Region",
    "ok": true,
-   "items": 5
+   "items": 8
   },
   {
    "source": "Opportunities for Youth",
-   "ok": true,
-   "items": 6
+   "ok": false,
+   "error": "HTTP Error 403: Forbidden"
   },
   {
    "source": "Commonwealth Scholarship Commission",
    "ok": true,
-   "items": 2
+   "items": 3
   },
   {
    "source": "Erasmus Mundus catalogue (EACEA)",
@@ -56,6 +56,88 @@
   }
  ],
  "items": [
+  {
+   "title": "Beyond Maseru: Commonwealth Alumni bring scholarship support to Qacha’s Nek, Lesotho",
+   "link": "https://cscuk.fcdo.gov.uk/beyond-maseru-commonwealth-alumni-bring-scholarship-support-to-qachas-nek-lesotho/",
+   "date": "2026-11-26",
+   "source": "Commonwealth Scholarship Commission",
+   "official": true,
+   "ids": [],
+   "summary": "On 14 November, the Lesotho Commonwealth Alumni Association (LCAA) delivered their first scholarship information session outside of the country’s capital. Held in Qacha’s Nek, the session brought tog…",
+   "seen": "2026-11-26"
+  },
+  {
+   "title": "Friends of Pakistan Fellowship 2027 (Funded)",
+   "link": "https://opportunitydesk.org/2026/11/26/friends-of-pakistan-fellowship-2027/",
+   "date": "2026-11-26",
+   "source": "Opportunity Desk",
+   "official": false,
+   "ids": [],
+   "summary": "Deadline: December 11, 2026 Applications are open for the Friends of Pakistan Fellowship 2027. Pakistan has extraordinary leaders working on big social problems. Scale is the next frontier. Each year…",
+   "seen": "2026-11-26"
+  },
+  {
+   "title": "2027 Dalhousie University Entrance Scholarship in Canada For Undergraduates | How To Apply",
+   "link": "https://www.scholarshipregion.com/dalhousie-university-entrance-scholarship/",
+   "date": "2026-11-26",
+   "source": "Scholarship Region",
+   "official": false,
+   "ids": [],
+   "summary": "Dalhousie University Entrance Scholarship is a Women in Technology Scholarship that not only offers financial support but also provides a platform to support the next generation of female tech leader…",
+   "seen": "2026-11-26"
+  },
+  {
+   "title": "2027 University of Glasgow African Excellence Scholarship Award | Step-by-Step Process",
+   "link": "https://www.scholarshipregion.com/university-of-glasgow-african-excellence-scholarship/",
+   "date": "2026-11-26",
+   "source": "Scholarship Region",
+   "official": false,
+   "ids": [],
+   "summary": "The University of Glasgow African Excellence Scholarship aims to support high-achieving students from across Africa in their journey to become Future World Changers. The University of Glasgow African…",
+   "seen": "2026-11-26"
+  },
+  {
+   "title": "University of Manchester Humanities Scholarship in UK 2027 | Fully Funded",
+   "link": "https://www.scholarshipregion.com/university-of-manchester-humanities-scholarship/",
+   "date": "2026-11-26",
+   "source": "Scholarship Region",
+   "official": false,
+   "ids": [],
+   "summary": "The University of Manchester in the UK is offering full scholarships to international students to pursue Master’s and PhD studies in a (1+3 or 1+4 study mode). The fully funded University of Manchest…",
+   "seen": "2026-11-26"
+  },
+  {
+   "title": "2027 Special Scholarship Program at Kochi University of Technology Japan | Fully Funded",
+   "link": "https://www.scholarshipregion.com/special-scholarship-program/",
+   "date": "2026-11-26",
+   "source": "Scholarship Region",
+   "official": false,
+   "ids": [],
+   "summary": "The Kochi University of Technology in Japan is inviting international students to apply for the 2027 Special Scholarship Program. The Special Scholarship Program offers a sum of ¥3,872,400 ($24,300) …",
+   "seen": "2026-11-26"
+  },
+  {
+   "title": "2027 USTC Scholarships (University of Science and Technology of China) | Fully Funded",
+   "link": "https://www.scholarshipregion.com/ustc-scholarship/",
+   "date": "2026-11-26",
+   "source": "Scholarship Region",
+   "official": false,
+   "ids": [],
+   "summary": "The University of Science and Technology of China- USTC Scholarships aims to better develop the university’s international education through full scholarships for undergraduate and postgraduate stude…",
+   "seen": "2026-11-26"
+  },
+  {
+   "title": "University of Hull Commonwealth Shared Scholarship in UK 2027 | Fully Funded",
+   "link": "https://www.scholarshipregion.com/hull-commonwealth-shared-scholarship/",
+   "date": "2026-11-26",
+   "source": "Scholarship Region",
+   "official": false,
+   "ids": [
+    "csc-masters"
+   ],
+   "summary": "The University of Hull, in partnership with the Commonwealth Scholarship Commission (CSC) has announced applications for th 2027 Commonwealth Shared Scholarship Scheme. The University of Hull Commonw…",
+   "seen": "2026-11-26"
+  },
   {
    "title": "Cora Weiss Fellowship for Young Women Peacebuilders 2027 (Funded)",
    "link": "https://opportunitydesk.org/2026/11/25/cora-weiss-fellowship-for-young-women-peacebuilders-2027/",
@@ -177,6 +259,56 @@
    "ids": [],
    "summary": "The Africa–EU Space Partnership Programme (AESPP) has announced the second cohort of its Business Innovation Programme (BIP), an exciting business development and innovation opportunity designed to s…",
    "seen": "2026-11-25"
+  },
+  {
+   "title": "Ghent University Doctoral Scholarships 2027 for Candidates from the Global South to Study in Belgium (Funded)",
+   "link": "https://www.opportunitiesforafricans.com/ghent-university-doctoral-scholarships-2027-for-candidates-from-the-global-south/",
+   "date": "2026-11-25",
+   "source": "Opportunities for Africans",
+   "official": false,
+   "ids": [],
+   "summary": "Application Deadline: Applications are now open for the 2027 Ghent University Doctoral Scholarships. With support from its “Special Research Fund” (BOF) Ghent University grants annually 15 PhD “sandw…",
+   "seen": "2026-11-26"
+  },
+  {
+   "title": "10 Global Scholarship Opportunities Currently Open – November 25, 2026",
+   "link": "https://opportunitydesk.org/2026/11/25/10-global-scholarship-opportunities-currently-open-november-25-2026/",
+   "date": "2026-11-25",
+   "source": "Opportunity Desk",
+   "official": false,
+   "ids": [],
+   "summary": "1. ANSO-CAS-TWAS/UNESCO PhD Scholarship 2026-2027 (Funded)The ANSO-CAS-TWAS/UNESCO PhD Scholarship supports outstanding students from developing countries to pursue full-time doctoral study at the Un…",
+   "seen": "2026-11-26"
+  },
+  {
+   "title": "Iso Lomso Fellowships 2028 (Funded)",
+   "link": "https://opportunitydesk.org/2026/11/25/iso-lomso-fellowships-2028/",
+   "date": "2026-11-25",
+   "source": "Opportunity Desk",
+   "official": false,
+   "ids": [],
+   "summary": "Deadline: February 15, 2027 Applications are open for the Iso Lomso Fellowships 2028. The Iso Lomso Fellowships provide a three-year affiliation with STIAS. The aim is to facilitate and support emerg…",
+   "seen": "2026-11-26"
+  },
+  {
+   "title": "The World Academy of Science Scholarship 2027 (ANSO-CAS-TWAS/UNESCO) for Developing Countries | Fully Funded",
+   "link": "https://www.scholarshipregion.com/world-academy-of-science-scholarship/",
+   "date": "2026-11-25",
+   "source": "Scholarship Region",
+   "official": false,
+   "ids": [],
+   "summary": "The World Academy of Science Scholarship will provide full tuition coverage, ¥7000 Monthly Stipends, and campus accommodation for international students from developing countries to study in China. T…",
+   "seen": "2026-11-26"
+  },
+  {
+   "title": "Hansen Leadership Institute Scholarship (HLI) in USA 2027 | Fully Funded",
+   "link": "https://www.scholarshipregion.com/hansen-leadership-institute-hli/",
+   "date": "2026-11-25",
+   "source": "Scholarship Region",
+   "official": false,
+   "ids": [],
+   "summary": "The Hansen Leadership Institute Scholarship (HLI) is a transformative opportunity for young global leaders to collaborate, learn, and grow in an environment dedicated to leadership development and pe…",
+   "seen": "2026-11-26"
   },
   {
    "title": "ANSO-CAS-TWAS/UNESCO PhD Scholarship 2026-2027 (Funded)",
@@ -1565,138 +1697,6 @@
    "ids": [],
    "summary": "Applications are now open for the 2027 Switzer Fellowship, an environmental leadership development programme offering selected graduate students an $18,000 cash award, leadership training, profession…",
    "seen": "2026-11-13"
-  },
-  {
-   "title": "UCD Iseult Honohan Doctoral Scholarship 2027 (Fully-funded)",
-   "link": "https://opportunitydesk.org/2026/11/13/ucd-iseult-honohan-doctoral-scholarship-2027/",
-   "date": "2026-11-13",
-   "source": "Opportunity Desk",
-   "official": false,
-   "ids": [],
-   "summary": "Deadline: January 15, 2027 Applications are open for the UCD Iseult Honohan Doctoral Scholarship 2027. The scholarship is named after Dr Iseult Honohan, one of the first female PhD graduates from the…",
-   "seen": "2026-11-14"
-  },
-  {
-   "title": "Bayer Foundation Scientific Fellowships 2027 (up to €10,000)",
-   "link": "https://opportunitydesk.org/2026/11/13/bayer-foundation-scientific-fellowships-2027/",
-   "date": "2026-11-13",
-   "source": "Opportunity Desk",
-   "official": false,
-   "ids": [],
-   "summary": "Deadline: January 18, 2027 Applications are open for the Bayer Foundation Scientific Fellowships 2027. The Bayer Foundation offers scientific fellowships for outstanding master, PhD, and medical stud…",
-   "seen": "2026-11-14"
-  },
-  {
-   "title": "BI Presidential Scholarships in Norway 2027 for International Students (Fully Funded)",
-   "link": "https://www.scholarshipregion.com/bi-presidential-scholarships/",
-   "date": "2026-11-13",
-   "source": "Scholarship Region",
-   "official": false,
-   "ids": [],
-   "summary": "The Norwegian Business School is offering fully funded BI Presidential Scholarships to students with remarkable academic records admitted to any MSc programme at campus Oslo or campus Bergen. This sc…",
-   "seen": "2026-11-14"
-  },
-  {
-   "title": "Bayer Foundation Fellowships 2026: Apply for Up to €10,000 in International Research and Internship Funding",
-   "link": "https://opportunitiesforyouth.org/2026/11/13/bayer-foundation-fellowships-2026-apply-for-up-to-e10000-in-international-research-and-internship-funding/",
-   "date": "2026-11-13",
-   "source": "Opportunities for Youth",
-   "official": false,
-   "ids": [],
-   "summary": "Are you an outstanding master’s student, PhD candidate or medical student interested in pursuing an international research project, academic placement or internship? The Bayer Foundation Fellowships …",
-   "seen": "2026-11-15"
-  },
-  {
-   "title": "Fulbright UK Summer Institutes 2027: Fully Funded 2–4 Week UK Study Abroad Programme for US Undergraduate Students",
-   "link": "https://opportunitiesforyouth.org/2026/11/13/top-fully-funded-scholarships-database-to-study-worldwide/",
-   "date": "2026-11-13",
-   "source": "Opportunities for Youth",
-   "official": false,
-   "ids": [
-    "fulbright"
-   ],
-   "summary": "Are you a United States undergraduate student interested in exploring British history, culture, heritage, and higher education while gaining international academic experience? The Fulbright UK Summer…",
-   "seen": "2026-11-15"
-  },
-  {
-   "title": "Council of Europe Civil Society Grants 2027: Apply for Up to €20,000 to Strengthen Democracy and Civic Engagement Across Europe",
-   "link": "https://opportunitiesforyouth.org/2026/11/13/european-youth-foundation-eyf-grants-2026-funding-support-for-youth-organisations-across-europe/",
-   "date": "2026-11-13",
-   "source": "Opportunities for Youth",
-   "official": false,
-   "ids": [],
-   "summary": "The Council of Europe Civil Society Grants 2027 offer an important funding opportunity for eligible civil society organisations working to strengthen democracy, protect civic space, and promote meani…",
-   "seen": "2026-11-15"
-  },
-  {
-   "title": "European Master in Law, Data and Artificial Intelligence",
-   "link": "https://emildai.eu",
-   "date": "2026-11-12",
-   "source": "Erasmus Mundus catalogue (EACEA)",
-   "official": true,
-   "ids": [],
-   "summary": "EMILDAI - Project overview https://erasmus-plus.ec.europa.eu/projects/search/details/101325623",
-   "seen": "2026-11-13"
-  },
-  {
-   "title": "Joint International Master in Semiconductor ChipS Integration and Innovation",
-   "link": "https://ssi-master.eu/",
-   "date": "2026-11-12",
-   "source": "Erasmus Mundus catalogue (EACEA)",
-   "official": true,
-   "ids": [],
-   "summary": "SSI2 - Project overview https://erasmus-plus.ec.europa.eu/projects/search/details/101325610",
-   "seen": "2026-11-13"
-  },
-  {
-   "title": "Master in Nuclear Decommissioning and Environmental Remediation",
-   "link": "https://www.up.pt/minder/web/",
-   "date": "2026-11-12",
-   "source": "Erasmus Mundus catalogue (EACEA)",
-   "official": true,
-   "ids": [],
-   "summary": "MINDER - Project overview https://erasmus-plus.ec.europa.eu/projects/search/details/101325571",
-   "seen": "2026-11-13"
-  },
-  {
-   "title": "European Master in Migration and Intercultural Relations",
-   "link": "https://www.emmir.org/",
-   "date": "2026-11-12",
-   "source": "Erasmus Mundus catalogue (EACEA)",
-   "official": true,
-   "ids": [],
-   "summary": "EMMIR - Project overview https://erasmus-plus.ec.europa.eu/projects/search/details/101325467",
-   "seen": "2026-11-13"
-  },
-  {
-   "title": "Gratitude Network Fellowship 2027",
-   "link": "https://opportunitydesk.org/2026/11/12/gratitude-network-fellowship-2027/",
-   "date": "2026-11-12",
-   "source": "Opportunity Desk",
-   "official": false,
-   "ids": [],
-   "summary": "Deadline: January 15, 2027 Applications are invited for the Gratitude Network Fellowship 2027. The Gratitude Network Fellowship is a highly selective, 13 month program designed to accelerate the grow…",
-   "seen": "2026-11-12"
-  },
-  {
-   "title": "AllPeopleBeHappy Volunteer Service Award Program 2027 (Funded)",
-   "link": "https://opportunitydesk.org/2026/11/12/allpeoplebehappy-volunteer-service-award-program-2027/",
-   "date": "2026-11-12",
-   "source": "Opportunity Desk",
-   "official": false,
-   "ids": [],
-   "summary": "Deadline: November 15, 2026 Applications are open for the AllPeopleBeHappy Volunteer Service Award Program 2027. AllPeopleBeHappy is proud to launch their second year Volunteer Service Award program,…",
-   "seen": "2026-11-12"
-  },
-  {
-   "title": "Thrive Capital Summer Fellowship 2027 ($100,000 salary)",
-   "link": "https://opportunitydesk.org/2026/11/12/thrive-capital-summer-fellowship-2027/",
-   "date": "2026-11-12",
-   "source": "Opportunity Desk",
-   "official": false,
-   "ids": [],
-   "summary": "Deadline: December 11, 2026 Applications are invited for the Thrive Capital Summer Fellowship 2027. The Fellowship is an opportunity for exceptional college students to pursue their own curiosities, …",
-   "seen": "2026-11-12"
   }
  ]
 }
