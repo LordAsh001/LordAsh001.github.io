@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-26",
+ "updated": "2026-11-27",
  "sources": [
   {
    "source": "Opportunities for Africans",
@@ -19,7 +19,7 @@
   {
    "source": "Scholarship Region",
    "ok": true,
-   "items": 8
+   "items": 6
   },
   {
    "source": "Opportunities for Youth",
@@ -56,6 +56,70 @@
   }
  ],
  "items": [
+  {
+   "title": "Erasmus Mundus Master Nanoscience and Nanotechnology",
+   "link": "http://www.emm-nano.org/",
+   "date": "2026-11-27",
+   "source": "Erasmus Mundus catalogue (EACEA)",
+   "official": true,
+   "ids": [
+    "erasmus"
+   ],
+   "summary": "EMMNano - Project overview https://erasmus-plus.ec.europa.eu/projects/search/details/619804-EPP-1-…",
+   "seen": "2026-11-27"
+  },
+  {
+   "title": "The Queen Elizabeth Commonwealth Scholarships (QECS) 2027/2028 for Master’s degree study in a low or middle-income Commonwealth country. (Fully Funded)",
+   "link": "https://www.opportunitiesforafricans.com/the-queen-elizabeth-commonwealth-scholarships-qecs-2027-2028/",
+   "date": "2026-11-27",
+   "source": "Opportunities for Africans",
+   "official": false,
+   "ids": [
+    "csc-masters"
+   ],
+   "summary": "Application Deadline: 13 January 2027, 15:00 UTC Applications are now open for the 2027/2028 Queen Elizabeth Commonwealth Scholarships. The Queen Elizabeth Commonwealth Scholarships (QECS) offer a un…",
+   "seen": "2026-11-27"
+  },
+  {
+   "title": "Scholarships Funding Postgraduate Studies Within Africa (2027)",
+   "link": "https://www.scholarshipregion.com/scholarships-funding-postgraduate-studies-within-africa/",
+   "date": "2026-11-27",
+   "source": "Scholarship Region",
+   "official": false,
+   "ids": [],
+   "summary": "Africa has one of the world’s youngest populations, with more than 400 million people aged between 15 and 35. However, access to higher education remains a significant challenge across the continent.…",
+   "seen": "2026-11-27"
+  },
+  {
+   "title": "ANSO Scholarship in China 2027 | Fully Funded",
+   "link": "https://www.scholarshipregion.com/anso-scholarship-in-china/",
+   "date": "2026-11-27",
+   "source": "Scholarship Region",
+   "official": false,
+   "ids": [],
+   "summary": "The ANSO Scholarship Program offers full Master’s and PhD scholarships for international students to study at the University of Science and Technology of China (USTC), the University of Chinese Acade…",
+   "seen": "2026-11-27"
+  },
+  {
+   "title": "2027 VU Amsterdam Scholarships in the Netherlands for International Students | How To Apply",
+   "link": "https://www.scholarshipregion.com/vu-amsterdam-scholarship-fellowship/",
+   "date": "2026-11-27",
+   "source": "Scholarship Region",
+   "official": false,
+   "ids": [],
+   "summary": "Vrije Universititeit (VU) Amsterdam is offering scholarship and fellowship opportunities for international students to study in the Netherlands. The VU Amsterdam Scholarships offers a full tuition fe…",
+   "seen": "2026-11-27"
+  },
+  {
+   "title": "INTERACT Africa Scholarship Program 2027 | Fully Funded",
+   "link": "https://www.scholarshipregion.com/interact-africa-scholarship/",
+   "date": "2026-11-27",
+   "source": "Scholarship Region",
+   "official": false,
+   "ids": [],
+   "summary": "The European and African Unions are sponsoring interested students for the fully funded INTERACT Africa Scholarship. The INTERACT Africa Scholarship is a fully funded study opportunity that covers th…",
+   "seen": "2026-11-27"
+  },
   {
    "title": "Beyond Maseru: Commonwealth Alumni bring scholarship support to Qacha’s Nek, Lesotho",
    "link": "https://cscuk.fcdo.gov.uk/beyond-maseru-commonwealth-alumni-bring-scholarship-support-to-qachas-nek-lesotho/",
@@ -137,6 +201,16 @@
    ],
    "summary": "The University of Hull, in partnership with the Commonwealth Scholarship Commission (CSC) has announced applications for th 2027 Commonwealth Shared Scholarship Scheme. The University of Hull Commonw…",
    "seen": "2026-11-26"
+  },
+  {
+   "title": "KPMG Nigeria University Scholarship 2026 Program | How To Apply",
+   "link": "https://www.scholarshipregion.com/kpmg-nigeria-university-scholarship/",
+   "date": "2026-11-26",
+   "source": "Scholarship Region",
+   "official": false,
+   "ids": [],
+   "summary": "The KPMG Nigeria University Scholarship Program sponsors selected indigenous students through their tertiary education, in line with the firm’s commitment to improving communities by enabling access …",
+   "seen": "2026-11-27"
   },
   {
    "title": "Cora Weiss Fellowship for Young Women Peacebuilders 2027 (Funded)",
@@ -773,6 +847,16 @@
    ],
    "summary": "EGEI - Project overview https://erasmus-plus.ec.europa.eu/projects/search/details/101325276",
    "seen": "2026-11-24"
+  },
+  {
+   "title": "Master in Nuclear Decommissioning and Environmental Remediation",
+   "link": "https://www.up.pt/minder/web/",
+   "date": "2026-11-20",
+   "source": "Erasmus Mundus catalogue (EACEA)",
+   "official": true,
+   "ids": [],
+   "summary": "MINDER - Project overview https://erasmus-plus.ec.europa.eu/projects/search/details/101325571",
+   "seen": "2026-11-27"
   },
   {
    "title": "Oxford Saïd Future Leaders Scholarships 2027",
@@ -1615,88 +1699,6 @@
    ],
    "summary": "QuanTEEM plus - Project overview https://erasmus-plus.ec.europa.eu/projects/search/details/101325739",
    "seen": "2026-11-14"
-  },
-  {
-   "title": "EU-CONEXUS Joint Master Programme in Marine Biotechnology: Learning Community",
-   "link": "https://www.eu-conexus.eu/en/marine-biotechnology/",
-   "date": "2026-11-13",
-   "source": "Erasmus Mundus catalogue (EACEA)",
-   "official": true,
-   "ids": [],
-   "summary": "JMPMB Community - Project overview https://erasmus-plus.ec.europa.eu/projects/search/details/101325655",
-   "seen": "2026-11-14"
-  },
-  {
-   "title": "University of Oxford Wolfson Scholarships in UK 2027 | Fully Funded",
-   "link": "https://www.scholarshipregion.com/university-of-oxford-wolfson-scholarship/",
-   "date": "2026-11-13",
-   "source": "Scholarship Region",
-   "official": false,
-   "ids": [],
-   "summary": "Applications for the 2027-28 University of Oxford Wolfson Scholarship have commenced for interested international students to study in the UK. The University of Oxford Wolfson College Scholarships co…",
-   "seen": "2026-11-13"
-  },
-  {
-   "title": "Texas A&M University Scholarship 2027 in USA | Fully Funded",
-   "link": "https://www.scholarshipregion.com/texas-am-university-scholarships/",
-   "date": "2026-11-13",
-   "source": "Scholarship Region",
-   "official": false,
-   "ids": [],
-   "summary": "The Texas A&M University Scholarship is a fully funded graduate assistantship opportunity for prospective Master’s students. The Texas A&M University Graduate Scholarships offer up to a monthly stipe…",
-   "seen": "2026-11-13"
-  },
-  {
-   "title": "UCL Commonwealth Shared Scholarship in UK 2027 | Fully Funded",
-   "link": "https://www.scholarshipregion.com/ucl-commonwealth-shared-scholarship/",
-   "date": "2026-11-13",
-   "source": "Scholarship Region",
-   "official": false,
-   "ids": [
-    "csc-masters"
-   ],
-   "summary": "The University College London (UCL) in the United Kingdom has called for applications for the 2027 Commonwealth Shared Scholarship. The UCL Commonwealth Shared Scholarships cover tuition fees, a main…",
-   "seen": "2026-11-13"
-  },
-  {
-   "title": "UCD Iseult Honohan Doctoral Scholarship 2027 in Ireland: Fully Funded PhD Opportunity with €25,000 Annual Stipend for EU and International Students",
-   "link": "https://opportunitiesforyouth.org/2026/11/13/ucd-iseult-honohan-doctoral-scholarship-2027-in-ireland-fully-funded-phd-opportunity-with-e25000-annual-stipend-for-eu-and-international-students/",
-   "date": "2026-11-13",
-   "source": "Opportunities for Youth",
-   "official": false,
-   "ids": [],
-   "summary": "University College Dublin (UCD), through its School of Politics and International Relations (SPIRe), is inviting applications for the Iseult Honohan Doctoral Scholarship 2027 in Ireland. This prestig…",
-   "seen": "2026-11-13"
-  },
-  {
-   "title": "EY Foundation Step Into Business Programme 2027: Business Training, Six Months of Coaching and a £2,000 Startup Grant for Young Entrepreneurs",
-   "link": "https://opportunitiesforyouth.org/2026/11/13/ey-foundation-step-into-business-programme-2027-business-training-six-months-of-coaching-and-a-2000-startup-grant-for-young-entrepreneurs/",
-   "date": "2026-11-13",
-   "source": "Opportunities for Youth",
-   "official": false,
-   "ids": [],
-   "summary": "Are you a young person aged 16–19 with a business idea and an ambition to become an entrepreneur? The EY Foundation Step Into Business Programme 2027 offers young people an opportunity to develop the…",
-   "seen": "2026-11-13"
-  },
-  {
-   "title": "Global Youth Forum 2027 in Italy: €600 Scholarships Available for Eligible Applicants",
-   "link": "https://opportunitiesforyouth.org/2026/11/13/global-youth-forum-2027-in-italy-e600-scholarships-available-for-eligible-applicants/",
-   "date": "2026-11-13",
-   "source": "Opportunities for Youth",
-   "official": false,
-   "ids": [],
-   "summary": "Location: Turin, Italy Dates: 18–29 January 2027 Format: In person Language: English Scholarship Application Deadline: 20 November 2026 Application Deadline: 3 December 2026 Organiser: International …",
-   "seen": "2026-11-13"
-  },
-  {
-   "title": "Switzer Fellowship 2027: $18,000 Environmental Leadership Fellowship for Graduate Students in the United States",
-   "link": "https://opportunitiesforyouth.org/2026/11/13/2027-switzer-fellowship-in-the-usa-18000-award-for-environmental-leaders/",
-   "date": "2026-11-13",
-   "source": "Opportunities for Youth",
-   "official": false,
-   "ids": [],
-   "summary": "Applications are now open for the 2027 Switzer Fellowship, an environmental leadership development programme offering selected graduate students an $18,000 cash award, leadership training, profession…",
-   "seen": "2026-11-13"
   }
  ]
 }
