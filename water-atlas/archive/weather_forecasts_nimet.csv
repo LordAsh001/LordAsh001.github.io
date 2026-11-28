@@ -6125,9 +6125,9 @@ issued,station,state,lga,lat,lon,day,day_label,weather,temp_day_c,temp_night_c
 2026-11-28,Awka,Anambra,Awka South,6.21,7.07,1,Mon 30th,Sunny,36.0,23.0
 2026-11-28,Awka,Anambra,Awka South,6.21,7.07,2,Sat 28th,Sunny,37.0,21.0
 2026-11-28,Awka,Anambra,Awka South,6.21,7.07,3,Sun 29th,Sunny,37.0,20.0
-2026-11-28,Ayetoro Ondo,Ondo,Ilaje,6.1,4.75,1,Mon 30th,Thunderstorm,34.0,23.0
-2026-11-28,Ayetoro Ondo,Ondo,Ilaje,6.1,4.75,2,Sat 28th,Partly cloudy,35.0,25.0
-2026-11-28,Ayetoro Ondo,Ondo,Ilaje,6.1,4.75,3,Sun 29th,Thunderstorm with Rain,35.0,25.0
+2026-11-28,Ayetoro Ondo,Ondo,Ilaje,6.1,4.75,1,Mon 30th,Sunny,36.0,23.0
+2026-11-28,Ayetoro Ondo,Ondo,Ilaje,6.1,4.75,2,Sat 28th,Sunny,37.0,21.0
+2026-11-28,Ayetoro Ondo,Ondo,Ilaje,6.1,4.75,3,Sun 29th,Sunny,37.0,20.0
 2026-11-28,Badagry,Lagos,Badagry,6.42,2.88,1,Mon 30th,Sunny,36.0,23.0
 2026-11-28,Badagry,Lagos,Badagry,6.42,2.88,2,Sat 28th,Sunny,37.0,21.0
 2026-11-28,Badagry,Lagos,Badagry,6.42,2.88,3,Sun 29th,Sunny,37.0,20.0
@@ -6236,9 +6236,9 @@ issued,station,state,lga,lat,lon,day,day_label,weather,temp_day_c,temp_night_c
 2026-11-28,Port Harcourt Marine,Rivers,Port Harcourt,4.77,7.03,1,Mon 30th,Sunny,36.0,23.0
 2026-11-28,Port Harcourt Marine,Rivers,Port Harcourt,4.77,7.03,2,Sat 28th,Sunny,37.0,21.0
 2026-11-28,Port Harcourt Marine,Rivers,Port Harcourt,4.77,7.03,3,Sun 29th,Sunny,37.0,20.0
-2026-11-28,Potiskum,Yobe,Potiskum,11.71,11.07,1,Mon 30th,Thunderstorm,34.0,23.0
-2026-11-28,Potiskum,Yobe,Potiskum,11.71,11.07,2,Sat 28th,Partly cloudy,35.0,25.0
-2026-11-28,Potiskum,Yobe,Potiskum,11.71,11.07,3,Sun 29th,Thunderstorm with Rain,35.0,25.0
+2026-11-28,Potiskum,Yobe,Potiskum,11.71,11.07,1,Mon 30th,Sunny,36.0,23.0
+2026-11-28,Potiskum,Yobe,Potiskum,11.71,11.07,2,Sat 28th,Sunny,37.0,21.0
+2026-11-28,Potiskum,Yobe,Potiskum,11.71,11.07,3,Sun 29th,Sunny,37.0,20.0
 2026-11-28,Shaki,Oyo,Shaki West,8.67,3.39,1,Mon 30th,Sunny,36.0,23.0
 2026-11-28,Shaki,Oyo,Shaki West,8.67,3.39,2,Sat 28th,Sunny,37.0,21.0
 2026-11-28,Shaki,Oyo,Shaki West,8.67,3.39,3,Sun 29th,Sunny,37.0,20.0
