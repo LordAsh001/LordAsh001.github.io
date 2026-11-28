@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-27",
+ "updated": "2026-11-28",
  "sources": [
   {
    "source": "Opportunities for Africans",
@@ -19,12 +19,12 @@
   {
    "source": "Scholarship Region",
    "ok": true,
-   "items": 6
+   "items": 7
   },
   {
    "source": "Opportunities for Youth",
-   "ok": false,
-   "error": "HTTP Error 403: Forbidden"
+   "ok": true,
+   "items": 3
   },
   {
    "source": "Commonwealth Scholarship Commission",
@@ -119,6 +119,82 @@
    "ids": [],
    "summary": "The European and African Unions are sponsoring interested students for the fully funded INTERACT Africa Scholarship. The INTERACT Africa Scholarship is a fully funded study opportunity that covers th…",
    "seen": "2026-11-27"
+  },
+  {
+   "title": "The International Capital Market Association (ICMA) Scholarship Programme 2027 for young professionals.",
+   "link": "https://www.opportunitiesforafricans.com/the-international-capital-market-association-icma-scholarship-programme-2027/",
+   "date": "2026-11-27",
+   "source": "Opportunities for Africans",
+   "official": false,
+   "ids": [],
+   "summary": "Application Deadline: January 15, 2027 Applications are now open for the 2027 International Capital Market Association (ICMA) Scholarship Programme. The International Capital Market Association (ICMA…",
+   "seen": "2026-11-28"
+  },
+  {
+   "title": "Queen Elizabeth Commonwealth Scholarships 2027 (Fully-funded)",
+   "link": "https://opportunitydesk.org/2026/11/27/queen-elizabeth-commonwealth-scholarships-2027/",
+   "date": "2026-11-27",
+   "source": "Opportunity Desk",
+   "official": false,
+   "ids": [
+    "csc-masters"
+   ],
+   "summary": "Deadline: January 13, 2027 Applications are open for the Queen Elizabeth Commonwealth Scholarships 2027. The Queen Elizabeth Commonwealth Scholarships (QECS) offer a unique opportunity to study a two…",
+   "seen": "2026-11-28"
+  },
+  {
+   "title": "Queen Elizabeth Commonwealth Scholarship 2027 (QECS) | Fully Funded",
+   "link": "https://www.scholarshipregion.com/queen-elizabeth-commonwealth-scholarship/",
+   "date": "2026-11-27",
+   "source": "Scholarship Region",
+   "official": false,
+   "ids": [
+    "csc-masters"
+   ],
+   "summary": "The Queen Elizabeth Commonwealth Scholarships (QECS) offer a unique opportunity to study a two-year Master’s degree in a low or middle income Commonwealth country. The Queen Elizabeth Scholarship is …",
+   "seen": "2026-11-28"
+  },
+  {
+   "title": "2027 Ghent University Doctoral Scholarships in Belgium | Fully Funded",
+   "link": "https://www.scholarshipregion.com/ghent-university-doctoral-scholarship/",
+   "date": "2026-11-27",
+   "source": "Scholarship Region",
+   "official": false,
+   "ids": [],
+   "summary": "Applications for the 2027 Ghent University Doctoral Scholarship have now commenced for international candidates. The Ghent University Scholarship offers full funding coverage of €11,720 for doctoral …",
+   "seen": "2026-11-28"
+  },
+  {
+   "title": "Eastern Partnership Civil Society Fellowship Programme 2027",
+   "link": "https://opportunitiesforyouth.org/2026/11/27/eastern-partnership-civil-society-fellowship-programme-2027/",
+   "date": "2026-11-27",
+   "source": "Opportunities for Youth",
+   "official": false,
+   "ids": [],
+   "summary": "The Eastern Partnership Civil Society Facility has officially launched applications for the highly anticipated 2027 Civil Society Fellowship Programme, providing civic activists and change-makers fro…",
+   "seen": "2026-11-28"
+  },
+  {
+   "title": "Sara Davies Young Entrepreneurs Academy 2027: Win a £1,000 Business Development Bursary, Expert Coaching and Six Months of Mentoring in the UK",
+   "link": "https://opportunitiesforyouth.org/2026/11/27/sara-davies-young-entrepreneurs-academy-2027-win-a-1000-business-development-bursary-expert-coaching-and-six-months-of-mentoring-in-the-uk/",
+   "date": "2026-11-27",
+   "source": "Opportunities for Youth",
+   "official": false,
+   "ids": [],
+   "summary": "Are you a young entrepreneur in the United Kingdom with a creative business idea or an existing product-based venture that you want to turn into a successful brand? The Young Entrepreneurs Academy, l…",
+   "seen": "2026-11-28"
+  },
+  {
+   "title": "Queen Elizabeth Commonwealth Scholarships 2027 – Fully Funded Master’s Scholarships in 8 Commonwealth Countries | Apply Now",
+   "link": "https://opportunitiesforyouth.org/2026/11/27/queen-elizabeth-commonwealth-scholarships-2027-fully-funded-masters-scholarships-in-8-commonwealth-countries-apply-now/",
+   "date": "2026-11-27",
+   "source": "Opportunities for Youth",
+   "official": false,
+   "ids": [
+    "csc-masters"
+   ],
+   "summary": "The Queen Elizabeth Commonwealth Scholarships (QECS) 2027 offer an outstanding opportunity for international students to pursue a fully funded two-year master’s degree at selected universities in low…",
+   "seen": "2026-11-28"
   },
   {
    "title": "Beyond Maseru: Commonwealth Alumni bring scholarship support to Qacha’s Nek, Lesotho",
@@ -1625,80 +1701,6 @@
    "ids": [],
    "summary": "Deadline: December 2, 2026 Applications are open for the Council of Europe Grants for Civil Society Organisations 2026. The Council of Europe’s democratic institutions and civil society division is g…",
    "seen": "2026-11-15"
-  },
-  {
-   "title": "AFS Global STEM Academies 2027: Fully Funded International Study Abroad Scholarship for Students from 12 Countries",
-   "link": "https://opportunitiesforyouth.org/2026/11/14/afs-global-stem-academies-2027-fully-funded-international-study-abroad-scholarship-for-students-from-12-countries/",
-   "date": "2026-11-14",
-   "source": "Opportunities for Youth",
-   "official": false,
-   "ids": [],
-   "summary": "The AFS Global STEM Academies 2027 is an international, fully funded study abroad scholarship program offering young people an exceptional opportunity to develop their knowledge of Science, Technolog…",
-   "seen": "2026-11-15"
-  },
-  {
-   "title": "2027 Fully Funded Youth Delegate Programme: Apply for the Council of Europe Congress in Strasbourg",
-   "link": "https://opportunitiesforyouth.org/2026/11/14/2027-fully-funded-youth-delegate-programme-apply-for-the-council-of-europe-congress-in-strasbourg/",
-   "date": "2026-11-14",
-   "source": "Opportunities for Youth",
-   "official": false,
-   "ids": [],
-   "summary": "Key details Programme: 2027 Congress Youth Delegates Programme, part of the Rejuvenating Politics initiative Location: Strasbourg, France Who can apply: Young people aged 18–30 from Council of Europe…",
-   "seen": "2026-11-15"
-  },
-  {
-   "title": "How to Attend the One Young World Summit 2027 in Tokyo: Scholarships, Funding and Applications",
-   "link": "https://opportunitiesforyouth.org/2026/11/14/how-to-attend-one-young-world-summit-2026-scholarships-lead2030-challenges-and-fully-funded-opportunities/",
-   "date": "2026-11-14",
-   "source": "Opportunities for Youth",
-   "official": false,
-   "ids": [],
-   "summary": "In 2027, One Young World returns to Asia for the first time since Bangkok 2015, with Tokyo set to host the Summit at the Tokyo International Forum. Taking place in a city where centuries-old traditio…",
-   "seen": "2026-11-15"
-  },
-  {
-   "title": "Erasmus Mundus Joint Master Degree in Advanced Microscopy with Artificial Intelligence",
-   "link": "https://microscom.eu/",
-   "date": "2026-11-13",
-   "source": "Erasmus Mundus catalogue (EACEA)",
-   "official": true,
-   "ids": [
-    "erasmus"
-   ],
-   "summary": "MICROSCOM - Project overview https://erasmus-plus.ec.europa.eu/projects/search/details/101325643",
-   "seen": "2026-11-13"
-  },
-  {
-   "title": "Innovative Bioinspired Materials for Sustainable Applications",
-   "link": "https://put.poznan.pl/en",
-   "date": "2026-11-13",
-   "source": "Erasmus Mundus catalogue (EACEA)",
-   "official": true,
-   "ids": [],
-   "summary": "IBISA - Project overview https://erasmus-plus.ec.europa.eu/projects/search/details/101325640",
-   "seen": "2026-11-13"
-  },
-  {
-   "title": "Joint MSc Water Vulnerability Engineering in Spatial Sciences",
-   "link": "https://www.msc-waves.eu/",
-   "date": "2026-11-13",
-   "source": "Erasmus Mundus catalogue (EACEA)",
-   "official": true,
-   "ids": [],
-   "summary": "WAVES - Project overview https://erasmus-plus.ec.europa.eu/projects/search/details/101325634",
-   "seen": "2026-11-13"
-  },
-  {
-   "title": "Quantum Technologies and Engineering Erasmus Mundus Master Plus",
-   "link": "https://www.quanteem.eu/",
-   "date": "2026-11-13",
-   "source": "Erasmus Mundus catalogue (EACEA)",
-   "official": true,
-   "ids": [
-    "erasmus"
-   ],
-   "summary": "QuanTEEM plus - Project overview https://erasmus-plus.ec.europa.eu/projects/search/details/101325739",
-   "seen": "2026-11-14"
   }
  ]
 }
